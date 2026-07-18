@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "benchmaxxing"
+version = "0.0.1"
+description = "Referee agents that catch benchmark gaming in clinical multi-agent systems: shortcut cascades, blind metrics, and mutual oversight, measured."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "scikit-learn>=1.2",
+]
+
+[project.optional-dependencies]
+# Reuse the originals. These are declared as extras so the pure-Python core installs
+# and tests anywhere; each wrapper guards its import and raises a clear message if the
+# extra is missing.
+stats = ["statsmodels>=0.14"]           # mixed-effects, Cochran-Mantel-Haenszel
+changepoint = ["ruptures>=1.1"]         # cascade-onset change-point detection
+image = ["pillow>=10", "opencv-python-headless>=4.8"]  # cue injection
+models = ["google-genai>=0.3", "litellm>=1.40", "transformers>=4.50", "torch>=2.1"]
+config = ["pyyaml>=6.0"]
+dev = ["pytest>=7.4", "ruff>=0.5"]
+
+[project.scripts]
+benchmaxxing = "benchmaxxing.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["benchmaxxing*"]
+
+[tool.ruff]
+line-length = 100
