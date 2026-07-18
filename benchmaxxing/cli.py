@@ -25,6 +25,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     sub.add_parser("version", help="print the installed benchmaxxing version")
     sub.add_parser("datasets", help="list the available dataset adapters")
+    sub.add_parser("smoke", help="run the offline end-to-end pipeline smoke on synthetic data")
 
     p_config = sub.add_parser("config-show", help="print the resolved default config")
     p_config.add_argument(
@@ -82,10 +83,18 @@ def _cmd_config_show(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_smoke(_args: argparse.Namespace) -> int:
+    from benchmaxxing.demo import format_report, run_smoke
+
+    print(format_report(run_smoke()))
+    return 0
+
+
 _HANDLERS = {
     "version": _cmd_version,
     "datasets": _cmd_datasets,
     "config-show": _cmd_config_show,
+    "smoke": _cmd_smoke,
 }
 
 
