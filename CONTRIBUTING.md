@@ -24,6 +24,18 @@ pip install -e ".[dev]"
 pip install -e ".[dev,image,changepoint,stats,config]"
 ```
 
+### Environment variables (API key)
+
+The default model backend is the **Gemini API**. Configure your key through the environment; never commit a key or paste it into a tracked file.
+
+```bash
+export GEMINI_API_KEY=your-key-here      # google-genai reads this (GOOGLE_API_KEY also works)
+```
+
+You do **not** need a key for most work: the full test suite and `benchmaxxing smoke` use mock backends and synthetic data, so they run entirely offline. A key (plus the `models` extra) is only needed to run the pipeline on real cases through Gemini. For the required cross-lineage arm, also make at least one open-weights vision-language model available locally (via the `models` extra / HuggingFace); those need no key.
+
+To make the key persist, add the `export` line to your shell profile, or keep it in a local `.env` file that you do not commit (add `.env` to your local git ignore).
+
 ## 2. Run the checks locally (the gate)
 
 There is no hosted CI; local `ruff` + `pytest` is the gate, plus the offline smoke.
