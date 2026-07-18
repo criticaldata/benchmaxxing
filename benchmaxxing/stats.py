@@ -1,0 +1,338 @@
+"""Statistical helpers for benchmaxxing.
+
+Thin wrappers over the established libraries (scipy, scikit-learn) with pure-numpy
+implementations where a library is either absent or overkill. The two functions that
+genuinely need statsmodels (Cochran-Mantel-Haenszel and mixed-effects logistic
+regression) guard their import and raise a clear, actionable ImportError when the
+optional ``stats`` extra is not installed.
+
+Reuse-the-originals: nothing here re-implements what scipy or scikit-learn already do.
+Only Cochran's Q, the percentile bootstrap, and the multiple-comparison corrections are
+hand-rolled, because they are small and have no direct single-call equivalent we depend on.
+"""
+
+from __future__ import annotations
+
+from typing import Callable, NamedTuple, Sequence
+
+import numpy as np
+
+__all__ = [
+    "McNemarResult",
+    "CochranQResult",
+    "FisherResult",
+    "CMHResult",
+    "MultipleComparisonResult",
+    "mcnemar",
+    "cochran_q",
+    "fisher_exact",
+    "cochran_mantel_haenszel",
+    "mixed_effects_logit",
+    "bootstrap_ci",
+    "phi_coefficient",
+    "jaccard",
+    "cohen_kappa",
+    "multiple_comparison",
+]
+
+
+class McNemarResult(NamedTuple):
+    """Result of the exact McNemar test. ``statistic`` is the smaller discordant count."""
+
+    statistic: float
+    pvalue: float
+
+
+class CochranQResult(NamedTuple):
+    """Result of Cochran's Q test. ``statistic`` is Q, distributed chi-square with df=k-1."""
+
+    statistic: float
+    pvalue: float
+    df: int
+
+
+class FisherResult(NamedTuple):
+    """Result of Fisher's exact test on a 2x2 table."""
+
+    oddsratio: float
+    pvalue: float
+
+
+class CMHResult(NamedTuple):
+    """Result of the Cochran-Mantel-Haenszel test across strata."""
+
+    statistic: float
+    pvalue: float
+
+
+class MultipleComparisonResult(NamedTuple):
+    """Adjusted p-values and the boolean reject vector for a family of tests."""
+
+    pvalues_adjusted: np.ndarray
+    reject: np.ndarray
+
+
+def mcnemar(b: int, c: int) -> McNemarResult:
+    """Exact McNemar test on the two discordant cell counts of a paired 2x2 table.
+
+    ``b`` and ``c`` are the off-diagonal counts (one classifier right / the other wrong,
+    and vice versa). Uses the exact binomial test (scipy.stats.binomtest) with p=0.5 over
+    the ``b + c`` discordant pairs, which is the exact form of McNemar's test.
+
+    Returns a :class:`McNemarResult` whose ``statistic`` is ``min(b, c)`` (the count fed
+    to the binomial test) and whose ``pvalue`` is the two-sided exact p-value.
+    """
+    from scipy.stats import binomtest
+
+    b = int(b)
+    c = int(c)
+    n = b + c
+    if n == 0:
+        # No discordant pairs: nothing to distinguish the two classifiers.
+        return McNemarResult(statistic=0.0, pvalue=1.0)
+    k = min(b, c)
+    res = binomtest(k, n, 0.5, alternative="two-sided")
+    return McNemarResult(statistic=float(k), pvalue=float(res.pvalue))
+
+
+def cochran_q(binary_matrix: np.ndarray) -> CochranQResult:
+    """Cochran's Q test for k related binary treatments over n subjects.
+
+    ``binary_matrix`` is an ``(n_subjects, k_conditions)`` array of 0/1 values (one row per
+    subject, one column per condition). Returns Q and its p-value from the chi-square
+    distribution with ``k - 1`` degrees of freedom. Pure numpy for Q; scipy for the tail.
+
+    For ``k == 2`` this reduces to the (uncorrected) McNemar chi-square ``(b - c)**2 / (b + c)``.
+    """
+    from scipy.stats import chi2
+
+    x = np.asarray(binary_matrix, dtype=float)
+    if x.ndim != 2:
+        raise ValueError("binary_matrix must be 2-D (n_subjects x k_conditions)")
+    n, k = x.shape
+    if k < 2:
+        raise ValueError("Cochran's Q needs at least 2 conditions (columns)")
+    if not np.all(np.isin(x, (0.0, 1.0))):
+        raise ValueError("binary_matrix must contain only 0/1 values")
+
+    col_sums = x.sum(axis=0)          # C_j: successes per condition
+    row_sums = x.sum(axis=1)          # R_i: successes per subject
+    total = col_sums.sum()            # total successes
+
+    denom = k * total - np.sum(row_sums**2)
+    if denom == 0:
+        # Every subject is constant across conditions: Q is undefined; treat as no effect.
+        return CochranQResult(statistic=0.0, pvalue=1.0, df=k - 1)
+
+    numer = (k - 1) * (k * np.sum(col_sums**2) - total**2)
+    q = float(numer / denom)
+    df = k - 1
+    pvalue = float(chi2.sf(q, df))
+    return CochranQResult(statistic=q, pvalue=pvalue, df=df)
+
+
+def fisher_exact(table_2x2: Sequence[Sequence[float]]) -> FisherResult:
+    """Fisher's exact test on a 2x2 contingency table.
+
+    Wraps :func:`scipy.stats.fisher_exact` and returns the (conditional maximum-likelihood)
+    odds ratio and the two-sided p-value as a :class:`FisherResult`.
+    """
+    from scipy.stats import fisher_exact as _fisher_exact
+
+    result = _fisher_exact(table_2x2)
+    oddsratio, pvalue = result  # SignificanceResult unpacks to (statistic, pvalue)
+    return FisherResult(oddsratio=float(oddsratio), pvalue=float(pvalue))
+
+
+def cochran_mantel_haenszel(list_of_2x2: Sequence[np.ndarray]) -> CMHResult:
+    """Cochran-Mantel-Haenszel test of a common odds ratio across strata.
+
+    ``list_of_2x2`` is a sequence of 2x2 tables (one per stratum). Requires statsmodels
+    (the ``stats`` extra); guards the import and raises a clear ImportError if it is
+    missing. Returns the CMH statistic and p-value under the null of no association.
+    """
+    try:
+        from statsmodels.stats.contingency_tables import StratifiedTable
+    except ImportError as exc:  # pragma: no cover - exercised only when extra is absent
+        raise ImportError(
+            "cochran_mantel_haenszel requires statsmodels. "
+            "Install the optional extra with: pip install 'benchmaxxing[stats]' "
+            "(or: pip install statsmodels)."
+        ) from exc
+
+    # statsmodels expects tables stacked on the last axis: shape (2, 2, n_strata).
+    tables = [np.asarray(t, dtype=float) for t in list_of_2x2]
+    stacked = np.dstack(tables)
+    st = StratifiedTable(stacked)
+    test = st.test_null_odds(correction=True)
+    return CMHResult(statistic=float(test.statistic), pvalue=float(test.pvalue))
+
+
+def mixed_effects_logit(y, fixed_effects_df, groups):
+    """Mixed-effects (random-intercept) logistic regression.
+
+    Parameters
+    ----------
+    y : array-like of shape (n,)
+        Binary 0/1 outcome for each observation.
+    fixed_effects_df : pandas.DataFrame or array-like of shape (n, p)
+        Fixed-effects design matrix. Include an explicit intercept column if you want one;
+        no intercept is added automatically.
+    groups : array-like of shape (n,)
+        Grouping label per observation. A random intercept is fitted for each unique group.
+
+    Returns
+    -------
+    The fitted statsmodels results object from
+    ``statsmodels.genmod.bayes_mixed_glm.BinomialBayesMixedGLM`` (variational-Bayes fit),
+    which exposes ``fe_mean`` (fixed-effect posterior means), ``summary()`` and friends.
+
+    Requires statsmodels (the ``stats`` extra); guards the import and raises a clear
+    ImportError if it is missing.
+    """
+    try:
+        from statsmodels.genmod.bayes_mixed_glm import BinomialBayesMixedGLM
+    except ImportError as exc:  # pragma: no cover - exercised only when extra is absent
+        raise ImportError(
+            "mixed_effects_logit requires statsmodels. "
+            "Install the optional extra with: pip install 'benchmaxxing[stats]' "
+            "(or: pip install statsmodels)."
+        ) from exc
+
+    from scipy import sparse
+
+    y_arr = np.asarray(y, dtype=float)
+    exog = np.asarray(getattr(fixed_effects_df, "values", fixed_effects_df), dtype=float)
+    if exog.ndim == 1:
+        exog = exog[:, None]
+    groups_arr = np.asarray(groups)
+
+    # One variance component: a random intercept per group. exog_vc is the indicator design
+    # (n x n_groups); ident marks every column as belonging to the same variance component.
+    uniq = np.unique(groups_arr)
+    exog_vc = np.zeros((y_arr.shape[0], uniq.shape[0]), dtype=float)
+    for j, g in enumerate(uniq):
+        exog_vc[groups_arr == g, j] = 1.0
+    ident = np.zeros(uniq.shape[0], dtype=int)
+
+    model = BinomialBayesMixedGLM(y_arr, exog, sparse.csr_matrix(exog_vc), ident)
+    return model.fit_vb()
+
+
+def bootstrap_ci(
+    data: np.ndarray,
+    statistic: Callable[[np.ndarray], float] = np.mean,
+    n_boot: int = 2000,
+    ci: float = 0.95,
+    seed: int = 0,
+) -> tuple[float, float, float]:
+    """Percentile bootstrap confidence interval for a scalar statistic.
+
+    Pure numpy. Resamples ``data`` with replacement ``n_boot`` times, applies ``statistic``
+    to each resample, and reads the percentile interval. Returns ``(point, low, high)`` where
+    ``point`` is ``statistic(data)`` on the observed sample.
+    """
+    x = np.asarray(data)
+    if x.ndim != 1:
+        raise ValueError("data must be 1-D")
+    n = x.shape[0]
+    if n == 0:
+        raise ValueError("data must be non-empty")
+    if not 0.0 < ci < 1.0:
+        raise ValueError("ci must be in the open interval (0, 1)")
+
+    rng = np.random.default_rng(seed)
+    idx = rng.integers(0, n, size=(n_boot, n))
+    boot_stats = np.array([statistic(x[row]) for row in idx], dtype=float)
+
+    alpha = 1.0 - ci
+    lo_pct = 100.0 * (alpha / 2.0)
+    hi_pct = 100.0 * (1.0 - alpha / 2.0)
+    low, high = np.percentile(boot_stats, [lo_pct, hi_pct])
+    point = float(statistic(x))
+    return point, float(low), float(high)
+
+
+def phi_coefficient(y_true, y_pred) -> float:
+    """Phi coefficient for two binary vectors, i.e. the Matthews correlation coefficient.
+
+    Wraps :func:`sklearn.metrics.matthews_corrcoef`, which equals the phi coefficient for
+    the binary case.
+    """
+    from sklearn.metrics import matthews_corrcoef
+
+    return float(matthews_corrcoef(y_true, y_pred))
+
+
+def jaccard(y_a, y_b) -> float:
+    """Jaccard similarity between two binary vectors (intersection over union of the 1s).
+
+    Wraps :func:`sklearn.metrics.jaccard_score` with the default binary averaging.
+    """
+    from sklearn.metrics import jaccard_score
+
+    return float(jaccard_score(y_a, y_b))
+
+
+def cohen_kappa(r1, r2) -> float:
+    """Cohen's kappa inter-rater agreement between two label sequences.
+
+    Wraps :func:`sklearn.metrics.cohen_kappa_score`.
+    """
+    from sklearn.metrics import cohen_kappa_score
+
+    return float(cohen_kappa_score(r1, r2))
+
+
+def multiple_comparison(
+    pvalues: Sequence[float],
+    method: str = "bh",
+    alpha: float = 0.05,
+) -> MultipleComparisonResult:
+    """Adjust a family of p-values for multiple comparisons (pure numpy).
+
+    Parameters
+    ----------
+    pvalues : sequence of float
+        The raw per-test p-values.
+    method : {"bh", "holm"}
+        ``"bh"`` for Benjamini-Hochberg (FDR step-up); ``"holm"`` for Holm-Bonferroni
+        (FWER step-down). No statsmodels dependency.
+    alpha : float
+        Significance threshold applied to the adjusted p-values.
+
+    Returns
+    -------
+    MultipleComparisonResult
+        ``pvalues_adjusted`` (same order as the input) and a boolean ``reject`` array.
+    """
+    p = np.asarray(pvalues, dtype=float)
+    if p.ndim != 1:
+        raise ValueError("pvalues must be 1-D")
+    m = p.shape[0]
+    if m == 0:
+        return MultipleComparisonResult(
+            pvalues_adjusted=np.array([], dtype=float),
+            reject=np.array([], dtype=bool),
+        )
+
+    order = np.argsort(p)
+    ranked = p[order]
+    key = method.lower()
+
+    if key == "bh":
+        # Step-up: multiply by m/rank, then enforce monotonicity from the largest p down.
+        adj_sorted = ranked * m / np.arange(1, m + 1)
+        adj_sorted = np.minimum.accumulate(adj_sorted[::-1])[::-1]
+    elif key == "holm":
+        # Step-down: multiply by (m - rank + 1), then enforce monotonicity upward.
+        adj_sorted = ranked * (m - np.arange(m))
+        adj_sorted = np.maximum.accumulate(adj_sorted)
+    else:
+        raise ValueError("method must be 'bh' or 'holm'")
+
+    adj_sorted = np.clip(adj_sorted, 0.0, 1.0)
+    adjusted = np.empty(m, dtype=float)
+    adjusted[order] = adj_sorted
+    reject = adjusted <= alpha
+    return MultipleComparisonResult(pvalues_adjusted=adjusted, reject=reject)
