@@ -300,3 +300,30 @@ def test_orchestrator_amplifies_seed_endorsement():
         ground_truth="TRUTH",
     )
     assert result["orchestrator"].shortcut_fraction >= result["peer"].shortcut_fraction
+
+
+def test_onset_maps_series_index_to_real_turn_index():
+    # Regression (PR review): turns without an answer are skipped when building the onset
+    # series, so a series index is NOT a transcript turn index. The reported onset must be
+    # the real turn_index of the answer-bearing turn, mapped back through the series.
+    from benchmaxxing.ablations import _cascade_series, _onset_turn
+    from benchmaxxing.schema import Condition, Transcript, Turn
+
+    turns = [
+        Turn(turn_index=0, agent_id="a", content="", answer="TRUTH"),
+        Turn(turn_index=1, agent_id="b", content="no answer this turn", answer=None),
+        Turn(turn_index=2, agent_id="c", content="", answer="TRUTH"),
+        Turn(turn_index=3, agent_id="d", content="thinking aloud", answer=None),
+        Turn(turn_index=4, agent_id="e", content="", answer="SEED"),
+        Turn(turn_index=5, agent_id="f", content="", answer="SEED"),
+    ]
+    transcript = Transcript(run_id="r", case_id="c", condition=Condition.CONTAMINATED, turns=turns)
+    series, turn_indices = _cascade_series(transcript, "SEED", "TRUTH")
+    # four answer-bearing turns -> series length 4, mapped to their true indices
+    assert len(series) == 4
+    assert turn_indices == [0, 2, 4, 5]
+    onset = _onset_turn(series, turn_indices)
+    # the tip happens at the turn with turn_index 4 (series position 2); the reported onset
+    # must be a real transcript turn_index, never the bare series position
+    assert onset in turn_indices
+    assert onset == 4

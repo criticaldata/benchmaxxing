@@ -61,7 +61,7 @@ class SizeSweepPoint:
     """One committee size and the cascade signals measured at that size."""
 
     size: int
-    onset: int | None                    # cascade onset turn, or None when censored
+    onset: int | None                    # real transcript turn_index of the onset, or None
     shortcut_fraction: float             # fraction of agents flagged as cue-dependent
     n_turns: int
     transcript: Transcript
@@ -93,7 +93,7 @@ class SeedingPoint:
     """One seeding regime (peer or orchestrator) and its cascade signals."""
 
     label: str                           # "peer" or "orchestrator"
-    onset: int | None
+    onset: int | None                    # real transcript turn_index of the onset, or None
     shortcut_fraction: float
     n_turns: int
     transcript: Transcript
@@ -104,17 +104,22 @@ class SeedingPoint:
 
 def _cascade_series(
     transcript: Transcript, seed_answer: Any, ground_truth: Any
-) -> list[float]:
-    """Per-turn tug-of-war series: agreement-with-seed minus agreement-with-evidence.
+) -> tuple[list[float], list[int]]:
+    """Per-turn tug-of-war series plus the real turn index behind each series entry.
 
     For every answer-bearing turn (ordered by ``turn_index``) the value is ``+1`` when the turn
     matches the planted seed, ``-1`` when it matches the evidence (ground truth), and ``0`` when
     it matches neither (or both cancel). This is exactly the change-point signal
     :func:`benchmaxxing.onset.cascade_onset` consumes: the onset is the turn where the committee
     tips from following the evidence to following the seed.
+
+    Because turns without an answer are skipped, an index into the series is NOT a transcript
+    turn index. The second return value maps each series position back to the answer-bearing
+    turn's real ``turn_index``, so callers can report a true turn.
     """
     ordered = sorted(transcript.turns, key=lambda t: t.turn_index)
     series: list[float] = []
+    turn_indices: list[int] = []
     for turn in ordered:
         if turn.answer is None:
             continue
@@ -123,7 +128,20 @@ def _cascade_series(
             1.0 if (ground_truth is not None and turn.answer == ground_truth) else 0.0
         )
         series.append(agree_seed - agree_evidence)
-    return series
+        turn_indices.append(turn.turn_index)
+    return series, turn_indices
+
+
+def _onset_turn(series: list[float], turn_indices: list[int], min_size: int = 1) -> int | None:
+    """Detect the cascade onset on ``series`` and map it back to a real transcript turn index.
+
+    Returns the ``turn_index`` of the answer-bearing turn where the onset occurs, or ``None``
+    when the detector reports no change point (censored).
+    """
+    idx = cascade_onset(series, min_size=min_size)
+    if idx is None:
+        return None
+    return turn_indices[idx] if 0 <= idx < len(turn_indices) else None
 
 
 def _shortcut_fraction(transcript: Transcript, cue_type: str) -> float:
@@ -255,8 +273,8 @@ def committee_size_sweep(
             seed_turn=seed_turn,
             rounds=rounds,
         )
-        series = _cascade_series(transcript, seed_answer, ground_truth)
-        onset = cascade_onset(series, min_size=min_size)
+        series, turn_indices = _cascade_series(transcript, seed_answer, ground_truth)
+        onset = _onset_turn(series, turn_indices, min_size=min_size)
         points.append(
             SizeSweepPoint(
                 size=len(committee.members),
@@ -475,10 +493,10 @@ def orchestrator_vs_peer(
             seed_turn=seed_turn,
             rounds=rounds,
         )
-        series = _cascade_series(transcript, seed_answer, ground_truth)
+        series, turn_indices = _cascade_series(transcript, seed_answer, ground_truth)
         return SeedingPoint(
             label=label,
-            onset=cascade_onset(series),
+            onset=_onset_turn(series, turn_indices),
             shortcut_fraction=_shortcut_fraction(transcript, cue_type),
             n_turns=len(transcript.turns),
             transcript=transcript,
