@@ -336,3 +336,117 @@ def multiple_comparison(
     adjusted[order] = adj_sorted
     reject = adjusted <= alpha
     return MultipleComparisonResult(pvalues_adjusted=adjusted, reject=reject)
+
+
+def required_pairs(
+    p_discordant: float,
+    effect: float,
+    power: float = 0.8,
+    alpha: float = 0.05,
+) -> int:
+    """Twin pairs needed for a paired flip-rate (McNemar) test.
+
+    Closed-form normal approximation for the number of twin pairs required to detect a
+    given difference in flip rates between the CLEAN and CONTAMINATED conditions with a
+    two-sided McNemar / paired-proportion test.
+
+    Parameters
+    ----------
+    p_discordant : float
+        Expected proportion of *discordant* pairs, ``psi = p10 + p01`` in ``(0, 1]``: the
+        fraction of twin pairs whose two conditions disagree. Concordant pairs (both right
+        or both wrong) carry no information for the paired test, so a smaller discordant
+        proportion needs more pairs.
+    effect : float
+        Flip-rate difference to detect, ``delta = p10 - p01`` (the gap between the two
+        discordant cells). Only the magnitude matters; ``|effect| <= p_discordant`` since
+        the two discordant probabilities are non-negative and sum to ``p_discordant``.
+    power : float, default 0.8
+        Target power ``1 - beta`` in ``(0, 1)``.
+    alpha : float, default 0.05
+        Two-sided significance level in ``(0, 1)``.
+
+    Returns
+    -------
+    int
+        Number of twin pairs, rounded up to the next whole pair.
+
+    Notes
+    -----
+    Let ``psi = p_discordant`` and ``delta = effect``. Over ``n`` pairs the signed
+    discordant count ``D = b - c`` has mean ``n * delta``; under the null it has variance
+    ``n * psi`` and under the alternative variance ``n * (psi - delta**2)``. Equating the
+    two-sided rejection threshold ``z_{1-alpha/2} * sqrt(n * psi)`` with the alternative
+    distribution at power ``1 - beta`` gives::
+
+        n = (z_{1-alpha/2} * sqrt(psi) + z_{1-beta} * sqrt(psi - delta**2))**2 / delta**2
+
+    where ``z_q`` is the standard-normal quantile (``scipy.stats.norm.ppf``). This is the
+    standard McNemar / paired-proportion sample-size approximation (e.g. Lachin 2011). It
+    assumes the normal approximation to the binomial holds (not a tiny expected discordant
+    count ``n * psi``) and that ``psi`` and the flip-rate split are specified correctly a
+    priori. See :func:`achieved_power` for the inverse.
+    """
+    from scipy.stats import norm
+
+    psi = float(p_discordant)
+    delta = abs(float(effect))
+    if not 0.0 < psi <= 1.0:
+        raise ValueError("p_discordant must be in the interval (0, 1]")
+    if delta == 0.0:
+        raise ValueError("effect must be non-zero (no finite sample detects a null difference)")
+    if delta > psi:
+        raise ValueError("|effect| cannot exceed p_discordant (discordant cells are non-negative)")
+    if not 0.0 < power < 1.0:
+        raise ValueError("power must be in the open interval (0, 1)")
+    if not 0.0 < alpha < 1.0:
+        raise ValueError("alpha must be in the open interval (0, 1)")
+
+    z_alpha = float(norm.ppf(1.0 - alpha / 2.0))
+    z_beta = float(norm.ppf(power))
+    var_alt = max(psi - delta * delta, 0.0)
+    numer = z_alpha * np.sqrt(psi) + z_beta * np.sqrt(var_alt)
+    n = (numer * numer) / (delta * delta)
+    return int(np.ceil(n))
+
+
+def achieved_power(
+    n: int,
+    p_discordant: float,
+    effect: float,
+    alpha: float = 0.05,
+) -> float:
+    """Power of the paired flip-rate (McNemar) test for a fixed number of pairs.
+
+    Inverse companion of :func:`required_pairs` using the same normal approximation. For
+    ``n`` twin pairs, discordant proportion ``psi = p_discordant`` and flip-rate difference
+    ``delta = effect``::
+
+        power = Phi((sqrt(n) * |delta| - z_{1-alpha/2} * sqrt(psi)) / sqrt(psi - delta**2))
+
+    where ``Phi`` is the standard-normal CDF (``scipy.stats.norm.cdf``). Feeding the ``n``
+    returned by :func:`required_pairs` back in recovers at least the requested power (the
+    ceiling rounding only ever adds pairs). Returns a value in ``(0, 1)``.
+    """
+    from scipy.stats import norm
+
+    psi = float(p_discordant)
+    delta = abs(float(effect))
+    if n <= 0:
+        raise ValueError("n must be a positive number of pairs")
+    if not 0.0 < psi <= 1.0:
+        raise ValueError("p_discordant must be in the interval (0, 1]")
+    if delta == 0.0:
+        raise ValueError("effect must be non-zero")
+    if delta > psi:
+        raise ValueError("|effect| cannot exceed p_discordant (discordant cells are non-negative)")
+    if not 0.0 < alpha < 1.0:
+        raise ValueError("alpha must be in the open interval (0, 1)")
+
+    z_alpha = float(norm.ppf(1.0 - alpha / 2.0))
+    var_alt = max(psi - delta * delta, 0.0)
+    if var_alt == 0.0:
+        # Degenerate: every discordant pair points the same way; the threshold is always cleared.
+        return 1.0
+    z = (np.sqrt(n) * delta - z_alpha * np.sqrt(psi)) / np.sqrt(var_alt)
+    return float(norm.cdf(z))
