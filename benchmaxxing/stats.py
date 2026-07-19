@@ -134,7 +134,7 @@ def cochran_q(binary_matrix: np.ndarray) -> CochranQResult:
 def fisher_exact(table_2x2: Sequence[Sequence[float]]) -> FisherResult:
     """Fisher's exact test on a 2x2 contingency table.
 
-    Wraps :func:`scipy.stats.fisher_exact` and returns the (conditional maximum-likelihood)
+    Wraps :func:`scipy.stats.fisher_exact` and returns the sample (unconditional)
     odds ratio and the two-sided p-value as a :class:`FisherResult`.
     """
     from scipy.stats import fisher_exact as _fisher_exact
@@ -309,6 +309,14 @@ def multiple_comparison(
     p = np.asarray(pvalues, dtype=float)
     if p.ndim != 1:
         raise ValueError("pvalues must be 1-D")
+    if not np.all(np.isfinite(p)):
+        # A nan sorts last and would poison the reversed cumulative minimum in the BH
+        # step-up, silently destroying every rejection in the family. Refuse loudly: the
+        # caller must drop or explain non-finite p-values (e.g. an undefined overlap)
+        # before adjustment, so the family size m is an honest count of real tests.
+        raise ValueError(
+            "pvalues must be finite; drop or handle nan/inf p-values before adjustment"
+        )
     m = p.shape[0]
     if m == 0:
         return MultipleComparisonResult(

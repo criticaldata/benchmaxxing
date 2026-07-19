@@ -52,16 +52,30 @@ class FlipRecord:
 
 
 def _invoke(backend, payload):
-    """Run a backend on one payload. Accepts a callable or a ``run``/``generate`` object."""
+    """Run a backend on one payload.
+
+    Accepts, in order of preference: an object exposing ``run(payload)`` or
+    ``generate(payload)``, a gateway backend exposing ``complete(prompt, image=None)``
+    (the payload is passed as the prompt, and as the image when it is an array), or a bare
+    callable. This is the bridge that lets ``benchmaxxing.gateway`` backends drive the solo
+    lane directly.
+    """
     run = getattr(backend, "run", None)
     if callable(run):
         return run(payload)
     generate = getattr(backend, "generate", None)
     if callable(generate):
         return generate(payload)
+    complete = getattr(backend, "complete", None)
+    if callable(complete):
+        if isinstance(payload, np.ndarray):
+            return complete("Answer for the provided image.", image=payload)
+        return complete(str(payload))
     if callable(backend):
         return backend(payload)
-    raise TypeError("backend must be callable or expose a run()/generate() method.")
+    raise TypeError(
+        "backend must be callable or expose a run()/generate()/complete() method."
+    )
 
 
 def _backend_name(backend) -> str:
@@ -231,16 +245,15 @@ def _jaccard_fallback(x, y) -> float:
 
 
 def _resolve_metric(metric: str):
-    """Return the overlap function for ``metric``, preferring ``benchmaxxing.stats``."""
-    try:
-        from benchmaxxing import stats as _stats
+    """Return the overlap function for ``metric``.
 
-        fn = getattr(_stats, metric, None)
-        if callable(fn):
-            return fn
-    except Exception:
-        # benchmaxxing.stats not available yet: use the local reuse-based fallback.
-        pass
+    Always uses the local guarded implementations (which reuse scikit-learn internally):
+    they return ``nan`` on the undefined cases (constant vectors for phi, empty union for
+    Jaccard), which the permutation test depends on to skip invalid permutations. The raw
+    ``benchmaxxing.stats`` wrappers deliberately do not carry those guards, so resolving to
+    them here would break the primary/fallback symmetry and let an undefined overlap read
+    as a valid 0.0.
+    """
     if metric == "phi":
         return _phi_fallback
     if metric == "jaccard":
@@ -325,6 +338,21 @@ def lineage_overlap_test(
 
     within_mean, cross_mean = diff_for(lin)
     observed = within_mean - cross_mean
+
+    # An undefined observed statistic must yield an undefined p-value. Without this guard the
+    # nan comparison below is always False, so count stays 0 while valid permutations
+    # accumulate, and the function would report the SMALLEST possible p-value (1/(valid+1))
+    # for a statistic that does not exist.
+    if np.isnan(observed):
+        return {
+            "metric": metric,
+            "within_mean": within_mean,
+            "cross_mean": cross_mean,
+            "observed_diff": observed,
+            "p_value": float("nan"),
+            "n_permutations": 0,
+            "n_models": n,
+        }
 
     rng = np.random.default_rng(seed)
     lin_arr = np.asarray(lin, dtype=object)
