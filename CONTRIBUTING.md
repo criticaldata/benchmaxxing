@@ -68,7 +68,7 @@ benchmaxxing datasets
 # show the resolved default config
 benchmaxxing config-show
 
-# run the offline end-to-end pipeline smoke on synthetic data (added in PR #65):
+# run the offline end-to-end pipeline smoke on synthetic data:
 #   cue injection -> solo baselines -> shared vs isolated committee with a seeded shortcut
 #   -> cascade onset -> referee scoring + gate -> blind-metric probe
 benchmaxxing smoke

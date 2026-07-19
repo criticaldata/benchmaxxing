@@ -103,8 +103,10 @@ def _run_smoke() -> dict:
     """Run the whole offline pipeline on synthetic data and return a small report dict."""
     from benchmaxxing.analysis import flip_rate, solo_evaluate
     from benchmaxxing.blackboard import AgentResponse, run_committee
+    from benchmaxxing.blind_metric import blind_metric_uptake
     from benchmaxxing.cues.text import build_text_twin
     from benchmaxxing.onset import cascade_onset
+    from benchmaxxing.referee import gate_decision, precision_recall, score_shortcut
     from benchmaxxing.roster import build_committee, default_roster
     from benchmaxxing.schema import Case, Condition, Modality
 
@@ -149,6 +151,22 @@ def _run_smoke() -> dict:
     isolated_shortcut = sum(1 for a in isolated.committed.values() if a == _SHORTCUT)
     series = [1.0 if t.answer == _SHORTCUT else 0.0 for t in shared.turns]
 
+    # 3. referee scoring + gate. Ground truth is INDEPENDENT of the detector: an agent was
+    #    gamed if it committed correctly in isolation but the shortcut under shared context.
+    gamed = {a: (shared.committed.get(a) == _SHORTCUT and isolated.committed.get(a) == _CORRECT)
+             for a in shared.committed}
+    flags = score_shortcut(shared, "seeded")
+    ref_pr = precision_recall(flags, gamed)
+    robust_id = next(m.name for m in committee.members if m.is_open_weights)
+    gate = gate_decision(shared, planted_cue_type="seeded")
+
+    # 4. blind-metric probe: decisions that track a hidden decoy more than ground truth give a
+    #    positive uptake delta (drift toward the artifact). Synthetic, deterministic.
+    ground_truth = [0.0, 1.0, 0.0, 1.0, 0.0, 1.0]
+    decoy = [1.0, 1.0, 1.0, 0.0, 0.0, 0.0]
+    decisions = [0.9, 0.85, 0.95, 0.15, 0.1, 0.2]  # follow the decoy, not the truth
+    uptake = blind_metric_uptake(decisions, decoy, ground_truth)
+
     return {
         "solo_flip_rate": flip_rate(records)["overall"],
         "n_twins": len(twins),
@@ -156,6 +174,12 @@ def _run_smoke() -> dict:
         "isolated_shortcut_agents": isolated_shortcut,
         "cascade_onset_turn": cascade_onset(series),
         "n_agents": len(committee.members),
+        "referee_precision": ref_pr.get("precision"),
+        "referee_recall": ref_pr.get("recall"),
+        "robust_agent_flagged": flags.get(robust_id),      # must be False (a true negative)
+        "gate_approve": gate.approve,
+        "gate_reason": gate.reason,
+        "blind_metric_uptake_delta": uptake.uptake_delta,
     }
 
 
@@ -170,11 +194,20 @@ def _cmd_smoke(_args: argparse.Namespace) -> int:
         f"agents on the shortcut vs {report['isolated_shortcut_agents']}/{report['n_agents']} "
         "isolated (shared higher: the shortcut spreads only when the board is shared)",
         f"3. cascade onset turn: {report['cascade_onset_turn']}",
+        f"4. referee precision/recall (vs independent cross-condition truth): "
+        f"{report['referee_precision']}/{report['referee_recall']}; robust cross-lineage agent "
+        f"flagged={report['robust_agent_flagged']} (must be False)",
+        f"5. gate: approve={report['gate_approve']} ({report['gate_reason']})",
+        f"6. blind-metric uptake delta: {report['blind_metric_uptake_delta']:.3f} "
+        "(positive = decisions drift toward the decoy)",
     ]
-    # the plumbing is healthy only if the cue bit AND the shortcut spread more when shared
+    # the plumbing is healthy only if the cue bit, the shortcut spread more when shared, the
+    # referee did not falsely flag the robust agent, and the blind-metric probe saw drift.
     healthy = (
         report["solo_flip_rate"] > 0
         and report["shared_shortcut_agents"] > report["isolated_shortcut_agents"]
+        and report["robust_agent_flagged"] is False
+        and report["blind_metric_uptake_delta"] > 0
     )
     lines.append(
         "all stages ran; the plumbing composes end to end." if healthy

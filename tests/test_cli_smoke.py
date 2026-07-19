@@ -26,3 +26,16 @@ def test_run_smoke_invariants():
     # ... and the planted shortcut must spread MORE on the shared board than in isolation.
     assert r["shared_shortcut_agents"] > r["isolated_shortcut_agents"]
     assert r["n_agents"] >= 2
+
+
+def test_run_smoke_referee_and_blind_metric_stages():
+    # the doc advertises referee scoring + gate + blind-metric; assert those seams run.
+    r = _run_smoke()
+    # the robust cross-lineage agent is a true negative the referee must not flag
+    assert r["robust_agent_flagged"] is False
+    # the referee recovers the gamed agents (recall defined and positive)
+    assert r["referee_recall"] is not None and r["referee_recall"] > 0
+    # the gate rejects a run with a detected cascade / planted-cue dependence
+    assert r["gate_approve"] is False
+    # decisions that track the decoy give a positive uptake delta (drift)
+    assert r["blind_metric_uptake_delta"] > 0
