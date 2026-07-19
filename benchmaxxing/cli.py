@@ -10,7 +10,6 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from collections.abc import Mapping
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -47,21 +46,10 @@ def _cmd_version(_args: argparse.Namespace) -> int:
 def _dataset_names() -> list[str]:
     """Best-effort list of registered dataset names, empty if none or on any import error."""
     try:
-        from benchmaxxing import datasets
+        from benchmaxxing.datasets import registry
     except Exception:  # noqa: BLE001 - datasets may be mid-build; degrade gracefully
         return []
-    registry = getattr(datasets, "registry", None)
-    if not registry:
-        return []
-    items = registry.keys() if isinstance(registry, Mapping) else registry
-    names = []
-    try:
-        for item in items:
-            label = getattr(item, "name", None)
-            names.append(str(label) if label is not None else str(item))
-    except TypeError:
-        return []
-    return sorted(names)
+    return sorted(registry.names())
 
 
 def _cmd_datasets(_args: argparse.Namespace) -> int:
