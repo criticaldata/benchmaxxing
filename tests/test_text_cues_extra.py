@@ -91,6 +91,26 @@ def test_position_bias_preserves_answer_when_correct_is_not_first():
         assert _correct_text(tp.clean) == tp.ground_truth
         assert _correct_text(tp.contaminated) == tp.ground_truth
         assert sorted(tp.contaminated["options"]) == sorted(case.options)
+        # regression (PR review): the cue must actually FIRE. The old distractor pick chose
+        # index 0 whenever the answer was elsewhere, making the reorder the identity and the
+        # contaminated payload byte-identical to the clean one.
+        assert tp.contaminated["options"] != tp.clean["options"]
+
+
+def test_position_bias_always_changes_the_order():
+    # the chosen distractor is never already in the target slot, for any answer position
+    from benchmaxxing.schema import Case, Modality
+
+    for answer_index in range(3):
+        case = Case(case_id=f"c{answer_index}", patient_id="p", modality=Modality.TEXT,
+                    question="q?", options=("opt A", "opt B", "opt C"),
+                    answer_index=answer_index)
+        for first in (True, False):
+            tp = position_bias(case, put_distractor_first=first)
+            assert tp.contaminated["options"] != tp.clean["options"], (
+                f"identity permutation for answer_index={answer_index}, first={first}"
+            )
+            assert tp.contaminated["options"][tp.contaminated["answer_index"]] == tp.ground_truth
 
 
 def test_position_bias_is_deterministic():

@@ -276,7 +276,19 @@ def position_bias(case: Case, put_distractor_first: bool = True) -> TwinPair:
     correct_index = case.answer_index
     correct_text = options[correct_index]
 
-    distractor_index = _first_distractor_index(correct_index, len(options))
+    # The distractor must not already sit in the target slot, otherwise the "reorder" is the
+    # identity permutation and the contaminated twin is byte-identical to the clean one (the
+    # cue silently never fires). So pick the first index that is neither the correct option
+    # nor already at the target position.
+    target_slot = 0 if put_distractor_first else len(options) - 1
+    candidates = [i for i in range(len(options)) if i != correct_index and i != target_slot]
+    if not candidates:
+        raise ValueError(
+            "position_bias needs a distractor that is not already in the target slot; "
+            f"with {len(options)} options and answer_index={correct_index} the only "
+            "distractor already occupies it, so the cue cannot fire on this case."
+        )
+    distractor_index = candidates[0]
     rest = [i for i in range(len(options)) if i != distractor_index]
     order = [distractor_index] + rest if put_distractor_first else rest + [distractor_index]
 
