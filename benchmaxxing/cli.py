@@ -25,6 +25,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     sub.add_parser("version", help="print the installed benchmaxxing version")
     sub.add_parser("datasets", help="list the available dataset adapters")
+    sub.add_parser("smoke", help="run the offline end-to-end pipeline smoke on synthetic data")
 
     p_config = sub.add_parser("config-show", help="print the resolved default config")
     p_config.add_argument(
@@ -82,10 +83,112 @@ def _cmd_config_show(args: argparse.Namespace) -> int:
     return 0
 
 
+# --- offline end-to-end smoke -------------------------------------------------------------
+# Documented in CONTRIBUTING.md as `benchmaxxing smoke`. It composes the real modules on
+# synthetic data with a mock backend, so it needs no dataset and no API key: the point is to
+# confirm the plumbing (cue injection -> solo flip -> shared/isolated cascade -> onset)
+# composes end to end and to catch an interface drift between two modules.
+
+_CORRECT = "correct-dx"
+_SHORTCUT = "shortcut-dx"
+
+
+def _pick_longest(payload):
+    """A length-following mock: pick the longest option (identity answer_fn downstream)."""
+    options = list(payload["options"])
+    return max(options, key=len) if options else ""
+
+
+def _run_smoke() -> dict:
+    """Run the whole offline pipeline on synthetic data and return a small report dict."""
+    from benchmaxxing.analysis import flip_rate, solo_evaluate
+    from benchmaxxing.blackboard import AgentResponse, run_committee
+    from benchmaxxing.cues.text import build_text_twin
+    from benchmaxxing.onset import cascade_onset
+    from benchmaxxing.roster import build_committee, default_roster
+    from benchmaxxing.schema import Case, Condition, Modality
+
+    # 1. cue injection + solo baseline: the longest-option cue flips a length-follower.
+    cases = [
+        Case(case_id=f"t{i}", patient_id=f"p{i}", modality=Modality.TEXT,
+             question="Most likely diagnosis?",
+             options=("Pneumothorax", "A benign incidental finding described at great length",
+                      "Rib fracture"),
+             answer_index=0)
+        for i in range(4)
+    ]
+    twins = [build_text_twin(c, "longest_option") for c in cases]
+    records = solo_evaluate(twins, backend=_pick_longest, answer_fn=lambda x: x, model="mock")
+
+    # 2. shared vs isolated committee. Same-lineage (Gemini) agents are shortcut-prone; the
+    #    open-weights (cross-lineage) agent is robust and resists the planted shortcut.
+    class _Robust:
+        def respond(self, view):
+            return AgentResponse(content="on the merits", answer=_CORRECT)
+
+    class _ShortcutProne:
+        def respond(self, view):
+            on_board = any(t.answer == _SHORTCUT for t in view.visible_turns)
+            return AgentResponse(content="deferring" if on_board else "on the merits",
+                                 answer=_SHORTCUT if on_board else _CORRECT)
+
+    committee = build_committee(default_roster())
+    seed_agent = next(m.name for m in committee.members if not m.is_open_weights)
+    seed_index = next(i for i, m in enumerate(committee.members) if m.name == seed_agent)
+
+    def backend_for(spec):
+        return _Robust() if spec.is_open_weights else _ShortcutProne()
+
+    case = Case(case_id="c0", patient_id="p0", modality=Modality.IMAGE, label="pneumothorax")
+    shared = run_committee(committee, case, Condition.CONTAMINATED, backend_for, shared=True,
+                           seed_turn=(seed_index, _SHORTCUT, seed_agent), seed=0, rounds=3)
+    isolated = run_committee(committee, case, Condition.CONTAMINATED, backend_for, shared=False,
+                             seed_turn=(seed_index, _SHORTCUT, seed_agent), seed=0, rounds=3)
+
+    shared_shortcut = sum(1 for a in shared.committed.values() if a == _SHORTCUT)
+    isolated_shortcut = sum(1 for a in isolated.committed.values() if a == _SHORTCUT)
+    series = [1.0 if t.answer == _SHORTCUT else 0.0 for t in shared.turns]
+
+    return {
+        "solo_flip_rate": flip_rate(records)["overall"],
+        "n_twins": len(twins),
+        "shared_shortcut_agents": shared_shortcut,
+        "isolated_shortcut_agents": isolated_shortcut,
+        "cascade_onset_turn": cascade_onset(series),
+        "n_agents": len(committee.members),
+    }
+
+
+def _cmd_smoke(_args: argparse.Namespace) -> int:
+    report = _run_smoke()
+    lines = [
+        "benchmaxxing end-to-end smoke (offline, synthetic data)",
+        "=" * 52,
+        f"1. solo flip rate (longest-option cue): {report['solo_flip_rate']} over "
+        f"{report['n_twins']} twins",
+        f"2. cascade: shared run has {report['shared_shortcut_agents']}/{report['n_agents']} "
+        f"agents on the shortcut vs {report['isolated_shortcut_agents']}/{report['n_agents']} "
+        "isolated (shared higher: the shortcut spreads only when the board is shared)",
+        f"3. cascade onset turn: {report['cascade_onset_turn']}",
+    ]
+    # the plumbing is healthy only if the cue bit AND the shortcut spread more when shared
+    healthy = (
+        report["solo_flip_rate"] > 0
+        and report["shared_shortcut_agents"] > report["isolated_shortcut_agents"]
+    )
+    lines.append(
+        "all stages ran; the plumbing composes end to end." if healthy
+        else "SMOKE FAILED: a stage did not behave as expected (see numbers above)."
+    )
+    print("\n".join(lines))
+    return 0 if healthy else 1
+
+
 _HANDLERS = {
     "version": _cmd_version,
     "datasets": _cmd_datasets,
     "config-show": _cmd_config_show,
+    "smoke": _cmd_smoke,
 }
 
 
