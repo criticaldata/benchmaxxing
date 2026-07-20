@@ -1,0 +1,32 @@
+{
+  "n_cases": 20,
+  "A_contaminated_context": {
+    "flag_adopt": 16,
+    "control_adopt": 36,
+    "n": 40,
+    "control_rate": 0.9,
+    "flag_rate": 0.4,
+    "effect": -0.5
+  },
+  "C_anchored_seed": {
+    "anchored_conform": 9,
+    "generic_conform": 5,
+    "n": 20,
+    "generic_rate": 0.25,
+    "anchored_rate": 0.45,
+    "effect": 0.2
+  },
+  "D_blind_metric_incentive": {
+    "incent_decoy": 3,
+    "control_decoy": 3,
+    "n": 16,
+    "incent_correct": 3,
+    "control_correct": 0,
+    "control_decoy_rate": 0.1875,
+    "incent_decoy_rate": 0.1875,
+    "decoy_drift": 0.0,
+    "control_acc": 0.0,
+    "incent_acc": 0.1875,
+    "accuracy_drop": -0.1875
+  }
+}
