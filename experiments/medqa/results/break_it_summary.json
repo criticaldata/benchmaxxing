@@ -6,7 +6,8 @@
     "n": 40,
     "control_rate": 0.9,
     "flag_rate": 0.4,
-    "effect": -0.5
+    "effect": -0.5,
+    "note": "confounded: flagged answer often equals the model's baseline wrong answer"
   },
   "C_anchored_seed": {
     "anchored_conform": 9,
@@ -19,14 +20,13 @@
   "D_blind_metric_incentive": {
     "incent_decoy": 3,
     "control_decoy": 3,
-    "n": 16,
     "incent_correct": 3,
     "control_correct": 0,
+    "n": 16,
     "control_decoy_rate": 0.1875,
     "incent_decoy_rate": 0.1875,
     "decoy_drift": 0.0,
     "control_acc": 0.0,
-    "incent_acc": 0.1875,
-    "accuracy_drop": -0.1875
+    "incent_acc": 0.1875
   }
 }
