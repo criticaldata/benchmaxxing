@@ -113,16 +113,21 @@ def test_registry_get_unknown_raises():
         registry.get("nope")
 
 
-def test_adapter_build_manifest_raises(tmp_path):
+def test_adapter_build_manifest_fails_loudly_on_missing_data(tmp_path):
+    # mimic_cxr is implemented; pointed at an empty dir (no metadata csv) it must raise a
+    # clear error rather than silently produce an empty or wrong manifest.
     module = registry.get("mimic_cxr")
-    with pytest.raises(NotImplementedError, match="raw_root"):
+    with pytest.raises((FileNotFoundError, ValueError)):
         module.build_manifest(tmp_path, tmp_path / "m.csv")
 
 
-def test_all_adapters_build_manifest_raise(tmp_path):
+def test_all_adapters_fail_loudly_on_missing_data(tmp_path):
+    # Every adapter's build_manifest must raise on an empty raw_root (no silent success).
+    # The CSV-backed adapters raise FileNotFoundError; the ehr entry point raises
+    # NotImplementedError pointing at load_resource_contexts.
     for name in EXPECTED_DATASETS:
         module = registry.get(name)
-        with pytest.raises(NotImplementedError):
+        with pytest.raises((FileNotFoundError, ValueError, NotImplementedError)):
             module.build_manifest(tmp_path, tmp_path / f"{name}.csv")
 
 
