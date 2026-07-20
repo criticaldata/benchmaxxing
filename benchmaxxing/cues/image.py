@@ -217,3 +217,133 @@ def build_image_twin(img, cue_type, ground_truth=None, case_id="image_twin", **p
         contaminated=contaminated,
         ground_truth=ground_truth,
     )
+
+
+# ---------------------------------------------------------------------------
+# Additional acquisition-style cues (mis-orientation, compression / exposure,
+# soft-tissue overlay). Each is diagnosis-neutral, strength-parameterized, and
+# deterministic given its seed, and none mutates the input array.
+# ---------------------------------------------------------------------------
+
+_SOFT_TISSUE_COLOR = 255.0
+
+
+def inject_rotation(img, angle=5.0, seed=0, flip=False):
+    """Apply a small mis-orientation: a seeded, sub-degree-jittered rotation, optional H-flip.
+
+    ``angle`` (degrees) is the strength knob. ``seed`` adds a small reproducible angular jitter,
+    so different seeds yield distinct mis-orientations while a fixed seed is byte-reproducible.
+    ``flip=True`` also mirrors the image left-right. Corners exposed by the rotation are filled
+    with black, as with a genuinely mis-rotated acquisition. The whole-image geometry change is
+    diagnosis-neutral.
+    """
+    from scipy.ndimage import rotate as _rotate
+
+    arr = np.asarray(img)
+    if arr.dtype != np.uint8:
+        raise ValueError("image must be a uint8 numpy array")
+    if arr.ndim not in (2, 3):
+        raise ValueError("image must be a 2-D or 3-D array")
+    rng = np.random.default_rng(seed)
+    eff_angle = float(angle) + float(rng.uniform(-0.75, 0.75))
+    rotated = _rotate(
+        arr.astype(np.float64),
+        eff_angle,
+        axes=(0, 1),
+        reshape=False,
+        order=1,
+        mode="constant",
+        cval=0.0,
+    )
+    if flip:
+        rotated = np.flip(rotated, axis=1)
+    return np.clip(np.rint(rotated), 0, 255).astype(np.uint8)
+
+
+def inject_compression(img, quality=30):
+    """Round-trip the image through JPEG to stamp block/quantization artifacts on it.
+
+    ``quality`` in [1, 100] is the strength knob: lower quality means coarser DCT quantization and
+    stronger blocking. The tell is a purely global acquisition/compression artifact, independent
+    of any diagnosis. Supports 2-D, ``(H, W, 1)`` and ``(H, W, 3)`` uint8 images.
+    """
+    import io
+
+    from PIL import Image
+
+    arr = np.asarray(img)
+    if arr.dtype != np.uint8:
+        raise ValueError("image must be a uint8 numpy array")
+    q = int(np.clip(int(round(quality)), 1, 100))
+    if arr.ndim == 2:
+        pil, mode, expand = Image.fromarray(arr, mode="L"), "L", False
+    elif arr.ndim == 3 and arr.shape[2] == 1:
+        pil, mode, expand = Image.fromarray(arr[:, :, 0], mode="L"), "L", True
+    elif arr.ndim == 3 and arr.shape[2] == 3:
+        pil, mode, expand = Image.fromarray(arr, mode="RGB"), "RGB", False
+    else:
+        raise ValueError("compression supports 2-D, (H, W, 1), or (H, W, 3) uint8 images")
+    buf = io.BytesIO()
+    pil.save(buf, format="JPEG", quality=q)
+    buf.seek(0)
+    dec = np.asarray(Image.open(buf).convert(mode), dtype=np.uint8)
+    if expand:
+        dec = dec[:, :, None]
+    return np.ascontiguousarray(dec)
+
+
+def inject_brightness(img, delta=0.3, contrast=1.0):
+    """Apply a global brightness / contrast shift (an exposure acquisition tell).
+
+    ``delta`` in [-1, 1] shifts every pixel by ``delta * 255`` and is the strength knob;
+    ``contrast`` scales each pixel's deviation from mid-grey (128). Both are global and
+    diagnosis-neutral. Values are clipped back into [0, 255].
+    """
+    work, was_2d = _to_float_hwc(img)
+    shifted = (work - 128.0) * float(contrast) + 128.0 + float(delta) * 255.0
+    return _from_float_hwc(shifted, was_2d)
+
+
+def _soft_tissue_coverage(h, w, seed):
+    """Seeded coverage map for a soft, gently curved skin-fold band across the image."""
+    rng = np.random.default_rng(seed)
+    theta = float(rng.uniform(0.0, np.pi))
+    dx, dy = np.cos(theta), np.sin(theta)
+    nx, ny = -dy, dx
+    cx = w * float(rng.uniform(0.35, 0.65))
+    cy = h * float(rng.uniform(0.35, 0.65))
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float64)
+    xrel, yrel = xx - cx, yy - cy
+    along = xrel * dx + yrel * dy
+    across = xrel * nx + yrel * ny
+    span = max(1.0, 0.5 * float(max(h, w)))
+    amp = 0.12 * float(min(h, w))
+    phase = float(rng.uniform(0.0, 2.0 * np.pi))
+    dist = across - amp * np.sin(along / span + phase)
+    sigma = max(2.0, 0.05 * float(min(h, w)))
+    return np.exp(-(dist * dist) / (2.0 * sigma * sigma))
+
+
+def inject_soft_tissue(img, opacity=0.2, seed=0):
+    """Composite a faint soft-tissue / skin-fold overlay (a soft bright band).
+
+    The fold shape is seeded and reproducible; ``opacity`` in [0, 1] is the strength knob. Soft
+    tissue reads as increased density (brighter) on an X-ray, so the band blends toward white and
+    stays a localized, diagnosis-neutral overlay.
+    """
+    work, was_2d = _to_float_hwc(img)
+    h, w = work.shape[:2]
+    coverage = _soft_tissue_coverage(h, w, seed)
+    _composite(work, coverage * float(opacity), _SOFT_TISSUE_COLOR)
+    return _from_float_hwc(work, was_2d)
+
+
+# Register the new cues so build_image_twin can construct twin pairs for each of them.
+_INJECTORS.update(
+    {
+        "rotation": inject_rotation,
+        "compression": inject_compression,
+        "brightness": inject_brightness,
+        "soft_tissue": inject_soft_tissue,
+    }
+)

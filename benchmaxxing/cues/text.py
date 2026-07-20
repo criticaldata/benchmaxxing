@@ -259,3 +259,130 @@ def build_text_twin(case: Case, cue_type: str, **params) -> TwinPair:
         valid = ", ".join(sorted(_DISPATCH))
         raise ValueError(f"unknown text cue_type {cue_type!r}; expected one of: {valid}")
     return _DISPATCH[cue_type](case, **params)
+
+
+def position_bias(case: Case, put_distractor_first: bool = True) -> TwinPair:
+    """Reorder options so a chosen distractor sits first (or last), preserving the answer.
+
+    The injected cue is positional salience: one wrong option is moved to a fixed slot (the first
+    position when ``put_distractor_first`` is True, otherwise the last). Models that shortcut on
+    "trust the first/last option" are pushed toward that distractor. The remaining options keep
+    their relative order, and ``answer_index`` is remapped so it still points at the same correct
+    option text, so the ground truth is preserved.
+    """
+
+    _require_text_case(case)
+    options = list(case.options)
+    correct_index = case.answer_index
+    correct_text = options[correct_index]
+
+    # The distractor must not already sit in the target slot, otherwise the "reorder" is the
+    # identity permutation and the contaminated twin is byte-identical to the clean one (the
+    # cue silently never fires). So pick the first index that is neither the correct option
+    # nor already at the target position.
+    target_slot = 0 if put_distractor_first else len(options) - 1
+    candidates = [i for i in range(len(options)) if i != correct_index and i != target_slot]
+    if not candidates:
+        raise ValueError(
+            "position_bias needs a distractor that is not already in the target slot; "
+            f"with {len(options)} options and answer_index={correct_index} the only "
+            "distractor already occupies it, so the cue cannot fire on this case."
+        )
+    distractor_index = candidates[0]
+    rest = [i for i in range(len(options)) if i != distractor_index]
+    order = [distractor_index] + rest if put_distractor_first else rest + [distractor_index]
+
+    reordered = [options[i] for i in order]
+    new_answer_index = order.index(correct_index)
+
+    clean = _text_payload(case.question, tuple(options), correct_index, case.report)
+    contaminated = _text_payload(case.question, tuple(reordered), new_answer_index, case.report)
+    return TwinPair(
+        case_id=case.case_id,
+        cue_type="position_bias",
+        cue_params={
+            "put_distractor_first": bool(put_distractor_first),
+            "distractor_index": distractor_index,
+            "order": order,
+        },
+        clean=clean,
+        contaminated=contaminated,
+        ground_truth=correct_text,
+    )
+
+
+def _insert_qualifier(text: str | None, qualifier: str) -> str:
+    """Insert ``qualifier`` after the first whitespace-delimited word of ``text``.
+
+    Falls back to prefixing when ``text`` has fewer than two words. Only whitespace and the
+    qualifier are added, so existing tokens are never rewritten. Deterministic for a given input.
+    """
+
+    base = (text or "").strip()
+    if not base:
+        return qualifier
+    head, sep, tail = base.partition(" ")
+    if sep:
+        return f"{head} {qualifier} {tail}"
+    return f"{head} {qualifier}"
+
+
+def negation_qualifier(
+    case: Case,
+    qualifier: str = "typically",
+    target: str = "stem",
+) -> TwinPair:
+    """Insert a hedging qualifier into the stem (or a distractor), preserving the answer.
+
+    The injected cue is a lexical hedge (for example ``"typically"``): it adds a qualifier word to
+    the question stem, or to a wrong option when ``target="distractor"``. The correct option text
+    and ``answer_index`` are never touched, so which option is correct (and the ground truth) is
+    unchanged. When ``target="stem"`` but the case has no stem, the qualifier is inserted into a
+    distractor instead.
+    """
+
+    _require_text_case(case)
+    hedge = str(qualifier).strip()
+    if not hedge:
+        raise ValueError("negation_qualifier requires a non-empty qualifier")
+    if target not in ("stem", "distractor"):
+        raise ValueError(f"target must be 'stem' or 'distractor', got {target!r}")
+
+    options = list(case.options)
+    correct_index = case.answer_index
+    correct_text = options[correct_index]
+
+    effective_target = "distractor" if (target == "stem" and not case.question) else target
+
+    new_question = case.question
+    contaminated_options = list(options)
+    distractor_index = None
+    if effective_target == "stem":
+        new_question = _insert_qualifier(case.question, hedge)
+    else:
+        distractor_index = _first_distractor_index(correct_index, len(options))
+        contaminated_options[distractor_index] = _insert_qualifier(
+            options[distractor_index], hedge
+        )
+
+    clean = _text_payload(case.question, tuple(options), correct_index, case.report)
+    contaminated = _text_payload(
+        new_question, tuple(contaminated_options), correct_index, case.report
+    )
+    return TwinPair(
+        case_id=case.case_id,
+        cue_type="negation_qualifier",
+        cue_params={
+            "qualifier": hedge,
+            "target": effective_target,
+            "distractor_index": distractor_index,
+        },
+        clean=clean,
+        contaminated=contaminated,
+        ground_truth=correct_text,
+    )
+
+
+# Register the two new cues in the dispatch table without altering the entries defined above.
+_DISPATCH["position_bias"] = position_bias
+_DISPATCH["negation_qualifier"] = negation_qualifier

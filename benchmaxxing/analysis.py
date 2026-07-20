@@ -28,6 +28,7 @@ __all__ = [
     "susceptibility_matrix",
     "failure_vector",
     "lineage_overlap_test",
+    "confidence_climb",
 ]
 
 
@@ -349,4 +350,65 @@ def lineage_overlap_test(
         "p_value": p_value,
         "n_permutations": valid,
         "n_models": n,
+    }
+
+
+def confidence_climb(transcript, wrong_answer) -> dict:
+    """Rising confidence on a faulty foundation: does the committee grow surer while wrong?
+
+    Restricts to the turns of ``transcript`` that commit ``wrong_answer`` (the cue-anchored,
+    typically incorrect answer), drops turns with no stated confidence, and fits a straight
+    line of confidence against ``turn_index``. A positive slope means the committee reported
+    growing certainty while locked onto the wrong answer.
+
+    Parameters
+    ----------
+    transcript:
+        A ``benchmaxxing.schema.Transcript``.
+    wrong_answer:
+        The answer to track. Turns whose ``answer`` equals this value are kept; all others
+        (including the correct answer) are ignored.
+
+    Returns
+    -------
+    dict
+        ``slope`` (confidence per turn from a least-squares fit; ``nan`` with fewer than two
+        usable turns or a single distinct turn index), ``final_minus_first`` (last minus first
+        stated confidence in turn order; ``nan`` when no turn qualifies), ``climbing`` (``True``
+        only when ``slope`` is finite and positive), plus ``n`` usable turns and the
+        ``confidences`` kept, in turn order.
+    """
+    turns = [
+        t
+        for t in transcript.turns
+        if t.answer == wrong_answer and t.confidence is not None
+    ]
+    turns.sort(key=lambda t: t.turn_index)
+    x = np.array([t.turn_index for t in turns], dtype=float)
+    y = np.array([t.confidence for t in turns], dtype=float)
+    n = int(y.size)
+
+    if n == 0:
+        return {
+            "slope": float("nan"),
+            "final_minus_first": float("nan"),
+            "climbing": False,
+            "n": 0,
+            "confidences": [],
+        }
+
+    final_minus_first = float(y[-1] - y[0])
+
+    if n < 2 or np.unique(x).size < 2:
+        slope = float("nan")
+    else:
+        slope = float(np.polyfit(x, y, 1)[0])
+
+    climbing = bool(np.isfinite(slope) and slope > 1e-9)
+    return {
+        "slope": slope,
+        "final_minus_first": final_minus_first,
+        "climbing": climbing,
+        "n": n,
+        "confidences": y.tolist(),
     }

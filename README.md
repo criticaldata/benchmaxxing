@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/benchmaxxing.gif" alt="benchmaxxing: a committee shares context, one agent's shortcut cascades, a referee flags it" width="760">
+</p>
+
 # benchmaxxing
 
 Referee agents that catch benchmark gaming in clinical multi-agent systems: shortcut cascades, blind metrics, and mutual oversight, measured.
@@ -21,13 +25,13 @@ pip install -e ".[dev,stats,changepoint,image,config]"   # add the reuse extras
 
 ## Layout
 
-- `benchmaxxing/schema.py` — the shared data contract every module builds against.
-- `benchmaxxing/stats.py` — statistical tests (wrappers over scipy/sklearn/statsmodels).
-- `benchmaxxing/onset.py` — cascade-onset (change-point), contagion, deference.
-- `benchmaxxing/cues/` — image and text cue injection, twin-pair builder.
-- `benchmaxxing/blackboard.py` — the shared-context committee harness and referee hooks.
-- `benchmaxxing/gateway.py`, `roster.py` — model access and same/cross-lineage committees.
-- `benchmaxxing/datasets/` — dataset adapters into the shared case schema.
-- `benchmaxxing/referee.py`, `blind_metric.py` — the referee duties and the blind-metric probe.
+- `benchmaxxing/schema.py`: the shared data contract every module builds against.
+- `benchmaxxing/stats.py`: statistical tests (wrappers over scipy/sklearn/statsmodels).
+- `benchmaxxing/onset.py`: cascade-onset (change-point), contagion, deference.
+- `benchmaxxing/cues/`: image and text cue injection, twin-pair builder.
+- `benchmaxxing/blackboard.py`: the shared-context committee harness and referee hooks.
+- `benchmaxxing/gateway.py`, `roster.py`: model access and same/cross-lineage committees.
+- `benchmaxxing/datasets/`: dataset adapters into the shared case schema.
+- `benchmaxxing/referee.py`, `blind_metric.py`: the referee duties and the blind-metric probe.
 
 The build plan and the issue tracker for this repo mirror a six-stage program (stages 0-5).
