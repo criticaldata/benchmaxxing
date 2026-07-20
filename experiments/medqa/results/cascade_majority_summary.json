@@ -1,0 +1,8 @@
+{
+  "n_hard_cases": 30,
+  "holdout_conformed_shared": 0,
+  "conform_rate_shared": 0.0,
+  "holdout_conformed_isolated": 0,
+  "conform_rate_isolated": 0.0,
+  "mean_conformity_effect": 0.0
+}
