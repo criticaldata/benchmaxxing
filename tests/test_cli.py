@@ -107,6 +107,97 @@ def test_datasets_command_runs(capsys: pytest.CaptureFixture[str]) -> None:
     assert capsys.readouterr().out.strip() != ""
 
 
+def test_datasets_stats_summarizes_mcq_manifest(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
+    manifest = tmp_path / "mcq.csv"
+    manifest.write_text(
+        "case_id,question,options,answer_index,label\n"
+        "q1,Best next step?,Aspirin|Warfarin|Heparin,1,cardio\n"
+        "q2,Likely diagnosis?,MI|PE,1,resp\n",
+        encoding="utf-8",
+    )
+    rc = cli.main(["datasets", "stats", str(manifest)])
+    out = capsys.readouterr().out
+    assert rc == 0
+    assert "rows: 2" in out
+    assert "text: 2" in out
+    assert "3 options: 1 cases" in out
+    assert "2 options: 1 cases" in out
+    assert "cardio: 1" in out and "resp: 1" in out
+
+
+def test_datasets_stats_accepts_answer_index_zero(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    # Regression: answer_index=0 is falsy in Python and must not be mistaken for "missing".
+    manifest = tmp_path / "mcq.csv"
+    manifest.write_text(
+        "case_id,question,options,answer_index\nq1,Vessel?,Aorta|Vena cava,0\n", encoding="utf-8"
+    )
+    rc = cli.main(["datasets", "stats", str(manifest)])
+    out = capsys.readouterr().out
+    assert rc == 0
+    assert "error" not in out.lower()
+
+
+def test_datasets_stats_resolves_images_with_root(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    (tmp_path / "a.png").write_bytes(b"\x00")
+    manifest = tmp_path / "imaging.csv"
+    manifest.write_text(
+        "case_id,patient_id,image_ref,report,label\n"
+        "c1,p1,a.png,No acute findings.,No Finding\n"
+        "c2,p2,missing.png,Small left effusion.,Effusion\n",
+        encoding="utf-8",
+    )
+    rc = cli.main(["datasets", "stats", str(manifest), "--image-root", str(tmp_path)])
+    out = capsys.readouterr().out
+    assert rc == 0
+    assert "image_ref resolves on disk: 1/2" in out
+
+
+def test_datasets_stats_skips_image_check_without_root(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    manifest = tmp_path / "imaging.csv"
+    manifest.write_text(
+        "case_id,patient_id,image_ref,report\nc1,p1,a.png,No findings.\n", encoding="utf-8"
+    )
+    rc = cli.main(["datasets", "stats", str(manifest)])
+    out = capsys.readouterr().out
+    assert rc == 0
+    assert "skipped" in out
+
+
+def test_datasets_stats_missing_manifest_exits_nonzero(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    rc = cli.main(["datasets", "stats", str(tmp_path / "nope.csv")])
+    assert rc != 0
+    assert "error" in capsys.readouterr().err.lower()
+
+
+def test_datasets_stats_empty_manifest_exits_nonzero(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    manifest = tmp_path / "empty.csv"
+    manifest.write_text("case_id,question,options,answer_index\n", encoding="utf-8")
+    rc = cli.main(["datasets", "stats", str(manifest)])
+    assert rc != 0
+    assert "error" in capsys.readouterr().err.lower()
+
+
+def test_datasets_list_subcommand_matches_bare_datasets(
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    rc_bare = cli.main(["datasets"])
+    out_bare = capsys.readouterr().out
+    rc_list = cli.main(["datasets", "list"])
+    out_list = capsys.readouterr().out
+    assert rc_bare == rc_list == 0
+    assert out_bare == out_list
+
+
 def test_load_config_from_yaml(tmp_path: Path) -> None:
     yaml = pytest.importorskip("yaml")
     path = tmp_path / "cfg.yaml"
