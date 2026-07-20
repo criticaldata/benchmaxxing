@@ -5,3 +5,7 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 data/
+
+# secrets: never commit API keys
+.env
+*.env
