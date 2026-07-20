@@ -1,0 +1,9 @@
+{
+  "n_cases": 20,
+  "n_valid": 20,
+  "n_skipped": 0,
+  "mean_contagion": -0.05,
+  "n_onset": 20,
+  "mean_shared_adopt": 0.025,
+  "mean_isolated_adopt": 0.075
+}
