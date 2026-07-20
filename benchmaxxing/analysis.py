@@ -52,14 +52,32 @@ class FlipRecord:
     contaminated_correct: bool | None
 
 
+def _payload_to_prompt(payload) -> str:
+    """Format a text-lane twin payload into an MCQ prompt for a ``complete()`` gateway backend.
+
+    A text payload is a dict with ``question`` and ``options`` (see ``benchmaxxing.cues.text``);
+    it is rendered as a lettered multiple-choice prompt so the model receives a real question,
+    not a Python ``repr`` of the dict. Anything without that shape falls back to ``str()``.
+    """
+    if isinstance(payload, dict) and payload.get("question") and payload.get("options"):
+        options = list(payload["options"])
+        letters = [chr(65 + i) for i in range(len(options))]
+        body = "\n".join(f"{letter}. {opt}" for letter, opt in zip(letters, options))
+        report = (payload.get("report") or "").strip()
+        head = f"Clinical context: {report}\n\n" if report else ""
+        return (f"{head}Question: {payload['question']}\n\nOptions:\n{body}\n\n"
+                "Answer with only the single letter of the best option.")
+    return str(payload)
+
+
 def _invoke(backend, payload):
     """Run a backend on one payload.
 
     Accepts, in order of preference: an object exposing ``run(payload)`` or
-    ``generate(payload)``, a gateway backend exposing ``complete(prompt, image=None)``
-    (the payload is passed as the prompt, and as the image when it is an array), or a bare
-    callable. This is the bridge that lets ``benchmaxxing.gateway`` backends drive the solo
-    lane directly.
+    ``generate(payload)``, a gateway backend exposing ``complete(prompt, image=None)`` (the text
+    payload is rendered into an MCQ prompt by :func:`_payload_to_prompt`, and an array payload is
+    passed as the image), or a bare callable. This is the bridge that lets
+    ``benchmaxxing.gateway`` backends drive the solo lane directly.
     """
     run = getattr(backend, "run", None)
     if callable(run):
@@ -71,7 +89,7 @@ def _invoke(backend, payload):
     if callable(complete):
         if isinstance(payload, np.ndarray):
             return complete("Answer for the provided image.", image=payload)
-        return complete(str(payload))
+        return complete(_payload_to_prompt(payload))
     if callable(backend):
         return backend(payload)
     raise TypeError(
