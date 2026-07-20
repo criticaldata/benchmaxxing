@@ -290,3 +290,196 @@ def with_retry(
 def cached(backend: Backend, cache: dict | None = None) -> CachedBackend:
     """Return ``backend`` wrapped with an in-memory cache (see ``CachedBackend``)."""
     return CachedBackend(backend, cache=cache)
+
+
+def _image_to_base64(image: object) -> str:
+    """Encode an image payload as a base64 ASCII string.
+
+    Raw bytes are encoded verbatim (assumed to already be an encoded image). A PIL image
+    or numpy array is rendered to PNG first; that path needs pillow, which is guarded so the
+    core stays importable without it.
+    """
+    import base64
+
+    if isinstance(image, (bytes, bytearray, memoryview)):
+        return base64.b64encode(bytes(image)).decode("ascii")
+
+    import io
+
+    save = getattr(image, "save", None)
+    if callable(save):  # PIL image
+        buffer = io.BytesIO()
+        save(buffer, format="PNG")
+        return base64.b64encode(buffer.getvalue()).decode("ascii")
+
+    try:
+        from PIL import Image
+    except ImportError as exc:  # guarded: converting arrays needs pillow
+        raise ImportError(
+            "Encoding a non-bytes image requires the 'pillow' package, which is not installed. "
+            "Pass raw image bytes instead, or install pillow (pip install pillow)."
+        ) from exc
+    buffer = io.BytesIO()
+    Image.fromarray(image).save(buffer, format="PNG")
+    return base64.b64encode(buffer.getvalue()).decode("ascii")
+
+
+class OpenAIBackend(Backend):
+    """Thin adapter over the OpenAI Python SDK (chat completions).
+
+    The vendor SDK is imported lazily (guarded) so the pure-Python core installs and tests
+    without it. If ``openai`` is missing, construction raises a clear ``ImportError`` pointing
+    at the ``models`` extra. A ``client`` can be injected for offline tests, bypassing the
+    import entirely.
+
+    Multimodal: when an ``image`` is supplied it is base64-encoded into an ``image_url`` data
+    URI alongside the text, following the OpenAI chat-completions content-list convention.
+    """
+
+    def __init__(
+        self,
+        model: str = "gpt-4o",
+        api_key: str | None = None,
+        client: object | None = None,
+        default_decoding: dict | None = None,
+    ):
+        self.model = model
+        self.default_decoding = dict(default_decoding or {})
+        if client is not None:
+            # Injected client (used by tests): no SDK import required.
+            self._client = client
+            return
+        try:
+            from openai import OpenAI
+        except ImportError as exc:  # guarded import: keep the core dependency-free
+            raise ImportError(
+                "OpenAIBackend requires the 'openai' package, which is not installed. "
+                "Install the models extra: pip install 'benchmaxxing[models]' "
+                "(or: pip install openai)."
+            ) from exc
+        self._client = OpenAI(api_key=api_key) if api_key else OpenAI()
+
+    def complete(
+        self,
+        prompt: str,
+        image: object | None = None,
+        decoding: dict | None = None,
+    ) -> str:
+        if image is None:
+            content: object = prompt
+        else:
+            data_uri = f"data:image/png;base64,{_image_to_base64(image)}"
+            content = [
+                {"type": "text", "text": prompt},
+                {"type": "image_url", "image_url": {"url": data_uri}},
+            ]
+        config = {**self.default_decoding, **(decoding or {})}
+        response = self._client.chat.completions.create(
+            model=self.model,
+            messages=[{"role": "user", "content": content}],
+            **config,
+        )
+        return response.choices[0].message.content
+
+
+class AnthropicBackend(Backend):
+    """Thin adapter over the Anthropic Python SDK (messages API).
+
+    The vendor SDK is imported lazily (guarded) so the pure-Python core installs and tests
+    without it. If ``anthropic`` is missing, construction raises a clear ``ImportError``
+    pointing at the ``models`` extra. A ``client`` can be injected for offline tests.
+
+    ``max_tokens`` is required by the messages API, so a default is carried on the backend and
+    can be overridden per call via ``decoding``. Multimodal: an ``image`` is base64-encoded
+    into an Anthropic ``image`` content block before the text block.
+    """
+
+    def __init__(
+        self,
+        model: str = "claude-opus-4-8",
+        api_key: str | None = None,
+        client: object | None = None,
+        max_tokens: int = 1024,
+        default_decoding: dict | None = None,
+    ):
+        self.model = model
+        self.max_tokens = max_tokens
+        self.default_decoding = dict(default_decoding or {})
+        if client is not None:
+            # Injected client (used by tests): no SDK import required.
+            self._client = client
+            return
+        try:
+            import anthropic
+        except ImportError as exc:  # guarded import: keep the core dependency-free
+            raise ImportError(
+                "AnthropicBackend requires the 'anthropic' package, which is not installed. "
+                "Install the models extra: pip install 'benchmaxxing[models]' "
+                "(or: pip install anthropic)."
+            ) from exc
+        self._client = anthropic.Anthropic(api_key=api_key) if api_key else anthropic.Anthropic()
+
+    def complete(
+        self,
+        prompt: str,
+        image: object | None = None,
+        decoding: dict | None = None,
+    ) -> str:
+        if image is None:
+            content: object = prompt
+        else:
+            content = [
+                {
+                    "type": "image",
+                    "source": {
+                        "type": "base64",
+                        "media_type": "image/png",
+                        "data": _image_to_base64(image),
+                    },
+                },
+                {"type": "text", "text": prompt},
+            ]
+        config = {**self.default_decoding, **(decoding or {})}
+        max_tokens = config.pop("max_tokens", self.max_tokens)
+        response = self._client.messages.create(
+            model=self.model,
+            max_tokens=max_tokens,
+            messages=[{"role": "user", "content": content}],
+            **config,
+        )
+        return response.content[0].text
+
+
+class LocalOpenAICompatibleBackend(OpenAIBackend):
+    """OpenAI-compatible backend pointed at a local server (Ollama / vLLM).
+
+    Open-weights models in the cross-lineage arm are served behind an OpenAI-compatible HTTP
+    API; this backend reuses the ``openai`` client (and ``OpenAIBackend.complete``) against a
+    custom ``base_url``. Local servers usually ignore the key, so a placeholder ``api_key`` is
+    sent by default. A ``client`` can be injected for offline tests.
+    """
+
+    def __init__(
+        self,
+        model: str,
+        base_url: str,
+        api_key: str = "not-needed",
+        client: object | None = None,
+        default_decoding: dict | None = None,
+    ):
+        self.model = model
+        self.base_url = base_url
+        self.default_decoding = dict(default_decoding or {})
+        if client is not None:
+            # Injected client (used by tests): no SDK import required.
+            self._client = client
+            return
+        try:
+            from openai import OpenAI
+        except ImportError as exc:  # guarded import: keep the core dependency-free
+            raise ImportError(
+                "LocalOpenAICompatibleBackend requires the 'openai' package, which is not "
+                "installed. Install the models extra: pip install 'benchmaxxing[models]' "
+                "(or: pip install openai)."
+            ) from exc
+        self._client = OpenAI(base_url=base_url, api_key=api_key)
