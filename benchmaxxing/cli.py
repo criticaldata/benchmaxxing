@@ -45,7 +45,7 @@ def _cmd_version(_args: argparse.Namespace) -> int:
 
 
 def _dataset_names() -> list[str]:
-    """Best-effort list of registered dataset names, empty if none or on any import error."""
+    """Best-effort list of registered dataset names, empty only on a real import error."""
     try:
         from benchmaxxing.datasets import registry
     except Exception:  # noqa: BLE001 - datasets may be mid-build; degrade gracefully
