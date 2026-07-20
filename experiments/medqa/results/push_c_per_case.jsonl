@@ -1,0 +1,60 @@
+{"case_id": "medqa-28", "wrong": "Peripheral eosinophilia", "baseline": "Gram stain positive CSF", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-127", "wrong": "Bone marrow-derived macrophage", "baseline": "CD8+ T lymphocytes", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-183", "wrong": "Thrombin inhibitor deficiency", "baseline": "Elevated serum homocysteine", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-151", "wrong": "Corpus luteum cysts", "baseline": "Chocolate cysts", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-67", "wrong": "Transplacental passage of thyr", "baseline": "Transplacental passage of thyr", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-141", "wrong": "MRI of the pituitary gland", "baseline": "MRI of the chest", "generic": true, "anchored": false, "anchored_strong": true, "anchored_solo": false}
+{"case_id": "medqa-79", "wrong": "Watchful waiting while resusci", "baseline": "Immediate cardiac transplant", "generic": true, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-2", "wrong": "Allergic interstitial nephriti", "baseline": "Renal papillary necrosis", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-186", "wrong": "The ribosome will recognize th", "baseline": "The ribosome will recognize th", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": false}
+{"case_id": "medqa-82", "wrong": "Nodular", "baseline": "Desmoplastic", "generic": false, "anchored": false, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-187", "wrong": "Fentanyl", "baseline": "Propofol", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-206", "wrong": "LOD Score < 3", "baseline": "LOD Score < 1", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-255", "wrong": "Hyperchromic red blood cells", "baseline": "Macrocytic red blood cells", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-266", "wrong": "Primary respiratory alkalosis", "baseline": "Non-anion gap metabolic acidos", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-285", "wrong": "Administer intravenous fludroc", "baseline": "Administer intravenous hydroco", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-286", "wrong": "Western blot", "baseline": "Enzyme-linked immunosorbent as", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-300", "wrong": "Inferomedial quadrant of the r", "baseline": "Inferolateral quadrant of the ", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-306", "wrong": "Autosomal recessive polycystic", "baseline": "Alpha-1-antitrypsin deficiency", "generic": false, "anchored": false, "anchored_strong": true, "anchored_solo": false}
+{"case_id": "medqa-376", "wrong": "DNA test for CFTR mutation", "baseline": "Karyotyping of infant's chromo", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-382", "wrong": "Trazodone", "baseline": "Duloxetine", "generic": true, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-387", "wrong": "Burkholderia", "baseline": "Staphylococcus", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-391", "wrong": "Chest CT scan", "baseline": "IV Heparin", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-416", "wrong": "Plays a role in angioedema", "baseline": "Acts as an important opsonin", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-418", "wrong": "Fluoxetine", "baseline": "Regular blood transfusions", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-447", "wrong": "Fractional tissue oxygen extra", "baseline": "Systemic vascular resistance", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-454", "wrong": "B", "baseline": "A", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-482", "wrong": "Decreases oxygen carrying capa", "baseline": "Increases oxygen carrying capa", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-499", "wrong": "Lysosomal trafficking regulato", "baseline": "Microtubule monomeric protein", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-513", "wrong": "Herniated nucleus pulposus", "baseline": "Compression fracture", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-530", "wrong": "Atrial myxoma", "baseline": "Mitral valve vegetation", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-532", "wrong": "Tolbutamide", "baseline": "Lisinopril", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-533", "wrong": "Rapidly progressive glomerulon", "baseline": "Poststreptococcal glomerulonep", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-577", "wrong": "Hypokinetic wall of the left v", "baseline": "Left ventricular ejection frac", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": false}
+{"case_id": "medqa-589", "wrong": "Round ligament of the uterus", "baseline": "Broad ligament", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-594", "wrong": "Choledocholithiasis", "baseline": "Duodenal peptic ulcer", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-596", "wrong": "Closure of the ductus arterios", "baseline": "Increase in concentration of s", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": false}
+{"case_id": "medqa-617", "wrong": "Inactivation by bacterial tran", "baseline": "Replacement of D-alanine", "generic": false, "anchored": false, "anchored_strong": true, "anchored_solo": false}
+{"case_id": "medqa-621", "wrong": "Human bite", "baseline": "Cat bite", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-635", "wrong": "Computed Tomography (CT)", "baseline": "Angiography", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-647", "wrong": "Defect in ATM gene", "baseline": "Defect in WASP gene", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-649", "wrong": "Testosterone therapy", "baseline": "Spironolactone therapy", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-655", "wrong": "Phrenicocolic ligament", "baseline": "Phrenoesophageal ligament", "generic": true, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-676", "wrong": "Interferon-gamma", "baseline": "Immunoglobulin E", "generic": true, "anchored": false, "anchored_strong": true, "anchored_solo": false}
+{"case_id": "medqa-681", "wrong": "Antibodies directed against en", "baseline": "Antibodies directed against pl", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-682", "wrong": "Fluconazole", "baseline": "Isoniazid", "generic": true, "anchored": false, "anchored_strong": true, "anchored_solo": false}
+{"case_id": "medqa-724", "wrong": "Amphotericin and 5-flucytosine", "baseline": "Acyclovir", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-733", "wrong": "Metabolic acidosis", "baseline": "Respiratory alkalosis", "generic": false, "anchored": true, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-788", "wrong": "Goblet cells", "baseline": "Type I pneumocytes", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-801", "wrong": "Teeth discoloration", "baseline": "Renal dysplasia", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-829", "wrong": "Azithromycin and discharge", "baseline": "Azithromycin and admission to ", "generic": false, "anchored": false, "anchored_strong": true, "anchored_solo": false}
+{"case_id": "medqa-861", "wrong": "Acute myelogenous leukemia", "baseline": "Malaria", "generic": false, "anchored": false, "anchored_strong": true, "anchored_solo": false}
+{"case_id": "medqa-889", "wrong": "Factor XI", "baseline": "Factor IX", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-906", "wrong": "Clusters of bland cells withou", "baseline": "Nonencapsulated groups of well", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": false}
+{"case_id": "medqa-911", "wrong": "Hypotension", "baseline": "Decreased libido", "generic": false, "anchored": true, "anchored_strong": false, "anchored_solo": true}
+{"case_id": "medqa-917", "wrong": "Glucagonoma", "baseline": "Malingering", "generic": false, "anchored": false, "anchored_strong": true, "anchored_solo": false}
+{"case_id": "medqa-966", "wrong": "Alkaline phosphatase", "baseline": "Alanine aminotransferase", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-975", "wrong": "Dissociation", "baseline": "Displacement", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-194", "wrong": "Conversion of porphobilinogen ", "baseline": "Conversion of ferrous iron to ", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-191", "wrong": "Intrauterine alcohol exposure", "baseline": "Maternal oligohydramnios", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-202", "wrong": "Hilar lymph nodes", "baseline": "Trachea", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
