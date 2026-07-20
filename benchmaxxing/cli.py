@@ -49,10 +49,7 @@ def _dataset_names() -> list[str]:
         from benchmaxxing.datasets import registry
     except Exception:  # noqa: BLE001 - datasets may be mid-build; degrade gracefully
         return []
-    try:
-        return list(registry.names())
-    except Exception:  # noqa: BLE001
-        return sorted(str(k) for k in getattr(registry, "REGISTRY", {}))
+    return sorted(registry.names())
 
 
 def _cmd_datasets(_args: argparse.Namespace) -> int:
