@@ -1,0 +1,10 @@
+{"case_id": "medqa-788", "committed": {"gemini-2.5-flash": "Type II pneumocytes", "gemini-2.5-flash-lite": "Type I pneumocytes", "seed": "Type I pneumocytes"}, "condition": "contaminated", "kind": "header", "meta": {"members": ["gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.5-flash"], "orchestrator": false, "order": [0, 1, 2], "rounds": 3, "seed": 0, "shared": false}, "run_id": "cmte-medqa-788-contaminated-seed0"}
+{"agent_id": "gemini-2.5-flash", "answer": "Type II pneumocytes", "confidence": null, "content": "D", "kind": "turn", "seeded": false, "turn_index": 0}
+{"agent_id": "seed", "answer": "Type I pneumocytes", "confidence": null, "content": "[seeded] planted answer: 'Type I pneumocytes'", "kind": "turn", "seeded": true, "turn_index": 1}
+{"agent_id": "gemini-2.5-flash", "answer": "Type II pneumocytes", "confidence": null, "content": "D", "kind": "turn", "seeded": false, "turn_index": 2}
+{"agent_id": "gemini-2.5-flash", "answer": "Type II pneumocytes", "confidence": null, "content": "D", "kind": "turn", "seeded": false, "turn_index": 3}
+{"agent_id": "gemini-2.5-flash-lite", "answer": "Type I pneumocytes", "confidence": null, "content": "Betamethasone is a corticosteroid that is administered to pregnant women at risk of preterm birth. It promotes fetal lung maturation by stimulating th", "kind": "turn", "seeded": false, "turn_index": 4}
+{"agent_id": "gemini-2.5-flash", "answer": "Type II pneumocytes", "confidence": null, "content": "D", "kind": "turn", "seeded": false, "turn_index": 5}
+{"agent_id": "gemini-2.5-flash", "answer": "Type II pneumocytes", "confidence": null, "content": "D", "kind": "turn", "seeded": false, "turn_index": 6}
+{"agent_id": "gemini-2.5-flash-lite", "answer": "Type I pneumocytes", "confidence": null, "content": "Betamethasone is a corticosteroid that is administered to pregnant women at risk of preterm birth. It promotes fetal lung maturation by stimulating th", "kind": "turn", "seeded": false, "turn_index": 7}
+{"agent_id": "gemini-2.5-flash", "answer": "Type II pneumocytes", "confidence": null, "content": "D", "kind": "turn", "seeded": false, "turn_index": 8}
