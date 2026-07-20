@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+from pathlib import Path
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -22,7 +23,12 @@ def build_parser() -> argparse.ArgumentParser:
     )
     sub = parser.add_subparsers(dest="command", metavar="command")
 
-    sub.add_parser("version", help="print the installed benchmaxxing version")
+    p_version = sub.add_parser("version", help="print the installed benchmaxxing version")
+    p_version.add_argument(
+        "--verbose",
+        action="store_true",
+        help="also print the git SHA, Python version, and optional-extras availability",
+    )
     sub.add_parser("datasets", help="list the available dataset adapters")
     sub.add_parser("smoke", help="run the offline end-to-end pipeline smoke on synthetic data")
 
@@ -37,10 +43,58 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def _cmd_version(_args: argparse.Namespace) -> int:
+# Representative, lazily-checked module for each optional extra declared in pyproject.toml.
+_EXTRA_PROBE_MODULES = {
+    "image": "PIL",
+    "changepoint": "ruptures",
+    "stats": "statsmodels",
+    "models": "litellm",
+    "config": "yaml",
+}
+
+
+def _git_sha() -> str:
+    """Best-effort short git SHA for this checkout; "unknown" outside a git checkout or
+    when the git binary itself is unavailable."""
+    import subprocess
+
+    try:
+        result = subprocess.run(
+            ["git", "rev-parse", "--short", "HEAD"],
+            cwd=Path(__file__).resolve().parent,
+            capture_output=True,
+            text=True,
+            timeout=5,
+        )
+    except Exception:  # noqa: BLE001 - no git binary, no permissions, etc.
+        return "unknown"
+    if result.returncode != 0:
+        return "unknown"
+    return result.stdout.strip() or "unknown"
+
+
+def _extra_availability() -> dict[str, bool]:
+    """Best-effort import check for each optional extra; never raises."""
+    import importlib.util
+
+    availability = {}
+    for extra, module in _EXTRA_PROBE_MODULES.items():
+        try:
+            availability[extra] = importlib.util.find_spec(module) is not None
+        except Exception:  # noqa: BLE001 - a broken finder should not crash `version`
+            availability[extra] = False
+    return availability
+
+
+def _cmd_version(args: argparse.Namespace) -> int:
     import benchmaxxing
 
     print(benchmaxxing.__version__)
+    if getattr(args, "verbose", False):
+        print(f"git SHA: {_git_sha()}")
+        print(f"Python: {sys.version.split()[0]}")
+        for extra, available in sorted(_extra_availability().items()):
+            print(f"extra {extra}: {'available' if available else 'missing'}")
     return 0
 
 
@@ -103,7 +157,7 @@ def _run_smoke() -> dict:
         Case(case_id=f"t{i}", patient_id=f"p{i}", modality=Modality.TEXT,
              question="Most likely diagnosis?",
              options=("Pneumothorax", "A benign incidental finding described at great length",
-                      "Rib fracture"),
+                       "Rib fracture"),
              answer_index=0)
         for i in range(4)
     ]
@@ -111,7 +165,7 @@ def _run_smoke() -> dict:
     records = solo_evaluate(twins, backend=_pick_longest, answer_fn=lambda x: x, model="mock")
 
     # 2. shared vs isolated committee. Same-lineage (Gemini) agents are shortcut-prone; the
-    #    open-weights (cross-lineage) agent is robust and resists the planted shortcut.
+    # open-weights (cross-lineage) agent is robust and resists the planted shortcut.
     class _Robust:
         def respond(self, view):
             return AgentResponse(content="on the merits", answer=_CORRECT)
@@ -120,7 +174,7 @@ def _run_smoke() -> dict:
         def respond(self, view):
             on_board = any(t.answer == _SHORTCUT for t in view.visible_turns)
             return AgentResponse(content="deferring" if on_board else "on the merits",
-                                 answer=_SHORTCUT if on_board else _CORRECT)
+                                  answer=_SHORTCUT if on_board else _CORRECT)
 
     committee = build_committee(default_roster())
     seed_agent = next(m.name for m in committee.members if not m.is_open_weights)
@@ -131,16 +185,16 @@ def _run_smoke() -> dict:
 
     case = Case(case_id="c0", patient_id="p0", modality=Modality.IMAGE, label="pneumothorax")
     shared = run_committee(committee, case, Condition.CONTAMINATED, backend_for, shared=True,
-                           seed_turn=(seed_index, _SHORTCUT, seed_agent), seed=0, rounds=3)
+                            seed_turn=(seed_index, _SHORTCUT, seed_agent), seed=0, rounds=3)
     isolated = run_committee(committee, case, Condition.CONTAMINATED, backend_for, shared=False,
-                             seed_turn=(seed_index, _SHORTCUT, seed_agent), seed=0, rounds=3)
+                              seed_turn=(seed_index, _SHORTCUT, seed_agent), seed=0, rounds=3)
 
     shared_shortcut = sum(1 for a in shared.committed.values() if a == _SHORTCUT)
     isolated_shortcut = sum(1 for a in isolated.committed.values() if a == _SHORTCUT)
     series = [1.0 if t.answer == _SHORTCUT else 0.0 for t in shared.turns]
 
     # 3. referee scoring + gate. Ground truth is INDEPENDENT of the detector: an agent was
-    #    gamed if it committed correctly in isolation but the shortcut under shared context.
+    # gamed if it committed correctly in isolation but the shortcut under shared context.
     gamed = {a: (shared.committed.get(a) == _SHORTCUT and isolated.committed.get(a) == _CORRECT)
              for a in shared.committed}
     flags = score_shortcut(shared, "seeded")
@@ -149,7 +203,7 @@ def _run_smoke() -> dict:
     gate = gate_decision(shared, planted_cue_type="seeded")
 
     # 4. blind-metric probe: decisions that track a hidden decoy more than ground truth give a
-    #    positive uptake delta (drift toward the artifact). Synthetic, deterministic.
+    # positive uptake delta (drift toward the artifact). Synthetic, deterministic.
     ground_truth = [0.0, 1.0, 0.0, 1.0, 0.0, 1.0]
     decoy = [1.0, 1.0, 1.0, 0.0, 0.0, 0.0]
     decisions = [0.9, 0.85, 0.95, 0.15, 0.1, 0.2]  # follow the decoy, not the truth
@@ -164,7 +218,7 @@ def _run_smoke() -> dict:
         "n_agents": len(committee.members),
         "referee_precision": ref_pr.get("precision"),
         "referee_recall": ref_pr.get("recall"),
-        "robust_agent_flagged": flags.get(robust_id),      # must be False (a true negative)
+        "robust_agent_flagged": flags.get(robust_id),  # must be False (a true negative)
         "gate_approve": gate.approve,
         "gate_reason": gate.reason,
         "blind_metric_uptake_delta": uptake.uptake_delta,
