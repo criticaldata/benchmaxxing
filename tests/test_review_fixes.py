@@ -85,6 +85,35 @@ def test_solo_evaluate_accepts_gateway_backend():
     assert len(records) == 1  # no TypeError: the gateway backend drives the solo lane
 
 
+def test_gateway_backend_receives_a_real_mcq_prompt():
+    # Review (#100): the complete() branch must send a real MCQ prompt, not str(payload) (a
+    # Python dict repr). Capture what the gateway backend actually receives.
+    from benchmaxxing.analysis import solo_evaluate
+    from benchmaxxing.cues.text import build_text_twin
+    from benchmaxxing.gateway import Backend
+
+    seen = []
+
+    class _Recorder(Backend):
+        def complete(self, prompt, image=None, decoding=None):
+            seen.append(prompt)
+            return "A"
+
+    case = Case(case_id="t", patient_id="t", modality=Modality.TEXT,
+                question="Which finding is most specific for pneumothorax?",
+                options=("Kerley B lines", "Absent lung markings with a pleural line", "Cardiomegaly"),
+                answer_index=1)
+    solo_evaluate([build_text_twin(case, "longest_option")], _Recorder(),
+                  answer_fn=lambda x: x, model="rec")
+    assert seen, "the gateway backend was never called"
+    for prompt in seen:
+        # a real prompt, not a dict repr like "{'question': ...}"
+        assert not prompt.lstrip().startswith("{")
+        assert "Which finding is most specific for pneumothorax?" in prompt
+        assert "Kerley B lines" in prompt and "Cardiomegaly" in prompt
+        assert "Options:" in prompt
+
+
 def test_lineage_overlap_nan_yields_nan_pvalue():
     # Finding: an undefined observed statistic returned the SMALLEST possible p-value.
     from benchmaxxing.analysis import lineage_overlap_test
