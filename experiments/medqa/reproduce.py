@@ -51,11 +51,10 @@ _cache_lock = threading.Lock()
 _io_lock = threading.Lock()
 
 
-def _require_key() -> str:
-    key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
-    if not key:
-        raise SystemExit("Set GEMINI_API_KEY in the environment (never commit it).")
-    return key
+def _get_key():
+    """Return the API key from the env, or None. A fully cached run needs no key; the key is
+    only required to fill a cache miss (and for the uncached noise-floor control)."""
+    return os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
 
 
 def _letters(n):
@@ -92,9 +91,9 @@ class CachedBackend(gateway.Backend):
 
     def __init__(self, model, api_key, cache_path):
         self.model = model
+        self.api_key = api_key
         self.cache_path = Path(cache_path)
-        self._inner = gateway.RetryBackend(
-            gateway.GeminiBackend(model=model, api_key=api_key), tries=5, backoff=3.0)
+        self._inner = None  # the live backend is built lazily, only on a cache miss
         with _cache_lock:
             key = str(self.cache_path)
             if key not in CachedBackend._loaded_from and self.cache_path.exists():
@@ -109,6 +108,15 @@ class CachedBackend(gateway.Backend):
         with _cache_lock:
             if k in CachedBackend._store:
                 return CachedBackend._store[k]
+        # cache miss: a live call is needed, so a key is required only here.
+        if self._inner is None:
+            if not self.api_key:
+                raise SystemExit(
+                    "Cache miss with no GEMINI_API_KEY set: a live model call is needed to fill "
+                    "it, but no key is available. A fully cached run reproduces the committed "
+                    "numbers with no key; set GEMINI_API_KEY only to compute new results.")
+            self._inner = gateway.RetryBackend(
+                gateway.GeminiBackend(model=self.model, api_key=self.api_key), tries=5, backoff=3.0)
         resp = self._inner.complete(prompt, image=image, decoding=decoding)
         with _cache_lock:
             CachedBackend._store[k] = resp
@@ -153,9 +161,13 @@ def run_solo(cases, out, api_key, cache):
             records.extend(fut.result())
 
     # noise floor: same clean case run twice, UNCACHED (a repeat cached call is identical
-    # by construction, so self-inconsistency must be measured off-cache).
+    # by construction, so self-inconsistency must be measured off-cache). This is the one part
+    # that always needs a key; a keyless (fully cached) reproduction skips it.
     noise = {}
-    for model in TIERS:
+    if not api_key:
+        noise = {m: None for m in TIERS}
+        print("noise floor skipped (no key): it is an uncached control; set GEMINI_API_KEY to run it.")
+    for model in (TIERS if api_key else []):
         raw = gateway.RetryBackend(gateway.GeminiBackend(model=model, api_key=api_key),
                                    tries=5, backoff=3.0)
         ch = n = 0
@@ -228,8 +240,8 @@ def run_cascade(cases, out, api_key, cache):
         st = (1, seed_answer, seed_agent)
         shared = run_committee(committee, case, Condition.CONTAMINATED, backend_for, shared=True, seed_turn=st, rounds=3)
         iso = run_committee(committee, case, Condition.CONTAMINATED, backend_for, shared=False, seed_turn=st, rounds=3)
-        dump_transcript(shared, tdir / f"{case.case_id}_shared.jsonl")
-        dump_transcript(iso, tdir / f"{case.case_id}_isolated.jsonl")
+        dump_transcript(shared, tdir / f"{case.case_id}_repro_shared.jsonl")
+        dump_transcript(iso, tdir / f"{case.case_id}_repro_isolated.jsonl")
         others = [a for a in agent_ids if a != seed_agent]
         sa = sum(1 for a in others if shared.committed.get(a) == seed_answer) / len(others)
         ia = sum(1 for a in others if iso.committed.get(a) == seed_answer) / len(others)
@@ -261,7 +273,7 @@ def main():
     ap.add_argument("--seed", type=int, default=0)
     args = ap.parse_args()
 
-    api_key = _require_key()
+    api_key = _get_key()
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     cache = out / "call_cache.jsonl"

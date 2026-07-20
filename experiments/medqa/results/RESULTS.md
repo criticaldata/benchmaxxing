@@ -65,4 +65,4 @@ Contagion = (fraction of NON-seed committee members who adopt the planted shortc
 - **Residual measurement note for v2:** the seed was chosen to differ from each committee's MAJORITY baseline; two cases still showed isolated adoption because an individual agent's baseline coincided with the seed. Tightening the seed to differ from EVERY agent's isolated baseline would remove that.
 - **Cross-lineage overlap** still needs the open-weights arm (cluster) for a real cross term.
 
-_Reproduce: `python3 medqa_full.py` (solo + v1) and `python3 cascade_v2.py` (v2) re-read the call cache and reproduce every number here without new API calls._
+_Reproduce: `python -m experiments.medqa.reproduce --manifest <medqa_manifest.csv> --out experiments/medqa/results --stage all` re-reads `call_cache.jsonl` and reproduces the solo and cascade numbers here with NO new API calls and NO key (verified: solo flip 0.787 / 0.893 from cache, zero new calls). Only the uncached noise-floor control needs a key; it is skipped without one. reproduce.py writes its own cascade transcripts under `transcripts/*_repro_*.jsonl` so it never overwrites the committed run's transcripts._

@@ -17,9 +17,11 @@ python -m experiments.medqa.reproduce --manifest medqa_manifest.csv \
     --out experiments/medqa/results --stage all --solo-n 100 --cascade-n 20
 ```
 
-Every model call is cached under `--out/call_cache.jsonl` (keyed by model+prompt), so re-runs
-reproduce the numbers with no new API calls and an interrupted run resumes for free. The cache
-and per-run transcripts are regenerable and are not committed.
+Every model call is cached under `--out/call_cache.jsonl` (keyed by model+prompt). A fully
+cached reproduction needs **no key**: `reproduce.py` reads the committed cache and returns the
+committed solo/cascade numbers with zero API calls (verified). A key is required only to fill a
+cache miss and for the uncached noise-floor control (skipped without a key). The committed cache
+and transcripts ARE included so the numbers are verifiable from the committed code.
 
 ## What the results show
 
