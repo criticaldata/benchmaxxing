@@ -22,7 +22,13 @@ def build_parser() -> argparse.ArgumentParser:
     )
     sub = parser.add_subparsers(dest="command", metavar="command")
 
-    sub.add_parser("version", help="print the installed benchmaxxing version")
+    p_version = sub.add_parser("version", help="print the installed benchmaxxing version")
+    p_version.add_argument(
+        "-v",
+        "--verbose",
+        action="store_true",
+        help="also print the git commit SHA and which optional extras are installed",
+    )
     sub.add_parser("datasets", help="list the available dataset adapters")
     sub.add_parser("smoke", help="run the offline end-to-end pipeline smoke on synthetic data")
 
@@ -36,11 +42,53 @@ def build_parser() -> argparse.ArgumentParser:
     )
     return parser
 
+def _git_sha() -> str:
+    """Short git commit SHA of the working tree, or 'unknown' if unavailable."""
+    import subprocess
 
-def _cmd_version(_args: argparse.Namespace) -> int:
+    try:
+        result = subprocess.run(
+            ["git", "rev-parse", "--short", "HEAD"],
+            capture_output=True,
+            text=True,
+            timeout=5,
+            check=True,
+        )
+        return result.stdout.strip()
+    except Exception:  # noqa: BLE001 - degrade gracefully, this is diagnostic output
+        return "unknown"
+
+
+def _extras_status() -> dict[str, bool]:
+    """Best-effort check of which optional-dependency extras are importable."""
+    import importlib
+
+    # module name to try importing, per extra in pyproject.toml
+    probes = {
+        "stats": "statsmodels",
+        "changepoint": "ruptures",
+        "image": "PIL",
+        "models": "litellm",
+        "config": "yaml",
+    }
+    status = {}
+    for extra, module_name in probes.items():
+        try:
+            importlib.import_module(module_name)
+            status[extra] = True
+        except Exception:  # noqa: BLE001 - absence is expected, not an error
+            status[extra] = False
+    return status
+
+def _cmd_version(args: argparse.Namespace) -> int:
     import benchmaxxing
 
     print(benchmaxxing.__version__)
+    if getattr(args, "verbose", False):
+        print(f"git SHA: {_git_sha()}")
+        print("extras:")
+        for name, available in _extras_status().items():
+            print(f"  {name}: {'installed' if available else 'not installed'}")
     return 0
 
 
