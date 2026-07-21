@@ -31,3 +31,25 @@ a printed-text watermark is the one robust image cue, and even it is modest. Thi
 earlier writeup that compared against a 0.13 floor; the temperature>0 resample gives 0.23. (The
 noise floor is stochastic, so re-running the resample varies it within sampling error; the flip
 pass itself is deterministic and reproduces from the cache with no key.)
+
+## Imaging-lane cascade (watermark) — a confident wrong peer
+
+Beyond the solo cue, does a multimodal *committee* adopt a wrong finding-read when peers assert it?
+On a watermarked X-ray, when two peer radiologists both read the film as the wrong answer, the
+holdout adopts that wrong read far more under the shared board than reading alone:
+
+| setting | shared adopt | isolated adopt | contagion |
+|---|---|---|---|
+| watermark (NIH, 35 cases) | **0.97** | **0.34** | **+0.63** |
+
+So the cascade transfers to the imaging lane and is *stronger* there than in text: a confident
+plausible peer moves an imaging committee almost completely. Run:
+
+```bash
+python -m experiments.imaging.imaging_cascade \
+    --manifest <nih_manifest.csv> --image-root <images/> \
+    --cache experiments/imaging/results/img_cache.jsonl --out experiments/imaging/results --n 35
+```
+
+Reproduces keyless from the committed `img_cache.jsonl` (`new_api_calls_this_run = 0`). Uses a
+yes/no parser, so it was unaffected by the MCQ answer-parser bug.
