@@ -1,0 +1,16 @@
+{"case_id": "medqa-2", "control_decoy": 0, "incent_decoy": 0, "control_correct": 0, "incent_correct": 0}
+{"case_id": "medqa-67", "control_decoy": 0, "incent_decoy": 0, "control_correct": 0, "incent_correct": 0}
+{"case_id": "medqa-82", "control_decoy": 0, "incent_decoy": 0, "control_correct": 0, "incent_correct": 1}
+{"case_id": "medqa-127", "control_decoy": 0, "incent_decoy": 0, "control_correct": 0, "incent_correct": 0}
+{"case_id": "medqa-141", "control_decoy": 0, "incent_decoy": 0, "control_correct": 0, "incent_correct": 1}
+{"case_id": "medqa-151", "control_decoy": 0, "incent_decoy": 0, "control_correct": 0, "incent_correct": 0}
+{"case_id": "medqa-183", "control_decoy": 0, "incent_decoy": 0, "control_correct": 0, "incent_correct": 0}
+{"case_id": "medqa-186", "control_decoy": 0, "incent_decoy": 0, "control_correct": 0, "incent_correct": 1}
+{"case_id": "medqa-187", "control_decoy": 0, "incent_decoy": 0, "control_correct": 0, "incent_correct": 0}
+{"case_id": "medqa-191", "control_decoy": 0, "incent_decoy": 0, "control_correct": 0, "incent_correct": 0}
+{"case_id": "medqa-194", "control_decoy": 0, "incent_decoy": 0, "control_correct": 0, "incent_correct": 0}
+{"case_id": "medqa-206", "control_decoy": 1, "incent_decoy": 1, "control_correct": 0, "incent_correct": 0}
+{"case_id": "medqa-255", "control_decoy": 0, "incent_decoy": 0, "control_correct": 0, "incent_correct": 0}
+{"case_id": "medqa-266", "control_decoy": 0, "incent_decoy": 0, "control_correct": 0, "incent_correct": 0}
+{"case_id": "medqa-286", "control_decoy": 1, "incent_decoy": 1, "control_correct": 0, "incent_correct": 0}
+{"case_id": "medqa-300", "control_decoy": 1, "incent_decoy": 1, "control_correct": 0, "incent_correct": 0}
