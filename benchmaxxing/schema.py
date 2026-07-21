@@ -90,6 +90,9 @@ class Turn:
     answer: object = None              # the committed answer this turn (if any)
     confidence: float | None = None
     seeded: bool = False               # True if this turn was injected (planted shortcut)
+    context: bool = False              # True if this is ambient workspace context, not an agent
+                                       # utterance: seen even in isolated mode, kept out of the
+                                       # per-agent committed map
 
 
 @dataclass
