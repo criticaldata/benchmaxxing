@@ -1,28 +1,28 @@
 {
   "holdout": "gemini-2.5-flash",
-  "n_hard_cases": 60,
+  "n_hard_cases": 28,
   "new_api_calls_this_run": 0,
   "generic": {
-    "conform": 6,
-    "rate": 0.1,
+    "conform": 20,
+    "rate": 0.7143,
     "wilson95": [
-      0.047,
-      0.201
+      0.529,
+      0.847
     ]
   },
   "anchored": {
-    "conform": 5,
-    "rate": 0.0833,
+    "conform": 19,
+    "rate": 0.6786,
     "wilson95": [
-      0.036,
-      0.181
+      0.493,
+      0.821
     ]
   },
   "anchored_vs_generic_paired": {
-    "gain": 2,
-    "lose": 3,
+    "gain": 3,
+    "lose": 4,
     "mcnemar_p": 1.0,
-    "rate_diff": -0.0167
+    "rate_diff": -0.0357
   },
   "flash_lite_reference": {
     "generic": 0.33,
