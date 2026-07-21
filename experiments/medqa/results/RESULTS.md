@@ -2,6 +2,18 @@
 
 _Analysis artifact for ongoing review. Run bundle: `full_v1/`. Dataset: MedQA-USMLE test. Models: gemini-2.5-flash, gemini-2.5-flash-lite (same-lineage control arm). git 3273c011 (feat/adapters-runners), started 2026-07-20 00:45:30. Temperature 0; deterministic. Every model call is cached in `call_cache.jsonl` so re-runs reproduce these numbers with zero API calls; cascade transcripts are in `transcripts/` for offline replay._
 
+## 0. Provenance and reproduction map
+
+The committed bundle in `results/` is the saved output of the first real run (git 3273c011, 2026-07-20). `reproduce.py` is the single consolidated verifier: it re-reads the committed `call_cache.jsonl` and recomputes the same numbers, writing to its OWN filenames so it never overwrites the saved bundle. (The earlier per-stage runners that produced the original bundle are not committed; `reproduce.py` supersedes them and is the one script a reviewer needs.) Verified 2026-07-21: a keyless `--stage all` run reproduced every number below with zero new API calls.
+
+| committed artifact (saved run) | `reproduce.py` output (verifier, regenerable) | number to check |
+|---|---|---|
+| `solo_and_cascade_v1_results.json`, `solo_records.jsonl` | `solo_results.json` | solo flip 0.787 / 0.893 |
+| `cascade_v2_summary.json`, `cascade_v2_per_case.jsonl` | `cascade_results.json` | mean contagion -0.05, shared 0.025 / isolated 0.075 |
+| `transcripts/{case}_v2_{shared,isolated}.jsonl` | `transcripts/{case}_repro_{shared,isolated}.jsonl` | per-turn replay (distinct `_repro_` names, no overwrite) |
+
+To verify: run the reproduce command in the footer, then diff each verifier output against the committed artifact in the same row. A key is needed only to fill a cache miss or the uncached noise-floor control (skipped without one).
+
 ## 1. Solo susceptibility (Story 2 building block) - STRONG, defensible
 
 Flip = the model's answer changes between the clean twin and the cue-injected twin. Noise floor = self-inconsistency when the same clean case is run twice with no cue (uncached control, 15 cases/model). Flip-above-noise is the honest susceptibility.
