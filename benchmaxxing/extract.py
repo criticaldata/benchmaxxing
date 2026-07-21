@@ -60,6 +60,11 @@ def is_abstention(text: str) -> bool:
 # Ordered so that the most specific patterns are tried first.
 # Captures a single letter (the answer) in group 1.
 _DECLARATION_PATTERNS = (
+    # "\boxed{C}" (the LaTeX final-answer box our Gemini MedQA responses end with). Most reliable,
+    # and it wins even when a distractor letter sits in the trailing window that Heuristic 2 guards.
+    r"\\boxed\{\s*([A-Z])\s*\}",
+    # "The final answer is C", "final answer: C"
+    r"final\s+answer\s+(?:is|[:=-])\s*([A-Z])\b",
     # "The correct answer is C", "the correct option is B"
     r"correct\s+(?:answer|option)\s+is\s+([A-Z])\b",
     # "The answer is C", "My answer is B"

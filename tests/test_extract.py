@@ -131,3 +131,33 @@ class TestParseMcqChoiceYesNoMaybe:
                              ids=[f"ynm_{i}" for i in range(len(GOLDEN_YNM))])
     def test_golden_cases(self, text, options, expected):
         assert parse_mcq_choice(text, options) == expected
+
+
+# ── \boxed / final-answer declarations (the 2026-07-21 parser-bug regression) ────────
+
+class TestBoxedFinalAnswer:
+    """Real Gemini MedQA responses reason at length and conclude with `\\boxed{X}`.
+    The naive first-\\b[A-E]\\b parser grabbed the leading article 'A' and mis-scored
+    ~85% of answers as option A; these pin the corrected behaviour.
+    """
+
+    OPTS = ("A", "B", "C", "D", "E")
+
+    @pytest.mark.parametrize("text, expected", [
+        # the exact medqa-82 failure: prose starts with the article "A", answer is \boxed{C}
+        (r"A 44-year-old African-American woman is at greatest risk for Acral lentiginous "
+         r"melanoma. The final answer is $\boxed{C}$", 2),
+        # \boxed wins even when a distractor letter sits in the trailing window
+        (r"Option E does not fit the presentation; the final answer is $\boxed{C}$", 2),
+        # "The final answer is B" without a box
+        ("After weighing the evidence, the final answer is B.", 1),
+        # plain \boxed at the very end
+        (r"...therefore $\boxed{D}$", 3),
+    ])
+    def test_boxed_and_final_answer(self, text, expected):
+        assert parse_mcq_choice(text, self.OPTS) == expected
+
+    def test_leading_article_a_is_not_the_answer(self):
+        text = (r"A patient with these findings is best treated with option C. "
+                r"The final answer is $\boxed{C}$")
+        assert parse_mcq_choice(text, self.OPTS) == 2  # C, never the article-A (0)
