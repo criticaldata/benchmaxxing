@@ -1,0 +1,59 @@
+{
+  "n_records": 600,
+  "noise_floor_by_model": {
+    "gemini-2.5-flash": 0.06666666666666667,
+    "gemini-2.5-flash-lite": 0.0
+  },
+  "flip_rate_by_model": {
+    "gemini-2.5-flash": {
+      "overall": 0.06333333333333334,
+      "per_cue": {
+        "lexical_overlap": 0.09,
+        "longest_option": 0.05,
+        "option_order": 0.05
+      },
+      "n": 300
+    },
+    "gemini-2.5-flash-lite": {
+      "overall": 0.11666666666666667,
+      "per_cue": {
+        "lexical_overlap": 0.14,
+        "longest_option": 0.12,
+        "option_order": 0.09
+      },
+      "n": 300
+    }
+  },
+  "susceptibility_matrix": {
+    "models": [
+      "gemini-2.5-flash",
+      "gemini-2.5-flash-lite"
+    ],
+    "cues": [
+      "lexical_overlap",
+      "longest_option",
+      "option_order"
+    ],
+    "matrix": [
+      [
+        0.09,
+        0.05,
+        0.05
+      ],
+      [
+        0.14,
+        0.12,
+        0.09
+      ]
+    ]
+  },
+  "overlap": {
+    "metric": "phi",
+    "within_mean": 0.20392242240455621,
+    "cross_mean": NaN,
+    "observed_diff": NaN,
+    "p_value": NaN,
+    "n_permutations": 0,
+    "n_models": 2
+  }
+}
