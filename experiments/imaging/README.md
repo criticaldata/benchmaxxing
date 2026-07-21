@@ -16,10 +16,18 @@ python -m experiments.imaging.imaging_solo --manifest <nih_manifest.csv> \
 
 | cue | flip rate | flip-above-noise |
 |---|---|---|
-| watermark | 0.34 | +0.21 |
-| laterality | 0.26 | +0.13 |
-| corner tag | 0.23 | +0.10 |
-| cable | 0.20 | +0.07 |
+| watermark | 0.34 | **+0.11** |
+| laterality | 0.26 | +0.03 |
+| corner tag | 0.23 | 0.00 |
+| cable | 0.20 | -0.03 |
 
-Noise floor (same clean image twice) = 0.13. Modest but real; flips concentrate on uncertain
-findings (hernia, mass, nodule). The imaging analog of the strong text-lane solo result.
+Noise floor (each clean read resampled once at temperature 1.0, cache bypassed, 35 cases) = **0.23**,
+written into `imaging_solo_summary.json` with the raw resamples in `imaging_noise_floor.jsonl`.
+
+**Read (honest):** once the noise floor is computed properly in-script, only the **watermark** cue
+clearly exceeds sampling noise (+0.11); laterality is marginal and corner-tag / cable fall at or
+below the floor at n=35. So the imaging-lane shortcut is narrower than the raw flip rates suggest:
+a printed-text watermark is the one robust image cue, and even it is modest. This corrects an
+earlier writeup that compared against a 0.13 floor; the temperature>0 resample gives 0.23. (The
+noise floor is stochastic, so re-running the resample varies it within sampling error; the flip
+pass itself is deterministic and reproduces from the cache with no key.)

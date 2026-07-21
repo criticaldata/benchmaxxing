@@ -3,13 +3,17 @@
 For each X-ray with a finding label, ask a yes/no diagnostic question about the finding on the
 CLEAN image and on the CONTAMINATED image (a diagnosis-neutral cue injected: cable / corner tag
 / watermark / laterality marker). A flip in the yes/no answer is shortcut evidence. Reports flip
-rate per cue and a noise floor (same clean image twice, uncached).
+rate per cue and, computed in-script, a noise floor: each clean read is resampled once at
+temperature > 0 with the cache bypassed, so the floor is the clean-read self-inconsistency. The
+honest susceptibility is flip-above-noise (per-cue flip rate minus the noise floor).
 
-Result (NIH ChestX-ray14, 35 cases, gemini-2.5-flash): flip 0.20-0.34 by cue, noise floor 0.13,
-so flip-above-noise up to +0.21 (watermark); flips concentrate on uncertain findings.
+Result (NIH ChestX-ray14, 35 cases, gemini-2.5-flash): flip 0.20-0.34 by cue; the noise floor and
+per-cue flip-above-noise are written into imaging_solo_summary.json and regenerate from the artifact.
 
 Runs anywhere: the compute is API-side (multimodal Gemini), no local GPU. Reads GEMINI_API_KEY
-from the env; cached calls need no key. Cache keyed on (model, prompt, image bytes).
+from the env. Cache keyed on (model, prompt, image bytes); the deterministic (temperature 0) flip
+pass reproduces from the cache with no key. The noise floor is the one uncached step (a genuine
+temperature>0 resample); it needs a key and is skipped (noise_floor=None) without one.
 """
 from __future__ import annotations
 
@@ -82,6 +86,17 @@ class _Cache:
                 f.write(json.dumps({"k": k, "resp": resp}) + "\n")
         return _yesno(resp)
 
+    def ask_uncached(self, prompt, pil, temperature):
+        """A genuine resample: always calls the backend (cache bypassed) at the given
+        temperature. Used for the noise floor (clean-read self-inconsistency); needs a key."""
+        if not self.key:
+            raise SystemExit("Noise floor needs GEMINI_API_KEY (it is an uncached temperature>0 resample).")
+        with _lock:
+            if self._b is None:
+                self._b = gateway.RetryBackend(gateway.GeminiBackend(model=MODEL, api_key=self.key), tries=5, backoff=3.0)
+        resp = self._b.complete(prompt, image=pil, decoding={"temperature": temperature})
+        return _yesno(resp)
+
 
 def main():
     ap = argparse.ArgumentParser(description="Imaging solo shortcut susceptibility.")
@@ -118,15 +133,45 @@ def main():
     rows = []
     with ThreadPoolExecutor(max_workers=4) as ex:
         for fut in as_completed([ex.submit(run, c) for c in cases]):
-            r = fut.result()
-            rows.append(r)
-            with open(out / "imaging_solo.jsonl", "a") as f:
-                f.write(json.dumps(r) + "\n")
+            rows.append(fut.result())
+    # Write once (not append) so a re-run overwrites rather than duplicating the per-case rows.
+    (out / "imaging_solo.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows))
 
     summary = {"n": len(rows), "model": MODEL, "cues": {}}
     for cue in CUES:
         flips = [r[f"{cue}_flip"] for r in rows if isinstance(r.get(f"{cue}_flip"), bool)]
         summary["cues"][cue] = {"flip_rate": (sum(flips) / len(flips)) if flips else None, "n": len(flips)}
+
+    # Noise floor: resample each CLEAN read once at temperature > 0, cache bypassed, so the floor
+    # measures clean-read self-inconsistency (sampling noise), not a cue effect. flip-above-noise
+    # per cue is the honest susceptibility. This is the one uncached step; it needs a key and is
+    # recorded as None (skipped) without one, so the deterministic flip pass still reproduces.
+    clean_by_id = {r["case_id"]: r["clean"] for r in rows}
+    if cache.key:
+        def noise(case):
+            finding = case.label.split("|")[0].strip()
+            img = Image.open(root / case.image_ref).convert("L")
+            first = clean_by_id.get(case.case_id)
+            second = cache.ask_uncached(q(finding), img, temperature=1.0)
+            return {"case_id": case.case_id, "finding": finding, "clean_temp0": first,
+                    "clean_resample": second, "noise_flip": (first is not None and first != second)}
+        noise_rows = []
+        with ThreadPoolExecutor(max_workers=4) as ex:
+            for fut in as_completed([ex.submit(noise, c) for c in cases]):
+                noise_rows.append(fut.result())
+        (out / "imaging_noise_floor.jsonl").write_text("".join(json.dumps(r) + "\n" for r in noise_rows))
+        nf = [r["noise_flip"] for r in noise_rows]
+        noise_floor = (sum(nf) / len(nf)) if nf else None
+        summary["noise_floor"] = noise_floor
+        summary["noise_floor_n"] = len(nf)
+        for cue in CUES:
+            fr = summary["cues"][cue]["flip_rate"]
+            summary["cues"][cue]["flip_above_noise"] = (
+                (fr - noise_floor) if (fr is not None and noise_floor is not None) else None)
+    else:
+        summary["noise_floor"] = None
+        summary["noise_floor_note"] = "skipped: no key (the noise floor is an uncached temperature>0 resample)"
+
     (out / "imaging_solo_summary.json").write_text(json.dumps(summary, indent=2))
     print(json.dumps(summary, indent=2))
 
