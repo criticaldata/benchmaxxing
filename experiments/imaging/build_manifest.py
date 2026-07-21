@@ -6,7 +6,7 @@ given machine) and that carry a real finding label, records a sha256 checksum pe
 exact pixels used are auditable, and writes a manifest consumable by ``benchmaxxing.data.load_cases``.
 
 By default the first ``--n`` eligible cases (in release order) are kept. Pass ``--case-ids-file``
-(one case_id per line) to instead pin an exact, already-used case set — this is how the committed
+(one case_id per line) to instead pin an exact, already-used case set - this is how the committed
 ``results/nih_manifest.csv`` for the solo/cascade/referee experiments was produced, so a fresh
 manifest build reproduces the identical 35-case set those results were computed on.
 """

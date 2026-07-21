@@ -31,7 +31,6 @@ from benchmaxxing.cues import image as ci
 from benchmaxxing.data import load_cases
 
 MODEL = "gemini-2.5-flash"
-CUE = "watermark"
 _lock = threading.Lock()
 
 
@@ -93,12 +92,15 @@ def main():
     ap.add_argument("--cache", default="experiments/imaging/results/img_cache.jsonl")
     ap.add_argument("--out", default="experiments/imaging/results")
     ap.add_argument("--n", type=int, default=35)
+    ap.add_argument("--cue", default="watermark", choices=["cable", "corner_tag", "watermark", "laterality"])
     args = ap.parse_args()
 
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     root = Path(args.image_root)
     cache = _Cache(args.cache, _key())
+    cue = args.cue
+    suffix = "" if cue == "watermark" else f"_{cue}"
     cases = [c for c in load_cases(args.manifest)
              if c.label and c.label.lower() not in ("no finding", "", "none")
              and (root / c.image_ref).exists()][:args.n]
@@ -113,7 +115,7 @@ def main():
         clean = cache.ask(q(finding), img)
         wrong = "no" if clean == "yes" else "yes"
         try:
-            cont = _to_pil(ci.build_image_twin(img, CUE, ground_truth=finding, case_id=case.case_id).contaminated)
+            cont = _to_pil(ci.build_image_twin(img, cue, ground_truth=finding, case_id=case.case_id).contaminated)
         except Exception as e:  # noqa: BLE001
             return {"case_id": case.case_id, "err": str(e)[:40]}
         board = (f"Two senior radiologists independently reviewed this film and both read it as "
@@ -134,10 +136,10 @@ def main():
     n = len(rows)
     sa = sum(r["shared_adopt"] for r in rows) / n
     ia = sum(r["iso_adopt"] for r in rows) / n
-    summary = {"n": n, "model": MODEL, "cue": CUE, "new_api_calls_this_run": cache.calls,
+    summary = {"n": n, "model": MODEL, "cue": cue, "new_api_calls_this_run": cache.calls,
                "shared_adopt": round(sa, 4), "isolated_adopt": round(ia, 4), "contagion": round(sa - ia, 4)}
-    (out / "imaging_cascade_summary.json").write_text(json.dumps(summary, indent=2))
-    (out / "imaging_cascade.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows))
+    (out / f"imaging_cascade{suffix}_summary.json").write_text(json.dumps(summary, indent=2))
+    (out / f"imaging_cascade{suffix}.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows))
     print(json.dumps(summary, indent=2))
 
 
