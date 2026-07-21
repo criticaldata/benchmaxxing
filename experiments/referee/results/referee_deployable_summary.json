@@ -1,15 +1,15 @@
 {
   "n": 40,
-  "n_holdout_adopted_shortcut": 10,
+  "n_holdout_adopted_shortcut": 15,
   "extra_requery_calls_needed": 40,
   "new_api_calls_this_run": 0,
   "referees_vs_shortcut_adoption": {
     "naive_gate (shared-only, no re-query)": {
-      "precision": 0.25,
+      "precision": 0.375,
       "recall": 1.0,
       "fpr": 1.0,
-      "tp": 10,
-      "fp": 30,
+      "tp": 15,
+      "fp": 25,
       "fn": 0,
       "tn": 0
     },
@@ -17,19 +17,19 @@
       "precision": 1.0,
       "recall": 1.0,
       "fpr": 0.0,
-      "tp": 10,
+      "tp": 15,
       "fp": 0,
       "fn": 0,
-      "tn": 30
+      "tn": 25
     },
     "oracle_audit (planted key + isolated run)": {
       "precision": 1.0,
       "recall": 1.0,
       "fpr": 0.0,
-      "tp": 10,
+      "tp": 15,
       "fp": 0,
       "fn": 0,
-      "tn": 30
+      "tn": 25
     }
   }
 }
