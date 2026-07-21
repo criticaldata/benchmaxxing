@@ -20,9 +20,11 @@ from matplotlib.axes import Axes  # noqa: E402
 
 from benchmaxxing.viz import (  # noqa: E402
     plot_cascade_onset,
+    plot_confidence_trajectory,
     plot_risk_coverage,
     plot_susceptibility_heatmap,
 )
+from benchmaxxing.schema import Condition, Transcript, Turn  # noqa: E402
 
 
 # --------------------------------------------------------------------------- plot_cascade_onset
@@ -59,6 +61,41 @@ def test_plot_cascade_onset_reuses_given_axes():
 
 def test_plot_cascade_onset_empty_series_does_not_raise():
     ax = plot_cascade_onset([])
+    assert isinstance(ax, Axes)
+    plt.close(ax.figure)
+
+
+# --------------------------------------------------------------- plot_confidence_trajectory
+
+
+def test_plot_confidence_trajectory_highlights_wrong_agreement():
+    transcript = Transcript(
+        run_id="run",
+        case_id="case",
+        condition=Condition.CONTAMINATED,
+        turns=[
+            Turn(0, "a", "", answer="A", confidence=0.8),
+            Turn(1, "planter", "", answer="B", confidence=None, seeded=True),
+            Turn(2, "b", "", answer="B", confidence=0.4),
+            Turn(3, "a", "", answer="B", confidence=0.7),
+        ],
+        meta={"shared": True},
+    )
+    ax = plot_confidence_trajectory(transcript)
+    assert isinstance(ax, Axes)
+    assert len(ax.collections) == 1
+    assert ax.get_title() == "Confidence trajectory: case"
+    plt.close(ax.figure)
+
+
+def test_plot_confidence_trajectory_handles_unrecorded_confidence():
+    transcript = Transcript(
+        run_id="run",
+        case_id="case",
+        condition=Condition.CONTAMINATED,
+        turns=[Turn(0, "a", "", answer="A"), Turn(1, "b", "", answer="B")],
+    )
+    ax = plot_confidence_trajectory(transcript, wrong_answer="B")
     assert isinstance(ax, Axes)
     plt.close(ax.figure)
 
