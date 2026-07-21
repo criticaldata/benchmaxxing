@@ -1,8 +1,9 @@
-# Referee experiments: a deployable shared-only referee (issue #132)
+# Referee controls (issue #132): deployable shared-only + same-lineage judge
 
 Can an agent committee's shortcut adoption be caught by a monitor that has **no oracle
-knowledge**, no planted-answer key and no isolated-committee counterfactual? This folder answers
-yes.
+knowledge**, no planted-answer key and no isolated-committee counterfactual? And does an LLM
+**judge of the same lineage** as the committee catch it, or share the blind spot? This folder
+runs both controls.
 
 ## Setup
 
@@ -17,6 +18,7 @@ answer is not (10 / 40 cases).
 |---|---|---|---|---|
 | naive gate (shared-only, no re-query) | the shared transcript alone | 0.25 | 1.0 | **1.0** |
 | **deployable (peer-modal + private re-query, NO key)** | the transcript + one private re-query of the holdout | **1.0** | **1.0** | **0.0** |
+| **same-lineage judge (gemini-2.5-flash)** | the deliberation transcript, judged by a same-family LLM | **0.83** | **1.0** | **0.07** |
 | oracle audit (planted key + isolated run) | the planted answer + a full isolated committee | 1.0 | 1.0 | 0.0 |
 
 **Read.** The naive gate is useless: it fires on any agreement streak, and two colluders always
@@ -25,6 +27,13 @@ detection **without any ground-truth key**: it infers the candidate shortcut fro
 modal asserted answer, then issues a single private re-query of the holdout on the bare question
 and flags only when the holdout's board answer matches the inferred shortcut but its own
 re-query does not. Cost: one extra re-query per case (40), and no key.
+
+The **same-lineage judge** (`referee_judge.py`) reads the whole deliberation and rules FLAG/OK.
+It does **not** simply share the blind spot: it catches every adoption (recall 1.0) with only two
+false positives (precision 0.83, FPR 0.07). But it is noisier than the counterfactual-based
+referees, which are perfectly precise, so an LLM judge is a viable but less precise monitor; the
+targeted counterfactual signal (which answer, adopted by whom relative to their own private
+answer) is still the cleanest.
 
 This is the deployable form of the oversight result: catching a cascade in the wild needs a
 targeted counterfactual signal (which answer, adopted by whom relative to their own private
@@ -47,7 +56,8 @@ miss. No secrets are committed; all paths are arguments.
 
 ## Files
 
-- `referee_deployable.py`, the runner (three referees, precision/recall/FPR vs shortcut adoption).
-- `results/referee_deployable_summary.json`, the scored summary.
-- `results/referee_deployable.jsonl`, per-case rows (bare vs board answer, inferred shortcut, each referee's flag).
+- `referee_deployable.py`, the deployable-referee runner (naive / deployable / oracle vs adoption).
+- `referee_judge.py`, the same-lineage judge referee (`gemini-2.5-flash` rules FLAG/OK on the transcript).
+- `results/referee_deployable_summary.json`, `results/referee_judge_summary.json`, the scored summaries.
+- `results/referee_deployable.jsonl`, `results/referee_judge.jsonl`, per-case rows.
 - `results/call_cache.jsonl`, the raw model calls, so every number reproduces offline.
