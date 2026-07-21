@@ -25,6 +25,7 @@ from benchmaxxing.analysis import (
 )
 from benchmaxxing.blackboard import run_committee
 from benchmaxxing.cues.text import build_text_twin
+from benchmaxxing.extract import Abstention, parse_mcq_choice
 from benchmaxxing.onset import cascade_onset
 from benchmaxxing.schema import Condition
 
@@ -125,6 +126,22 @@ def run_holes_test(
         n_permutations=n_permutations,
         seed=seed,
     )
+
+
+def _parse(text: str, case) -> str | Abstention:
+    """Parse a free-text response into the exact option string.
+    
+    Delegates to extract.parse_mcq_choice. If an explicit choice is found,
+    maps its index to the corresponding option text for the harness.
+    """
+    options = getattr(case, "options", None)
+    if not options:
+        return Abstention.UNPARSEABLE
+    
+    idx = parse_mcq_choice(text, options)
+    if isinstance(idx, Abstention):
+        return idx
+    return options[idx]
 
 
 def _shortcut_answer(case):
