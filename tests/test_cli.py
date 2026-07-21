@@ -26,6 +26,50 @@ def test_main_version_returns_zero(capsys: pytest.CaptureFixture[str]) -> None:
     assert rc == 0
     assert capsys.readouterr().out.strip() == benchmaxxing.__version__
 
+def test_build_parser_parses_version_verbose() -> None:
+    parser = cli.build_parser()
+    args = parser.parse_args(["version", "--verbose"])
+    assert args.command == "version"
+    assert args.verbose is True
+
+
+def test_main_version_verbose_includes_sha_and_extras(
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    rc = cli.main(["version", "--verbose"])
+    out = capsys.readouterr().out
+    assert rc == 0
+    lines = out.splitlines()
+    assert lines[0] == benchmaxxing.__version__
+    assert lines[1].startswith("git SHA: ")
+    assert "extras:" in out
+    for extra in ("stats", "changepoint", "image", "models", "config"):
+        assert extra in out
+
+
+def test_main_version_without_verbose_omits_sha_and_extras(
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    rc = cli.main(["version"])
+    out = capsys.readouterr().out
+    assert rc == 0
+    assert "git SHA" not in out
+    assert "extras:" not in out
+
+
+def test_git_sha_returns_string_even_outside_git_repo(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.chdir(tmp_path)  # no .git here
+    sha = cli._git_sha()
+    assert sha == "unknown"
+
+
+def test_extras_status_reports_bool_per_known_extra() -> None:
+    status = cli._extras_status()
+    assert set(status) == {"stats", "changepoint", "image", "models", "config"}
+    assert all(isinstance(v, bool) for v in status.values())
+
 
 def test_main_no_command_returns_zero() -> None:
     assert cli.main([]) == 0
