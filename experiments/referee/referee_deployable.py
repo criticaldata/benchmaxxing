@@ -78,7 +78,8 @@ class _Cache:
         if self.path.exists():
             for line in self.path.read_text().splitlines():
                 if line.strip():
-                    r = json.loads(line); self.store[r["k"]] = r["resp"]
+                    r = json.loads(line)
+                    self.store[r["k"]] = r["resp"]
 
     def complete(self, model, prompt):
         k = hashlib.sha256(f"{model}\x00{prompt}".encode()).hexdigest()
@@ -116,7 +117,8 @@ def main():
     ap.add_argument("--n", type=int, default=40)
     args = ap.parse_args()
 
-    out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
     cache = _Cache(args.cache, _key())
     cases = load_cases(args.manifest)[:args.n]
     committee = build_committee([
