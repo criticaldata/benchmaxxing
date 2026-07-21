@@ -10,6 +10,7 @@ orchestrator synthesizer turn.
 from __future__ import annotations
 
 import copy
+import pytest
 
 from benchmaxxing.blackboard import AgentResponse, AgentView, run_committee
 from benchmaxxing.schema import Case, Committee, Condition, Modality, ModelSpec, Turn
@@ -322,3 +323,64 @@ def test_bad_order_index_raises():
         raise AssertionError("expected ValueError for out-of-range order index")
     except ValueError:
         pass
+
+def test_seed_style_bare_is_unchanged_default():
+    committee = make_committee("A", "B")
+    backends = {"A": MockBackend("A"), "B": MockBackend("B")}
+    tr = run_committee(committee, make_case(), Condition.CLEAN, backend_factory(backends),
+                       seed_turn=(0, "PLANTED", "planter"))
+    assert tr.turns[0].content == "[seeded] planted answer: 'PLANTED'"
+
+
+def test_seed_style_reasoned_includes_rationale():
+    committee = make_committee("A", "B")
+    backends = {"A": MockBackend("A"), "B": MockBackend("B")}
+    tr = run_committee(
+        committee, make_case(), Condition.CLEAN, backend_factory(backends),
+        seed_turn=(0, "WRONG", "planter"),
+        seed_style="reasoned",
+        seed_cue_type="lab_value",
+        seed_cue_detail="elevated troponin",
+    )
+    planted = tr.turns[0]
+    assert planted.seeded is True
+    assert planted.answer == "WRONG"
+    assert "elevated troponin" in planted.content
+    assert "WRONG" in planted.content
+
+
+def test_seed_style_reasoned_is_deterministic():
+    committee = make_committee("A", "B")
+    contents = []
+    for _ in range(2):
+        backends = {"A": MockBackend("A"), "B": MockBackend("B")}
+        tr = run_committee(
+            committee, make_case(), Condition.CLEAN, backend_factory(backends),
+            seed_turn=(0, "WRONG", "planter"),
+            seed_style="reasoned", seed_cue_type="guideline", seed_cue_detail="the 2023 protocol",
+        )
+        contents.append(tr.turns[0].content)
+    assert contents[0] == contents[1]
+
+
+def test_seed_style_reasoned_rejects_correct_answer():
+    case = make_case()  # need to confirm this fixture sets options/answer_index
+    committee = make_committee("A", "B")
+    backends = {"A": MockBackend("A"), "B": MockBackend("B")}
+    correct_text = case.options[case.answer_index]
+    with pytest.raises(ValueError, match="non-correct"):
+        run_committee(
+            committee, case, Condition.CLEAN, backend_factory(backends),
+            seed_turn=(0, correct_text, "planter"),
+            seed_style="reasoned", seed_cue_type="demographic", seed_cue_detail="the patient's age",
+        )
+
+
+def test_seed_style_invalid_raises():
+    committee = make_committee("A", "B")
+    backends = {"A": MockBackend("A"), "B": MockBackend("B")}
+    with pytest.raises(ValueError, match="seed_style"):
+        run_committee(
+            committee, make_case(), Condition.CLEAN, backend_factory(backends),
+            seed_turn=(0, "WRONG", "planter"), seed_style="loud",
+        )
