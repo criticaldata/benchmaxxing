@@ -56,6 +56,17 @@ Two tiers, and both matter:
 
 If you add a module, add its unit tests in `tests/`. If your change crosses module boundaries, extend the end-to-end offline smoke (see below) so an interface drift between two modules is caught.
 
+### Prompt golden files
+
+Every core prompt template in `benchmaxxing/prompts.py` (`DEFAULT_REGISTRY`) is pinned by a golden file under `tests/goldens/prompts/`, checked by `tests/test_prompts_golden.py`: a template rendered against a fixed synthetic input must match the checked-in text exactly, so an accidental edit to a prompt is caught in review instead of silently changing agent behavior. After an *intentional* prompt change, regenerate the affected goldens and review the diff before committing it:
+
+```bash
+BENCHMAXXING_UPDATE_GOLDENS=1 python -m pytest tests/test_prompts_golden.py -q
+git diff tests/goldens/prompts/
+```
+
+A new prompt template needs a matching fixed input added to `_FIXED_INPUTS` in that test file, or the suite fails loudly rather than silently skipping coverage for it.
+
 ## 4. Reproduce the pipeline (CLI)
 
 ```bash
@@ -68,7 +79,7 @@ benchmaxxing datasets
 # show the resolved default config
 benchmaxxing config-show
 
-# run the offline end-to-end pipeline smoke on synthetic data (added in PR #65):
+# run the offline end-to-end pipeline smoke on synthetic data:
 #   cue injection -> solo baselines -> shared vs isolated committee with a seeded shortcut
 #   -> cascade onset -> referee scoring + gate -> blind-metric probe
 benchmaxxing smoke

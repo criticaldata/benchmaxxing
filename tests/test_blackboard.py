@@ -322,3 +322,124 @@ def test_bad_order_index_raises():
         raise AssertionError("expected ValueError for out-of-range order index")
     except ValueError:
         pass
+
+
+# --------------------------------------------------------------------------- board_seed
+
+
+def test_board_seed_places_context_artifact_before_first_agent():
+    committee = make_committee("A", "B")
+    backends = {"A": MockBackend("A"), "B": MockBackend("B")}
+    artifact = Turn(turn_index=-1, agent_id="workspace", content="note", answer="IMPLIED")
+
+    tr = run_committee(committee, make_case(), Condition.CONTAMINATED, backend_factory(backends),
+                       board_seed=artifact)
+
+    assert [t.agent_id for t in tr.turns] == ["workspace", "A", "B"]
+    art = tr.turns[0]
+    assert art.context is True and art.seeded is True
+    # A speaks first but the artifact is already on the board, so A conditions on it.
+    assert tr.turns[1].content == "A[member] saw 1 turns"
+    # The artifact never enters the committed map (it is not a member decision).
+    assert "workspace" not in tr.committed
+    assert tr.committed == {"A": "A", "B": "B"}
+    assert tr.meta["board_seed"] == ["IMPLIED"]
+
+
+def test_board_seed_context_is_visible_in_isolated_mode():
+    committee = make_committee("A", "B")
+    backends = {"A": MockBackend("A"), "B": MockBackend("B")}
+    artifact = Turn(turn_index=-1, agent_id="workspace", content="note", answer="IMPLIED")
+
+    tr = run_committee(committee, make_case(), Condition.CONTAMINATED, backend_factory(backends),
+                       board_seed=artifact, shared=False)
+
+    # Isolation hides peers but not the workspace artifact: each agent sees exactly the artifact.
+    assert tr.turns[1].content == "A[member] saw 1 turns"
+    assert tr.turns[2].content == "B[member] saw 1 turns"
+    b_view = backends["B"].views[0]
+    assert [t.agent_id for t in b_view.visible_turns] == ["workspace"]
+
+
+def test_board_seed_does_not_shift_seed_turn_index():
+    committee = make_committee("A", "B")
+    backends = {"A": MockBackend("A"), "B": MockBackend("B")}
+    artifact = Turn(turn_index=-1, agent_id="workspace", content="note", answer="CTX")
+
+    # seed_turn index 0 still targets the FIRST member slot (A), not the board seed.
+    tr = run_committee(committee, make_case(), Condition.CLEAN, backend_factory(backends),
+                       board_seed=artifact, seed_turn=(0, "PLANTED", "planter"))
+
+    assert [t.agent_id for t in tr.turns] == ["workspace", "planter", "B"]
+    assert tr.turns[1].seeded is True and tr.turns[1].answer == "PLANTED"
+    # A occupied member slot 0, which the plant replaced, so A was never queried.
+    assert backends["A"].views == []
+
+
+def test_board_seed_does_not_mutate_caller_turn_or_alias_across_runs():
+    committee = make_committee("A")
+    backends1 = {"A": MockBackend("A")}
+    backends2 = {"A": MockBackend("A")}
+    artifact = Turn(turn_index=-1, agent_id="workspace", content="note", answer="IMPLIED")
+
+    tr1 = run_committee(committee, make_case(), Condition.CLEAN, backend_factory(backends1),
+                        board_seed=artifact)
+    tr2 = run_committee(committee, make_case(), Condition.CLEAN, backend_factory(backends2),
+                        board_seed=artifact)
+
+    # The caller's Turn is untouched: flags and turn_index are stamped only on the committed copy.
+    assert artifact.turn_index == -1
+    assert artifact.context is False and artifact.seeded is False
+    # Each run committed an independent copy, so re-stamping run 2 never moved run 1's artifact.
+    assert tr1.turns[0].turn_index == 0
+    assert tr2.turns[0].turn_index == 0
+    assert tr1.turns[0] is not tr2.turns[0]
+
+
+def test_board_seed_accepts_multiple_artifacts():
+    committee = make_committee("A")
+    backends = {"A": MockBackend("A")}
+    seeds = [
+        Turn(turn_index=-1, agent_id="workspace", content="n1", answer="X"),
+        Turn(turn_index=-1, agent_id="workspace", content="n2", answer="Y"),
+    ]
+
+    tr = run_committee(committee, make_case(), Condition.CLEAN, backend_factory(backends),
+                       board_seed=seeds)
+
+    assert [t.agent_id for t in tr.turns] == ["workspace", "workspace", "A"]
+    assert tr.meta["board_seed"] == ["X", "Y"]
+    assert tr.turns[2].content == "A[member] saw 2 turns"
+
+
+def test_board_seed_attributed_to_member_raises():
+    # A board seed carrying a member's id would be a peer utterance leaking into isolated mode.
+    committee = make_committee("A", "B")
+    backends = {"A": MockBackend("A"), "B": MockBackend("B")}
+    artifact = Turn(turn_index=-1, agent_id="A", content="note", answer="IMPLIED")
+
+    try:
+        run_committee(committee, make_case(), Condition.CLEAN, backend_factory(backends),
+                      board_seed=artifact)
+        raise AssertionError("expected ValueError for a member-attributed board seed")
+    except ValueError:
+        pass
+
+
+def test_pre_hook_member_attributed_context_turn_raises():
+    # A context turn attributed to A would be visible to B even in isolated mode: a peer leak.
+    committee = make_committee("A", "B")
+    backends = {"A": MockBackend("A"), "B": MockBackend("B")}
+
+    def leaky_hook(state):
+        if state.last_turn is not None and state.last_turn.agent_id == "A":
+            return Turn(turn_index=-1, agent_id="A", content="secret", answer="SECRET",
+                        context=True)
+        return None
+
+    try:
+        run_committee(committee, make_case(), Condition.CLEAN, backend_factory(backends),
+                      pre_hook=leaky_hook, shared=False)
+        raise AssertionError("expected ValueError for a member-attributed context turn")
+    except ValueError:
+        pass
