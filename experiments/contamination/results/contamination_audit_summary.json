@@ -3,27 +3,27 @@
   "by_model": {
     "gemini-2.5-flash": {
       "n": 100,
-      "full_accuracy": 0.29,
+      "full_accuracy": 0.89,
       "q_only_accuracy": 0.26,
-      "options_only_accuracy": 0.24,
+      "options_only_accuracy": 0.23,
       "options_only_chance": 0.2,
-      "options_only_above_chance": 0.04,
-      "flip_rate_when_baseline_correct": 0.7586,
-      "flip_rate_when_baseline_wrong": 1.0,
-      "flip_correct_vs_wrong_fisher_p": 9.750267511087636e-05,
-      "flip_correct_vs_wrong_or": 0.0
+      "options_only_above_chance": 0.03,
+      "flip_rate_when_baseline_correct": 0.0787,
+      "flip_rate_when_baseline_wrong": 0.4545,
+      "flip_correct_vs_wrong_fisher_p": 0.0032995170692775274,
+      "flip_correct_vs_wrong_or": 0.1024390243902439
     },
     "gemini-2.5-flash-lite": {
       "n": 100,
-      "full_accuracy": 0.14,
+      "full_accuracy": 0.78,
       "q_only_accuracy": 0.18,
       "options_only_accuracy": 0.28,
       "options_only_chance": 0.2,
       "options_only_above_chance": 0.08,
-      "flip_rate_when_baseline_correct": 1.0,
-      "flip_rate_when_baseline_wrong": 0.9884,
-      "flip_correct_vs_wrong_fisher_p": 1.0,
-      "flip_correct_vs_wrong_or": Infinity
+      "flip_rate_when_baseline_correct": 0.0897,
+      "flip_rate_when_baseline_wrong": 0.6364,
+      "flip_correct_vs_wrong_fisher_p": 4.359882314463016e-07,
+      "flip_correct_vs_wrong_or": 0.056338028169014086
     }
   }
 }
