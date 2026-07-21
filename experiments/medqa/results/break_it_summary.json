@@ -15,7 +15,19 @@
     "n": 20,
     "generic_rate": 0.25,
     "anchored_rate": 0.45,
-    "effect": 0.2
+    "effect": 0.2,
+    "discordant_gain": 6,
+    "discordant_lose": 2,
+    "mcnemar_exact_p": 0.289062,
+    "generic_rate_ci95": [
+      0.1119,
+      0.4687
+    ],
+    "anchored_rate_ci95": [
+      0.2582,
+      0.6579
+    ],
+    "claim": "exploratory signal at n=20: a case-anchored rationale raises conformity over a generic one, but the paired McNemar is not conclusive at this n; the effect is confirmed at scale in push_c.py / PR #141 (n=150, McNemar p<1e-4)."
   },
   "D_blind_metric_incentive": {
     "incent_decoy": 3,
