@@ -50,3 +50,7 @@ scale_c's own committed numbers instead of drifting out of sync with a future fi
 - `results/cascade_C_flash_summary.json`, the scored summary.
 - `results/cascade_C_flash.jsonl`, per-case rows (generic / anchored conformity per hard case).
 - `results/call_cache.jsonl`, raw model calls, so every number reproduces offline.
+- Also reused (read-only, zero new calls) by `experiments/referee/cross_tier.py` (#183): the
+  flash-tier bare re-query cached here doubles as a genuine cross-tier referee counterfactual for
+  `experiments/referee`'s flash-lite committee, and this folder's own flash-lite bare re-query
+  (reconstructed from the same cache) audits the flash committee here in the mirror direction.
