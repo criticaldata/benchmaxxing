@@ -62,3 +62,34 @@ committee is most moved by impersonal institutional authority (a guideline) and 
 equal standing. This refines claim 3: it is not merely that authority moves committees, but that
 the strength scales sharply with the claimed authority of the source, and a bare peer is nearly as
 weak as the neutral cues. 600 new API calls; verified keyless afterward.
+
+## Orchestrator single-point-of-failure (`orchestrator_failure.py`, #179)
+
+Is a wrong LEADER/synthesizer more dangerous to a committee's output than a wrong peer? On cases a
+clean committee gets right (so there is something to lose), three arms: a wrong peer (one member
+seeded wrong, output = majority), a wrong orchestrator (the leader's synthesis is forced wrong,
+output = the leader's answer), and an honest orchestrator synthesizing over two wrong peers.
+
+```bash
+python -m experiments.medqa.orchestrator_failure --manifest <medqa_manifest.csv> \
+    --out experiments/medqa/results --n 100
+```
+
+| arm | committee output is WRONG (n=84 clean-correct cases) |
+|---|---|
+| wrong peer | 0.167 |
+| wrong orchestrator | **1.00** |
+| honest orchestrator over two wrong peers | **0.024** |
+
+**Read.** The orchestrator role is a double-edged single point of failure. A wrong orchestrator
+poisons the committee output every single time (its synthesis IS the output), roughly six times
+more often than a wrong peer, which has to actually persuade the other members. But the same
+concentration of authority is protective when the leader is right: an honest orchestrator rescues
+the committee from a two-peer wrong majority 97.6% of the time (output wrong only 0.024). So
+concentrating the final synthesis in one agent amplifies whoever holds it, catastrophic if wrong,
+strongly protective if right, which is exactly the untested hazard the plan flags. 626 new API
+calls; verified keyless afterward.
+
+## Hierarchy dominance under order permutation (`hierarchy_dominance.py`, #173)
+
+<!-- filled after the run completes -->
