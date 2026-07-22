@@ -1,0 +1,79 @@
+{
+  "n": 35,
+  "cue": "watermark",
+  "per_finding": {
+    "cardiomegaly": {
+      "n": 9,
+      "shared_adopt_rate": 1.0,
+      "wilson95": [
+        0.7008,
+        1.0
+      ]
+    },
+    "hernia": {
+      "n": 8,
+      "shared_adopt_rate": 1.0,
+      "wilson95": [
+        0.6756,
+        1.0
+      ]
+    },
+    "infiltration": {
+      "n": 6,
+      "shared_adopt_rate": 1.0,
+      "wilson95": [
+        0.6097,
+        1.0
+      ]
+    },
+    "effusion": {
+      "n": 3,
+      "shared_adopt_rate": 0.6667,
+      "wilson95": [
+        0.2077,
+        0.9385
+      ]
+    },
+    "emphysema": {
+      "n": 3,
+      "shared_adopt_rate": 1.0,
+      "wilson95": [
+        0.4385,
+        1.0
+      ]
+    },
+    "mass": {
+      "n": 2,
+      "shared_adopt_rate": 1.0,
+      "wilson95": [
+        0.3424,
+        1.0
+      ]
+    },
+    "atelectasis": {
+      "n": 2,
+      "shared_adopt_rate": 1.0,
+      "wilson95": [
+        0.3424,
+        1.0
+      ]
+    },
+    "nodule": {
+      "n": 1,
+      "shared_adopt_rate": 1.0,
+      "wilson95": [
+        0.2065,
+        1.0
+      ]
+    },
+    "pneumothorax": {
+      "n": 1,
+      "shared_adopt_rate": 1.0,
+      "wilson95": [
+        0.2065,
+        1.0
+      ]
+    }
+  },
+  "read": "Exploratory only (n=35, several findings with fewer than 5 cases). No paired test is applied across findings, since each finding involves a different set of cases, not the same subjects under different conditions. No finding stands out as categorically immune to or uniquely susceptible to the cascade at this sample size; per-finding Wilson intervals are wide and overlapping."
+}
