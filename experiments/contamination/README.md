@@ -55,6 +55,33 @@ on genuine uncertainty, and this holds for both model tiers.
   this script actually requests (100 cases x 2 models x 2 probes), not the full shared cache it was
   copied from.
 
+## Misaligned-proxy arm (#176, text lane)
+
+`misaligned_proxy.py` activates `benchmaxxing.blind_arms.misaligned_proxy_run` (built and
+unit-tested with mocks only, invoked by no data runner) on the committed longest_option cue rows
+of `solo_records.jsonl` (n=200). Proxy = length of the seeded/contaminated answer text (a
+plausible-but-wrong surrogate: a longer option reads as more authoritative, but length has
+nothing to do with correctness); truth = `contaminated_correct`; decision = whether the case
+flipped toward the seeded option at all. Imaging-lane half is
+`experiments/imaging/misaligned_proxy.py`.
+
+```bash
+python -m experiments.contamination.misaligned_proxy
+```
+
+| corr(flip, length) | corr(flip, correctness) | uptake_delta |
+|---|---|---|
+| 0.093 | -0.405 | 0.498 |
+
+**Read.** The large positive uptake_delta is driven mostly by the strong negative truth
+correlation, not a strong positive proxy correlation: flipping toward the seeded option is, by
+design, usually wrong, so it necessarily anti-correlates with correctness. The proxy correlation
+itself is weak (r=0.093) - length only weakly predicts which specific cases flip, even though the
+cue succeeds overall (158 of 200 cases flip). Read honestly, this does not show that answer
+length specifically is what drives which cases flip; the positive uptake_delta here is largely an
+artifact of truth's strong negative pull, not evidence that length is doing the work the cue's
+name suggests. Pure zero-API re-analysis of the already-committed `solo_records.jsonl`.
+
 ## Reproduce
 
 ```bash
@@ -76,3 +103,4 @@ no key** (verified: `new_api_calls_this_run = 0`).
 - `results/solo_records.jsonl`, the committed solo baseline (flip + correctness) this audits.
 - `results/call_cache.jsonl`, raw model calls (pruned to the 400 this script requests), so every
   number reproduces offline.
+- `misaligned_proxy.py`, `results/misaligned_proxy.json` - #176's text-lane misaligned-proxy arm.
