@@ -309,6 +309,54 @@ truth is usually but not always a wrong read). Both correlations are modest, so 
 uptake_delta should be read as a small, genuine tilt toward the watermark-specific surrogate over
 correctness, not a strong effect in either direction. Pure zero-API re-analysis.
 
+### Onset battery: contagion_index + deference_rate (#174, part b, imaging lane)
+
+`onset_battery.py` activates `benchmaxxing.onset.contagion_index`/`deference_rate` (the plan's
+flagship reusable metrics, exported and unit-tested but never reported on committed data) on
+`imaging_cascade*.jsonl`, treating each case's single holdout as one population member (n=35 per
+cue). Text-lane part (a) is `experiments/medqa/onset_distribution.py`.
+
+```bash
+python -m experiments.imaging.onset_battery
+```
+
+| cue | contagion_index | deference_rate |
+|---|---|---|
+| cable | 0.80 | 1.00 |
+| corner tag | 0.76 | 0.95 |
+| laterality | 0.74 | 0.95 |
+| watermark | 0.65 | 0.95 |
+
+**Read.** contagion_index ranges 0.65-0.80: a majority but not the entirety of shared-condition
+adoptions would not have happened alone, so most adoption is attributable to the peer board, with
+a real minority (roughly a fifth to a third) that would have flipped solo regardless - directionally
+consistent with #185's case-driven story but a distinct, less extreme quantity, not a restatement
+of Spearman rho=-1.0. deference_rate is high for every cue (0.95-1.0): nearly every solo-correct
+case still abandons its correct read once the board asserts the wrong one, matching #177's
+harm/rescue decomposition (harm rate 0.95-1.0) more closely than contagion_index does. Pure
+zero-API re-analysis.
+
+### Descriptive positional regression (#174, part c, imaging lane, K=3)
+
+`positional_regression.py` fits `benchmaxxing.stats.mixed_effects_logit` (adoption ~ round_index,
+random intercept per case) on `imaging_multi_round.jsonl`, pooling all 105 (case, round)
+observations per arm. Explicitly descriptive, not causal: round order was fixed, never randomized
+or counterbalanced, so any coefficient is confounded with anything else correlated with position
+in a fixed sequence. Text-lane half (K=5) is `experiments/cascade/positional_regression.py`.
+
+```bash
+python -m experiments.imaging.positional_regression
+```
+
+**Read.** The shared arm's fitted coefficient (1.49) predicts a monotonic climb (round 0/1/2:
+~0.94/0.99/1.00), but the actual empirical adoption is NOT monotonic - 0.89, 1.00, 0.97 (up then
+slightly down, per #169's README). The large coefficient is an artifact of forcing a straight-line
+log-odds fit onto a saturating, non-monotonic curve, not evidence of a genuine escalating-exposure
+effect; verified by comparing the model's own fitted probabilities against the raw empirical rates
+before trusting the coefficient. The isolated arm's coefficient (-0.53) is smaller and closer to
+the already-reported flat pattern. The position-confounded caveat applies to both regardless of
+this fit-quality issue.
+
 ## Files
 
 - `build_manifest.py`, `imaging_solo.py`, `imaging_cascade.py`, `imaging_referee.py`,
@@ -328,3 +376,5 @@ correctness, not a strong effect in either direction. Pure zero-API re-analysis.
 - `effect_sizes_imaging.py`, `results/effect_sizes_imaging.json` - #192's imaging-lane effect sizes.
 - `panel_vote.py`, `results/panel_vote.json` - #178's referee panel majority vote.
 - `misaligned_proxy.py`, `results/misaligned_proxy.json` - #176's imaging-lane misaligned-proxy arm.
+- `onset_battery.py`, `results/onset_battery.json` - #174 part b, contagion_index/deference_rate.
+- `positional_regression.py`, `results/positional_regression.json` - #174 part c, K=3 regression.
