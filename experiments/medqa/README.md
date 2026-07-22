@@ -72,6 +72,39 @@ validated finding. The two arms' seed-invalidity rates are NOT the same measurem
 previously reported "16/20 invalid seed" figure (that describes the older v1 first-distractor
 design, not either arm analyzed here) and are not conflated with it.
 
+## Majority-pressure (Asch) variant (#117)
+
+Does a wrong 2-of-3 MAJORITY move the holdout more than a single wrong peer? The classic Asch
+conformity effect needs a majority, not a lone dissenter. This seeds `k` of the committee's peers
+with the same case-anchored wrong answer (plus a persuasive rationale) and measures the non-seeded
+flash-lite holdout's adoption at k=0 (isolated), k=1, and k=2. Genuinely exercises
+`run_committee`'s multi-spec `seed_turn` (a sequence of specs plants several slots) on real
+committee data for the first time.
+
+```bash
+python -m experiments.medqa.majority_pressure \
+    --manifest <medqa_manifest.csv> --out experiments/medqa/results --n 40
+```
+
+| seeded wrong peers | holdout adoption |
+|---|---|
+| 0 (isolated) | 0.0 |
+| 1 | 0.125 |
+| 2 | 0.15 |
+
+1-peer vs 2-peer, paired: McNemar gain=2, lose=1, **p=1.0 (not significant)**.
+
+**Read.** A wrong 2-of-3 majority does not move the flash-lite holdout meaningfully more than a
+single wrong peer, and adoption stays low throughout (≤0.15) even with a persuasive case-anchored
+rationale on every seeded peer. The classic Asch prediction fails for a safety-trained
+same-lineage committee: adding a second confident wrong voice buys essentially nothing. This
+mirrors the imaging lane's majority-pressure result (#172) from the opposite direction: there
+adoption saturated at one peer (1-peer == 2-peer == 0.97, near-total); here it saturates at one
+peer too but at a low floor (~0.13). Both lanes agree the increment from 1 to 2 wrong peers is
+null; they differ only in the floor a single peer already sets. Holdout is flash-lite (the
+susceptible tier, matching `referee_deployable.py`/`scale_c`), the peers are flash. 3 API calls
+per case (isolated + k=1 + k=2 shared); verified keyless afterward (0 new calls).
+
 ## Files
 
 - `reproduce.py`, the runnable script (solo + noise floor + baseline-relative cascade).
@@ -81,6 +114,7 @@ design, not either arm analyzed here) and are not conflated with it.
 - `results/solo_records.jsonl`, per-twin solo records (the raw result data).
 - `results/config.json`, `results/versions.json`, run config and provenance.
 - `onset_distribution.py`, `results/onset_distribution.json` - #174's cascade-onset distribution.
+- `majority_pressure.py`, `results/majority_pressure.jsonl` / `_summary.json` - #117's Asch variant.
 
 ## Note
 
