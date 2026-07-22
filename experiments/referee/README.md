@@ -64,6 +64,33 @@ Pure re-analysis, no API calls.
 python -m experiments.referee.agreement
 ```
 
+## Net-harm sign, text lane (#227, the text half of #177)
+
+`net_harm.py` re-analyzes the already-committed `referee_deployable.jsonl` (this folder) cross-
+referenced against the MedQA manifest for ground truth, zero new API calls - #227 was opened
+assuming a fresh run was needed (the only other per-case artifact with ground truth,
+`cascade_v2_per_case.jsonl`, predates the parser fix and is confirmed tainted), but this dataset
+was built AFTER the fix with the same robust parser and already logs everything #227 asked a
+fresh run to produce (baseline answer, seed target, board outcome); only "is baseline correct"
+needed recovering, via the manifest.
+
+```bash
+python -m experiments.referee.net_harm --manifest <medqa_manifest.csv>
+```
+
+| | n | rate | Wilson 95% |
+|---|---|---|---|
+| Harm (correct to wrong) | 31 | 0.387 | [0.237, 0.562] |
+| Spurious rescue (wrong to correct) | 9 | 0.111 | [0.020, 0.435] |
+
+Fisher exact (harm vs rescue): p = 0.226, OR = 5.05.
+
+**Read.** Unlike the imaging lane (near-total conformity, harm and rescue rates both 0.95-1.0),
+the text lane shows only partial conformity: a substantial minority of correct holdouts (19 of
+31) resist the seed even under peer pressure, and spurious rescue is rare (1 of 9). Consistent
+with this session's broader finding that same-lineage Gemini committees hold their independent
+answer against a confident wrong peer far more often in text than in imaging.
+
 ## Reproduce
 
 ```bash
@@ -87,3 +114,4 @@ miss. No secrets are committed; all paths are arguments.
 - `results/referee_deployable.jsonl`, `results/referee_judge.jsonl`, per-case rows.
 - `results/referee_agreement.json`, the agreement/divergence output.
 - `results/call_cache.jsonl`, the raw model calls, so every number reproduces offline.
+- `net_harm.py`, `results/net_harm.json` - #227's text-lane net-harm re-analysis.
