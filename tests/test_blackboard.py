@@ -501,3 +501,33 @@ def test_malformed_seed_spec_raises():
             raise AssertionError(f"expected ValueError for seed spec {bad!r}")
         except ValueError:
             pass
+
+
+def test_nested_seed_spec_shape_raises():
+    # A single spec is told from a sequence of specs by seed_turn[0] being an int, so an extra
+    # layer of nesting parses as a sequence whose members are themselves sequences of specs.
+    # Each arity below must raise rather than seed some misread slot.
+    committee = make_committee("A", "B")
+    backends = {"A": MockBackend("A"), "B": MockBackend("B")}
+    one, two, three = (0, "X", "A"), (1, "Y", "B"), (2, "Z", "A")
+
+    for bad in [[[one]], [[one, two]], [[one, two, three]], [[(0, "X", "A", "c"), two]]]:
+        try:
+            run_committee(committee, make_case(), Condition.CLEAN, backend_factory(backends),
+                          seed_turn=bad)
+            raise AssertionError(f"expected ValueError for nested seed_turn {bad!r}")
+        except ValueError:
+            pass
+
+
+def test_non_int_seed_index_raises():
+    # A stringified index makes the spec look like a sequence of specs; it must not seed slot 0.
+    committee = make_committee("A", "B")
+    backends = {"A": MockBackend("A"), "B": MockBackend("B")}
+
+    try:
+        run_committee(committee, make_case(), Condition.CLEAN, backend_factory(backends),
+                      seed_turn=("0", "X", "A"))
+        raise AssertionError("expected ValueError for a non-int seed_turn index")
+    except ValueError:
+        pass
