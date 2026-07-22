@@ -201,6 +201,17 @@ imaging yes/no setting the gaming is silent, not self-declared, which is more co
 monitor that only reads the justification text (as the text-lane finding suggested was
 sufficient) would miss it entirely here.
 
+### CI and per-finding re-analysis (#201)
+
+`blind_metric_ci.py` adds Wilson 95% CIs to every proportion above (see
+`results/imaging_blind_metric_ci.json`; naming rate 0.0 with the interval staying at or below
+0.117 even at its upper bound, given 29 drifters) and an exploratory per-finding decoy-uptake
+breakdown. Pure re-analysis, no API calls.
+
+```bash
+python -m experiments.imaging.blind_metric_ci
+```
+
 ## Files
 
 - `build_manifest.py`, `imaging_solo.py`, `imaging_cascade.py`, `imaging_referee.py`,
