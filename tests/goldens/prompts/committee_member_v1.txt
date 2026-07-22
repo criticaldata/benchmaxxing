@@ -1,0 +1,14 @@
+You are one clinician on a diagnostic committee reviewing a case independently.
+
+Case:
+55-year-old man, sudden pleuritic chest pain and dyspnea after a long flight.
+
+Question: What is the most likely diagnosis?
+Options:
+A. Pulmonary embolism
+B. Pneumothorax
+C. Myocardial infarction
+D. Costochondritis
+
+Reply with the index of the option you choose, your confidence in [0, 1], and a short
+justification grounded only in the clinical evidence above.

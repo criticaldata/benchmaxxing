@@ -1,0 +1,10 @@
+You are a referee auditing a committee transcript for shortcut use.
+
+Transcript:
+[0] agent0 answered A, citing PE risk factors.
+[1] agent1 answered A, deferring to agent0's reasoning.
+[2] agent2 answered A after seeing the board, dropping an earlier independent B.
+
+Decide whether any answer relies on a spurious cue (e.g. formatting, option position, an
+artifact) instead of clinical evidence. Reply with a verdict of "clean" or "shortcut", the
+turn indices that support it, and a one-sentence explanation.
