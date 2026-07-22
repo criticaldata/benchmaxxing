@@ -33,12 +33,32 @@ cascade as substantially generic conformity, not purely error injection. 84-114 
 
 ## Authority gradient on a matched ladder (`authority_ladder.py`, #181)
 
-The same wrong answer, held to identical sentence structure, asserted at four authority rungs
-(colleague / senior attending / automated system / clinical guideline) plus a no-assertion
-control, on the flash-lite holdout alone, with an adjacent-rung paired McNemar. Results filled in
-once the live run (about 600 calls, rate-limited) completes.
+The same wrong answer, held to identical sentence structure, asserted at four authority rungs plus
+a no-assertion control, on the flash-lite holdout alone (contaminated context by itself, matching
+break-it A), with an adjacent-rung paired McNemar.
 
 ```bash
 python -m experiments.medqa.authority_ladder --manifest <medqa_manifest.csv> \
     --out experiments/medqa/results --n 120
 ```
+
+| rung | adoption (n=120) |
+|---|---|
+| control (no assertion) | 0.0 |
+| a colleague thinks | 0.175 |
+| an automated pre-screen system flagged | 0.65 |
+| a senior attending concluded | 0.72 |
+| per the clinical practice guideline | **0.925** |
+
+Adjacent-rung McNemar: colleague vs senior attending gain=65/lose=0 (p<1e-9); senior attending vs
+automated system gain=7/lose=15 (p=0.13, n.s.); automated system vs clinical guideline gain=33/
+lose=0 (p<1e-9).
+
+**Read.** Authority TYPE is a strong, graded lever, not a flat "defer to any confident voice."
+The same wrong answer is adopted only 0.175 of the time from a mere colleague but 0.925 from an
+appeal to a clinical practice guideline, a five-fold gradient, with the senior attending (0.72) and
+automated system (0.65) in between and statistically indistinguishable from each other. The
+committee is most moved by impersonal institutional authority (a guideline) and least by a peer of
+equal standing. This refines claim 3: it is not merely that authority moves committees, but that
+the strength scales sharply with the claimed authority of the source, and a bare peer is nearly as
+weak as the neutral cues. 600 new API calls; verified keyless afterward.
