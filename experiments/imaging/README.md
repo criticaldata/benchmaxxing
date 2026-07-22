@@ -97,6 +97,38 @@ moved the model in isolation (#163's flip-above-noise was ~0 or negative for cab
 confident peer assertion moves the committee regardless of which visual cue is present. The
 shortcut here is social plausibility, not the strength of the underlying visual artifact.
 
+## System-flag (authority) cascade (`imaging_system_flag.py`, #171)
+
+Does a wrong AUTOMATED pre-screen flag move an imaging committee the way a wrong PEER assertion
+does? The text lane's strongest break-it arm was A: a wrong system flag moved the committee
+(flash +0.26, flash-lite +0.30), carrying system-authority rather than peer social pressure
+(#136). Same watermark cue, same 35 cases, same yes/no parser as the peer cascade above; only the
+board text changes (one system-flag sentence instead of two peer sentences).
+
+```bash
+python -m experiments.imaging.imaging_system_flag \
+    --manifest results/nih_manifest.csv --image-root <images/> \
+    --cache experiments/imaging/results/img_cache.jsonl --out experiments/imaging/results --n 35
+```
+
+| board | shared adopt | isolated adopt | contagion |
+|---|---|---|---|
+| automated system flag (watermark, NIH, 35 cases) | 0.37 | 0.34 | +0.03 (n.s., McNemar p=1.0) |
+| two-peer assertion (same cue, same cases, from above) | 0.97 | 0.34 | +0.63 |
+
+Fisher exact, system-flag vs peer-assertion shared adoption (13/35 vs 34/35): p = 6e-8, a highly
+significant, large divergence.
+
+**Read.** Unlike the text lane, where a wrong system flag moves the committee nearly as much as a
+wrong peer, the imaging lane shows almost NO contagion from a system flag alone (+0.03, not
+significant) against the same cue's strong peer-driven contagion (+0.63). Authority framing alone,
+without a plausible peer voice actually asserting the read, does not move this imaging committee -
+the social-plausibility mechanism identified in the peer cascade does not transfer to a bare
+authority claim here, the opposite of what the text lane's break-it A would predict. New API
+calls: 35 (the isolated condition reuses the already-cached clean/contaminated reads from
+`imaging_cascade.py`, since the image and no-board prompt are identical); verified keyless
+afterward (0 new calls on re-run).
+
 ## Referee-as-gate (`imaging_referee.py`, #165)
 
 Does a deployable referee with no privileged knowledge catch the cascade's peer-driven adoptions?
@@ -375,8 +407,9 @@ this fit-quality issue.
 
 ## Files
 
-- `build_manifest.py`, `imaging_solo.py`, `imaging_cascade.py`, `imaging_referee.py`,
-  `imaging_judge_referee.py`, `imaging_multi_round.py`, `imaging_blind_metric.py` - the seven runners.
+- `build_manifest.py`, `imaging_solo.py`, `imaging_cascade.py`, `imaging_system_flag.py`,
+  `imaging_referee.py`, `imaging_judge_referee.py`, `imaging_multi_round.py`,
+  `imaging_blind_metric.py` - the eight runners.
 - `results/nih_manifest.csv` - the 35-case manifest (built via the `nih_cxr14` adapter).
 - `results/manifest_provenance.json` - a sha256 checksum per used image.
 - `results/case_ids_used.txt` - the exact case_id set the committed results were computed on.
@@ -384,6 +417,7 @@ this fit-quality issue.
 - `results/judge_cache.jsonl` - the committed cache for the text-only judge referee.
 - `results/imaging_solo.jsonl` / `_summary.json`, `results/imaging_noise_floor.jsonl` - solo susceptibility.
 - `results/imaging_cascade.jsonl` / `_summary.json` - the watermark cascade (default cue).
+- `results/imaging_system_flag.jsonl` / `_summary.json` - #171's system-flag (authority) cascade.
 - `results/imaging_cascade_{cable,corner_tag,laterality}.jsonl` / `_summary.json` - the other three cues.
 - `results/imaging_referee.jsonl` / `_summary.json` - the deployable referee-as-gate evaluation.
 - `results/imaging_judge_referee.jsonl` / `_summary.json` - the same-lineage judge referee.
