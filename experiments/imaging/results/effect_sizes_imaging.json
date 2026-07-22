@@ -1,0 +1,102 @@
+{
+  "solo_flip_rates": {
+    "cable": {
+      "flip_rate": 0.2,
+      "bootstrap95": [
+        0.0857,
+        0.3429
+      ],
+      "n": 35
+    },
+    "corner_tag": {
+      "flip_rate": 0.2286,
+      "bootstrap95": [
+        0.0857,
+        0.3714
+      ],
+      "n": 35
+    },
+    "watermark": {
+      "flip_rate": 0.3429,
+      "bootstrap95": [
+        0.2,
+        0.4857
+      ],
+      "n": 35
+    },
+    "laterality": {
+      "flip_rate": 0.2571,
+      "bootstrap95": [
+        0.1143,
+        0.4
+      ],
+      "n": 35
+    }
+  },
+  "cascade_contagion_delta": {
+    "watermark": {
+      "cue": "watermark",
+      "risk_difference": 0.6286,
+      "bootstrap95": [
+        0.4571,
+        0.7714
+      ],
+      "achieved_power": 1.0,
+      "required_pairs_for_power_0.8": 10,
+      "n": 35,
+      "note": "paired bootstrap (shared_adopt - iso_adopt over the same cases)"
+    },
+    "cable": {
+      "cue": "cable",
+      "risk_difference": 0.8,
+      "bootstrap95": [
+        0.6571,
+        0.9143
+      ],
+      "achieved_power": 1.0,
+      "required_pairs_for_power_0.8": 7,
+      "n": 35,
+      "note": "paired bootstrap (shared_adopt - iso_adopt over the same cases)"
+    },
+    "corner_tag": {
+      "cue": "corner_tag",
+      "risk_difference": 0.7429,
+      "bootstrap95": [
+        0.6,
+        0.8857
+      ],
+      "achieved_power": 1.0,
+      "required_pairs_for_power_0.8": 8,
+      "n": 35,
+      "note": "paired bootstrap (shared_adopt - iso_adopt over the same cases)"
+    },
+    "laterality": {
+      "cue": "laterality",
+      "risk_difference": 0.7143,
+      "bootstrap95": [
+        0.5714,
+        0.8571
+      ],
+      "achieved_power": 1.0,
+      "required_pairs_for_power_0.8": 9,
+      "n": 35,
+      "note": "paired bootstrap (shared_adopt - iso_adopt over the same cases)"
+    }
+  },
+  "referee_vs_naive": {
+    "risk_difference": 0.1714,
+    "bootstrap95": [
+      -0.0286,
+      0.3429
+    ],
+    "mcnemar_b_gt_c": {
+      "b": 9,
+      "c": 3,
+      "n": 35
+    },
+    "achieved_power": 0.4058,
+    "required_pairs_for_power_0.8": 90,
+    "note": "paired bootstrap on (ref_flag==gt) - (naive_flag==gt), same 35 cases"
+  },
+  "read": "Solo flip rates (baseline susceptibility with no cascade pressure) sit in a moderate 0.20-0.34 band across the four cues, each with a fairly tight bootstrap interval; this is a different quantity from #185's near-total cross-cue overlap finding (phi=Jaccard=1.0 on WHICH cases flip), not a restatement of it, since a case can flip solo at a moderate rate yet flip on the same cases regardless of cue. Every cue's cascade contagion delta (shared minus isolated adoption) is large (0.63-0.80), its bootstrap interval excludes 0, and achieved power is 1.0 for all four cues at n=35 (only 7-10 pairs would suffice for 80% power) - this is the best-powered result in the whole project. The referee-vs-naive comparison is the opposite case: risk difference 0.17 favoring the referee, but the bootstrap interval straddles 0 ([-0.029, 0.343]) and achieved power is only 0.41 (90 cases needed for 0.8 power, only 35 available), so despite the suggestive McNemar b=9/c=3 asymmetry this comparison should be read as directionally suggestive but not yet powered to rule out chance."
+}
