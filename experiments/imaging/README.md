@@ -256,6 +256,35 @@ cases needed, 35 available), so it should be read as directionally suggestive, n
 rule out chance. Pure zero-API re-analysis over already-committed `imaging_solo.jsonl`,
 `imaging_cascade*.jsonl`, and `imaging_referee.jsonl`.
 
+### Referee panel majority vote (#178, imaging lane)
+
+`panel_vote.py` activates `benchmaxxing.referee_ablations.referee_panel_vote`/`single_vs_panel`
+(previously unit-tested only with mock detectors) on real, reconstructed transcripts built from
+the already-committed `imaging_referee.jsonl`/`imaging_judge_referee.jsonl` rows. Majority-votes
+three genuinely independent, already-computed, no-key detectors - deployable (shared-vs-reread
+disagreement), naive (shared matches the peer's asserted read), same-lineage judge - and compares
+the panel to the single deployable referee alone. Text-lane half is
+`experiments/referee/panel_vote.py`.
+
+```bash
+python -m experiments.imaging.panel_vote
+```
+
+| | Precision | Recall | F1 |
+|---|---|---|---|
+| Single (deployable alone) | 0.864 | 0.864 | 0.864 |
+| Panel (majority of 3) | 0.647 | 1.0 | 0.786 |
+
+**Read.** Unlike the text lane (where the panel exactly reproduces the single referee's
+already-perfect scores), imaging's panel trades precision for recall: naive alone already flags
+34 of 35 cases and the judge tracks it closely, so a 2-of-3 majority is pulled toward those two
+high-recall/low-precision voters, and F1 drops from 0.864 to 0.786. Here a majority-vote panel
+measurably hurts the deployable referee rather than being redundant with it - the opposite lesson
+from the text lane. Pure zero-API re-analysis; a parity check verifies the reconstructed
+transcripts reproduce the committed `naive_flag`/`ref_flag` fields exactly before any scoring
+happens (this caught a wrong assumption during development: imaging's naive gate is a
+peer-vs-holdout match, not the text lane's peer-vs-peer-only gate).
+
 ## Files
 
 - `build_manifest.py`, `imaging_solo.py`, `imaging_cascade.py`, `imaging_referee.py`,
@@ -272,3 +301,5 @@ rule out chance. Pure zero-API re-analysis over already-committed `imaging_solo.
 - `results/imaging_judge_referee.jsonl` / `_summary.json` - the same-lineage judge referee.
 - `results/imaging_multi_round.jsonl` / `_summary.json` - multi-round cascade dynamics.
 - `results/imaging_blind_metric.jsonl` / `_summary.json` - the blind-metric substitution probe.
+- `effect_sizes_imaging.py`, `results/effect_sizes_imaging.json` - #192's imaging-lane effect sizes.
+- `panel_vote.py`, `results/panel_vote.json` - #178's referee panel majority vote.
