@@ -20,6 +20,27 @@ def _condition_value(condition: object) -> str:
     return str(condition)
 
 
+def _jsonable(value):
+    """Canonicalize a turn answer / committed value for JSON.
+
+    Numpy scalars (a committee answer often comes back as ``np.bool_``/``np.int64`` from an
+    analysis step) would crash ``json.dumps``; sequences would round-trip as lists and break
+    equality with a tuple answer. Convert scalars via ``.item()`` and recurse into
+    dict/list/tuple; anything else that json cannot encode is stored as ``str(value)``, which
+    keeps the dump lossless for the standard types and loud-but-safe for exotic ones.
+    """
+    item = getattr(value, "item", None)
+    if callable(item) and type(value).__module__ == "numpy":
+        return value.item()
+    if isinstance(value, dict):
+        return {str(k): _jsonable(v) for k, v in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [_jsonable(v) for v in value]
+    if value is None or isinstance(value, (str, int, float, bool)):
+        return value
+    return str(value)
+
+
 def dump_transcript(transcript: Transcript, path: str | Path) -> None:
     """Write ``transcript`` to ``path`` as JSONL: a header line then one line per turn."""
     records: list[dict] = [
@@ -28,7 +49,7 @@ def dump_transcript(transcript: Transcript, path: str | Path) -> None:
             "run_id": transcript.run_id,
             "case_id": transcript.case_id,
             "condition": _condition_value(transcript.condition),
-            "committed": transcript.committed,
+            "committed": _jsonable(transcript.committed),
             "meta": transcript.meta,
         }
     ]
@@ -39,7 +60,7 @@ def dump_transcript(transcript: Transcript, path: str | Path) -> None:
                 "turn_index": turn.turn_index,
                 "agent_id": turn.agent_id,
                 "content": turn.content,
-                "answer": turn.answer,
+                "answer": _jsonable(turn.answer),
                 "confidence": turn.confidence,
                 "seeded": turn.seeded,
             }

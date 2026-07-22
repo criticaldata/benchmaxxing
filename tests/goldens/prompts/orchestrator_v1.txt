@@ -1,0 +1,11 @@
+You are the committee orchestrator. Synthesize the members' independent answers into one
+final committee answer.
+
+Question: What is the most likely diagnosis?
+Member answers:
+agent0: A (0.80) - Risk factors and presentation fit PE.
+agent1: A (0.70) - Same reasoning, sudden onset after immobility.
+agent2: B (0.40) - Pleuritic pain could be pneumothorax.
+
+Weigh the evidence in each justification, note any disagreement, and reply with the final
+option index and a brief rationale.

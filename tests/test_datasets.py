@@ -8,7 +8,7 @@ from benchmaxxing.data import load_cases, write_manifest
 from benchmaxxing.datasets import base, registry
 from benchmaxxing.schema import Case, Modality
 
-EXPECTED_DATASETS = {"mimic_cxr", "chexpert", "nih_cxr14", "medqa", "ehr"}
+EXPECTED_DATASETS = {"mimic_cxr", "chexpert", "nih_cxr14", "medqa", "medmcqa", "pubmedqa", "ehr"}
 
 
 def _write_text(path, text):
@@ -99,9 +99,9 @@ def test_answer_index_out_of_range_raises(tmp_path):
         load_cases(manifest)
 
 
-def test_registry_lists_all_five():
+def test_registry_lists_all_datasets():
     assert set(registry.names()) == EXPECTED_DATASETS
-    assert len(registry.REGISTRY) == 5
+    assert len(registry.REGISTRY) == len(EXPECTED_DATASETS)
     for name in EXPECTED_DATASETS:
         module = registry.get(name)
         assert module.SPEC.name == name
@@ -113,16 +113,21 @@ def test_registry_get_unknown_raises():
         registry.get("nope")
 
 
-def test_adapter_build_manifest_raises(tmp_path):
+def test_adapter_build_manifest_fails_loudly_on_missing_data(tmp_path):
+    # mimic_cxr is implemented; pointed at an empty dir (no metadata csv) it must raise a
+    # clear error rather than silently produce an empty or wrong manifest.
     module = registry.get("mimic_cxr")
-    with pytest.raises(NotImplementedError, match="raw_root"):
+    with pytest.raises((FileNotFoundError, ValueError)):
         module.build_manifest(tmp_path, tmp_path / "m.csv")
 
 
-def test_all_adapters_build_manifest_raise(tmp_path):
+def test_all_adapters_fail_loudly_on_missing_data(tmp_path):
+    # Every adapter's build_manifest must raise on an empty raw_root (no silent success).
+    # The CSV-backed adapters raise FileNotFoundError; the ehr entry point raises
+    # NotImplementedError pointing at load_resource_contexts.
     for name in EXPECTED_DATASETS:
         module = registry.get(name)
-        with pytest.raises(NotImplementedError):
+        with pytest.raises((FileNotFoundError, ValueError, NotImplementedError)):
             module.build_manifest(tmp_path, tmp_path / f"{name}.csv")
 
 

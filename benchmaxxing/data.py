@@ -29,6 +29,7 @@ MANIFEST_COLUMNS = [
     "question",
     "options",
     "answer_index",
+    "meta",
 ]
 
 _JSONL_SUFFIXES = {".jsonl", ".ndjson"}
@@ -142,6 +143,7 @@ def _image_case(row: dict, index: int, case_id: str) -> Case:
         label=None if label is None else str(label),
         image_ref=str(image_ref),
         report=_none_or_str(_get(row, "report")),
+        meta=_parse_meta(row.get("meta")),
     )
 
 
@@ -166,6 +168,7 @@ def _text_case(row: dict, index: int, case_id: str) -> Case:
         question=str(question),
         options=options,
         answer_index=answer_index,
+        meta=_parse_meta(row.get("meta")),
     )
 
 
@@ -178,6 +181,18 @@ def _parse_options(value) -> tuple[str, ...] | None:
         text = str(value).strip()
         if not text:
             return None
+        # JSON array first (the lossless format _case_to_row writes); an option containing a
+        # literal '|' would be silently split by the legacy pipe format, corrupting
+        # answer_index. Fall back to pipe-split only for legacy hand-written manifests.
+        if text.startswith("["):
+            try:
+                loaded = json.loads(text)
+            except json.JSONDecodeError:
+                loaded = None
+            if isinstance(loaded, list):
+                parts = [str(item).strip() for item in loaded]
+                parts = [part for part in parts if part]
+                return tuple(parts) if parts else None
         parts = [part.strip() for part in text.split("|")]
     parts = [part for part in parts if part]
     return tuple(parts) if parts else None
@@ -204,8 +219,27 @@ def _none_or_str(value):
     return None if value is None else str(value)
 
 
+def _parse_meta(value) -> dict:
+    """Restore the per-case meta dict (adapters store support-device flags, views, label maps
+    here; dropping it on the round trip would lose the natural-cue signal)."""
+    if value is None:
+        return {}
+    if isinstance(value, dict):
+        return value
+    text = str(value).strip()
+    if not text:
+        return {}
+    try:
+        loaded = json.loads(text)
+    except json.JSONDecodeError:
+        return {}
+    return loaded if isinstance(loaded, dict) else {}
+
+
 def _case_to_row(case: Case) -> dict:
-    options = "|".join(case.options) if case.options else ""
+    # JSON array, not a pipe join: an option containing '|' must round-trip intact, or
+    # answer_index would silently point at the wrong ground truth after a reload.
+    options = json.dumps(list(case.options)) if case.options else ""
     answer_index = "" if case.answer_index is None else case.answer_index
     return {
         "case_id": case.case_id,
@@ -217,4 +251,5 @@ def _case_to_row(case: Case) -> dict:
         "question": case.question or "",
         "options": options,
         "answer_index": answer_index,
+        "meta": json.dumps(case.meta) if case.meta else "",
     }
