@@ -48,6 +48,28 @@ work; the rubric mention is. Pure re-analysis, no API calls.
 python -m experiments.blind_metric.reanalysis
 ```
 
+## Counterfactual and reasoning-reading referees (#175, text lane)
+
+`counterfactual_referee.py` points two no-key referees at these blind-metric transcripts (every
+prior referee in this project ran on cascade transcripts instead). Pure re-analysis of already-
+committed fields, zero API calls. Imaging-lane half is `experiments/imaging/counterfactual_referee.py`.
+
+```bash
+python -m experiments.blind_metric.counterfactual_referee
+```
+
+- **F1 (counterfactual, base vs blind):** recovers the drift ground truth exactly by construction
+  (P/R 1.0/1.0). A naive variant (blind alone, skipping the baseline comparison) scores identically
+  here only because no case's own baseline answer already preferred the decoy (`base_is_decoy` is
+  0 for all 40 cases) - this dataset can't demonstrate the false-positive risk a naive detector
+  would carry elsewhere, and that limitation is reported rather than glossed over.
+- **F2 (reasoning-reading referee):** recall = 1.0 (11/11) - every drifter named the rubric in
+  their justification, directly computable from the already-committed `named_rubric_when_drifted`
+  field. Precision is honestly reported as **not verifiable** from committed data alone: that
+  field is stored already conditioned on drift, so it can't reveal whether "naming" ever occurs on
+  a non-drifted case without re-parsing raw cached completions against the external MedQA
+  manifest, which isn't committed to this repo.
+
 ## Reproduce
 
 ```bash
@@ -68,3 +90,4 @@ A fully cached run reproduces `results/blind_metric_summary.json` with **zero AP
 - `results/blind_metric.jsonl`, per-case rows (decoy letter, per-condition decoy choice, naming flag).
 - `results/blind_metric_ci.json`, the CI/subgroup output.
 - `results/call_cache.jsonl`, raw model calls, so every number reproduces offline.
+- `counterfactual_referee.py`, `results/counterfactual_referee.json` - #175's text-lane referees.
