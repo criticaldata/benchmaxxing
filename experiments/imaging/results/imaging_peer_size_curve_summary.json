@@ -1,0 +1,22 @@
+{
+  "n": 35,
+  "model": "gemini-2.5-flash",
+  "cue": "watermark",
+  "new_api_calls_this_run": 35,
+  "adoption_by_peer_count": {
+    "1": 0.9714,
+    "2": 0.9714,
+    "4": 1.0
+  },
+  "one_vs_two_mcnemar": {
+    "gain": 0,
+    "lose": 0,
+    "pvalue": 1.0
+  },
+  "two_vs_four_mcnemar": {
+    "gain": 1,
+    "lose": 0,
+    "pvalue": 1.0
+  },
+  "read": "Adoption vs wrong-peer count: 1-peer 0.9714, 2-peer 0.9714, 4-peer 1.0. The curve is essentially flat from one peer onward (1-vs-2 and 2-vs-4 McNemars below), confirming from the size axis what #172 found from the majority axis: the imaging cascade saturates at a single confident wrong peer, and adding more peers (up to four) recruits essentially no additional adoption. It is a single-peer, not a graded-majority, effect."
+}

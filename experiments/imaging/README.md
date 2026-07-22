@@ -126,6 +126,52 @@ this imaging committee - the social-plausibility mechanism saturates immediately
 building with numbers. 35 new API calls (the 0- and 2-peer points reuse already-committed data);
 verified keyless afterward (0 new calls, identical numbers on re-run).
 
+### Wrong-peer size curve, up to four peers (`imaging_peer_size_curve.py`, #216)
+
+The size axis extended to four peers, confirming the saturation from a different direction than
+#172's majority axis. The 1- and 2-peer boards are byte-identical to #172 / `imaging_cascade.py`,
+so they hit the cache; only the 4-peer arm is new (35 calls; verified keyless afterward).
+
+```bash
+python -m experiments.imaging.imaging_peer_size_curve \
+    --manifest results/nih_manifest.csv --image-root <images/> \
+    --cache experiments/imaging/results/img_cache.jsonl --out experiments/imaging/results --n 35
+```
+
+| wrong peers | 1 | 2 | 4 |
+|---|---|---|---|
+| adoption | 0.97 | 0.97 | 1.0 |
+
+1-vs-2 McNemar gain=0/lose=0; 2-vs-4 gain=1/lose=0 (p=1.0). The curve is flat from one peer
+onward: adding peers up to four recruits essentially no additional adoption, so the imaging
+cascade is a single-peer effect, not a graded majority one, on both the majority axis (#172) and
+the size axis (#216).
+
+### Matched-temperature noise floor (`imaging_matched_temp_floor.py`, #205)
+
+The solo `flip-above-noise` headline compared a temperature-0 cued flip ($0.34$) against a
+temperature-1 clean-resample floor ($0.23$), a temperature mismatch. This completes the 2x2 by
+adding the temperature-1 cued read so signal and floor are compared at the same temperature (the
+temperature-0 floor is $0$ by construction, a deterministic test-retest cannot disagree). The
+temperature-1 cued reads are stored in `imaging_matched_temp.jsonl` so re-runs reproduce keyless.
+
+```bash
+python -m experiments.imaging.imaging_matched_temp_floor \
+    --manifest results/nih_manifest.csv --image-root <images/> --out experiments/imaging/results --n 35
+```
+
+| | temp-0 | temp-1 |
+|---|---|---|
+| clean-read floor | 0.0 | 0.23 |
+| watermark cued flip | 0.34 | 0.29 |
+
+**Read.** Matched at temperature 1, flip-above-noise is $0.29 - 0.23 = +0.057$, roughly half the
+originally-reported (temperature-mismatched) $+0.11$; at temperature 0 the floor is $0$ so the
+matched effect is the full $0.34$. So the watermark signal survives a same-temperature comparison
+and the $+0.11$ headline was not purely a temperature artifact, but the honest matched effect at
+temperature 1 ($+0.057$) is the conservative number and the imaging solo cue is even narrower than
+first reported. 35 new API calls (one temperature-1 cued read per case); verified keyless.
+
 ## System-flag (authority) cascade (`imaging_system_flag.py`, #171)
 
 Does a wrong AUTOMATED pre-screen flag move an imaging committee the way a wrong PEER assertion
@@ -448,6 +494,8 @@ this fit-quality issue.
 - `results/imaging_cascade.jsonl` / `_summary.json` - the watermark cascade (default cue).
 - `results/imaging_system_flag.jsonl` / `_summary.json` - #171's system-flag (authority) cascade.
 - `results/imaging_majority_pressure.jsonl` / `_summary.json` - #172's majority-pressure variant.
+- `imaging_peer_size_curve.py`, `results/imaging_peer_size_curve*` - #216's wrong-peer size curve (up to 4).
+- `imaging_matched_temp_floor.py`, `results/imaging_matched_temp*` - #205's matched-temperature noise floor.
 - `results/imaging_cascade_{cable,corner_tag,laterality}.jsonl` / `_summary.json` - the other three cues.
 - `results/imaging_referee.jsonl` / `_summary.json` - the deployable referee-as-gate evaluation.
 - `results/imaging_judge_referee.jsonl` / `_summary.json` - the same-lineage judge referee.
