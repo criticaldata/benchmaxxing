@@ -40,6 +40,41 @@ targeted counterfactual signal (which answer, adopted by whom relative to their 
 answer), not blunt agreement detection, and that signal can be obtained without knowing the
 shortcut in advance.
 
+## Referee panel majority vote (#178)
+
+`panel_vote.py` activates `benchmaxxing.referee_ablations.referee_panel_vote`/`single_vs_panel`
+(previously unit-tested only with mock detectors) on real, reconstructed transcripts built from
+the already-committed `referee_deployable.jsonl`/`referee_judge.jsonl` rows. Majority-votes three
+genuinely independent, already-computed, no-key detectors - deployable (board-vs-bare
+disagreement), naive (peer-vs-peer agreement, blind to the holdout), same-lineage judge - and
+compares the panel to the single deployable referee alone. A fourth "conformity-streak" detector,
+as the issue's illustrative example names, is not built: this is a single-round dataset (one
+board turn, one private re-query per case), so a streak concept has no real signal to ground it
+here without reaching into the separate multi-round dataset (#130), a different case set;
+imaging-lane half is `experiments/imaging/panel_vote.py`.
+
+```bash
+python -m experiments.referee.panel_vote
+```
+
+| | Precision | Recall | F1 |
+|---|---|---|---|
+| Single (deployable alone) | 1.0 | 1.0 | 1.0 |
+| Panel (majority of 3) | 1.0 | 1.0 | 1.0 |
+
+**Read.** The single deployable referee already reaches perfect precision and recall on this
+dataset, so a majority-vote panel cannot improve on it - it can only match or dilute it, and here
+it exactly matches: the judge's flags are a strict subset of the true-adoption cases (precision
+1.0), so the panel's majority (naive always votes yes; 2-of-3 needs only one more) never adds a
+false positive beyond what deployable alone already catches. The private re-query the deployable
+referee performs is the irreplaceable signal: no combination of the other two, which read only the
+shared transcript, recovers what an independent counterfactual answer reveals. Pure zero-API
+re-analysis; a parity check verifies the reconstructed transcripts reproduce the committed
+`naive`/`deployable` fields exactly before any scoring happens (this caught a wrong assumption
+during development - an earlier draft read "naive" as a peer-vs-holdout match, but the committed
+field is `True` on all 40 cases, confirming it is actually a peer-vs-peer-only gate that ignores
+the holdout entirely).
+
 ## Reproduce
 
 ```bash
@@ -61,3 +96,4 @@ miss. No secrets are committed; all paths are arguments.
 - `results/referee_deployable_summary.json`, `results/referee_judge_summary.json`, the scored summaries.
 - `results/referee_deployable.jsonl`, `results/referee_judge.jsonl`, per-case rows.
 - `results/call_cache.jsonl`, the raw model calls, so every number reproduces offline.
+- `panel_vote.py`, `results/panel_vote.json` - #178's referee panel majority vote.
