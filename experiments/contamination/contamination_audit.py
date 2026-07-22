@@ -1,0 +1,218 @@
+"""MedQA contamination / memorization audit (issue #108): is the solo shortcut susceptibility
+riding on memorization or dataset artifacts rather than genuine uncertainty?
+
+Three probes per case (the 100-case solo set), for gemini-2.5-flash and -flash-lite:
+
+  full         question + options (baseline; read from the committed solo_records).
+  q_only       the question with NO options; can the model produce the correct answer from the
+               stem alone? High accuracy = strong prior knowledge or memorization.
+  options_only the options with NO question; can it pick the answer above chance? Accuracy well
+               above 1/n = the options leak the answer (a dataset artifact), independent of skill.
+
+Then the key correlation: split cases by baseline correctness and compare the cue flip rate with a
+Fisher exact test. If the model resists the answer-preserving cue more on cases it gets right,
+susceptibility is concentrated where the model does NOT already know the answer, so it is
+uncertainty-driven, not a memorization artifact.
+
+Reproduction: the `full` baseline comes from the committed solo_records; `q_only`/`options_only`
+model calls are cached in ``--cache``. A fully cached run reproduces the summary with zero API
+calls and no key. No secrets committed; all paths are arguments.
+
+The `full` condition is re-graded here by exact match against ground truth (the same standard as
+`options_only_correct`), rather than trusting the imported ``clean_correct`` flag as-is, so all
+three conditions are graded on one apples-to-apples standard.
+
+``ever_flipped_rate`` (at least one of the three cues flipped a case) is a coarser quantity than
+the headline per-record solo flip rate (0.063 flash / 0.117 flash-lite); both are reported here,
+clearly labeled, so the correct-vs-wrong stratification below is not mistaken for the headline
+number. The committed cache is pruned to only the keys this script actually requests.
+"""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import os
+import re
+import threading
+from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from pathlib import Path
+
+from benchmaxxing import gateway
+from benchmaxxing.data import load_cases
+from benchmaxxing.stats import fisher_exact
+
+MODELS = ["gemini-2.5-flash", "gemini-2.5-flash-lite"]
+_lock = threading.Lock()
+
+
+def _key():
+    return os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+
+
+def _letters(n):
+    return [chr(65 + i) for i in range(n)]
+
+
+def _parse(text, options):
+    # Robust to long reasoned responses: prefer an explicit final-answer letter (\\boxed{X} /
+    # "the answer is X", last occurrence), then the option TEXT named last, then a trailing
+    # standalone letter, then a single-character reply. The old first-\\b[A-E]\\b regex grabbed a
+    # stray leading article "A" and mis-scored ~85% of answers as option A.
+    if not text:
+        return ""
+    t = text.strip()
+    letters = _letters(len(options))
+    m = re.findall(r"\\boxed\{\s*([A-E])\s*\}", t)
+    if not m:
+        m = re.findall(r"(?:final answer|the answer|answer)\s*(?:is|:)?\s*\**\(?([A-E])\)?\b", t, re.I)
+    if m and m[-1].upper() in letters:
+        return options[letters.index(m[-1].upper())]
+    low = t.lower()
+    hits = [(low.rfind(o.lower()), o) for o in options if o.lower() in low]
+    hits = [(p, o) for p, o in hits if p >= 0]
+    if hits:
+        return max(hits)[1]
+    m = re.search(r"\b([A-E])\b\s*[.)]?\s*$", t.upper())
+    if m and m.group(1) in letters:
+        return options[letters.index(m.group(1))]
+    if len(t) == 1 and t.upper() in letters:
+        return options[letters.index(t.upper())]
+    return t
+
+
+class _Cache:
+    def __init__(self, path, key):
+        self.path, self.key, self.store, self.calls = Path(path), key, {}, 0
+        self.model_of, self.requested = {}, set()
+        if self.path.exists():
+            for line in self.path.read_text().splitlines():
+                if line.strip():
+                    r = json.loads(line)
+                    self.store[r["k"]] = r["resp"]
+                    self.model_of[r["k"]] = r.get("model")
+
+    def complete(self, model, prompt):
+        # Holds the lock across the whole miss-check-fetch-store sequence (not just the read), so
+        # two threads racing on the same cache-miss key cannot both call the backend and both
+        # append a duplicate entry. Serializes API calls across the small worker pool; correctness
+        # matters more than throughput for a script issuing a few hundred cheap probes.
+        k = hashlib.sha256(f"{model}\x00{prompt}".encode()).hexdigest()
+        with _lock:
+            if k in self.store:
+                self.requested.add(k)
+                return self.store[k]
+            if not self.key:
+                raise SystemExit("Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key).")
+            resp = gateway.RetryBackend(gateway.GeminiBackend(model=model, api_key=self.key),
+                                        tries=5, backoff=3.0).complete(prompt, decoding={"temperature": 0})
+            self.store[k] = resp
+            self.model_of[k] = model
+            self.requested.add(k)
+            self.calls += 1
+            with open(self.path, "a") as f:
+                f.write(json.dumps({"k": k, "model": model, "resp": resp}) + "\n")
+        return resp
+
+    def prune_to_requested(self):
+        """Rewrite the cache file to contain only the keys this run actually looked up, so the
+        committed cache does not carry debris from unrelated experiments sharing the same file."""
+        rows = [{"k": k, "model": self.model_of.get(k), "resp": self.store[k]} for k in sorted(self.requested)]
+        self.path.write_text("".join(json.dumps(r) + "\n" for r in rows))
+
+
+def _load_solo(path):
+    by = defaultdict(list)
+    for line in Path(path).read_text().splitlines():
+        if line.strip():
+            r = json.loads(line)
+            by[(r["model"], r["case_id"])].append(r)
+    out = {}
+    for key, rows in by.items():
+        flips = [1 if x["flipped"] else 0 for x in rows]
+        out[key] = {"clean_answer": rows[0].get("clean"),
+                    "ever_flipped": any(flips), "flip_count": sum(flips), "n_cues": len(flips)}
+    return out
+
+
+def main():
+    ap = argparse.ArgumentParser(description="MedQA contamination / memorization audit (#108).")
+    ap.add_argument("--manifest", required=True)
+    ap.add_argument("--solo-records", default="experiments/contamination/results/solo_records.jsonl")
+    ap.add_argument("--cache", default="experiments/contamination/results/call_cache.jsonl")
+    ap.add_argument("--out", default="experiments/contamination/results")
+    args = ap.parse_args()
+
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    cache = _Cache(args.cache, _key())
+    solo = _load_solo(args.solo_records)
+    case_ids = {cid for (_m, cid) in solo}
+    by_id = {c.case_id: c for c in load_cases(args.manifest) if c.case_id in case_ids}
+
+    # Re-grade the full/clean condition by exact match against ground truth, the same standard as
+    # options_only_correct, instead of trusting the imported clean_correct flag as-is.
+    for key, rec in solo.items():
+        _model, cid = key
+        case = by_id.get(cid)
+        if case is None:
+            continue
+        gt = case.options[case.answer_index]
+        rec["clean_correct"] = (rec["clean_answer"] == gt)
+
+    def probe(model, case):
+        opts = list(case.options)
+        gt = opts[case.answer_index]
+        body = "\n".join(f"{L}. {o}" for L, o in zip(_letters(len(opts)), opts))
+        q_only_p = (f"Question: {case.question}\n\nState the single best answer in a few words "
+                    "(no options are provided).")
+        q_txt = cache.complete(model, q_only_p)
+        opts_only_p = (f"Below are answer options with no question. Pick the one most likely to be "
+                       f"the intended correct answer.\n\nOptions:\n{body}\n\n"
+                       "Answer with only the single letter.")
+        o_ans = _parse(cache.complete(model, opts_only_p), opts)
+        return {"model": model, "case_id": case.case_id, "n_opts": len(opts),
+                "q_only_correct": gt.lower() in (q_txt or "").lower(),
+                "options_only_correct": o_ans == gt}
+
+    jobs = [(m, by_id[cid]) for (m, cid) in solo if cid in by_id]
+    rows = []
+    with ThreadPoolExecutor(max_workers=4) as ex:
+        for fut in as_completed([ex.submit(probe, m, c) for m, c in jobs]):
+            rows.append(fut.result())
+
+    summary = {"new_api_calls_this_run": cache.calls, "by_model": {}}
+    for model in MODELS:
+        mrows = [r for r in rows if r["model"] == model]
+        if not mrows:
+            continue
+        n = len(mrows)
+        model_cases = [(m, cid) for (m, cid) in solo if m == model]
+        full_acc = sum(1 for k in model_cases if solo[k]["clean_correct"]) / len(model_cases)
+        q_acc = sum(r["q_only_correct"] for r in mrows) / n
+        o_acc = sum(r["options_only_correct"] for r in mrows) / n
+        chance = sum(1.0 / r["n_opts"] for r in mrows) / n
+        per_record_flips = sum(solo[k]["flip_count"] for k in model_cases)
+        per_record_n = sum(solo[k]["n_cues"] for k in model_cases)
+        cw = defaultdict(lambda: [0, 0])  # baseline-correct? -> [ever_flipped, not]
+        for k in model_cases:
+            cw[solo[k]["clean_correct"]][0 if solo[k]["ever_flipped"] else 1] += 1
+        fe = fisher_exact([[cw[True][0], cw[True][1]], [cw[False][0], cw[False][1]]])
+        summary["by_model"][model] = {
+            "n": n, "full_accuracy": round(full_acc, 4),
+            "q_only_accuracy": round(q_acc, 4), "options_only_accuracy": round(o_acc, 4),
+            "options_only_chance": round(chance, 4), "options_only_above_chance": round(o_acc - chance, 4),
+            "per_record_flip_rate": round(per_record_flips / per_record_n, 4) if per_record_n else None,
+            "ever_flipped_rate": round(sum(solo[k]["ever_flipped"] for k in model_cases) / len(model_cases), 4),
+            "flip_rate_when_baseline_correct": round(cw[True][0] / max(1, sum(cw[True])), 4),
+            "flip_rate_when_baseline_wrong": round(cw[False][0] / max(1, sum(cw[False])), 4),
+            "flip_correct_vs_wrong_fisher_p": fe.pvalue, "flip_correct_vs_wrong_or": fe.oddsratio}
+    cache.prune_to_requested()
+    (out / "contamination_audit_summary.json").write_text(json.dumps(summary, indent=2, default=str))
+    (out / "contamination_audit.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows))
+    print(json.dumps(summary, indent=2, default=str))
+
+
+if __name__ == "__main__":
+    main()
