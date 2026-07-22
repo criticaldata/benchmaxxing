@@ -92,4 +92,24 @@ calls; verified keyless afterward.
 
 ## Hierarchy dominance under order permutation (`hierarchy_dominance.py`, #173)
 
-<!-- filled after the run completes -->
+Does one agent (or the stronger tier) drive an unseeded committee's answer regardless of speaking
+order? Runs a mixed-tier committee (two flash, one flash-lite) under all six order permutations and
+feeds the transcripts to `benchmaxxing.referee.score_hierarchy`.
+
+```bash
+python -m experiments.medqa.hierarchy_dominance --manifest <medqa_manifest.csv> \
+    --out experiments/medqa/results --n 40
+```
+
+**Honest null / methodological finding.** `score_hierarchy` reports an order-independent dominant
+agent on all 40 of 40 cases (rate 1.0), but this is **degenerate at temperature 0**: the shared
+committee converges to unanimity, so every agent's own first proposal matches the group outcome and
+all agents tie at dominance 1.0, with the reported dominant agent decided only by the tie-break. So
+this measures consensus, not one agent overriding the others, and genuine order-dependent
+single-agent dominance cannot manifest when the agents never disagree. The one non-degenerate
+signal is that the converged, order-independent committee answer is WRONG on 4 of 40 cases (0.10),
+a collective order-independent error rather than single-agent dominance. A meaningful dominance
+test needs disagreeing agents (temperature > 0 or genuinely ambiguous cases); filed as follow-up
+**#235** (overlaps the temp>0 reliability work, #204). 520 calls; verified keyless. This is a
+faithful, honest negative result: the temp-0 committee is unanimous, so hierarchy-dominance-by-
+position does not arise here.
