@@ -37,6 +37,28 @@ genuinely differs round to round. The shared arm's board construction is unchang
 numbers above are identical to the previously-reviewed values; only the isolated arm's numbers are
 new.
 
+## Descriptive positional regression (#174, part c, text lane, K=5)
+
+`positional_regression.py` fits `benchmaxxing.stats.mixed_effects_logit` (adoption ~ round_index,
+random intercept per case) on `multi_round.jsonl`, pooling all 200 (case, round) observations per
+arm. Explicitly descriptive, not causal: round order was fixed, never randomized or
+counterbalanced, so any coefficient is confounded with anything else correlated with position in
+a fixed sequence. Imaging-lane half (K=3) is `experiments/imaging/positional_regression.py`.
+
+```bash
+python -m experiments.cascade.positional_regression
+```
+
+**Read.** The shared arm's round_index coefficient (0.135) is small, but its fitted probabilities
+sit consistently ~0.17-0.21 below the actual empirical adoption rate (roughly flat around
+0.28-0.33) - checked directly, not a rounding artifact. This is the expected signature of a
+random-intercept logistic mixed model on heavily heterogeneous per-case data (40 cases x 5 rounds
+each): the population-average-conditional-on-zero-random-effect prediction understates the raw
+mean when between-case variance is large, not evidence the coefficient itself is wrong. The
+isolated arm's coefficient (-0.524) fits much better (gaps under 0.02 every round) since isolated
+adoption is already at floor with little between-case variance to cause the same offset. The
+position-confounded caveat applies to both regardless.
+
 ## Reproduce
 
 ```bash
@@ -59,3 +81,4 @@ hand-built transcript where adoption is known to grow, in `tests/test_multi_roun
 - `results/multi_round_summary.json`, the per-round curves + the round-1-vs-round-K test.
 - `results/multi_round.jsonl`, per-case per-round adoption flags (shared and isolated).
 - `results/call_cache.jsonl`, raw model calls, so every number reproduces offline.
+- `positional_regression.py`, `results/positional_regression.json` - #174 part c, K=5 regression.
