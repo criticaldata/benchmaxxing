@@ -8,13 +8,15 @@ from __future__ import annotations
 
 from types import ModuleType
 
-from benchmaxxing.datasets import chexpert, ehr, medqa, mimic_cxr, nih_cxr14
+from benchmaxxing.datasets import chexpert, ehr, medmcqa, medqa, mimic_cxr, nih_cxr14, pubmedqa
 
 REGISTRY: dict[str, ModuleType] = {
     mimic_cxr.SPEC.name: mimic_cxr,
     chexpert.SPEC.name: chexpert,
     nih_cxr14.SPEC.name: nih_cxr14,
     medqa.SPEC.name: medqa,
+    medmcqa.SPEC.name: medmcqa,
+    pubmedqa.SPEC.name: pubmedqa,
     ehr.SPEC.name: ehr,
 }
 
