@@ -27,7 +27,11 @@ _CLEAN_IMAGING = (
 
 
 def _write(path, text):
-    path.write_text(text, encoding="utf-8")
+    # Write bytes, not text: path.write_text() applies the platform newline translation
+    # (\n -> \r\n on Windows), which would make the on-disk bytes differ from the LF string
+    # literal and break the byte-exact checksum fixture below. manifest_checksum() hashes the
+    # raw bytes, so the test must control them exactly.
+    path.write_bytes(text.encode("utf-8"))
     return path
 
 

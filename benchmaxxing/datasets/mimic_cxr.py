@@ -1,13 +1,17 @@
 """MIMIC-CXR adapter (imaging, Lane A).
 
-Owners: implement ``build_manifest`` to turn the credentialed raw release into a shared manifest
-via ``benchmaxxing.datasets.base.finalize``.
+Parses the credentialed MIMIC-CXR-JPG v2.0.0 raw layout (metadata CSV + CheXpert label CSV +
+per-study free-text report files) into one schema.Case per image, emitted through
+``benchmaxxing.datasets.base.finalize``.
 """
 
 from __future__ import annotations
 
-from benchmaxxing.datasets.base import DatasetSpec
-from benchmaxxing.schema import Modality
+import csv
+from pathlib import Path
+
+from benchmaxxing.datasets.base import DatasetSpec, finalize
+from benchmaxxing.schema import Case, Modality
 
 SPEC = DatasetSpec(
     name="mimic_cxr",
@@ -18,16 +22,75 @@ SPEC = DatasetSpec(
     ),
     modality=Modality.IMAGE,
     notes=(
-        "Map each study to one Case: case_id=study id, patient_id=subject id, image_ref=jpg path, "
-        "report=free-text report, label from the CheXpert label columns."
+        "One Case per image: case_id=dicom id, patient_id=subject id, image_ref=relative jpg "
+        "path, report=study free-text report when present, label='pneumothorax' when the "
+        "CheXpert Pneumothorax cell is 1.0 else 'no finding'."
     ),
 )
 
+_METADATA_CSV = "mimic-cxr-2.0.0-metadata.csv"
+_CHEXPERT_CSV = "mimic-cxr-2.0.0-chexpert.csv"
+
 
 def build_manifest(raw_root, out, limit=None):
-    """Build a manifest from the raw MIMIC-CXR release. Not yet implemented."""
-    raise NotImplementedError(
-        f"{SPEC.name}.build_manifest is a stub for dataset owners to fill in. Point raw_root at: "
-        f"{SPEC.raw_hint} Then construct schema.Case rows and emit them to {out!r} via "
-        f"benchmaxxing.datasets.base.finalize (respecting limit={limit!r})."
-    )
+    """Build a per-image manifest from the raw MIMIC-CXR-JPG release under ``raw_root``.
+
+    Joins the metadata CSV to the CheXpert CSV on (subject_id, study_id) and emits one
+    schema.Case per dicom_id. The study report text is attached when the ``.txt`` file exists,
+    otherwise ``report`` is None. Writes the manifest to ``out`` via ``finalize`` and returns
+    the list of Cases (at most ``limit`` when given).
+    """
+    root = Path(raw_root)
+    metadata_rows = _read_csv(root / _METADATA_CSV)
+    chexpert = {
+        (_cell(row, "subject_id"), _cell(row, "study_id")): row
+        for row in _read_csv(root / _CHEXPERT_CSV)
+    }
+    report_cache: dict[Path, str | None] = {}
+    cases: list[Case] = []
+    for row in metadata_rows:
+        if limit is not None and len(cases) >= limit:
+            break
+        subject_id = _cell(row, "subject_id")
+        study_id = _cell(row, "study_id")
+        dicom_id = _cell(row, "dicom_id")
+        labels = chexpert.get((subject_id, study_id), {})
+        study_rel = f"files/p{subject_id[:2]}/p{subject_id}/s{study_id}"
+        report_path = root / "files" / f"p{subject_id[:2]}" / f"p{subject_id}" / f"s{study_id}.txt"
+        cases.append(
+            Case(
+                case_id=dicom_id,
+                patient_id=subject_id,
+                modality=Modality.IMAGE,
+                label="pneumothorax" if _cell(labels, "Pneumothorax") == "1.0" else "no finding",
+                image_ref=f"{study_rel}/{dicom_id}.jpg",
+                report=_load_report(report_path, report_cache),
+                meta={
+                    "study_id": study_id,
+                    "view": _cell(row, "ViewPosition") or None,
+                    "support_devices": _cell(labels, "Support Devices") == "1.0",
+                },
+            )
+        )
+    finalize(cases, out)
+    return cases
+
+
+def _read_csv(path: Path) -> list[dict]:
+    if not path.is_file():
+        raise FileNotFoundError(f"Expected MIMIC-CXR-JPG file not found: {path}")
+    with path.open(newline="", encoding="utf-8") as handle:
+        return list(csv.DictReader(handle))
+
+
+def _cell(row: dict, key: str) -> str:
+    """Return the stripped string value of a CSV cell, mapping missing/None to ''."""
+    value = row.get(key)
+    return "" if value is None else str(value).strip()
+
+
+def _load_report(path: Path, cache: dict) -> str | None:
+    """Read a study report once, returning None when the file does not exist."""
+    if path not in cache:
+        cache[path] = path.read_text(encoding="utf-8") if path.is_file() else None
+    return cache[path]
