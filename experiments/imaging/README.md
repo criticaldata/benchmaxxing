@@ -225,6 +225,37 @@ breakdown. Pure re-analysis, no API calls.
 python -m experiments.imaging.blind_metric_ci
 ```
 
+### Effect sizes, bootstrap CIs, and achieved power (#192, imaging lane)
+
+`effect_sizes_imaging.py` adds a risk difference, bootstrap 95% CI, and achieved
+power/required-pairs to the cue-level solo flip rates, the four cascade contagion deltas, and the
+referee-vs-naive comparison. Text-lane half of #192 is delivered separately in
+`experiments/effect_sizes/` (PR #231).
+
+```bash
+python -m experiments.imaging.effect_sizes_imaging
+```
+
+| Arm | Risk difference | Bootstrap 95% CI | Achieved power | Pairs needed for 0.8 power |
+|---|---|---|---|---|
+| Cascade contagion, cable | 0.80 | [0.657, 0.914] | 1.0 | 7 |
+| Cascade contagion, corner tag | 0.74 | [0.600, 0.886] | 1.0 | 8 |
+| Cascade contagion, laterality | 0.71 | [0.571, 0.857] | 1.0 | 9 |
+| Cascade contagion, watermark | 0.63 | [0.457, 0.771] | 1.0 | 10 |
+| Referee vs naive (paired accuracy) | 0.17 | [-0.029, 0.343] | 0.41 | 90 |
+
+Solo flip rates (bootstrap CIs, not a risk difference since there is only one condition): cable
+0.20 [0.086, 0.343], corner tag 0.23 [0.086, 0.371], watermark 0.34 [0.20, 0.486], laterality 0.26
+[0.114, 0.40].
+
+**Read.** Every cue's cascade contagion delta is fully powered at n=35 (achieved power 1.0,
+only 7-10 pairs would have sufficed) - the best-powered result in the project. The
+referee-vs-naive comparison is the opposite case: a suggestive 0.17 risk difference and McNemar
+b=9/c=3 asymmetry, but the bootstrap interval straddles 0 and achieved power is only 0.41 (90
+cases needed, 35 available), so it should be read as directionally suggestive, not yet powered to
+rule out chance. Pure zero-API re-analysis over already-committed `imaging_solo.jsonl`,
+`imaging_cascade*.jsonl`, and `imaging_referee.jsonl`.
+
 ## Files
 
 - `build_manifest.py`, `imaging_solo.py`, `imaging_cascade.py`, `imaging_referee.py`,
