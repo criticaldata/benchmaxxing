@@ -1,0 +1,24 @@
+{
+  "n": 35,
+  "n_drifted": 29,
+  "n_base_is_decoy": 0,
+  "f1_naive_vs_drift": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+  },
+  "f1_counterfactual_vs_drift": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+  },
+  "f1_note": "naive and counterfactual are identical detectors in this committed data (base_is_decoy is True on 0 of 35 cases), so both score P/R 1.0/1.0 against the drift definition trivially, the same limitation as the text lane - not a general claim that naive and counterfactual referees are interchangeable.",
+  "f2_reasoning_reader": {
+    "recall": 0.0,
+    "precision": "not independently verifiable from committed data (see f2_note)",
+    "n_named_rubric": 0,
+    "n_drifted": 29
+  },
+  "f2_note": "named_rubric_when_drifted is stored already conditioned on drift, so recall is directly computable but precision cannot be independently verified from committed data alone - see the text-lane script's docstring for the full reasoning, which applies identically here.",
+  "read": "F1: the counterfactual referee recovers drift ground truth exactly by construction (P/R 1.0/1.0); the naive variant matches here for the same reason as the text lane (no case's baseline already prefers the decoy). F2: recall = 0.0 (0/29) - this is the headline contrast the issue predicted: a reasoning-reading referee catches essentially ALL text-lane drift (recall 1.0) but ZERO imaging-lane drift (recall 0.0), confirming that only the counterfactual re-query, not reading the justification, catches silent gaming in the imaging lane."
+}

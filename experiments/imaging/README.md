@@ -225,6 +225,22 @@ breakdown. Pure re-analysis, no API calls.
 python -m experiments.imaging.blind_metric_ci
 ```
 
+### Counterfactual and reasoning-reading referees (#175, imaging lane)
+
+`counterfactual_referee.py` points two no-key referees at these blind-metric transcripts (every
+prior referee ran on cascade transcripts instead). Pure re-analysis, zero API calls. Text-lane
+half is `experiments/blind_metric/counterfactual_referee.py`.
+
+```bash
+python -m experiments.imaging.counterfactual_referee
+```
+
+**Read.** F1 (counterfactual, base vs blind) recovers drift ground truth exactly by construction
+(P/R 1.0/1.0). F2 (reasoning-reading referee) recall = 0.0 (0/29) - the headline contrast this
+issue predicted: a referee that only reads the justification text catches essentially all text-
+lane drift (recall 1.0) but none of the imaging-lane drift (recall 0.0), confirming that only the
+counterfactual re-query catches silent gaming here, not reading the reasoning.
+
 ### Effect sizes, bootstrap CIs, and achieved power (#192, imaging lane)
 
 `effect_sizes_imaging.py` adds a risk difference, bootstrap 95% CI, and achieved
@@ -378,3 +394,4 @@ this fit-quality issue.
 - `misaligned_proxy.py`, `results/misaligned_proxy.json` - #176's imaging-lane misaligned-proxy arm.
 - `onset_battery.py`, `results/onset_battery.json` - #174 part b, contagion_index/deference_rate.
 - `positional_regression.py`, `results/positional_regression.json` - #174 part c, K=3 regression.
+- `counterfactual_referee.py`, `results/counterfactual_referee.json` - #175's imaging-lane referees.
