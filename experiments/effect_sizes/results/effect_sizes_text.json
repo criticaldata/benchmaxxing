@@ -1,0 +1,79 @@
+{
+  "scale_c_anchored_vs_generic": {
+    "risk_difference": 0.1176,
+    "bootstrap95": [
+      0.0118,
+      0.2118
+    ],
+    "odds_ratio": 2.054590570719603,
+    "achieved_power": 0.612,
+    "required_pairs_for_power_0.8": 132,
+    "n": 85,
+    "note": "paired bootstrap over the real per-case rows (scale_c_per_case.jsonl)"
+  },
+  "clean_a_flash": {
+    "risk_difference": 0.2609,
+    "bootstrap95": [
+      0.087,
+      0.4348
+    ],
+    "odds_ratio": null,
+    "n": 23,
+    "note": "bootstrap reconstructed from committed counts (no raw per-case file); independent groups (flag-condition vs control-condition cases), not paired"
+  },
+  "clean_a_flash_lite": {
+    "risk_difference": 0.3043,
+    "bootstrap95": [
+      0.1304,
+      0.4783
+    ],
+    "odds_ratio": null,
+    "n": 23,
+    "note": "bootstrap reconstructed from committed counts (no raw per-case file); independent groups (flag-condition vs control-condition cases), not paired"
+  },
+  "model_dependence_flash": {
+    "gain": 3,
+    "lose": 4,
+    "n": 28,
+    "achieved_power": 0.0564,
+    "required_pairs_for_power_0.8": 1537
+  },
+  "multi_round_text_round1_vs_roundK": {
+    "gain": 3,
+    "lose": 1,
+    "n": 40,
+    "achieved_power": 0.1655,
+    "required_pairs_for_power_0.8": 312
+  },
+  "contamination_flash": {
+    "label": "baseline-wrong vs baseline-correct ever-flipped rate, flash",
+    "risk_difference": 0.3759,
+    "bootstrap95": [
+      0.0919,
+      0.6711
+    ],
+    "odds_ratio": 9.761904761904761,
+    "note": "bootstrap reconstructed from committed counts (flip_rate_when_baseline_wrong/correct x n); independent groups (baseline-wrong vs baseline-correct case sets), not paired"
+  },
+  "contamination_flash_lite": {
+    "label": "baseline-wrong vs baseline-correct ever-flipped rate, flash-lite",
+    "risk_difference": 0.5466,
+    "bootstrap95": [
+      0.3322,
+      0.7471
+    ],
+    "odds_ratio": 17.75,
+    "note": "bootstrap reconstructed from committed counts (flip_rate_when_baseline_wrong/correct x n); independent groups (baseline-wrong vs baseline-correct case sets), not paired"
+  },
+  "excluded": [
+    {
+      "source": "experiments/medqa/results/break_it_summary.json / push_c_summary.json (results/medqa-break-it, PR #140)",
+      "reason": "not independently re-verified for parser-fix currency this session"
+    },
+    {
+      "source": "experiments/medqa/results/cascade_v2_per_case.jsonl (results/medqa-experiments, PR #135)",
+      "reason": "confirmed tainted by the pre-fix stray-article parser bug"
+    }
+  ],
+  "read": "The scale_c anchored-vs-generic increment (+0.12) has a bootstrap CI that includes 0 or comes close to it, consistent with #191's finding that it fails a family-wide correction. Clean-A's risk difference is large and its bootstrap interval is tighter for flash-lite than flash, matching flash-lite's stronger Fisher p. The contamination audit's risk differences are large and one-directional for both tiers, the most robust text-lane finding across every check this session."
+}
