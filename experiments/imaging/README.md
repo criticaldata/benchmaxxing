@@ -97,6 +97,35 @@ moved the model in isolation (#163's flip-above-noise was ~0 or negative for cab
 confident peer assertion moves the committee regardless of which visual cue is present. The
 shortcut here is social plausibility, not the strength of the underlying visual artifact.
 
+## Majority-pressure (Asch) variant (`imaging_majority_pressure.py`, #172)
+
+Does imaging adoption scale with the number of peers asserting the wrong read, or saturate at
+one? The imaging counterpart of #117 (text majority-pressure). `imaging_cascade.py` already
+establishes the 0-peer (isolated) and 2-peer points; only the 1-peer condition is new here.
+
+```bash
+python -m experiments.imaging.imaging_majority_pressure \
+    --manifest results/nih_manifest.csv --image-root <images/> \
+    --cache experiments/imaging/results/img_cache.jsonl --out experiments/imaging/results --n 35
+```
+
+| seeded peers | adoption |
+|---|---|
+| 0 (isolated) | 0.34 |
+| 1 | **0.97** |
+| 2 | 0.97 |
+
+1-peer vs 2-peer, case-by-case: gain=0, lose=0 (identical on every one of the 35 cases, not just
+matching in aggregate).
+
+**Read.** Imaging adoption saturates at a single confident wrong peer: one radiologist's assertion
+already produces the same near-total adoption as two, with zero cases differing between the two
+conditions. Unlike a genuine Asch-style majority-pressure dose-response (where adoption would keep
+climbing with more asserting peers), a single plausible authority voice is already sufficient in
+this imaging committee - the social-plausibility mechanism saturates immediately rather than
+building with numbers. 35 new API calls (the 0- and 2-peer points reuse already-committed data);
+verified keyless afterward (0 new calls, identical numbers on re-run).
+
 ## System-flag (authority) cascade (`imaging_system_flag.py`, #171)
 
 Does a wrong AUTOMATED pre-screen flag move an imaging committee the way a wrong PEER assertion
@@ -408,8 +437,8 @@ this fit-quality issue.
 ## Files
 
 - `build_manifest.py`, `imaging_solo.py`, `imaging_cascade.py`, `imaging_system_flag.py`,
-  `imaging_referee.py`, `imaging_judge_referee.py`, `imaging_multi_round.py`,
-  `imaging_blind_metric.py` - the eight runners.
+  `imaging_majority_pressure.py`, `imaging_referee.py`, `imaging_judge_referee.py`,
+  `imaging_multi_round.py`, `imaging_blind_metric.py` - the nine runners.
 - `results/nih_manifest.csv` - the 35-case manifest (built via the `nih_cxr14` adapter).
 - `results/manifest_provenance.json` - a sha256 checksum per used image.
 - `results/case_ids_used.txt` - the exact case_id set the committed results were computed on.
@@ -418,6 +447,7 @@ this fit-quality issue.
 - `results/imaging_solo.jsonl` / `_summary.json`, `results/imaging_noise_floor.jsonl` - solo susceptibility.
 - `results/imaging_cascade.jsonl` / `_summary.json` - the watermark cascade (default cue).
 - `results/imaging_system_flag.jsonl` / `_summary.json` - #171's system-flag (authority) cascade.
+- `results/imaging_majority_pressure.jsonl` / `_summary.json` - #172's majority-pressure variant.
 - `results/imaging_cascade_{cable,corner_tag,laterality}.jsonl` / `_summary.json` - the other three cues.
 - `results/imaging_referee.jsonl` / `_summary.json` - the deployable referee-as-gate evaluation.
 - `results/imaging_judge_referee.jsonl` / `_summary.json` - the same-lineage judge referee.
