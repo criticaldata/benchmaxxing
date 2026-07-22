@@ -146,9 +146,22 @@ python -m experiments.imaging.imaging_judge_referee \
 The judge's numbers are *identical* to the naive gate's. Without a fresh independent signal (the
 deployable referee's private re-read) or a reasoning trace to inspect (imaging turns are a single
 yes/no token, unlike the text lane's free-form rationale, which is what let the text-lane judge
-beat its own naive gate at precision 0.83), a same-lineage judge here has nothing to work with
-beyond "did the answer match the peers", which is exactly the naive gate's rule. In imaging, the
-private re-read is what earns the deployable referee's edge, not the judge's oversight framing.
+beat its own naive gate, precision 1.0 vs the naive gate's 0.375), a same-lineage judge here has
+nothing to work with beyond "did the answer match the peers", which is exactly the naive gate's
+rule. In imaging, the private re-read is what earns the deployable referee's edge, not the
+judge's oversight framing.
+
+### Agreement/disagreement matrices (#184)
+
+`referee_agreement.py` confirms the identity numerically, not just at the aggregate P/R level:
+the judge's flag and the naive gate's flag are **exactly the same on every one of the 35 cases**
+(phi = kappa = 1.0). The deployable referee diverges from both on the same 12 cases (phi = 0.223,
+kappa = 0.095), all cases where naive/judge over-flag relative to the deployable referee's
+stricter, re-read-backed criterion. Pure re-analysis, no API calls.
+
+```bash
+python -m experiments.imaging.referee_agreement
+```
 
 ## Multi-round cascade dynamics (`imaging_multi_round.py`, #169)
 
