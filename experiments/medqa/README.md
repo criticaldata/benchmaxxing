@@ -45,6 +45,33 @@ wrong peer on the shared board. Why, and how the design changes (voiceable cue-r
 seeds, hard-case selection, majority pressure, a natural-cue imaging cascade), is tracked in
 issues #115, #116, #117, #120, #121.
 
+## Cascade-onset distribution (#174, part a)
+
+`onset_distribution.py` activates `benchmaxxing.onset.cascade_onset` (the plan's flagship
+reusable artifact, exported and unit-tested but never reported on committed data) on the
+baseline-relative arm's transcripts. Uses `_repro_shared.jsonl` (post-parser-fix), not the plain
+`medqa-*_shared.jsonl` the issue names, since those predate the fix and were never regenerated;
+`cascade_results.json`'s own `onset` field is already computed from the same `_repro_` transcripts,
+confirmed here to match exactly.
+
+```bash
+python -m experiments.medqa.onset_distribution
+```
+
+**Result:** onset is detected (not censored) on all 20 of 20 cases, and every detected onset lands
+on the exact same turn index (2) - immediately after the seeded agent's one-off wrong turn, which
+it then abandons for the rest of the run. This is the trivial detection of a single-turn blip that
+reverts immediately, not a genuine sustained tipping point: consistent with the already-established
+robust null on this arm, and does not indicate the onset metric is broken - there is simply no
+sustained regime change for a single change-point detector to find here.
+
+Also reports the `onset` field already present in `cascade_v2_per_case.jsonl` (the anchored-seed
+arm, onsets 1/2/5, real spread), explicitly flagged as **confirmed tainted** by the pre-fix
+answer-parser bug and not treated as trustworthy; included because the issue asks for it, not as a
+validated finding. The two arms' seed-invalidity rates are NOT the same measurement as the
+previously reported "16/20 invalid seed" figure (that describes the older v1 first-distractor
+design, not either arm analyzed here) and are not conflated with it.
+
 ## Files
 
 - `reproduce.py`, the runnable script (solo + noise floor + baseline-relative cascade).
@@ -53,6 +80,7 @@ issues #115, #116, #117, #120, #121.
 - `results/cascade_v2_summary.json`, `results/cascade_v2_per_case.jsonl`, the valid cascade.
 - `results/solo_records.jsonl`, per-twin solo records (the raw result data).
 - `results/config.json`, `results/versions.json`, run config and provenance.
+- `onset_distribution.py`, `results/onset_distribution.json` - #174's cascade-onset distribution.
 
 ## Note
 
