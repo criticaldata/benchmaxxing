@@ -29,7 +29,21 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="also print the git commit SHA and which optional extras are installed",
     )
-    sub.add_parser("datasets", help="list the available dataset adapters")
+
+    p_datasets = sub.add_parser("datasets", help="dataset adapter commands")
+    datasets_sub = p_datasets.add_subparsers(dest="datasets_command", metavar="command")
+    datasets_sub.add_parser("list", help="list the available dataset adapters (the default)")
+    p_stats = datasets_sub.add_parser(
+        "stats", help="summarize and sanity-check a manifest"
+    )
+    p_stats.add_argument("manifest", metavar="PATH", help="path to a CSV/JSONL manifest")
+    p_stats.add_argument(
+        "--image-root",
+        default=None,
+        metavar="PATH",
+        help="root directory to resolve image_ref paths against (imaging manifests only)",
+    )
+
     sub.add_parser("smoke", help="run the offline end-to-end pipeline smoke on synthetic data")
 
     p_config = sub.add_parser("config-show", help="print the resolved default config")
@@ -101,7 +115,7 @@ def _dataset_names() -> list[str]:
     return sorted(registry.names())
 
 
-def _cmd_datasets(_args: argparse.Namespace) -> int:
+def _cmd_datasets_list(_args: argparse.Namespace) -> int:
     names = _dataset_names()
     if names:
         for name in names:
@@ -109,6 +123,78 @@ def _cmd_datasets(_args: argparse.Namespace) -> int:
     else:
         print("No dataset adapters are registered yet.")
     return 0
+
+
+def _cmd_datasets_stats(args: argparse.Namespace) -> int:
+    """Load a manifest and print a summary: row/modality counts, an MCQ shape check, an
+    optional on-disk image check, the label distribution, and how many rows carry meta.
+    Exits non-zero if the manifest is empty or malformed (the loader itself enforces that)."""
+    from collections import Counter
+    from pathlib import Path
+
+    from benchmaxxing.data import load_cases
+    from benchmaxxing.schema import Modality
+
+    try:
+        cases = load_cases(args.manifest)
+    except (FileNotFoundError, ValueError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+
+    n = len(cases)
+    print(f"rows: {n}")
+    by_modality = Counter(c.modality.value for c in cases)
+    for modality, count in sorted(by_modality.items()):
+        print(f"  {modality}: {count}")
+
+    text_cases = [c for c in cases if c.modality is Modality.TEXT]
+    if text_cases:
+        opt_counts = Counter(len(c.options) if c.options else 0 for c in text_cases)
+        print("options-per-case distribution:")
+        for n_opts in sorted(opt_counts):
+            print(f"  {n_opts} options: {opt_counts[n_opts]} cases")
+        # load_cases already rejects an out-of-range answer_index at parse time; this is a
+        # belt-and-suspenders check in case a future loader relaxes that guarantee.
+        bad = [
+            c.case_id
+            for c in text_cases
+            if c.options and not (0 <= (c.answer_index if c.answer_index is not None else -1)
+                                   < len(c.options))
+        ]
+        if bad:
+            print(f"error: answer_index out of range for case_id(s): {bad}", file=sys.stderr)
+            return 1
+
+    image_cases = [c for c in cases if c.modality is Modality.IMAGE]
+    if image_cases:
+        if args.image_root:
+            root = Path(args.image_root)
+            resolved = sum(
+                1 for c in image_cases if c.image_ref and (root / c.image_ref).exists()
+            )
+            print(f"image_ref resolves on disk: {resolved}/{len(image_cases)} (root={root})")
+        else:
+            print(
+                f"image_ref resolution: skipped ({len(image_cases)} image cases; "
+                "pass --image-root to check)"
+            )
+
+    labels = [c.label for c in cases if c.label]
+    if labels:
+        print("label distribution:")
+        for label, count in Counter(labels).most_common():
+            print(f"  {label}: {count}")
+
+    with_meta = sum(1 for c in cases if c.meta)
+    print(f"rows with meta: {with_meta}/{n}")
+    return 0
+
+
+def _cmd_datasets(args: argparse.Namespace) -> int:
+    sub_command = getattr(args, "datasets_command", None)
+    if sub_command == "stats":
+        return _cmd_datasets_stats(args)
+    return _cmd_datasets_list(args)
 
 
 def _cmd_config_show(args: argparse.Namespace) -> int:
