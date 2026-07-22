@@ -285,6 +285,30 @@ transcripts reproduce the committed `naive_flag`/`ref_flag` fields exactly befor
 happens (this caught a wrong assumption during development: imaging's naive gate is a
 peer-vs-holdout match, not the text lane's peer-vs-peer-only gate).
 
+### Misaligned-proxy arm (#176, imaging lane)
+
+`misaligned_proxy.py` activates `benchmaxxing.blind_arms.misaligned_proxy_run` (built and
+unit-tested with mocks only, invoked by no data runner) on `imaging_solo.jsonl`, reshaped to one
+row per (case, cue) pair (n=140) so "is this specifically the watermark cue" has real variance.
+Proxy = watermark-present indicator; truth = resulting read correctness (ground truth is always
+"yes" on this manifest); decision = whether the read flipped from the case's own clean read.
+Text-lane half is `experiments/contamination/misaligned_proxy.py`.
+
+```bash
+python -m experiments.imaging.misaligned_proxy
+```
+
+| corr(flip, is-watermark) | corr(flip, correct-read) | uptake_delta |
+|---|---|---|
+| 0.113 | -0.217 | 0.330 |
+
+**Read.** Watermark is the strongest single cue (#163: flip rate 0.34 vs 0.20-0.26 for the
+others), so being the watermark row does weakly predict a flip, and flip anti-correlates with
+correctness (weak-to-moderate, not near-perfect, since a flip away from the always-"yes" ground
+truth is usually but not always a wrong read). Both correlations are modest, so the positive
+uptake_delta should be read as a small, genuine tilt toward the watermark-specific surrogate over
+correctness, not a strong effect in either direction. Pure zero-API re-analysis.
+
 ## Files
 
 - `build_manifest.py`, `imaging_solo.py`, `imaging_cascade.py`, `imaging_referee.py`,
@@ -303,3 +327,4 @@ peer-vs-holdout match, not the text lane's peer-vs-peer-only gate).
 - `results/imaging_blind_metric.jsonl` / `_summary.json` - the blind-metric substitution probe.
 - `effect_sizes_imaging.py`, `results/effect_sizes_imaging.json` - #192's imaging-lane effect sizes.
 - `panel_vote.py`, `results/panel_vote.json` - #178's referee panel majority vote.
+- `misaligned_proxy.py`, `results/misaligned_proxy.json` - #176's imaging-lane misaligned-proxy arm.
