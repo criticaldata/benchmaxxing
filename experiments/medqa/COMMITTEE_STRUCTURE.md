@@ -113,3 +113,29 @@ test needs disagreeing agents (temperature > 0 or genuinely ambiguous cases); fi
 **#235** (overlaps the temp>0 reliability work, #204). 520 calls; verified keyless. This is a
 faithful, honest negative result: the temp-0 committee is unanimous, so hierarchy-dominance-by-
 position does not arise here.
+
+## Seed confidence: hedged vs confident (`seed_confidence.py`, #189)
+
+Every planted seed in the repo is maximally confident. Holding the source (a senior colleague) and
+the wrong answer fixed, this varies only the stance the holdout reads (surfaced on the board):
+confident ("I am confident the answer is X") vs hedged ("I am not certain, but the answer might be
+X").
+
+```bash
+python -m experiments.medqa.seed_confidence --manifest <medqa_manifest.csv> \
+    --out experiments/medqa/results --n 100
+```
+
+| stance | adoption (n=100) |
+|---|---|
+| confident wrong peer | 0.42 |
+| hedged wrong peer | 0.14 |
+
+Confident vs hedged, paired: McNemar gain=29, lose=1, p<1e-6; confidence elasticity +0.28.
+
+**Read.** Expressed confidence is a strong, causal lever: simply hedging the same wrong assertion
+cuts adoption by two-thirds (0.42 to 0.14). The holdout tracks the peer's stance, not just its
+answer, so a wrong claim that is voiced tentatively is far less contagious than the same claim
+voiced with certainty. Practically, an agent that expresses calibrated uncertainty when unsure
+would poison a committee much less than one that always asserts confidently. 300 new API calls;
+verified keyless.
