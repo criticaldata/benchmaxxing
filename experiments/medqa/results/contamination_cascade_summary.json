@@ -1,0 +1,23 @@
+{
+  "n": 120,
+  "model": "gemini-2.5-flash-lite",
+  "new_api_calls_this_run": 360,
+  "n_recall_prone": 21,
+  "n_not_recalled": 99,
+  "adopt_rate_recall_prone": 0.3333,
+  "adopt_rate_not_recalled": 0.7071,
+  "fisher_recall_vs_adopt": {
+    "table": [
+      [
+        7,
+        14
+      ],
+      [
+        70,
+        29
+      ]
+    ],
+    "pvalue": 0.002121
+  },
+  "read": "Of 120 cases, 21 are recall-prone (correct question-only, a memorization proxy) and 99 are not. Adoption of the wrong senior seed is 0.3333 on recall-prone cases versus 0.7071 on cases needing the options (Fisher p=0.002121). Markedly lower adoption on recall-prone cases would mean memorized knowledge inoculates against the cascade, so the residual susceptibility concentrates where the holdout is genuinely reasoning; similar rates mean authority overrides even confidently-recalled answers."
+}
