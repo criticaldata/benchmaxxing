@@ -1,0 +1,21 @@
+{
+  "n": 40,
+  "detectors": [
+    "deployable (board-vs-bare re-query)",
+    "naive (peer-agreement gate)",
+    "same-lineage judge (gemini-2.5-flash)"
+  ],
+  "single_deployable_alone": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+  },
+  "panel_majority_vote": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+  },
+  "n_panel_flags": 15,
+  "n_single_flags": 15,
+  "read": "The single deployable referee already reaches perfect precision and recall (1.0/1.0) on this dataset, so a majority-vote panel of three detectors cannot improve on it - it can only match or dilute it. Two of the three voters (naive, same-lineage judge) individually run high recall but far lower precision than deployable (naive fires on every case, precision 0.375; the judge is precision 1.0/recall 0.933 per #184's agreement re-analysis), so a 2-of-3 majority vote is pulled toward whichever pair agrees on each case. The private re-query the deployable referee performs is the irreplaceable ingredient here: no combination of the other two, which read only the shared transcript, recovers what an independent counterfactual answer reveals."
+}

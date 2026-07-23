@@ -76,6 +76,10 @@ benchmaxxing version
 # list the registered dataset adapters
 benchmaxxing datasets
 
+# summarize and sanity-check a manifest (row/modality counts, MCQ shape, label
+# distribution; pass --image-root to check that image_ref paths resolve on disk)
+benchmaxxing datasets stats path/to/manifest.csv [--image-root path/to/images]
+
 # show the resolved default config
 benchmaxxing config-show
 

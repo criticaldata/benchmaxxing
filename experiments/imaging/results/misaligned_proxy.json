@@ -1,0 +1,10 @@
+{
+  "n": 140,
+  "proxy": "watermark-present indicator (is this row specifically the watermark cue)",
+  "truth": "resulting read == 'yes' (correct, since ground truth is always 'yes' here)",
+  "decision": "flip (did the read change from the case's own clean read under this cue)",
+  "corr_decision_vs_proxy": 0.1132,
+  "corr_decision_vs_truth": -0.217,
+  "uptake_delta": 0.3302,
+  "read": "corr(flip, is-watermark-cue) = 0.1132 versus corr(flip, correct-read) = -0.217, uptake_delta = 0.3302. Watermark is the strongest single cue (#163: flip rate 0.34 vs 0.20-0.26 for the others), so being the watermark row does weakly predict a flip (r=0.113), and flip anti-correlates with correctness (r=-0.217, weak-to-moderate, not near-perfect) since a flip away from the manifest's always-'yes' ground truth is usually but not always a wrong read. Both correlations are modest in absolute terms, so the positive uptake_delta should be read as a small, genuine tilt toward the watermark-specific surrogate over correctness, not a strong effect in either direction - similar in kind to the text lane's caution against over-reading a positive uptake_delta as strong proxy-tracking evidence."
+}
