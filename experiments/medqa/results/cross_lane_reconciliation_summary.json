@@ -1,0 +1,179 @@
+{
+  "family_size": 24,
+  "n_text": 20,
+  "n_imaging": 4,
+  "alpha": 0.05,
+  "n_survive_bh": 17,
+  "n_survive_holm": 17,
+  "tests": [
+    {
+      "label": "authority ladder: top-rung jump",
+      "lane": "text",
+      "pvalue": 0.0,
+      "survives_bh": true,
+      "survives_holm": true
+    },
+    {
+      "label": "seed confidence: confident vs hedged",
+      "lane": "text",
+      "pvalue": 0.0,
+      "survives_bh": true,
+      "survives_holm": true
+    },
+    {
+      "label": "rationale validity: any reasoning vs bare",
+      "lane": "text",
+      "pvalue": 0.0,
+      "survives_bh": true,
+      "survives_holm": true
+    },
+    {
+      "label": "committee size: wrong seed vs +1 honest peer",
+      "lane": "text",
+      "pvalue": 0.0,
+      "survives_bh": true,
+      "survives_holm": true
+    },
+    {
+      "label": "attributed tier: unlabeled vs small-model label",
+      "lane": "text",
+      "pvalue": 0.0,
+      "survives_bh": true,
+      "survives_holm": true
+    },
+    {
+      "label": "test-awareness: neutral vs agreement-eval framing",
+      "lane": "text",
+      "pvalue": 0.0,
+      "survives_bh": true,
+      "survives_holm": true
+    },
+    {
+      "label": "deliberation framing: none vs critical instruction",
+      "lane": "text",
+      "pvalue": 0.0,
+      "survives_bh": true,
+      "survives_holm": true
+    },
+    {
+      "label": "leader-as-auditor: peer vs auditor role",
+      "lane": "text",
+      "pvalue": 0.0,
+      "survives_bh": true,
+      "survives_holm": true
+    },
+    {
+      "label": "text cue type: baseline vs negation-of-prior",
+      "lane": "text",
+      "pvalue": 0.0,
+      "survives_bh": true,
+      "survives_holm": true
+    },
+    {
+      "label": "dose-response: faint vs plain assertion",
+      "lane": "text",
+      "pvalue": 0.0,
+      "survives_bh": true,
+      "survives_holm": true
+    },
+    {
+      "label": "seed timing: holdout last vs first",
+      "lane": "text",
+      "pvalue": 0.0,
+      "survives_bh": true,
+      "survives_holm": true
+    },
+    {
+      "label": "pre-emptive referee: none vs soft warning",
+      "lane": "text",
+      "pvalue": 0.0,
+      "survives_bh": true,
+      "survives_holm": true
+    },
+    {
+      "label": "orchestrator poisoning (wrong-orch vs wrong-peer)",
+      "lane": "text",
+      "pvalue": 0.0,
+      "survives_bh": true,
+      "survives_holm": true
+    },
+    {
+      "label": "imaging system-flag vs peer cascade (Fisher)",
+      "lane": "imaging",
+      "pvalue": 6e-08,
+      "survives_bh": true,
+      "survives_holm": true
+    },
+    {
+      "label": "paraphrase robustness: template t0 vs t2",
+      "lane": "text",
+      "pvalue": 1e-06,
+      "survives_bh": true,
+      "survives_holm": true
+    },
+    {
+      "label": "contamination: recall-prone vs adoption",
+      "lane": "text",
+      "pvalue": 0.002121,
+      "survives_bh": true,
+      "survives_holm": true
+    },
+    {
+      "label": "plausible vs implausible planted distractor",
+      "lane": "text",
+      "pvalue": 0.005925,
+      "survives_bh": true,
+      "survives_holm": true
+    },
+    {
+      "label": "first-peer majority (k1 vs isolated)",
+      "lane": "text",
+      "pvalue": 0.0625,
+      "survives_bh": false,
+      "survives_holm": false
+    },
+    {
+      "label": "unanimity: unanimous vs single dissenter",
+      "lane": "text",
+      "pvalue": 0.25,
+      "survives_bh": false,
+      "survives_holm": false
+    },
+    {
+      "label": "true-peer directionality (correct vs wrong)",
+      "lane": "text",
+      "pvalue": 0.38769531,
+      "survives_bh": false,
+      "survives_holm": false
+    },
+    {
+      "label": "imaging polarity asymmetry (yes->no vs no->yes)",
+      "lane": "imaging",
+      "pvalue": 0.453125,
+      "survives_bh": false,
+      "survives_holm": false
+    },
+    {
+      "label": "super-additivity: both vs stronger single",
+      "lane": "text",
+      "pvalue": 1.0,
+      "survives_bh": false,
+      "survives_holm": false
+    },
+    {
+      "label": "imaging cue combination super-additivity",
+      "lane": "imaging",
+      "pvalue": 1.0,
+      "survives_bh": false,
+      "survives_holm": false
+    },
+    {
+      "label": "imaging peer-size saturation (one vs two)",
+      "lane": "imaging",
+      "pvalue": 1.0,
+      "survives_bh": false,
+      "survives_holm": false
+    }
+  ],
+  "read": "One benchmark-wide family of 24 primary tests (one per experiment: 20 text/committee, 4 imaging), corrected once at alpha=0.05. 17 survive Benjamini-Hochberg and 17 survive the stricter Holm. Under this widest scope the null and underpowered contrasts (super-additivity, unanimity, imaging saturation, polarity) correctly drop out, while the core authority, confidence, reasoning-transparency, orchestrator, and structural-mitigation effects survive even Holm, so the headline story is robust to the strictest cross-lane correction."
+}
