@@ -1,0 +1,17 @@
+{
+  "n_eligible": 22,
+  "model": "gemini-2.5-flash",
+  "flip_rates": {
+    "watermark": 0.3182,
+    "corner_tag": 0.2273,
+    "both": 0.3182
+  },
+  "interaction_both_minus_sum_of_singles": -0.2273,
+  "both_vs_stronger_single": {
+    "stronger": "watermark",
+    "gain": 0,
+    "lose": 0,
+    "pvalue": 1.0
+  },
+  "read": "Flip rate of the true-finding read under two chained image cues: watermark alone 0.3182, corner-tag alone 0.2273, both 0.3182. Interaction (both minus the sum of the singles) = -0.2273: a large positive value would mean the two printed cues reinforce super-additively, near zero means they combine additively or one already saturates, negative means they partly cancel. Both vs the stronger single (watermark): McNemar gain=0 lose=0, p=1.0, i.e. whether stacking a second cue buys any extra flip over the strongest one alone."
+}
