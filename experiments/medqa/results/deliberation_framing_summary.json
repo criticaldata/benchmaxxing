@@ -1,0 +1,32 @@
+{
+  "n": 120,
+  "model": "gemini-2.5-flash-lite",
+  "new_api_calls_this_run": 600,
+  "adoption_by_framing": {
+    "none": 0.6417,
+    "collaborative": 0.4083,
+    "independent": 0.2333,
+    "critical": 0.1167
+  },
+  "none_vs_collaborative": {
+    "gain": 4,
+    "lose": 32,
+    "pvalue": 2e-06
+  },
+  "none_vs_independent": {
+    "gain": 1,
+    "lose": 50,
+    "pvalue": 0.0
+  },
+  "none_vs_critical": {
+    "gain": 2,
+    "lose": 65,
+    "pvalue": 0.0
+  },
+  "independent_vs_critical": {
+    "gain": 4,
+    "lose": 18,
+    "pvalue": 0.004344
+  },
+  "read": "Adoption of the same fixed wrong senior seed under different deliberation instructions: none 0.6417, collaborative 0.4083, independent 0.2333, critical 0.1167. A one-line instruction that licenses dissent (independent / critical) lowering adoption below the collaborative or unframed baseline would mean the cascade is cheaply steerable at deployment time by prompt alone; a flat curve means the framing is ignored and only structural interventions (a dissenter, a referee) help. Paired McNemars test each frame against the unframed baseline."
+}
