@@ -1,0 +1,8 @@
+{
+  "n_clean_correct_cases": 84,
+  "new_api_calls_this_run": 0,
+  "wrong_peer_poisons_output": 0.1667,
+  "wrong_orchestrator_poisons_output": 1.0,
+  "honest_orchestrator_over_wrong_peers_output_wrong": 0.0238,
+  "read": "On 84 cases a clean committee gets right, a wrong PEER poisons the committee output 0.1667 of the time (it must actually move the other members), while a wrong ORCHESTRATOR poisons it 1.0 of the time (its synthesis IS the output, so a single wrong leader is far more dangerous than a single wrong peer, the single-point-of-failure the plan warns about). An HONEST orchestrator synthesizing over two wrong peers still outputs the wrong answer 0.0238 of the time, so whether an honest leader can GATE a peer cascade is answered by that rate: low means the leader rescues the committee, high means even an honest leader is dragged along by a wrong majority."
+}

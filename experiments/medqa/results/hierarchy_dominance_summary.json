@@ -1,0 +1,11 @@
+{
+  "n_cases": 40,
+  "orders_per_case": 6,
+  "new_api_calls_this_run": 0,
+  "cases_with_order_independent_dominant_agent": 40,
+  "dominance_rate": 1.0,
+  "of_dominant_how_many_are_flash": "4/40",
+  "dominant_and_wrong_cases": 4,
+  "dominant_and_wrong_rate": 0.1,
+  "read": "HONEST NULL / METHODOLOGICAL FINDING. `score_hierarchy` reports an order-independent dominant agent on all 40 of 40 cases (rate 1.0), but this is degenerate at temperature 0: the shared committee converges to UNANIMITY, so every agent's own first proposal matches the group outcome and all agents tie at dominance 1.0, with the reported `dominant_agent` decided only by score_hierarchy's tie-break (here it lands on the same seat, `lite`, 4 of 40 times a flash seat). So this measures consensus, not one agent overriding the others; genuine order-dependent single-agent dominance cannot manifest when the agents never disagree. The one non-degenerate signal is that the converged, order-independent committee answer is WRONG on 4 of 40 cases (0.1) - a collective order-independent error, not single-agent dominance. A meaningful dominance test needs disagreeing agents (temperature > 0 or genuinely ambiguous cases); tracked as a follow-up (overlaps the temp>0 reliability work, #204)."
+}
