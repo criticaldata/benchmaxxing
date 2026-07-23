@@ -1,0 +1,3506 @@
+{
+  "source_csv": "Data_Entry_2017.csv",
+  "n_cases": 500,
+  "cases": [
+    {
+      "case_id": "00000001_000.png",
+      "image_ref": "00000001_000.png",
+      "label": "cardiomegaly",
+      "sha256": "54637429eef039060cf9feb4a07042d4986a71042b41cd1c833befd26cabe9bd",
+      "bytes": 457171
+    },
+    {
+      "case_id": "00000001_001.png",
+      "image_ref": "00000001_001.png",
+      "label": "cardiomegaly|emphysema",
+      "sha256": "cbfc1b08421b44592a84aa9583950c5a097c9c3a51951832c67d3c59a700d250",
+      "bytes": 444655
+    },
+    {
+      "case_id": "00000001_002.png",
+      "image_ref": "00000001_002.png",
+      "label": "cardiomegaly|effusion",
+      "sha256": "ff2f2da7867f237c4ed0df9337a9325d77d74bb47b18479e734b92991cdd3fa5",
+      "bytes": 351772
+    },
+    {
+      "case_id": "00000003_001.png",
+      "image_ref": "00000003_001.png",
+      "label": "hernia",
+      "sha256": "98ea67a419bc90f91598551d60b6d0351605e5c1f0183d0aa3f3b9db9a5b67b0",
+      "bytes": 383773
+    },
+    {
+      "case_id": "00000003_002.png",
+      "image_ref": "00000003_002.png",
+      "label": "hernia",
+      "sha256": "345f9e8065f506880511bc739d3a364fbba834a431a25e6f2854e47a7ed186b1",
+      "bytes": 343273
+    },
+    {
+      "case_id": "00000003_003.png",
+      "image_ref": "00000003_003.png",
+      "label": "hernia|infiltration",
+      "sha256": "1ac244910dfa3867bc6d62f1675d0187eab9dff7b5bd58271f3d69b3ab61b1d7",
+      "bytes": 456605
+    },
+    {
+      "case_id": "00000003_004.png",
+      "image_ref": "00000003_004.png",
+      "label": "hernia",
+      "sha256": "867e7bb6a62b60a2f027ed52c5ba5940822e27bd37eab9b9c8f3ce8b7bc290bd",
+      "bytes": 371185
+    },
+    {
+      "case_id": "00000003_005.png",
+      "image_ref": "00000003_005.png",
+      "label": "hernia",
+      "sha256": "b084e8209cd6c00518f9dcdc5660edbf3cad8693ab3f8499d7ccabfca3f4f69a",
+      "bytes": 437334
+    },
+    {
+      "case_id": "00000003_006.png",
+      "image_ref": "00000003_006.png",
+      "label": "hernia",
+      "sha256": "c442e331402001d641bfaa820b09302c9b65ecb6d0b765067ebb6fce88fb395a",
+      "bytes": 413626
+    },
+    {
+      "case_id": "00000003_007.png",
+      "image_ref": "00000003_007.png",
+      "label": "hernia",
+      "sha256": "295f78b040675c8e8dfc49037e78926b007b78dd556dceaa8eb9366d46c24690",
+      "bytes": 461458
+    },
+    {
+      "case_id": "00000003_000.png",
+      "image_ref": "00000003_000.png",
+      "label": "hernia",
+      "sha256": "6a8be07b5e70d1e0f43846d06a678ea55adc2d7ea9d26071690a88ebfb6fce26",
+      "bytes": 450000
+    },
+    {
+      "case_id": "00000004_000.png",
+      "image_ref": "00000004_000.png",
+      "label": "mass|nodule",
+      "sha256": "7259e11ae0f622f8fd7639b9c10c53c3b32822b15d13b6d090ab6fb53d02fef3",
+      "bytes": 601599
+    },
+    {
+      "case_id": "00000005_006.png",
+      "image_ref": "00000005_006.png",
+      "label": "infiltration",
+      "sha256": "a8cdfd66c4016705f3575d42ecb256bed0e8842439ef08628e6361e4fd18e211",
+      "bytes": 389745
+    },
+    {
+      "case_id": "00000005_007.png",
+      "image_ref": "00000005_007.png",
+      "label": "effusion|infiltration",
+      "sha256": "f8825a7f493995a654119da6ee50a4bd4653affe4ecf58ca688b789e291c12fd",
+      "bytes": 446752
+    },
+    {
+      "case_id": "00000008_000.png",
+      "image_ref": "00000008_000.png",
+      "label": "cardiomegaly",
+      "sha256": "c61f7d421528466a26d05780feea470273c699d947f5c977ff0e5e84e449e64c",
+      "bytes": 410034
+    },
+    {
+      "case_id": "00000008_002.png",
+      "image_ref": "00000008_002.png",
+      "label": "nodule",
+      "sha256": "d33f173e1ee90e487e84af413622302a9212cd145287e949adf1fd058ffc6b38",
+      "bytes": 361319
+    },
+    {
+      "case_id": "00000009_000.png",
+      "image_ref": "00000009_000.png",
+      "label": "emphysema",
+      "sha256": "8a533d1f24a42d166abc41f2d2351ff9ffa3107cb6b1a569e2e30318a2c758eb",
+      "bytes": 442370
+    },
+    {
+      "case_id": "00000010_000.png",
+      "image_ref": "00000010_000.png",
+      "label": "infiltration",
+      "sha256": "dbe8c54382b26a8691e006298dced2902e798e127c797a905cc25532f57f644a",
+      "bytes": 392828
+    },
+    {
+      "case_id": "00000011_000.png",
+      "image_ref": "00000011_000.png",
+      "label": "effusion",
+      "sha256": "36a8377eaf0c6b8866cf6c4ee5f286d3a3c3fe9a7e6c2c66ec4420e60966938e",
+      "bytes": 453854
+    },
+    {
+      "case_id": "00000011_005.png",
+      "image_ref": "00000011_005.png",
+      "label": "infiltration",
+      "sha256": "0706f252a152e8278ed04a03a87b2912a638517b2a6787606b2b372170b5d89b",
+      "bytes": 353593
+    },
+    {
+      "case_id": "00000011_006.png",
+      "image_ref": "00000011_006.png",
+      "label": "atelectasis",
+      "sha256": "b2b6fe029b4d1f577ed7d3a3062eacf53c98ab5fb210f8fd7514960e224d7361",
+      "bytes": 434301
+    },
+    {
+      "case_id": "00000011_007.png",
+      "image_ref": "00000011_007.png",
+      "label": "infiltration",
+      "sha256": "07f70736ff30a9ecc887fe6db37072a2872d985146b8d6873ab11fe90aa6a386",
+      "bytes": 451948
+    },
+    {
+      "case_id": "00000012_000.png",
+      "image_ref": "00000012_000.png",
+      "label": "effusion|mass",
+      "sha256": "3ad61084fe2c5230a57b2c5246dec28006fe4c05c1dfdc9b6ecc39d0d81bee83",
+      "bytes": 437560
+    },
+    {
+      "case_id": "00000013_022.png",
+      "image_ref": "00000013_022.png",
+      "label": "infiltration|mass",
+      "sha256": "c9d4233cccccaf24382fb1b27f1d26fad3bd7893b2213dbf2eda9a7856f0bd46",
+      "bytes": 445096
+    },
+    {
+      "case_id": "00000013_023.png",
+      "image_ref": "00000013_023.png",
+      "label": "infiltration|mass|pneumothorax",
+      "sha256": "1cde6e73c8d146605eeb0fd5a6d11457d080ee0c876af23557e5e23c2a4654c9",
+      "bytes": 395148
+    },
+    {
+      "case_id": "00000013_024.png",
+      "image_ref": "00000013_024.png",
+      "label": "mass",
+      "sha256": "830b30610dd4d53c26402db17efcab6a038b3af37464dda3e9a795651bf1026d",
+      "bytes": 397785
+    },
+    {
+      "case_id": "00000013_025.png",
+      "image_ref": "00000013_025.png",
+      "label": "cardiomegaly|infiltration|mass|nodule",
+      "sha256": "d26362df0609bfefffbd21b9513ef88b0035b5ebe52fb2d19133cebd4e2c727a",
+      "bytes": 434262
+    },
+    {
+      "case_id": "00000013_026.png",
+      "image_ref": "00000013_026.png",
+      "label": "cardiomegaly|emphysema",
+      "sha256": "c1a3eac0a931ffe9e23fb848db8e7c392bd175536560eb69d815d82dd6ef95c3",
+      "bytes": 383203
+    },
+    {
+      "case_id": "00000013_027.png",
+      "image_ref": "00000013_027.png",
+      "label": "cardiomegaly|effusion|emphysema|mass",
+      "sha256": "4fce45411e64c086a45ca9a19414d38b61cf0c14d3106e7e70d72f0be2348294",
+      "bytes": 385699
+    },
+    {
+      "case_id": "00000013_028.png",
+      "image_ref": "00000013_028.png",
+      "label": "cardiomegaly|effusion|emphysema|mass",
+      "sha256": "9659e3739e621dda5863009b03da0ffe246c2ebcacce6cf9c2f29cbb017b16a3",
+      "bytes": 390991
+    },
+    {
+      "case_id": "00000013_029.png",
+      "image_ref": "00000013_029.png",
+      "label": "cardiomegaly|effusion|emphysema|mass",
+      "sha256": "8e14dcb75849f0ae974c38c5b35de28ac1e59fbe57eb1a439c58b3d8bfc61b95",
+      "bytes": 375115
+    },
+    {
+      "case_id": "00000013_030.png",
+      "image_ref": "00000013_030.png",
+      "label": "atelectasis|cardiomegaly|emphysema|mass|pneumothorax",
+      "sha256": "8e08639225bf297614c674942e04fbc8e5ae88d7af69337c6121b56345927a97",
+      "bytes": 371321
+    },
+    {
+      "case_id": "00000013_031.png",
+      "image_ref": "00000013_031.png",
+      "label": "emphysema|mass",
+      "sha256": "3c03b0e29ee8a92f7fd0befc15a75a12d5fb91179e05e8ebd2ab5360777a0f5e",
+      "bytes": 378450
+    },
+    {
+      "case_id": "00000013_032.png",
+      "image_ref": "00000013_032.png",
+      "label": "emphysema|mass|pneumothorax",
+      "sha256": "e2c9966897702989e7469801af708646f172b0347cab3a602a66251f53c0313a",
+      "bytes": 382166
+    },
+    {
+      "case_id": "00000013_033.png",
+      "image_ref": "00000013_033.png",
+      "label": "pneumothorax",
+      "sha256": "093abf644678f162786b437fa45c1f74f36513b33ee20714d8f17e0eec6bffd5",
+      "bytes": 454049
+    },
+    {
+      "case_id": "00000013_034.png",
+      "image_ref": "00000013_034.png",
+      "label": "emphysema|pneumothorax",
+      "sha256": "946246eef8244a6bda1eb0a07698563ff8466b2f29754e701667054894cd9fde",
+      "bytes": 464177
+    },
+    {
+      "case_id": "00000013_035.png",
+      "image_ref": "00000013_035.png",
+      "label": "atelectasis|pneumothorax",
+      "sha256": "673bf041b73f563b59f57e5bb6745f7f8bd1c20f2519d06d95539973a467d2a4",
+      "bytes": 446057
+    },
+    {
+      "case_id": "00000013_036.png",
+      "image_ref": "00000013_036.png",
+      "label": "pneumothorax",
+      "sha256": "8943bfbba2a0885015e518182b00441beb357da5f552560bfcf45106cd4b391d",
+      "bytes": 449406
+    },
+    {
+      "case_id": "00000013_037.png",
+      "image_ref": "00000013_037.png",
+      "label": "cardiomegaly|emphysema|pneumothorax",
+      "sha256": "5779bc1552aa52202401c2e7ae691f495c8420e6f7f3a936140a5a1acc518725",
+      "bytes": 447982
+    },
+    {
+      "case_id": "00000013_039.png",
+      "image_ref": "00000013_039.png",
+      "label": "pneumothorax",
+      "sha256": "8529797c8515e0444ec69881454fce060b94c6c080b4204f80d1d8f82cf32f2a",
+      "bytes": 434976
+    },
+    {
+      "case_id": "00000013_040.png",
+      "image_ref": "00000013_040.png",
+      "label": "cardiomegaly|emphysema|pneumothorax",
+      "sha256": "81babbe88fffdc6b2f6a22dae474a3a2120a842fac15b00adc4a61b38f2ffae7",
+      "bytes": 469954
+    },
+    {
+      "case_id": "00000013_042.png",
+      "image_ref": "00000013_042.png",
+      "label": "emphysema",
+      "sha256": "b09f93e1fc150ca6d113cb576492ce3b787a2a3aa7dfcb7392553942a0a15772",
+      "bytes": 460068
+    },
+    {
+      "case_id": "00000013_041.png",
+      "image_ref": "00000013_041.png",
+      "label": "emphysema",
+      "sha256": "053b20b80491fa72a8f4783717d318e2eac1b12e25ac4e748c02d294f6891cd3",
+      "bytes": 442758
+    },
+    {
+      "case_id": "00000013_043.png",
+      "image_ref": "00000013_043.png",
+      "label": "mass|pleural_thickening",
+      "sha256": "02f844b15cd9a02e57b2d4bd4e64d6c7fb317610347e31e262c72eb2fe9ae49e",
+      "bytes": 438429
+    },
+    {
+      "case_id": "00000013_044.png",
+      "image_ref": "00000013_044.png",
+      "label": "cardiomegaly|mass|pleural_thickening",
+      "sha256": "2ca4459401a29607a22e40c6ad090cde5a93f4e1f0ca3726b8cf1e7dd2085088",
+      "bytes": 436056
+    },
+    {
+      "case_id": "00000013_045.png",
+      "image_ref": "00000013_045.png",
+      "label": "cardiomegaly",
+      "sha256": "1528b4549e6c37d9a18cd562639e9aa5fa685781cd3e0348ea9638601cbcfafc",
+      "bytes": 449609
+    },
+    {
+      "case_id": "00000013_046.png",
+      "image_ref": "00000013_046.png",
+      "label": "infiltration",
+      "sha256": "aa944f9266b54fd1b879fe745a63669d8ee28dc40c8eb22534aa924f55d76f86",
+      "bytes": 449358
+    },
+    {
+      "case_id": "00000013_001.png",
+      "image_ref": "00000013_001.png",
+      "label": "emphysema|pneumothorax",
+      "sha256": "23c131e51f9eed1cc3559121df3a10f195b1a7dfdb530be63b458384bee1465d",
+      "bytes": 461239
+    },
+    {
+      "case_id": "00000013_002.png",
+      "image_ref": "00000013_002.png",
+      "label": "emphysema|pneumothorax",
+      "sha256": "fbc1e522fc6b31fa87fab56c59a9b4a0a0f9d7c82ed3d9bea88ae5385dc74adb",
+      "bytes": 437630
+    },
+    {
+      "case_id": "00000013_003.png",
+      "image_ref": "00000013_003.png",
+      "label": "pleural_thickening",
+      "sha256": "97d1c0d3a6705d71212e6900483701a3b7fc0519712eb9cda9d67f8c3d531ebc",
+      "bytes": 409346
+    },
+    {
+      "case_id": "00000013_004.png",
+      "image_ref": "00000013_004.png",
+      "label": "effusion|emphysema|infiltration|pneumothorax",
+      "sha256": "6372c968eb7ce5d86d98c9fd2b5bb911bdf2742606e97a3202a90ab2185feed4",
+      "bytes": 448590
+    },
+    {
+      "case_id": "00000013_005.png",
+      "image_ref": "00000013_005.png",
+      "label": "emphysema|infiltration|pleural_thickening|pneumothorax",
+      "sha256": "a9d6ed8ab6aab55ec35611941a8e26336554c342901147bc134847e54ad3afe5",
+      "bytes": 448159
+    },
+    {
+      "case_id": "00000013_006.png",
+      "image_ref": "00000013_006.png",
+      "label": "effusion|infiltration",
+      "sha256": "69db4d3a2498980a295d7b4199fb411ef24f4761324d80b7163d9e6e4d750a91",
+      "bytes": 392314
+    },
+    {
+      "case_id": "00000013_007.png",
+      "image_ref": "00000013_007.png",
+      "label": "infiltration",
+      "sha256": "22487e3e769d5ae2a35078930d39b69db5b405608e2ebe4c4ba9435d5a071fed",
+      "bytes": 449802
+    },
+    {
+      "case_id": "00000013_009.png",
+      "image_ref": "00000013_009.png",
+      "label": "pleural_thickening",
+      "sha256": "66dc9824530a2f486b4101b91d0fc3bca192defad6acb8611a5ae04459d2e64b",
+      "bytes": 433771
+    },
+    {
+      "case_id": "00000013_010.png",
+      "image_ref": "00000013_010.png",
+      "label": "effusion|pneumonia|pneumothorax",
+      "sha256": "db4c43efd2ea36b1b1aac5e979d28890d9498be038e4ec72f4df8c8f508eb759",
+      "bytes": 452300
+    },
+    {
+      "case_id": "00000013_011.png",
+      "image_ref": "00000013_011.png",
+      "label": "pneumothorax",
+      "sha256": "95dbc37a73ad0ee21eb3de9a8620c1ab778a3f4be11d4e6e96bb760e46a8ff43",
+      "bytes": 460693
+    },
+    {
+      "case_id": "00000013_012.png",
+      "image_ref": "00000013_012.png",
+      "label": "pneumothorax",
+      "sha256": "093fd55ce03b41ec4ec0878789650bdcb330b4c4f9032da784150cf6ccefeb15",
+      "bytes": 449184
+    },
+    {
+      "case_id": "00000013_013.png",
+      "image_ref": "00000013_013.png",
+      "label": "pneumothorax",
+      "sha256": "0f2bec90a59a45c73b0fbd440f056423a2f179a9b8572429286f1914268ad3d8",
+      "bytes": 471022
+    },
+    {
+      "case_id": "00000013_018.png",
+      "image_ref": "00000013_018.png",
+      "label": "effusion|infiltration|pneumothorax",
+      "sha256": "eb7e288bee3140c0b2928266fd78faa3012c11b53b9d3a5a383b143df944b117",
+      "bytes": 449275
+    },
+    {
+      "case_id": "00000013_020.png",
+      "image_ref": "00000013_020.png",
+      "label": "pneumothorax",
+      "sha256": "1b7d90b683737a13b601731e470cae799c211414e17261990e8e16a4fc474041",
+      "bytes": 410413
+    },
+    {
+      "case_id": "00000013_021.png",
+      "image_ref": "00000013_021.png",
+      "label": "effusion",
+      "sha256": "10239a603fe9c0c3faee025cf9c3083484bfabeeba2c1341d9fff887998414b2",
+      "bytes": 414245
+    },
+    {
+      "case_id": "00000017_000.png",
+      "image_ref": "00000017_000.png",
+      "label": "effusion|infiltration|nodule",
+      "sha256": "b8d00debb34323693b1671f1e9a8e91e1048631aa53086ba6620ccb303ea9afe",
+      "bytes": 383587
+    },
+    {
+      "case_id": "00000019_000.png",
+      "image_ref": "00000019_000.png",
+      "label": "atelectasis|effusion|pleural_thickening",
+      "sha256": "4fce40d3577c0f22b3ac28b5b2353106aab7da77beacae5eac44b339a1c28a17",
+      "bytes": 442847
+    },
+    {
+      "case_id": "00000020_001.png",
+      "image_ref": "00000020_001.png",
+      "label": "fibrosis|infiltration",
+      "sha256": "bb376585b222cc06dbaf9c6924084b87584b308137b79acd06fbe2cf13dfc671",
+      "bytes": 420434
+    },
+    {
+      "case_id": "00000020_002.png",
+      "image_ref": "00000020_002.png",
+      "label": "fibrosis|infiltration|pleural_thickening",
+      "sha256": "848772ffc95c5b68be817ba76cc2b9622169d32edc03f940048125e760812866",
+      "bytes": 457612
+    },
+    {
+      "case_id": "00000020_000.png",
+      "image_ref": "00000020_000.png",
+      "label": "pleural_thickening",
+      "sha256": "4e97d31adcc692b1773bc1d0711c9a753c51639c1ff651027e56edd2c6ce8dcf",
+      "bytes": 422071
+    },
+    {
+      "case_id": "00000021_000.png",
+      "image_ref": "00000021_000.png",
+      "label": "nodule",
+      "sha256": "49c799d3fe815310bcd27247ca300fe67d7687c958738dd6dc977dba43b5d6b7",
+      "bytes": 388169
+    },
+    {
+      "case_id": "00000021_001.png",
+      "image_ref": "00000021_001.png",
+      "label": "infiltration",
+      "sha256": "69bb0d0ee0f0031901c177ae137e6e2622b032e00d546c3cdd24d5b5534af7fb",
+      "bytes": 410396
+    },
+    {
+      "case_id": "00000022_001.png",
+      "image_ref": "00000022_001.png",
+      "label": "fibrosis",
+      "sha256": "f7cd4264bfbc687fd15cb977b43b434e106fa05b0b35dc6de93397de27f566ce",
+      "bytes": 406543
+    },
+    {
+      "case_id": "00000023_002.png",
+      "image_ref": "00000023_002.png",
+      "label": "effusion|infiltration",
+      "sha256": "10691f5e40be9686f8970f95bce7034f2154abb50874da62e295486c5eea7fac",
+      "bytes": 386909
+    },
+    {
+      "case_id": "00000023_004.png",
+      "image_ref": "00000023_004.png",
+      "label": "infiltration|mass|nodule",
+      "sha256": "785a04cff94be2253116513a702175ae5416bc6e9cb1e1439daf53b6d382dcdb",
+      "bytes": 377607
+    },
+    {
+      "case_id": "00000024_000.png",
+      "image_ref": "00000024_000.png",
+      "label": "fibrosis",
+      "sha256": "f8ad750cc82b062cad4e6bcc0bb123bd3354a254f27cbdb7af038fe7dbc2872a",
+      "bytes": 392280
+    },
+    {
+      "case_id": "00000025_000.png",
+      "image_ref": "00000025_000.png",
+      "label": "effusion",
+      "sha256": "0b0292a56e824b1e1b0b3fb1ad77eebf76b615e2499a4e774f212d34021e4ab5",
+      "bytes": 412810
+    },
+    {
+      "case_id": "00000026_000.png",
+      "image_ref": "00000026_000.png",
+      "label": "infiltration",
+      "sha256": "1e3c792188403161984c8a4bec01e3a548ea1043e1e93243ab6e149b87b22c9f",
+      "bytes": 439545
+    },
+    {
+      "case_id": "00000027_000.png",
+      "image_ref": "00000027_000.png",
+      "label": "emphysema",
+      "sha256": "301963a3933faeefa43b50be6129ee1a2ad6c25a3b785bbefa2d7fbbd6ab9cc2",
+      "bytes": 448591
+    },
+    {
+      "case_id": "00000028_000.png",
+      "image_ref": "00000028_000.png",
+      "label": "pleural_thickening",
+      "sha256": "a53fb61c11630c65a05eca88718b503d5c3336fbada7d3f621fab9b9bdff095e",
+      "bytes": 393925
+    },
+    {
+      "case_id": "00000030_000.png",
+      "image_ref": "00000030_000.png",
+      "label": "atelectasis",
+      "sha256": "96dfa4b6cda3220a0889022a6b875ad84c0aa2c52ec330ef9c32e3683cd7dc80",
+      "bytes": 428642
+    },
+    {
+      "case_id": "00000030_001.png",
+      "image_ref": "00000030_001.png",
+      "label": "atelectasis",
+      "sha256": "2c4f38a1dd01e18b49c56bc31e76417e064bc381e74193d5a6bc6b25e00d14d5",
+      "bytes": 441155
+    },
+    {
+      "case_id": "00000032_000.png",
+      "image_ref": "00000032_000.png",
+      "label": "cardiomegaly",
+      "sha256": "2276e3a1bd8d30b1aaa5f6e6b1e83c9c8c35c0981210eac04582e2d1ace39708",
+      "bytes": 363268
+    },
+    {
+      "case_id": "00000032_001.png",
+      "image_ref": "00000032_001.png",
+      "label": "cardiomegaly|edema|effusion",
+      "sha256": "b564631ca38e2abfc0734ab2ff904d50505023a85c75daafe3cf22427931fc79",
+      "bytes": 334357
+    },
+    {
+      "case_id": "00000032_004.png",
+      "image_ref": "00000032_004.png",
+      "label": "cardiomegaly|edema|effusion",
+      "sha256": "e706f6135fdab7085103d195f7e471e73cb0c55ba69a6452a3d5a27486407545",
+      "bytes": 370334
+    },
+    {
+      "case_id": "00000032_006.png",
+      "image_ref": "00000032_006.png",
+      "label": "atelectasis|effusion|infiltration",
+      "sha256": "9ab44a79854af436a067b8d0fc67d80473eb610cf9bfa69683eb3803cd1b3d9b",
+      "bytes": 320197
+    },
+    {
+      "case_id": "00000032_007.png",
+      "image_ref": "00000032_007.png",
+      "label": "cardiomegaly|edema|effusion",
+      "sha256": "7f58e947c31ca80fbfad7068b5c6a08d28e6c59fefd063d19e43bb298c107ba7",
+      "bytes": 347045
+    },
+    {
+      "case_id": "00000032_011.png",
+      "image_ref": "00000032_011.png",
+      "label": "infiltration",
+      "sha256": "381f366e8182c711d7b908ebb93d5578a0dd52c95a6840ce799d688606aebf0d",
+      "bytes": 411702
+    },
+    {
+      "case_id": "00000032_012.png",
+      "image_ref": "00000032_012.png",
+      "label": "atelectasis|consolidation|edema|pneumonia",
+      "sha256": "f2b69708c7e1e5f80baa09d72a8037c609e3e605c43f3034c832bda04a7d1c17",
+      "bytes": 366919
+    },
+    {
+      "case_id": "00000032_014.png",
+      "image_ref": "00000032_014.png",
+      "label": "infiltration",
+      "sha256": "229e8569b6cd2bfc4e2de522e27c4668a3daef8cc14147be4795aabe2be37fa1",
+      "bytes": 342549
+    },
+    {
+      "case_id": "00000032_013.png",
+      "image_ref": "00000032_013.png",
+      "label": "infiltration",
+      "sha256": "479120dedc76ce7ef33bcf8635ce60c2375de8a6b0008153e03147e35cb4d2ff",
+      "bytes": 330314
+    },
+    {
+      "case_id": "00000032_015.png",
+      "image_ref": "00000032_015.png",
+      "label": "infiltration",
+      "sha256": "8bc8b745f6d16dc133575e993a87e5e38e0d0923c77119bd608f83c246911235",
+      "bytes": 367411
+    },
+    {
+      "case_id": "00000032_016.png",
+      "image_ref": "00000032_016.png",
+      "label": "consolidation",
+      "sha256": "dfd33262ecfcbae5863de2f7afa9d3dc8ca7693db26fad5a5c5308f2d4feb340",
+      "bytes": 328653
+    },
+    {
+      "case_id": "00000032_017.png",
+      "image_ref": "00000032_017.png",
+      "label": "infiltration",
+      "sha256": "6517ce84cf80fe56ddbf48af209b009b1f8566eda6c9bf7e1a894d3ea4b2f809",
+      "bytes": 352184
+    },
+    {
+      "case_id": "00000032_018.png",
+      "image_ref": "00000032_018.png",
+      "label": "infiltration",
+      "sha256": "e4fe5f928eecc40ad41c774532d8fe02daccfd5e0d22b65436f604025c3ea147",
+      "bytes": 371137
+    },
+    {
+      "case_id": "00000032_021.png",
+      "image_ref": "00000032_021.png",
+      "label": "cardiomegaly",
+      "sha256": "44c357cf497102bbc1e551c6352b718ccfb6fd6ece988863e95c474f3bc69ff2",
+      "bytes": 343760
+    },
+    {
+      "case_id": "00000032_023.png",
+      "image_ref": "00000032_023.png",
+      "label": "edema|infiltration",
+      "sha256": "12e9c92dda11c2bf1da523b204856211c6e69ad69644cde4dd1daf8566973a67",
+      "bytes": 357609
+    },
+    {
+      "case_id": "00000032_024.png",
+      "image_ref": "00000032_024.png",
+      "label": "edema",
+      "sha256": "1e6c67c09c7813c2a8437f5037776116226adad2856c53f4e0f60907f3b84c80",
+      "bytes": 337361
+    },
+    {
+      "case_id": "00000032_026.png",
+      "image_ref": "00000032_026.png",
+      "label": "infiltration",
+      "sha256": "74004cce9bbe49c69179b6d5f7256a1b9e78ba804c3205e434ce8a942f479405",
+      "bytes": 343184
+    },
+    {
+      "case_id": "00000032_027.png",
+      "image_ref": "00000032_027.png",
+      "label": "cardiomegaly|consolidation",
+      "sha256": "7e8c200cae34e12eeacec06462d0877472d834de18f56b3acf4dfcebc59d7122",
+      "bytes": 345523
+    },
+    {
+      "case_id": "00000032_028.png",
+      "image_ref": "00000032_028.png",
+      "label": "cardiomegaly|infiltration",
+      "sha256": "b05926e5fb8f297615e78c92f5fa37d0b94d2a814e5af0e9f2d9e2e46e1d7bae",
+      "bytes": 344421
+    },
+    {
+      "case_id": "00000032_029.png",
+      "image_ref": "00000032_029.png",
+      "label": "cardiomegaly",
+      "sha256": "8f9957e40e3ee60bc0180dc72d6b94b0a18c321dae2fb4272c9125821871b259",
+      "bytes": 363659
+    },
+    {
+      "case_id": "00000032_030.png",
+      "image_ref": "00000032_030.png",
+      "label": "cardiomegaly|consolidation",
+      "sha256": "f8edfdcdcc2313b613c65b38e8bd196534a7368f6053e677f40c8a7e8f5d4755",
+      "bytes": 340863
+    },
+    {
+      "case_id": "00000032_031.png",
+      "image_ref": "00000032_031.png",
+      "label": "cardiomegaly|infiltration",
+      "sha256": "f8aaf64096a65af13e1fea55c986dc11dcd3cd2549193907aa9d2b8ed48c2aba",
+      "bytes": 330641
+    },
+    {
+      "case_id": "00000032_032.png",
+      "image_ref": "00000032_032.png",
+      "label": "cardiomegaly|edema|effusion|infiltration",
+      "sha256": "30e5498bf71876bdc7a13f6a27c8375b2c0db2717c8a5e0b83c8ace012e3b5da",
+      "bytes": 320912
+    },
+    {
+      "case_id": "00000032_033.png",
+      "image_ref": "00000032_033.png",
+      "label": "infiltration",
+      "sha256": "02d0d9426a8b7585fc88597dac1ce2b22b6853b48651e5ae3073ac598547e26e",
+      "bytes": 332135
+    },
+    {
+      "case_id": "00000032_034.png",
+      "image_ref": "00000032_034.png",
+      "label": "atelectasis|edema|effusion|infiltration",
+      "sha256": "631e00ae769630dc870547082847195998df4000b57645ff8c6dc92059ec3454",
+      "bytes": 373590
+    },
+    {
+      "case_id": "00000032_035.png",
+      "image_ref": "00000032_035.png",
+      "label": "atelectasis|edema|effusion|infiltration",
+      "sha256": "f163ed19a95d91e53303962488daf3d7c17df431768ff1275d65d6f2f2fe8155",
+      "bytes": 376158
+    },
+    {
+      "case_id": "00000032_036.png",
+      "image_ref": "00000032_036.png",
+      "label": "atelectasis|edema|effusion|infiltration",
+      "sha256": "e3e22aba8cad6baf893ddadc3b8d0a85b0b2db2e2273d6f1c057031698a8b985",
+      "bytes": 358382
+    },
+    {
+      "case_id": "00000032_037.png",
+      "image_ref": "00000032_037.png",
+      "label": "cardiomegaly|edema|infiltration",
+      "sha256": "79bd0e2bf53e45ee5a7245d63f3c3b84b47acec447cdada48169732c75aa85fe",
+      "bytes": 329487
+    },
+    {
+      "case_id": "00000032_038.png",
+      "image_ref": "00000032_038.png",
+      "label": "consolidation|infiltration",
+      "sha256": "9957f59ef0c7cfafaac256e7a3e25e07c6cc7766954b65b08995103bfa49d979",
+      "bytes": 352888
+    },
+    {
+      "case_id": "00000032_039.png",
+      "image_ref": "00000032_039.png",
+      "label": "consolidation|edema",
+      "sha256": "bf485f1e09effdff9fc883d0821d34a37a840a154af6fabbe6f5e1be15c4b893",
+      "bytes": 335223
+    },
+    {
+      "case_id": "00000032_040.png",
+      "image_ref": "00000032_040.png",
+      "label": "cardiomegaly|edema",
+      "sha256": "2cb22b83b4b6e08e2863007e7247d62e28824d4a9fc7903fa1ce8834c74e4c69",
+      "bytes": 356042
+    },
+    {
+      "case_id": "00000032_041.png",
+      "image_ref": "00000032_041.png",
+      "label": "edema|effusion|infiltration|nodule",
+      "sha256": "67b80517422f23e0c3486cfbcdb2f7592cbf4a160419b9b68597a512246e156c",
+      "bytes": 335692
+    },
+    {
+      "case_id": "00000032_043.png",
+      "image_ref": "00000032_043.png",
+      "label": "consolidation|infiltration",
+      "sha256": "7ff89c35ca1f8fb944f442298b54caa201ef6b0309b27ef5fc8c321dffeafb96",
+      "bytes": 345672
+    },
+    {
+      "case_id": "00000032_044.png",
+      "image_ref": "00000032_044.png",
+      "label": "cardiomegaly|edema",
+      "sha256": "1983fdfb755f50b954c561f2b62a4d6087e24b804483a4bc56f0701d6e5f6125",
+      "bytes": 350458
+    },
+    {
+      "case_id": "00000032_045.png",
+      "image_ref": "00000032_045.png",
+      "label": "cardiomegaly|edema|effusion|infiltration",
+      "sha256": "ddca3be9dffdb1b0cf555af69b73219a09c570bfb4da714f46c232f7b3f72a04",
+      "bytes": 336447
+    },
+    {
+      "case_id": "00000032_047.png",
+      "image_ref": "00000032_047.png",
+      "label": "infiltration",
+      "sha256": "5c57f49365223c809c4a0e150538cf24368158fc5d7a2c20e541ef4bd13cae72",
+      "bytes": 371893
+    },
+    {
+      "case_id": "00000032_050.png",
+      "image_ref": "00000032_050.png",
+      "label": "atelectasis|edema|infiltration",
+      "sha256": "c4044e2ba2cfd88cc2494cda4865ed5ca8d9e38ad06bcd480aac646d165cc356",
+      "bytes": 378079
+    },
+    {
+      "case_id": "00000032_052.png",
+      "image_ref": "00000032_052.png",
+      "label": "atelectasis|edema|infiltration",
+      "sha256": "7aa4e9e992e0e70fbd9317b2db9454c68c1952509c32966f5ffa48b1157328e9",
+      "bytes": 356220
+    },
+    {
+      "case_id": "00000032_053.png",
+      "image_ref": "00000032_053.png",
+      "label": "cardiomegaly",
+      "sha256": "9f64a754547988a2ae36e687242e4f0c40e16e19d090be1645c317dcc2024d7b",
+      "bytes": 387395
+    },
+    {
+      "case_id": "00000032_054.png",
+      "image_ref": "00000032_054.png",
+      "label": "atelectasis",
+      "sha256": "ec92b34ce777831896fef11a760388ff0323e57baa5e0967cce3e85b34a71900",
+      "bytes": 362762
+    },
+    {
+      "case_id": "00000032_055.png",
+      "image_ref": "00000032_055.png",
+      "label": "cardiomegaly",
+      "sha256": "25bdd83c9ddce88bb35e6a6ba43058303edf411508e251ea077862c1796d3447",
+      "bytes": 380272
+    },
+    {
+      "case_id": "00000032_056.png",
+      "image_ref": "00000032_056.png",
+      "label": "cardiomegaly",
+      "sha256": "ecf4a4826b97982eb51d9d948edb8737f8f9f8896022df0be3dc1b06e0bd13f4",
+      "bytes": 324384
+    },
+    {
+      "case_id": "00000032_058.png",
+      "image_ref": "00000032_058.png",
+      "label": "edema|effusion|infiltration",
+      "sha256": "45ebff153ed378041442b7bd3f91bb3c60555a29ee1f54bf12b4825472f81382",
+      "bytes": 374176
+    },
+    {
+      "case_id": "00000032_057.png",
+      "image_ref": "00000032_057.png",
+      "label": "edema|effusion|infiltration",
+      "sha256": "39646d3d3b7fe0a044c6101476cb79f174154b37a17d8fbe2845deb890a7f469",
+      "bytes": 364740
+    },
+    {
+      "case_id": "00000032_059.png",
+      "image_ref": "00000032_059.png",
+      "label": "cardiomegaly|infiltration",
+      "sha256": "7eee8c5363653642c987c88f155ee556e55d87d7dc2dc4d7f9d44a0012d302de",
+      "bytes": 411748
+    },
+    {
+      "case_id": "00000032_060.png",
+      "image_ref": "00000032_060.png",
+      "label": "cardiomegaly|edema",
+      "sha256": "d1515ea88528353b13f0b07af02a4715c4c0c9c21ed619745cd9c96bdd620ef0",
+      "bytes": 396267
+    },
+    {
+      "case_id": "00000033_000.png",
+      "image_ref": "00000033_000.png",
+      "label": "atelectasis|cardiomegaly|fibrosis",
+      "sha256": "b3bdb2dd693b8a1dcb595490ca2d39f4bd14ff641f677184c3d35cea4925b8d8",
+      "bytes": 420354
+    },
+    {
+      "case_id": "00000034_000.png",
+      "image_ref": "00000034_000.png",
+      "label": "emphysema",
+      "sha256": "cab900c7f648ad9c834af0ca230809f78f610d5ca19e03cf6971294b3a1993f5",
+      "bytes": 413537
+    },
+    {
+      "case_id": "00000036_000.png",
+      "image_ref": "00000036_000.png",
+      "label": "effusion|infiltration",
+      "sha256": "03b889a213e5983a7efc4535e98b5ed17a5f253050025cca1a50824994b8c3a7",
+      "bytes": 433601
+    },
+    {
+      "case_id": "00000038_000.png",
+      "image_ref": "00000038_000.png",
+      "label": "cardiomegaly|effusion",
+      "sha256": "37db2408e44c6eb5d013ffc63d05800f007f7cfd3e9361b9f5982b3f84aa065b",
+      "bytes": 446986
+    },
+    {
+      "case_id": "00000038_001.png",
+      "image_ref": "00000038_001.png",
+      "label": "atelectasis|infiltration",
+      "sha256": "042b3ecc1d92410df10fb20330921e9b3b7b1e46edbe2c96f5e117df2f0882f6",
+      "bytes": 462020
+    },
+    {
+      "case_id": "00000038_003.png",
+      "image_ref": "00000038_003.png",
+      "label": "cardiomegaly",
+      "sha256": "8bd942d5c28bf497acdf740f0f102bd860a3fec5e320822dd2db281579fb7c87",
+      "bytes": 432593
+    },
+    {
+      "case_id": "00000038_006.png",
+      "image_ref": "00000038_006.png",
+      "label": "atelectasis|infiltration",
+      "sha256": "771c1d01f6a5444d595090f10a7bbc889061376c18c7a78a596d6c9012eab542",
+      "bytes": 497753
+    },
+    {
+      "case_id": "00000039_004.png",
+      "image_ref": "00000039_004.png",
+      "label": "effusion",
+      "sha256": "468042129f75d515b03e89910cf856415a3b53d6bfb40100d90eff606623663a",
+      "bytes": 440766
+    },
+    {
+      "case_id": "00000040_001.png",
+      "image_ref": "00000040_001.png",
+      "label": "emphysema",
+      "sha256": "3f42e5e5f0b81da83603a31edd5552dc75ae714d73232a7f59e8761e53151b34",
+      "bytes": 354242
+    },
+    {
+      "case_id": "00000040_003.png",
+      "image_ref": "00000040_003.png",
+      "label": "consolidation|mass",
+      "sha256": "572cfbbd18832b92b793d7140feac8a152d33487a423e9240cd344b2d3d1e7f1",
+      "bytes": 399791
+    },
+    {
+      "case_id": "00000041_000.png",
+      "image_ref": "00000041_000.png",
+      "label": "emphysema|infiltration",
+      "sha256": "df9a78f9208c4de4650c34e43d7fa3ce7b719468ff07aee6304b71121c068c15",
+      "bytes": 380252
+    },
+    {
+      "case_id": "00000041_001.png",
+      "image_ref": "00000041_001.png",
+      "label": "emphysema",
+      "sha256": "f2e09cb37aba59db6e7f17321432b41094bedf473da18d089471a6d1f65f02f6",
+      "bytes": 345737
+    },
+    {
+      "case_id": "00000041_002.png",
+      "image_ref": "00000041_002.png",
+      "label": "emphysema|pneumothorax",
+      "sha256": "cfd7770c1d204433db90e49babf41942a49f6808c0633bd087650bfe99c9a7c2",
+      "bytes": 428395
+    },
+    {
+      "case_id": "00000041_005.png",
+      "image_ref": "00000041_005.png",
+      "label": "emphysema",
+      "sha256": "9092f868156128b2e431b3707f73b497804a08d8cca9342d6b6a4f197073c316",
+      "bytes": 416532
+    },
+    {
+      "case_id": "00000041_006.png",
+      "image_ref": "00000041_006.png",
+      "label": "effusion",
+      "sha256": "86434e62341bcb6caf71554fb1b72f0ebb19413363a11d051d1c15111dcba641",
+      "bytes": 451313
+    },
+    {
+      "case_id": "00000042_006.png",
+      "image_ref": "00000042_006.png",
+      "label": "infiltration",
+      "sha256": "491f8c47cd8ab73ed8dc4374c2d7bc3a26385c8596363241c8a9995524215978",
+      "bytes": 435384
+    },
+    {
+      "case_id": "00000043_000.png",
+      "image_ref": "00000043_000.png",
+      "label": "infiltration",
+      "sha256": "f4d6624a5a304377b739b70d8c11f059d595707583a748a0f18ff923f1825531",
+      "bytes": 450078
+    },
+    {
+      "case_id": "00000044_000.png",
+      "image_ref": "00000044_000.png",
+      "label": "consolidation|effusion|infiltration",
+      "sha256": "635290d96dcaaf1d30432f2d20f8c6001e598416a48483abc4b8cbd47c9b9790",
+      "bytes": 403880
+    },
+    {
+      "case_id": "00000044_001.png",
+      "image_ref": "00000044_001.png",
+      "label": "infiltration|pleural_thickening",
+      "sha256": "61f90fbe3b53435cbe8a61091f0c80ace19ae8a48dc42c39de851efad71e280f",
+      "bytes": 435552
+    },
+    {
+      "case_id": "00000044_002.png",
+      "image_ref": "00000044_002.png",
+      "label": "cardiomegaly",
+      "sha256": "2004d77daa82a488d52a192dc0417d7cb38c803480afee4736f1c11cd4dbd86c",
+      "bytes": 425881
+    },
+    {
+      "case_id": "00000045_000.png",
+      "image_ref": "00000045_000.png",
+      "label": "cardiomegaly",
+      "sha256": "815f65b031b78c53872d14c76c23c82202b0c076b1819290aa4309fabefb6208",
+      "bytes": 348924
+    },
+    {
+      "case_id": "00000047_003.png",
+      "image_ref": "00000047_003.png",
+      "label": "atelectasis",
+      "sha256": "69c9622a2faddd095c4b631ebaa9d654b4e55f382c39525db16dfde07c926ddd",
+      "bytes": 371290
+    },
+    {
+      "case_id": "00000047_004.png",
+      "image_ref": "00000047_004.png",
+      "label": "atelectasis",
+      "sha256": "145d4bb73645261b0f7c7a67b656448f9c1433c0d81e0969867cefb1a24e5d3d",
+      "bytes": 415562
+    },
+    {
+      "case_id": "00000047_006.png",
+      "image_ref": "00000047_006.png",
+      "label": "atelectasis|effusion",
+      "sha256": "432e30a69624d6b2efe0ca186e5e4e1b2427d21f392c424b70b95988c59eeff0",
+      "bytes": 430091
+    },
+    {
+      "case_id": "00000049_000.png",
+      "image_ref": "00000049_000.png",
+      "label": "nodule",
+      "sha256": "833a6bc5db783d0575ae292d960e52bff6be4ef47cb0b99b98be2488ff24a720",
+      "bytes": 458145
+    },
+    {
+      "case_id": "00000051_000.png",
+      "image_ref": "00000051_000.png",
+      "label": "infiltration",
+      "sha256": "62acf6f608a789d7e71eef1c98fd4506f27aa2fbac9028969b5a498ac9129b80",
+      "bytes": 376994
+    },
+    {
+      "case_id": "00000053_000.png",
+      "image_ref": "00000053_000.png",
+      "label": "fibrosis|infiltration|nodule",
+      "sha256": "72c138d7dc9a660197fbd4d82c35fa1d8a4855c78c61db5e900ddda07cfaf07c",
+      "bytes": 460147
+    },
+    {
+      "case_id": "00000053_001.png",
+      "image_ref": "00000053_001.png",
+      "label": "atelectasis|infiltration",
+      "sha256": "5bfd35a764777d625f0b4b29e9e35132c4ba56e213c8c6c8eb2ddcf1d3cd673b",
+      "bytes": 414811
+    },
+    {
+      "case_id": "00000054_006.png",
+      "image_ref": "00000054_006.png",
+      "label": "infiltration",
+      "sha256": "12c8b95ce7f8640f1346981159fec5eaaaa8d12f5e2fdd29544039513ab3234c",
+      "bytes": 409780
+    },
+    {
+      "case_id": "00000054_000.png",
+      "image_ref": "00000054_000.png",
+      "label": "infiltration",
+      "sha256": "9bc641ba63d18261c8c3854f8177c6ead361df15d34a825e1b0d5ab67ce443a7",
+      "bytes": 440200
+    },
+    {
+      "case_id": "00000056_000.png",
+      "image_ref": "00000056_000.png",
+      "label": "nodule|pneumonia",
+      "sha256": "c37614834e8d5176a80314ec15d293697d8aa8103fc4b7b2a9803131dbf451e7",
+      "bytes": 379100
+    },
+    {
+      "case_id": "00000056_001.png",
+      "image_ref": "00000056_001.png",
+      "label": "effusion",
+      "sha256": "5bf584c715ddf01c953dc663c932a5b9bb53fd8e60680afc8bf1166ad5dcb1b8",
+      "bytes": 435250
+    },
+    {
+      "case_id": "00000057_004.png",
+      "image_ref": "00000057_004.png",
+      "label": "infiltration",
+      "sha256": "772de9c5dca91474c97a17cbb4c341727dd298d0256a1a8c9ef4eb70977691f0",
+      "bytes": 450233
+    },
+    {
+      "case_id": "00000057_002.png",
+      "image_ref": "00000057_002.png",
+      "label": "atelectasis|infiltration",
+      "sha256": "66546256eeba72438347f87abe471e4ba3af5782a5b9f71a54ec0e0b01c17c24",
+      "bytes": 439185
+    },
+    {
+      "case_id": "00000058_000.png",
+      "image_ref": "00000058_000.png",
+      "label": "atelectasis|infiltration",
+      "sha256": "e80caccf642fbdfa4923cbd5e46033aad4d055b792d7486252cecf053039de3f",
+      "bytes": 685075
+    },
+    {
+      "case_id": "00000060_000.png",
+      "image_ref": "00000060_000.png",
+      "label": "atelectasis",
+      "sha256": "91e707a8e89344f061f02b52ceb1615fefd11b6f12f714225495e11201e36b60",
+      "bytes": 447436
+    },
+    {
+      "case_id": "00000061_000.png",
+      "image_ref": "00000061_000.png",
+      "label": "infiltration|nodule",
+      "sha256": "39116b9602d4f6006be6d41d2c1ea3dd3230e884abca5bf49b449fa81f27062f",
+      "bytes": 417717
+    },
+    {
+      "case_id": "00000061_001.png",
+      "image_ref": "00000061_001.png",
+      "label": "mass",
+      "sha256": "02438dd0faa38ad2dabbaa71f500c59fa0c83abeaf2cde9fdf6509be18b1a183",
+      "bytes": 466510
+    },
+    {
+      "case_id": "00000061_002.png",
+      "image_ref": "00000061_002.png",
+      "label": "effusion",
+      "sha256": "568c65fc0b33edd56aa9e4ccf61d57d35335713363d0d89928fc9c4065dd1d49",
+      "bytes": 434030
+    },
+    {
+      "case_id": "00000061_003.png",
+      "image_ref": "00000061_003.png",
+      "label": "effusion|pleural_thickening",
+      "sha256": "5cc9baf4bea904b8e3ef6fd8fc7eafe4362f8892392f3a769f435284eda036a8",
+      "bytes": 418228
+    },
+    {
+      "case_id": "00000061_004.png",
+      "image_ref": "00000061_004.png",
+      "label": "atelectasis|effusion",
+      "sha256": "30e522541c4b739cab5b8cefa432e791935da106640b8111f90a23be87d64bee",
+      "bytes": 407639
+    },
+    {
+      "case_id": "00000061_005.png",
+      "image_ref": "00000061_005.png",
+      "label": "effusion|infiltration",
+      "sha256": "924e44e76876c315a3aca2f95833f39625205b16acb766b0fc49bdf5973e0dee",
+      "bytes": 433241
+    },
+    {
+      "case_id": "00000061_006.png",
+      "image_ref": "00000061_006.png",
+      "label": "effusion",
+      "sha256": "94c1ded26d80bf9e440d2625cf90bcaad78789a14a91520d4029a6e9d4263128",
+      "bytes": 433735
+    },
+    {
+      "case_id": "00000061_007.png",
+      "image_ref": "00000061_007.png",
+      "label": "effusion",
+      "sha256": "81a146574b0bfda4ea1c424ce57ae63ea860a0e0754044265096febbf5689c35",
+      "bytes": 369876
+    },
+    {
+      "case_id": "00000061_008.png",
+      "image_ref": "00000061_008.png",
+      "label": "effusion",
+      "sha256": "2591bc091602424c648d9ad4abbae1e99c2e9fbebe524b29cb14fda6a52b1036",
+      "bytes": 336562
+    },
+    {
+      "case_id": "00000061_009.png",
+      "image_ref": "00000061_009.png",
+      "label": "effusion|infiltration",
+      "sha256": "326cb660ace41544913bb5bd94ef768e70e6d5993a795d1159942788bab51958",
+      "bytes": 417808
+    },
+    {
+      "case_id": "00000061_010.png",
+      "image_ref": "00000061_010.png",
+      "label": "effusion|infiltration",
+      "sha256": "369a06b04d5634cb828b0f6c4afd4a8a9635171fd35d984ae4ee83a9f81deb76",
+      "bytes": 417839
+    },
+    {
+      "case_id": "00000061_011.png",
+      "image_ref": "00000061_011.png",
+      "label": "effusion",
+      "sha256": "f6f99f79ac5df710a6943cf26d92b66f4a2383d8ded5f7d8fc2fb5c1bfd8f01e",
+      "bytes": 391258
+    },
+    {
+      "case_id": "00000061_012.png",
+      "image_ref": "00000061_012.png",
+      "label": "edema|effusion|infiltration|pleural_thickening|pneumonia",
+      "sha256": "66c6b5e01b47d7410af02a7229d0cb65cc0746bf82a81c7b42405b293fb8b626",
+      "bytes": 403276
+    },
+    {
+      "case_id": "00000061_013.png",
+      "image_ref": "00000061_013.png",
+      "label": "effusion|fibrosis",
+      "sha256": "2458927b8dcca46be0f99ac14ab3c70e5facceb7449460f69780761d41ef1c29",
+      "bytes": 437573
+    },
+    {
+      "case_id": "00000061_014.png",
+      "image_ref": "00000061_014.png",
+      "label": "effusion|fibrosis",
+      "sha256": "04401a5100f8fac7d7bfd7fa2d3cd6e6c38fb41bf7dcd55d9b2336bb32700213",
+      "bytes": 458920
+    },
+    {
+      "case_id": "00000061_015.png",
+      "image_ref": "00000061_015.png",
+      "label": "pneumonia",
+      "sha256": "bd408a15b2692fb7b87409cf134e1fe2ef20f96afefc54a41fbad1d8232de17d",
+      "bytes": 416369
+    },
+    {
+      "case_id": "00000061_017.png",
+      "image_ref": "00000061_017.png",
+      "label": "edema|effusion|infiltration",
+      "sha256": "baf19cb1bf52917c26eea57bdc9e2f6b9fb66a487379f020d3504c133749149f",
+      "bytes": 433751
+    },
+    {
+      "case_id": "00000061_018.png",
+      "image_ref": "00000061_018.png",
+      "label": "infiltration",
+      "sha256": "87998751ce061abbf1f511c283b88f788dc859b5d2c2d08b060549db9fbc02ef",
+      "bytes": 428826
+    },
+    {
+      "case_id": "00000061_020.png",
+      "image_ref": "00000061_020.png",
+      "label": "edema|effusion",
+      "sha256": "dc32477db1ab41c8f91a0c5e7e3f8770142c69e556a6755265b57f6b5e1075ee",
+      "bytes": 432558
+    },
+    {
+      "case_id": "00000061_023.png",
+      "image_ref": "00000061_023.png",
+      "label": "consolidation|effusion|infiltration|mass",
+      "sha256": "348a2601063ddf1820eb57376d30246694eb2a85f91d9672ee5e5ae8a2618bf9",
+      "bytes": 416958
+    },
+    {
+      "case_id": "00000061_024.png",
+      "image_ref": "00000061_024.png",
+      "label": "infiltration",
+      "sha256": "eeee63175340c55cc0567318cae28fb992fd9a0f3bf2b6fb2e440228d54b2f5e",
+      "bytes": 433708
+    },
+    {
+      "case_id": "00000061_025.png",
+      "image_ref": "00000061_025.png",
+      "label": "consolidation|effusion|infiltration|nodule",
+      "sha256": "4f770a09ef2b2cac68018b5b0f7510dd806a36767139699a00115aad56a46da7",
+      "bytes": 423365
+    },
+    {
+      "case_id": "00000062_000.png",
+      "image_ref": "00000062_000.png",
+      "label": "infiltration",
+      "sha256": "e7275ab8df2e2030813a399f5da806eb25292a97dd35ed6b3c1ae2a659f83789",
+      "bytes": 429489
+    },
+    {
+      "case_id": "00000063_000.png",
+      "image_ref": "00000063_000.png",
+      "label": "infiltration",
+      "sha256": "b8f3a279180be1db00dc3139333490352d4f861732f6473d6d13fe7be3d2bed6",
+      "bytes": 421304
+    },
+    {
+      "case_id": "00000066_000.png",
+      "image_ref": "00000066_000.png",
+      "label": "atelectasis",
+      "sha256": "5ae33d0987db05eed9a4f79f3cadef6abd23ee08156fd136ca1c20daf08482e1",
+      "bytes": 440391
+    },
+    {
+      "case_id": "00000067_000.png",
+      "image_ref": "00000067_000.png",
+      "label": "fibrosis",
+      "sha256": "8669166285e0f1aeb6475c0e7ca63917b905ae0337865a599dcc029106f418b0",
+      "bytes": 436781
+    },
+    {
+      "case_id": "00000067_001.png",
+      "image_ref": "00000067_001.png",
+      "label": "atelectasis",
+      "sha256": "f10c48727736ccc2063953ccdf5b9969b582afa9c60025a8b0ac99eb6003a1c7",
+      "bytes": 422744
+    },
+    {
+      "case_id": "00000069_000.png",
+      "image_ref": "00000069_000.png",
+      "label": "cardiomegaly",
+      "sha256": "e5fd4aa40ed156a531c7b3d9be3d155ddb60c74ee37345bd55f3625506410d15",
+      "bytes": 414281
+    },
+    {
+      "case_id": "00000071_000.png",
+      "image_ref": "00000071_000.png",
+      "label": "nodule",
+      "sha256": "408419d4fd3ebc628a88fab394f86139659259516ce5d032d083c5b52005e6ab",
+      "bytes": 427376
+    },
+    {
+      "case_id": "00000071_001.png",
+      "image_ref": "00000071_001.png",
+      "label": "pneumothorax",
+      "sha256": "a9c52e77c2fe5bf266c67b52b2fb63fec348f56a40588debca37964b8a685b82",
+      "bytes": 364947
+    },
+    {
+      "case_id": "00000071_002.png",
+      "image_ref": "00000071_002.png",
+      "label": "effusion",
+      "sha256": "6b61f918fe492ebb52143cba9e61d4a9a6c79caa0ccfe392248224d8071d8fdd",
+      "bytes": 414643
+    },
+    {
+      "case_id": "00000071_004.png",
+      "image_ref": "00000071_004.png",
+      "label": "nodule",
+      "sha256": "920ec19bfb7c8273687627b12de55d90ca9d2f6a8e153a551e5f79f680c78e1e",
+      "bytes": 375105
+    },
+    {
+      "case_id": "00000071_005.png",
+      "image_ref": "00000071_005.png",
+      "label": "effusion|infiltration",
+      "sha256": "e258c2cc97f5676eebb0a2d9fff9ff4640f797c99ffbccfac69f90653624cab3",
+      "bytes": 350031
+    },
+    {
+      "case_id": "00000071_006.png",
+      "image_ref": "00000071_006.png",
+      "label": "effusion|infiltration",
+      "sha256": "ea0f306212fac83b767332f507550cb7319eaaef42b7e5a0f9ed815eebcffed2",
+      "bytes": 436320
+    },
+    {
+      "case_id": "00000071_007.png",
+      "image_ref": "00000071_007.png",
+      "label": "effusion",
+      "sha256": "5130b48fe8ba2d3352777eed743d19adc3653f845f1324ef1d4ef596e593466a",
+      "bytes": 359098
+    },
+    {
+      "case_id": "00000071_008.png",
+      "image_ref": "00000071_008.png",
+      "label": "mass",
+      "sha256": "5032d7ae8e9534e7f57407912bf94e5724aec575683ecb7f5aa73cd5d09a48e2",
+      "bytes": 315119
+    },
+    {
+      "case_id": "00000072_000.png",
+      "image_ref": "00000072_000.png",
+      "label": "atelectasis",
+      "sha256": "545950953f473c93a002f218113a3afde932a5289ec0ca2c392278f23ad0aceb",
+      "bytes": 452540
+    },
+    {
+      "case_id": "00000073_002.png",
+      "image_ref": "00000073_002.png",
+      "label": "emphysema",
+      "sha256": "d1b030a804f0d2af04805a6fec9cf9d0cf9388fe22459944345c57a38ac04a0e",
+      "bytes": 393589
+    },
+    {
+      "case_id": "00000074_000.png",
+      "image_ref": "00000074_000.png",
+      "label": "effusion",
+      "sha256": "9b1a5cc2deae5a2f38e61c4a5b6452090927369c77991908d0fe6ff89b746094",
+      "bytes": 430581
+    },
+    {
+      "case_id": "00000075_000.png",
+      "image_ref": "00000075_000.png",
+      "label": "cardiomegaly",
+      "sha256": "c8dc36f5ee35f9682b10e285943a6fc25adc9b9cb3c0044a5290567ff921f49b",
+      "bytes": 428226
+    },
+    {
+      "case_id": "00000075_001.png",
+      "image_ref": "00000075_001.png",
+      "label": "cardiomegaly",
+      "sha256": "44dcc16f034452d77f0ac71b081d7c43533ddea47d7056639d52fb3136c71e60",
+      "bytes": 394201
+    },
+    {
+      "case_id": "00000076_000.png",
+      "image_ref": "00000076_000.png",
+      "label": "effusion",
+      "sha256": "461bd6117bf062134e5656a193a4ceddf35920e9c42a87cb497afd9b9ccec276",
+      "bytes": 648950
+    },
+    {
+      "case_id": "00000077_000.png",
+      "image_ref": "00000077_000.png",
+      "label": "cardiomegaly",
+      "sha256": "d3e593485b922ab9951357323df535684e9c708cff6ee85c3e14acf8b3179486",
+      "bytes": 416158
+    },
+    {
+      "case_id": "00000078_001.png",
+      "image_ref": "00000078_001.png",
+      "label": "atelectasis|effusion",
+      "sha256": "bf5e09562555862c899860050ddab02e08a51fdc775069ab8ca089ee6dcbcc06",
+      "bytes": 411157
+    },
+    {
+      "case_id": "00000078_002.png",
+      "image_ref": "00000078_002.png",
+      "label": "atelectasis|effusion|infiltration",
+      "sha256": "ee2658277bec80296837715e8cb792750b633da46eb6f4845cb3f13bd5de9266",
+      "bytes": 417477
+    },
+    {
+      "case_id": "00000079_000.png",
+      "image_ref": "00000079_000.png",
+      "label": "mass",
+      "sha256": "37154f8242729dd872d9623aff5bf2416b5d279726bc303a1ca03b5e42029a07",
+      "bytes": 411706
+    },
+    {
+      "case_id": "00000080_001.png",
+      "image_ref": "00000080_001.png",
+      "label": "atelectasis",
+      "sha256": "3de3f2cb2abfaf8d9499fed4ad225bfc8d175b179c5c06796d5302164bb7ba81",
+      "bytes": 399113
+    },
+    {
+      "case_id": "00000080_004.png",
+      "image_ref": "00000080_004.png",
+      "label": "atelectasis",
+      "sha256": "8c5b80d0fd8c30f108efeccd9d038f92d274b0dbac3166df700f759e56b861e6",
+      "bytes": 401913
+    },
+    {
+      "case_id": "00000084_000.png",
+      "image_ref": "00000084_000.png",
+      "label": "effusion",
+      "sha256": "5d48445bb1671c3501ebc37eaa9ed6996329c06c7c580571a9563ed9b68d854b",
+      "bytes": 593942
+    },
+    {
+      "case_id": "00000084_001.png",
+      "image_ref": "00000084_001.png",
+      "label": "effusion",
+      "sha256": "70a347be34b4ecc10bef27e4fd739d1688f2ba6c69cc5f6f1cecd3c5609df870",
+      "bytes": 432720
+    },
+    {
+      "case_id": "00000086_001.png",
+      "image_ref": "00000086_001.png",
+      "label": "emphysema",
+      "sha256": "27a47d6a614402438935f615815961276988ffbe98b591e05b01e0611a85a584",
+      "bytes": 639281
+    },
+    {
+      "case_id": "00000086_002.png",
+      "image_ref": "00000086_002.png",
+      "label": "atelectasis",
+      "sha256": "4bb27077b9807bd83c1ee0d5ac902c6a84c771107bdc28e735d2805794ac151f",
+      "bytes": 371103
+    },
+    {
+      "case_id": "00000088_000.png",
+      "image_ref": "00000088_000.png",
+      "label": "cardiomegaly|effusion",
+      "sha256": "3f496a6df3f72565a6c331313d95e68c61cfb2d991f76e0fecee70a58b589999",
+      "bytes": 371584
+    },
+    {
+      "case_id": "00000089_000.png",
+      "image_ref": "00000089_000.png",
+      "label": "infiltration",
+      "sha256": "f47b0dbd8b198c7f6fa98aa6fe19f0e18bf4c9bdedf19dd68b47864d22a636fd",
+      "bytes": 441551
+    },
+    {
+      "case_id": "00000090_003.png",
+      "image_ref": "00000090_003.png",
+      "label": "effusion",
+      "sha256": "54a8a3aea6444f3e2b94ebb9cccca46a1dc7e7119e6edacde18752ab30066ea6",
+      "bytes": 388366
+    },
+    {
+      "case_id": "00000090_004.png",
+      "image_ref": "00000090_004.png",
+      "label": "atelectasis|effusion",
+      "sha256": "a846306de3a702d505e5d2a30c5ed6a9ef1fd0bada4b656761d352e98ab8513e",
+      "bytes": 375914
+    },
+    {
+      "case_id": "00000090_005.png",
+      "image_ref": "00000090_005.png",
+      "label": "effusion|emphysema|infiltration",
+      "sha256": "014906363785a584e3da04dc2eaab83e331a32ca083062f7f98981380afaf7e5",
+      "bytes": 376065
+    },
+    {
+      "case_id": "00000090_008.png",
+      "image_ref": "00000090_008.png",
+      "label": "effusion",
+      "sha256": "e6ef27b98af6dc9f8784833470014baaa360cb1db6d2a08074211a56b2524da3",
+      "bytes": 432682
+    },
+    {
+      "case_id": "00000090_009.png",
+      "image_ref": "00000090_009.png",
+      "label": "pneumothorax",
+      "sha256": "7661e015ab4394cb750f49092b3d461ad636763d9e03cbf0bb5c745f20dac7e8",
+      "bytes": 363025
+    },
+    {
+      "case_id": "00000091_001.png",
+      "image_ref": "00000091_001.png",
+      "label": "nodule",
+      "sha256": "a23365f36512853324b739fa4044b2c18424b7a5bcdb82f5e8af6a76de2a183a",
+      "bytes": 383001
+    },
+    {
+      "case_id": "00000091_002.png",
+      "image_ref": "00000091_002.png",
+      "label": "infiltration|mass",
+      "sha256": "4234a5b0aba69133d880f307f6c8335f4b3f414bdb477525171605b82e11d64a",
+      "bytes": 444955
+    },
+    {
+      "case_id": "00000091_003.png",
+      "image_ref": "00000091_003.png",
+      "label": "mass",
+      "sha256": "cc6f1a5e7d277f7f3157612c8586add91019777ef6006e3c6bd18f1380a1fdf0",
+      "bytes": 439739
+    },
+    {
+      "case_id": "00000091_004.png",
+      "image_ref": "00000091_004.png",
+      "label": "infiltration",
+      "sha256": "64ba5fc50c6409f373fa3ffd3530234628c5a032f0259ab8340f4d1cd23e2eda",
+      "bytes": 452376
+    },
+    {
+      "case_id": "00000091_005.png",
+      "image_ref": "00000091_005.png",
+      "label": "effusion|infiltration",
+      "sha256": "ce3120607f34b294124f0a4095af7c7d401f8c18ca8ce38d83a366d31932ed60",
+      "bytes": 387265
+    },
+    {
+      "case_id": "00000091_008.png",
+      "image_ref": "00000091_008.png",
+      "label": "atelectasis",
+      "sha256": "12956f966ddb07053cadfa592a102daab8c5293399411792c6764b9369049dc3",
+      "bytes": 364571
+    },
+    {
+      "case_id": "00000091_009.png",
+      "image_ref": "00000091_009.png",
+      "label": "effusion",
+      "sha256": "5baf0a2f8aceeb077c501cf52230f9161c255d05eba95f47b1ca0a28fb81c8fc",
+      "bytes": 371566
+    },
+    {
+      "case_id": "00000091_010.png",
+      "image_ref": "00000091_010.png",
+      "label": "atelectasis|infiltration",
+      "sha256": "f3421700fcc68c8b62993f6d777b90b44847dca908ca4764e990a730cef3d3f2",
+      "bytes": 386169
+    },
+    {
+      "case_id": "00000092_001.png",
+      "image_ref": "00000092_001.png",
+      "label": "effusion|fibrosis",
+      "sha256": "159c575450c6836c8d57e5b8bc52d6daf4cc8c9e7d2d95fc79fb33dbf62e00e0",
+      "bytes": 421309
+    },
+    {
+      "case_id": "00000092_002.png",
+      "image_ref": "00000092_002.png",
+      "label": "fibrosis",
+      "sha256": "7ea8d9772535c9bfd4309f0de4beb8fbd0e66a8af38a297dd2ec6c3f3a41cca7",
+      "bytes": 400591
+    },
+    {
+      "case_id": "00000092_003.png",
+      "image_ref": "00000092_003.png",
+      "label": "fibrosis",
+      "sha256": "f7cfd741853fedc374ebb9b1b45bcc30242ed1a1b608c41d235bb3888f6a5e16",
+      "bytes": 378291
+    },
+    {
+      "case_id": "00000093_000.png",
+      "image_ref": "00000093_000.png",
+      "label": "nodule",
+      "sha256": "37aa0302c332a0cc09288edc7c815a5f4c356485556b8a299463665a480e8426",
+      "bytes": 431412
+    },
+    {
+      "case_id": "00000093_001.png",
+      "image_ref": "00000093_001.png",
+      "label": "nodule",
+      "sha256": "edbe3967d773d0e8a8aad5918d49246c86008fc1bb78ad251e4634240b63915c",
+      "bytes": 385903
+    },
+    {
+      "case_id": "00000096_000.png",
+      "image_ref": "00000096_000.png",
+      "label": "cardiomegaly",
+      "sha256": "362a1b8fd28cbd02ec4baaa83615095eba0b4bb71c2e0cc415f4e7dc4ecdb3bb",
+      "bytes": 442894
+    },
+    {
+      "case_id": "00000096_001.png",
+      "image_ref": "00000096_001.png",
+      "label": "atelectasis|cardiomegaly|fibrosis",
+      "sha256": "b9fb9dcaf5999a4d4d4d14e20c69f4a6f2c6d6f7f1590c69a77bb10a50c5893e",
+      "bytes": 364680
+    },
+    {
+      "case_id": "00000096_002.png",
+      "image_ref": "00000096_002.png",
+      "label": "effusion",
+      "sha256": "d1149fedfbb322c4c05516d4e22bf584f3b6d483d131c554e8ddfab724b130c8",
+      "bytes": 385080
+    },
+    {
+      "case_id": "00000096_003.png",
+      "image_ref": "00000096_003.png",
+      "label": "atelectasis|effusion|infiltration",
+      "sha256": "6143d025f19748cae19c00dbd20686c9fe030c24a22b3fc144d3326996742fa5",
+      "bytes": 430465
+    },
+    {
+      "case_id": "00000096_004.png",
+      "image_ref": "00000096_004.png",
+      "label": "atelectasis|effusion|infiltration",
+      "sha256": "01a9f9503b07c33d1a81dbfe240518d3bf1eab5d85f4edf576719dbee60faf6f",
+      "bytes": 363949
+    },
+    {
+      "case_id": "00000096_005.png",
+      "image_ref": "00000096_005.png",
+      "label": "atelectasis|cardiomegaly|consolidation|effusion",
+      "sha256": "3a8d0ae32db031a121c77e11a57339b3a26ef78e52e9907eefc077298f715762",
+      "bytes": 397923
+    },
+    {
+      "case_id": "00000096_006.png",
+      "image_ref": "00000096_006.png",
+      "label": "effusion",
+      "sha256": "bf6a86c29347f69ca4ec1853b1123c706b7e9c510e9a408599bc02d738abceae",
+      "bytes": 454065
+    },
+    {
+      "case_id": "00000096_007.png",
+      "image_ref": "00000096_007.png",
+      "label": "consolidation|effusion",
+      "sha256": "0ca11f5e17333382f3636451cedce9ecd89a13ad33ebe0a307e0c33c54cbc2ea",
+      "bytes": 377339
+    },
+    {
+      "case_id": "00000099_000.png",
+      "image_ref": "00000099_000.png",
+      "label": "atelectasis|effusion",
+      "sha256": "b21051fdb34e7963ce78ed37f65a6e5d934de45cf86a8068446a3ab073ff322d",
+      "bytes": 386321
+    },
+    {
+      "case_id": "00000099_001.png",
+      "image_ref": "00000099_001.png",
+      "label": "atelectasis|effusion",
+      "sha256": "40f25409453a04d66d54f51d4db453ce391f82eda2758056dec895f44834ec0a",
+      "bytes": 384960
+    },
+    {
+      "case_id": "00000099_002.png",
+      "image_ref": "00000099_002.png",
+      "label": "effusion",
+      "sha256": "23a7183ffdf4778bf2422acc981c96fb01ce967c4ab16cc902fef3b1a696b551",
+      "bytes": 351219
+    },
+    {
+      "case_id": "00000099_003.png",
+      "image_ref": "00000099_003.png",
+      "label": "effusion",
+      "sha256": "fdb997b3ef964cfa2eab692b07d692a245cfac794bf3e0bbd553e2451cbae69c",
+      "bytes": 418337
+    },
+    {
+      "case_id": "00000099_004.png",
+      "image_ref": "00000099_004.png",
+      "label": "infiltration",
+      "sha256": "ac1cf5ad0d4177a99d9b97aeb338bda6ff6b85d6114484b9011924f79024e502",
+      "bytes": 461385
+    },
+    {
+      "case_id": "00000099_005.png",
+      "image_ref": "00000099_005.png",
+      "label": "atelectasis|effusion|infiltration",
+      "sha256": "b1aa245926b38ba5b32507147db98b59d998dcfdc8ad462b58d9a5b8f69eeae2",
+      "bytes": 367160
+    },
+    {
+      "case_id": "00000099_007.png",
+      "image_ref": "00000099_007.png",
+      "label": "consolidation|effusion",
+      "sha256": "72ad8849420c5e367044eabfe16f036235354004d885c4de7f910847789039dc",
+      "bytes": 336477
+    },
+    {
+      "case_id": "00000099_008.png",
+      "image_ref": "00000099_008.png",
+      "label": "effusion",
+      "sha256": "801239bb9753d8963aad0a262917a85b8500d1a55fb2fd92c87f0068ad4d5e75",
+      "bytes": 361135
+    },
+    {
+      "case_id": "00000099_009.png",
+      "image_ref": "00000099_009.png",
+      "label": "effusion",
+      "sha256": "5ca84bdcce615665403f578a6349857e58b05f6a9fdcd3e14e725ab95b34b4f9",
+      "bytes": 442974
+    },
+    {
+      "case_id": "00000099_010.png",
+      "image_ref": "00000099_010.png",
+      "label": "atelectasis|effusion",
+      "sha256": "e09c72679b26976daef20ffc848aac8d7e884c12bd311e6f66b9ab7c22c175ec",
+      "bytes": 443937
+    },
+    {
+      "case_id": "00000099_011.png",
+      "image_ref": "00000099_011.png",
+      "label": "atelectasis|consolidation",
+      "sha256": "a9471181fe79cb10e4c6fa78ba548e4f7b21832be196eb4e6640f6ea4345beae",
+      "bytes": 404006
+    },
+    {
+      "case_id": "00000099_012.png",
+      "image_ref": "00000099_012.png",
+      "label": "effusion",
+      "sha256": "a7a1275d966a6cbeaedc6d73a287b0f91eba1f9519836a5aaa88757072f73ee7",
+      "bytes": 429119
+    },
+    {
+      "case_id": "00000099_013.png",
+      "image_ref": "00000099_013.png",
+      "label": "effusion|fibrosis",
+      "sha256": "55262613bf12e2a728e8bddbfb12086c63fd9513f6d210099140526df688328a",
+      "bytes": 452839
+    },
+    {
+      "case_id": "00000100_000.png",
+      "image_ref": "00000100_000.png",
+      "label": "atelectasis|effusion|infiltration",
+      "sha256": "d2fb221be22d4301bed503c8bcfd6b866eab3c6015086b8dd6ab7c97822cd842",
+      "bytes": 678718
+    },
+    {
+      "case_id": "00000101_000.png",
+      "image_ref": "00000101_000.png",
+      "label": "nodule",
+      "sha256": "d2388ab778b0930ea0f3c65f153ba886bf9deabed9cafb1995a77ca4b4134684",
+      "bytes": 427358
+    },
+    {
+      "case_id": "00000102_000.png",
+      "image_ref": "00000102_000.png",
+      "label": "infiltration",
+      "sha256": "9f131cb220569cfbec9b0c560945ee09a7e261941db33f85ee2b40bcae74f917",
+      "bytes": 386845
+    },
+    {
+      "case_id": "00000103_000.png",
+      "image_ref": "00000103_000.png",
+      "label": "mass",
+      "sha256": "0c21c19e4fc813c555ccbe4c4b966f51c1947721b37b4c076bd91fe388c35991",
+      "bytes": 431073
+    },
+    {
+      "case_id": "00000103_001.png",
+      "image_ref": "00000103_001.png",
+      "label": "mass|pneumothorax",
+      "sha256": "bb55a46a0f5bb7dba056de6f6f5ee6ef12f31c8186c66993b925628538664f30",
+      "bytes": 385738
+    },
+    {
+      "case_id": "00000103_002.png",
+      "image_ref": "00000103_002.png",
+      "label": "mass|pneumothorax",
+      "sha256": "b3dc2ce8234cf4d5e4bbb488b50d490d0aebef8eb29cd97aa8360db3d0af7d94",
+      "bytes": 391855
+    },
+    {
+      "case_id": "00000103_003.png",
+      "image_ref": "00000103_003.png",
+      "label": "pneumothorax",
+      "sha256": "3354e5496299142312ed0c4e586f7499bfb4f91e1c60ca60c7e8305ea768d787",
+      "bytes": 396029
+    },
+    {
+      "case_id": "00000103_004.png",
+      "image_ref": "00000103_004.png",
+      "label": "mass|pneumothorax",
+      "sha256": "bf2c5ef4497c4ae7d943834b785770b3debde1007802e2204bafe0f8d99eb748",
+      "bytes": 432081
+    },
+    {
+      "case_id": "00000103_005.png",
+      "image_ref": "00000103_005.png",
+      "label": "mass|pneumothorax",
+      "sha256": "639561a2a86ad205a78353b5f46c8f683031c846acc13d12251aec696088e587",
+      "bytes": 435117
+    },
+    {
+      "case_id": "00000103_006.png",
+      "image_ref": "00000103_006.png",
+      "label": "pneumothorax",
+      "sha256": "d3fd4eaf398604d5605e30fc913cecd3a4551d5c7770d10def26be122d9b431e",
+      "bytes": 432881
+    },
+    {
+      "case_id": "00000103_007.png",
+      "image_ref": "00000103_007.png",
+      "label": "mass|pneumothorax",
+      "sha256": "09fb4542b33732c3263d58ceaf96b8ec788403b4d93fa55517b140075888ef9d",
+      "bytes": 445588
+    },
+    {
+      "case_id": "00000103_008.png",
+      "image_ref": "00000103_008.png",
+      "label": "mass",
+      "sha256": "6681c78988ed750e72e4ae71aff3f58aac8a93425d461e6f6816851edd4ded28",
+      "bytes": 456520
+    },
+    {
+      "case_id": "00000103_009.png",
+      "image_ref": "00000103_009.png",
+      "label": "mass|pneumothorax",
+      "sha256": "5fd8946a31af26b7146ccb0eb39a4f394f9158fd6764ae15cfb308e5cbab4ad5",
+      "bytes": 456914
+    },
+    {
+      "case_id": "00000103_010.png",
+      "image_ref": "00000103_010.png",
+      "label": "atelectasis|mass",
+      "sha256": "6c8781293b12c3a129cc89b9aa70341d21a14ae354ad0e7347e680ab783ad7c7",
+      "bytes": 427808
+    },
+    {
+      "case_id": "00000103_011.png",
+      "image_ref": "00000103_011.png",
+      "label": "atelectasis|mass",
+      "sha256": "4d4227a993ddbd290c2a27c996b4f6db5006d301fa62b892f5526deddd1265a0",
+      "bytes": 447513
+    },
+    {
+      "case_id": "00000104_000.png",
+      "image_ref": "00000104_000.png",
+      "label": "pleural_thickening",
+      "sha256": "876da602ba44b27973e270255ba7206beb48628b144f1c99f0cd228d176b712d",
+      "bytes": 420884
+    },
+    {
+      "case_id": "00000105_002.png",
+      "image_ref": "00000105_002.png",
+      "label": "infiltration",
+      "sha256": "93eb26b010269c456ae71501856e24b0a121f558953874f6c930508e1a297f97",
+      "bytes": 387968
+    },
+    {
+      "case_id": "00000105_004.png",
+      "image_ref": "00000105_004.png",
+      "label": "nodule",
+      "sha256": "41dbd2365797f86933c9d65a14e01e9cf1bbdb2ad36fde4dfc597150ce65e02d",
+      "bytes": 384941
+    },
+    {
+      "case_id": "00000105_005.png",
+      "image_ref": "00000105_005.png",
+      "label": "nodule",
+      "sha256": "60a131cdd678ef4fcb5be352d22b177c3b37d9e6859f1688ab33931c65593f7b",
+      "bytes": 396888
+    },
+    {
+      "case_id": "00000107_001.png",
+      "image_ref": "00000107_001.png",
+      "label": "pleural_thickening",
+      "sha256": "7ef27a042b9aee3d46937d532fb9be2ac10a8dd071a1a985fed49c9a7456149a",
+      "bytes": 387240
+    },
+    {
+      "case_id": "00000109_000.png",
+      "image_ref": "00000109_000.png",
+      "label": "atelectasis",
+      "sha256": "e5c0b055b45208e2fe08f6eb5e992ec7df8cd0819dd8f7c74c12d1b2aef81b54",
+      "bytes": 420206
+    },
+    {
+      "case_id": "00000109_001.png",
+      "image_ref": "00000109_001.png",
+      "label": "atelectasis|effusion",
+      "sha256": "94189722cf120d15a8ccc1b594f151b12faf807cf33a1acb4f4129093b1de1ce",
+      "bytes": 451966
+    },
+    {
+      "case_id": "00000109_003.png",
+      "image_ref": "00000109_003.png",
+      "label": "atelectasis",
+      "sha256": "1c0f4a909dc291ec6610184b903f582197ebe75e47f0b9b00c287cbe49726d63",
+      "bytes": 430925
+    },
+    {
+      "case_id": "00000111_000.png",
+      "image_ref": "00000111_000.png",
+      "label": "hernia",
+      "sha256": "369fc1502342db4a8516f348a1ab14b4a43da87235245a4a09269ad178403b56",
+      "bytes": 377968
+    },
+    {
+      "case_id": "00000112_000.png",
+      "image_ref": "00000112_000.png",
+      "label": "atelectasis|effusion|mass",
+      "sha256": "fb0febfee78199130cdc45f06f72583c3344798e6ae4380a165699b968c4feae",
+      "bytes": 377674
+    },
+    {
+      "case_id": "00000112_002.png",
+      "image_ref": "00000112_002.png",
+      "label": "consolidation",
+      "sha256": "fd9945b35cefdf1baabb45ce0a21c95659dd09124e9856c3bb2ce3ea2e5b2556",
+      "bytes": 407833
+    },
+    {
+      "case_id": "00000113_001.png",
+      "image_ref": "00000113_001.png",
+      "label": "atelectasis|cardiomegaly|effusion",
+      "sha256": "40cf0c15ee87361100fb103ee82d19b96700f865b1c93354ebafb81f695c9c30",
+      "bytes": 432975
+    },
+    {
+      "case_id": "00000114_000.png",
+      "image_ref": "00000114_000.png",
+      "label": "infiltration",
+      "sha256": "e4f4da7267a31eb8f674f899c33351da08f4f034db179a36caefef9e09eb860a",
+      "bytes": 436962
+    },
+    {
+      "case_id": "00000115_001.png",
+      "image_ref": "00000115_001.png",
+      "label": "infiltration",
+      "sha256": "3698140d4db349c43d7a1a9ba4ef10e53a2f6fdc4efdff1f39ab8ef09a67a4f6",
+      "bytes": 430797
+    },
+    {
+      "case_id": "00000116_000.png",
+      "image_ref": "00000116_000.png",
+      "label": "cardiomegaly",
+      "sha256": "0b67942d34e49bdec7409dbfd70e8a24316307e86956dad5093dcb4b18a6cf84",
+      "bytes": 376780
+    },
+    {
+      "case_id": "00000116_001.png",
+      "image_ref": "00000116_001.png",
+      "label": "effusion",
+      "sha256": "11416496052d4559caf0967337dcf6fc364d9ff16ed75c5c9c2b6930e4d78e77",
+      "bytes": 343732
+    },
+    {
+      "case_id": "00000116_002.png",
+      "image_ref": "00000116_002.png",
+      "label": "effusion",
+      "sha256": "91b0901429a8f5a2aec8a58af85a16e67168db27177b802b7efec582781aa2aa",
+      "bytes": 345034
+    },
+    {
+      "case_id": "00000116_003.png",
+      "image_ref": "00000116_003.png",
+      "label": "effusion",
+      "sha256": "2747e63249df1c554f64a9c72d0d58863dbd27f3ca49daab82eaaa7657eb0605",
+      "bytes": 336448
+    },
+    {
+      "case_id": "00000116_004.png",
+      "image_ref": "00000116_004.png",
+      "label": "effusion",
+      "sha256": "1b4669ef499230a452e73bf74a71e7f4cdfd7f31719d3a4b27ebd92e82ce56fe",
+      "bytes": 332116
+    },
+    {
+      "case_id": "00000116_006.png",
+      "image_ref": "00000116_006.png",
+      "label": "effusion",
+      "sha256": "3408c70cd7d319607f5a2ed1d3e1b65d78f5e34dcbafe725bb6e1378eca0e1df",
+      "bytes": 342573
+    },
+    {
+      "case_id": "00000116_005.png",
+      "image_ref": "00000116_005.png",
+      "label": "effusion",
+      "sha256": "7ad08c1e873d9b3f7232379ea7c966bbf148986594ce897e499440f6174d4159",
+      "bytes": 350679
+    },
+    {
+      "case_id": "00000116_007.png",
+      "image_ref": "00000116_007.png",
+      "label": "consolidation|effusion|infiltration",
+      "sha256": "4a7e231e29573c6dc84d665d3d2dbc9df001be8564f29f6bb97d7b391ffe01da",
+      "bytes": 364448
+    },
+    {
+      "case_id": "00000116_009.png",
+      "image_ref": "00000116_009.png",
+      "label": "effusion",
+      "sha256": "dcdf5417a03fe99da37170a5204738595fe0c038c9e02ae1c4bfc36fe37aedaa",
+      "bytes": 345365
+    },
+    {
+      "case_id": "00000116_008.png",
+      "image_ref": "00000116_008.png",
+      "label": "effusion",
+      "sha256": "8b99b9998f10ee8d678bac4202f4e684400f7df384743cba9927736a14c5dd0a",
+      "bytes": 350934
+    },
+    {
+      "case_id": "00000116_010.png",
+      "image_ref": "00000116_010.png",
+      "label": "cardiomegaly|effusion",
+      "sha256": "cc9d133ae7696dddda321fe0085073b9cb9e1d958c9e783106e212aa8b7bf257",
+      "bytes": 362917
+    },
+    {
+      "case_id": "00000116_011.png",
+      "image_ref": "00000116_011.png",
+      "label": "effusion",
+      "sha256": "a9162144fb7cb8d861109263ba5768dea21bea1e44e18f36920de2ee665c1be8",
+      "bytes": 349678
+    },
+    {
+      "case_id": "00000116_012.png",
+      "image_ref": "00000116_012.png",
+      "label": "pneumothorax",
+      "sha256": "fb91173cbb3e5408ddaed7a056d013284006b7dc12b51463ff7284097c051170",
+      "bytes": 342240
+    },
+    {
+      "case_id": "00000116_013.png",
+      "image_ref": "00000116_013.png",
+      "label": "cardiomegaly|consolidation",
+      "sha256": "a597b982ed48eddd4c2c858d159f44ba2051187e5e23cd2cc775e3213615a65b",
+      "bytes": 361821
+    },
+    {
+      "case_id": "00000116_014.png",
+      "image_ref": "00000116_014.png",
+      "label": "consolidation",
+      "sha256": "cd60c5c561c2a7a6f352df6836437aa693cdf32aa6c311273f7f900a7dbbe650",
+      "bytes": 350988
+    },
+    {
+      "case_id": "00000116_015.png",
+      "image_ref": "00000116_015.png",
+      "label": "consolidation",
+      "sha256": "c5e1bccb3180cf5dfa8f09d76bf85e89686954df5536e24b4f6689c23263e492",
+      "bytes": 355555
+    },
+    {
+      "case_id": "00000116_016.png",
+      "image_ref": "00000116_016.png",
+      "label": "cardiomegaly",
+      "sha256": "a2b7e7c994bf23ac9736a073d480f61c616653f1710ace1339a5568288bd6dcc",
+      "bytes": 359180
+    },
+    {
+      "case_id": "00000116_018.png",
+      "image_ref": "00000116_018.png",
+      "label": "consolidation|effusion",
+      "sha256": "30be25e9795606efcafe3e081ab4130594486ffab4650009d53ff9265a8a5f6d",
+      "bytes": 362668
+    },
+    {
+      "case_id": "00000116_017.png",
+      "image_ref": "00000116_017.png",
+      "label": "consolidation|effusion",
+      "sha256": "8d64401301d3884e797b1a1fa9355cd5e35078cead09f97d1dc4d0bdf8513507",
+      "bytes": 346768
+    },
+    {
+      "case_id": "00000116_019.png",
+      "image_ref": "00000116_019.png",
+      "label": "consolidation",
+      "sha256": "c7ce003ef5c0d58d4141ccb7a9689e4d56df90867ab86b866f2de9b11140c677",
+      "bytes": 379429
+    },
+    {
+      "case_id": "00000116_020.png",
+      "image_ref": "00000116_020.png",
+      "label": "effusion",
+      "sha256": "399bf7d084d9f04343b5b3fe74ad39aab44c0d79db16799cb572e775a22f3494",
+      "bytes": 355526
+    },
+    {
+      "case_id": "00000116_021.png",
+      "image_ref": "00000116_021.png",
+      "label": "effusion|pneumothorax",
+      "sha256": "bde7d7623d453a18457e1349c62243dd3bee80aa3e08c6381af7ca7fb6a4bf28",
+      "bytes": 344361
+    },
+    {
+      "case_id": "00000116_022.png",
+      "image_ref": "00000116_022.png",
+      "label": "effusion",
+      "sha256": "7960f07f22e09308f50c27649b403bb9f7e048c40013bc755a5fc974bc650969",
+      "bytes": 355823
+    },
+    {
+      "case_id": "00000116_023.png",
+      "image_ref": "00000116_023.png",
+      "label": "effusion|infiltration",
+      "sha256": "a319bef85c6f3069df2a19c31ff5df418c0da05fd82bfc79650cf9205b4b03a6",
+      "bytes": 354169
+    },
+    {
+      "case_id": "00000116_024.png",
+      "image_ref": "00000116_024.png",
+      "label": "effusion|infiltration",
+      "sha256": "b11b5c3798a2a26aa91f04a3676f34cd347888f4791e8203800bed74c301616f",
+      "bytes": 347229
+    },
+    {
+      "case_id": "00000116_025.png",
+      "image_ref": "00000116_025.png",
+      "label": "effusion|infiltration",
+      "sha256": "a7183541a8176c1fb026f74c5278ae648835cf3899185ab42919906a7d702248",
+      "bytes": 351423
+    },
+    {
+      "case_id": "00000116_026.png",
+      "image_ref": "00000116_026.png",
+      "label": "infiltration",
+      "sha256": "44d6efdbecaec6f8afd4ebb1b56d86acb7c92ee3b0a419be293aa65306bfa3e7",
+      "bytes": 350295
+    },
+    {
+      "case_id": "00000116_028.png",
+      "image_ref": "00000116_028.png",
+      "label": "effusion",
+      "sha256": "22014e717bdff47685577494eefd21649bbbef898b649f63de5d9c688da5f329",
+      "bytes": 348926
+    },
+    {
+      "case_id": "00000116_029.png",
+      "image_ref": "00000116_029.png",
+      "label": "atelectasis|effusion",
+      "sha256": "7729373f346af6f8f9f51309c0de44e676f2ef74eff3f6e2cd6257a863e0dff2",
+      "bytes": 343978
+    },
+    {
+      "case_id": "00000116_031.png",
+      "image_ref": "00000116_031.png",
+      "label": "cardiomegaly|consolidation",
+      "sha256": "2038a363c4f08c919fd506c96f00b405021ab9eadc52f563308f13080e076d56",
+      "bytes": 353187
+    },
+    {
+      "case_id": "00000116_032.png",
+      "image_ref": "00000116_032.png",
+      "label": "cardiomegaly|consolidation",
+      "sha256": "9a8f7a9fdd1b9fda0a7b0422193b01b925265c576ecb87aeb25a230281b9288c",
+      "bytes": 341985
+    },
+    {
+      "case_id": "00000116_033.png",
+      "image_ref": "00000116_033.png",
+      "label": "effusion",
+      "sha256": "fbc54cccfd29458c2a6d493d7cd85d5683e03d91503f75eb0ef39590c10549a3",
+      "bytes": 348209
+    },
+    {
+      "case_id": "00000116_034.png",
+      "image_ref": "00000116_034.png",
+      "label": "cardiomegaly|effusion|pleural_thickening",
+      "sha256": "63cce9c440dbf4430a0d66ebc0ce6e1ae349ad27e080b2317d0fd4b0f5ebb0a5",
+      "bytes": 336354
+    },
+    {
+      "case_id": "00000116_036.png",
+      "image_ref": "00000116_036.png",
+      "label": "effusion",
+      "sha256": "8fd52c18240c1bcf92df4c35880d81413a8b5b5487b004a10f3e4bcb3e8afd17",
+      "bytes": 339296
+    },
+    {
+      "case_id": "00000116_035.png",
+      "image_ref": "00000116_035.png",
+      "label": "atelectasis|effusion",
+      "sha256": "17b56390ae3509c4898980dde8952e760b4b4a4623d6a8f529a716517c8dc977",
+      "bytes": 356427
+    },
+    {
+      "case_id": "00000116_037.png",
+      "image_ref": "00000116_037.png",
+      "label": "cardiomegaly|effusion",
+      "sha256": "686e4be0e02fab59f32fb90266fe8752e3f7ddf0857c7f436fea09a9b28ab2fd",
+      "bytes": 354336
+    },
+    {
+      "case_id": "00000116_040.png",
+      "image_ref": "00000116_040.png",
+      "label": "cardiomegaly|consolidation",
+      "sha256": "5eef7a5bc0b9a74e998ee1f3af19aeedc2c992050ea1a515c694c8a48942a809",
+      "bytes": 351918
+    },
+    {
+      "case_id": "00000117_000.png",
+      "image_ref": "00000117_000.png",
+      "label": "effusion",
+      "sha256": "98509d10426e81a407fbd53e5a4e50909c7929c83337c2dce9fbbae86bb00240",
+      "bytes": 400859
+    },
+    {
+      "case_id": "00000117_001.png",
+      "image_ref": "00000117_001.png",
+      "label": "effusion",
+      "sha256": "dc6aad51590883cf990300e9b4aed6c6c7fdeecbd0d5805b10307a783119821a",
+      "bytes": 380842
+    },
+    {
+      "case_id": "00000118_000.png",
+      "image_ref": "00000118_000.png",
+      "label": "emphysema",
+      "sha256": "7c57e6886728fb592ed339fcf3adef90fd5e0e2f02bfc5853340f0878cb603f6",
+      "bytes": 460475
+    },
+    {
+      "case_id": "00000118_001.png",
+      "image_ref": "00000118_001.png",
+      "label": "atelectasis|emphysema",
+      "sha256": "57f34a7b36e8d5bf32907f5e4c0df57d9489c1d6d279b6d08498aaef40ff54c4",
+      "bytes": 457460
+    },
+    {
+      "case_id": "00000118_002.png",
+      "image_ref": "00000118_002.png",
+      "label": "emphysema|pneumothorax",
+      "sha256": "3107986ea0b39fea56e91ec5f9aaeec2590616fd5dafaa35c18766f3234dfcb1",
+      "bytes": 443226
+    },
+    {
+      "case_id": "00000118_003.png",
+      "image_ref": "00000118_003.png",
+      "label": "atelectasis|emphysema|pneumothorax",
+      "sha256": "ecb1e9e1af99c4015e2ff5d267e0207028404c5a9f42c7d714dbeb6273e0482b",
+      "bytes": 449551
+    },
+    {
+      "case_id": "00000118_004.png",
+      "image_ref": "00000118_004.png",
+      "label": "emphysema|pneumothorax",
+      "sha256": "ca8a6243be5a5060508f1e72ccb736f2969eac6acb08754bbf404f9c8add1f79",
+      "bytes": 441176
+    },
+    {
+      "case_id": "00000118_005.png",
+      "image_ref": "00000118_005.png",
+      "label": "pneumothorax",
+      "sha256": "951640b6abec8cdc988564e3fc02aa38e0d60bf3b6d01c49fb88a3726f9fddde",
+      "bytes": 459622
+    },
+    {
+      "case_id": "00000118_006.png",
+      "image_ref": "00000118_006.png",
+      "label": "atelectasis|emphysema",
+      "sha256": "f97c8962008cdc543c47b51349d933e46f70f747b8379703c284aa784082d958",
+      "bytes": 452973
+    },
+    {
+      "case_id": "00000118_007.png",
+      "image_ref": "00000118_007.png",
+      "label": "atelectasis",
+      "sha256": "c1890fff480dd9ef0c7dc55b1aece8a9cb3a79e5eb9f998e29bbf285334f526e",
+      "bytes": 445377
+    },
+    {
+      "case_id": "00000118_009.png",
+      "image_ref": "00000118_009.png",
+      "label": "pneumothorax",
+      "sha256": "9ff0bdc637b4bf7acb58f6765a351ccd5e1f2f628f3a860e4d7d291a136b788c",
+      "bytes": 463075
+    },
+    {
+      "case_id": "00000118_010.png",
+      "image_ref": "00000118_010.png",
+      "label": "pneumothorax",
+      "sha256": "b85892a7db65d48b0bdf409baa47a295173d8794a930658e9852ddfb5f22ba1d",
+      "bytes": 449422
+    },
+    {
+      "case_id": "00000118_011.png",
+      "image_ref": "00000118_011.png",
+      "label": "pneumothorax",
+      "sha256": "535c50f9e8591ab78553814aedbef3e591c742a5189a46a6b1cf7ab9fec54067",
+      "bytes": 455272
+    },
+    {
+      "case_id": "00000118_013.png",
+      "image_ref": "00000118_013.png",
+      "label": "infiltration",
+      "sha256": "e484db04ed5a62b4982d4c1dfc69396c7cd1e473df1b0bcb9aea8fe92298b77a",
+      "bytes": 455415
+    },
+    {
+      "case_id": "00000118_015.png",
+      "image_ref": "00000118_015.png",
+      "label": "effusion",
+      "sha256": "90ed4f5f742d9d41d8a8e64479d843bfec341e92de5b1c5ecce0e04aaf31b6a2",
+      "bytes": 430625
+    },
+    {
+      "case_id": "00000119_001.png",
+      "image_ref": "00000119_001.png",
+      "label": "atelectasis",
+      "sha256": "e8d107273b69fd48eaac9a197ce1d93851a22dfc76903f3fb5dc4a74939f3362",
+      "bytes": 348819
+    },
+    {
+      "case_id": "00000119_000.png",
+      "image_ref": "00000119_000.png",
+      "label": "infiltration",
+      "sha256": "e7512a046999d5e52238a39d80c9848f1c9e2fe31b2f6912d817ddbdf439eff1",
+      "bytes": 442009
+    },
+    {
+      "case_id": "00000120_000.png",
+      "image_ref": "00000120_000.png",
+      "label": "atelectasis",
+      "sha256": "fd5105409f754b3bda52854d893de9c3e9f3eed2bca563494019239acbc6160c",
+      "bytes": 418571
+    },
+    {
+      "case_id": "00000121_006.png",
+      "image_ref": "00000121_006.png",
+      "label": "effusion",
+      "sha256": "dc57365450dea2451132079f4128793f94ca3654325ba3efa0979ba668de1b46",
+      "bytes": 437205
+    },
+    {
+      "case_id": "00000121_007.png",
+      "image_ref": "00000121_007.png",
+      "label": "effusion",
+      "sha256": "a7a58ec1f02b5c6c14f0182729285872d0f85b489c47ceb59e3e10cf20b33e95",
+      "bytes": 442474
+    },
+    {
+      "case_id": "00000123_000.png",
+      "image_ref": "00000123_000.png",
+      "label": "cardiomegaly|emphysema",
+      "sha256": "de5e33e496f92572a8c62aad4d3bf5602894268c91d85d66467f9f81b2a77fd2",
+      "bytes": 693527
+    },
+    {
+      "case_id": "00000124_000.png",
+      "image_ref": "00000124_000.png",
+      "label": "cardiomegaly|infiltration",
+      "sha256": "ad3c7df307bd9e779cb5a19f531272aebe8089ff4e24c03ac9513542cd8e65c9",
+      "bytes": 458909
+    },
+    {
+      "case_id": "00000125_000.png",
+      "image_ref": "00000125_000.png",
+      "label": "infiltration",
+      "sha256": "a014bf72fa59b5e9f58e99a157a9f0435b51af20bcdf891572db822adb225578",
+      "bytes": 372413
+    },
+    {
+      "case_id": "00000127_002.png",
+      "image_ref": "00000127_002.png",
+      "label": "effusion",
+      "sha256": "cd6b990f66881eacc530b6cbcfb03bd112af8cb3399e172ed85c24ae4839829d",
+      "bytes": 360849
+    },
+    {
+      "case_id": "00000127_003.png",
+      "image_ref": "00000127_003.png",
+      "label": "effusion",
+      "sha256": "3ab1c64d18afa8262eaaab7cac3c391d02945874dc2a3a3efa8e3454756dca85",
+      "bytes": 362230
+    },
+    {
+      "case_id": "00000127_004.png",
+      "image_ref": "00000127_004.png",
+      "label": "effusion",
+      "sha256": "b006ef3e3b7ce93a340bc34b541ea7f9db356550c3461672ac4d5d1c892ad6e8",
+      "bytes": 369749
+    },
+    {
+      "case_id": "00000127_005.png",
+      "image_ref": "00000127_005.png",
+      "label": "effusion",
+      "sha256": "1e8ae50cdff38dea809676d37f3e30e9d544a68975b6d2182e1114e161fac189",
+      "bytes": 356212
+    },
+    {
+      "case_id": "00000127_007.png",
+      "image_ref": "00000127_007.png",
+      "label": "effusion",
+      "sha256": "b6aba96464dad3c739d5f113768ace2bf994c32ad8bb3a42428e5c0ac9dbbc51",
+      "bytes": 318848
+    },
+    {
+      "case_id": "00000127_009.png",
+      "image_ref": "00000127_009.png",
+      "label": "atelectasis|infiltration",
+      "sha256": "cca4fea5af7d2dcf4cd9acdaaf1ddbc6122776c6529ad081fa67fcffd84a89f7",
+      "bytes": 433187
+    },
+    {
+      "case_id": "00000127_010.png",
+      "image_ref": "00000127_010.png",
+      "label": "atelectasis|infiltration",
+      "sha256": "13132968b5bdfbb24d6fc743c4315c4a8438a8b6951e040638e5a8d41274910c",
+      "bytes": 390983
+    },
+    {
+      "case_id": "00000128_000.png",
+      "image_ref": "00000128_000.png",
+      "label": "cardiomegaly|nodule",
+      "sha256": "951256f097c8e024e3f12d82dbd17419f7fd0dc82bf92c966329dc4636cf96f4",
+      "bytes": 381941
+    },
+    {
+      "case_id": "00000131_002.png",
+      "image_ref": "00000131_002.png",
+      "label": "cardiomegaly|emphysema",
+      "sha256": "aa76b2ac8b2a77b31d513a4c4b4bb03989d902147314b8aa2f0805885e65b72f",
+      "bytes": 391869
+    },
+    {
+      "case_id": "00000131_000.png",
+      "image_ref": "00000131_000.png",
+      "label": "infiltration",
+      "sha256": "a40099130cc8806495dc729458e4cb9b73d87cd36d87277e3f918601ff0b25d0",
+      "bytes": 465819
+    },
+    {
+      "case_id": "00000131_001.png",
+      "image_ref": "00000131_001.png",
+      "label": "cardiomegaly",
+      "sha256": "0334907e8c2b05538ace36d80d297382e9496f04c5d5c971da64e0732da2154a",
+      "bytes": 403925
+    },
+    {
+      "case_id": "00000132_001.png",
+      "image_ref": "00000132_001.png",
+      "label": "consolidation|edema",
+      "sha256": "09b84dbda6f49a521cc7720c14328ba2bc1c87925e4ae355cc0a8acbcbfd94a5",
+      "bytes": 407620
+    },
+    {
+      "case_id": "00000132_002.png",
+      "image_ref": "00000132_002.png",
+      "label": "consolidation|pleural_thickening",
+      "sha256": "e0303d787c96928d34f6c3e20bc6c60e0d315b8ccb775571cbdce7117530e973",
+      "bytes": 421980
+    },
+    {
+      "case_id": "00000132_003.png",
+      "image_ref": "00000132_003.png",
+      "label": "effusion",
+      "sha256": "2ebb21830f7674796677998ccbf13f9bbc53016c3f3f916bec6b0bfa458b7aa4",
+      "bytes": 379200
+    },
+    {
+      "case_id": "00000132_004.png",
+      "image_ref": "00000132_004.png",
+      "label": "effusion|fibrosis|nodule|pleural_thickening",
+      "sha256": "9a0563f2e817c61f3f8b762591187043946da373ae279e3a9c513d7cfda9634f",
+      "bytes": 423894
+    },
+    {
+      "case_id": "00000132_005.png",
+      "image_ref": "00000132_005.png",
+      "label": "effusion|fibrosis|mass|nodule|pleural_thickening",
+      "sha256": "2d76f7cbb4b50494f5ef90b977c873ed8e750b14b94f3d5db4a5e3c2e585367a",
+      "bytes": 424414
+    },
+    {
+      "case_id": "00000132_006.png",
+      "image_ref": "00000132_006.png",
+      "label": "infiltration",
+      "sha256": "d10ef68834dcba4087eaf208892a061ef112f78c884166020286c42e9c882d76",
+      "bytes": 413284
+    },
+    {
+      "case_id": "00000133_000.png",
+      "image_ref": "00000133_000.png",
+      "label": "effusion|nodule",
+      "sha256": "bed3ed2069550b4dcd51a8247bddd31c8f762dbf107035b2a566eb5e179fb3db",
+      "bytes": 448913
+    },
+    {
+      "case_id": "00000134_000.png",
+      "image_ref": "00000134_000.png",
+      "label": "infiltration",
+      "sha256": "3f530d785ffa2c48abd3445cd98da08790de3bb07a1e2ade04a8d926b1c75f49",
+      "bytes": 345112
+    },
+    {
+      "case_id": "00000138_002.png",
+      "image_ref": "00000138_002.png",
+      "label": "atelectasis|fibrosis",
+      "sha256": "61856cf8a0ff11f0847fd63ac79187e4ab45fdb7316065a2df503e86df37969c",
+      "bytes": 382691
+    },
+    {
+      "case_id": "00000138_004.png",
+      "image_ref": "00000138_004.png",
+      "label": "nodule",
+      "sha256": "c61da1ba8dc8a2895108041c612c34d090ed22f77a45737b04fbb61f433ffc44",
+      "bytes": 458179
+    },
+    {
+      "case_id": "00000138_005.png",
+      "image_ref": "00000138_005.png",
+      "label": "effusion|nodule|pleural_thickening",
+      "sha256": "de8a9a727087bc7e8a5a1c86040330eae3bcf1777aea308fc870a6a6acdbc388",
+      "bytes": 424261
+    },
+    {
+      "case_id": "00000138_006.png",
+      "image_ref": "00000138_006.png",
+      "label": "pleural_thickening",
+      "sha256": "2d9a7623d671e7dd6d72f10d7944952d15340c62a0505393beb7201078da3ae3",
+      "bytes": 478768
+    },
+    {
+      "case_id": "00000143_006.png",
+      "image_ref": "00000143_006.png",
+      "label": "infiltration",
+      "sha256": "943838cbb74f3d8390e8c5150344792de7faacae21cbf9d6eb00e4b43ddc6791",
+      "bytes": 443553
+    },
+    {
+      "case_id": "00000143_008.png",
+      "image_ref": "00000143_008.png",
+      "label": "atelectasis",
+      "sha256": "c868351cb37b933208e2832f9c6912996722e12b9c3077c4f1f55121cf98dd21",
+      "bytes": 354179
+    },
+    {
+      "case_id": "00000143_009.png",
+      "image_ref": "00000143_009.png",
+      "label": "atelectasis",
+      "sha256": "f3a0eaabc9b35e71027315ba5819d3e0f7490e0e7b4366644da045799dfc8b96",
+      "bytes": 416233
+    },
+    {
+      "case_id": "00000143_011.png",
+      "image_ref": "00000143_011.png",
+      "label": "atelectasis",
+      "sha256": "65d16a7595f3a9d7a05c6a148cdb03da5545061ded4d0090c5157180ff95052a",
+      "bytes": 430125
+    },
+    {
+      "case_id": "00000143_012.png",
+      "image_ref": "00000143_012.png",
+      "label": "atelectasis|effusion|infiltration",
+      "sha256": "f07f769eb1d973e01f4f5ea08565151644928cabf2299a01bbab82d1b7925b7c",
+      "bytes": 427358
+    },
+    {
+      "case_id": "00000143_002.png",
+      "image_ref": "00000143_002.png",
+      "label": "effusion|infiltration",
+      "sha256": "2e643c37d2c1da0f00bc6f3b0a4261132069905a8c8120b967f567fd310ce625",
+      "bytes": 422717
+    },
+    {
+      "case_id": "00000144_001.png",
+      "image_ref": "00000144_001.png",
+      "label": "pneumonia",
+      "sha256": "cbfe40743ff5b7869df5d0478178c6cddd125da3b420a12cbe0c25530de471f7",
+      "bytes": 378227
+    },
+    {
+      "case_id": "00000144_003.png",
+      "image_ref": "00000144_003.png",
+      "label": "effusion",
+      "sha256": "0c9b8f35c870335b0f789722d16dec8ba39c401f55b831423b457bfadf18824d",
+      "bytes": 374451
+    },
+    {
+      "case_id": "00000145_000.png",
+      "image_ref": "00000145_000.png",
+      "label": "fibrosis|infiltration",
+      "sha256": "691796c406861b3722e4399753442b8cb3604d75e20670c6b5f1bc140cffa213",
+      "bytes": 411497
+    },
+    {
+      "case_id": "00000147_000.png",
+      "image_ref": "00000147_000.png",
+      "label": "infiltration",
+      "sha256": "53a56bc5847e73d0630722824ec978acd1ca4a3aef7215522c8053555acb61e3",
+      "bytes": 405807
+    },
+    {
+      "case_id": "00000147_001.png",
+      "image_ref": "00000147_001.png",
+      "label": "atelectasis",
+      "sha256": "cb768b7524e2767bad7d09b800632edd0398b9ad56845f31366d2ffc6b1c284f",
+      "bytes": 436622
+    },
+    {
+      "case_id": "00000147_002.png",
+      "image_ref": "00000147_002.png",
+      "label": "atelectasis|effusion|pleural_thickening",
+      "sha256": "daea3c9e13ba0300791ca183e78c02603159d08d85f86b0b1e28dc518e066120",
+      "bytes": 348113
+    },
+    {
+      "case_id": "00000148_001.png",
+      "image_ref": "00000148_001.png",
+      "label": "effusion",
+      "sha256": "3c0115572899bc91498da3cd1db507bb2d46a68365983b5ccd8e86b257c499a7",
+      "bytes": 440372
+    },
+    {
+      "case_id": "00000148_002.png",
+      "image_ref": "00000148_002.png",
+      "label": "effusion|fibrosis",
+      "sha256": "5a475bd13dfbf5cf713211f8223002f17722ce666307b689f424f5351de37566",
+      "bytes": 453156
+    },
+    {
+      "case_id": "00000149_002.png",
+      "image_ref": "00000149_002.png",
+      "label": "atelectasis",
+      "sha256": "d59418e12b2d14a6e3637090dab5dad8f3f6bbd99aea7f4919e4dd9d5af71e74",
+      "bytes": 438806
+    },
+    {
+      "case_id": "00000149_005.png",
+      "image_ref": "00000149_005.png",
+      "label": "atelectasis",
+      "sha256": "17a1e2da2ef0c6635c90773a1206891f9d62adb8024f4d289f7a212652bbb4b1",
+      "bytes": 342168
+    },
+    {
+      "case_id": "00000149_006.png",
+      "image_ref": "00000149_006.png",
+      "label": "atelectasis",
+      "sha256": "c86c17437bfeffe04701316ab561157c7193a31122ba267e464d0a67f386bf4e",
+      "bytes": 383437
+    },
+    {
+      "case_id": "00000149_007.png",
+      "image_ref": "00000149_007.png",
+      "label": "fibrosis|infiltration",
+      "sha256": "01c5c544dbda287d3d248984549251ec78bf859f0f68ae1bf578c926522e8fd0",
+      "bytes": 392995
+    },
+    {
+      "case_id": "00000150_000.png",
+      "image_ref": "00000150_000.png",
+      "label": "effusion",
+      "sha256": "5958a26c75692d46173e6774266a1f8b1c762ef21fc06bf89bd409b2a12d4531",
+      "bytes": 426179
+    },
+    {
+      "case_id": "00000150_002.png",
+      "image_ref": "00000150_002.png",
+      "label": "atelectasis|infiltration|pneumonia",
+      "sha256": "bda3ad295cab04ba3f2aea0c4df2efc9a2655e7cf2c156be99700ccf2a2c87aa",
+      "bytes": 370697
+    },
+    {
+      "case_id": "00000150_003.png",
+      "image_ref": "00000150_003.png",
+      "label": "atelectasis",
+      "sha256": "3171f3c01fcf232d7fc746cae00214fdccfb20fed071a7f98c45fc044efef4b3",
+      "bytes": 416779
+    },
+    {
+      "case_id": "00000150_004.png",
+      "image_ref": "00000150_004.png",
+      "label": "atelectasis|effusion",
+      "sha256": "4e9e196f37467793745297c527390bf65bc09409c4d66741ac9a57ce9ee7b958",
+      "bytes": 426712
+    },
+    {
+      "case_id": "00000153_001.png",
+      "image_ref": "00000153_001.png",
+      "label": "atelectasis",
+      "sha256": "2a9e1eeac2db3b05d21838f4da7cfd2e07c75fa7745b921f6a82e446ae613a33",
+      "bytes": 401666
+    },
+    {
+      "case_id": "00000154_000.png",
+      "image_ref": "00000154_000.png",
+      "label": "infiltration",
+      "sha256": "4a90476e6845bad6cebffa49343ec469a7d4154530dacc477bc02a61a5d3b37d",
+      "bytes": 408882
+    },
+    {
+      "case_id": "00000154_001.png",
+      "image_ref": "00000154_001.png",
+      "label": "infiltration|nodule",
+      "sha256": "9e97e6a71c574ff05726cef1cf7826d6db3b227f3c304dfd60cabd66bc46c226",
+      "bytes": 373631
+    },
+    {
+      "case_id": "00000155_000.png",
+      "image_ref": "00000155_000.png",
+      "label": "cardiomegaly",
+      "sha256": "93b68ce82fd02dd14885f173add85e9da072f35c5cf02de42e4d919eebe338ec",
+      "bytes": 426307
+    },
+    {
+      "case_id": "00000156_000.png",
+      "image_ref": "00000156_000.png",
+      "label": "cardiomegaly|infiltration",
+      "sha256": "d69fd2c81e53a21b27cf52a6afbfbc9bee5ebf702c9a7e3b8c9d434894283bc9",
+      "bytes": 408246
+    },
+    {
+      "case_id": "00000156_001.png",
+      "image_ref": "00000156_001.png",
+      "label": "cardiomegaly|effusion",
+      "sha256": "1d008dad3deb1119d7f12cd8e5e1dce82c976685bdce927da77e0af9f75aff10",
+      "bytes": 375550
+    },
+    {
+      "case_id": "00000157_000.png",
+      "image_ref": "00000157_000.png",
+      "label": "nodule",
+      "sha256": "bca7b3e7c286ba1273df540486ce843af10f9328d1bca9068f715ade425860e5",
+      "bytes": 472982
+    },
+    {
+      "case_id": "00000159_000.png",
+      "image_ref": "00000159_000.png",
+      "label": "fibrosis",
+      "sha256": "cc103d672505903be42cadfb029f9cca0790a8b8d6afd4e1cacaa895ce89a74b",
+      "bytes": 428309
+    },
+    {
+      "case_id": "00000164_000.png",
+      "image_ref": "00000164_000.png",
+      "label": "nodule",
+      "sha256": "fd5ffdac3c62f4b39885efae9c137b3bacf4ad98c9deac4e17b51b4ecbe43330",
+      "bytes": 436148
+    },
+    {
+      "case_id": "00000165_001.png",
+      "image_ref": "00000165_001.png",
+      "label": "pneumonia",
+      "sha256": "898df7f19ffe4086ef3de807c8f4d0b0031be8668b4cda0646259077e5b48f17",
+      "bytes": 452673
+    },
+    {
+      "case_id": "00000165_003.png",
+      "image_ref": "00000165_003.png",
+      "label": "emphysema",
+      "sha256": "2be94e1d865c8731411696970083c29cb806f9a12fe8a85450e61d7131103db3",
+      "bytes": 455421
+    },
+    {
+      "case_id": "00000165_004.png",
+      "image_ref": "00000165_004.png",
+      "label": "pleural_thickening",
+      "sha256": "07e9e4b07a2fbb81e7e63474a6beae1bb1e434f0c34184687c965bf84540fa6e",
+      "bytes": 451836
+    },
+    {
+      "case_id": "00000165_005.png",
+      "image_ref": "00000165_005.png",
+      "label": "pleural_thickening",
+      "sha256": "9ff8c4f211f0df02fbb08d0d1785845c3d92eb8eed313f289a6800cbbb102c84",
+      "bytes": 453056
+    },
+    {
+      "case_id": "00000165_006.png",
+      "image_ref": "00000165_006.png",
+      "label": "pleural_thickening",
+      "sha256": "79d5abb9d509f40e18504f6409940f173a5d9b45292d510baa86ac7636deb713",
+      "bytes": 391410
+    },
+    {
+      "case_id": "00000165_007.png",
+      "image_ref": "00000165_007.png",
+      "label": "nodule",
+      "sha256": "65ff2b0aeb350f53a7189b028b8534e7b22c77a9cca2049036f7edbf943f22df",
+      "bytes": 443136
+    },
+    {
+      "case_id": "00000173_000.png",
+      "image_ref": "00000173_000.png",
+      "label": "infiltration",
+      "sha256": "f862e4caa50fabe931a0663d733143db97106f152f76f397b89473865ff16158",
+      "bytes": 383358
+    },
+    {
+      "case_id": "00000174_001.png",
+      "image_ref": "00000174_001.png",
+      "label": "infiltration|nodule",
+      "sha256": "018fae974598378439e4ea8d018c3a0e72ead4fb3425322377962347dc4530da",
+      "bytes": 442603
+    },
+    {
+      "case_id": "00000174_002.png",
+      "image_ref": "00000174_002.png",
+      "label": "nodule",
+      "sha256": "84ccc610ebaf1553c3f72abbb6059b19368e7cecb06c9162b51f8ec051c8dd39",
+      "bytes": 425994
+    },
+    {
+      "case_id": "00000174_005.png",
+      "image_ref": "00000174_005.png",
+      "label": "nodule",
+      "sha256": "cc5d5bb0a3c631ec622d1325350d05173ab6c90b2be5602497c8fb494f9502fa",
+      "bytes": 434646
+    },
+    {
+      "case_id": "00000175_001.png",
+      "image_ref": "00000175_001.png",
+      "label": "atelectasis",
+      "sha256": "163cc8ccf0481ad0f396e2fce81558f42d46ddfed16c732d1caf88ca8d68eca9",
+      "bytes": 406123
+    },
+    {
+      "case_id": "00000175_002.png",
+      "image_ref": "00000175_002.png",
+      "label": "atelectasis",
+      "sha256": "6a72e415e02a59264c7da51d10b95ac27499198d4950d3836369bc986d19130f",
+      "bytes": 410006
+    },
+    {
+      "case_id": "00000176_001.png",
+      "image_ref": "00000176_001.png",
+      "label": "cardiomegaly",
+      "sha256": "16724e05c5f63b0dd182a8deceab8b7f1ff26ab6ced97f8b6e738be29d1b5371",
+      "bytes": 349548
+    },
+    {
+      "case_id": "00000176_002.png",
+      "image_ref": "00000176_002.png",
+      "label": "atelectasis|cardiomegaly|fibrosis",
+      "sha256": "c8b65f989a4cd903e96b430bfe2d4f753c028e3483cd9ac414d9fb86bd025bf3",
+      "bytes": 460222
+    },
+    {
+      "case_id": "00000178_000.png",
+      "image_ref": "00000178_000.png",
+      "label": "infiltration",
+      "sha256": "b9318e24f8149b60daa2c03759930c7a2b4e67dd6ce686d25238541af7ac7763",
+      "bytes": 411375
+    },
+    {
+      "case_id": "00000179_001.png",
+      "image_ref": "00000179_001.png",
+      "label": "infiltration",
+      "sha256": "884022b9f05e0979619fd7b7fe597f9a4912fc5e2bcdafd05066c520e50899c3",
+      "bytes": 380837
+    },
+    {
+      "case_id": "00000179_002.png",
+      "image_ref": "00000179_002.png",
+      "label": "atelectasis|infiltration",
+      "sha256": "4ae94c908726f692b0a0ccb3b4fb449af0937943e01c01da6fe1e573e4602360",
+      "bytes": 364660
+    },
+    {
+      "case_id": "00000179_003.png",
+      "image_ref": "00000179_003.png",
+      "label": "infiltration",
+      "sha256": "ab4a9ce5b8ca31afb70eba0e445442459d4c728538124156861c2bfc52c266ca",
+      "bytes": 361281
+    },
+    {
+      "case_id": "00000179_004.png",
+      "image_ref": "00000179_004.png",
+      "label": "consolidation|infiltration",
+      "sha256": "2e4092cf936be9775e06412231e96b31bae6f8ec1dcdc28f5ccdc60bbac10277",
+      "bytes": 367274
+    },
+    {
+      "case_id": "00000179_005.png",
+      "image_ref": "00000179_005.png",
+      "label": "consolidation|infiltration",
+      "sha256": "86ee28ea92db669c9941fd0ae5de0343abfb32a2755b81c370596be889088264",
+      "bytes": 375428
+    },
+    {
+      "case_id": "00000179_006.png",
+      "image_ref": "00000179_006.png",
+      "label": "atelectasis|effusion",
+      "sha256": "664dbf74d7f77b092af2bb64b8f6deb336a7e0f2a6da05dcaaf7f26b45f42116",
+      "bytes": 368258
+    },
+    {
+      "case_id": "00000179_007.png",
+      "image_ref": "00000179_007.png",
+      "label": "consolidation|effusion",
+      "sha256": "565346a923ce3b97a937d8853448ebd8d38b3d54d138c357642f20c07d9beb6e",
+      "bytes": 372697
+    },
+    {
+      "case_id": "00000180_000.png",
+      "image_ref": "00000180_000.png",
+      "label": "effusion|pleural_thickening",
+      "sha256": "aadbd07c12751f0901f791d1115d2c627eab5c2fad8ee8869579df40a1eebc77",
+      "bytes": 421480
+    },
+    {
+      "case_id": "00000180_002.png",
+      "image_ref": "00000180_002.png",
+      "label": "effusion",
+      "sha256": "0fee5785f60d407edeeb2e1ca3fe9ec7eb8b98983a62fc46f490ae3da3cd5403",
+      "bytes": 399742
+    },
+    {
+      "case_id": "00000180_003.png",
+      "image_ref": "00000180_003.png",
+      "label": "effusion",
+      "sha256": "c4eec7ae425b20b081e218077912fb8929492c4b4c4bd89978eddf8c1aa66542",
+      "bytes": 414095
+    },
+    {
+      "case_id": "00000181_001.png",
+      "image_ref": "00000181_001.png",
+      "label": "fibrosis",
+      "sha256": "6b2e4b82cdefc00b2eb1255384af26a4b3ec64d19dff73512bac166f313b1ad0",
+      "bytes": 384820
+    },
+    {
+      "case_id": "00000181_003.png",
+      "image_ref": "00000181_003.png",
+      "label": "effusion",
+      "sha256": "f08a23c2e74a597e81db7effa74f909cb4a4cfc053fb77256ed3311fe1ae9864",
+      "bytes": 363352
+    },
+    {
+      "case_id": "00000181_005.png",
+      "image_ref": "00000181_005.png",
+      "label": "effusion",
+      "sha256": "3fb4e6161889ddf175281bf60f1914e271ff72b6487174e226ad10ea73f94c2b",
+      "bytes": 371981
+    },
+    {
+      "case_id": "00000181_006.png",
+      "image_ref": "00000181_006.png",
+      "label": "infiltration",
+      "sha256": "2355ea6dc8618128dc2ddf980404edb1cde574d14a8a12b287d4b187831ce5ac",
+      "bytes": 359721
+    },
+    {
+      "case_id": "00000181_007.png",
+      "image_ref": "00000181_007.png",
+      "label": "infiltration",
+      "sha256": "aa8a4b056d57934b3cd84ac8b15654f0996af7ae114d732360bd3c8acad55497",
+      "bytes": 369268
+    },
+    {
+      "case_id": "00000181_008.png",
+      "image_ref": "00000181_008.png",
+      "label": "infiltration",
+      "sha256": "28a26bc1ac798d1994419f7ab7d061151054a17fc8b0add6782a64690021afd1",
+      "bytes": 353421
+    },
+    {
+      "case_id": "00000181_009.png",
+      "image_ref": "00000181_009.png",
+      "label": "infiltration",
+      "sha256": "85c5547082cbdae6ba1d5eb7fdc35265b1420e2cb3587891e77ea55dda1fc31e",
+      "bytes": 379324
+    },
+    {
+      "case_id": "00000181_010.png",
+      "image_ref": "00000181_010.png",
+      "label": "infiltration",
+      "sha256": "b871a5aaf3090d16f2b7a102d3475f5c630f0491e441cd30ba2b9fbad2ca316a",
+      "bytes": 346320
+    },
+    {
+      "case_id": "00000181_011.png",
+      "image_ref": "00000181_011.png",
+      "label": "atelectasis|infiltration|pleural_thickening",
+      "sha256": "f8db95933365a888d760bd276f4cab3879780f9d165898e73ccdd680b8d8bdc1",
+      "bytes": 375954
+    },
+    {
+      "case_id": "00000181_013.png",
+      "image_ref": "00000181_013.png",
+      "label": "consolidation|infiltration|mass",
+      "sha256": "96d18dd2048fdc10e95c95eca89934ba4ac98dd3d26b80a3cd61747b74690224",
+      "bytes": 369968
+    },
+    {
+      "case_id": "00000181_015.png",
+      "image_ref": "00000181_015.png",
+      "label": "consolidation|infiltration",
+      "sha256": "cdd01096f3f83c623d83802740d1127ebd37bc6b9098842c638c5b670d8490ee",
+      "bytes": 348792
+    },
+    {
+      "case_id": "00000181_016.png",
+      "image_ref": "00000181_016.png",
+      "label": "infiltration",
+      "sha256": "a054ebe3be9f77508d2abd4e496acc92c1b733dbcd56a83bace9db07ddf4ed8a",
+      "bytes": 370092
+    },
+    {
+      "case_id": "00000181_017.png",
+      "image_ref": "00000181_017.png",
+      "label": "infiltration",
+      "sha256": "0129555770c74099b6dfc7bffd3319478d32f486a32cc810b0d45a1ef5b75ff1",
+      "bytes": 381886
+    },
+    {
+      "case_id": "00000181_018.png",
+      "image_ref": "00000181_018.png",
+      "label": "consolidation|infiltration",
+      "sha256": "ebdb307ad63bf320d34faeb3a332ac4f66b36e8999c005073760102886cb450a",
+      "bytes": 332076
+    },
+    {
+      "case_id": "00000181_019.png",
+      "image_ref": "00000181_019.png",
+      "label": "effusion",
+      "sha256": "bcc3954e7bbe44f1c93a1d0ebc2d52f9ae3509fb244a0fb9cd2364071cb55f30",
+      "bytes": 355778
+    },
+    {
+      "case_id": "00000181_021.png",
+      "image_ref": "00000181_021.png",
+      "label": "infiltration",
+      "sha256": "ed8f15a1d93037379e1cf351062d73e55eb223a80659d49776343e2e7b20a9ef",
+      "bytes": 358158
+    },
+    {
+      "case_id": "00000181_028.png",
+      "image_ref": "00000181_028.png",
+      "label": "consolidation|infiltration",
+      "sha256": "5f3500b76b43ec4537cd93b349568419fda01539a7ba8e2d145cfcd080e5ca7c",
+      "bytes": 364091
+    },
+    {
+      "case_id": "00000181_029.png",
+      "image_ref": "00000181_029.png",
+      "label": "consolidation|infiltration",
+      "sha256": "0d99c136d1e355fe2a7145f3bd5aa5d0af932df0f1f278b8bef16507bc99faca",
+      "bytes": 363134
+    },
+    {
+      "case_id": "00000181_030.png",
+      "image_ref": "00000181_030.png",
+      "label": "infiltration",
+      "sha256": "2e5b88f6dcbb38215b1c08926a25ac4d97dd798049118929a59bfa0740d6c9cb",
+      "bytes": 360701
+    },
+    {
+      "case_id": "00000181_032.png",
+      "image_ref": "00000181_032.png",
+      "label": "infiltration",
+      "sha256": "236ae4d7109e16448418d9bff4c3c2b3d0f697e9442e38378743dbac1830a6f9",
+      "bytes": 335493
+    },
+    {
+      "case_id": "00000181_033.png",
+      "image_ref": "00000181_033.png",
+      "label": "consolidation",
+      "sha256": "c5256bfd99d58ab4f3f50c05d6c69149caf3588c46dfca4b2d1be51b4595995a",
+      "bytes": 358479
+    },
+    {
+      "case_id": "00000181_035.png",
+      "image_ref": "00000181_035.png",
+      "label": "infiltration",
+      "sha256": "544c4554dd39e8727e21a4ece6107d100311d802c2bb03d7d6ed437cb0f8c203",
+      "bytes": 340803
+    },
+    {
+      "case_id": "00000181_036.png",
+      "image_ref": "00000181_036.png",
+      "label": "infiltration",
+      "sha256": "5c68a2bfcaa7d321aa10fa5e143db4ef530b0fa67f8ddfa2ab21092d801f6812",
+      "bytes": 334315
+    },
+    {
+      "case_id": "00000181_038.png",
+      "image_ref": "00000181_038.png",
+      "label": "consolidation",
+      "sha256": "efb0a7a9a618bf277f1f5b410a5f93e7f9280d2b48747867719071a6f8d493c9",
+      "bytes": 365767
+    },
+    {
+      "case_id": "00000181_037.png",
+      "image_ref": "00000181_037.png",
+      "label": "consolidation",
+      "sha256": "7e011d8ea72bb2568813b7d751d2e55ec12a6c5c324a8e1097ef47a9f3713fbc",
+      "bytes": 365139
+    },
+    {
+      "case_id": "00000181_040.png",
+      "image_ref": "00000181_040.png",
+      "label": "atelectasis",
+      "sha256": "841205f1870656fec5ecb6d78d8bfbaec8b3fbfe948de34b71b0af81bef8dda6",
+      "bytes": 353423
+    },
+    {
+      "case_id": "00000181_042.png",
+      "image_ref": "00000181_042.png",
+      "label": "effusion",
+      "sha256": "9dc3203e914d7769d8a480bd2571f3ebd9a4de32e0cf6b37d4de23fa16626d77",
+      "bytes": 340007
+    },
+    {
+      "case_id": "00000181_043.png",
+      "image_ref": "00000181_043.png",
+      "label": "consolidation|infiltration",
+      "sha256": "f28764ac7cfb1aa114cbaf49edd33879d219333f17b3942b2fe8134426cbd42c",
+      "bytes": 374305
+    },
+    {
+      "case_id": "00000181_044.png",
+      "image_ref": "00000181_044.png",
+      "label": "atelectasis|infiltration",
+      "sha256": "506dad393d859282b998869f1fa5df40921f13c8a4ad8ca3d2e692cdfc9ecc41",
+      "bytes": 366892
+    },
+    {
+      "case_id": "00000181_045.png",
+      "image_ref": "00000181_045.png",
+      "label": "atelectasis|infiltration",
+      "sha256": "f7c1f17692d9eb320324739a3ae4c7da11cefe11a9620070cbe78d75e8f5b0a1",
+      "bytes": 395021
+    },
+    {
+      "case_id": "00000181_046.png",
+      "image_ref": "00000181_046.png",
+      "label": "infiltration",
+      "sha256": "3fd78cda31bf10648fba11004105e1f796bb67611e1ebf027439700cb3291226",
+      "bytes": 341270
+    },
+    {
+      "case_id": "00000181_047.png",
+      "image_ref": "00000181_047.png",
+      "label": "consolidation",
+      "sha256": "1e8cc5ee4fdf656fbe7c4845930125be5d0d86c5f44078b2cb896e7f74065e9b",
+      "bytes": 340916
+    },
+    {
+      "case_id": "00000181_048.png",
+      "image_ref": "00000181_048.png",
+      "label": "atelectasis|effusion",
+      "sha256": "9d62141cde665aa1ae421bc0272d45e0fe2b11f9f73d5a1ddd60c2e9622a9535",
+      "bytes": 348726
+    },
+    {
+      "case_id": "00000181_050.png",
+      "image_ref": "00000181_050.png",
+      "label": "atelectasis",
+      "sha256": "36d286e01de7553790408b262559e2b716b1bb928df33d7c53bef5d40171db26",
+      "bytes": 384472
+    },
+    {
+      "case_id": "00000181_052.png",
+      "image_ref": "00000181_052.png",
+      "label": "fibrosis",
+      "sha256": "5eee5a023aee43a6b54a085095ca8dcae7aa0b230274107f1660cb83849f5e15",
+      "bytes": 406418
+    },
+    {
+      "case_id": "00000181_054.png",
+      "image_ref": "00000181_054.png",
+      "label": "atelectasis|effusion",
+      "sha256": "48ae89c0a08dc4fa716cc2f540dfa44ccfa2ede9b036ad4014d55cd91576e9fd",
+      "bytes": 392157
+    },
+    {
+      "case_id": "00000181_055.png",
+      "image_ref": "00000181_055.png",
+      "label": "edema|effusion",
+      "sha256": "05c05c580a8b314f9714564a2324255632bac2f7f788e935d1372c2faaff1da7",
+      "bytes": 398094
+    },
+    {
+      "case_id": "00000181_058.png",
+      "image_ref": "00000181_058.png",
+      "label": "effusion",
+      "sha256": "becf6fbe66e3209711720ec44b96d22b561d1a1d97a5b7c8c66377c5114bdfa0",
+      "bytes": 344790
+    },
+    {
+      "case_id": "00000181_059.png",
+      "image_ref": "00000181_059.png",
+      "label": "effusion",
+      "sha256": "5fab279385ce229a44d838b3dd50de09f5806c17cfcac6da3e35a15eeaef9156",
+      "bytes": 364549
+    },
+    {
+      "case_id": "00000181_060.png",
+      "image_ref": "00000181_060.png",
+      "label": "effusion",
+      "sha256": "985cd93c99ad153ac123a3924f2dfb0931a3df57e06af2474ea83eae805accbc",
+      "bytes": 352937
+    },
+    {
+      "case_id": "00000181_061.png",
+      "image_ref": "00000181_061.png",
+      "label": "atelectasis|effusion|infiltration",
+      "sha256": "cb53ac821abe8c4f3fd6317300d053cad606a052fc7fa0a2228dda23e00f8144",
+      "bytes": 356419
+    },
+    {
+      "case_id": "00000181_062.png",
+      "image_ref": "00000181_062.png",
+      "label": "effusion|infiltration",
+      "sha256": "f3453938cb56402b8634448a92a91aeeb56bdb73229503c6b5370a2382e58f9e",
+      "bytes": 407286
+    },
+    {
+      "case_id": "00000183_000.png",
+      "image_ref": "00000183_000.png",
+      "label": "infiltration",
+      "sha256": "a703cf24c2a43bf4013cefe4e47c26215202ceb57ce0bf13a33f2c96618b318e",
+      "bytes": 404418
+    },
+    {
+      "case_id": "00000183_002.png",
+      "image_ref": "00000183_002.png",
+      "label": "infiltration",
+      "sha256": "d0cb59a719e4f91e80369204c0ce1adc3dacd1c5b0527eb3352d30c969999571",
+      "bytes": 432715
+    },
+    {
+      "case_id": "00000187_000.png",
+      "image_ref": "00000187_000.png",
+      "label": "pleural_thickening",
+      "sha256": "be9ce81c2579810428b3f9f11b0f6f4c7e661fbd51fb03b9a475a69f588a12c7",
+      "bytes": 449564
+    },
+    {
+      "case_id": "00000189_000.png",
+      "image_ref": "00000189_000.png",
+      "label": "atelectasis",
+      "sha256": "716db3788a8369d29b834ab4a42e3bfa3c561675dd6c46cbbcd9440765f4f1e5",
+      "bytes": 370258
+    },
+    {
+      "case_id": "00000193_006.png",
+      "image_ref": "00000193_006.png",
+      "label": "atelectasis|infiltration",
+      "sha256": "6d06a29181b7a015206b15b647a939f8c62df770d557cb0f72e9697a6e3149db",
+      "bytes": 365446
+    },
+    {
+      "case_id": "00000193_019.png",
+      "image_ref": "00000193_019.png",
+      "label": "pneumonia",
+      "sha256": "28694b5f7c72742c874e58c40a9d3515fe34e970f3e3df9981d0c64ad0efcfda",
+      "bytes": 336790
+    },
+    {
+      "case_id": "00000199_002.png",
+      "image_ref": "00000199_002.png",
+      "label": "fibrosis|nodule",
+      "sha256": "6b556fe02e98fe3bf184f51a92661d84923d1f53dd0c8e3ba6ae064da531ed79",
+      "bytes": 391004
+    },
+    {
+      "case_id": "00000199_004.png",
+      "image_ref": "00000199_004.png",
+      "label": "fibrosis",
+      "sha256": "2fb22a13d17124eda23f1f45193f6bc791bbaac0ebdf26749f7320b1e6446526",
+      "bytes": 422890
+    },
+    {
+      "case_id": "00000199_005.png",
+      "image_ref": "00000199_005.png",
+      "label": "nodule",
+      "sha256": "4665bc71cb5f8e407fb4bea590907895f68991ddc748e1ea500f364c0ab1f9ce",
+      "bytes": 440065
+    },
+    {
+      "case_id": "00000199_001.png",
+      "image_ref": "00000199_001.png",
+      "label": "fibrosis",
+      "sha256": "ea34a77c9131468320fbe44b29db0b57756046129e6a9b5af6d6e0b04b561301",
+      "bytes": 393991
+    },
+    {
+      "case_id": "00000200_000.png",
+      "image_ref": "00000200_000.png",
+      "label": "nodule",
+      "sha256": "c17ec7f1bba3a713ca3a995003665db4d5c06b50e6813779632544de7a29ceee",
+      "bytes": 386207
+    },
+    {
+      "case_id": "00000200_001.png",
+      "image_ref": "00000200_001.png",
+      "label": "cardiomegaly",
+      "sha256": "2f25a40c9886c18daa193abce96913acfc81f24ecc2862abf60c2f60d1ff9d52",
+      "bytes": 410786
+    },
+    {
+      "case_id": "00000203_000.png",
+      "image_ref": "00000203_000.png",
+      "label": "atelectasis",
+      "sha256": "f013f122129bfd6fec7c66925328ef0e44e6ea34f67a1faa45bce339c3132751",
+      "bytes": 395811
+    },
+    {
+      "case_id": "00000204_001.png",
+      "image_ref": "00000204_001.png",
+      "label": "fibrosis|nodule",
+      "sha256": "d7a04c6df669b779487624e1d5114b40d2a2f8c50d39e7f34198b97af02d0b01",
+      "bytes": 409305
+    },
+    {
+      "case_id": "00000204_002.png",
+      "image_ref": "00000204_002.png",
+      "label": "nodule|pleural_thickening",
+      "sha256": "c70651a702c512507af9ec9b9384ad74c97bf5bd554d4e783e2f0222872e7a87",
+      "bytes": 390806
+    },
+    {
+      "case_id": "00000204_004.png",
+      "image_ref": "00000204_004.png",
+      "label": "fibrosis",
+      "sha256": "e080bb192a261dd3e4bd1cf77f503b4c68d05b6b8d649e976e9ad3c5c60f62cf",
+      "bytes": 377244
+    },
+    {
+      "case_id": "00000204_005.png",
+      "image_ref": "00000204_005.png",
+      "label": "fibrosis|nodule",
+      "sha256": "de33dbf6fe1a4d6fa60dac6abb8e3f886134732ffe0351a516c33d8e1d1c967c",
+      "bytes": 446072
+    },
+    {
+      "case_id": "00000204_000.png",
+      "image_ref": "00000204_000.png",
+      "label": "fibrosis",
+      "sha256": "81473d31ccc13fc1f32a93cd6c8ddc4bd7190de1cdb583acac2bbfc7c9eef4c2",
+      "bytes": 433506
+    },
+    {
+      "case_id": "00000205_001.png",
+      "image_ref": "00000205_001.png",
+      "label": "infiltration",
+      "sha256": "5f1a460cd2f7b775db47e08ea7a664946e4a0c3754feb20a7265d21e8e5843b4",
+      "bytes": 399831
+    },
+    {
+      "case_id": "00000208_000.png",
+      "image_ref": "00000208_000.png",
+      "label": "atelectasis|effusion|pleural_thickening",
+      "sha256": "03874868d11bd513d830a078f4e8f539224d5c0fa0d6ad88a4afceadddfb3f9c",
+      "bytes": 401755
+    },
+    {
+      "case_id": "00000211_000.png",
+      "image_ref": "00000211_000.png",
+      "label": "cardiomegaly",
+      "sha256": "01bc76380fd185cb4b33d4913293f2f621e602c6b7d10b81229c05aa6753e481",
+      "bytes": 374591
+    },
+    {
+      "case_id": "00000211_001.png",
+      "image_ref": "00000211_001.png",
+      "label": "cardiomegaly",
+      "sha256": "ba90df5b66eaa39bbee9fe735a556bf7a74bc76c065fee23396ca2413ba052cb",
+      "bytes": 371780
+    },
+    {
+      "case_id": "00000211_002.png",
+      "image_ref": "00000211_002.png",
+      "label": "cardiomegaly",
+      "sha256": "9b3dc89e85b234e858ef15dda9e1917b0387399d9eafddfcfa7dc872dbd5c51c",
+      "bytes": 352825
+    },
+    {
+      "case_id": "00000211_004.png",
+      "image_ref": "00000211_004.png",
+      "label": "cardiomegaly|edema|effusion|infiltration",
+      "sha256": "752afbc4e9723fcc8dd4fc8b9bb554ea666f4c7a4d916c46a7e2978b20594358",
+      "bytes": 423667
+    },
+    {
+      "case_id": "00000211_005.png",
+      "image_ref": "00000211_005.png",
+      "label": "cardiomegaly|infiltration",
+      "sha256": "37b2976842e356e9c10c450c75e0f23030e269529f1e7bbf50e70e1f2d6f4681",
+      "bytes": 443151
+    },
+    {
+      "case_id": "00000211_006.png",
+      "image_ref": "00000211_006.png",
+      "label": "cardiomegaly|edema|effusion|fibrosis|infiltration",
+      "sha256": "2fd66fcdd3eef47915569fe9a451fdff43396f9b7117b5db63b6d036a2ee1b58",
+      "bytes": 365742
+    },
+    {
+      "case_id": "00000211_007.png",
+      "image_ref": "00000211_007.png",
+      "label": "cardiomegaly|edema",
+      "sha256": "f3a8e13e000074887756ccb2d7b41ed8dd5c8aa5f9e57c614787c43547103780",
+      "bytes": 427488
+    },
+    {
+      "case_id": "00000211_008.png",
+      "image_ref": "00000211_008.png",
+      "label": "cardiomegaly|effusion",
+      "sha256": "de98de81c642bc1c6e42b1e031a57ac2f87004b78933d70f95542afd75818f02",
+      "bytes": 397667
+    },
+    {
+      "case_id": "00000211_009.png",
+      "image_ref": "00000211_009.png",
+      "label": "cardiomegaly|consolidation|edema|effusion",
+      "sha256": "016712ed2657affe05ba8425610aa743d0f7040cf09a576e0dd233599a5bfc25",
+      "bytes": 448965
+    },
+    {
+      "case_id": "00000211_010.png",
+      "image_ref": "00000211_010.png",
+      "label": "atelectasis|cardiomegaly|effusion|infiltration",
+      "sha256": "8e84fe9cd92496b07b42e8d928a0b7cd89c4084cac54ced81eaaa773068a5369",
+      "bytes": 371861
+    },
+    {
+      "case_id": "00000211_011.png",
+      "image_ref": "00000211_011.png",
+      "label": "cardiomegaly|effusion",
+      "sha256": "461391b280057617fc2f097e3c5054eecb606fc7e1c642807c52dab49f34a1d1",
+      "bytes": 365938
+    },
+    {
+      "case_id": "00000211_012.png",
+      "image_ref": "00000211_012.png",
+      "label": "effusion",
+      "sha256": "ae6e65a8a2e9d0d56b6d6db07477803a5ab5ba0b7d8f1c540b876f8dafc36712",
+      "bytes": 390883
+    },
+    {
+      "case_id": "00000211_013.png",
+      "image_ref": "00000211_013.png",
+      "label": "cardiomegaly|edema|effusion|infiltration|pneumonia",
+      "sha256": "1724bc0dd1ea411c2b27648065b17c346186b2e9f54f5f4d601768a1c832b0bd",
+      "bytes": 372775
+    },
+    {
+      "case_id": "00000211_014.png",
+      "image_ref": "00000211_014.png",
+      "label": "cardiomegaly|effusion",
+      "sha256": "d16b5c16f12a394801cdcf4f596d34b8f27e4dd549935100870ae404febeeab7",
+      "bytes": 363562
+    },
+    {
+      "case_id": "00000211_015.png",
+      "image_ref": "00000211_015.png",
+      "label": "effusion|infiltration",
+      "sha256": "efd561a6f8be190c48ec21853e10ab293274e03d52e59c4aec5817736cfd6a5f",
+      "bytes": 374803
+    },
+    {
+      "case_id": "00000211_016.png",
+      "image_ref": "00000211_016.png",
+      "label": "cardiomegaly|infiltration",
+      "sha256": "612204f8915e756332578468d18e27e97f64d9bbbea5a59ec8309bfcac51c013",
+      "bytes": 376606
+    }
+  ]
+}

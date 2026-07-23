@@ -1,0 +1,14 @@
+{
+  "n": 150,
+  "model": "gemini-2.5-flash",
+  "cue": "watermark",
+  "new_api_calls_this_run": 450,
+  "shared_adopt": 0.9667,
+  "isolated_adopt": 0.1533,
+  "contagion": 0.8133,
+  "contagion_ci95": [
+    0.7467,
+    0.8733
+  ],
+  "note": "scaled watermark cascade n=150, bootstrap 95% CI on contagion (5000 resamples); tightens the n=35 imaging headline"
+}
