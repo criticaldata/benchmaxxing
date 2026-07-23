@@ -1,0 +1,14 @@
+{
+  "n": 120,
+  "models": {
+    "peers": "gemini-2.5-flash",
+    "holdout": "gemini-2.5-flash-lite"
+  },
+  "new_api_calls_this_run": 480,
+  "n_organic_wrong_consensus": 8,
+  "n_organic_right_consensus": 109,
+  "follow_rate_on_wrong_consensus": 0.875,
+  "follow_rate_on_right_consensus": 0.9083,
+  "net_harm_cases": 1,
+  "read": "With two REAL flash peers making organic (unscripted) errors, on the 8 cases where both peers independently agreed on the same WRONG answer the holdout follows that wrong consensus 0.875 of the time, versus following a correct peer consensus 0.9083 of the time on 109 cases. Net harm (holdout correct alone but adopts the organic wrong consensus) occurs on 1 cases. High follow-rate on wrong consensus means the holdout defers to organic peer errors much as it does to planted ones, so the cascade is not an artifact of adversarial scripting; a gap between wrong- and right-consensus following would show some genuine discrimination."
+}
