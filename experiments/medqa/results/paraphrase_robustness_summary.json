@@ -1,0 +1,22 @@
+{
+  "n": 120,
+  "model": "gemini-2.5-flash-lite",
+  "new_api_calls_this_run": 433,
+  "adoption_by_template": {
+    "t0_canonical": 0.6417,
+    "t1_consultant": 0.525,
+    "t2_attending": 0.8833
+  },
+  "per_case_unanimous_fraction": 0.5583,
+  "t0_vs_t1": {
+    "gain": 5,
+    "lose": 19,
+    "pvalue": 0.006611
+  },
+  "t0_vs_t2": {
+    "gain": 33,
+    "lose": 4,
+    "pvalue": 1e-06
+  },
+  "read": "Adoption of the same fixed wrong seed under three independently paraphrased instruction and assertion templates: {'t0_canonical': 0.6417, 't1_consultant': 0.525, 't2_attending': 0.8833}. Per-case verdicts are unanimous across all three templates on 0.5583 of cases. Tightly clustered rates and high agreement mean the cascade is a property of the manipulation rather than one brittle prompt string; large swings would flag prompt-sensitivity. Paired McNemars test the canonical template against each paraphrase."
+}
