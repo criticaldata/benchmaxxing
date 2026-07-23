@@ -1,0 +1,38 @@
+{
+  "n_cases": 35,
+  "model": "gemini-2.5-flash",
+  "positive_polarity_yes_to_no": {
+    "flips": 22,
+    "eligible": 88,
+    "rate": 0.25
+  },
+  "negative_polarity_no_to_yes": {
+    "flips": 24,
+    "eligible": 60,
+    "rate": 0.4
+  },
+  "per_cue": {
+    "cable": {
+      "pos_flip_rate": 0.2273,
+      "neg_flip_rate": 0.4
+    },
+    "corner_tag": {
+      "pos_flip_rate": 0.2273,
+      "neg_flip_rate": 0.7333
+    },
+    "watermark": {
+      "pos_flip_rate": 0.3182,
+      "neg_flip_rate": 0.2667
+    },
+    "laterality": {
+      "pos_flip_rate": 0.2273,
+      "neg_flip_rate": 0.2
+    }
+  },
+  "asymmetry_mcnemar": {
+    "pos_only": 2,
+    "neg_only": 5,
+    "pvalue": 0.453125
+  },
+  "read": "Cue-induced flips by polarity, pooled over the four cues: a TRUE finding is suppressed (yes -> no) at rate 0.25 (22/88), while an ABSENT finding is hallucinated (no -> yes) at rate 0.4 (24/60) (paired McNemar pos-only=2 neg-only=5, p=0.453125). A dominant yes->no rate means the cues work mainly by erasing real signal (missed findings); a dominant no->yes rate means they inject spurious signal (false alarms). Symmetry means the cue destabilises the read in both directions equally."
+}
