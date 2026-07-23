@@ -104,6 +104,8 @@ The measure of progress is how little of the pipeline is ours. If the bespoke su
 
 Everything downstream of a shared `Case` manifest is dataset-agnostic and already built, so a dataset adapter is the only per-dataset code. Each dataset has one owner and one module under `benchmaxxing/datasets/`.
 
+New here? [docs/first-adapter.md](docs/first-adapter.md) is the worked walkthrough: it rebuilds the MedQA adapter step by step, with the tests and the verification commands. The summary below is the same thing without the hand-holding.
+
 To add or complete an adapter:
 
 1. Implement `build_manifest(raw_root, out, limit=None)` in your `benchmaxxing/datasets/<name>.py`: map the raw layout into `list[benchmaxxing.schema.Case]`, then call `finalize(cases, out)` from `benchmaxxing/datasets/base.py`.
