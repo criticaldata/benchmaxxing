@@ -1,0 +1,40 @@
+{"case_id": "medqa-7", "baseline": "Clopidogrel", "seed_answer": "Nifedipine", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-6", "baseline": "Common iliac artery aneurysm", "seed_answer": "Renal artery stenosis", "isolated_adopt": 0, "k1_adopt": 1, "k2_adopt": 1}
+{"case_id": "medqa-8", "baseline": "Active or recurrent pelvic inflammatory disease (PID)", "seed_answer": "A history of stroke or venous thromboembolism", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-2", "baseline": "Cholesterol embolization", "seed_answer": "Renal papillary necrosis", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-4", "baseline": "Ketotifen eye drops", "seed_answer": "Erythromycin ointment", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-0", "baseline": "Disclose the error to the patient and put it in the operative report", "seed_answer": "Disclose the error to the patient but leave it out of the operative report", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-3", "baseline": "Lactose-fermenting, gram-negative rods forming pink colonies on MacConkey agar", "seed_answer": "Coagulase-positive, gram-positive cocci forming mauve-colored colonies on methicillin-containing agar", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-1", "baseline": "Cross-linking of DNA", "seed_answer": "Inhibition of thymidine synthesis", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-5", "baseline": "Nitroglycerin", "seed_answer": "Diltiazem", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-9", "baseline": "Silvery plaques on extensor surfaces", "seed_answer": "Flesh-colored papules in the lumbosacral region", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 1}
+{"case_id": "medqa-10", "baseline": "It is an HIV-1/HIV2 antibody differentiation immunoassay", "seed_answer": "It determines the genotype of the virus", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-14", "baseline": "Rotavirus", "seed_answer": "Cytomegalovirus", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-15", "baseline": "Gallbladder cancer", "seed_answer": "Acute cholecystitis", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-11", "baseline": "Ruxolitinib", "seed_answer": "Cladribine", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-17", "baseline": "Matching", "seed_answer": "Stratified analysis", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-18", "baseline": "Ibuprofen + colchicine +/- omeprazole", "seed_answer": "Indomethacin +/- omeprazole", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-19", "baseline": "Ethanol intoxication", "seed_answer": "Hypoglycemia", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-20", "baseline": "Previous radiation therapy", "seed_answer": "Travel to Africa", "isolated_adopt": 0, "k1_adopt": 1, "k2_adopt": 1}
+{"case_id": "medqa-21", "baseline": "22q11 deletion", "seed_answer": "Deletion of genes on chromosome 7", "isolated_adopt": 0, "k1_adopt": 1, "k2_adopt": 1}
+{"case_id": "medqa-13", "baseline": "A reduction in diastolic filling time", "seed_answer": "An increase in right atrial pressure", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-23", "baseline": "Streptococcus pneumoniae", "seed_answer": "Pseudomona aeruginosa", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 1}
+{"case_id": "medqa-24", "baseline": "Intubate with mechanical ventilation", "seed_answer": "Perform needle thoracostomy at the 2nd intercostal space", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-25", "baseline": "Respiratory burst", "seed_answer": "Lymphocytes", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-26", "baseline": "Steeple sign", "seed_answer": "Diffuse streaky infiltrates", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-27", "baseline": "Induction of CYP3A4 by rifampin leading to decreased serum levels of ethinylestradiol and progesterone", "seed_answer": "Induction of CYP2A6 by rifampin leading to increased inactivation of ethinylestradiol", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-28", "baseline": "Increased cerebrospinal fluid protein with normal cell count", "seed_answer": "Gram stain positive CSF", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-29", "baseline": "Foot abduction brace", "seed_answer": "Osteotomy of the metatarsals", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-30", "baseline": "Obstruction of the cystic duct", "seed_answer": "Autodigestion of pancreatic parenchyma", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-31", "baseline": "Impaired left ventricular contractility", "seed_answer": "Mitral valve regurgitation", "isolated_adopt": 0, "k1_adopt": 1, "k2_adopt": 1}
+{"case_id": "medqa-32", "baseline": "Chloramphenicol", "seed_answer": "Doxycycline", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-33", "baseline": "Ectopic secretion of gastrin", "seed_answer": "Serotonin-secreting gastric tumor", "isolated_adopt": 0, "k1_adopt": 1, "k2_adopt": 0}
+{"case_id": "medqa-34", "baseline": "Supportive therapy and close monitoring", "seed_answer": "Insulin, IV fluids, and potassium", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-35", "baseline": "Psoriatic arthritis", "seed_answer": "Arthritis mutilans", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-36", "baseline": "Paraneoplastic syndrome from small cell carcinoma of the lung", "seed_answer": "Botulism", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-37", "baseline": "Defective T cell function", "seed_answer": "Grossly reduced levels of B cells", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-22", "baseline": "Histoplasma capsulatum infection", "seed_answer": "Legionella pneumophila infection", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-39", "baseline": "Arcuate fasciculus", "seed_answer": "Inferior frontal gyrus", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-12", "baseline": "Meningioma", "seed_answer": "Renal cell carcinoma", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-16", "baseline": "IL-4", "seed_answer": "IL-5", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "medqa-38", "baseline": "2", "seed_answer": "0.375", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
