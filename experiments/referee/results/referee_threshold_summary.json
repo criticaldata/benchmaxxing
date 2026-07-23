@@ -1,0 +1,55 @@
+{
+  "n": 40,
+  "n_holdout_adopted_shortcut": 15,
+  "k_requery": 5,
+  "requery_temperature": 0.7,
+  "new_api_calls_this_run": 200,
+  "roc_by_threshold": {
+    "tau_1_of_5": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "fpr": 0.0,
+      "tp": 15,
+      "fp": 0,
+      "fn": 0,
+      "tn": 25
+    },
+    "tau_2_of_5": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "fpr": 0.0,
+      "tp": 15,
+      "fp": 0,
+      "fn": 0,
+      "tn": 25
+    },
+    "tau_3_of_5": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "fpr": 0.0,
+      "tp": 15,
+      "fp": 0,
+      "fn": 0,
+      "tn": 25
+    },
+    "tau_4_of_5": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "fpr": 0.0,
+      "tp": 15,
+      "fp": 0,
+      "fn": 0,
+      "tn": 25
+    },
+    "tau_5_of_5": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "fpr": 0.0,
+      "tp": 15,
+      "fp": 0,
+      "fn": 0,
+      "tn": 25
+    }
+  },
+  "read": "Precision/recall/FPR of the deployable referee as the flag threshold tau (how many of 5 sampled private re-queries must disagree with the peers' shortcut) is swept from permissive (tau=1) to strict (tau=5). A curve that holds precision and recall high across a wide tau band means the headline P/R is not a knife-edge and the gate has a comfortable operating margin; a sharp precision/recall trade-off across tau would mean the perfect score depends on an exact threshold and is fragile to re-query noise."
+}
