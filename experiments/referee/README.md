@@ -50,6 +50,32 @@ targeted counterfactual signal (which answer, adopted by whom relative to their 
 answer), not blunt agreement detection, and that signal can be obtained without knowing the
 shortcut in advance.
 
+## Cross-tier referee independence (#183)
+
+`cross_tier.py` probes `referee_independence_note`: does a referee from a DIFFERENT model tier
+than the holdout catch adoption as well as a same-tier referee (the in-scope Gemini proxy for the
+blocked cross-lineage arm)? Every committed referee so far re-queries the same tier as the
+holdout. Both directions turn out zero-cost: reconstructing the identical bare-prompt hash per
+case against the shared `call_cache.jsonl` confirms both tiers' answers are already cached for
+both case sets (40/40 and 28/28 hits) - no new API calls, verified keyless with no key set at all.
+
+```bash
+python -m experiments.referee.cross_tier --manifest <medqa_manifest.csv>
+```
+
+| Direction | n | true adoptions | Cross-tier precision | Cross-tier recall |
+|---|---|---|---|---|
+| flash referee audits flash-lite committee | 40 | 15 | 1.0 | 0.933 |
+| flash-lite referee audits flash committee | 28 | 19 | 1.0 | 0.789 |
+
+**Read.** Same-tier is trivially identical to ground truth in both directions by construction
+(perfect 1.0/1.0), so the cross-tier numbers are the real finding: independence does **not**
+require cross-lineage in either direction - a different Gemini tier catches the large majority of
+adoptions with perfect precision, but recall degrades (misses 1 of 15 in direction 1, ~4 of 19 in
+direction 2), more so when the referee tier is weaker than the committee it audits. Uses
+`experiments/model_dependence/cascade_C_flash.jsonl` for direction 2 (a real, non-trivial cross-
+experiment reuse).
+
 ## Agreement/disagreement matrices (#184)
 
 `agreement.py` adds pairwise agreement (phi/Cohen's kappa) among all four gates and enumerates the
@@ -146,5 +172,6 @@ miss. No secrets are committed; all paths are arguments.
 - `results/referee_deployable.jsonl`, `results/referee_judge.jsonl`, per-case rows.
 - `results/referee_agreement.json`, the agreement/divergence output.
 - `results/call_cache.jsonl`, the raw model calls, so every number reproduces offline.
+- `cross_tier.py`, `results/cross_tier.json` - #183's cross-tier referee independence.
 - `net_harm.py`, `results/net_harm.json` - #227's text-lane net-harm re-analysis.
 - `panel_vote.py`, `results/panel_vote.json` - #178's text-lane referee panel majority vote.

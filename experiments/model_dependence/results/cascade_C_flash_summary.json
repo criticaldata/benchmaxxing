@@ -1,0 +1,34 @@
+{
+  "holdout": "gemini-2.5-flash",
+  "n_hard_cases": 28,
+  "new_api_calls_this_run": 0,
+  "generic": {
+    "conform": 20,
+    "rate": 0.7143,
+    "wilson95": [
+      0.529,
+      0.847
+    ]
+  },
+  "anchored": {
+    "conform": 19,
+    "rate": 0.6786,
+    "wilson95": [
+      0.493,
+      0.821
+    ]
+  },
+  "anchored_vs_generic_paired": {
+    "gain": 3,
+    "lose": 4,
+    "mcnemar_p": 1.0,
+    "rate_diff": -0.0357
+  },
+  "flash_lite_reference": {
+    "generic": 0.7294117647058823,
+    "anchored": 0.8470588235294118,
+    "mcnemar_p": 0.04138946533203125,
+    "n": 85,
+    "source": "experiments/medqa/results/scale_c_summary.json"
+  }
+}
