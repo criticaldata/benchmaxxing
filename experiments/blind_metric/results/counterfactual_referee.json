@@ -1,0 +1,24 @@
+{
+  "n": 40,
+  "n_drifted": 11,
+  "n_base_is_decoy": 0,
+  "f1_naive_vs_drift": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+  },
+  "f1_counterfactual_vs_drift": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+  },
+  "f1_note": "naive and counterfactual are identical detectors in this committed data (base_is_decoy is True on 0 of 40 cases), so both score P/R 1.0/1.0 against the drift definition trivially - this dataset has no case where skipping the baseline comparison would have produced a false positive, not a general claim that naive and counterfactual referees are interchangeable.",
+  "f2_reasoning_reader": {
+    "recall": 1.0,
+    "precision": "not independently verifiable from committed data (see f2_note)",
+    "n_named_rubric": 11,
+    "n_drifted": 11
+  },
+  "f2_note": "named_rubric_when_drifted is stored already conditioned on drift (defined as 'drifted and named' in the source runner), so recall (n_named/n_drifted) is directly computable, but precision cannot be verified from committed data alone - it would require re-parsing raw cached completions for NON-drifted cases against the true MedQA manifest, which is external data not committed to this repo. Reported as an honest partial result, not assumed to be 1.0.",
+  "read": "F1: the counterfactual referee (base vs blind) recovers the drift ground truth exactly by construction (P/R 1.0/1.0), and the naive variant happens to match it here too since no case's baseline answer already preferred the decoy - this dataset cannot demonstrate the false-positive risk a naive detector would carry on a population where baseline decoy-preference is nonzero. F2: recall = 1.0 (11/11) - every drifter in this text-lane data named the rubric in their justification, so a reasoning-reading referee would have caught all of them here. Precision is honestly unverifiable rather than assumed perfect."
+}
