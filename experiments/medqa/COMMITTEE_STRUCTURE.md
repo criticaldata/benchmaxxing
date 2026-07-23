@@ -162,3 +162,61 @@ consistent with the classic Asch result that a single ally breaks conformity, bu
 because n is capped at the 24 solo-wrong cases in the scanned set. Reported honestly as suggestive
 but underpowered; a larger solo-wrong pool would be needed to confirm the dissenter effect. 198 new
 API calls; verified keyless.
+
+## Super-additivity: system flag x anchored peer (`super_additivity.py`, #186)
+
+Break-it A (system flag) and C (anchored senior peer) were only ever run separately. This crosses
+them in a single 2x2 on the same cases and wrong answer, on the flash-lite holdout alone.
+
+```bash
+python -m experiments.medqa.super_additivity --manifest <medqa_manifest.csv> \
+    --out experiments/medqa/results --n 120
+```
+
+| cell | adoption (n=120) |
+|---|---|
+| neither | 0.0 |
+| system flag alone | 0.65 |
+| anchored senior peer alone | 0.64 |
+| both together | 0.66 |
+
+Both vs the stronger single arm (system): McNemar gain=11, lose=10, p=1.0.
+
+**Read.** Authority signals do NOT stack. A single authority signal already moves ~65% of
+holdouts, and adding a second signal of a different type buys nothing significant (0.66 vs 0.65,
+p=1.0); the strongly negative naive interaction (-0.63) just reflects that each single effect
+already nearly saturates, so their sum overshoots. Deference to authority saturates with one
+credible signal rather than compounding across several, which bounds how bad stacked authority
+cues can get but also means removing just one of several would not help. 480 new API calls;
+verified keyless.
+
+## Rationale validity: bare vs valid-wrong vs named-fallacy (`rationale_validity.py`, #195)
+
+Holding the source (a senior colleague) and the wrong answer fixed, vary only the rationale: a
+bare assertion, plausible-but-wrong clinical reasoning, or reasoning that names its own shortcut
+("mostly because it is the most common exam answer"). Single flash-lite holdout; the holdout was
+solo-correct on 101 of the 120 cases, so this flips a competent holdout.
+
+```bash
+python -m experiments.medqa.rationale_validity --manifest <medqa_manifest.csv> \
+    --out experiments/medqa/results --n 120
+```
+
+| rationale | adoption of the wrong answer (n=120) |
+|---|---|
+| bare assertion | **0.775** |
+| plausible-but-wrong reasoning | 0.18 |
+| openly-fallacious reasoning | 0.18 |
+
+Bare vs either reasoned arm: McNemar gain=0, lose=71, p<1e-9. The two reasoned arms are
+indistinguishable (p=1.0).
+
+**Read.** Counterintuitive and strong: EXPOSING the (wrong) reasoning is protective. A bare appeal
+to a senior colleague's authority (adopted 0.78, consistent with the authority ladder's senior
+rung, so not an artifact) gives the holdout nothing to evaluate and it defers; but any checkable
+rationale, even one that looks clinically valid, lets the holdout find the flaw and hold firm
+(0.18), and openly naming the fallacy adds nothing beyond simply showing the reasoning.
+Transparency beats a bare authority claim. **Caveat:** this is on mostly solo-correct cases; on
+genuinely hard/uncertain cases a case-anchored rationale instead RAISES conformity (scale_c
+anchored 0.85 vs generic 0.73), so whether reasoning helps or hurts a wrong seed depends on
+whether the holdout can actually judge it. 480 new API calls; verified keyless.
