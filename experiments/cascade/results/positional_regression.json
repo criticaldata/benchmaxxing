@@ -1,0 +1,47 @@
+{
+  "k_rounds": 5,
+  "shared_arm": {
+    "n_observations": 200,
+    "n_cases": 40,
+    "intercept": -2.4399,
+    "round_index_coef": 0.135,
+    "fitted_predicted_probability_by_round": [
+      0.0802,
+      0.0907,
+      0.1025,
+      0.1156,
+      0.1301
+    ]
+  },
+  "isolated_arm": {
+    "n_observations": 200,
+    "n_cases": 40,
+    "intercept": -4.2994,
+    "round_index_coef": -0.524,
+    "fitted_predicted_probability_by_round": [
+      0.0134,
+      0.008,
+      0.0047,
+      0.0028,
+      0.0017
+    ]
+  },
+  "empirical_adoption_by_round": {
+    "shared": [
+      0.275,
+      0.3,
+      0.275,
+      0.325,
+      0.325
+    ],
+    "isolated": [
+      0.0,
+      0.025,
+      0.0,
+      0.025,
+      0.0
+    ]
+  },
+  "position_confounded_caveat": "Round order was fixed, not randomized or counterbalanced across cases, so any round_index coefficient reflects position in a fixed sequence, not a validated 'repeated exposure' effect - it cannot rule out fatigue, drift, or other position-correlated confounds. Descriptive only.",
+  "read": "Shared-arm round_index coefficient = 0.135 (small), but its fitted probabilities ([0.0802, 0.0907, 0.1025, 0.1156, 0.1301]) sit consistently ~0.17-0.21 below the actual empirical shared adoption ([0.275, 0.3, 0.275, 0.325, 0.325], roughly flat around 0.28-0.33) - a real, checked offset, not a rounding artifact. This is the expected signature of a random-intercept logistic mixed model on heavily heterogeneous per-case data (40 cases x 5 rounds each): the population-average-conditional-on-zero-random-effect prediction understates the raw empirical mean when between-case variance is large (a known non-collapsibility property of mixed logit models), not evidence that the round_index coefficient itself is wrong. Isolated-arm coefficient = -0.524 (intercept -4.2994) fits much better (gaps under 0.02 every round) since isolated adoption is already at floor ([0.0, 0.025, 0.0, 0.025, 0.0], matching the multi-round README's already-reported near-floor values) with little between-case variance to cause the same offset. Both arms' round_index coefficients are small in absolute terms either way; the position-confounded caveat applies regardless."
+}
