@@ -1,0 +1,11 @@
+{
+  "n_cases": 40,
+  "orders_per_case": 6,
+  "new_api_calls_this_run": 520,
+  "cases_with_order_independent_dominant_agent": 40,
+  "dominance_rate": 1.0,
+  "of_dominant_how_many_are_flash": "7/40",
+  "dominant_and_wrong_cases": 5,
+  "dominant_and_wrong_rate": 0.125,
+  "read": "At temperature 0.7 the committee no longer trivially converges, so score_hierarchy reports an order-independent dominant agent on 40 of 40 cases (rate 1.0); of those, 7 are a flash (stronger-tier) seat. A dominant agent here means one seat whose own first proposal matches the committee outcome across all six speaking orders at or above the 0.75 threshold. The dominant seat's first proposal is WRONG on 5 of 40 cases (rate 0.125) - genuine order-independent single-agent dominance steering the committee to a wrong answer, the hazard the hierarchy-monitoring duty is meant to catch, now measurable because temp>0 lets the agents actually disagree (resolving the #173 temp-0 degeneracy)."
+}

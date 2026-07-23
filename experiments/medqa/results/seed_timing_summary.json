@@ -1,0 +1,15 @@
+{
+  "n": 120,
+  "model": "gemini-2.5-flash-lite",
+  "new_api_calls_this_run": 360,
+  "adoption_by_timing": {
+    "holdout_last": 0.45,
+    "holdout_first": 0.1333
+  },
+  "last_vs_first": {
+    "gain": 2,
+    "lose": 40,
+    "pvalue": 0.0
+  },
+  "read": "Adoption of the fixed wrong peer seed by speaking slot: holdout LAST (max exposure, one round) 0.45, holdout FIRST then revising over two rounds 0.1333 (paired McNemar gain=2 lose=40, p=0.0). Lower adoption when the holdout speaks first means letting the susceptible agent pre-commit before exposure is a cheap structural mitigation; similar rates mean the second-round cascade overrides the pre-commitment and speaking order does not protect."
+}
