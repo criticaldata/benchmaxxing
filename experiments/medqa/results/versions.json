@@ -1,0 +1,8 @@
+{
+  "benchmaxxing_version": "0.0.1",
+  "git_sha": "3273c0111362e22c1a946330e8f2283db29a413b",
+  "git_branch": "feat/adapters-runners",
+  "python": "3.13.5",
+  "google_genai": "1.39.1",
+  "started": "2026-07-20 00:45:30"
+}
