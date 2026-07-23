@@ -1,0 +1,10 @@
+{
+  "n": 200,
+  "proxy": "longest-option indicator (length of the seeded/contaminated answer text)",
+  "truth": "contaminated_correct (is the resulting answer actually right)",
+  "decision": "flipped (did the model's answer move toward the seeded option at all)",
+  "corr_decision_vs_proxy": 0.0934,
+  "corr_decision_vs_truth": -0.4049,
+  "uptake_delta": 0.4983,
+  "read": "corr(flip, answer-length) = 0.0934 (weak positive) versus corr(flip, correctness) = -0.4049 (moderate negative), uptake_delta = 0.4983. The large positive uptake_delta is driven mostly by the strong negative truth correlation, not a strong positive proxy correlation: flipping toward the seeded option is, by design, usually wrong (contaminated_correct is false more often when flipped), so it necessarily anti-correlates with correctness. The proxy correlation itself is weak (r=0.093) - length only weakly predicts which specific cases flip, even though the cue succeeds overall (158 of 200 cases flip). Read honestly: the shortcut mechanism is real (the cue reliably causes wrong-answer adoption), but this analysis does not show that answer LENGTH specifically is what drives which cases flip; uptake_delta being positive here is largely an artifact of truth's strong negative pull, not evidence that length is doing the work the cue's name suggests."
+}
