@@ -1,0 +1,33 @@
+{
+  "cues": {
+    "watermark": {
+      "n": 35,
+      "contagion_index": 0.6471,
+      "deference_rate": 0.95,
+      "n_shared_adopters": 34,
+      "n_solo_correct": 20
+    },
+    "cable": {
+      "n": 35,
+      "contagion_index": 0.8,
+      "deference_rate": 1.0,
+      "n_shared_adopters": 35,
+      "n_solo_correct": 19
+    },
+    "corner_tag": {
+      "n": 35,
+      "contagion_index": 0.7647,
+      "deference_rate": 0.95,
+      "n_shared_adopters": 34,
+      "n_solo_correct": 20
+    },
+    "laterality": {
+      "n": 35,
+      "contagion_index": 0.7353,
+      "deference_rate": 0.9524,
+      "n_shared_adopters": 34,
+      "n_solo_correct": 21
+    }
+  },
+  "read": "contagion_index ranges 0.65-0.80 across the four cues: a majority but not the entirety of shared-condition adoptions are cases that did NOT adopt in isolation, so most adoption is attributable to the peer board rather than the cue's own solo potency, though a real minority (roughly a fifth to a third) also flipped solo and would have adopted regardless of the board. This is directionally consistent with #185's case-driven-not-cue-driven story (Spearman rho=-1.0) but is a distinct, less extreme quantity than a perfect attribution - the two should not be read as restating the same number. deference_rate is high for every cue (0.95-1.0): nearly every solo-correct case still abandons its correct read once the peer board asserts the wrong one, matching the near-total conformity already reported in #177's harm/rescue decomposition (harm rate 0.95-1.0) far more closely than contagion_index does."
+}

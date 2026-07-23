@@ -1,0 +1,64 @@
+{
+  "n_shared_cases": 40,
+  "pairwise_agreement": {
+    "naive_vs_deployable": {
+      "phi": 0.0,
+      "kappa": 0.0,
+      "note": "phi/kappa are mathematically degenerate when one gate is constant (no variance, e.g. the naive gate flags every case); reported as 0.0 by convention, not evidence the gates disagree."
+    },
+    "naive_vs_oracle": {
+      "phi": 0.0,
+      "kappa": 0.0,
+      "note": "phi/kappa are mathematically degenerate when one gate is constant (no variance, e.g. the naive gate flags every case); reported as 0.0 by convention, not evidence the gates disagree."
+    },
+    "deployable_vs_oracle": {
+      "phi": 1.0,
+      "kappa": 1.0
+    },
+    "deployable_vs_judge": {
+      "phi": 0.9473,
+      "kappa": 0.9459
+    },
+    "oracle_vs_judge": {
+      "phi": 0.9473,
+      "kappa": 0.9459
+    }
+  },
+  "naive_fails_but_deployable_matches_oracle": {
+    "n_cases": 25,
+    "case_ids": [
+      "medqa-0",
+      "medqa-10",
+      "medqa-11",
+      "medqa-12",
+      "medqa-13",
+      "medqa-14",
+      "medqa-15",
+      "medqa-16",
+      "medqa-17",
+      "medqa-2",
+      "medqa-22",
+      "medqa-24",
+      "medqa-25",
+      "medqa-26",
+      "medqa-28",
+      "medqa-29",
+      "medqa-3",
+      "medqa-34",
+      "medqa-35",
+      "medqa-36",
+      "medqa-38",
+      "medqa-39",
+      "medqa-4",
+      "medqa-5",
+      "medqa-7"
+    ]
+  },
+  "deployable_vs_judge_divergent_cases": {
+    "n_cases": 1,
+    "case_ids": [
+      "medqa-23"
+    ]
+  },
+  "read": "Deployable and oracle agree perfectly (phi=1.0, kappa=1.0) since both reach precision/recall 1.0 against the same ground truth by construction. The naive gate's phi/kappa against everything else is 0.0, but this is degenerate (the naive gate flags all 40 cases, so it has no variance), not evidence of disagreement in the usual sense; its uselessness is already fully captured by its own FPR=1.0. The 25 cases where naive fails but deployable matches oracle are the deployment-relevant story: a cheap re-query recovers the oracle's exact detection where blunt agreement-flagging does not. The judge shows real, non-degenerate disagreement with deployable on 1 of 40 cases (phi=kappa=0.947), reflecting the earlier finding that the judge is a genuine but noisier alternative referee, not identical to it."
+}

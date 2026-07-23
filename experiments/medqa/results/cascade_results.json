@@ -1,0 +1,149 @@
+{
+  "n": 20,
+  "n_valid": 20,
+  "mean_contagion": 0.0,
+  "mean_shared_adopt": 0.0,
+  "mean_isolated_adopt": 0.0,
+  "per_case": [
+    {
+      "case_id": "medqa-788",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "medqa-861",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "medqa-82",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "medqa-1047",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "medqa-621",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "medqa-995",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "medqa-530",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "medqa-829",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "medqa-1194",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "medqa-733",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "medqa-976",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "medqa-447",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "medqa-1033",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "medqa-285",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "medqa-577",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "medqa-194",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "medqa-1266",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "medqa-513",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "medqa-286",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "medqa-1090",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    }
+  ]
+}
