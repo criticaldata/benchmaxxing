@@ -138,6 +138,31 @@ def test_more_than_two_datasets_has_spread_but_no_pairwise_fisher():
     assert cue["fisher"] is None  # Fisher is defined only for the two-dataset case
 
 
+def test_degenerate_fisher_oddsratio_is_none():
+    # Both datasets flip every case -> 2x2 [[2, 0], [2, 0]]: valid p-value, undefined odds ratio.
+    all_flip = {"medqa": [_three("a0"), _three("a1")], "medmcqa": [_three("b0"), _three("b1")]}
+    res = run_cross_dataset_cue(all_flip, _pick_first, _identity, ["option_order"], n_boot=200)
+    fisher = res["per_cue"]["option_order"]["fisher"]
+    assert fisher["oddsratio"] is None
+    assert fisher["pvalue"] == pytest.approx(1.0)
+    assert res["per_cue"]["option_order"]["spread"] == pytest.approx(0.0)
+
+    # Both datasets flip nothing -> 2x2 [[0, 2], [0, 2]]: same story.
+    none_flip = {"medqa": [_two("a0"), _two("a1")], "medmcqa": [_two("b0"), _two("b1")]}
+    res2 = run_cross_dataset_cue(none_flip, _pick_first, _identity, ["option_order"], n_boot=200)
+    assert res2["per_cue"]["option_order"]["fisher"]["oddsratio"] is None
+
+
+def test_invalid_ci_and_n_boot_raise_even_on_constant_data():
+    # All 2-option cases never flip, so the constant-sample path would otherwise skip bootstrap_ci;
+    # validation is hoisted so a bad ci / n_boot still fails loudly.
+    datasets = {"medqa": [_two("a0")], "medmcqa": [_two("b0")]}
+    with pytest.raises(ValueError, match="ci must be"):
+        run_cross_dataset_cue(datasets, _pick_first, _identity, ["option_order"], ci=1.5)
+    with pytest.raises(ValueError, match="n_boot must be"):
+        run_cross_dataset_cue(datasets, _pick_first, _identity, ["option_order"], n_boot=0)
+
+
 def test_requires_at_least_two_datasets():
     with pytest.raises(ValueError, match="at least two datasets"):
         run_cross_dataset_cue({"medqa": [_three("a0")]}, _pick_first, _identity, ["option_order"])

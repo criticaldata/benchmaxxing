@@ -22,8 +22,13 @@ python experiments/cross_dataset/run_cross_dataset.py \
     --medqa-manifest path/to/medqa.csv \
     --medmcqa-manifest path/to/medmcqa.csv \
     --limit 200 \
+    --cache experiments/cross_dataset/results/call_cache.jsonl \
     --out experiments/cross_dataset/results/medqa_vs_medmcqa.json
 ```
+
+Pass `--cache` to record every model reply to a JSONL file (wrapping `gateway.CachedBackend`); a
+later run with the same path reuses those replies, so the rates and CIs reproduce exactly instead
+of drifting with model non-determinism.
 
 Build the two manifests first with the dataset adapters (`benchmaxxing datasets`), and set
 `GEMINI_API_KEY`. With no key or a missing manifest the script prints a `[skip]` line and exits 0:

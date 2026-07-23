@@ -14,6 +14,7 @@ on real data it is a ``payload -> option-text`` backend from the gateway, unchan
 
 from __future__ import annotations
 
+import math
 from collections.abc import Mapping, Sequence
 
 import numpy as np
@@ -64,7 +65,7 @@ def run_cross_dataset_cue(
           "cue_types": [cue, ...],
           "per_cue": {cue: {"rate": {ds: float}, "ci": {ds: [point, lo, hi]},
                             "counts": {ds: [flips, n]}, "spread": float,
-                            "fisher": {"oddsratio": float, "pvalue": float} | None}},
+                            "fisher": {"oddsratio": float | None, "pvalue": float} | None}},
           "agreement": {"mean_spread": float, "n_cues_compared": int},
           "n_twins": {ds: int},
         }
@@ -80,6 +81,12 @@ def run_cross_dataset_cue(
     cues = list(cue_types)
     if not cues:
         raise ValueError("cue_types must be non-empty")
+    # Validate up front so behavior does not depend on whether a cue's flips happen to be
+    # constant (the constant-sample path below skips bootstrap_ci, which would otherwise catch it).
+    if not 0.0 < ci < 1.0:
+        raise ValueError("ci must be in the open interval (0, 1)")
+    if n_boot <= 0:
+        raise ValueError("n_boot must be a positive integer")
 
     # One record set per dataset, grouped by cue, over the shared cue set.
     flips_by_ds_cue: dict[str, dict[str, list[int]]] = {}
@@ -118,7 +125,10 @@ def run_cross_dataset_cue(
             fb, nb = counts[b]
             if na > 0 and nb > 0:
                 res = fisher_exact([[fa, na - fa], [fb, nb - fb]])
-                fisher = {"oddsratio": res.oddsratio, "pvalue": res.pvalue}
+                # A degenerate same-rate table (all-flip or zero-flip in both) has a valid
+                # p-value but an undefined (non-finite) odds ratio; report None for it.
+                odds = res.oddsratio if math.isfinite(res.oddsratio) else None
+                fisher = {"oddsratio": odds, "pvalue": res.pvalue}
 
         per_cue[cue] = {
             "rate": rate,

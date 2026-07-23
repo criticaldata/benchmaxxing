@@ -122,6 +122,48 @@ def test_json_safe_output_has_no_nan_or_inf_tokens():
     assert reloaded["fisher"]["pvalue"] == 0.3
 
 
+def test_cache_round_trips(tmp_path):
+    path = tmp_path / "cache.jsonl"
+    cache = {("prompt-a", None, "t0"): "reply-a", ("prompt-b", None, "t0"): "reply-b"}
+    run_cross.save_cache(str(path), cache)
+    assert run_cross.load_cache(str(path)) == cache
+
+
+def test_load_cache_missing_path_is_empty(tmp_path):
+    assert run_cross.load_cache(str(tmp_path / "nope.jsonl")) == {}
+    assert run_cross.load_cache(None) == {}
+
+
+def test_backend_reuses_cache_on_repeat():
+    calls = {"n": 0}
+
+    def rule(prompt, image, decoding):
+        calls["n"] += 1
+        return "opt1"
+
+    shared: dict = {}
+    raw = gateway.cached(gateway.MockBackend(rule=rule), cache=shared)
+    backend = run_cross.make_backend("m", "k", raw=raw)
+    payload = {"options": ["opt0", "opt1", "opt2"], "question": "q", "report": ""}
+
+    assert backend(payload) == "opt1"
+    assert backend(payload) == "opt1"
+    assert calls["n"] == 1  # the second call is served from the cache
+    assert len(shared) == 1
+
+
+def test_persisted_cache_from_live_backend_round_trips(tmp_path):
+    # The real gateway cache key (prompt, image-key, decoding-key) must serialize and restore.
+    shared: dict = {}
+    raw = gateway.cached(gateway.MockBackend(rule=lambda p, i, d: "opt0"), cache=shared)
+    backend = run_cross.make_backend("m", "k", raw=raw)
+    backend({"options": ["opt0", "opt1"], "question": "q", "report": ""})
+
+    path = tmp_path / "c.jsonl"
+    run_cross.save_cache(str(path), shared)
+    assert run_cross.load_cache(str(path)) == shared
+
+
 def test_format_table_reads_the_result():
     result = {
         "datasets": ["medqa", "medmcqa"],

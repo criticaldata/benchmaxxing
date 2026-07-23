@@ -69,6 +69,32 @@ def _json_safe(obj):
     return obj
 
 
+def load_cache(path) -> dict:
+    """Load a persisted call cache (JSONL of ``{"key": [...], "resp": ...}``) into a dict.
+
+    Keys are stored as lists and restored to the tuple that ``gateway.CachedBackend`` uses, so the
+    cache content is treated opaquely and does not depend on that key's internal shape.
+    """
+    cache: dict = {}
+    if path and Path(path).exists():
+        for line in Path(path).read_text().splitlines():
+            if line.strip():
+                record = json.loads(line)
+                cache[tuple(record["key"])] = record["resp"]
+    return cache
+
+
+def save_cache(path, cache: dict) -> None:
+    """Persist a call cache to JSONL so a later run with the same path reuses the responses."""
+    if not path:
+        return
+    out = Path(path)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    with out.open("w") as fh:
+        for key, resp in cache.items():
+            fh.write(json.dumps({"key": list(key), "resp": resp}) + "\n")
+
+
 def _mcq_prompt(payload) -> str:
     options = payload["options"]
     letters = [chr(ord("A") + i) for i in range(len(options))]
@@ -82,12 +108,17 @@ def _mcq_prompt(payload) -> str:
     )
 
 
-def make_backend(model, api_key, *, raw=None):
-    """A ``payload -> option-text`` callable; ``raw`` is injectable so tests skip the network."""
+def make_backend(model, api_key, *, raw=None, cache=None):
+    """A ``payload -> option-text`` callable; ``raw`` is injectable so tests skip the network.
+
+    ``cache`` is a shared dict wrapped around the live backend so repeated prompts reuse the
+    recorded reply: a rerun with the same persisted cache reproduces the same rates and CIs.
+    """
     if raw is None:
-        raw = gateway.RetryBackend(
+        live = gateway.RetryBackend(
             gateway.GeminiBackend(model=model, api_key=api_key), tries=5, backoff=3.0
         )
+        raw = gateway.CachedBackend(live, cache=cache if cache is not None else {})
 
     def call(payload) -> str:
         options = list(payload["options"])
@@ -148,6 +179,7 @@ def main(argv=None) -> int:
     ap.add_argument("--model", default="gemini-2.5-flash")
     ap.add_argument("--limit", type=int, default=None, help="cap cases per dataset")
     ap.add_argument("--out", default=None, help="write the result JSON here")
+    ap.add_argument("--cache", default=None, help="JSONL call cache to record/reuse for reproducibility")
     args = ap.parse_args(argv)
 
     key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
@@ -157,13 +189,16 @@ def main(argv=None) -> int:
         if not Path(path).exists():
             return _skip(f"{label} manifest not found: {path}. Build it with the dataset adapter first.")
 
+    cache = load_cache(args.cache)
     result = run(
         args.medqa_manifest,
         args.medmcqa_manifest,
         model=args.model,
         api_key=key,
         limit=args.limit,
+        backend_factory=lambda model, api_key: make_backend(model, api_key, cache=cache),
     )
+    save_cache(args.cache, cache)
     print(format_table(result))
     if args.out:
         out = Path(args.out)
