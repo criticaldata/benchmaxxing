@@ -139,3 +139,26 @@ answer, so a wrong claim that is voiced tentatively is far less contagious than 
 voiced with certainty. Practically, an agent that expresses calibrated uncertainty when unsure
 would poison a committee much less than one that always asserts confidently. 300 new API calls;
 verified keyless.
+
+## Dissenter / unanimity break (`unanimity_break.py`, #198)
+
+Does one planted CORRECT peer alongside a wrong one break the cascade, the way a single ally breaks
+Asch conformity? On solo-wrong cases, the flash-lite holdout deliberates on a shared board with
+either two wrong peers (unanimous) or one wrong peer plus one correct dissenter.
+
+```bash
+python -m experiments.medqa.unanimity_break --manifest <medqa_manifest.csv> \
+    --out experiments/medqa/results --n 150
+```
+
+| board (solo-wrong cases, n=24) | holdout adopts the wrong answer |
+|---|---|
+| two unanimous wrong peers | 0.29 |
+| one wrong peer + one correct dissenter | 0.17 |
+
+**Read.** A single correct dissenter reduces wrong-adoption from 0.29 to 0.17, directionally
+consistent with the classic Asch result that a single ally breaks conformity, but the effect is
+**not significant at this sample size** (McNemar gain=3, lose=0, p=0.25; only 3 discordant cases),
+because n is capped at the 24 solo-wrong cases in the scanned set. Reported honestly as suggestive
+but underpowered; a larger solo-wrong pool would be needed to confirm the dissenter effect. 198 new
+API calls; verified keyless.
