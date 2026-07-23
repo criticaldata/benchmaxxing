@@ -162,3 +162,30 @@ consistent with the classic Asch result that a single ally breaks conformity, bu
 because n is capped at the 24 solo-wrong cases in the scanned set. Reported honestly as suggestive
 but underpowered; a larger solo-wrong pool would be needed to confirm the dissenter effect. 198 new
 API calls; verified keyless.
+
+## Super-additivity: system flag x anchored peer (`super_additivity.py`, #186)
+
+Break-it A (system flag) and C (anchored senior peer) were only ever run separately. This crosses
+them in a single 2x2 on the same cases and wrong answer, on the flash-lite holdout alone.
+
+```bash
+python -m experiments.medqa.super_additivity --manifest <medqa_manifest.csv> \
+    --out experiments/medqa/results --n 120
+```
+
+| cell | adoption (n=120) |
+|---|---|
+| neither | 0.0 |
+| system flag alone | 0.65 |
+| anchored senior peer alone | 0.64 |
+| both together | 0.66 |
+
+Both vs the stronger single arm (system): McNemar gain=11, lose=10, p=1.0.
+
+**Read.** Authority signals do NOT stack. A single authority signal already moves ~65% of
+holdouts, and adding a second signal of a different type buys nothing significant (0.66 vs 0.65,
+p=1.0); the strongly negative naive interaction (-0.63) just reflects that each single effect
+already nearly saturates, so their sum overshoots. Deference to authority saturates with one
+credible signal rather than compounding across several, which bounds how bad stacked authority
+cues can get but also means removing just one of several would not help. 480 new API calls;
+verified keyless.
