@@ -1,0 +1,31 @@
+{
+  "direction1_flash_audits_flash_lite_committee": {
+    "n": 40,
+    "n_adopted": 15,
+    "same_tier_referee": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "cross_tier_referee": {
+      "precision": 1.0,
+      "recall": 0.9333,
+      "f1": 0.9655
+    }
+  },
+  "direction2_flash_lite_audits_flash_committee": {
+    "n": 28,
+    "n_adopted": 19,
+    "same_tier_referee": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "cross_tier_referee": {
+      "precision": 1.0,
+      "recall": 0.7895,
+      "f1": 0.8824
+    }
+  },
+  "read": "Direction 1 (flash referee auditing the flash-lite committee, n=40, 15 true adoptions): cross-tier precision=1.0, recall=0.9333 (misses 1 of 15) vs same-tier's perfect 1.0/1.0 - a small but real recall cost from substituting the other tier's private re-query. Direction 2 (flash-lite referee auditing the flash committee, n=28, 19 true adoptions): cross-tier precision=1.0, recall=0.7895 - a larger recall cost than direction 1, consistent with a weaker-tier referee being less able to independently out-reason a stronger committee's confidently-wrong answer. Same-tier is trivially identical to ground truth in both directions by construction (not a novel same-tier result); the cross-tier numbers are the real finding here: independence does NOT require cross-lineage in either direction - a different Gemini tier catches the large majority of adoptions with perfect precision, but recall degrades, more so when the referee tier is weaker than the committee it audits."
+}

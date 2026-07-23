@@ -65,9 +65,9 @@ DATASET_STATUS: dict[str, DatasetStatus] = {
     "medmcqa": DatasetStatus(
         lane="text",
         data="not staged",
-        adapter="not registered",
+        adapter="coded",
         experiments="pending solo and cascade runs",
-        blocker="adapter is not registered in this package yet",
+        blocker="stage the official MedMCQA release",
     ),
 }
 

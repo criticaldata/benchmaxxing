@@ -8,7 +8,7 @@ from benchmaxxing.data import load_cases, write_manifest
 from benchmaxxing.datasets import base, registry, status
 from benchmaxxing.schema import Case, Modality
 
-EXPECTED_DATASETS = {"mimic_cxr", "chexpert", "nih_cxr14", "medqa", "pubmedqa", "ehr"}
+EXPECTED_DATASETS = {"mimic_cxr", "chexpert", "nih_cxr14", "medqa", "medmcqa", "pubmedqa", "ehr"}
 
 
 def _write_text(path, text):
@@ -99,9 +99,9 @@ def test_answer_index_out_of_range_raises(tmp_path):
         load_cases(manifest)
 
 
-def test_registry_lists_all_six():
+def test_registry_lists_all_datasets():
     assert set(registry.names()) == EXPECTED_DATASETS
-    assert len(registry.REGISTRY) == 6
+    assert len(registry.REGISTRY) == len(EXPECTED_DATASETS)
     for name in EXPECTED_DATASETS:
         module = registry.get(name)
         assert module.SPEC.name == name

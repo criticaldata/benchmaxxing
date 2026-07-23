@@ -1,0 +1,19 @@
+{
+  "n": 120,
+  "model": "gemini-2.5-flash-lite",
+  "new_api_calls_this_run": 0,
+  "adoption": {
+    "neither": 0.0,
+    "system": 0.65,
+    "peer": 0.6417,
+    "both": 0.6583
+  },
+  "interaction_both_minus_sum_of_singles": -0.6334,
+  "both_vs_stronger_single": {
+    "stronger_single": "system",
+    "gain": 11,
+    "lose": 10,
+    "pvalue": 1.0
+  },
+  "read": "Adoption of the same fixed wrong answer across the 2x2: neither 0.0, system flag alone 0.65, anchored senior peer alone 0.6417, both 0.6583. Interaction (both minus the sum of the two single effects) = -0.6334: a large positive value would mean the two authority signals reinforce each other super-additively, near zero means they combine additively (or one already saturates), negative means they partly substitute. Both vs the stronger single arm (system): McNemar gain=11 lose=10, p=1.0 - whether stacking a second authority signal buys any significant extra adoption over the strongest one alone."
+}
