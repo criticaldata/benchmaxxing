@@ -1,0 +1,28 @@
+{
+  "n": 35,
+  "model": "gemini-2.5-flash",
+  "cues": {
+    "rotation": {
+      "flip_rate": 0.3142857142857143,
+      "n": 35,
+      "flip_above_noise": 0.02857142857142858
+    },
+    "compression": {
+      "flip_rate": 0.22857142857142856,
+      "n": 35,
+      "flip_above_noise": -0.057142857142857134
+    },
+    "brightness": {
+      "flip_rate": 0.2857142857142857,
+      "n": 35,
+      "flip_above_noise": 0.0
+    },
+    "soft_tissue": {
+      "flip_rate": 0.17142857142857143,
+      "n": 35,
+      "flip_above_noise": -0.11428571428571427
+    }
+  },
+  "noise_floor": 0.2857142857142857,
+  "noise_floor_n": 35
+}
