@@ -1,0 +1,9 @@
+{
+  "n": 35,
+  "model": "gemini-2.5-flash",
+  "cue": "laterality",
+  "new_api_calls_this_run": 20,
+  "shared_adopt": 0.9714,
+  "isolated_adopt": 0.2571,
+  "contagion": 0.7143
+}
