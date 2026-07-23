@@ -1,0 +1,242 @@
+{
+  "config": {
+    "dataset": "medqa-usmle-test",
+    "manifest": "medqa_manifest.csv",
+    "arm": "same-lineage Gemini",
+    "solo_n": 100,
+    "cascade_n": 20,
+    "subsample_seed": 0,
+    "tiers": [
+      "gemini-2.5-flash",
+      "gemini-2.5-flash-lite"
+    ],
+    "committee": [
+      "gemini-2.5-flash",
+      "gemini-2.5-flash-lite",
+      "gemini-2.5-flash"
+    ],
+    "text_cues": [
+      "longest_option",
+      "option_order",
+      "lexical_overlap"
+    ],
+    "decoding": {
+      "temperature": 0
+    },
+    "cache": "call_cache.jsonl (model,prompt)->text"
+  },
+  "versions": {
+    "benchmaxxing_version": "0.0.1",
+    "git_sha": "3273c0111362e22c1a946330e8f2283db29a413b",
+    "git_branch": "feat/adapters-runners",
+    "python": "3.13.5",
+    "google_genai": "1.39.1",
+    "started": "2026-07-20 00:45:30"
+  },
+  "solo": {
+    "n_records": 600,
+    "flip_rate_by_model": {
+      "gemini-2.5-flash": {
+        "overall": 0.7866666666666666,
+        "per_cue": {
+          "lexical_overlap": 0.74,
+          "longest_option": 0.74,
+          "option_order": 0.88
+        },
+        "n": 300
+      },
+      "gemini-2.5-flash-lite": {
+        "overall": 0.8933333333333333,
+        "per_cue": {
+          "lexical_overlap": 0.85,
+          "longest_option": 0.84,
+          "option_order": 0.99
+        },
+        "n": 300
+      }
+    },
+    "noise_floor_by_model": {
+      "gemini-2.5-flash": 0.0,
+      "gemini-2.5-flash-lite": 0.0
+    },
+    "susceptibility_matrix": {
+      "models": [
+        "gemini-2.5-flash",
+        "gemini-2.5-flash-lite"
+      ],
+      "cues": [
+        "lexical_overlap",
+        "longest_option",
+        "option_order"
+      ],
+      "matrix": [
+        [
+          0.74,
+          0.74,
+          0.88
+        ],
+        [
+          0.85,
+          0.84,
+          0.99
+        ]
+      ]
+    },
+    "overlap": {
+      "metric": "phi",
+      "within_mean": 0.5581129694273874,
+      "cross_mean": NaN,
+      "observed_diff": NaN,
+      "p_value": NaN,
+      "n_permutations": 0,
+      "n_models": 2
+    }
+  },
+  "cascade": {
+    "n": 20,
+    "n_onset": 4,
+    "mean_contagion": -0.005555555555555552,
+    "per_case": [
+      {
+        "case_id": "medqa-788",
+        "onset": 1,
+        "shared_shortcut_frac": 0.3333333333333333,
+        "isolated_shortcut_frac": 0.3333333333333333,
+        "contagion": 0.0
+      },
+      {
+        "case_id": "medqa-82",
+        "onset": null,
+        "shared_shortcut_frac": 1.0,
+        "isolated_shortcut_frac": 1.0,
+        "contagion": 0.0
+      },
+      {
+        "case_id": "medqa-530",
+        "onset": 2,
+        "shared_shortcut_frac": 0.1111111111111111,
+        "isolated_shortcut_frac": 0.1111111111111111,
+        "contagion": 0.0
+      },
+      {
+        "case_id": "medqa-861",
+        "onset": null,
+        "shared_shortcut_frac": 1.0,
+        "isolated_shortcut_frac": 1.0,
+        "contagion": 0.0
+      },
+      {
+        "case_id": "medqa-995",
+        "onset": null,
+        "shared_shortcut_frac": 1.0,
+        "isolated_shortcut_frac": 1.0,
+        "contagion": 0.0
+      },
+      {
+        "case_id": "medqa-1047",
+        "onset": null,
+        "shared_shortcut_frac": 1.0,
+        "isolated_shortcut_frac": 1.0,
+        "contagion": 0.0
+      },
+      {
+        "case_id": "medqa-733",
+        "onset": null,
+        "shared_shortcut_frac": 1.0,
+        "isolated_shortcut_frac": 1.0,
+        "contagion": 0.0
+      },
+      {
+        "case_id": "medqa-829",
+        "onset": null,
+        "shared_shortcut_frac": 1.0,
+        "isolated_shortcut_frac": 1.0,
+        "contagion": 0.0
+      },
+      {
+        "case_id": "medqa-621",
+        "onset": null,
+        "shared_shortcut_frac": 1.0,
+        "isolated_shortcut_frac": 1.0,
+        "contagion": 0.0
+      },
+      {
+        "case_id": "medqa-1194",
+        "onset": null,
+        "shared_shortcut_frac": 1.0,
+        "isolated_shortcut_frac": 1.0,
+        "contagion": 0.0
+      },
+      {
+        "case_id": "medqa-1033",
+        "onset": null,
+        "shared_shortcut_frac": 1.0,
+        "isolated_shortcut_frac": 1.0,
+        "contagion": 0.0
+      },
+      {
+        "case_id": "medqa-447",
+        "onset": null,
+        "shared_shortcut_frac": 1.0,
+        "isolated_shortcut_frac": 1.0,
+        "contagion": 0.0
+      },
+      {
+        "case_id": "medqa-285",
+        "onset": null,
+        "shared_shortcut_frac": 1.0,
+        "isolated_shortcut_frac": 1.0,
+        "contagion": 0.0
+      },
+      {
+        "case_id": "medqa-976",
+        "onset": null,
+        "shared_shortcut_frac": 1.0,
+        "isolated_shortcut_frac": 1.0,
+        "contagion": 0.0
+      },
+      {
+        "case_id": "medqa-286",
+        "onset": 1,
+        "shared_shortcut_frac": 0.3333333333333333,
+        "isolated_shortcut_frac": 0.3333333333333333,
+        "contagion": 0.0
+      },
+      {
+        "case_id": "medqa-1266",
+        "onset": null,
+        "shared_shortcut_frac": 1.0,
+        "isolated_shortcut_frac": 1.0,
+        "contagion": 0.0
+      },
+      {
+        "case_id": "medqa-513",
+        "onset": null,
+        "shared_shortcut_frac": 1.0,
+        "isolated_shortcut_frac": 1.0,
+        "contagion": 0.0
+      },
+      {
+        "case_id": "medqa-194",
+        "onset": null,
+        "shared_shortcut_frac": 1.0,
+        "isolated_shortcut_frac": 1.0,
+        "contagion": 0.0
+      },
+      {
+        "case_id": "medqa-1090",
+        "onset": 3,
+        "shared_shortcut_frac": 0.7777777777777778,
+        "isolated_shortcut_frac": 0.8888888888888888,
+        "contagion": -0.11111111111111105
+      },
+      {
+        "case_id": "medqa-577",
+        "onset": null,
+        "shared_shortcut_frac": 1.0,
+        "isolated_shortcut_frac": 1.0,
+        "contagion": 0.0
+      }
+    ]
+  }
+}

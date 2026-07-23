@@ -1,0 +1,155 @@
+{
+  "n": 20,
+  "n_censored": 0,
+  "n_seed_equals_evidence": 0,
+  "onset_turn_distribution": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "v2_anchored_arm_onset_distribution_TAINTED": {
+    "onsets": [
+      5,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      1,
+      2,
+      2,
+      2,
+      2,
+      1,
+      2,
+      2
+    ],
+    "caveat": "cascade_v2_per_case.jsonl (the anchored/case-anchored seed arm) is confirmed tainted by the pre-fix stray-article answer parser (its medqa-82 row mis-parses a real answer as the article 'A'); reported here only because the issue asks for it explicitly, not treated as a trustworthy distribution. Unlike the baseline-relative arm above (all onset=2, from post-fix _repro_shared.jsonl transcripts), this v2 distribution has real spread (1, 2, or 5) but that spread may itself be an artifact of parser mis-grading rather than genuine dynamics."
+  },
+  "per_case": [
+    {
+      "case_id": "medqa-788",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-861",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-82",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-1047",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-621",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-995",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-530",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-829",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-1194",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-733",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-976",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-447",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-1033",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-285",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-577",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-194",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-1266",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-513",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-286",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-1090",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    }
+  ],
+  "read": "Onset is detected (not censored) on 20 of 20 cases, and every detected onset lands on the SAME turn index (2), immediately after the seeded agent's one-off wrong turn. This is the trivial detection of a single-turn blip that reverts immediately, not a genuine sustained tipping point: the group's other two agents never adopt the seed at any turn, so there is no real regime change for the detector to find beyond the seed's own turn. Consistent with the already-established robust null on this arm (the baseline-relative seed design does not produce a real cascade): the onset metric correctly reports 'no sustained shift' in the only way a single change-point detector can on a series with just one transient deviation, and does not indicate the flagship artifact is broken - the underlying phenomenon really is a non-event. On THIS reconstructed set, 0 of 20 cases have the seed answer equal to the group's own evidence answer (a trivially invalid seed for that case); the previously reported '16/20 invalid seed' figure describes a different arm/dataset (the original v1 first-distractor design) and is not being re-confirmed or contradicted here - the two numbers are not the same measurement and should not be conflated."
+}

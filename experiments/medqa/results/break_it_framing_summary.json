@@ -1,0 +1,17 @@
+{
+  "independent": {
+    "conform_rate": 0.06666666666666667,
+    "conform": 1,
+    "n": 15
+  },
+  "consensus": {
+    "conform_rate": 0.0,
+    "conform": 0,
+    "n": 15
+  },
+  "deference": {
+    "conform_rate": 0.0,
+    "conform": 0,
+    "n": 15
+  }
+}

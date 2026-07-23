@@ -1,0 +1,16 @@
+{
+  "n": 35,
+  "model": "gemini-2.5-flash",
+  "cue": "watermark",
+  "new_api_calls_this_run": 0,
+  "two_by_two": {
+    "temp0_floor": 0.0,
+    "temp1_floor": 0.2286,
+    "temp0_signal": 0.3429,
+    "temp1_signal": 0.2857
+  },
+  "flip_above_noise_mismatched_original": 0.1143,
+  "flip_above_noise_matched_temp1": 0.0571,
+  "flip_above_noise_matched_temp0": 0.3429,
+  "read": "Matched at temperature 1, the watermark cued flip is 0.2857 and the clean-read floor is 0.2286, a matched flip-above-noise of 0.0571 (vs the originally-reported, temperature-mismatched 0.1143). At temperature 0 the floor is 0 by construction (a deterministic test-retest cannot disagree), so the temperature-0 matched flip-above-noise is the full 0.3429. Either way the watermark signal survives a same-temperature comparison: the +0.11 headline was not an artifact of mixing temperatures, though the honest matched effect at temperature 1 is the conservative number to quote."
+}
