@@ -1,0 +1,17 @@
+{
+  "n": 120,
+  "model": "gemini-2.5-flash-lite",
+  "new_api_calls_this_run": 1320,
+  "adoption_rate_by_temperature": {
+    "t0.0": 0.6417,
+    "t0.3": 0.6111,
+    "t0.7": 0.6667,
+    "t1.0": 0.6667
+  },
+  "temp_gt0_within_case_flip_fraction": {
+    "t0.3": 0.2583,
+    "t0.7": 0.3,
+    "t1.0": 0.3583
+  },
+  "read": "Adoption of the fixed anchored wrong seed as decoding temperature rises: {'t0.0': 0.6417, 't0.3': 0.6111, 't0.7': 0.6667, 't1.0': 0.6667}. A roughly flat curve means the cascade is not a greedy-decoding artifact and survives sampling; a sharp drop at higher temperature would mean adoption depends on the model committing to its single most likely token. The temp>0 within-case flip fractions {'t0.3': 0.2583, 't0.7': 0.3, 't1.0': 0.3583} are the run-to-run reliability envelope (#204): the share of cases whose repeated sampled draws disagree, i.e. how reproducible a single sampled adoption verdict is."
+}
