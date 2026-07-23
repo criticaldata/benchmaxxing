@@ -29,7 +29,7 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="also print the git commit SHA and which optional extras are installed",
     )
-    sub.add_parser("datasets", help="list the available dataset adapters")
+    sub.add_parser("datasets", help="list dataset readiness status")
     sub.add_parser("smoke", help="run the offline end-to-end pipeline smoke on synthetic data")
 
     p_config = sub.add_parser("config-show", help="print the resolved default config")
@@ -102,12 +102,33 @@ def _dataset_names() -> list[str]:
 
 
 def _cmd_datasets(_args: argparse.Namespace) -> int:
-    names = _dataset_names()
-    if names:
-        for name in names:
-            print(name)
-    else:
-        print("No dataset adapters are registered yet.")
+    from benchmaxxing.datasets import status
+
+    names = status.names()
+    if not names:
+        print("No dataset status entries are registered yet.")
+        return 0
+
+    headers = ("dataset", "lane", "data", "adapter", "experiments", "blocker")
+    rows = []
+    for name in names:
+        entry = status.get(name)
+        rows.append(
+            (
+                name,
+                entry.lane,
+                entry.data,
+                entry.adapter,
+                entry.experiments,
+                entry.blocker,
+            )
+        )
+
+    widths = [max(len(str(value)) for value in column) for column in zip(headers, *rows)]
+    print("  ".join(header.ljust(width) for header, width in zip(headers, widths)))
+    print("  ".join("-" * width for width in widths))
+    for row in rows:
+        print("  ".join(str(value).ljust(width) for value, width in zip(row, widths)))
     return 0
 
 
