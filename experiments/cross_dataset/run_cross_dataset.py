@@ -21,7 +21,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import os
+import re
 from pathlib import Path
 
 from benchmaxxing import gateway
@@ -31,6 +33,40 @@ from benchmaxxing.extract import parse_mcq_choice
 
 CUES = ["option_order", "longest_option", "lexical_overlap"]
 _ABSTAIN = "<abstain>"
+
+
+def _letter_index(reply: str, n_options: int) -> int | None:
+    """Resolve a letter-only answer (A, 'B.', '(C)', 'Answer: D') to a 0-based option index.
+
+    Conservative on purpose: only an exact single-letter reply or a letter in an explicit
+    "answer" phrase counts, never a stray standalone letter mid-sentence (the leading-article "A"
+    that mis-scored an earlier parser). Text replies are handled by ``parse_mcq_choice`` first;
+    this is the fallback for models that answer with just the letter.
+    """
+    if not reply:
+        return None
+    letters = [chr(ord("A") + i) for i in range(n_options)]
+    valid = {letter: i for i, letter in enumerate(letters)}
+    text = reply.strip()
+    exact = re.fullmatch(r"\(?([A-Za-z])\)?[.):]?", text)
+    if exact and exact.group(1).upper() in valid:
+        return valid[exact.group(1).upper()]
+    declared = re.findall(r"(?:answer\s*(?:is|:)?\s*|\\boxed\{)\(?([A-Za-z])\)?", text, flags=re.I)
+    for cand in reversed(declared):
+        if cand.upper() in valid:
+            return valid[cand.upper()]
+    return None
+
+
+def _json_safe(obj):
+    """Recursively replace non-finite floats (nan/inf) with None for strict-JSON output."""
+    if isinstance(obj, float):
+        return obj if math.isfinite(obj) else None
+    if isinstance(obj, dict):
+        return {k: _json_safe(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [_json_safe(v) for v in obj]
+    return obj
 
 
 def _mcq_prompt(payload) -> str:
@@ -57,7 +93,11 @@ def make_backend(model, api_key, *, raw=None):
         options = list(payload["options"])
         reply = raw.complete(_mcq_prompt(payload), decoding={"temperature": 0})
         choice = parse_mcq_choice(reply, options)
-        return options[choice] if isinstance(choice, int) else _ABSTAIN
+        if isinstance(choice, int):
+            return options[choice]
+        # Fall back to a letter-only reply ("B") before giving up as an abstention.
+        idx = _letter_index(reply, len(options))
+        return options[idx] if idx is not None else _ABSTAIN
 
     return call
 
@@ -128,7 +168,7 @@ def main(argv=None) -> int:
     if args.out:
         out = Path(args.out)
         out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(json.dumps(result, indent=2))
+        out.write_text(json.dumps(_json_safe(result), indent=2))
         print(f"wrote {out}")
     return 0
 

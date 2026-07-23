@@ -9,6 +9,7 @@ scored by answer identity. The real flip rates are deferred to a keyed run.
 from __future__ import annotations
 
 import importlib.util
+import json
 from pathlib import Path
 
 import pytest
@@ -80,11 +81,45 @@ def test_backend_resolves_choice_to_option_text():
     assert backend(payload) == "opt1"
 
 
-def test_backend_maps_abstention_to_sentinel():
-    raw = gateway.MockBackend(rule=lambda prompt, image, decoding: "")
+def test_backend_resolves_letter_only_reply():
+    # A bare "B" (or "Answer: C") must resolve to the option, not fall through to abstention.
+    payload = {"options": ["opt0", "opt1", "opt2"], "question": "q", "report": ""}
+    bare = run_cross.make_backend("m", "k", raw=gateway.MockBackend(rule=lambda p, i, d: "B"))
+    assert bare(payload) == "opt1"
+    declared = run_cross.make_backend("m", "k", raw=gateway.MockBackend(rule=lambda p, i, d: "Answer: C"))
+    assert declared(payload) == "opt2"
+
+
+def test_backend_maps_true_abstention_to_sentinel():
+    # No letter and no option text -> a genuine abstention, not a spurious option match.
+    raw = gateway.MockBackend(rule=lambda prompt, image, decoding: "I'm not sure.")
     backend = run_cross.make_backend("m", "k", raw=raw)
     payload = {"options": ["opt0", "opt1", "opt2"], "question": "q", "report": ""}
     assert backend(payload) == run_cross._ABSTAIN
+
+
+def test_letter_index_ignores_stray_standalone_letter():
+    # A leading-article "A" mid-sentence must not be read as option A.
+    assert run_cross._letter_index("A patient presents with chest pain", 4) is None
+    assert run_cross._letter_index("D", 4) == 3
+    assert run_cross._letter_index("(b)", 4) == 1
+    assert run_cross._letter_index("E", 4) is None  # out of range for 4 options
+
+
+def test_json_safe_output_has_no_nan_or_inf_tokens():
+    result = {
+        "rate": {"a": 0.5, "b": float("nan")},
+        "spread": float("nan"),
+        "fisher": {"oddsratio": float("inf"), "pvalue": 0.3},
+        "counts": [1, 2],
+    }
+    dumped = json.dumps(run_cross._json_safe(result), indent=2)
+    assert "NaN" not in dumped and "Infinity" not in dumped
+    reloaded = json.loads(dumped)
+    assert reloaded["rate"]["a"] == 0.5
+    assert reloaded["rate"]["b"] is None
+    assert reloaded["fisher"]["oddsratio"] is None
+    assert reloaded["fisher"]["pvalue"] == 0.3
 
 
 def test_format_table_reads_the_result():

@@ -34,10 +34,14 @@ run produces them.**
 
 Flip is defined on the model's chosen **option identity**, not its position. The backend is a
 `payload -> option-text` callable: it prompts for the letter and full text of the best option and
-resolves the reply against that payload's options with `extract.parse_mcq_choice`. So when
-`option_order` permutes the options, a model that keeps picking the same clinical answer registers
-as **no flip** (robust), and only a genuinely position-driven change counts. This mirrors the
-solo normalizer in `experiments/medqa/reproduce.py`.
+resolves the reply against that payload's options with `extract.parse_mcq_choice`, falling back to
+a conservative letter parse (`"B"`, `"Answer: C"`) for letter-only replies. So when `option_order`
+permutes the options, a model that keeps picking the same clinical answer registers as **no flip**
+(robust), and only a genuinely position-driven change counts. This mirrors the solo normalizer in
+`experiments/medqa/reproduce.py`.
+
+The `--out` JSON writes non-finite values (an unbuildable cue's `nan` rate, an undefined Fisher
+odds ratio) as `null`, so the artifact is strict-JSON parseable downstream.
 
 ## Cue set
 
