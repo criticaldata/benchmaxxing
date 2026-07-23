@@ -80,6 +80,10 @@ benchmaxxing datasets
 # distribution; pass --image-root to check that image_ref paths resolve on disk)
 benchmaxxing datasets stats path/to/manifest.csv [--image-root path/to/images]
 
+# stage a downloaded raw release: build the manifest, validate it, checksum it, and write
+# its provenance record (source, access level, licence, counts). See docs/DATASETS.md.
+benchmaxxing datasets stage nih_cxr14 --check-images
+
 # show the resolved default config
 benchmaxxing config-show
 
@@ -111,6 +115,8 @@ To add or complete an adapter:
 3. Produce even a one-row real manifest and confirm it loads: `benchmaxxing datasets` lists it, and the dataset smoke in `tests/test_datasets.py` should pass for it.
 
 The adapters currently ship as `NotImplementedError` stubs with a pointer to where the raw data lives; that is the work the open dataset issues track.
+
+Once an adapter exists, [docs/DATASETS.md](docs/DATASETS.md) is the acquisition side: where each release comes from, what it costs to get (open, registration, credentialed), and the `benchmaxxing datasets stage` command that turns a download into a validated manifest with a provenance record. Raw data and credentials never go in the repo.
 
 ## 7. Model backend (Gemini for now)
 
