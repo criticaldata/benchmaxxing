@@ -1,0 +1,144 @@
+{
+  "n_tests_in_family": 13,
+  "alpha": 0.05,
+  "rows": [
+    {
+      "label": "scale_c: anchored vs generic (text, plausibility C)",
+      "p_raw": 0.04138946533203125,
+      "source": "experiments/medqa/results/scale_c_summary.json (PR #141), n=85",
+      "p_bh": 0.107613,
+      "survives_bh": false,
+      "p_holm": 0.372505,
+      "survives_holm": false
+    },
+    {
+      "label": "scale_c: strongly-anchored vs generic (text)",
+      "p_raw": 0.09625244140625,
+      "source": "experiments/medqa/results/scale_c_summary.json (PR #141), n=85",
+      "p_bh": 0.208547,
+      "survives_bh": false,
+      "p_holm": 0.77002,
+      "survives_holm": false
+    },
+    {
+      "label": "clean_a: flash Fisher exact (text, system-flag contamination)",
+      "p_raw": 0.021554169030062395,
+      "source": "recomputed here from experiments/medqa/results/clean_a_summary.json (PR #141) counts (6/23 flag vs 0/23 control); matches the paper's stated 0.022",
+      "p_bh": 0.070051,
+      "survives_bh": false,
+      "p_holm": 0.215542,
+      "survives_holm": false
+    },
+    {
+      "label": "clean_a: flash-lite Fisher exact (text, system-flag contamination)",
+      "p_raw": 0.009160521837776518,
+      "source": "recomputed here from clean_a_summary.json (PR #141) counts (7/23 vs 0/23); matches the paper's stated 0.009",
+      "p_bh": 0.039696,
+      "survives_bh": true,
+      "p_holm": 0.100766,
+      "survives_holm": false
+    },
+    {
+      "label": "cascade_C_flash: model-dependence McNemar (text, flash holdout)",
+      "p_raw": 1.0,
+      "source": "experiments/model_dependence/results/cascade_C_flash_summary.json (PR #223)",
+      "p_bh": 1.0,
+      "survives_bh": false,
+      "p_holm": 1.0,
+      "survives_holm": false
+    },
+    {
+      "label": "contamination_audit: flash Fisher (text, flip correct-vs-wrong)",
+      "p_raw": 0.0032995170692775274,
+      "source": "experiments/contamination/results/contamination_audit_summary.json (PR #224)",
+      "p_bh": 0.021447,
+      "survives_bh": true,
+      "p_holm": 0.039594,
+      "survives_holm": true
+    },
+    {
+      "label": "contamination_audit: flash-lite Fisher (text)",
+      "p_raw": 4.359882314463016e-07,
+      "source": "experiments/contamination/results/contamination_audit_summary.json (PR #224)",
+      "p_bh": 6e-06,
+      "survives_bh": true,
+      "p_holm": 6e-06,
+      "survives_holm": true
+    },
+    {
+      "label": "multi_round: round-1-vs-round-K McNemar (text)",
+      "p_raw": 0.625,
+      "source": "experiments/cascade/results/multi_round_summary.json (PR #225)",
+      "p_bh": 1.0,
+      "survives_bh": false,
+      "p_holm": 1.0,
+      "survives_holm": false
+    },
+    {
+      "label": "multi_round: round-1-vs-round-K McNemar (imaging)",
+      "p_raw": 0.25,
+      "source": "experiments/imaging/results/imaging_multi_round_summary.json (PR #166)",
+      "p_bh": 0.464286,
+      "survives_bh": false,
+      "p_holm": 1.0,
+      "survives_holm": false
+    },
+    {
+      "label": "net_harm: harm-vs-rescue Fisher, cable (imaging)",
+      "p_raw": 1.0,
+      "source": "experiments/imaging/results/net_harm.json (PR #226)",
+      "p_bh": 1.0,
+      "survives_bh": false,
+      "p_holm": 1.0,
+      "survives_holm": false
+    },
+    {
+      "label": "net_harm: harm-vs-rescue Fisher, corner_tag (imaging)",
+      "p_raw": 1.0,
+      "source": "experiments/imaging/results/net_harm.json (PR #226)",
+      "p_bh": 1.0,
+      "survives_bh": false,
+      "p_holm": 1.0,
+      "survives_holm": false
+    },
+    {
+      "label": "net_harm: harm-vs-rescue Fisher, watermark (imaging)",
+      "p_raw": 1.0,
+      "source": "experiments/imaging/results/net_harm.json (PR #226)",
+      "p_bh": 1.0,
+      "survives_bh": false,
+      "p_holm": 1.0,
+      "survives_holm": false
+    },
+    {
+      "label": "net_harm: harm-vs-rescue Fisher, laterality (imaging)",
+      "p_raw": 1.0,
+      "source": "experiments/imaging/results/net_harm.json (PR #226)",
+      "p_bh": 1.0,
+      "survives_bh": false,
+      "p_holm": 1.0,
+      "survives_holm": false
+    }
+  ],
+  "n_survive_bh": 3,
+  "n_survive_holm": 2,
+  "excluded": [
+    {
+      "source": "experiments/medqa/results/break_it_summary.json (results/medqa-break-it, PR #140)",
+      "reason": "not independently re-verified for parser-fix currency in this pass"
+    },
+    {
+      "source": "experiments/medqa/results/push_c_summary.json (results/medqa-break-it, PR #140)",
+      "reason": "not independently re-verified for parser-fix currency in this pass"
+    },
+    {
+      "source": "experiments/medqa/results/cascade_v2_per_case.jsonl (results/medqa-experiments, PR #135)",
+      "reason": "confirmed tainted by the pre-fix stray-article parser bug (see #177's imaging PR note); its medqa-82 row still shows the exact mis-parse"
+    },
+    {
+      "source": "experiments/blind_metric, experiments/referee (main, PRs #157/#154)",
+      "reason": "report precision/recall/FPR, not a p-value directly comparable in a p-value family"
+    }
+  ],
+  "read": "Against the full family (not per-arm): both contamination-audit Fisher tests (flash and flash-lite, correct-vs-wrong flip rate) survive both BH and Holm. Of the clean-A system-flag contamination tests, only flash-lite survives BH (p_bh=0.040); flash's clean-A (p_bh=0.070) and both scale_c plausibility comparisons (anchored p_bh=0.108, strongly-anchored p_bh=0.209) do NOT survive a family-wide correction, consistent with scale_c's anchored increment already failing a local BH within its own arm per the paper. The null results (model-dependence, both multi-round arms, all four imaging net-harm comparisons) correctly do not survive either, since they were never significant to begin with. Only 3 of 13 tests in this family survive BH; 2 of 13 survive the stricter Holm correction."
+}
