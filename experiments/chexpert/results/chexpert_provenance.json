@@ -1,0 +1,251 @@
+{
+  "source_csv": "1",
+  "n_cases": 35,
+  "cases": [
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00005/study2/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00005/study2/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "ba097bde45a9451168c2522ad9010c534f13d84330b2b49f2a4540bf33e931e5",
+      "bytes": 54720
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00005/study2/view2_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00005/study2/view2_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "d1e5238d9ea1439a82604dc1e4e7f2005dd4b7766708bb0a0e51543739f8c5a8",
+      "bytes": 55203
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00007/study1/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00007/study1/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "75cb746c3403452fd37e1423d3583d26b29d30886a039c61be76586f3133f08c",
+      "bytes": 53437
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00011/study5/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00011/study5/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "0ed2ef24da4b5b9364882532d00b3a3606b04ee3efb154c20acbca352756c9db",
+      "bytes": 57084
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00011/study4/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00011/study4/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "76a61d3d0543c6e67ec4ed35b37846494555eb0175a3d5c09154756b1f6c7ae0",
+      "bytes": 47835
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00011/study3/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00011/study3/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "faff92054dc73dd39bf093bc66afdc0567c4a5a0237b7235a0b10d15e19dc39c",
+      "bytes": 55604
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00011/study6/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00011/study6/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "e5485e0a5eea96df1865146f811b75a50db993593481932569f07d9dfd4bc980",
+      "bytes": 53891
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00019/study4/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00019/study4/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "b8071dd8f9a10c58ddde9b1cf2e4d231b5b2ed6f361161d13223d190ff1228fa",
+      "bytes": 53818
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00020/study1/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00020/study1/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "4bf70c9c1f05b5c301370efe3589aafce4f17ab4ee044b0cd39d334e821567c6",
+      "bytes": 65693
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00022/study2/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00022/study2/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "b911dda0635b902717b728e88b29213861f616f77451ddd4ca4cc857ccd49f3d",
+      "bytes": 47337
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00022/study2/view2_lateral.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00022/study2/view2_lateral.jpg",
+      "label": "pneumothorax",
+      "sha256": "22b6ae553dfd22cb80091a2beb8d891b77da7eedc74cff3be63eeb09d6878e6d",
+      "bytes": 39901
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00022/study1/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00022/study1/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "42b921afdb1d95809b616c8622e692e07560778c906aac0fc9300c83eac5af40",
+      "bytes": 57603
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00025/study2/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00025/study2/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "058213d067474f647a778026a8178b995cf414567ce5a07eeafd65854c1bf125",
+      "bytes": 48746
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00025/study2/view2_lateral.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00025/study2/view2_lateral.jpg",
+      "label": "pneumothorax",
+      "sha256": "43ea1f6257276ce7b747b32aa8caa15eb7971c8abb45d1345991a88f3538d50e",
+      "bytes": 39137
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00039/study8/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00039/study8/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "d28b2c63e857157789c95ed0cb246335a96d769561465b29897c3c41270f674e",
+      "bytes": 45333
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00039/study4/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00039/study4/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "45a3094e62f636a9525584dfb4d9de75590d51e4c015c5763b93841bb69df31f",
+      "bytes": 51807
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00039/study3/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00039/study3/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "bccb3f867a5032568f68f70583245765504f9f7c9b945ba7422aeb71554bdf8a",
+      "bytes": 53500
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00039/study7/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00039/study7/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "aef3e60c2611ccbf868c11d6dc6f266a10fd1fd5334c12036d4c966312f24d31",
+      "bytes": 50669
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00039/study9/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00039/study9/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "cdf135e1ccf80b38b3498cd86afc257ece33698251bf34d5d6ccd729a9734ed1",
+      "bytes": 50898
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00039/study6/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00039/study6/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "bca154aa7a677f0fea4ddc52345644c9167f87581cc857ec3a94e9b3c3e47b33",
+      "bytes": 47941
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00039/study5/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00039/study5/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "6e6ef2660eea9b9ecf0bf80c629eca2e62b6656b43d5d6dcb714758bb6d0ea98",
+      "bytes": 50397
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00039/study2/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00039/study2/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "1e98a289d5ebacfa779c4b15aafaedbf960711c941d9efe97c70a8733231cba1",
+      "bytes": 54121
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00040/study1/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00040/study1/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "f82a2fb2f84ccbec47034c40b2350c754124e76595cd0a5f7f5dd8b25139fa19",
+      "bytes": 41778
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00048/study1/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00048/study1/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "5a308082baa68fcf8750d92d568c0ad008c0508a9375fead73a19895c0ef804e",
+      "bytes": 47053
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00055/study2/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00055/study2/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "ea588278287258e10d8aaa329074909b4c21bc4fe3004cc600e6f9e84bbe85da",
+      "bytes": 54193
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00055/study2/view2_lateral.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00055/study2/view2_lateral.jpg",
+      "label": "pneumothorax",
+      "sha256": "4dd8f46d84401a02e8e98d1fb5180b756bb19aace2556f1b619a9d024e35411e",
+      "bytes": 38669
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00055/study3/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00055/study3/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "5bb95f90eeac2600d00461f34df9e16971fe2cf452496b9130f0fb381314fe8f",
+      "bytes": 47648
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00057/study3/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00057/study3/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "1b720af4da4a3e3baf7ea9d1b59514c6cb9686e452a637c040d872d9fa6a4f45",
+      "bytes": 52640
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00069/study16/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00069/study16/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "2ffce18f05553bee0b7755174dc6935b6c6d4f0810699466200699a2eb1fcbdd",
+      "bytes": 54736
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00078/study1/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00078/study1/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "35f36cc747e9c4b4c27d26a29332d65f31068355cf1c197bf393546abba52136",
+      "bytes": 57448
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00078/study2/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00078/study2/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "3ed9a86a722205a39ad68c66c35b023826e02413219e45dfeb94fe287291eb2e",
+      "bytes": 56952
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00078/study3/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00078/study3/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "df2413f191242bf9a264867e64f409dcbdde5d1858d4f5f9ef0848d6165de89a",
+      "bytes": 55725
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00078/study9/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00078/study9/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "708946413184342476b31e9f462694880ab747b8fa8d5c3dfbc2e3b42af82f38",
+      "bytes": 55236
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00078/study6/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00078/study6/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "4afcff5f9dceebe0b609e4789b8338c4ae46a218c17521792e87e4a675148ed8",
+      "bytes": 56411
+    },
+    {
+      "case_id": "CheXpert-v1.0-small/train/patient00078/study8/view1_frontal.jpg",
+      "image_ref": "CheXpert-v1.0-small/train/patient00078/study8/view1_frontal.jpg",
+      "label": "pneumothorax",
+      "sha256": "080e19e380b070f9f87e4e4ea1e72361f64094295ed1e02a2d911937d41caffc",
+      "bytes": 54114
+    }
+  ]
+}
