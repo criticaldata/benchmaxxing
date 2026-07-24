@@ -15,58 +15,82 @@ class DatasetStatus:
     """Readiness status for one dataset in the benchmaxxing study plan."""
 
     lane: str
-    data: str
+    staged: str
     adapter: str
-    experiments: str
+    solo: str
+    cascade: str
+    plausibility: str
+    referee: str
     blocker: str = ""
 
 
 DATASET_STATUS: dict[str, DatasetStatus] = {
     "medqa": DatasetStatus(
         lane="text",
-        data="staged",
+        staged="staged",
         adapter="coded",
-        experiments="coverage grid done: solo, cascade, plausibility, referee",
+        solo="done",
+        cascade="done",
+        plausibility="done",
+        referee="done",
     ),
     "nih_cxr14": DatasetStatus(
         lane="imaging",
-        data="staged",
+        staged="staged",
         adapter="coded",
-        experiments="coverage grid done: solo, cascade, referee; plausibility not applicable",
+        solo="done",
+        cascade="done",
+        plausibility="not applicable",
+        referee="done",
     ),
     "pubmedqa": DatasetStatus(
         lane="text",
-        data="not staged",
+        staged="not staged",
         adapter="coded",
-        experiments="coverage grid pending: solo, cascade, plausibility, referee",
+        solo="pending",
+        cascade="pending",
+        plausibility="pending",
+        referee="pending",
         blocker="stage the official PubMedQA ori_pqal.json release",
     ),
     "chexpert": DatasetStatus(
         lane="imaging",
-        data="blocked",
+        staged="blocked",
         adapter="coded",
-        experiments="coverage grid pending: solo, cascade, referee; plausibility not applicable",
+        solo="pending",
+        cascade="pending",
+        plausibility="not applicable",
+        referee="pending",
         blocker="requires signed CheXpert license and local data staging",
     ),
     "mimic_cxr": DatasetStatus(
         lane="imaging+text",
-        data="blocked",
+        staged="blocked",
         adapter="coded",
-        experiments="coverage grid pending: solo, cascade, plausibility, referee",
+        solo="pending",
+        cascade="pending",
+        plausibility="pending",
+        referee="pending",
         blocker="requires credentialed PhysioNet MIMIC-CXR-JPG access",
     ),
     "ehr": DatasetStatus(
         lane="tabular",
-        data="not staged",
+        staged="not staged",
         adapter="coded loader",
-        experiments="coverage grid pending: solo, cascade, referee; plausibility not applicable",
+        solo="pending",
+        cascade="pending",
+        plausibility="not applicable",
+        referee="pending",
         blocker="requires a derived MIMIC-IV resource CSV",
     ),
     "medmcqa": DatasetStatus(
         lane="text",
-        data="not staged",
+        staged="not staged",
         adapter="coded",
-        experiments="coverage grid pending: solo, cascade, plausibility, referee",
+        solo="pending",
+        cascade="pending",
+        plausibility="pending",
+        referee="pending",
         blocker="stage the official MedMCQA release",
     ),
 }

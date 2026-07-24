@@ -123,7 +123,17 @@ def _cmd_datasets_list(_args: argparse.Namespace) -> int:
         print("No dataset status entries are registered yet.")
         return 0
 
-    headers = ("dataset", "lane", "data", "adapter", "experiments", "blocker")
+    headers = (
+        "dataset",
+        "lane",
+        "staged",
+        "adapter",
+        "solo",
+        "cascade",
+        "plausibility",
+        "referee",
+        "blocker",
+    )
     rows = []
     for name in names:
         entry = status.get(name)
@@ -131,9 +141,12 @@ def _cmd_datasets_list(_args: argparse.Namespace) -> int:
             (
                 name,
                 entry.lane,
-                entry.data,
+                entry.staged,
                 entry.adapter,
-                entry.experiments,
+                entry.solo,
+                entry.cascade,
+                entry.plausibility,
+                entry.referee,
                 entry.blocker,
             )
         )
