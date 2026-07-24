@@ -3,6 +3,7 @@
 Small, dependency-light figures for the three headline views:
 
     plot_cascade_onset: a turn-level agreement/confidence series with the detected onset marked.
+    plot_confidence_trajectory: stated confidence over a transcript, highlighting wrong agreement.
     plot_susceptibility_heatmap: a models-by-cue flip-rate heatmap.
     plot_risk_coverage: a selective risk-coverage (AURC) curve.
 
@@ -57,6 +58,46 @@ def plot_cascade_onset(series, onset=None, ax=None):
     ax.set_xlabel("turn index")
     ax.set_ylabel("agreement / confidence")
     ax.set_title("Cascade onset")
+    ax.legend(loc="best")
+    return ax
+
+
+def plot_confidence_trajectory(transcript, wrong_answer=None, ax=None):
+    """Plot stated confidence by turn and highlight agreement with a planted/wrong answer.
+
+    ``wrong_answer`` defaults to the first answer-bearing seeded turn. Missing confidence values
+    remain gaps in the trajectory instead of being imputed. This is important for old saved runs,
+    where confidence was not recorded at all.
+    """
+    from benchmaxxing.transcript_dynamics import confidence_trajectory
+
+    plt = _pyplot()
+    trajectory = confidence_trajectory(transcript, wrong_answer=wrong_answer)
+    x = np.asarray(trajectory.turn_indices, dtype=int)
+    y = np.asarray(trajectory.confidences, dtype=float)
+    wrong = np.asarray(trajectory.wrong_agreement, dtype=bool)
+    finite = np.isfinite(y)
+
+    if ax is None:
+        _, ax = plt.subplots()
+    ax.plot(x, y, marker="o", color="#1f77b4", label="stated confidence")
+    highlighted = finite & wrong
+    if np.any(highlighted):
+        ax.scatter(
+            x[highlighted],
+            y[highlighted],
+            color="#d62728",
+            zorder=3,
+            label="agrees with planted/wrong answer",
+        )
+    for turn in transcript.turns:
+        if turn.seeded:
+            ax.axvline(turn.turn_index, color="#7f7f7f", linestyle="--", alpha=0.6)
+
+    ax.set_xlabel("turn index")
+    ax.set_ylabel("stated confidence")
+    ax.set_title(f"Confidence trajectory: {transcript.case_id}")
+    ax.set_ylim(0.0, 1.0)
     ax.legend(loc="best")
     return ax
 
@@ -144,6 +185,7 @@ def plot_risk_coverage(confidence, correct, ax=None):
 
 __all__ = [
     "plot_cascade_onset",
+    "plot_confidence_trajectory",
     "plot_susceptibility_heatmap",
     "plot_risk_coverage",
 ]
