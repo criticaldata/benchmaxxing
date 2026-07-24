@@ -36,12 +36,14 @@ _ABSTAIN = "<abstain>"
 
 
 def _letter_index(reply: str, n_options: int) -> int | None:
-    """Resolve a letter-only answer (A, 'B.', '(C)', 'Answer: D') to a 0-based option index.
+    """Resolve a declared letter answer to a 0-based option index.
 
-    Conservative on purpose: only an exact single-letter reply or a letter in an explicit
-    "answer" phrase counts, never a stray standalone letter mid-sentence (the leading-article "A"
-    that mis-scored an earlier parser). Text replies are handled by ``parse_mcq_choice`` first;
-    this is the fallback for models that answer with just the letter.
+    Handles an exact single-letter reply (A, 'B.', '(C)') and a letter in an explicit "answer"
+    phrase or LaTeX final-answer box, including the ``$\\boxed{\\text{D. ...}}$`` form that
+    Gemini 2.5 reasoning replies end with (and optional ``*``/``$`` emphasis). Conservative on
+    purpose: a trigger word or box is required, so a stray standalone letter mid-sentence (the
+    leading-article "A") is never read as an option. ``parse_mcq_choice`` handles copied option
+    text first; this is the fallback for a reply whose signal is the letter.
     """
     if not reply:
         return None
@@ -51,7 +53,12 @@ def _letter_index(reply: str, n_options: int) -> int | None:
     exact = re.fullmatch(r"\(?([A-Za-z])\)?[.):]?", text)
     if exact and exact.group(1).upper() in valid:
         return valid[exact.group(1).upper()]
-    declared = re.findall(r"(?:answer\s*(?:is|:)?\s*|\\boxed\{)\(?([A-Za-z])\)?", text, flags=re.I)
+    declared = re.findall(
+        r"(?:answer\s*(?:is|:)?\s*|\\boxed\{\s*(?:\\(?:text|textbf|mathrm)\{)?\s*)"
+        r"[*_$]*\(?([A-Za-z])\)?",
+        text,
+        flags=re.IGNORECASE,
+    )
     for cand in reversed(declared):
         if cand.upper() in valid:
             return valid[cand.upper()]

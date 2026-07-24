@@ -106,6 +106,29 @@ def test_letter_index_ignores_stray_standalone_letter():
     assert run_cross._letter_index("E", 4) is None  # out of range for 4 options
 
 
+def test_letter_index_reads_gemini_boxed_final_answer():
+    # Gemini 2.5 reasoning replies end with a LaTeX box, not a bare letter; these must resolve.
+    assert run_cross._letter_index(r"...\n\nThe final answer is $\boxed{\text{D. Cross-linking}}$", 4) == 3
+    assert run_cross._letter_index(r"The final answer is $\boxed{B}$", 4) == 1
+    assert run_cross._letter_index(r"\boxed{\textbf{C}}", 4) == 2
+    assert run_cross._letter_index("The final answer is **D**.", 4) == 3
+    assert run_cross._letter_index("The correct answer is A.", 4) == 0
+
+
+def test_backend_resolves_boxed_reply_over_multi_option_reasoning():
+    # A reply that discusses every option (so option-text identity is ambiguous) still resolves
+    # via the declared boxed letter instead of collapsing to an abstention.
+    reply = (
+        "A. wrong. B. also wrong. C. no. D. yes because cross-linking.\n\n"
+        r"The final answer is $\boxed{\text{D. yes because cross-linking}}$"
+    )
+    raw = gateway.MockBackend(rule=lambda p, i, d: reply)
+    backend = run_cross.make_backend("m", "k", raw=raw)
+    payload = {"options": ["wrong", "also wrong", "no", "yes because cross-linking"],
+               "question": "q", "report": ""}
+    assert backend(payload) == "yes because cross-linking"
+
+
 def test_json_safe_output_has_no_nan_or_inf_tokens():
     result = {
         "rate": {"a": 0.5, "b": float("nan")},

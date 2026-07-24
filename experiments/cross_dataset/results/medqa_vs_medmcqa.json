@@ -1,0 +1,120 @@
+{
+  "datasets": [
+    "medqa",
+    "medmcqa"
+  ],
+  "cue_types": [
+    "option_order",
+    "longest_option",
+    "lexical_overlap"
+  ],
+  "per_cue": {
+    "option_order": {
+      "rate": {
+        "medqa": 0.08,
+        "medmcqa": 0.08
+      },
+      "ci": {
+        "medqa": [
+          0.08,
+          0.02,
+          0.16
+        ],
+        "medmcqa": [
+          0.08,
+          0.02,
+          0.16
+        ]
+      },
+      "counts": {
+        "medqa": [
+          4,
+          50
+        ],
+        "medmcqa": [
+          4,
+          50
+        ]
+      },
+      "spread": 0.0,
+      "fisher": {
+        "oddsratio": 1.0,
+        "pvalue": 1.0
+      }
+    },
+    "longest_option": {
+      "rate": {
+        "medqa": 0.1,
+        "medmcqa": 0.16
+      },
+      "ci": {
+        "medqa": [
+          0.1,
+          0.02,
+          0.2
+        ],
+        "medmcqa": [
+          0.16,
+          0.06,
+          0.26
+        ]
+      },
+      "counts": {
+        "medqa": [
+          5,
+          50
+        ],
+        "medmcqa": [
+          8,
+          50
+        ]
+      },
+      "spread": 0.06,
+      "fisher": {
+        "oddsratio": 0.5833333333333334,
+        "pvalue": 0.5535550107112579
+      }
+    },
+    "lexical_overlap": {
+      "rate": {
+        "medqa": 0.08,
+        "medmcqa": 0.16
+      },
+      "ci": {
+        "medqa": [
+          0.08,
+          0.02,
+          0.16
+        ],
+        "medmcqa": [
+          0.16,
+          0.06,
+          0.26
+        ]
+      },
+      "counts": {
+        "medqa": [
+          4,
+          50
+        ],
+        "medmcqa": [
+          8,
+          50
+        ]
+      },
+      "spread": 0.08,
+      "fisher": {
+        "oddsratio": 0.45652173913043476,
+        "pvalue": 0.35666132312750476
+      }
+    }
+  },
+  "agreement": {
+    "mean_spread": 0.04666666666666667,
+    "n_cues_compared": 3
+  },
+  "n_twins": {
+    "medqa": 150,
+    "medmcqa": 150
+  }
+}
