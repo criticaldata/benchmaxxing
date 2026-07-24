@@ -28,6 +28,7 @@ from benchmaxxing.blackboard import run_committee
 from benchmaxxing.cues.text import build_text_twin
 from benchmaxxing.extract import Abstention, parse_mcq_choice
 from benchmaxxing.onset import cascade_onset
+
 # The committee's outcome rule (majority of committed answers) lives in referee; reuse it for the
 # unseeded baseline verdict rather than reimplementing it, so the two definitions never drift.
 from benchmaxxing.referee import _final_answer as committee_verdict
