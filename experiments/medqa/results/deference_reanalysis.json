@@ -1,0 +1,123 @@
+{
+  "transcript_dir": "experiments/medqa/results/transcripts",
+  "arms": {
+    "repro_baseline_relative/isolated": {
+      "n_transcripts": 20,
+      "eligible_turns": 100,
+      "deferred_turns": 0,
+      "deference_rate": 0.0,
+      "confidence_coverage": 0.0,
+      "n_confidence_evaluable": 0,
+      "rising_while_wrong_rate": null,
+      "seed_sourced_deferred_turns": 0,
+      "organic_peer_deferred_turns": 0,
+      "seed_sourced_deference_rate": 0.0,
+      "organic_peer_deference_rate": 0.0,
+      "n_files": 20
+    },
+    "repro_baseline_relative/shared": {
+      "n_transcripts": 20,
+      "eligible_turns": 100,
+      "deferred_turns": 0,
+      "deference_rate": 0.0,
+      "confidence_coverage": 0.0,
+      "n_confidence_evaluable": 0,
+      "rising_while_wrong_rate": null,
+      "seed_sourced_deferred_turns": 0,
+      "organic_peer_deferred_turns": 0,
+      "seed_sourced_deference_rate": 0.0,
+      "organic_peer_deference_rate": 0.0,
+      "n_files": 20
+    },
+    "v1_first_distractor/isolated": {
+      "n_transcripts": 20,
+      "eligible_turns": 120,
+      "deferred_turns": 0,
+      "deference_rate": 0.0,
+      "confidence_coverage": 0.0,
+      "n_confidence_evaluable": 0,
+      "rising_while_wrong_rate": null,
+      "seed_sourced_deferred_turns": 0,
+      "organic_peer_deferred_turns": 0,
+      "seed_sourced_deference_rate": 0.0,
+      "organic_peer_deference_rate": 0.0,
+      "n_files": 20
+    },
+    "v1_first_distractor/shared": {
+      "n_transcripts": 20,
+      "eligible_turns": 120,
+      "deferred_turns": 0,
+      "deference_rate": 0.0,
+      "confidence_coverage": 0.0,
+      "n_confidence_evaluable": 0,
+      "rising_while_wrong_rate": null,
+      "seed_sourced_deferred_turns": 0,
+      "organic_peer_deferred_turns": 0,
+      "seed_sourced_deference_rate": 0.0,
+      "organic_peer_deference_rate": 0.0,
+      "n_files": 20
+    },
+    "v2_baseline_relative/isolated": {
+      "n_transcripts": 20,
+      "eligible_turns": 100,
+      "deferred_turns": 0,
+      "deference_rate": 0.0,
+      "confidence_coverage": 0.0,
+      "n_confidence_evaluable": 0,
+      "rising_while_wrong_rate": null,
+      "seed_sourced_deferred_turns": 0,
+      "organic_peer_deferred_turns": 0,
+      "seed_sourced_deference_rate": 0.0,
+      "organic_peer_deference_rate": 0.0,
+      "n_files": 20
+    },
+    "v2_baseline_relative/shared": {
+      "n_transcripts": 20,
+      "eligible_turns": 100,
+      "deferred_turns": 3,
+      "deference_rate": 0.03,
+      "confidence_coverage": 0.0,
+      "n_confidence_evaluable": 0,
+      "rising_while_wrong_rate": null,
+      "seed_sourced_deferred_turns": 1,
+      "organic_peer_deferred_turns": 2,
+      "seed_sourced_deference_rate": 0.01,
+      "organic_peer_deference_rate": 0.02,
+      "n_files": 20
+    }
+  },
+  "comparison": {
+    "v1_first_distractor": {
+      "shared_deference_rate": 0.0,
+      "isolated_deference_rate": 0.0,
+      "shared_minus_isolated": 0.0,
+      "shared_seed_sourced_rate": 0.0,
+      "shared_organic_peer_rate": 0.0,
+      "n_shared": 20,
+      "n_isolated": 20
+    },
+    "v2_baseline_relative": {
+      "shared_deference_rate": 0.03,
+      "isolated_deference_rate": 0.0,
+      "shared_minus_isolated": 0.03,
+      "shared_seed_sourced_rate": 0.01,
+      "shared_organic_peer_rate": 0.02,
+      "n_shared": 20,
+      "n_isolated": 20
+    },
+    "repro_baseline_relative": {
+      "shared_deference_rate": 0.0,
+      "isolated_deference_rate": 0.0,
+      "shared_minus_isolated": 0.0,
+      "shared_seed_sourced_rate": 0.0,
+      "shared_organic_peer_rate": 0.0,
+      "n_shared": 20,
+      "n_isolated": 20
+    }
+  },
+  "notes": [
+    "All three families are seeded cascade runs; isolated boards have peer visibility off.",
+    "seed_sourced = intervening peer turn was seeded; organic_peer = intervening peer was unplanted.",
+    "live_peer_organic.jsonl has no turn-level transcripts, so a fully organic committee arm is absent."
+  ]
+}
