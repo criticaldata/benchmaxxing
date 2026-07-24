@@ -1,0 +1,143 @@
+{
+  "transcript_dir": "experiments/medqa/results/transcripts",
+  "arms": {
+    "repro_baseline_relative/isolated": {
+      "n_transcripts": 20,
+      "eligible_turns": 100,
+      "deferred_turns": 0,
+      "deference_rate": 0.0,
+      "confidence_coverage": 0.0,
+      "n_confidence_evaluable": 0,
+      "rising_while_wrong_rate": null,
+      "seed_sourced_deferred_turns": 0,
+      "organic_peer_deferred_turns": 0,
+      "seed_sourced_deference_rate": 0.0,
+      "organic_peer_deference_rate": 0.0,
+      "peer_turn_seeded_deferred_turns": 0,
+      "peer_turn_unplanted_deferred_turns": 0,
+      "n_files": 20
+    },
+    "repro_baseline_relative/shared": {
+      "n_transcripts": 20,
+      "eligible_turns": 100,
+      "deferred_turns": 0,
+      "deference_rate": 0.0,
+      "confidence_coverage": 0.0,
+      "n_confidence_evaluable": 0,
+      "rising_while_wrong_rate": null,
+      "seed_sourced_deferred_turns": 0,
+      "organic_peer_deferred_turns": 0,
+      "seed_sourced_deference_rate": 0.0,
+      "organic_peer_deference_rate": 0.0,
+      "peer_turn_seeded_deferred_turns": 0,
+      "peer_turn_unplanted_deferred_turns": 0,
+      "n_files": 20
+    },
+    "v1_first_distractor/isolated": {
+      "n_transcripts": 20,
+      "eligible_turns": 120,
+      "deferred_turns": 0,
+      "deference_rate": 0.0,
+      "confidence_coverage": 0.0,
+      "n_confidence_evaluable": 0,
+      "rising_while_wrong_rate": null,
+      "seed_sourced_deferred_turns": 0,
+      "organic_peer_deferred_turns": 0,
+      "seed_sourced_deference_rate": 0.0,
+      "organic_peer_deference_rate": 0.0,
+      "peer_turn_seeded_deferred_turns": 0,
+      "peer_turn_unplanted_deferred_turns": 0,
+      "n_files": 20
+    },
+    "v1_first_distractor/shared": {
+      "n_transcripts": 20,
+      "eligible_turns": 120,
+      "deferred_turns": 0,
+      "deference_rate": 0.0,
+      "confidence_coverage": 0.0,
+      "n_confidence_evaluable": 0,
+      "rising_while_wrong_rate": null,
+      "seed_sourced_deferred_turns": 0,
+      "organic_peer_deferred_turns": 0,
+      "seed_sourced_deference_rate": 0.0,
+      "organic_peer_deference_rate": 0.0,
+      "peer_turn_seeded_deferred_turns": 0,
+      "peer_turn_unplanted_deferred_turns": 0,
+      "n_files": 20
+    },
+    "v2_baseline_relative/isolated": {
+      "n_transcripts": 20,
+      "eligible_turns": 100,
+      "deferred_turns": 0,
+      "deference_rate": 0.0,
+      "confidence_coverage": 0.0,
+      "n_confidence_evaluable": 0,
+      "rising_while_wrong_rate": null,
+      "seed_sourced_deferred_turns": 0,
+      "organic_peer_deferred_turns": 0,
+      "seed_sourced_deference_rate": 0.0,
+      "organic_peer_deference_rate": 0.0,
+      "peer_turn_seeded_deferred_turns": 0,
+      "peer_turn_unplanted_deferred_turns": 0,
+      "n_files": 20
+    },
+    "v2_baseline_relative/shared": {
+      "n_transcripts": 20,
+      "eligible_turns": 100,
+      "deferred_turns": 3,
+      "deference_rate": 0.03,
+      "confidence_coverage": 0.0,
+      "n_confidence_evaluable": 0,
+      "rising_while_wrong_rate": null,
+      "seed_sourced_deferred_turns": 2,
+      "organic_peer_deferred_turns": 1,
+      "seed_sourced_deference_rate": 0.02,
+      "organic_peer_deference_rate": 0.01,
+      "peer_turn_seeded_deferred_turns": 1,
+      "peer_turn_unplanted_deferred_turns": 2,
+      "n_files": 20
+    }
+  },
+  "comparison": {
+    "v1_first_distractor": {
+      "shared_deference_rate": 0.0,
+      "isolated_deference_rate": 0.0,
+      "shared_minus_isolated": 0.0,
+      "shared_seed_sourced_rate": 0.0,
+      "shared_organic_peer_rate": 0.0,
+      "shared_peer_turn_seeded_count": 0,
+      "shared_peer_turn_unplanted_count": 0,
+      "n_shared": 20,
+      "n_isolated": 20
+    },
+    "v2_baseline_relative": {
+      "shared_deference_rate": 0.03,
+      "isolated_deference_rate": 0.0,
+      "shared_minus_isolated": 0.03,
+      "shared_seed_sourced_rate": 0.02,
+      "shared_organic_peer_rate": 0.01,
+      "shared_peer_turn_seeded_count": 1,
+      "shared_peer_turn_unplanted_count": 2,
+      "n_shared": 20,
+      "n_isolated": 20
+    },
+    "repro_baseline_relative": {
+      "shared_deference_rate": 0.0,
+      "isolated_deference_rate": 0.0,
+      "shared_minus_isolated": 0.0,
+      "shared_seed_sourced_rate": 0.0,
+      "shared_organic_peer_rate": 0.0,
+      "shared_peer_turn_seeded_count": 0,
+      "shared_peer_turn_unplanted_count": 0,
+      "n_shared": 20,
+      "n_isolated": 20
+    }
+  },
+  "notes": [
+    "All three families are seeded cascade runs; isolated boards have peer visibility off.",
+    "seed_sourced = deferred answer equals the planted seed answer (including seed relays).",
+    "organic_peer = deferred answer differs from the planted seed (a novel peer answer).",
+    "peer_turn_* counts are secondary provenance only (whether the last matching peer was planted).",
+    "live_peer_organic.jsonl has no turn-level transcripts, so a fully organic committee arm is absent."
+  ]
+}
