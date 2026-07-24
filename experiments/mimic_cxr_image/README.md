@@ -83,19 +83,32 @@ python -m experiments.mimic_cxr_image.build_subset verify \
 
 ## 4. Run the battery
 
-Point the existing imaging runners at the per-arm manifests (they are dataset-agnostic):
+One-time, install the imaging + model deps (full setup in `CONTRIBUTING.md`). The imaging runners
+need the `image` extra (Pillow/OpenCV cue injection) and the Gemini client; `.[models]` (torch +
+transformers) is only needed for the open-weights cross-lineage arm.
 
 ```bash
+pip install -e ".[image,changepoint,stats]" && pip install "google-genai>=0.3"
 export GEMINI_API_KEY=...   # multimodal Gemini; compute is API-side, no local GPU
+```
 
-# #310 solo susceptibility + noise floor
-python -m experiments.imaging.imaging_solo \
-  --manifest experiments/mimic_cxr_image/manifests/solo_600.csv \
-  --image-root ~/mimic-cxr-raw \
-  --out experiments/mimic_cxr_image/results --n 600
+Point the dataset-agnostic imaging runners at the per-arm manifests. `--n 9999` means "every image
+in this arm" (the runners cap at the manifest size, so a smaller `--n` would silently truncate).
+Each run caches per call, so an interrupted run resumes cheaply on re-run.
 
-# #311 cascade -> cascade_150.csv ; #315 referee -> referee_300.csv ;
-# #314 blind-metric -> blind_metric_100.csv ; #312 system-flag, #313 cue-strength -> solo_600.csv
+```bash
+M=experiments/mimic_cxr_image/manifests ; O=experiments/mimic_cxr_image/results ; RAW=~/mimic-cxr-raw
+
+python -m experiments.imaging.imaging_solo             --manifest $M/solo_600.csv         --image-root $RAW --out $O --n 9999   # #310
+python -m experiments.imaging.imaging_cascade          --manifest $M/cascade_150.csv      --image-root $RAW --out $O --n 9999   # #311
+python -m experiments.imaging.imaging_system_flag      --manifest $M/solo_600.csv         --image-root $RAW --out $O --n 9999   # #312
+python -m experiments.imaging.imaging_strength_cascade --manifest $M/solo_600.csv         --image-root $RAW --out $O --n 9999   # #313
+python -m experiments.imaging.imaging_blind_metric     --manifest $M/blind_metric_100.csv --image-root $RAW --out $O --n 9999   # #314
+
+# #315 referee consumes a cascade transcript over referee_300: run the cascade first, then pass the
+# transcript jsonl it writes in $O (confirm the exact name with `--help`).
+python -m experiments.imaging.imaging_cascade          --manifest $M/referee_300.csv      --image-root $RAW --out $O --n 9999
+python -m experiments.imaging.imaging_referee          --manifest $M/referee_300.csv      --image-root $RAW --cascade-jsonl $O/<cascade_output>.jsonl --out $O
 ```
 
 Results land under `experiments/mimic_cxr_image/results/`, same format as
