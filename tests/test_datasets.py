@@ -121,9 +121,23 @@ def test_dataset_status_covers_registered_adapters():
     for name in registered:
         entry = status.get(name)
         assert entry.lane
-        assert entry.data
+        assert entry.staged
         assert entry.adapter
-        assert entry.experiments
+        assert entry.solo
+        assert entry.cascade
+        assert entry.plausibility
+        assert entry.referee
+
+
+def test_dataset_status_coverage_values_are_explicit():
+    allowed = {"done", "pending", "not applicable"}
+
+    for name in status.names():
+        entry = status.get(name)
+        assert entry.solo in allowed
+        assert entry.cascade in allowed
+        assert entry.plausibility in allowed
+        assert entry.referee in allowed
 
 
 def test_dataset_status_get_unknown_raises():
