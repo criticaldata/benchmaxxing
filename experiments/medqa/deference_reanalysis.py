@@ -7,9 +7,12 @@ Uses ``benchmaxxing.transcript_dynamics`` on the three saved transcript families
 * ``v2_baseline_relative``: ``*_v2_shared.jsonl`` / ``*_v2_isolated.jsonl``
 * ``repro_baseline_relative``: ``*_repro_shared.jsonl`` / ``*_repro_isolated.jsonl``
 
-For each family, report shared vs isolated deference rates, and within shared boards split
-deferred turns into seed-sourced (the intervening peer turn was ``seeded=True``) vs
-organic-peer (the intervening peer turn was an unplanted agent answer).
+For each family, report shared vs isolated deference rates. Within deferred turns, the
+headline seed-sourced vs organic-peer split keys on **adopted-answer identity**: whether the
+answer the agent switched to matches the transcript's planted seed answer. A seed that is
+relayed through an intermediate unplanted peer still counts as seed-sourced. Peer-turn
+provenance (whether the immediately preceding matching peer was itself ``seeded=True``) is
+kept as a secondary breakdown only.
 
 Turn-level organic *runs* (``live_peer_organic``) are not available as transcripts, so this
 cannot yet compare a fully organic committee to a seeded one at the turn level.
@@ -25,6 +28,10 @@ from pathlib import Path
 
 from benchmaxxing.transcript import load_transcript
 from benchmaxxing.transcript_dynamics import deference_summary, summarize_transcripts
+
+
+def _answers_equal(left, right) -> bool:
+    return left == right
 
 FAMILIES = (
     "v1_first_distractor",
@@ -45,18 +52,35 @@ def _arm_of(path: Path) -> tuple[str, str]:
     return family, mode
 
 
+def _seeded_answer(transcript):
+    """First answer-bearing planted turn, or None when the board has no seed."""
+    for turn in sorted(transcript.turns, key=lambda item: item.turn_index):
+        if turn.seeded and turn.answer is not None:
+            return turn.answer
+    return None
+
+
 def _classify_events(transcript):
+    """Split deference events by adopted-answer identity (primary) and peer provenance.
+
+    Returns ``(summary, seed_answer_match, organic_novel, peer_was_seeded, peer_was_unplanted)``.
+    """
     turns_by_index = {turn.turn_index: turn for turn in transcript.turns}
     summary = deference_summary(transcript)
-    seeded_events = 0
-    organic_events = 0
+    seeded_answer = _seeded_answer(transcript)
+    seed_answer_match = organic_novel = 0
+    peer_was_seeded = peer_was_unplanted = 0
     for event in summary.events:
+        if seeded_answer is not None and _answers_equal(event.answer, seeded_answer):
+            seed_answer_match += 1
+        else:
+            organic_novel += 1
         peer = turns_by_index.get(event.peer_turn_index)
         if peer is not None and peer.seeded:
-            seeded_events += 1
+            peer_was_seeded += 1
         else:
-            organic_events += 1
-    return summary, seeded_events, organic_events
+            peer_was_unplanted += 1
+    return summary, seed_answer_match, organic_novel, peer_was_seeded, peer_was_unplanted
 
 
 def _jsonable(value):
@@ -78,18 +102,22 @@ def run_reanalysis(transcript_dir: Path) -> dict:
     for (family, mode), paths in sorted(groups.items()):
         transcripts = [load_transcript(path) for path in paths]
         stats = summarize_transcripts(transcripts)[mode]
-        seeded_ev = organic_ev = 0
+        seed_match = organic = peer_seeded = peer_organic = 0
         for transcript in transcripts:
-            _, seeded, organic = _classify_events(transcript)
-            seeded_ev += seeded
-            organic_ev += organic
+            _, match, novel, p_seed, p_org = _classify_events(transcript)
+            seed_match += match
+            organic += novel
+            peer_seeded += p_seed
+            peer_organic += p_org
         eligible = int(stats["eligible_turns"])
         arms[f"{family}/{mode}"] = {
             **stats,
-            "seed_sourced_deferred_turns": seeded_ev,
-            "organic_peer_deferred_turns": organic_ev,
-            "seed_sourced_deference_rate": seeded_ev / eligible if eligible else 0.0,
-            "organic_peer_deference_rate": organic_ev / eligible if eligible else 0.0,
+            "seed_sourced_deferred_turns": seed_match,
+            "organic_peer_deferred_turns": organic,
+            "seed_sourced_deference_rate": seed_match / eligible if eligible else 0.0,
+            "organic_peer_deference_rate": organic / eligible if eligible else 0.0,
+            "peer_turn_seeded_deferred_turns": peer_seeded,
+            "peer_turn_unplanted_deferred_turns": peer_organic,
             "n_files": len(paths),
         }
 
@@ -105,6 +133,8 @@ def run_reanalysis(transcript_dir: Path) -> dict:
             "shared_minus_isolated": shared["deference_rate"] - isolated["deference_rate"],
             "shared_seed_sourced_rate": shared["seed_sourced_deference_rate"],
             "shared_organic_peer_rate": shared["organic_peer_deference_rate"],
+            "shared_peer_turn_seeded_count": shared["peer_turn_seeded_deferred_turns"],
+            "shared_peer_turn_unplanted_count": shared["peer_turn_unplanted_deferred_turns"],
             "n_shared": shared["n_transcripts"],
             "n_isolated": isolated["n_transcripts"],
         }
@@ -115,7 +145,9 @@ def run_reanalysis(transcript_dir: Path) -> dict:
         "comparison": comparison,
         "notes": [
             "All three families are seeded cascade runs; isolated boards have peer visibility off.",
-            "seed_sourced = intervening peer turn was seeded; organic_peer = intervening peer was unplanted.",
+            "seed_sourced = deferred answer equals the planted seed answer (including seed relays).",
+            "organic_peer = deferred answer differs from the planted seed (a novel peer answer).",
+            "peer_turn_* counts are secondary provenance only (whether the last matching peer was planted).",
             "live_peer_organic.jsonl has no turn-level transcripts, so a fully organic committee arm is absent.",
         ],
     }
@@ -131,8 +163,10 @@ def format_report(report: dict) -> str:
             f"{family}: shared={row['shared_deference_rate']:.3f} "
             f"isolated={row['isolated_deference_rate']:.3f} "
             f"delta={row['shared_minus_isolated']:.3f} "
-            f"(seed-sourced={row['shared_seed_sourced_rate']:.3f}, "
-            f"organic-peer={row['shared_organic_peer_rate']:.3f})"
+            f"(seed-answer={row['shared_seed_sourced_rate']:.3f}, "
+            f"organic-novel={row['shared_organic_peer_rate']:.3f}; "
+            f"peer-prov={row['shared_peer_turn_seeded_count']}/"
+            f"{row['shared_peer_turn_unplanted_count']})"
         )
     lines.append("")
     lines.extend(f"- {note}" for note in report["notes"])
