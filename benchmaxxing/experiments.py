@@ -30,6 +30,7 @@ from benchmaxxing.onset import cascade_onset
 from benchmaxxing.schema import Condition
 
 __all__ = [
+    "build_twins",
     "run_pilot",
     "run_solo_baselines",
     "run_holes_test",
@@ -43,7 +44,7 @@ def _model_name(model) -> str:
     return name if isinstance(name, str) and name else str(model)
 
 
-def _build_twins(cases, cue_types, limit: int | None = None) -> list:
+def build_twins(cases, cue_types, limit: int | None = None) -> list:
     """Build every ``build_text_twin(case, cue_type)`` over the first ``limit`` cases.
 
     A (case, cue) pair whose case lacks the fields that cue needs (or a cue that needs extra
@@ -61,6 +62,10 @@ def _build_twins(cases, cue_types, limit: int | None = None) -> list:
             except (ValueError, TypeError):
                 continue
     return twins
+
+
+# Internal alias kept for the private callers below; ``build_twins`` is the public name.
+_build_twins = build_twins
 
 
 def run_pilot(cases, backend, answer_fn, cue_types, limit: int = 50) -> dict:
