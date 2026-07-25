@@ -1,0 +1,25 @@
+{
+  "n": 35,
+  "model": "gemini-2.5-flash",
+  "cue": "watermark",
+  "new_api_calls_this_run": 35,
+  "peer_driven_adoptions_gt": 6,
+  "referee": {
+    "tp": 4,
+    "fp": 2,
+    "fn": 2,
+    "tn": 27,
+    "precision": 0.6666666666666666,
+    "recall": 0.6666666666666666,
+    "fpr": 0.06896551724137931
+  },
+  "naive_gate": {
+    "tp": 6,
+    "fp": 4,
+    "fn": 0,
+    "tn": 25,
+    "precision": 0.6,
+    "recall": 1.0,
+    "fpr": 0.13793103448275862
+  }
+}
