@@ -43,6 +43,26 @@ def build_parser() -> argparse.ArgumentParser:
         metavar="PATH",
         help="root directory to resolve image_ref paths against (imaging manifests only)",
     )
+    p_stage = datasets_sub.add_parser(
+        "stage",
+        help="build, validate and record a manifest from a staged raw release",
+    )
+    p_stage.add_argument("name", metavar="NAME", help="a registered dataset adapter name")
+    p_stage.add_argument(
+        "--raw-root",
+        default=None,
+        metavar="PATH",
+        help="the raw release (defaults to $BENCHMAXXING_DATASET_ROOT/<name>, else data/<name>)",
+    )
+    p_stage.add_argument(
+        "--out", default=None, metavar="PATH", help="where to write the manifest"
+    )
+    p_stage.add_argument("--limit", type=int, default=None, help="stage only the first N rows")
+    p_stage.add_argument(
+        "--check-images",
+        action="store_true",
+        help="also confirm every image_ref resolves on disk (imaging datasets)",
+    )
 
     sub.add_parser("smoke", help="run the offline end-to-end pipeline smoke on synthetic data")
 
@@ -190,10 +210,44 @@ def _cmd_datasets_stats(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_datasets_stage(args: argparse.Namespace) -> int:
+    """Stage one dataset: build the manifest, validate it, and write its provenance record."""
+    from pathlib import Path
+
+    from benchmaxxing.datasets.staging import SOURCES, stage_dataset
+
+    try:
+        provenance = stage_dataset(
+            args.name,
+            raw_root=args.raw_root,
+            out=args.out,
+            limit=args.limit,
+            check_images=args.check_images,
+        )
+    except KeyError as exc:
+        print(f"error: {exc.args[0] if exc.args else exc}", file=sys.stderr)
+        return 1
+    except (FileNotFoundError, ValueError, NotImplementedError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+
+    source = SOURCES.get(args.name)
+    counts = provenance["counts"]
+    print(f"staged {args.name}: {counts['n_cases']} cases from {provenance['raw_root']}")
+    print(f"  manifest:   {provenance['manifest']}")
+    print(f"  sha256:     {provenance['manifest_sha256']}")
+    print(f"  provenance: {Path(provenance['manifest']).parent / (args.name + '_SOURCE.txt')}")
+    if source:
+        print(f"  source:     {source.url} (access: {source.access})")
+    return 0
+
+
 def _cmd_datasets(args: argparse.Namespace) -> int:
     sub_command = getattr(args, "datasets_command", None)
     if sub_command == "stats":
         return _cmd_datasets_stats(args)
+    if sub_command == "stage":
+        return _cmd_datasets_stage(args)
     return _cmd_datasets_list(args)
 
 
