@@ -153,6 +153,14 @@ class TestBoxedFinalAnswer:
         ("After weighing the evidence, the final answer is B.", 1),
         # plain \boxed at the very end
         (r"...therefore $\boxed{D}$", 3),
+        # Gemini 2.5's real form: \boxed{\text{C. <option text>}} (the box wraps the letter in
+        # \text{}). The bare-letter pattern never matched this, so it dropped to Heuristic 2.
+        (r"After a lengthy differential, $\boxed{\text{C. Warfarin}}$", 2),
+        # \textbf variant, box at the very end
+        (r"Weighing renal clearance, $\boxed{\textbf{D. Metoprolol}}$", 3),
+        # the box must win over a distractor letter left in the guarded 40-char tail: the CoT
+        # floated D, so pre-fix the tail held both D and A and Heuristic 2 returned UNPARSEABLE
+        ("I initially leaned toward D.\n\n$\\boxed{\\text{A. Aspirin}}$", 0),
     ])
     def test_boxed_and_final_answer(self, text, expected):
         assert parse_mcq_choice(text, self.OPTS) == expected

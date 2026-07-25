@@ -60,9 +60,12 @@ def is_abstention(text: str) -> bool:
 # Ordered so that the most specific patterns are tried first.
 # Captures a single letter (the answer) in group 1.
 _DECLARATION_PATTERNS = (
-    # "\boxed{C}" (the LaTeX final-answer box our Gemini MedQA responses end with). Most reliable,
-    # and it wins even when a distractor letter sits in the trailing window that Heuristic 2 guards.
-    r"\\boxed\{\s*([A-Z])\s*\}",
+    # "\boxed{C}" and Gemini 2.5's "\boxed{\text{C. ...}}" reasoning box (also \textbf/\mathrm,
+    # optional emphasis or a leading paren). The LaTeX final-answer box our Gemini responses end
+    # with, and the most reliable signal: it wins even when a distractor letter sits in the trailing
+    # window that Heuristic 2 guards. Only the bare-letter form was matched before, so the far more
+    # common \text{} form fell through to Heuristic 2 and mis-scored decisive replies as abstentions.
+    r"\\boxed\{\s*(?:\\(?:text|textbf|mathrm)\{)?\s*[*_$]*\(?([A-Z])",
     # "The final answer is C", "final answer: C"
     r"final\s+answer\s+(?:is|[:=-])\s*([A-Z])\b",
     # "The correct answer is C", "the correct option is B"
