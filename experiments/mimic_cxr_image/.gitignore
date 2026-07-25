@@ -3,3 +3,9 @@
 manifests/*.csv
 manifests/download_list.txt
 manifests/provenance.json
+
+# Experiment results: commit the aggregate *_summary.json only. The per-case *.jsonl transcripts
+# and caches link MIMIC case_ids to reads (same credentialed-data caution as the manifests) and
+# regenerate from the runners; run logs reference host paths.
+results/**/*.jsonl
+results/**/*.log
