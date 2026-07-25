@@ -12,8 +12,8 @@ WITH peers (shared_adopt == 1) but NOT alone on the same cued image (iso_adopt =
 precision/recall of the referee against that ground truth, and the false-positive rate of a naive
 conformity gate (flag any agreement with the peers) as the baseline the referee must beat.
 
-Result (NIH ChestX-ray14, 35 cases, gemini-2.5-flash, watermark): 22 peer-driven adoptions;
-referee precision/recall 0.86 at FPR 0.23; naive gate precision 0.65, recall 1.0, FPR 0.92.
+Result (CheXpert-v1.0-small, 35 cases, gemini-2.5-flash, watermark): 6 peer-driven adoptions;
+referee precision/recall 0.67 at FPR 0.07; naive gate precision 0.60, recall 1.0, FPR 0.14.
 
 Reads GEMINI_API_KEY (or GOOGLE_API_KEY) from the env; a fully cached run reproduces the summary
 with no key. All paths are arguments; no secrets committed.

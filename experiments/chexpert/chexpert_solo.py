@@ -7,7 +7,7 @@ rate per cue and, computed in-script, a noise floor: each clean read is resample
 temperature > 0 with the cache bypassed, so the floor is the clean-read self-inconsistency. The
 honest susceptibility is flip-above-noise (per-cue flip rate minus the noise floor).
 
-Result (NIH ChestX-ray14, 35 cases, gemini-2.5-flash): flip 0.20-0.34 by cue; the noise floor and
+Result (CheXpert-v1.0-small, 35 cases, gemini-2.5-flash): flip 0.20-0.23 by cue; the noise floor and
 per-cue flip-above-noise are written into imaging_solo_summary.json and regenerate from the artifact.
 
 Runs anywhere: the compute is API-side (multimodal Gemini), no local GPU. Reads GEMINI_API_KEY
@@ -112,7 +112,7 @@ def main():
     root = Path(args.image_root)
     cache = _Cache(Path(args.cache) if args.cache else out / "img_cache.jsonl", _key())
     cases = [c for c in load_cases(args.manifest)
-             if c.label and c.label.lower() not in ("no finding", "", "none") and (root / c.image_ref).exists()][:args.n]
+             if c.label and c.label.lower() not in ("no finding", "", "none") and (root / c.image_ref).exists()]
 
     def q(finding):
         return f"You are reading a chest radiograph. Does this X-ray show {finding}? Answer with only 'yes' or 'no'."

@@ -54,7 +54,8 @@ def main() -> None:
             raise SystemExit(f"case_ids not eligible (no image on disk, or no real finding label): {missing}")
         kept = [by_id[cid] for cid in wanted]
     else:
-        kept = eligible[: args.n]
+        import random
+        kept = random.Random(42).sample(eligible, min(args.n, len(eligible)))
 
     finalize(kept, Path(args.out))
 
