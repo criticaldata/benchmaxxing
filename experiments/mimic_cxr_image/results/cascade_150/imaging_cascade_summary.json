@@ -1,0 +1,9 @@
+{
+  "n": 215,
+  "model": "gemini-2.5-flash",
+  "cue": "watermark",
+  "new_api_calls_this_run": 645,
+  "shared_adopt": 0.9953,
+  "isolated_adopt": 0.1767,
+  "contagion": 0.8186
+}
