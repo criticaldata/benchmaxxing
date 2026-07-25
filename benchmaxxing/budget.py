@@ -55,19 +55,20 @@ def _rank(case, seed: int) -> str:
 def subsample_cases(cases, budget: RunBudget) -> list:
     """Deterministically select up to ``budget.max_cases`` cases, seeded by ``budget.seed``.
 
-    Cases are ranked by a stable hash of ``(seed, case_id)``, so the selection depends only on
-    the cases' content, not on the order they arrive in. That makes a smaller ``max_cases`` a
-    strict subset of a larger ``max_cases`` run over the same pool even if an upstream step
-    reorders or re-filters the pool between a pilot and the full run: a cheap pilot is always a
-    subset of the full run, not an independent (and possibly non-overlapping) sample.
+    Cases are always returned in rank order (a stable hash of ``(seed, case_id)``), whether or
+    not ``max_cases`` bounds the run. Because the unbounded full run uses the same ranking, a
+    bounded pilot is a strict positional *prefix* of the full run over the same pool, not merely a
+    subset: diffing a pilot against the full run lines up case for case. The ranking depends only
+    on content, so this holds even if an upstream step reorders or re-filters the pool between a
+    pilot and the full run.
     """
     cases = list(cases)
-    if budget.max_cases is None or budget.max_cases >= len(cases):
-        return cases
-    # Rank by hash; the original index breaks ties so duplicate keys stay deterministic. Return
-    # in rank order (not pool order) so a smaller max_cases is a strict prefix of a larger one.
+    # Always rank (even when unbounded), so the full run and every pilot share one order and a
+    # smaller max_cases is a strict prefix of a larger one. The original index breaks ties so
+    # duplicate keys stay deterministic.
     order = sorted(range(len(cases)), key=lambda i: (_rank(cases[i], budget.seed), i))
-    return [cases[i] for i in order[: budget.max_cases]]
+    n = len(cases) if budget.max_cases is None else min(budget.max_cases, len(cases))
+    return [cases[i] for i in order[:n]]
 
 
 class BudgetExceeded(RuntimeError):

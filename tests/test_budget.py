@@ -40,9 +40,19 @@ def test_different_seeds_can_pick_different_subsets():
 
 
 def test_max_cases_none_or_over_pool_size_returns_everything():
+    # Unbounded (or over-sized) returns every case, in rank order rather than pool order.
     cases = list(range(5))
-    assert bd.subsample_cases(cases, bd.RunBudget(max_cases=None)) == cases
-    assert bd.subsample_cases(cases, bd.RunBudget(max_cases=100)) == cases
+    assert set(bd.subsample_cases(cases, bd.RunBudget(max_cases=None))) == set(cases)
+    assert set(bd.subsample_cases(cases, bd.RunBudget(max_cases=100))) == set(cases)
+
+
+def test_bounded_pilot_is_a_prefix_of_the_unbounded_full_run():
+    # The unbounded full run and every bounded pilot share one rank order, so a pilot is a strict
+    # positional prefix of the full run, not merely a subset (Agastya's #263 review point).
+    cases = list(range(50))
+    full = bd.subsample_cases(cases, bd.RunBudget(max_cases=None, seed=7))
+    pilot = bd.subsample_cases(cases, bd.RunBudget(max_cases=10, seed=7))
+    assert pilot == full[: len(pilot)]
 
 
 def test_subsample_is_invariant_to_input_order():
