@@ -24,6 +24,10 @@ from benchmaxxing.analysis import (
     solo_evaluate,
     susceptibility_matrix,
 )
+
+# The case-anchored peer rationale already exists for the Break-it C runner (issue #138); reuse it
+# so the cascade's reasoned seed and that runner speak in identical words and stay comparable.
+from benchmaxxing.anchored_seed import anchored_seed_content, case_anchor
 from benchmaxxing.blackboard import run_committee
 from benchmaxxing.cues.text import build_text_twin
 from benchmaxxing.extract import Abstention, parse_mcq_choice
@@ -41,6 +45,8 @@ __all__ = [
     "run_cascade",
     "run_cascade_ablation",
     "terse_seed_content",
+    "reasoned_seed_content",
+    "SEED_STYLES",
 ]
 
 # Sentinel for "baseline not supplied", distinct from a genuine ``None`` verdict (a committee that
@@ -207,6 +213,37 @@ def terse_seed_content(case, seeded_answer) -> str:
     return f"The answer is {seeded_answer}."
 
 
+def reasoned_seed_content(case, seeded_answer) -> str:
+    """A confident wrong answer plus a rationale anchored on a cue in this case (issue #115).
+
+    The seeded peer states the shortcut answer and justifies it by citing a detail lifted from the
+    case's own vignette, so the reason is voiceable and checkable rather than a naked assertion.
+    Delegates to the Break-it C builders (issue #138) rather than composing a third rationale
+    wording, so a seed planted here is word-for-word the one that runner plants.
+
+    Deterministic given the case and the answer: :func:`~benchmaxxing.anchored_seed.case_anchor`
+    quotes the vignette rather than inventing a detail. A case with no text raises instead of
+    degrading to a generic rationale, which would silently file a bare seed under the reasoned arm
+    and bias the contrast this style exists to measure.
+    """
+    anchor = case_anchor(case)
+    if not anchor:
+        raise ValueError(
+            f"case {getattr(case, 'case_id', None)!r} has no question/report text to anchor a "
+            "reasoned seed on; supply a content_builder or use seed_style='terse'"
+        )
+    return anchored_seed_content(seeded_answer, anchor)
+
+
+# Named seed styles for ``run_cascade``. ``"bare"`` maps to no builder (the historical answer-only
+# seed) so the default path is byte-identical to the pre-#115 behaviour.
+SEED_STYLES = {
+    "bare": None,
+    "terse": terse_seed_content,
+    "reasoned": reasoned_seed_content,
+}
+
+
 def _committee_baseline(committee, case, backend_for, *, rounds: int) -> object:
     """The committee's independent verdict with no seed planted: an ISOLATED, unseeded run.
 
@@ -232,6 +269,7 @@ def run_cascade(
     rounds: int = 3,
     seed_target: str = "first_distractor",
     baseline_answer: object = _UNSET,
+    seed_style: str = "bare",
     content_builder=None,
 ) -> dict:
     """Seed a shortcut into a committee and measure whether it cascades (issue 13).
@@ -253,14 +291,23 @@ def run_cascade(
       avoid recomputing it across arms) and the seed is chosen distinct from it, so shared-minus-
       isolated adoption is well defined.
 
-    ``content_builder`` is an optional ``(case, seeded_answer) -> str`` hook: when given, the
-    seeded turn carries that content (a confident claim/rationale) instead of a bare answer. The
-    default keeps the bare-answer seed, so the seed construction and every existing arm are
-    unchanged; the result dict only gains additive metadata keys. Ground truth is never altered by
-    any of this: only the planted peer turn changes.
+    ``seed_style`` selects what the seeded peer SAYS, holding the seeded answer fixed (issue #115):
+
+    * ``"bare"`` (default, unchanged): the answer with no content, a naked assertion.
+    * ``"terse"``: a one-line confident claim.
+    * ``"reasoned"``: the answer plus a rationale anchored on a detail of this case, the stimulus
+      a real cascade runs on.
+
+    ``content_builder`` is the escape hatch for a style not in :data:`SEED_STYLES`: an optional
+    ``(case, seeded_answer) -> str`` hook. Passing it together with a non-bare ``seed_style``
+    raises rather than silently letting one win. The default keeps the bare-answer seed, so the
+    seed construction and every existing arm are unchanged; the result dict only gains additive
+    metadata keys. Ground truth is never altered by any of this: only the planted peer turn
+    changes, and the seeded answer stays a non-correct option under either ``seed_target``.
 
     Returns ``{"onset", "shared_answers", "isolated_answers", "series", "seeded_answer",
-    "seed_target", "baseline_answer", "seed_content", "shared_transcript", "isolated_transcript"}``.
+    "seed_target", "baseline_answer", "seed_style", "seed_content", "shared_transcript",
+    "isolated_transcript"}``.
     """
     if seed_target == "first_distractor":
         seeded_answer = _shortcut_answer(case)
@@ -275,7 +322,17 @@ def run_cascade(
         )
     reported_baseline = None if baseline_answer is _UNSET else baseline_answer
 
-    content = None if content_builder is None else str(content_builder(case, seeded_answer))
+    if seed_style not in SEED_STYLES:
+        raise ValueError(
+            f"seed_style must be one of {sorted(SEED_STYLES)}, got {seed_style!r}"
+        )
+    if content_builder is not None and seed_style != "bare":
+        raise ValueError(
+            "pass either seed_style or content_builder, not both "
+            f"(got seed_style={seed_style!r} with a content_builder)"
+        )
+    builder = content_builder if content_builder is not None else SEED_STYLES[seed_style]
+    content = None if builder is None else str(builder(case, seeded_answer))
     seed_turn = (
         (seed_index, seeded_answer, "seed")
         if content is None
@@ -298,6 +355,7 @@ def run_cascade(
         "seeded_answer": seeded_answer,
         "seed_target": seed_target,
         "baseline_answer": reported_baseline,
+        "seed_style": seed_style,
         "seed_content": content,
         "shared_transcript": shared,
         "isolated_transcript": isolated,
@@ -329,9 +387,14 @@ def run_cascade_ablation(
     seed_index: int = 1,
     rounds: int = 3,
     seed_targets=("first_distractor", "baseline_relative"),
+    seed_style: str = "bare",
     content_builder=None,
 ) -> dict:
     """Stimulus-strength ablation over seed targets, per arm (issue #104).
+
+    ``seed_style`` fixes what the seeded peer says across every arm of one sweep (issue #115), so
+    a style contrast is two sweeps over the same cases rather than a third dimension inside the
+    arm keys, which keeps ``arms`` keyed by seed target alone.
 
     For each case the committee's unseeded baseline is computed once and shared across arms, so
     every arm is judged against the same reference: a case whose seed coincides with that baseline
@@ -361,7 +424,7 @@ def run_cascade_ablation(
                 committee, case, backend_for,
                 seed_index=seed_index, rounds=rounds,
                 seed_target=target, baseline_answer=baseline,
-                content_builder=content_builder,
+                seed_style=seed_style, content_builder=content_builder,
             )
             seeded = res["seeded_answer"]
             shared_adopt = _seed_adoption(res["shared_transcript"], seeded, seed_index)
@@ -399,4 +462,4 @@ def run_cascade_ablation(
             "n_censored": len(records) - len(defined),
         }
 
-    return {"arms": arms, "per_case": per_case, "n_cases": len(cases)}
+    return {"arms": arms, "per_case": per_case, "n_cases": len(cases), "seed_style": seed_style}
