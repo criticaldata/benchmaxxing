@@ -113,7 +113,11 @@ def main():
         finding = case.label.split("|")[0].strip()
         img = Image.open(root / case.image_ref).convert("L")
         clean = cache.ask(q(finding), img)
-        wrong = "no" if clean == "yes" else "yes"
+        # Plant against GROUND TRUTH, not the clean read. Cases are finding-present (filtered above),
+        # so the definitely-false read is always "no". Planting the flip of the clean read would
+        # coincide with ground truth whenever the holdout was already wrong (~37% at NIH accuracy),
+        # scoring an accept-the-correction as contagion; see #332.
+        wrong = "no"
         try:
             cont = _to_pil(ci.build_image_twin(img, cue, ground_truth=finding, case_id=case.case_id).contaminated)
         except Exception as e:  # noqa: BLE001
@@ -123,7 +127,7 @@ def main():
         iso_read = cache.ask(q(finding), cont)
         shared_read = cache.ask(q(finding, board), cont)
         return {"case_id": case.case_id, "finding": finding, "clean": clean, "wrong": wrong,
-                "iso": iso_read, "shared": shared_read,
+                "clean_correct": int(clean == "yes"), "iso": iso_read, "shared": shared_read,
                 "iso_adopt": int(iso_read == wrong), "shared_adopt": int(shared_read == wrong)}
 
     rows = []
