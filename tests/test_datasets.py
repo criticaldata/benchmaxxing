@@ -8,7 +8,9 @@ from benchmaxxing.data import load_cases, write_manifest
 from benchmaxxing.datasets import base, registry
 from benchmaxxing.schema import Case, Modality
 
-EXPECTED_DATASETS = {"mimic_cxr", "chexpert", "nih_cxr14", "medqa", "medmcqa", "pubmedqa", "ehr"}
+EXPECTED_DATASETS = {
+    "mimic_cxr", "mimic_cxr_text", "chexpert", "nih_cxr14", "medqa", "medmcqa", "pubmedqa", "ehr",
+}
 
 
 def _write_text(path, text):
@@ -128,7 +130,11 @@ def test_all_adapters_fail_loudly_on_missing_data(tmp_path):
     for name in EXPECTED_DATASETS:
         module = registry.get(name)
         with pytest.raises((FileNotFoundError, ValueError, NotImplementedError)):
-            module.build_manifest(tmp_path, tmp_path / f"{name}.csv")
+            if name == "mimic_cxr_text":
+                # Takes separate report/labels roots instead of one raw_root (see its docstring).
+                module.build_manifest(tmp_path, tmp_path, tmp_path / f"{name}.csv")
+            else:
+                module.build_manifest(tmp_path, tmp_path / f"{name}.csv")
 
 
 def test_finalize_writes_and_rejects_duplicates(tmp_path):
