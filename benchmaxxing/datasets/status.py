@@ -10,6 +10,10 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
+ADAPTER_STATUSES = frozenset({"coded", "coded loader", "not registered"})
+CODED_ADAPTER_STATUSES = frozenset({"coded", "coded loader"})
+
+
 @dataclass(frozen=True)
 class DatasetStatus:
     """Readiness status for one dataset in the benchmaxxing study plan."""
