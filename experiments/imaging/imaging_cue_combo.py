@@ -14,6 +14,7 @@ means they partly cancel. The single-cue reads reuse the committed flash image c
 combined image is new. Keyless on a fully cached re-run.
 """
 from __future__ import annotations
+from benchmaxxing.extract import parse_yesno
 
 import argparse
 import hashlib
@@ -46,15 +47,6 @@ def _img_bytes(pil):
     return buf.getvalue()
 
 
-def _yesno(text):
-    t = (text or "").strip().lower()
-    if t.startswith("yes") or " yes" in t[:20]:
-        return "yes"
-    if t.startswith("no") or " no" in t[:20]:
-        return "no"
-    return "yes" if "yes" in t else ("no" if "no" in t else "?")
-
-
 def _to_pil(x):
     return x.convert("L") if isinstance(x, Image.Image) else Image.fromarray(np.asarray(x).astype("uint8")).convert("L")
 
@@ -72,7 +64,7 @@ class _Cache:
         k = f"{MODEL}:" + hashlib.sha256(_img_bytes(pil) + b"\x00" + prompt.encode()).hexdigest()
         with _lock:
             if k in self.store:
-                return _yesno(self.store[k])
+                return parse_yesno(self.store[k])
         if not self.key:
             raise SystemExit("Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key).")
         if self._b is None:
@@ -82,7 +74,7 @@ class _Cache:
             self.store[k] = resp
             with open(self.path, "a") as f:
                 f.write(json.dumps({"k": k, "resp": resp}) + "\n")
-        return _yesno(resp)
+        return parse_yesno(resp)
 
 
 def main():

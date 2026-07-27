@@ -15,12 +15,13 @@ plus the net harm (holdout was correct alone but adopts the peers' wrong consens
 susceptibility to organic rather than adversarial errors. All reads cached; keyless on re-run.
 """
 from __future__ import annotations
+from benchmaxxing.extract import parse_legacy_string
+
 
 import argparse
 import hashlib
 import json
 import os
-import re
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
@@ -51,28 +52,6 @@ def _mcq(case, prefix=""):
     return (f"{prefix}Question: {case.question}\n\nOptions:\n{body}\n\n"
             "Answer with only the single letter of the best option."), opts
 
-
-def _parse(text, options):
-    if not text:
-        return ""
-    t = text.strip()
-    letters = _letters(len(options))
-    m = re.findall(r"\\boxed\{\s*([A-E])\s*\}", t)
-    if not m:
-        m = re.findall(r"(?:final answer|the answer|answer)\s*(?:is|:)?\s*\**\(?([A-E])\)?\b", t, re.I)
-    if m and m[-1].upper() in letters:
-        return options[letters.index(m[-1].upper())]
-    low = t.lower()
-    hits = [(low.rfind(o.lower()), o) for o in options if o.lower() in low]
-    hits = [(p, o) for p, o in hits if p >= 0]
-    if hits:
-        return max(hits)[1]
-    m = re.search(r"\b([A-E])\b\s*[.)]?\s*$", t.upper())
-    if m and m.group(1) in letters:
-        return options[letters.index(m.group(1))]
-    if len(t) == 1 and t.upper() in letters:
-        return options[letters.index(t.upper())]
-    return t
 
 
 class _Cache:
@@ -128,14 +107,14 @@ def main():
                 board = ("Panel so far:\n" + "\n".join(lines) + "\n\n") if lines else ""
                 p, opts = _mcq(view.case, board)
                 text = cache.complete(backend_model, p)
-                return AgentResponse(content=text[:120], answer=_parse(text, opts), confidence=0.7)
+                return AgentResponse(content=text[:120], answer=parse_legacy_string(text, opts), confidence=0.7)
         return _C()
 
     def run_one(case):
         opts = list(case.options)
         gt = opts[case.answer_index]
         base_p, _ = _mcq(case)
-        bare = _parse(cache.complete(HOLDOUT, base_p), opts)
+        bare = parse_legacy_string(cache.complete(HOLDOUT, base_p), opts)
         shared = run_committee(committee, case, Condition.CLEAN, backend_for,
                                shared=True, rounds=1, order=[0, 1, 2])
         board_ans = shared.committed.get("holdout")

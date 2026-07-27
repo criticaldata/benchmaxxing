@@ -20,6 +20,8 @@ paired McNemar. Five cached calls per case (bare plus four rungs; the control re
 answer); resumable and keyless off the committed cache.
 """
 from __future__ import annotations
+from benchmaxxing.extract import parse_legacy_string
+
 
 import argparse
 import hashlib
@@ -59,29 +61,6 @@ def _mcq_prompt(payload, board=""):
     return (f"Question: {payload['question']}\n\nOptions:\n{body}\n\n{board}"
             "Answer with only the single letter of the best option.")
 
-
-def _parse_choice(text, options):
-    import re
-    if not text:
-        return ""
-    t = text.strip()
-    letters = _letters(len(options))
-    m = re.findall(r"\\boxed\{\s*([A-E])\s*\}", t)
-    if not m:
-        m = re.findall(r"(?:final answer|the answer|answer)\s*(?:is|:)?\s*\**\(?([A-E])\)?\b", t, re.I)
-    if m and m[-1].upper() in letters:
-        return options[letters.index(m[-1].upper())]
-    low = t.lower()
-    hits = [(low.rfind(o.lower()), o) for o in options if o.lower() in low]
-    hits = [(p, o) for p, o in hits if p >= 0]
-    if hits:
-        return max(hits)[1]
-    m2 = re.search(r"\b([A-E])\b\s*[.)]?\s*$", t.upper())
-    if m2 and m2.group(1) in letters:
-        return options[letters.index(m2.group(1))]
-    if len(t) == 1 and t.upper() in letters:
-        return options[letters.index(t.upper())]
-    return t
 
 
 class _Cache:
@@ -126,7 +105,7 @@ def main():
     def run_one(case):
         options = list(case.options)
         gt = options[case.answer_index]
-        bare = _parse_choice(cache.complete(_mcq_prompt({"question": case.question, "options": options})), options)
+        bare = parse_legacy_string(cache.complete(_mcq_prompt({"question": case.question, "options": options})), options)
         # fixed wrong assertion: a distractor that is neither the truth nor the holdout's own answer,
         # so adopting it is a genuine move induced by the assertion.
         wrong = next((o for i, o in enumerate(options) if i != case.answer_index and o != bare), None)
@@ -136,7 +115,7 @@ def main():
                "control_adopt": int(bare == wrong)}  # 0 by construction (wrong != bare)
         for rung in RUNG_ORDER:
             board = RUNGS[rung].format(a=wrong) + "\n\n"
-            ans = _parse_choice(cache.complete(_mcq_prompt({"question": case.question, "options": options}, board)), options)
+            ans = parse_legacy_string(cache.complete(_mcq_prompt({"question": case.question, "options": options}, board)), options)
             row[f"{rung}_adopt"] = int(ans == wrong)
         return row
 

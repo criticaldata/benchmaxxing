@@ -22,6 +22,7 @@ resampled at temperature 1 against the same temperature-0 baseline. The temp-1 s
 case in imaging_matched_temp.jsonl so a re-run reproduces the summary with no key.
 """
 from __future__ import annotations
+from benchmaxxing.extract import parse_yesno
 
 import argparse
 import json
@@ -43,15 +44,6 @@ _lock = threading.Lock()
 
 def _key():
     return os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
-
-
-def _yesno(text):
-    t = (text or "").strip().lower()
-    if t.startswith("yes") or " yes" in t[:20]:
-        return "yes"
-    if t.startswith("no") or " no" in t[:20]:
-        return "no"
-    return "yes" if "yes" in t else ("no" if "no" in t else "?")
 
 
 def _to_pil(x):
@@ -112,7 +104,7 @@ def main():
                                                                    decoding={"temperature": 1.0})
         with _lock:
             calls["n"] += 1
-        cued_temp1 = _yesno(resp)
+        cued_temp1 = parse_yesno(resp)
         return {"case_id": cid, "finding": finding, "clean_temp0": clean_temp0,
                 "cued_temp1": cued_temp1, "signal_flip_temp1": cued_temp1 != clean_temp0}
 
