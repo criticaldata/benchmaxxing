@@ -1,20 +1,22 @@
 """EHR adapter: structured resource-constraint context for the scrutiny stage (stage 5).
 
 This source is not a diagnostic lane. It supplies the resource-constraint context that puts the
-scrutiny-panel stakeholders under load (bed occupancy, staffing, budget pressure), conditioning how
-the referee scrutinises a committee decision.
+scrutiny-panel stakeholders under load (ICU-stay load per admission, budget pressure), conditioning
+how the referee scrutinises a committee decision.
 
 There is no single canonical MIMIC-IV "resource" table, so the entry point here is
 :func:`load_resource_contexts`, a flexible loader over a structured CSV a contributor derives from
-MIMIC-IV (icustays / beds / staffing). ``build_manifest`` is intentionally not the entry point and
-raises NotImplementedError pointing at that loader.
+MIMIC-IV (icustays / admissions). ``build_manifest`` is intentionally not the entry point and raises
+NotImplementedError pointing at that loader.
 
-See scripts/mimic_iv/derive_ehr_resource_contexts.sql for a documented, reviewable derivation
-query. staffing and beds are derived entirely within a single hospital admission (distinct ICU
-stay count per hadm_id), not from cross-patient timestamp comparison -- MIMIC-IV shifts dates
-independently per patient, so cross-patient overlap comparisons (including an earlier attempt
-bucketed by anchor_year_group) are not valid; see the script's header comment for the full
-history. Validated against a real MIMIC-IV BigQuery export (#49).
+See scripts/mimic_iv/derive_ehr_resource_contexts.sql for a documented, reviewable derivation query.
+icu_stay_count is a real, MIMIC-native signal (the number of distinct ICU stays recorded under the
+same hospital admission), not a fabricated one -- it stands in as a resource-load proxy, not a
+measurement of real bed occupancy or staffing ratios. budget_pressure remains a fabricated proxy
+(hospital length of stay); MIMIC-IV has no real cost tables. An earlier version of this loader shipped
+two column names ("beds" and "staffing") for what was algebraically one number (staffing = 1/beds);
+this was caught in review and fixed by shipping a single honestly-named column instead. Validated
+against a real MIMIC-IV BigQuery export (#49).
 """
 
 from __future__ import annotations
@@ -29,10 +31,10 @@ from benchmaxxing.schema import Modality
 SPEC = DatasetSpec(
     name="ehr",
     raw_hint=(
-        "Derive from MIMIC-IV 'icustays' (join beds / staffing): per scenario compute bed "
-        "occupancy, a nurse-to-patient ratio, and a budget proxy, and write them to a structured "
-        "CSV with columns scenario_id, staffing, beds, budget_pressure (extra columns are kept as "
-        "meta). Load it with load_resource_contexts, not build_manifest."
+        "Derive from MIMIC-IV 'icustays' (join admissions): per scenario compute the distinct "
+        "ICU-stay count for the admission and a hospital-LOS budget proxy, and write them to a "
+        "structured CSV with columns scenario_id, icu_stay_count, budget_pressure (extra columns "
+        "are kept as meta). Load it with load_resource_contexts, not build_manifest."
     ),
     modality=Modality.TEXT,
     notes=(
@@ -43,21 +45,23 @@ SPEC = DatasetSpec(
 )
 
 # Columns every derived resource CSV must provide; anything else becomes ResourceContext.meta.
-REQUIRED_COLUMNS = ("scenario_id", "staffing", "beds", "budget_pressure")
-_NUMERIC_COLUMNS = ("staffing", "beds", "budget_pressure")
+REQUIRED_COLUMNS = ("scenario_id", "icu_stay_count", "budget_pressure")
+_NUMERIC_COLUMNS = ("icu_stay_count", "budget_pressure")
 
 
 @dataclass(frozen=True)
 class ResourceContext:
     """One resource-constraint scenario that loads the scrutiny panel.
 
-    staffing, beds and budget_pressure are numeric constraint proxies (higher budget_pressure means
-    tighter resources). Any extra CSV columns are preserved verbatim in ``meta``.
+    icu_stay_count is the number of distinct ICU stays recorded under the same hospital admission --
+    a real, MIMIC-native signal used as a resource-load proxy (higher = more ICU transfers, plausibly
+    a sicker or more unstable admission), not a measurement of real bed occupancy or staffing.
+    budget_pressure is a fabricated numeric proxy (higher means tighter resources); MIMIC-IV has no
+    real cost tables. Any extra CSV columns are preserved verbatim in ``meta``.
     """
 
     scenario_id: str
-    staffing: float
-    beds: float
+    icu_stay_count: float
     budget_pressure: float
     meta: dict = field(default_factory=dict)
 
@@ -65,7 +69,7 @@ class ResourceContext:
 def load_resource_contexts(csv_path) -> list[ResourceContext]:
     """Read a structured resource CSV into a list of :class:`ResourceContext`.
 
-    The CSV must have columns scenario_id, staffing, beds and budget_pressure; the numeric fields
+    The CSV must have columns scenario_id, icu_stay_count and budget_pressure; the numeric fields
     are parsed as float and any extra columns are collected into ``meta``.
 
     Raises FileNotFoundError if the path is missing and ValueError on a missing required column or a
@@ -99,8 +103,7 @@ def _row_to_context(row: dict, index: int, path: Path) -> ResourceContext:
     }
     return ResourceContext(
         scenario_id=scenario_id,
-        staffing=values["staffing"],
-        beds=values["beds"],
+        icu_stay_count=values["icu_stay_count"],
         budget_pressure=values["budget_pressure"],
         meta=meta,
     )
@@ -126,7 +129,7 @@ def build_manifest(raw_root, out, limit=None):
     raise NotImplementedError(
         f"{SPEC.name}.build_manifest is intentionally not implemented: resource-constraint context "
         f"is not a diagnostic manifest lane. Load a structured CSV "
-        f"(scenario_id, staffing, beds, budget_pressure) with "
+        f"(scenario_id, icu_stay_count, budget_pressure) with "
         f"benchmaxxing.datasets.ehr.load_resource_contexts instead "
         f"(raw_root={raw_root!r}, out={out!r}, limit={limit!r})."
     )
