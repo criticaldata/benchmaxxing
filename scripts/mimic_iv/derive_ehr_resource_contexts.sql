@@ -1,34 +1,43 @@
 -- Derives one row per ICU stay with resource-constraint proxies for
 -- benchmaxxing.datasets.ehr.load_resource_contexts (#49).
 --
--- IMPORTANT: staffing and budget_pressure are FABRICATED PROXIES.
--- MIMIC-IV has no real staffing or cost tables. Neither reflects real
--- hospital operations data. This methodology needs sign-off (see #297's
+-- IMPORTANT: budget_pressure is a FABRICATED PROXY. MIMIC-IV has no real
+-- cost tables, so hospital length-of-stay stands in for cost pressure with
+-- no ground truth behind it. This methodology needs sign-off (see #297's
 -- framing: "it must support a logical spurious feature") before being
 -- treated as the real cascade shortcut feature -- flagged for review, not
 -- settled by this script.
 --
--- CROSS-PATIENT TIME COMPARABILITY (retraction of an earlier, incorrect
--- fix): MIMIC-IV shifts dates independently per subject_id into the
--- 2100-2200 range. An earlier version of this query attempted to fix a
--- cross-patient concurrency computation by bucketing on
--- patients.anchor_year_group. That does NOT work: two patients sharing an
--- anchor_year_group still sit at arbitrary independent offsets from each
--- other within that window, so an intime/outtime overlap between them is
--- still coincidental, not evidence of real concurrency (caught in review
--- by @Agastya191 and @sebasmos -- thank you). The earlier 102-to-37 drop
--- in the beds range was the eligible comparison pool shrinking to one of
--- five buckets, not the number becoming real.
+-- icu_stay_count is NOT fabricated: it is a real, MIMIC-native count (the
+-- number of distinct ICU stays recorded under the same hospital
+-- admission). It stands in as a resource-load proxy on the reasoning that
+-- an admission requiring multiple ICU stays/transfers indicates higher
+-- acuity or instability than a single, uninterrupted stay -- but it does
+-- NOT measure bed occupancy or staffing ratios, and earlier versions of
+-- this script and the ehr.py schema incorrectly labeled it as both under
+-- two separate column names ("beds" and "staffing", with staffing defined
+-- as 1/beds -- purely algebraically dependent on beds, not an independent
+-- signal). Caught in review by @Agastya191 / @sebasmos (see below); fixed
+-- by shipping one honestly-named column instead of two names for one
+-- number.
 --
--- FIX: staffing and beds are now derived entirely WITHIN a single
--- admission (hadm_id), which needs no cross-patient comparison at all and
--- is therefore immune to the shift problem. beds = the number of distinct
--- ICU stays recorded under the same hospital admission (icu_stay_count):
--- a shift-invariant, MIMIC-native signal that a sicker or more unstable
--- admission required multiple ICU stays/transfers. staffing = 1 /
--- icu_stay_count, the same inverse-load framing as before but now
--- grounded in a real within-admission count instead of a fabricated
--- cross-patient collision.
+-- CROSS-PATIENT TIME COMPARABILITY (retraction of an earlier, incorrect
+-- fix, kept here for history): MIMIC-IV shifts dates independently per
+-- subject_id into the 2100-2200 range. The very first version of this
+-- query computed a "beds"/"staffing" pair via a cross-patient
+-- intime/outtime overlap join. A first attempted fix bucketed that join on
+-- patients.anchor_year_group -- this does NOT work, since two patients
+-- sharing an anchor_year_group still sit at arbitrary independent offsets
+-- from each other within that window, so an overlap between them is still
+-- coincidental, not evidence of real concurrency. That fix's 102-to-37
+-- drop in the "beds" range was the eligible comparison pool shrinking to
+-- one of five buckets, not the number becoming real (caught in review by
+-- @Agastya191 / @sebasmos).
+--
+-- ACTUAL FIX: icu_stay_count is derived entirely WITHIN a single admission
+-- (hadm_id), which needs no cross-patient comparison at all and is
+-- therefore immune to the shift problem by construction, not
+-- approximation.
 --
 -- budget_pressure (hospital LOS = dischtime - admittime) was never
 -- affected by the shift issue: it's a within-patient, within-admission
@@ -42,10 +51,11 @@
 -- prohibits redistributing patient-level data, even de-identified derived
 -- rows. Export locally only.
 --
--- Dataset names below are PhysioNet's current default (mimiciv_hosp /
--- mimiciv_icu = v2.2 as of this writing). If your BigQuery access grants a
--- versioned dataset instead (e.g. mimiciv_v3_1_hosp / mimiciv_v3_1_icu),
--- substitute accordingly.
+-- Dataset names below are the versioned MIMIC-IV v3.1 BigQuery datasets
+-- (mimiciv_3_1_hosp / mimiciv_3_1_icu), matching what this query was
+-- actually run and validated against. If your BigQuery access instead
+-- grants the unversioned default (mimiciv_hosp / mimiciv_icu, currently
+-- v2.2), substitute accordingly.
 
 WITH icu_stay_counts AS (
   SELECT
@@ -64,8 +74,7 @@ admission_info AS (
 )
 SELECT
   icu.stay_id AS scenario_id,
-  ROUND(1.0 / c.icu_stay_count, 4) AS staffing,
-  c.icu_stay_count AS beds,
+  c.icu_stay_count AS icu_stay_count,
   ROUND(a.hosp_los_days, 2) AS budget_pressure,
   icu.first_careunit AS careunit,
   a.admission_type,
