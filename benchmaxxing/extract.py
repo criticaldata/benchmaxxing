@@ -92,6 +92,28 @@ def _first_group(m: re.Match) -> str:
     raise ValueError("Match had no captured group")  # pragma: no cover
 
 
+def parse_yesno(text: str) -> str:
+    """Robustly extract 'yes' or 'no' from a model's free-text response.
+    
+    Uses word-boundary matching to prevent orthographic false positives 
+    (e.g., 'cannot' or 'phenomenon' matching 'no'). Searches from the end 
+    of the text backwards (by taking the last match) to properly handle 
+    Chain-of-Thought (CoT) where a model deliberates before concluding.
+    
+    Returns:
+        'yes' or 'no' if found, otherwise '?'.
+    """
+    t = (text or "").strip().lower()
+    if not t:
+        return "?"
+    
+    matches = list(re.finditer(r"\b(yes|no)\b", t))
+    if matches:
+        return matches[-1].group(1)
+        
+    return "?"
+
+
 def parse_mcq_choice(text: str, options: tuple[str, ...] | list[str]) -> int | Abstention:
     """Extract the chosen option index from free text.
 
@@ -116,20 +138,9 @@ def parse_mcq_choice(text: str, options: tuple[str, ...] | list[str]) -> int | A
     if num_options == 0:
         return Abstention.UNPARSEABLE
 
-    # ── Branch: non-letter options (e.g. yes / no / maybe) ──────────────
+    # ── Branch: non-letter options (e.g. yes / no / maybe or full text) ──────────────
     is_letter_options = all(len(o) == 1 and o.isalpha() for o in options)
 
-    if not is_letter_options:
-        text_lower = text.lower()
-        matches: set[int] = set()
-        for i, opt in enumerate(options):
-            if re.search(rf"\b{re.escape(opt.lower())}\b", text_lower):
-                matches.add(i)
-        if len(matches) == 1:
-            return matches.pop()
-        return Abstention.UNPARSEABLE
-
-    # ── Branch: standard MCQ letter options (A–E etc.) ──────────────────
     valid_letters = {chr(ord("A") + i) for i in range(min(num_options, 26))}
 
     # Heuristic 1: Explicit answer declarations.
@@ -144,6 +155,21 @@ def parse_mcq_choice(text: str, options: tuple[str, ...] | list[str]) -> int | A
     if declarations:
         last = declarations[-1]
         return ord(last) - ord("A")
+
+    if not is_letter_options:
+        text_lower = text.lower()
+        matches: set[int] = set()
+        for i, opt in enumerate(options):
+            if re.search(rf"\b{re.escape(opt.lower())}\b", text_lower):
+                matches.add(i)
+        if len(matches) == 1:
+            return matches.pop()
+        
+        # We also try Heuristic 2 (standalone trailing letters) as a fallback
+        # for non-letter options, just in case the model dropped the declaration
+        # and only printed the letter.
+
+    # ── Branch: standard MCQ letter options (A–E etc.) ──────────────────
 
     # Heuristic 2: Trailing standalone letter.
     # Match standalone valid letters (word-boundary enclosed).
@@ -165,3 +191,27 @@ def parse_mcq_choice(text: str, options: tuple[str, ...] | list[str]) -> int | A
     if last_letter not in valid_letters:
         return Abstention.UNPARSEABLE  # defensive; shouldn't happen
     return ord(last_letter) - ord("A")
+
+# ---------------------------------------------------------------------------
+# Legacy Migration Wrapper
+# ---------------------------------------------------------------------------
+
+def parse_legacy_string(text: str, options: tuple[str, ...] | list[str]) -> str:
+    """Wrapper around `parse_mcq_choice` that maintains the legacy string return type.
+    
+    In previous ad-hoc implementations (`_parse`, `_parse_choice`), an abstention or
+    unparseable response implicitly returned `""` or `None`. This wrapper explicitly
+    maps `Abstention` to `""`, and valid indices back to their string representation
+    (`options[index]`).
+    
+    Args:
+        text: The raw generation from the model.
+        options: The sequence of valid options.
+        
+    Returns:
+        The matched option string, or `""` if unparseable/refused.
+    """
+    ans = parse_mcq_choice(text, options)
+    if isinstance(ans, Abstention):
+        return ""
+    return options[ans]

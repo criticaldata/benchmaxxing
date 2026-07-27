@@ -17,6 +17,8 @@ new API calls, and an interrupted run resumes for free.
 """
 
 from __future__ import annotations
+from benchmaxxing.extract import parse_legacy_string
+
 
 import argparse
 import hashlib
@@ -70,33 +72,6 @@ def _mcq_prompt(payload, board=""):
             "Answer with only the single letter of the best option.")
 
 
-def _parse_choice(text, options):
-    # Robust to long reasoned responses: prefer an explicit final-answer letter (\boxed{X} /
-    # "the answer is X", last occurrence), then the option TEXT named last, then a trailing
-    # standalone letter, then a single-character reply. The old first-\b[A-E]\b regex grabbed a
-    # stray leading article "A" and mis-scored ~85% of answers as option A.
-    import re
-    if not text:
-        return ""
-    t = text.strip()
-    letters = _letters(len(options))
-    m = re.findall(r"\\boxed\{\s*([A-E])\s*\}", t)
-    if not m:
-        m = re.findall(r"(?:final answer|the answer|answer)\s*(?:is|:)?\s*\**\(?([A-E])\)?\b", t, re.I)
-    if m and m[-1].upper() in letters:
-        return options[letters.index(m[-1].upper())]
-    low = t.lower()
-    hits = [(low.rfind(o.lower()), o) for o in options if o.lower() in low]
-    hits = [(p, o) for p, o in hits if p >= 0]
-    if hits:
-        return max(hits)[1]
-    m = re.search(r"\b([A-E])\b\s*[.)]?\s*$", t.upper())
-    if m and m.group(1) in letters:
-        return options[letters.index(m.group(1))]
-    if len(t) == 1 and t.upper() in letters:
-        return options[letters.index(t.upper())]
-    return t
-
 
 class CachedBackend(gateway.Backend):
     """Persistent (model, prompt) -> text cache so re-runs cost no API calls."""
@@ -144,7 +119,7 @@ def run_solo(cases, out, api_key, cache):
     """Solo susceptibility (flip rate per model x cue) + an uncached noise-floor control."""
     def call_for(model):
         b = CachedBackend(model, api_key, cache)
-        return lambda payload: _parse_choice(b.complete(_mcq_prompt(payload),
+        return lambda payload: parse_legacy_string(b.complete(_mcq_prompt(payload),
                                                         decoding={"temperature": 0}),
                                               list(payload["options"]))
 
@@ -188,8 +163,8 @@ def run_solo(cases, out, api_key, cache):
         ch = n = 0
         for case in cases[:15]:
             p = build_text_twin(case, TEXT_CUES[0]).payload(Condition.CLEAN)
-            a1 = _parse_choice(raw.complete(_mcq_prompt(p), decoding={"temperature": 0}), list(p["options"]))
-            a2 = _parse_choice(raw.complete(_mcq_prompt(p), decoding={"temperature": 0}), list(p["options"]))
+            a1 = parse_legacy_string(raw.complete(_mcq_prompt(p), decoding={"temperature": 0}), list(p["options"]))
+            a2 = parse_legacy_string(raw.complete(_mcq_prompt(p), decoding={"temperature": 0}), list(p["options"]))
             ch += (a1 != a2)
             n += 1
         noise[model] = ch / n if n else None
@@ -237,7 +212,7 @@ def run_cascade(cases, out, api_key, cache):
                 board = ("Other panelists so far:\n" + "\n".join(lines) + "\n\n") if lines else ""
                 text = backend.complete(_mcq_prompt(payload, board), decoding={"temperature": 0})
                 return AgentResponse(content=text[:150],
-                                     answer=_parse_choice(text, list(payload["options"])))
+                                     answer=parse_legacy_string(text, list(payload["options"])))
         return _C()
 
     def one(case):

@@ -23,6 +23,8 @@ the hard-case construction). The mirror cross-tier referee substitutes flash-lit
 to the identical question as its counterfactual instead of flash's own.
 """
 from __future__ import annotations
+from benchmaxxing.extract import parse_legacy_string
+
 
 import hashlib
 import json
@@ -45,29 +47,6 @@ def _mcq(case, prefix=""):
     return (f"{prefix}Question: {case.question}\n\nOptions:\n{body}\n\n"
             "Answer with only the single letter of the best option."), opts
 
-
-def _parse(text, options):
-    if not text:
-        return ""
-    t = text.strip()
-    letters = _letters(len(options))
-    import re
-    m = re.findall(r"\\boxed\{\s*([A-E])\s*\}", t)
-    if not m:
-        m = re.findall(r"(?:final answer|the answer|answer)\s*(?:is|:)?\s*\**\(?([A-E])\)?\b", t, re.I)
-    if m and m[-1].upper() in letters:
-        return options[letters.index(m[-1].upper())]
-    low = t.lower()
-    hits = [(low.rfind(o.lower()), o) for o in options if o.lower() in low]
-    hits = [(p, o) for p, o in hits if p >= 0]
-    if hits:
-        return max(hits)[1]
-    m2 = re.search(r"\b([A-E])\b\s*[.)]?\s*$", t.upper())
-    if m2 and m2.group(1) in letters:
-        return options[letters.index(m2.group(1))]
-    if len(t) == 1 and t.upper() in letters:
-        return options[letters.index(t.upper())]
-    return t
 
 
 class _CacheReader:
@@ -99,7 +78,7 @@ def direction1_flash_audits_flash_lite(manifest, referee_jsonl, cache_path):
         if case is None:
             continue
         p, _opts = _mcq(case, "")
-        flash_bare = _parse(cache.get(FLASH, p), case.options)
+        flash_bare = parse_legacy_string(cache.get(FLASH, p), case.options)
         adopted[r["case_id"]] = r["adopted"]
         same_tier[r["case_id"]] = r["deployable"]
         cross_tier[r["case_id"]] = (r["board"] == r["inferred_shortcut"]) and (flash_bare != r["inferred_shortcut"])
@@ -126,11 +105,11 @@ def direction2_flash_lite_audits_flash(manifest, cascade_c_jsonl, cache_path):
             continue
         opts = list(case.options)
         base_p, _ = _mcq(case, "")
-        flash_bare = _parse(cache.get(FLASH, base_p), opts)
+        flash_bare = parse_legacy_string(cache.get(FLASH, base_p), opts)
         wrong = next((o for i, o in enumerate(opts) if i != case.answer_index and o != flash_bare), None)
         if wrong is None:
             continue
-        flash_lite_bare = _parse(cache.get(FLASH_LITE, base_p), opts)
+        flash_lite_bare = parse_legacy_string(cache.get(FLASH_LITE, base_p), opts)
 
         # r["anchored"] is already the boolean "anchored-condition answer == wrong" (the
         # ground-truth adoption flag itself), not a value to re-compare against `wrong`.

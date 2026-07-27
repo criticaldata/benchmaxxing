@@ -14,6 +14,7 @@ peer sentences). Reads GEMINI_API_KEY from the env; a fully cached run reproduce
 no key. All paths are arguments; no secrets committed.
 """
 from __future__ import annotations
+from benchmaxxing.extract import parse_yesno
 
 import argparse
 import hashlib
@@ -45,15 +46,6 @@ def _img_bytes(pil):
     return buf.getvalue()
 
 
-def _yesno(text):
-    t = (text or "").strip().lower()
-    if t.startswith("yes") or " yes" in t[:20]:
-        return "yes"
-    if t.startswith("no") or " no" in t[:20]:
-        return "no"
-    return "yes" if "yes" in t else ("no" if "no" in t else "?")
-
-
 def _to_pil(x):
     return x.convert("L") if isinstance(x, Image.Image) else Image.fromarray(np.asarray(x).astype("uint8")).convert("L")
 
@@ -73,7 +65,7 @@ class _Cache:
         k = f"{MODEL}:" + hashlib.sha256(_img_bytes(pil) + b"\x00" + prompt.encode()).hexdigest()
         with _lock:
             if k in self.store:
-                return _yesno(self.store[k])
+                return parse_yesno(self.store[k])
         if not self.key:
             raise SystemExit("Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key).")
         resp = self._gw.RetryBackend(self._gw.GeminiBackend(model=MODEL, api_key=self.key),
@@ -83,7 +75,7 @@ class _Cache:
             self.calls += 1
             with open(self.path, "a") as f:
                 f.write(json.dumps({"k": k, "resp": resp}) + "\n")
-        return _yesno(resp)
+        return parse_yesno(resp)
 
 
 def main():
@@ -93,7 +85,7 @@ def main():
     ap.add_argument("--cache", default="experiments/imaging/results/img_cache.jsonl")
     ap.add_argument("--out", default="experiments/imaging/results")
     ap.add_argument("--n", type=int, default=35)
-    ap.add_argument("--cue", default="watermark", choices=["cable", "corner_tag", "watermark", "laterality"])
+    ap.add_argument("--cue", default="watermark", choices=["none", "cable", "corner_tag", "watermark", "laterality"])
     args = ap.parse_args()
 
     out = Path(args.out)
@@ -115,7 +107,10 @@ def main():
         clean = cache.ask(q(finding), img)
         wrong = "no"  # plant against ground truth, not the clean read (#332/#339)
         try:
-            cont = _to_pil(ci.build_image_twin(img, cue, ground_truth=finding, case_id=case.case_id).contaminated)
+            if cue == "none":
+                cont = img
+            else:
+                cont = _to_pil(ci.build_image_twin(img, cue, ground_truth=finding, case_id=case.case_id).contaminated)
         except Exception as e:  # noqa: BLE001
             return {"case_id": case.case_id, "err": str(e)[:40]}
         board = (f"AUTOMATED PRE-SCREEN SYSTEM flagged this film as \"{wrong}\" for "
