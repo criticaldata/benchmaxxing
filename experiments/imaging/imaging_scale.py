@@ -113,7 +113,7 @@ def main():
         finding = case.label.split("|")[0].strip()
         img = Image.open(root / case.image_ref).convert("L")
         clean = cache.ask(q(finding), img)
-        wrong = "no" if clean == "yes" else "yes"
+        wrong = "no"  # plant against ground truth, not the clean read (#332/#339)
         try:
             cont = _to_pil(ci.build_image_twin(img, cue, ground_truth=finding, case_id=case.case_id).contaminated)
         except Exception as e:  # noqa: BLE001
