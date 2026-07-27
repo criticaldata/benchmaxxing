@@ -109,3 +109,17 @@ def test_spec_is_text_modality_and_documented():
 def test_build_manifest_points_to_loader(tmp_path):
     with pytest.raises(NotImplementedError, match="load_resource_contexts"):
         ehr.build_manifest(tmp_path, tmp_path / "ehr.csv")
+
+def test_extra_column_empty_string_preserved_in_meta(tmp_path):
+    # Real MIMIC-IV-derived exports can carry a genuinely empty (not missing) value in a
+    # non-required column, e.g. an unset insurance field (1,411 of 87,287 rows in a real
+    # BigQuery export validated for #49). Must round-trip as an empty string in meta, not
+    # be dropped or coerced to None.
+    csv_path = _write(
+        tmp_path / "resources.csv",
+        "scenario_id,staffing,beds,budget_pressure,insurance\n"
+        "s1,0.33,3.0,4.25,\n",
+    )
+    (context,) = ehr.load_resource_contexts(csv_path)
+    assert context.meta == {"insurance": ""}
+    assert context.staffing == 0.33
