@@ -10,12 +10,11 @@ MIMIC-IV (icustays / beds / staffing). ``build_manifest`` is intentionally not t
 raises NotImplementedError pointing at that loader.
 
 See scripts/mimic_iv/derive_ehr_resource_contexts.sql for a documented, reviewable derivation
-query. Validated against a real 87,287-row MIMIC-IV BigQuery export (#49): every row parsed
-cleanly, including a real-world empty-string value in a non-required column (see
-test_extra_column_empty_string_preserved_in_meta). The derivation bounds cross-patient
-concurrency comparisons to the same anchor_year_group, since MIMIC-IV's per-patient date
-shifting makes raw cross-patient timestamps otherwise incomparable -- see the script's header
-comment for the full rationale.
+query. staffing and beds are derived entirely within a single hospital admission (distinct ICU
+stay count per hadm_id), not from cross-patient timestamp comparison -- MIMIC-IV shifts dates
+independently per patient, so cross-patient overlap comparisons (including an earlier attempt
+bucketed by anchor_year_group) are not valid; see the script's header comment for the full
+history. Validated against a real MIMIC-IV BigQuery export (#49).
 """
 
 from __future__ import annotations
