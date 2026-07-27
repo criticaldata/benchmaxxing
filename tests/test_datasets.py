@@ -5,7 +5,7 @@ from __future__ import annotations
 import pytest
 
 from benchmaxxing.data import load_cases, write_manifest
-from benchmaxxing.datasets import base, registry
+from benchmaxxing.datasets import base, registry, status
 from benchmaxxing.schema import Case, Modality
 
 EXPECTED_DATASETS = {"mimic_cxr", "chexpert", "nih_cxr14", "medqa", "medmcqa", "pubmedqa", "ehr"}
@@ -111,6 +111,50 @@ def test_registry_lists_all_datasets():
 def test_registry_get_unknown_raises():
     with pytest.raises(KeyError, match="Unknown dataset"):
         registry.get("nope")
+
+
+def test_dataset_status_covers_registered_adapters():
+    registered = set(registry.names())
+    status_names = set(status.names())
+
+    assert registered <= status_names
+    for name in registered:
+        entry = status.get(name)
+        assert entry.lane
+        assert entry.staged
+        assert entry.adapter
+        assert entry.solo
+        assert entry.cascade
+        assert entry.plausibility
+        assert entry.referee
+
+
+def test_dataset_status_coverage_values_are_explicit():
+    allowed = {"done", "pending", "not applicable"}
+
+    for name in status.names():
+        entry = status.get(name)
+        assert entry.solo in allowed
+        assert entry.cascade in allowed
+        assert entry.plausibility in allowed
+        assert entry.referee in allowed
+
+
+def test_dataset_status_adapter_claims_match_registry():
+    registered = set(registry.names())
+
+    for name in status.names():
+        entry = status.get(name)
+        assert entry.adapter in status.ADAPTER_STATUSES
+        if entry.adapter in status.CODED_ADAPTER_STATUSES:
+            assert name in registered
+
+
+def test_dataset_status_get_unknown_raises():
+    with pytest.raises(KeyError, match="Unknown dataset status"):
+        status.get("nope")
+
+
 
 
 def test_adapter_build_manifest_fails_loudly_on_missing_data(tmp_path):
