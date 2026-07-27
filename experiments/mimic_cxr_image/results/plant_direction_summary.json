@@ -1,0 +1,94 @@
+{
+  "cascade_150": {
+    "all": {
+      "contagion": 0.8186,
+      "n": 215
+    },
+    "genuinely_false": {
+      "contagion": 0.4884,
+      "n": 43
+    },
+    "planted_truth": {
+      "contagion": 0.9012,
+      "n": 172
+    },
+    "pct_planted_truth": 80.0
+  },
+  "referee_300_cascade": {
+    "all": {
+      "contagion": 0.8082,
+      "n": 417
+    },
+    "genuinely_false": {
+      "contagion": 0.5057,
+      "n": 87
+    },
+    "planted_truth": {
+      "contagion": 0.8879,
+      "n": 330
+    },
+    "pct_planted_truth": 79.1
+  },
+  "system_flag": {
+    "all": {
+      "contagion": 0.2002,
+      "n": 834
+    },
+    "genuinely_false": {
+      "contagion": 0.2249,
+      "n": 169
+    },
+    "planted_truth": {
+      "contagion": 0.194,
+      "n": 665
+    },
+    "pct_planted_truth": 79.7
+  },
+  "strength_cascade": {
+    "opacity_0.15": {
+      "all": {
+        "contagion": 0.7974,
+        "n": 834
+      },
+      "genuinely_false": {
+        "contagion": 0.5475,
+        "n": 179
+      },
+      "planted_truth": {
+        "contagion": 0.8656,
+        "n": 655
+      },
+      "pct_planted_truth": 78.5
+    },
+    "opacity_0.3": {
+      "all": {
+        "contagion": 0.8082,
+        "n": 834
+      },
+      "genuinely_false": {
+        "contagion": 0.5307,
+        "n": 179
+      },
+      "planted_truth": {
+        "contagion": 0.884,
+        "n": 655
+      },
+      "pct_planted_truth": 78.5
+    },
+    "opacity_0.45": {
+      "all": {
+        "contagion": 0.795,
+        "n": 834
+      },
+      "genuinely_false": {
+        "contagion": 0.5531,
+        "n": 179
+      },
+      "planted_truth": {
+        "contagion": 0.8611,
+        "n": 655
+      },
+      "pct_planted_truth": 78.5
+    }
+  }
+}
