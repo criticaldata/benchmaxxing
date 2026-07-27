@@ -140,6 +140,16 @@ def test_dataset_status_coverage_values_are_explicit():
         assert entry.referee in allowed
 
 
+def test_dataset_status_adapter_claims_match_registry():
+    registered = set(registry.names())
+
+    for name in status.names():
+        entry = status.get(name)
+        assert entry.adapter in status.ADAPTER_STATUSES
+        if entry.adapter in status.CODED_ADAPTER_STATUSES:
+            assert name in registered
+
+
 def test_dataset_status_get_unknown_raises():
     with pytest.raises(KeyError, match="Unknown dataset status"):
         status.get("nope")
