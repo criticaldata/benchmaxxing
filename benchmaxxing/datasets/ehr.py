@@ -8,6 +8,14 @@ There is no single canonical MIMIC-IV "resource" table, so the entry point here 
 :func:`load_resource_contexts`, a flexible loader over a structured CSV a contributor derives from
 MIMIC-IV (icustays / beds / staffing). ``build_manifest`` is intentionally not the entry point and
 raises NotImplementedError pointing at that loader.
+
+See scripts/mimic_iv/derive_ehr_resource_contexts.sql for a documented, reviewable derivation
+query. Validated against a real 87,287-row MIMIC-IV BigQuery export (#49): every row parsed
+cleanly, including a real-world empty-string value in a non-required column (see
+test_extra_column_empty_string_preserved_in_meta). The derivation bounds cross-patient
+concurrency comparisons to the same anchor_year_group, since MIMIC-IV's per-patient date
+shifting makes raw cross-patient timestamps otherwise incomparable -- see the script's header
+comment for the full rationale.
 """
 
 from __future__ import annotations
