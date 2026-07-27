@@ -31,7 +31,7 @@ pip install -e ".[dev,stats,changepoint,image,config]"   # add the reuse extras
 - `benchmaxxing/cues/`: image and text cue injection, twin-pair builder.
 - `benchmaxxing/blackboard.py`: the shared-context committee harness and referee hooks.
 - `benchmaxxing/gateway.py`, `roster.py`: model access and same/cross-lineage committees.
-- `benchmaxxing/datasets/`: dataset adapters into the shared case schema.
+- `benchmaxxing/datasets/`: dataset adapters into the shared case schema; dataset staged/coded/blocked status lives in `benchmaxxing/datasets/status.py` and is surfaced by `benchmaxxing datasets`.
 - `benchmaxxing/referee.py`, `blind_metric.py`: the referee duties and the blind-metric probe.
 
 The build plan and the issue tracker for this repo mirror a six-stage program (stages 0-5).
