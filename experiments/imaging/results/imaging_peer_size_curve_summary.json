@@ -2,7 +2,7 @@
   "n": 35,
   "model": "gemini-2.5-flash",
   "cue": "watermark",
-  "new_api_calls_this_run": 35,
+  "new_api_calls_this_run": 26,
   "adoption_by_peer_count": {
     "1": 0.9714,
     "2": 0.9714,

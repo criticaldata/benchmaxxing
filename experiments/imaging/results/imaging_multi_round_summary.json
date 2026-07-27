@@ -3,21 +3,21 @@
   "K": 3,
   "model": "gemini-2.5-flash",
   "cue": "watermark",
-  "new_api_calls_this_run": 210,
+  "new_api_calls_this_run": 39,
   "shared_adoption_by_round": [
-    0.8857,
+    0.8571,
     1.0,
     0.9714
   ],
   "isolated_adoption_by_round": [
-    0.3143,
-    0.3429,
-    0.2857
+    0.5143,
+    0.4857,
+    0.5429
   ],
   "round1_vs_roundK_shared": {
-    "gained": 3,
+    "gained": 4,
     "lost": 0,
-    "mcnemar_p": 0.25
+    "mcnemar_p": 0.125
   },
   "monotone_nondecreasing_shared": false
 }
