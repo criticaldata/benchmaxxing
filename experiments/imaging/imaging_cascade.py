@@ -8,7 +8,7 @@ compare the holdout's read when it sees two peers assert the wrong read (SHARED)
 alone (ISOLATED). Adoption = the holdout committed the wrong read; contagion = shared adopt - iso adopt.
 
 Result (NIH ChestX-ray14, 35 cases, gemini-2.5-flash, ground-truth-plant design): shared adopt 0.97
-vs isolated 0.43, contagion +0.54. Still highly significant (exact McNemar p<2e-6 on every cue) even
+vs isolated 0.43, contagion +0.54. Still highly significant (exact McNemar p<4e-6 on every cue) even
 after excluding cases where the old design's plant happened to coincide with ground truth.
 
 Uses a yes/no parser (no MCQ answer parsing), so it is unaffected by the answer-parser bug. Reads

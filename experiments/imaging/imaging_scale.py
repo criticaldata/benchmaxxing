@@ -1,13 +1,14 @@
 """Imaging-lane cascade (NIH watermark): does a multimodal committee adopt a wrong finding-read
 when two peer radiologists assert it, on a real X-ray with the watermark cue present?
 
-For each case (finding present): the holdout's clean read is its baseline and the planted wrong read
-is the opposite. On the watermark-contaminated image, compare the holdout's read when it sees two
-peers assert the wrong read (SHARED) vs when it reads alone (ISOLATED). Adoption = the holdout
-committed the wrong read; contagion = shared adopt - isolated adopt.
+For each case (finding present, ground truth "yes"): the planted wrong read is always "no", the
+definitely-false read (#332/#333: planting the flip of the holdout's own clean read could coincide
+with ground truth when the clean read was already wrong). On the watermark-contaminated image,
+compare the holdout's read when it sees two peers assert the wrong read (SHARED) vs when it reads
+alone (ISOLATED). Adoption = the holdout committed the wrong read; contagion = shared adopt - iso adopt.
 
-Result (NIH ChestX-ray14, 35 cases, gemini-2.5-flash): shared adopt 0.97 vs isolated 0.34,
-contagion +0.63. A confident wrong peer moves an imaging committee far more than a neutral cue.
+Result (NIH ChestX-ray14, 150 cases, gemini-2.5-flash, ground-truth-plant design): shared adopt
+0.9733 vs isolated 0.2467, contagion +0.7267 (95% CI [0.6533, 0.7933], bootstrap 5000 resamples).
 
 Uses a yes/no parser (no MCQ answer parsing), so it is unaffected by the answer-parser bug. Reads
 GEMINI_API_KEY from the env; a fully cached run reproduces the summary with no key. All paths are
