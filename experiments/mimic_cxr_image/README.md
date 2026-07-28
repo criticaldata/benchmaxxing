@@ -92,28 +92,90 @@ pip install -e ".[image,changepoint,stats]" && pip install "google-genai>=0.3"
 export GEMINI_API_KEY=...   # multimodal Gemini; compute is API-side, no local GPU
 ```
 
-Point the dataset-agnostic imaging runners at the per-arm manifests. `--n 9999` means "every image
-in this arm" (the runners cap at the manifest size, so a smaller `--n` would silently truncate).
-Each run caches per call, so an interrupted run resumes cheaply on re-run.
+`run_battery.py` is the committed runner (#343). It points the dataset-agnostic imaging runners in
+`experiments/imaging/` at the per-arm manifests, in the order the arms depend on each other, and
+pins the flags that are easy to get wrong by hand:
 
 ```bash
-M=experiments/mimic_cxr_image/manifests ; O=experiments/mimic_cxr_image/results ; RAW=~/mimic-cxr-raw
-
-python -m experiments.imaging.imaging_solo             --manifest $M/solo_600.csv         --image-root $RAW --out $O --n 9999               # #310
-python -m experiments.imaging.imaging_cascade          --manifest $M/cascade_150.csv      --image-root $RAW --out $O/cascade_150 --n 9999   # #311
-python -m experiments.imaging.imaging_system_flag      --manifest $M/solo_600.csv         --image-root $RAW --out $O --n 9999               # #312
-python -m experiments.imaging.imaging_strength_cascade --manifest $M/solo_600.csv         --image-root $RAW --out $O --n 9999               # #313
-python -m experiments.imaging.imaging_blind_metric     --manifest $M/blind_metric_100.csv --image-root $RAW --out $O --n 9999               # #314
-
-# #315 referee consumes a cascade transcript over referee_300. Give each cascade run its OWN --out:
-# for the watermark cue imaging_cascade writes a fixed imaging_cascade.jsonl, so a shared --out would
-# silently overwrite the #311 arm. Run the referee_300 cascade into its own dir, then run the referee.
-python -m experiments.imaging.imaging_cascade          --manifest $M/referee_300.csv      --image-root $RAW --out $O/referee_300 --n 9999
-python -m experiments.imaging.imaging_referee          --manifest $M/referee_300.csv      --image-root $RAW --cascade-jsonl $O/referee_300/imaging_cascade.jsonl --out $O/referee_300
+python -m experiments.mimic_cxr_image.run_battery --image-root ~/mimic-cxr-raw
 ```
 
+One arm at a time (`--arm` is repeatable, names are in the table below), and `--dry-run` prints the
+commands without calling anything, so the recipe is checkable with no key and no images:
+
+```bash
+python -m experiments.mimic_cxr_image.run_battery --image-root ~/mimic-cxr-raw --arm cascade
+python -m experiments.mimic_cxr_image.run_battery --image-root ~/mimic-cxr-raw --dry-run
+```
+
+| arm | runner | manifest | results dir | tracker |
+|---|---|---|---|---|
+| `solo` | `imaging_solo` | `solo_600.csv` | `results/` | #310 |
+| `nih_match_solo` | `imaging_solo` | `nih_match_35.csv` | `results/nih_match_35/` | #295 |
+| `cascade` | `imaging_cascade` | `cascade_150.csv` | `results/cascade_150/` | #311 |
+| `system_flag` | `imaging_system_flag` | `solo_600.csv` | `results/` | #312 |
+| `strength_cascade` | `imaging_strength_cascade` | `solo_600.csv` | `results/` | #313 |
+| `blind_metric` | `imaging_blind_metric` | `blind_metric_100.csv` | `results/` | #314 |
+| `referee_cascade` | `imaging_cascade` | `referee_300.csv` | `results/referee_300/` | #315 |
+| `referee` | `imaging_referee` | `referee_300.csv` | `results/referee_300/` | #315 |
+
+What the runner pins that the older hand-written commands did not:
+
+- **The cache stays inside this lane.** Every runner except `imaging_solo` defaults `--cache` into
+  `experiments/imaging/results/` (`img_cache.jsonl`, or `img_strength_cache.jsonl` for the strength
+  sweep), which are the NIH lane's *committed* caches, so an unpinned MIMIC run appends
+  credentialed-report-derived reads into a tracked file. All arms share one `results/img_cache.jsonl`
+  instead, which also lets the nested arms (blind 100 < cascade 150 < referee 300 < solo 600) reuse
+  each other's identical clean reads rather than pay twice.
+- **No silent truncation.** `--n` defaults to the NIH arm sizes (35 cascade, 40 solo), so an
+  unpinned run measures the first 35 images of an 834-image arm. The runner passes a bound no arm
+  reaches.
+- **Ordering and staging.** `imaging_cascade` writes a fixed `imaging_cascade.jsonl` for the
+  watermark cue, so the 150-study and 300-study cascades get separate `--out` dirs. `imaging_referee`
+  then reads the `referee_300` transcript, and `imaging_system_flag` contrasts its automated-flag
+  board against the peer-assertion cascade by reading `imaging_cascade.jsonl` from *its own*
+  `--out`. The runner stages the `cascade_150` transcript there first, without which
+  `vs_peer_assertion_cascade` silently drops out of `imaging_system_flag_summary.json`.
+- **Ground-truth plant.** The runner refuses to launch any cascade-family arm whose runner still
+  plants `wrong = flip(clean_read)` instead of against ground truth (#332/#333/#338), so a stale
+  checkout cannot quietly regenerate pre-fix numbers.
+
 Results land under `experiments/mimic_cxr_image/results/`, same format as
-`experiments/imaging/results/`, and feed issue #295's cross-dataset table.
+`experiments/imaging/results/`, and feed issue #295's cross-dataset table. Each run caches per
+call, so an interrupted run resumes cheaply.
+
+## 5. Status of the committed summaries
+
+The `*_summary.json` files in `results/` were generated **before** the ground-truth-plant fix
+(#333/#338) reached the cascade family, so they are not what `run_battery.py` now produces. Under
+the old design the planted wrong read was the opposite of the model's own clean read, which on a
+finding-present case *is* the truth whenever the clean read was already wrong. On MIMIC that is the
+common case, not the edge case: `plant_direction_check.py` measured **~80%** of cases planting the
+truth, because gemini-2.5-flash reads pneumothorax poorly.
+
+So the committed contagion numbers are inflated, and the `genuinely_false` subgroup in
+`results/plant_direction_summary.json` is the closest honest figure the committed data supports:
+
+| arm | committed (ALL, pre-fix) | genuinely-false subgroup | % that planted the truth |
+|---|---|---|---|
+| `cascade` (150) | +0.819 | **+0.488** (n=43) | 80.0% |
+| `referee_cascade` (300) | +0.808 | **+0.506** (n=87) | 79.1% |
+| `system_flag` | +0.200 | **+0.225** (n=169) | 79.7% |
+| `strength_cascade` 0.15 / 0.30 / 0.45 | +0.797 / +0.808 / +0.795 | **+0.548 / +0.531 / +0.553** | 78.5% |
+
+Treat that column as a floor on the honest effect, not a prediction of the rerun. It is measured
+only on the ~20% of cases whose clean read was already correct, whereas the corrected design plants
+`"no"` on every case. On the other ~80% the holdout's own contaminated read tends to agree with the
+planted `"no"` already, which raises isolated adoption and therefore pushes contagion (shared minus
+isolated) down. The rerun is the only way to settle where the full arm lands.
+
+Five summaries are affected: the four cascade-family arms in the table plus
+`referee_300/imaging_referee_summary.json`, which scores a replay of the cascade transcript.
+`imaging_solo_summary.json`, `nih_match_35/imaging_solo_summary.json` and
+`imaging_blind_metric_summary.json` plant nothing and reproduce as committed. Regenerating the five
+needs a real Gemini run against the credentialed images. After that rerun `plant_direction_check.py`
+becomes a no-op by construction (the corrected design plants the truth on 0% of cases) and is kept
+only to re-derive the split from an archived pre-fix transcript.
 
 ## Reproducibility
 

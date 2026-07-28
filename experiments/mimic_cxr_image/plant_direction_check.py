@@ -9,9 +9,12 @@ planted-truth (``wrong == "yes"``). No API and no network: it only reads the tra
 
 On MIMIC ~80% of finding-present cases plant the truth (gemini-2.5-flash reads pneumothorax poorly,
 so its clean read is already wrong), which inflates the ALL contagion; the genuinely-false subgroup
-is the honest number. imaging_cascade.py is fixed on main (#333); imaging_system_flag.py and
-imaging_strength_cascade.py still carry the buggy plant (tracked in #339), which is why their MIMIC
-transcripts are re-analysed here rather than re-run.
+is the honest number for the transcripts committed here.
+
+The whole cascade family is fixed on main (#333 for imaging_cascade.py, #338 for the six siblings),
+so a rerun through ``run_battery.py`` plants the truth on 0% of cases by construction and this split
+degenerates to "all cases are genuinely false". Keep the script for re-deriving the split from an
+archived pre-fix transcript, not as part of the standing battery.
 
 Run from the repo root after the battery has produced transcripts under ``results/``:
 
