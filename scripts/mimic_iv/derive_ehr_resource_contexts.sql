@@ -1,50 +1,47 @@
--- Derives one row per ICU stay with resource-constraint proxies for
--- benchmaxxing.datasets.ehr.load_resource_contexts (#49).
+-- Derives one row per HOSPITAL ADMISSION (hadm_id) with resource-constraint
+-- proxies for benchmaxxing.datasets.ehr.load_resource_contexts (#49).
 --
 -- IMPORTANT: budget_pressure is a FABRICATED PROXY. MIMIC-IV has no real
--- cost tables, so hospital length-of-stay stands in for cost pressure with
--- no ground truth behind it. This methodology needs sign-off (see #297's
--- framing: "it must support a logical spurious feature") before being
--- treated as the real cascade shortcut feature -- flagged for review, not
--- settled by this script.
+-- cost tables. This methodology needs sign-off (see #297's framing: "it
+-- must support a logical spurious feature") before being treated as the
+-- real cascade shortcut feature -- flagged for review, not settled here.
 --
--- icu_stay_count is NOT fabricated: it is a real, MIMIC-native count (the
--- number of distinct ICU stays recorded under the same hospital
--- admission). It stands in as a resource-load proxy on the reasoning that
--- an admission requiring multiple ICU stays/transfers indicates higher
--- acuity or instability than a single, uninterrupted stay -- but it does
--- NOT measure bed occupancy or staffing ratios, and earlier versions of
--- this script and the ehr.py schema incorrectly labeled it as both under
--- two separate column names ("beds" and "staffing", with staffing defined
--- as 1/beds -- purely algebraically dependent on beds, not an independent
--- signal). Caught in review by @Agastya191 / @sebasmos (see below); fixed
--- by shipping one honestly-named column instead of two names for one
--- number.
+-- icu_stay_count is NOT fabricated: the number of distinct ICU stays
+-- recorded under the admission, a real MIMIC-native resource-load proxy
+-- (an admission requiring multiple ICU stays/transfers plausibly
+-- indicates higher acuity than a single uninterrupted stay). It does not
+-- measure real bed occupancy or staffing ratios.
+--
+-- GRAIN BUG (caught in review by @Agastya191 / @sebasmos, fixed here): an
+-- earlier version of this query emitted one row per icu.stay_id, but
+-- icu_stay_count and budget_pressure are both hadm_id-level constants,
+-- so every stay within a multi-stay admission produced an exact payload
+-- duplicate. Confirmed impact on the real export: 9,214 of 94,382 rows
+-- (9.8%) were exact duplicates, size-biasing the file toward its own load
+-- variable -- admissions with 3+ ICU stays were 4.07% of rows but only
+-- 1.36% of admissions, and mean icu_stay_count read 1.24 instead of the
+-- true 1.11. FIX: emit one row per hadm_id, the actual grain both numeric
+-- fields describe. scenario_id is now hadm_id, not stay_id.
+-- careunit is taken from the chronologically first ICU stay in the
+-- admission (by intime) as a representative value; admissions with
+-- multiple stays across different careunits will not have that variation
+-- captured -- a known simplification of this fix, not a hidden one.
 --
 -- CROSS-PATIENT TIME COMPARABILITY (retraction of an earlier, incorrect
 -- fix, kept here for history): MIMIC-IV shifts dates independently per
 -- subject_id into the 2100-2200 range. The very first version of this
 -- query computed a "beds"/"staffing" pair via a cross-patient
--- intime/outtime overlap join. A first attempted fix bucketed that join on
--- patients.anchor_year_group -- this does NOT work, since two patients
--- sharing an anchor_year_group still sit at arbitrary independent offsets
--- from each other within that window, so an overlap between them is still
--- coincidental, not evidence of real concurrency. That fix's 102-to-37
--- drop in the "beds" range was the eligible comparison pool shrinking to
--- one of five buckets, not the number becoming real (caught in review by
--- @Agastya191 / @sebasmos).
+-- intime/outtime overlap join; a first attempted fix bucketed that join
+-- on patients.anchor_year_group, which does NOT work, since patients
+-- sharing a bucket still sit at arbitrary independent offsets from each
+-- other. Caught in review; the actual fix (below) derives everything
+-- within a single hadm_id, needing no cross-patient comparison at all.
 --
--- ACTUAL FIX: icu_stay_count is derived entirely WITHIN a single admission
--- (hadm_id), which needs no cross-patient comparison at all and is
--- therefore immune to the shift problem by construction, not
--- approximation.
---
--- budget_pressure (hospital LOS = dischtime - admittime) was never
--- affected by the shift issue: it's a within-patient, within-admission
--- interval, which MIMIC-IV's per-patient shift preserves exactly. A small
--- fraction of admissions have dischtime < admittime, a documented
--- MIMIC-IV data-entry artifact; excluded below since a negative value is
--- not a valid "low pressure" reading for this proxy.
+-- budget_pressure (hospital LOS = dischtime - admittime) is a
+-- within-patient, within-admission interval, unaffected by the shift
+-- issue above. A small fraction of admissions have dischtime < admittime
+-- (documented MIMIC-IV data-entry artifact); excluded via the WHERE
+-- clause since a negative value is not a valid "low pressure" reading.
 --
 -- Run in the BigQuery console or via `bq query --use_legacy_sql=false`.
 -- Do NOT commit the query output (CSV) to this repository: MIMIC-IV's DUA
@@ -64,6 +61,13 @@ WITH icu_stay_counts AS (
   FROM `physionet-data.mimiciv_3_1_icu.icustays`
   GROUP BY hadm_id
 ),
+first_stay AS (
+  SELECT
+    hadm_id,
+    first_careunit,
+    ROW_NUMBER() OVER (PARTITION BY hadm_id ORDER BY intime) AS rn
+  FROM `physionet-data.mimiciv_3_1_icu.icustays`
+),
 admission_info AS (
   SELECT
     hadm_id,
@@ -73,14 +77,14 @@ admission_info AS (
   FROM `physionet-data.mimiciv_3_1_hosp.admissions`
 )
 SELECT
-  icu.stay_id AS scenario_id,
+  a.hadm_id AS scenario_id,
   c.icu_stay_count AS icu_stay_count,
   ROUND(a.hosp_los_days, 2) AS budget_pressure,
-  icu.first_careunit AS careunit,
+  fs.first_careunit AS careunit,
   a.admission_type,
   a.insurance
-FROM `physionet-data.mimiciv_3_1_icu.icustays` icu
-JOIN icu_stay_counts c ON icu.hadm_id = c.hadm_id
-INNER JOIN admission_info a ON icu.hadm_id = a.hadm_id
+FROM admission_info a
+JOIN icu_stay_counts c ON a.hadm_id = c.hadm_id
+JOIN first_stay fs ON a.hadm_id = fs.hadm_id AND fs.rn = 1
 WHERE a.hosp_los_days >= 0
-ORDER BY icu.stay_id;
+ORDER BY a.hadm_id;
