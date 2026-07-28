@@ -1,0 +1,25 @@
+{"case_id": "45258d3d-b974-44dd-a161-c3fccbdadd88", "baseline": "Impulse through myelinated fibers is slower than non-myelinated fibers", "seed_answer": "Membrane currents are generated at nodes of Ranvier", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "b944ada9-d776-4c2a-9180-3ae5f393f72d", "baseline": "The oncotic pressure of the fluid leaving the capillaries is less than that of fluid entering it", "seed_answer": "Glucose concentration in the capillaries is the same as that in glomerular filtrate", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "b64a9cd7-d076-4c55-8be1-f9c44fece6cc", "baseline": "Amniotic fluid samples plus chromosomal analysis will definitely tell her that next baby will be down syndromic or not", "seed_answer": "No test is required now as her age is below 35 years", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "c6365cce-507c-40f6-90a2-46b867f47b6e", "baseline": "Antegrade and retrograde", "seed_answer": "Antegrade", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "72c1c5e0-b64f-4eef-bf22-ecfb60c5c19c", "baseline": "Glycogen synthesis", "seed_answer": "Glycogen breakdown", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "17360c6c-2c98-4fe2-aa85-487dcf4678df", "baseline": "0.01", "seed_answer": "0.02", "isolated_adopt": 0, "k1_adopt": 1, "k2_adopt": 1}
+{"case_id": "62fa6f78-1964-4249-974b-6fcbbd7fc9ba", "baseline": "Pregnant woman with sore throat can be staed immediately on oseltamivir without diagnostic testing under category B", "seed_answer": "People on long-term steroids cannot receive Os-eltam ivir", "isolated_adopt": 0, "k1_adopt": 1, "k2_adopt": 0}
+{"case_id": "ce49098b-cc48-4168-859e-936e3e0c7459", "baseline": "Anterior ethmoidal aery", "seed_answer": "Sphenopalatine aery", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "18d5c4a1-cb81-41a8-9bfc-b6f7dec431d2", "baseline": "Electrical alternans", "seed_answer": "Ventricular bigeminy", "isolated_adopt": 0, "k1_adopt": 1, "k2_adopt": 0}
+{"case_id": "de09d388-bd4e-42a9-ac6b-ee2d95f822e2", "baseline": "Pulmonary atresia", "seed_answer": "Ebstein's anomaly", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "384a9281-2ee1-480b-a7d8-fd3ef49558e5", "baseline": "Enamel lamellae", "seed_answer": "Enamel spindles", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "ae860b65-53a5-4547-b627-494174e15c3c", "baseline": "Before performing the ABG, syringe should be loaded with 0.3 cc of heparin", "seed_answer": "Normal pH, HCO. and PCO, levels may not indicate absence of an acid-base imbalance", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "84d89a4f-db04-402d-88ab-ca39f6eee8bd", "baseline": "Pre-Botzinger complex", "seed_answer": "Dorsal respiratory group", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "b1cc4ab0-a82c-437a-88c2-00953f3618ff", "baseline": "ACA", "seed_answer": "MCA", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "f184a533-98b4-43ad-b1f5-70edc6704d9e", "baseline": "Hyalinization", "seed_answer": "Osteoclastic activity around tooth", "isolated_adopt": 0, "k1_adopt": 1, "k2_adopt": 1}
+{"case_id": "26160738-1887-4252-86d4-1719a5a80bd3", "baseline": "All stains are highly susceptible to penicillin", "seed_answer": "Most common cause of urethritis in male", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "6ccd8adb-af24-4e58-82a1-9219dfa37057", "baseline": "Assess the patient, give bag and mask ventilation and look for spontaneous breathing", "seed_answer": "Sta bag and mask ventilation and reintubate", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "e38402c3-69bf-40a8-90c4-09277ca352eb", "baseline": "Candidiasis", "seed_answer": "Tuberculosis", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "9078aaca-bbfd-41cd-ad69-03057fca84ba", "baseline": "Monophasic", "seed_answer": "Biphasic", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 1}
+{"case_id": "ac6be140-880b-40c6-9855-01f30c8dd7b2", "baseline": "From the calcium hydroxide", "seed_answer": "Derided cells", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "7111d7b2-7e80-4e23-b5d0-9f42595c6a80", "baseline": "1, decreases", "seed_answer": "4, decreases", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "406b5b4f-9ad4-42c0-9669-12d038df4ac8", "baseline": "Bag and mask", "seed_answer": "Nasal cannula", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "8d2e7fe2-3354-44c2-8cdf-55ff23caaebb", "baseline": "Upper Canine", "seed_answer": "Lower Canine", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 1}
+{"case_id": "7f0270fd-7d45-43ec-b77e-0038115bb845", "baseline": "0%", "seed_answer": "50%", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 0}
+{"case_id": "8b9a0e04-4281-418a-aa94-7414a325732f", "baseline": "Average", "seed_answer": "High", "isolated_adopt": 0, "k1_adopt": 0, "k2_adopt": 1}
