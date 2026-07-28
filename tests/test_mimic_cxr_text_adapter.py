@@ -107,7 +107,8 @@ def test_mcq_shape_and_answer_index(tmp_path):
     assert len(case.options) == 4
     assert case.options[case.answer_index] == "Pneumothorax"
     assert case.label == "pneumothorax"
-    assert REPORT_TEXT.strip() in case.question
+    assert case.report.strip() == REPORT_TEXT.strip()
+    assert case.question == mimic_cxr_text._QUESTION_PROMPT
     assert "primary finding" in case.question
     assert case.patient_id == "10000032"
     assert case.meta["study_id"] == "50000001"

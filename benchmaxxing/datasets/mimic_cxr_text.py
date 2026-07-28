@@ -4,10 +4,14 @@ Parses MIMIC-CXR-JPG v2.0.0 free-text reports plus the CheXpert label CSV into o
 schema.Case per study, formatted as a 4-way MCQ over CheXpert findings. Companion to the
 imaging adapter (``mimic_cxr.py``, Lane A) which emits one Case per image instead.
 
-MCQ template (see issue #330): question = report text + "What is the primary finding
-described in this report?"; options = the study's single confirmed-positive finding plus 3
-confirmed-negative findings (deterministic, in CheXpert column order); answer_index = position
-of the positive finding. Per-study filtering (also #330):
+MCQ template (see issue #330): report = the study's free-text report (surfaced as "Clinical
+context" by ``experiments/medqa/reproduce.py``'s prompt builder); question = the fixed stem
+"What is the primary finding described in this report?"; options = the study's single
+confirmed-positive finding plus 3 confirmed-negative findings (deterministic, in CheXpert column
+order); answer_index = position of the positive finding. Keeping the report out of ``question``
+matters: cue injection (``benchmaxxing/cues/text.py``) draws its perturbation tokens from
+``question`` alone, so folding the report text into it would let a cue quote the report verbatim
+into a distractor (see #336 review). Per-study filtering (also #330):
 
 - Studies with more than one confirmed-positive finding are skipped: "the primary finding" is
   undefined when CheXpert's multi-label positives disagree, and a distractor could actually be
@@ -40,10 +44,10 @@ SPEC = DatasetSpec(
     ),
     modality=Modality.TEXT,
     notes=(
-        "One Case per study (not per image): question=report text + a fixed prompt, options="
-        "1 confirmed-positive finding + 3 confirmed-negative findings, answer_index=position "
-        "of the positive. Studies with zero or multiple confirmed-positive findings are "
-        "skipped (see module docstring / issue #330)."
+        "One Case per study (not per image): report=study free-text, question=a fixed prompt "
+        "stem, options=1 confirmed-positive finding + 3 confirmed-negative findings, "
+        "answer_index=position of the positive. Studies with zero or multiple "
+        "confirmed-positive findings are skipped (see module docstring / issue #330)."
     ),
 )
 
@@ -150,7 +154,8 @@ def build_manifest(reports_root, labels_root, out, limit=None):
                 patient_id=subject_id,
                 modality=Modality.TEXT,
                 label=positive.lower(),
-                question=f"{report_path.read_text(encoding='utf-8')}\n\n{_QUESTION_PROMPT}",
+                report=report_path.read_text(encoding="utf-8"),
+                question=_QUESTION_PROMPT,
                 options=tuple(chosen),
                 answer_index=chosen.index(positive),
                 meta={"study_id": study_id, "distractors": list(distractors)},
