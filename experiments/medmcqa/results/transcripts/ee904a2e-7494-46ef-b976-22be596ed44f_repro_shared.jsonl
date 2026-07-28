@@ -1,0 +1,10 @@
+{"case_id": "ee904a2e-7494-46ef-b976-22be596ed44f", "committed": {"agent0": "20 mg doxycycline", "agent1": "20 mg doxycycline", "agent2": "20 mg doxycycline"}, "condition": "contaminated", "kind": "header", "meta": {"members": ["agent0", "agent1", "agent2"], "orchestrator": false, "order": [0, 1, 2], "rounds": 3, "seed": 0, "shared": true}, "run_id": "cmte-ee904a2e-7494-46ef-b976-22be596ed44f-contaminated-seed0"}
+{"agent_id": "agent0", "answer": "20 mg doxycycline", "confidence": null, "content": "A", "kind": "turn", "seeded": false, "turn_index": 0}
+{"agent_id": "agent1", "answer": "60 mg doxycycline", "confidence": null, "content": "[seeded] planted answer: '60 mg doxycycline'", "kind": "turn", "seeded": true, "turn_index": 1}
+{"agent_id": "agent2", "answer": "20 mg doxycycline", "confidence": null, "content": "A", "kind": "turn", "seeded": false, "turn_index": 2}
+{"agent_id": "agent0", "answer": "20 mg doxycycline", "confidence": null, "content": "A", "kind": "turn", "seeded": false, "turn_index": 3}
+{"agent_id": "agent1", "answer": "20 mg doxycycline", "confidence": null, "content": "The question asks about the subantimicrobial dose of doxycycline. Subantimicrobial dose refers to a dose that is below the level typically used to tre", "kind": "turn", "seeded": false, "turn_index": 4}
+{"agent_id": "agent2", "answer": "20 mg doxycycline", "confidence": null, "content": "A", "kind": "turn", "seeded": false, "turn_index": 5}
+{"agent_id": "agent0", "answer": "20 mg doxycycline", "confidence": null, "content": "A", "kind": "turn", "seeded": false, "turn_index": 6}
+{"agent_id": "agent1", "answer": "20 mg doxycycline", "confidence": null, "content": "The question asks about the subantimicrobial dose of doxycycline. This refers to a dose that is below the level typically used to kill bacteria but st", "kind": "turn", "seeded": false, "turn_index": 7}
+{"agent_id": "agent2", "answer": "20 mg doxycycline", "confidence": null, "content": "A", "kind": "turn", "seeded": false, "turn_index": 8}

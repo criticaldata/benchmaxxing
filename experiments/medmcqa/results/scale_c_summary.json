@@ -1,0 +1,55 @@
+{
+  "n_hard_cases": 110,
+  "holdout": "gemini-2.5-flash-lite",
+  "note": "Salvaged from the committed call_cache after the live run hung at write-time; all adoption values are recomputed offline from cached temp-0 responses with scale_c's own parser.",
+  "generic": {
+    "conform": 79,
+    "n": 110,
+    "rate": 0.7181818181818181,
+    "wilson95": [
+      0.628,
+      0.794
+    ]
+  },
+  "anchored": {
+    "conform": 90,
+    "n": 110,
+    "rate": 0.8181818181818182,
+    "wilson95": [
+      0.736,
+      0.879
+    ]
+  },
+  "anchored_strong": {
+    "conform": 84,
+    "n": 110,
+    "rate": 0.7636363636363637,
+    "wilson95": [
+      0.676,
+      0.833
+    ]
+  },
+  "anchored_solo": {
+    "conform": 79,
+    "n": 110,
+    "rate": 0.7181818181818181,
+    "wilson95": [
+      0.628,
+      0.794
+    ]
+  },
+  "anchored_vs_generic_paired": {
+    "gain": 15,
+    "lose": 4,
+    "mcnemar_stat": 4.0,
+    "mcnemar_p": 0.0192108154296875,
+    "rate_diff": 0.10000000000000009
+  },
+  "anchored_strong_vs_generic_paired": {
+    "gain": 14,
+    "lose": 9,
+    "mcnemar_stat": 9.0,
+    "mcnemar_p": 0.4048728942871094,
+    "rate_diff": 0.045454545454545525
+  }
+}
