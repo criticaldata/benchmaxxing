@@ -113,7 +113,7 @@ SOURCES: dict[str, Source] = {
         url="https://physionet.org/content/mimiciv/",
         access="credentialed",
         license="PhysioNet credentialed health data licence",
-        layout="a CSV of resource-constraint contexts (bed occupancy, staffing, budget pressure)",
+        layout="a CSV of resource-constraint contexts (per-admission ICU-stay count, budget pressure)",
         notes="Feeds the stage-5 scrutiny panel, not a case manifest.",
     ),
 }
