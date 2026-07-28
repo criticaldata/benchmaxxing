@@ -10,13 +10,15 @@ MIMIC-IV (icustays / admissions). ``build_manifest`` is intentionally not the en
 NotImplementedError pointing at that loader.
 
 See scripts/mimic_iv/derive_ehr_resource_contexts.sql for a documented, reviewable derivation query.
-icu_stay_count is a real, MIMIC-native signal (the number of distinct ICU stays recorded under the
-same hospital admission), not a fabricated one -- it stands in as a resource-load proxy, not a
-measurement of real bed occupancy or staffing ratios. budget_pressure remains a fabricated proxy
-(hospital length of stay); MIMIC-IV has no real cost tables. An earlier version of this loader shipped
-two column names ("beds" and "staffing") for what was algebraically one number (staffing = 1/beds);
-this was caught in review and fixed by shipping a single honestly-named column instead. Validated
-against a real MIMIC-IV BigQuery export (#49).
+icu_stay_count is a real, MIMIC-native signal (the number of distinct ICU stays recorded under a
+hospital admission -- scenario_id is the admission's hadm_id, not an individual ICU stay), not a
+fabricated one -- it stands in as a resource-load proxy, not a measurement of real bed occupancy or
+staffing ratios. budget_pressure remains a fabricated proxy (hospital length of stay); MIMIC-IV has no
+real cost tables. Earlier versions of this loader shipped two column names ("beds" and "staffing") for
+what was algebraically one number, and separately emitted one row per ICU stay while both numeric
+fields were admission-level constants, producing exact duplicate rows -- both caught in review and
+fixed; see the script's header comment for the full history. Validated against a real MIMIC-IV
+BigQuery export (#49).
 """
 
 from __future__ import annotations
