@@ -67,6 +67,26 @@ def test_mcq_round_trip(tmp_path):
     assert got.answer_index == 2
 
 
+def test_text_case_report_round_trips(tmp_path):
+    # Regression: a TEXT-modality Case's `report` (used by Lane B adapters that carry a
+    # long-form context alongside a short question, e.g. mimic_cxr_text/pubmedqa) must survive
+    # a manifest round trip, same as _image_case already does for imaging cases.
+    cases = [
+        Case(
+            "q1",
+            "p1",
+            Modality.TEXT,
+            question="What is the primary finding?",
+            report="FINDINGS: a full clinical report goes here.",
+            options=("Cardiomegaly", "Edema"),
+            answer_index=0,
+        ),
+    ]
+    out = write_manifest(cases, tmp_path / "mcq_report.csv")
+    reloaded = load_cases(out)
+    assert reloaded[0].report == "FINDINGS: a full clinical report goes here."
+
+
 def test_load_mcq_csv_without_patient_id(tmp_path):
     manifest = _write_text(
         tmp_path / "mcq.csv",
