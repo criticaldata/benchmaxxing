@@ -67,7 +67,21 @@ python -m experiments.imaging.imaging_cascade \
 
 | setting | shared adopt | isolated adopt | contagion |
 |---|---|---|---|
-| watermark (NIH, 35 cases) | **0.97** | **0.34** | **+0.63** |
+| watermark (NIH, 35 cases) | **0.97** | **0.43** | **+0.54** |
+
+> **Plant-direction provenance (#332/#333/#338).** Every cascade number on this page is derived from
+> the post-#338 transcripts, where the planted peer read is a constant `no` against an all-positive
+> cohort. The earlier design planted the flip of the holdout's own clean read, which coincided with
+> ground truth on the cases the holdout already read wrong. Regenerate the derived analyses with
+> `python -m experiments.imaging.recompute_derived --check` (no API key needed); CI fails if any
+> committed value drifts from the transcripts.
+>
+> One file is knowingly NOT regenerated: `results/imaging_referee.jsonl` predates the fix and 13 of
+> its 35 rows describe boards the corrected design no longer produces. Those rows cannot be rebuilt
+> by arithmetic, only by fresh referee re-read calls. Until that run happens, the citable referee
+> figures come from the 22-row subgroup where both designs agree, via
+> `python -m experiments.imaging.referee_valid_subgroup` (precision 0.92, recall 0.86, false-positive
+> rate 0.13, against the naive gate's 0.88).
 
 The cascade transfers to the imaging lane and is *stronger* there than in text: a confident
 plausible peer moves an imaging committee almost completely. Uses a yes/no parser, so it is
@@ -86,10 +100,10 @@ python -m experiments.imaging.imaging_cascade --manifest results/nih_manifest.cs
 
 | cue | shared adopt | isolated adopt | contagion |
 |---|---|---|---|
-| cable | 1.0 | 0.20 | **+0.80** |
-| corner tag | 0.97 | 0.23 | **+0.74** |
-| laterality | 0.97 | 0.26 | **+0.71** |
-| watermark | 0.97 | 0.34 | +0.63 |
+| cable | 1.0 | 0.46 | **+0.54** |
+| corner tag | 0.97 | 0.43 | **+0.54** |
+| laterality | 0.97 | 0.40 | **+0.57** |
+| watermark | 0.97 | 0.43 | +0.54 |
 
 Striking finding: contagion is strong across **all four** cues, including the three that barely
 moved the model in isolation (#163's flip-above-noise was ~0 or negative for cable/corner-tag,
@@ -188,15 +202,15 @@ python -m experiments.imaging.imaging_system_flag \
 
 | board | shared adopt | isolated adopt | contagion |
 |---|---|---|---|
-| automated system flag (watermark, NIH, 35 cases) | 0.37 | 0.34 | +0.03 (n.s., McNemar p=1.0) |
-| two-peer assertion (same cue, same cases, from above) | 0.97 | 0.34 | +0.63 |
+| automated system flag (watermark, NIH, 35 cases) | 0.60 | 0.43 | +0.17 (McNemar p=0.070) |
+| two-peer assertion (same cue, same cases, from above) | 0.97 | 0.43 | +0.54 |
 
-Fisher exact, system-flag vs peer-assertion shared adoption (13/35 vs 34/35): p = 6e-8, a highly
+Fisher exact, system-flag vs peer-assertion shared adoption (21/35 vs 34/35): p = 2.3e-4, a highly
 significant, large divergence.
 
 **Read.** Unlike the text lane, where a wrong system flag moves the committee nearly as much as a
-wrong peer, the imaging lane shows almost NO contagion from a system flag alone (+0.03, not
-significant) against the same cue's strong peer-driven contagion (+0.63). Authority framing alone,
+wrong peer, the imaging lane shows much LESS contagion from a system flag alone (+0.17, not
+significant at 0.05) against the same cue's strong peer-driven contagion (+0.54). Authority framing alone,
 without a plausible peer voice actually asserting the read, does not move this imaging committee -
 the social-plausibility mechanism identified in the peer cascade does not transfer to a bare
 authority claim here, the opposite of what the text lane's break-it A would predict. New API
@@ -361,9 +375,9 @@ python -m experiments.imaging.effect_sizes_imaging
 
 | Arm | Risk difference | Bootstrap 95% CI | Achieved power | Pairs needed for 0.8 power |
 |---|---|---|---|---|
-| Cascade contagion, cable | 0.80 | [0.657, 0.914] | 1.0 | 7 |
-| Cascade contagion, corner tag | 0.74 | [0.600, 0.886] | 1.0 | 8 |
-| Cascade contagion, laterality | 0.71 | [0.571, 0.857] | 1.0 | 9 |
+| Cascade contagion, cable | 0.54 | [0.371, 0.714] | 1.0 | 7 |
+| Cascade contagion, corner tag | 0.54 | [0.371, 0.714] | 1.0 | 8 |
+| Cascade contagion, laterality | 0.57 | [0.400, 0.743] | 1.0 | 9 |
 | Cascade contagion, watermark | 0.63 | [0.457, 0.771] | 1.0 | 10 |
 | Referee vs naive (paired accuracy) | 0.17 | [-0.029, 0.343] | 0.41 | 90 |
 
