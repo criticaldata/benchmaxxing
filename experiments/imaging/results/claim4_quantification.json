@@ -13,14 +13,14 @@
     0.028571428571428553
   ],
   "cascade_contagion": [
-    0.8,
-    0.7429,
-    0.6286,
-    0.7143
+    0.5429,
+    0.5429,
+    0.5429,
+    0.5714
   ],
   "spearman_solo_vs_contagion": {
-    "rho": -1.0,
-    "pvalue": 0.0
+    "rho": 0.2582,
+    "note": "Post-#338 contagion is near-uniform across cues, so this rank correlation is no longer informative; the case-overlap statistic (phi) is the evidence for the case-driven reading."
   },
   "n_shared_cases": 35,
   "cross_cue_cochran_q": {
@@ -56,5 +56,12 @@
       "jaccard": 1.0
     }
   },
-  "read": "The Spearman correlation between a cue's own solo potency and its cascade contagion is the descriptive test of whether contagion tracks artifact strength (n=4, so indicative only, not a hypothesis test with real power). The cross-cue agreement (phi/Jaccard/Cochran's Q) is the sharper test: high agreement across cues on the SAME 35 cases means the same cases are what cascade, regardless of which cue is present, supporting a case-driven (not cue-driven) account of contagion."
+  "read": "The Spearman correlation between a cue's own solo potency and its cascade contagion is the descriptive test of whether contagion tracks artifact strength (n=4, so indicative only, not a hypothesis test with real power). The cross-cue agreement (phi/Jaccard/Cochran's Q) is the sharper test: high agreement across cues on the SAME 35 cases means the same cases are what cascade, regardless of which cue is present, supporting a case-driven (not cue-driven) account of contagion.",
+  "cascade_contagion_cue_order": [
+    "cable",
+    "corner_tag",
+    "watermark",
+    "laterality"
+  ],
+  "provenance": "cascade_contagion recomputed from the post-#338 per-cue transcripts by experiments/imaging/recompute_derived.py"
 }
