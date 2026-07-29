@@ -112,8 +112,12 @@ def main():
     ap.add_argument("--image-root", required=True)
     ap.add_argument("--cache", default="experiments/imaging/results/img_cache.jsonl")
     ap.add_argument("--out", default="experiments/imaging/results")
-    ap.add_argument("--n", type=int, default=35)
-    ap.add_argument("--cue", default="watermark", choices=["none", "cable", "corner_tag", "watermark", "laterality"])
+    ap.add_argument("--n", type=int, default=35,
+                    help="cap the cohort. Kept for consistency with the other imaging runners, "
+                         "which still accept it, and because every documented invocation in "
+                         "this directory's README passes it.")
+    ap.add_argument("--cue", default="watermark",
+                    choices=["none", "cable", "corner_tag", "watermark", "laterality"])
     args = ap.parse_args()
 
     out = Path(args.out)

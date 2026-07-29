@@ -90,11 +90,20 @@ def test_join_reports_and_labels(tmp_path):
     # Support devices flag and remaining meta.
     assert with_report["d1aaa"].meta["support_devices"] is True
     assert with_report["d2ccc"].meta["support_devices"] is False
-    assert with_report["d1aaa"].meta == {
+    # The three fields the imaging lane relies on must be exact. #337 additionally surfaces the full
+    # CheXpert label vector as meta["labels"] for natural-cue selection (#331), so this asserts the
+    # required subset plus the shape of the new field rather than exact dict equality, which would
+    # break on any additive change.
+    meta = with_report["d1aaa"].meta
+    assert {k: meta[k] for k in ("study_id", "view", "support_devices")} == {
         "study_id": "50414267",
         "view": "PA",
         "support_devices": True,
     }
+    assert set(meta) <= {"study_id", "view", "support_devices", "labels"}, sorted(meta)
+    if "labels" in meta:
+        assert isinstance(meta["labels"], dict)
+        assert "Pneumothorax" in meta["labels"], sorted(meta["labels"])
     assert with_report["d1bbb"].meta["view"] == "LATERAL"
     assert with_report["d2ccc"].meta["view"] == "AP"
 

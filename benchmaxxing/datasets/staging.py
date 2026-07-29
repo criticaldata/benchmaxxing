@@ -44,6 +44,15 @@ DATASET_ROOT_ENV = "BENCHMAXXING_DATASET_ROOT"
 DEFAULT_DATASET_ROOT = "data"
 
 
+def _sha256(path: Path) -> str:
+    import hashlib
+    h = hashlib.sha256()
+    with path.open("rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
 @dataclass(frozen=True)
 class Source:
     """Where one dataset comes from and what it costs to get it.
@@ -220,6 +229,18 @@ def stage_dataset(name: str, raw_root=None, out=None, *, limit: int | None = Non
         },
         "counts": _case_counts(manifest_path),
     }
+
+    if check_images:
+        cases = load_cases(manifest_path)
+        img_dir = raw.parent if raw.is_file() else raw
+        provenance["images"] = [
+            {
+                "case_id": c.case_id,
+                "image_ref": c.image_ref,
+                "sha256": _sha256(img_dir / c.image_ref) if (img_dir / c.image_ref).is_file() else None
+            }
+            for c in cases
+        ]
 
     out_dir = manifest_path.parent
     (out_dir / f"{name}_provenance.json").write_text(

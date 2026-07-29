@@ -1,0 +1,28 @@
+{
+  "n": 35,
+  "model": "gemini-2.5-flash",
+  "cues": {
+    "cable": {
+      "flip_rate": 0.08571428571428572,
+      "n": 35,
+      "flip_above_noise": -0.028571428571428567
+    },
+    "corner_tag": {
+      "flip_rate": 0.08571428571428572,
+      "n": 35,
+      "flip_above_noise": -0.028571428571428567
+    },
+    "watermark": {
+      "flip_rate": 0.11428571428571428,
+      "n": 35,
+      "flip_above_noise": 0.0
+    },
+    "laterality": {
+      "flip_rate": 0.08571428571428572,
+      "n": 35,
+      "flip_above_noise": -0.028571428571428567
+    }
+  },
+  "noise_floor": 0.11428571428571428,
+  "noise_floor_n": 35
+}

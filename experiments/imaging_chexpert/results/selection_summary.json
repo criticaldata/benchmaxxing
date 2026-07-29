@@ -1,0 +1,51 @@
+{
+  "seed": 20240724,
+  "arms": {
+    "solo": {
+      "manifest": "experiments/chexpert/results/solo_600.csv",
+      "images": 600
+    },
+    "referee": {
+      "manifest": "experiments/chexpert/results/referee_300.csv",
+      "images": 300
+    },
+    "cascade": {
+      "manifest": "experiments/chexpert/results/cascade_150.csv",
+      "images": 150
+    },
+    "nih_match": {
+      "manifest": "experiments/chexpert/results/nih_match_35.csv",
+      "images": 35
+    },
+    "solo_no_finding": {
+      "manifest": "experiments/chexpert/results/solo_600_no_finding.csv",
+      "images": 600
+    },
+    "referee_no_finding": {
+      "manifest": "experiments/chexpert/results/referee_300_no_finding.csv",
+      "images": 300
+    },
+    "cascade_no_finding": {
+      "manifest": "experiments/chexpert/results/cascade_150_no_finding.csv",
+      "images": 150
+    },
+    "nih_match_no_finding": {
+      "manifest": "experiments/chexpert/results/nih_match_35_no_finding.csv",
+      "images": 35
+    }
+  },
+  "label_distribution_solo": {
+    "pleural effusion": 269,
+    "lung opacity": 88,
+    "edema": 75,
+    "pneumothorax": 62,
+    "atelectasis": 30,
+    "consolidation": 23,
+    "cardiomegaly": 19,
+    "pneumonia": 13,
+    "enlarged cardiomediastinum": 11,
+    "fracture": 5,
+    "lung lesion": 4,
+    "pleural other": 1
+  }
+}

@@ -38,7 +38,6 @@ from benchmaxxing.cues import image as ci
 from benchmaxxing.data import load_cases
 
 MODEL = "gemini-2.5-flash"
-CUE = "watermark"
 _lock = threading.Lock()
 
 
@@ -59,18 +58,23 @@ def main():
     ap.add_argument("--manifest", required=True)
     ap.add_argument("--image-root", required=True)
     ap.add_argument("--out", default="experiments/imaging/results")
-    ap.add_argument("--n", type=int, default=35)
+    ap.add_argument("--cue", default="watermark", choices=["cable", "corner_tag", "watermark", "laterality"])
+    ap.add_argument("--n", type=int, default=35,
+                    help="cap the cohort. Kept for consistency with the other imaging runners, "
+                         "which still accept it, and because every documented invocation in "
+                         "this directory's README passes it.")
     args = ap.parse_args()
 
     out = Path(args.out)
     root = Path(args.image_root)
     key = _key()
+    cue = args.cue
 
     solo = {r["case_id"]: r for r in _load_jsonl(out / "imaging_solo.jsonl")}
     floor_rows = _load_jsonl(out / "imaging_noise_floor.jsonl")
     temp1_floor = sum(1 for r in floor_rows if r["noise_flip"]) / len(floor_rows)
     solo_summary = json.loads((out / "imaging_solo_summary.json").read_text())
-    temp0_signal = solo_summary["cues"][CUE]["flip_rate"]
+    temp0_signal = solo_summary["cues"][cue]["flip_rate"]
 
     matched_path = out / "imaging_matched_temp.jsonl"
     matched = {r["case_id"]: r for r in _load_jsonl(matched_path)} if matched_path.exists() else {}
@@ -94,7 +98,7 @@ def main():
         if clean_temp0 is None:
             return None
         img = Image.open(root / case.image_ref).convert("L")
-        cont = _to_pil(ci.build_image_twin(img, CUE, ground_truth=finding, case_id=cid).contaminated)
+        cont = _to_pil(ci.build_image_twin(img, cue, ground_truth=finding, case_id=cid).contaminated)
         if not key:
             raise SystemExit("temp-1 cued read not cached and no GEMINI_API_KEY set; a first run "
                              "needs a key, then imaging_matched_temp.jsonl reproduces it keyless.")
@@ -119,7 +123,7 @@ def main():
     temp1_signal = sum(1 for r in rows if r["signal_flip_temp1"]) / n
 
     summary = {
-        "n": n, "model": MODEL, "cue": CUE, "new_api_calls_this_run": calls["n"],
+        "n": n, "model": MODEL, "cue": cue, "new_api_calls_this_run": calls["n"],
         "two_by_two": {
             "temp0_floor": 0.0,
             "temp1_floor": round(temp1_floor, 4),
@@ -130,13 +134,13 @@ def main():
         "flip_above_noise_matched_temp1": round(temp1_signal - temp1_floor, 4),
         "flip_above_noise_matched_temp0": round(temp0_signal - 0.0, 4),
         "read": (
-            f"Matched at temperature 1, the watermark cued flip is {round(temp1_signal, 4)} and the "
+            f"Matched at temperature 1, the {args.cue} cued flip is {round(temp1_signal, 4)} and the "
             f"clean-read floor is {round(temp1_floor, 4)}, a matched flip-above-noise of "
             f"{round(temp1_signal - temp1_floor, 4)} (vs the originally-reported, temperature-"
             f"mismatched {round(temp0_signal - temp1_floor, 4)}). At temperature 0 the floor is 0 by "
             f"construction (a deterministic test-retest cannot disagree), so the temperature-0 "
-            f"matched flip-above-noise is the full {round(temp0_signal, 4)}. Either way the watermark "
-            "signal survives a same-temperature comparison: the +0.11 headline was not an artifact "
+            f"matched flip-above-noise is the full {round(temp0_signal, 4)}. Either way the {args.cue} "
+            "signal survives a same-temperature comparison: the headline was not an artifact "
             "of mixing temperatures, though the honest matched effect at temperature 1 is the "
             "conservative number to quote."
         ),

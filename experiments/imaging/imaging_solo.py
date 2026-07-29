@@ -96,7 +96,10 @@ def main():
     ap.add_argument("--image-root", required=True)
     ap.add_argument("--out", default="experiments/imaging/results")
     ap.add_argument("--cache", default=None, help="defaults to <out>/img_cache.jsonl if not given")
-    ap.add_argument("--n", type=int, default=40)
+    ap.add_argument("--n", type=int, default=40,
+                    help="cap the cohort. Kept for consistency with the other imaging runners, "
+                         "which still accept it, and because every documented invocation in "
+                         "this directory's README passes it.")
     args = ap.parse_args()
 
     out = Path(args.out)

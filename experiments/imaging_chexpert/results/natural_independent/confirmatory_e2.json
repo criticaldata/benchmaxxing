@@ -1,0 +1,20 @@
+{
+  "endpoint": "E2",
+  "description": "Contagion = shared_adopt - isolated_adopt (paired McNemar)",
+  "n": 150,
+  "table_2x2": {
+    "both_adopt": 7,
+    "only_shared_b": 85,
+    "only_iso_c": 0,
+    "neither": 58
+  },
+  "shared_adopt_rate": 0.6133,
+  "isolated_adopt_rate": 0.0467,
+  "contagion": 0.5667,
+  "mcnemar_statistic": 0.0,
+  "mcnemar_pvalue": 5.169878828456423e-26,
+  "bootstrap_ci_95": [
+    0.4867,
+    0.6467
+  ]
+}

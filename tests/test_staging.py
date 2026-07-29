@@ -62,6 +62,8 @@ def test_stage_writes_a_validated_manifest_and_provenance(tmp_path):
     assert provenance["source"]["access"] == "open"
     assert provenance["raw_root"] == str(raw)
     assert len(provenance["manifest_sha256"]) == 64
+    assert len(provenance["images"]) == 3
+    assert all(img["sha256"] for img in provenance["images"])
 
     on_disk = json.loads((tmp_path / "nih_cxr14_provenance.json").read_text())
     assert on_disk == provenance

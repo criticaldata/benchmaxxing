@@ -1,0 +1,19 @@
+{
+  "endpoint": "E1",
+  "description": "Solo flip rate, device-present vs device-absent (independent Fisher exact)",
+  "table_2x2": {
+    "device_present": {
+      "flips": 0,
+      "no_flips": 150
+    },
+    "device_absent": {
+      "flips": 0,
+      "no_flips": 150
+    }
+  },
+  "rates": {
+    "device_present": 0.0,
+    "device_absent": 0.0
+  },
+  "fisher_pvalue": 1.0
+}

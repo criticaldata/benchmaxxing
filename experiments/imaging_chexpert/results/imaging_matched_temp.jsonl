@@ -1,0 +1,35 @@
+{"case_id": "CheXpert-v1.0-small/train/patient06792/study1/view1_frontal.jpg", "finding": "pleural effusion", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient50399/study4/view1_frontal.jpg", "finding": "pleural effusion", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient30812/study7/view1_frontal.jpg", "finding": "pneumothorax", "clean_temp0": "yes", "cued_temp1": "no", "signal_flip_temp1": true}
+{"case_id": "CheXpert-v1.0-small/train/patient13162/study53/view2_lateral.jpg", "finding": "consolidation", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient06449/study1/view1_frontal.jpg", "finding": "pneumothorax", "clean_temp0": "no", "cued_temp1": "yes", "signal_flip_temp1": true}
+{"case_id": "CheXpert-v1.0-small/train/patient23860/study20/view1_frontal.jpg", "finding": "lung opacity", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient11436/study2/view1_frontal.jpg", "finding": "pleural effusion", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient39868/study3/view1_frontal.jpg", "finding": "pneumothorax", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient28104/study1/view1_frontal.jpg", "finding": "lung opacity", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient15877/study2/view1_frontal.jpg", "finding": "edema", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient38693/study8/view1_frontal.jpg", "finding": "lung opacity", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient42964/study1/view1_frontal.jpg", "finding": "atelectasis", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient55904/study2/view1_frontal.jpg", "finding": "atelectasis", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient09014/study1/view1_frontal.jpg", "finding": "lung opacity", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient22834/study1/view1_frontal.jpg", "finding": "pleural effusion", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient28922/study3/view1_frontal.jpg", "finding": "pleural effusion", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient42243/study1/view1_frontal.jpg", "finding": "pleural effusion", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient09483/study11/view1_frontal.jpg", "finding": "edema", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient44813/study9/view1_frontal.jpg", "finding": "pleural effusion", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient36411/study1/view1_frontal.jpg", "finding": "lung opacity", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient37725/study3/view1_frontal.jpg", "finding": "pleural effusion", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient20671/study3/view1_frontal.jpg", "finding": "pneumothorax", "clean_temp0": "no", "cued_temp1": "no", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient40149/study2/view1_frontal.jpg", "finding": "pleural effusion", "clean_temp0": "yes", "cued_temp1": "no", "signal_flip_temp1": true}
+{"case_id": "CheXpert-v1.0-small/train/patient36792/study5/view1_frontal.jpg", "finding": "pneumothorax", "clean_temp0": "no", "cued_temp1": "no", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient62872/study1/view1_frontal.jpg", "finding": "edema", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient42328/study3/view1_frontal.jpg", "finding": "fracture", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient05390/study11/view1_frontal.jpg", "finding": "pleural effusion", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient61626/study1/view1_frontal.jpg", "finding": "lung opacity", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient03164/study14/view1_frontal.jpg", "finding": "pleural effusion", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient13949/study2/view1_frontal.jpg", "finding": "atelectasis", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient18447/study2/view1_frontal.jpg", "finding": "pleural effusion", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient07882/study4/view1_frontal.jpg", "finding": "pleural effusion", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient11132/study4/view1_frontal.jpg", "finding": "lung opacity", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient05119/study4/view2_lateral.jpg", "finding": "fracture", "clean_temp0": "yes", "cued_temp1": "yes", "signal_flip_temp1": false}
+{"case_id": "CheXpert-v1.0-small/train/patient17249/study6/view2_lateral.jpg", "finding": "pneumothorax", "clean_temp0": "no", "cued_temp1": "no", "signal_flip_temp1": false}

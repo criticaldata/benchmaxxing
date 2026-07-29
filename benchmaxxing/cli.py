@@ -57,7 +57,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_stage.add_argument(
         "--out", default=None, metavar="PATH", help="where to write the manifest"
     )
-    p_stage.add_argument("--limit", type=int, default=None, help="stage only the first N rows")
+    p_stage.add_argument("--limit", type=int, default=None, help="deterministically subsample N cases")
     p_stage.add_argument(
         "--check-images",
         action="store_true",

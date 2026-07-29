@@ -1,0 +1,15 @@
+{
+  "n": 150,
+  "model": "gemini-2.5-flash",
+  "cue": "none",
+  "board": "automated_system_flag",
+  "new_api_calls_this_run": 292,
+  "shared_adopt": 0.0067,
+  "isolated_adopt": 0.0,
+  "contagion": 0.0067,
+  "shared_vs_isolated_mcnemar": {
+    "gain": 1,
+    "lose": 0,
+    "pvalue": 1.0
+  }
+}

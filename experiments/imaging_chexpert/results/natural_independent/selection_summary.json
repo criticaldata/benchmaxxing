@@ -1,0 +1,30 @@
+{
+  "seed": 20240724,
+  "arms": {
+    "solo": {
+      "manifest": "experiments/chexpert/results/natural_independent/solo_600.csv",
+      "images": 600
+    },
+    "referee": {
+      "manifest": "experiments/chexpert/results/natural_independent/referee_300.csv",
+      "images": 300
+    },
+    "cascade": {
+      "manifest": "experiments/chexpert/results/natural_independent/cascade_150.csv",
+      "images": 150
+    },
+    "nih_match": {
+      "manifest": "experiments/chexpert/results/natural_independent/nih_match_35.csv",
+      "images": 35
+    }
+  },
+  "label_distribution_solo": {
+    "Support Devices": 600
+  },
+  "recommended_commands": {
+    "solo": "python experiments/imaging/imaging_solo.py --manifest experiments/chexpert/results/natural_independent/solo_600.csv --n 600",
+    "referee": "python experiments/imaging/imaging_referee.py --manifest experiments/chexpert/results/natural_independent/referee_300.csv --n 300",
+    "cascade": "python experiments/imaging/imaging_cascade.py --manifest experiments/chexpert/results/natural_independent/cascade_150.csv --n 150",
+    "nih_match": "python experiments/imaging/imaging_nih.py --manifest experiments/chexpert/results/natural_independent/nih_match_35.csv --n 35"
+  }
+}

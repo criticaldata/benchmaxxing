@@ -1,0 +1,20 @@
+{
+  "family": [
+    "E1",
+    "E2"
+  ],
+  "method": "holm",
+  "alpha": 0.05,
+  "results": {
+    "E1": {
+      "p_raw": 1.0,
+      "p_adj": 1.0,
+      "significant": false
+    },
+    "E2": {
+      "p_raw": 5.169878828456423e-26,
+      "p_adj": 1.0339757656912846e-25,
+      "significant": true
+    }
+  }
+}

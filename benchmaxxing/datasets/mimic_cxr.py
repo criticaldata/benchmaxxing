@@ -12,6 +12,7 @@ from pathlib import Path
 
 from benchmaxxing.datasets.base import DatasetSpec, finalize
 from benchmaxxing.schema import Case, Modality
+from benchmaxxing.utils.clinical_labels import CLINICAL_HIERARCHY, FINDING_COLUMNS, _POSITIVE
 
 SPEC = DatasetSpec(
     name="mimic_cxr",
@@ -32,7 +33,7 @@ _METADATA_CSV = "mimic-cxr-2.0.0-metadata.csv"
 _CHEXPERT_CSV = "mimic-cxr-2.0.0-chexpert.csv"
 
 
-def build_manifest(raw_root, out, limit=None):
+def build_manifest(raw_root, out, limit=None, label_format="legacy"):
     """Build a per-image manifest from the raw MIMIC-CXR-JPG release under ``raw_root``.
 
     Joins the metadata CSV to the CheXpert CSV on (subject_id, study_id) and emits one
@@ -55,6 +56,17 @@ def build_manifest(raw_root, out, limit=None):
         study_id = _cell(row, "study_id")
         dicom_id = _cell(row, "dicom_id")
         labels = chexpert.get((subject_id, study_id), {})
+        
+        # Uncertainty handling (-1.0) and NaNs are implicitly treated as negative by strictly matching _POSITIVE.
+        if label_format == "stratified":
+            positives = [
+                col for col in CLINICAL_HIERARCHY
+                if _cell(labels, col) == _POSITIVE
+            ]
+            label_str = "|".join(positives).lower() if positives else "no finding"
+        else:
+            label_str = "pneumothorax" if _cell(labels, "Pneumothorax") == _POSITIVE else "no finding"
+
         study_rel = f"files/p{subject_id[:2]}/p{subject_id}/s{study_id}"
         report_path = root / "files" / f"p{subject_id[:2]}" / f"p{subject_id}" / f"s{study_id}.txt"
         cases.append(
@@ -62,13 +74,14 @@ def build_manifest(raw_root, out, limit=None):
                 case_id=dicom_id,
                 patient_id=subject_id,
                 modality=Modality.IMAGE,
-                label="pneumothorax" if _cell(labels, "Pneumothorax") == "1.0" else "no finding",
+                label=label_str,
                 image_ref=f"{study_rel}/{dicom_id}.jpg",
                 report=_load_report(report_path, report_cache),
                 meta={
                     "study_id": study_id,
                     "view": _cell(row, "ViewPosition") or None,
-                    "support_devices": _cell(labels, "Support Devices") == "1.0",
+                    "support_devices": _cell(labels, "Support Devices") == _POSITIVE,
+                    "labels": {col: _cell(labels, col) for col in FINDING_COLUMNS},
                 },
             )
         )
