@@ -1,23 +1,23 @@
 {
   "n_records": 210,
   "noise_floor_by_model": {
-    "gemini-2.5-flash": 0.06666666666666667,
+    "gemini-2.5-flash": 0.0,
     "gemini-2.5-flash-lite": 0.0
   },
   "flip_rate_by_model": {
     "gemini-2.5-flash": {
-      "overall": 0.08571428571428572,
+      "overall": 0.11428571428571428,
       "per_cue": {
-        "lexical_overlap": 0.05714285714285714,
+        "lexical_overlap": 0.14285714285714285,
         "longest_option": 0.08571428571428572,
         "option_order": 0.11428571428571428
       },
       "n": 105
     },
     "gemini-2.5-flash-lite": {
-      "overall": 0.09523809523809523,
+      "overall": 0.13333333333333333,
       "per_cue": {
-        "lexical_overlap": 0.05714285714285714,
+        "lexical_overlap": 0.17142857142857143,
         "longest_option": 0.11428571428571428,
         "option_order": 0.11428571428571428
       },
@@ -36,12 +36,12 @@
     ],
     "matrix": [
       [
-        0.05714285714285714,
+        0.14285714285714285,
         0.08571428571428572,
         0.11428571428571428
       ],
       [
-        0.05714285714285714,
+        0.17142857142857143,
         0.11428571428571428,
         0.11428571428571428
       ]
@@ -49,7 +49,7 @@
   },
   "overlap": {
     "metric": "phi",
-    "within_mean": 0.13245323570650439,
+    "within_mean": 0.29939973031244743,
     "cross_mean": NaN,
     "observed_diff": NaN,
     "p_value": NaN,

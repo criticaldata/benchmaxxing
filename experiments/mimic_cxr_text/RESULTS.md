@@ -12,35 +12,45 @@ Manifests and raw model-call caches are **not committed**: report text is creden
 PhysioNet data under a Data Use Agreement and must not be redistributed, even in a private repo.
 Only the aggregate JSON below (flip rates, noise floor) is committed.
 
-## Two bugs found in review and fixed (#336)
+## Three bugs found in review and fixed (#336)
 
-The first posted numbers here were wrong, caught by @Agastya191, @sebasmos, and @maximinl in
-review:
+The first two posted rounds of numbers here were wrong, caught in review:
 
-1. **`Case.question` held the whole report instead of `Case.report`.** `mimic_cxr_text.py`
-   originally built `question=f"{report}\n\n{prompt}"`. `lexical_overlap_bias`
-   (`benchmaxxing/cues/text.py`) draws its perturbation tokens from `case.question`, so the
-   injected distractor could quote the report's own words back — including, sometimes, the
-   correct finding — and became far longer than the other options, co-activating
-   `longest_option` on the same case. Fixed: `report=<study text>`, `question=<the fixed short
-   prompt>`, matching the existing `pubmedqa.py` pattern. `experiments/medqa/reproduce.py`'s
-   `_mcq_prompt` already renders `report` as "Clinical context: ..." ahead of the question, so
-   the model sees the same information either way — only the cue-injection logic changes what
-   it can touch.
+1. **`Case.question` held the whole report instead of `Case.report`** (caught by @Agastya191,
+   @sebasmos, @maximinl). `mimic_cxr_text.py` originally built
+   `question=f"{report}\n\n{prompt}"`. `lexical_overlap_bias` (`benchmaxxing/cues/text.py`) drew
+   its perturbation tokens from `case.question`, so the injected distractor could quote the
+   report's own words back — including, sometimes, the correct finding — and became far longer
+   than the other options, co-activating `longest_option` on the same case. Fixed:
+   `report=<study text>`, `question=<the fixed short prompt>`, matching the existing
+   `pubmedqa.py` pattern.
 2. **`benchmaxxing/data.py`'s `_text_case` never read `report` back off a manifest CSV** (unlike
-   `_image_case`, which does). This is a pre-existing bug in shared code, not in this adapter —
-   it was never triggered before because MedQA/MedMCQA don't use `Case.report`, and no other Lane
-   B dataset with `Case.report` (e.g. PubMedQA, #293) has run an experiment through a manifest
-   CSV yet. Its effect here: `experiments/medqa/reproduce.py`'s `run_solo` calls `load_cases()`,
-   so every real run was silently answering "What is the primary finding?" with **no report
-   text at all** — the model was guessing cold among 4 similar-sounding finding names. That
-   produced a very high, unstable flip rate and ~35-60% of `gemini-2.5-flash` responses were a
-   refusal-shaped "please provide the report" (confirmed by inspecting raw cached completions).
-   Fixed with a one-line addition (`report=_none_or_str(_get(row, "report"))`) plus a regression
-   test (`tests/test_datasets.py::test_text_case_report_round_trips`).
+   `_image_case`, which does). Pre-existing bug in shared code, not in this adapter — never
+   triggered before because MedQA/MedMCQA don't use `Case.report`, and no other Lane B dataset
+   with `Case.report` (PubMedQA, #293) has run an experiment through a manifest CSV yet. Effect:
+   `run_solo`'s `load_cases()` call silently dropped the report, so the real API run answered
+   "What is the primary finding?" with **no report text at all**, guessing cold among 4 similar
+   finding names — very high, unstable flip rate and ~35-60% of `gemini-2.5-flash` responses were
+   a refusal-shaped "please provide the report." Fixed with a one-line read-back plus a
+   regression test (`tests/test_datasets.py::test_text_case_report_round_trips`).
+3. **`lexical_overlap_bias` degenerated to a constant-suffix manipulation once bug 1 was fixed**
+   (caught by @Agastya191 and @sebasmos on the bug-1 re-run). With the report correctly moved out
+   of `question`, `question` became a fixed 8-word stem identical across every case, and
+   `lexical_overlap_bias` draws its perturbation tokens from `case.question` — so it appended the
+   same four words ("primary", "finding", "described", "report") to the same distractor on all
+   600 cases. That made it functionally the same manipulation as `longest_option` (padding one
+   option) rather than a genuine per-case lexical signal, so the two columns converging in the
+   bug-1 re-run wasn't a finding, and the "lexical_overlap is strongest" read of that data wasn't
+   valid. Fixed in `benchmaxxing/cues/text.py`: the cue now draws from `case.report` when
+   present (falling back to `case.question` exactly as before for datasets with no separate
+   report, e.g. MedQA — unaffected), and excludes any token that appears in *any* option (not
+   just the target), so the injected text can no longer echo another option's wording — in
+   particular, it can't quote the correct answer into a distractor. Regression tests added:
+   `test_lexical_overlap_draws_from_report_not_a_fixed_question_stem` and
+   `test_lexical_overlap_never_injects_another_options_wording`.
 
-Both fixes are committed; the numbers below are from the **corrected** re-run (fresh cache,
-after both fixes).
+All three fixes are committed; the numbers below are from the re-run after all three (fresh
+cache).
 
 ## Refusal-aware cross-check
 
@@ -55,36 +65,44 @@ rate ~0% for both models at both n=35 and n=600, and the refusal-aware flip rate
 disagreement, expected). See `results/solo_results_refusal_aware.json` and
 `results_n600/solo_results_refusal_aware.json`.
 
-## n=35 (smoke run, corrected)
+## n=35 (smoke run, all three fixes)
 
 ```json
 {
   "n_records": 210,
-  "noise_floor_by_model": {"gemini-2.5-flash": 0.0667, "gemini-2.5-flash-lite": 0.0},
+  "noise_floor_by_model": {"gemini-2.5-flash": 0.0, "gemini-2.5-flash-lite": 0.0},
   "flip_rate_by_model": {
-    "gemini-2.5-flash": {"overall": 0.0857, "n": 105},
-    "gemini-2.5-flash-lite": {"overall": 0.0952, "n": 105}
+    "gemini-2.5-flash": {
+      "overall": 0.1143,
+      "per_cue": {"lexical_overlap": 0.1429, "longest_option": 0.0857, "option_order": 0.1143},
+      "n": 105
+    },
+    "gemini-2.5-flash-lite": {
+      "overall": 0.1333,
+      "per_cue": {"lexical_overlap": 0.1714, "longest_option": 0.1143, "option_order": 0.1143},
+      "n": 105
+    }
   }
 }
 ```
 
 Full record: [`results/solo_results.json`](results/solo_results.json).
 
-## n=600 (corrected)
+## n=600 (all three fixes)
 
 ```json
 {
   "n_records": 3600,
-  "noise_floor_by_model": {"gemini-2.5-flash": 0.0667, "gemini-2.5-flash-lite": 0.0},
+  "noise_floor_by_model": {"gemini-2.5-flash": 0.0, "gemini-2.5-flash-lite": 0.0},
   "flip_rate_by_model": {
     "gemini-2.5-flash": {
-      "overall": 0.0894,
-      "per_cue": {"lexical_overlap": 0.12, "longest_option": 0.105, "option_order": 0.0433},
+      "overall": 0.0806,
+      "per_cue": {"lexical_overlap": 0.0933, "longest_option": 0.105, "option_order": 0.0433},
       "n": 1800
     },
     "gemini-2.5-flash-lite": {
-      "overall": 0.1144,
-      "per_cue": {"lexical_overlap": 0.1183, "longest_option": 0.13, "option_order": 0.095},
+      "overall": 0.1333,
+      "per_cue": {"lexical_overlap": 0.175, "longest_option": 0.13, "option_order": 0.095},
       "n": 1800
     }
   }
@@ -93,19 +111,24 @@ Full record: [`results/solo_results.json`](results/solo_results.json).
 
 Full record: [`results_n600/solo_results.json`](results_n600/solo_results.json).
 
-## Cross-dataset table row (MIMIC-CXR text, n=600, corrected)
+## Cross-dataset table row (MIMIC-CXR text, n=600)
 
 | model | overall flip | noise floor | flip-above-noise |
 |---|---|---|---|
-| gemini-2.5-flash | 0.089 | 0.067 | +0.022 |
-| gemini-2.5-flash-lite | 0.114 | 0.000 | +0.114 |
+| gemini-2.5-flash | 0.081 | 0.000 | +0.081 |
+| gemini-2.5-flash-lite | 0.133 | 0.000 | +0.133 |
 
-Both models land in the same narrow band as MedQA-USMLE (flash 0.063, flash-lite 0.117), so the
+Both models land in a similar band to MedQA-USMLE (flash 0.063, flash-lite 0.117), so the
 shortcut effect generalizes from exam-style vignettes to real clinical report text. Consistent
-between n=35 (0.086/0.095) and n=600 (0.089/0.114) samples, and confirmed refusal-aware
-(abstention ~0% at both scales). `lexical_overlap` is the strongest cue for both tiers at n=600,
-though the margin over `longest_option` is now small (unlike the pre-fix numbers, where it looked
-artificially dominant).
+in direction between n=35 (0.114/0.133) and n=600 (0.081/0.133) samples, and confirmed
+refusal-aware (abstention ~0% at both scales).
+
+**No single cue is "strongest" for both tiers**, unlike the earlier (bug-3-contaminated) read:
+at n=600, `longest_option` (0.105) edges out `lexical_overlap` (0.093) for `gemini-2.5-flash`,
+while `lexical_overlap` (0.175) is clearly strongest for `gemini-2.5-flash-lite`. Now that
+`lexical_overlap` draws real per-case content from the report (bug 3), it and `longest_option`
+are genuinely different manipulations again, so this split is a real, if modest, tier-dependent
+result rather than an artifact.
 
 ## Cascade contagion (#317): bare vs case-anchored confident wrong seed
 
