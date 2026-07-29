@@ -1,0 +1,15 @@
+{
+  "n": 80,
+  "judge_model": "gemini-2.5-flash",
+  "new_api_calls_this_run": 26,
+  "peer_driven_adoptions_gt": 47,
+  "same_lineage_judge": {
+    "tp": 47,
+    "fp": 31,
+    "fn": 0,
+    "tn": 2,
+    "precision": 0.6025641025641025,
+    "recall": 1.0,
+    "fpr": 0.9393939393939394
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "cohort": "NIH ChestX-ray14, expanded confirmatory cohort",
+  "n": 80,
+  "purpose": "The n=35 primary cohort left referee_vs_naive at achieved power 0.59 against a requirement of 56 discordant pairs. This cohort is a superset of those 35 cases and exists only to power that one contrast. It does not replace any primary number.",
+  "referee_vs_naive": {
+    "n": 80,
+    "risk_difference": 0.25,
+    "bootstrap95": [
+      0.1125,
+      0.375
+    ],
+    "mcnemar_b_gt_c": {
+      "b": 27,
+      "c": 7,
+      "n": 80
+    },
+    "p_discordant": 0.425,
+    "achieved_power": 0.9443,
+    "required_pairs_for_power_0.8": 51
+  },
+  "comparison_to_primary": {
+    "n35_risk_difference": 0.2571,
+    "n35_bootstrap95": [
+      0.0286,
+      0.4857
+    ],
+    "n35_achieved_power": 0.5947,
+    "read": "The effect replicates at 0.250 against 0.257 and the interval tightens from [0.029, 0.486] to [0.113, 0.375], so the primary estimate was accurate but under-powered rather than wrong."
+  }
+}

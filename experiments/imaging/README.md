@@ -245,6 +245,27 @@ The referee cuts false alarms from 0.94 to 0.13 while still catching most adopti
 reach the text lane's perfect separation (P/R 1.0): on images the cue itself can move the holdout
 even without peers, so peer-driven and cue-driven flips are harder to tell apart.
 
+### Expanded confirmatory cohort (`results_n80/`, n=80)
+
+The 35-case primary cohort left the referee-versus-gate contrast at achieved power 0.59 against a
+requirement of 56 discordant pairs, so it had to be reported as directionally clear but under-powered.
+`results_n80/` is a superset of those 35 cases, built with `build_manifest.py --n 80` in release order,
+and exists only to power that one contrast. It replaces no primary number.
+
+| cohort | referee P / R / FPR | naive gate P / R / FPR | risk diff | bootstrap 95% | power |
+|---|---|---|---|---|---|
+| n=35 (primary) | 0.88 / 0.79 / 0.125 | 0.56 / 1.0 / 0.938 | 0.257 | [0.029, 0.486] | 0.59 |
+| n=80 (confirmatory) | **0.91 / 0.85 / 0.121** | 0.60 / 1.0 / 0.939 | **0.250** | **[0.113, 0.375]** | **0.94** |
+
+The effect replicates at 0.250 against 0.257 and the interval tightens to exclude zero with room to
+spare, so the primary estimate was accurate but under-powered rather than wrong. Contagion also
+replicates, +0.588 at n=80 against +0.543 at n=35, on 47 peer-driven adoptions. The same-lineage judge
+again lands byte-identical to the naive gate on all four confusion cells, so the exact-collapse claim is
+not an artifact of the smaller cohort.
+
+Cost: 110 new Gemini calls total (39 cascade, 45 referee, 26 judge), since the 35 shared cases replay
+from the committed cache.
+
 ## Same-lineage judge referee (`imaging_judge_referee.py`, #168)
 
 Adapts the text lane's same-lineage judge (`experiments/referee/referee_judge.py`, #132): a judge
