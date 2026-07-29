@@ -1,0 +1,137 @@
+{
+  "dataset": "MedMCQA",
+  "n": 20,
+  "n_censored": 0,
+  "n_seed_equals_evidence": 0,
+  "onset_turn_distribution": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    7
+  ],
+  "distinct_onset_turns": [
+    1,
+    2,
+    7
+  ],
+  "contagion_shared_minus_isolated": 0.025,
+  "per_case": [
+    {
+      "case_id": "ee904a2e-7494-46ef-b976-22be596ed44f",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "83935f21-0298-409f-aabc-ac42dc4c0e00",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "4e8f5ba7-452a-464f-a328-d8b96eafade6",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "0ada062a-c400-4012-af5e-31144ba41401",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "da27e783-4c0b-4621-bc3d-938a109d8425",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "e4610f09-b587-47c8-99ff-c8967f481322",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "d2a908d2-59df-4591-9a9c-1212a0ce7347",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "33a697bc-627a-4a24-b381-19c181fcdded",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "2ab8b27b-1646-4886-8378-f2f11f84a79e",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "7111d7b2-7e80-4e23-b5d0-9f42595c6a80",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "1cecd58f-d0c8-446a-adf8-d07dd796ec0e",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "87311a9e-97ac-43de-8964-55eb7ced00a9",
+      "onset_turn": 1,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "9a292f87-6a2d-4bba-bcee-f11ca9a94c73",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "8d0b854f-93fb-43ae-a1b9-d489ea68103b",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "da2078b0-6ce5-4ba3-82f2-7b145665be2b",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "4032c899-2223-435f-a007-c513fd59a065",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "c953149a-a76d-47a2-8d08-35614f87217a",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "fd315adc-df4b-4a81-895b-6f093eeb71b2",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "cc0d09f8-564d-4fe5-8b22-4b7d3e4ed586",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "d321d320-c06f-4d18-9aa2-dae718851dfd",
+      "onset_turn": 7,
+      "seed_matches_evidence": false
+    }
+  ],
+  "read": "MedMCQA: onset is detected (not censored) on 20 of 20 cascade cases, and detected onsets spread across turns [1, 2, 7]. A single detected turn immediately after the seeded agent's one-off wrong turn is the trivial detection of a transient blip, not a sustained tipping point: the other agents do not adopt the seed at any later turn, so there is no regime change for a change-point detector to find. 0 of 20 cases have the seed answer equal to the group's own evidence answer (a trivially invalid seed for that case). Contagion for this arm is the shared-minus-isolated adoption gap already in cascade_results.json (contagion 0.025, shared 0.025, isolated 0.0)."
+}

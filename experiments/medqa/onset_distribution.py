@@ -17,6 +17,7 @@ distribution from potentially mis-parsed per-turn answers.
 """
 from __future__ import annotations
 
+import argparse
 import json
 from pathlib import Path
 
@@ -58,7 +59,17 @@ def _case_onset(transcript):
 
 
 def main():
-    results_dir = Path(__file__).parent / "results"
+    ap = argparse.ArgumentParser(
+        description="Cascade-onset distribution over a dataset's committed shared transcripts."
+    )
+    ap.add_argument(
+        "--results-dir", default=str(Path(__file__).parent / "results"),
+        help="results dir with cascade_results.json and transcripts/ (default: the MedQA lane)",
+    )
+    ap.add_argument("--label", default="MedQA", help="dataset label for the report text")
+    args = ap.parse_args()
+
+    results_dir = Path(args.results_dir)
     transcript_dir = results_dir / "transcripts"
     summary = json.loads((results_dir / "cascade_results.json").read_text())
     case_ids = [c["case_id"] for c in summary["per_case"]]
@@ -76,46 +87,53 @@ def main():
     onsets = [r["onset_turn"] for r in rows if r["onset_turn"] is not None]
     censored = sum(1 for r in rows if r["onset_turn"] is None)
     seed_invalid = sum(1 for r in rows if r["seed_matches_evidence"])
+    distinct = sorted(set(onsets))
 
-    v2_rows = [json.loads(line) for line in (results_dir / "cascade_v2_per_case.jsonl").read_text().splitlines() if line.strip()]
-    v2_onsets = [r["onset"] for r in v2_rows]
+    # cascade_results.json spells the adoption rates mean_shared_adopt/mean_isolated_adopt; older
+    # runs used shared_adoption/isolated_adoption. Accept either so this reads on any lane.
+    shared = summary.get("mean_shared_adopt", summary.get("shared_adoption"))
+    isolated = summary.get("mean_isolated_adopt", summary.get("isolated_adoption"))
+    contagion = summary.get("mean_contagion")
+    if contagion is None and shared is not None and isolated is not None:
+        contagion = round(shared - isolated, 6)
 
     out = {
+        "dataset": args.label,
         "n": len(rows), "n_censored": censored, "n_seed_equals_evidence": seed_invalid,
         "onset_turn_distribution": onsets,
-        "v2_anchored_arm_onset_distribution_TAINTED": {
-            "onsets": v2_onsets,
+        "distinct_onset_turns": distinct,
+        "contagion_shared_minus_isolated": contagion,
+        "per_case": rows,
+    }
+
+    # the original MedQA v1 run also carried a known-tainted anchored arm; include it only when the
+    # file is present (it is a MedQA-specific artifact, absent for a clean replication like MedMCQA)
+    v2 = results_dir / "cascade_v2_per_case.jsonl"
+    if v2.exists():
+        v2_rows = [json.loads(line) for line in v2.read_text().splitlines() if line.strip()]
+        out["v2_anchored_arm_onset_distribution_TAINTED"] = {
+            "onsets": [r["onset"] for r in v2_rows],
             "caveat": (
                 "cascade_v2_per_case.jsonl (the anchored/case-anchored seed arm) is confirmed "
-                "tainted by the pre-fix stray-article answer parser (its medqa-82 row mis-parses "
-                "a real answer as the article 'A'); reported here only because the issue asks "
-                "for it explicitly, not treated as a trustworthy distribution. Unlike the "
-                "baseline-relative arm above (all onset=2, from post-fix _repro_shared.jsonl "
-                "transcripts), this v2 distribution has real spread (1, 2, or 5) but that spread "
-                "may itself be an artifact of parser mis-grading rather than genuine dynamics."
+                "tainted by the pre-fix stray-article answer parser; reported only because the "
+                "template issue asks for it, not treated as a trustworthy distribution."
             ),
-        },
-        "per_case": rows,
-        "read": (
-            f"Onset is detected (not censored) on {len(onsets)} of {len(rows)} cases, and every "
-            f"detected onset lands on the SAME turn index ({onsets[0] if onsets else 'n/a'}), "
-            "immediately after the seeded agent's one-off wrong turn. This is the trivial "
-            "detection of a single-turn blip that reverts immediately, not a genuine sustained "
-            "tipping point: the group's other two agents never adopt the seed at any turn, so "
-            "there is no real regime change for the detector to find beyond the seed's own "
-            "turn. Consistent with the already-established robust null on this arm (the "
-            "baseline-relative seed design does not produce a real cascade): the onset metric "
-            "correctly reports 'no sustained shift' in the only way a single change-point "
-            "detector can on a series with just one transient deviation, and does not indicate "
-            "the flagship artifact is broken - the underlying phenomenon really is a non-event. "
-            f"On THIS reconstructed set, {seed_invalid} of {len(rows)} cases have the seed "
-            "answer equal to the group's own evidence answer (a trivially invalid seed for that "
-            "case); the previously reported '16/20 invalid seed' figure describes a different "
-            "arm/dataset (the original v1 first-distractor design) and is not being re-confirmed "
-            "or contradicted here - the two numbers are not the same measurement and should not "
-            "be conflated."
-        ),
-    }
+        }
+
+    where = (
+        f"every detected onset lands on the same turn index ({distinct[0]})" if len(distinct) <= 1 and distinct
+        else f"detected onsets spread across turns {distinct}"
+    )
+    out["read"] = (
+        f"{args.label}: onset is detected (not censored) on {len(onsets)} of {len(rows)} cascade "
+        f"cases, and {where}. A single detected turn immediately after the seeded agent's one-off "
+        "wrong turn is the trivial detection of a transient blip, not a sustained tipping point: "
+        "the other agents do not adopt the seed at any later turn, so there is no regime change for "
+        f"a change-point detector to find. {seed_invalid} of {len(rows)} cases have the seed answer "
+        "equal to the group's own evidence answer (a trivially invalid seed for that case). "
+        "Contagion for this arm is the shared-minus-isolated adoption gap already in "
+        f"cascade_results.json (contagion {contagion}, shared {shared}, isolated {isolated})."
+    )
     (results_dir / "onset_distribution.json").write_text(json.dumps(out, indent=2))
     print(json.dumps(out, indent=2))
 

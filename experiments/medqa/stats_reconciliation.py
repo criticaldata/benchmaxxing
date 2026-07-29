@@ -93,7 +93,14 @@ def _holm(pvals):
 def main():
     ap = argparse.ArgumentParser(description="Stats reconciliation over the committee-structure battery (#237).")
     ap.add_argument("--out", default="experiments/medqa/results")
+    ap.add_argument("--results-dir", default=None,
+                    help="dir holding the per-case arm jsonls (default: the MedQA lane); point at "
+                         "experiments/medmcqa/results to reconcile the MedMCQA battery")
     args = ap.parse_args()
+
+    global RESULTS
+    if args.results_dir:
+        RESULTS = Path(args.results_dir)
 
     rows_out = []
     for label, fn, a, b in CONTRASTS:
