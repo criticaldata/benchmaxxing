@@ -110,6 +110,11 @@ benchmaxxing run --stage solo --manifest path/to/manifest.csv --out runs/x --noi
 # the imaging lane (Lane A): cue_set "image-v1" in the config, plus the image root that
 # image_ref paths resolve against. Needs the `image` extra.
 benchmaxxing run --stage solo --manifest cxr.csv --image-root /data/images --out runs/cxr
+
+# run the cascade only where the committee was uncertain: a confident, correct committee is
+# the worst place to look for one. Ranks the cases from a previous solo run's records.
+benchmaxxing run --stage cascade --manifest medqa.csv --out runs/hard \
+    --hard-cases experiments/medqa/results/solo_records.jsonl --hard-k 20
 ```
 
 The smoke is the fastest way to see the whole pipeline compose and to confirm your change did not break a seam. It needs no data and no keys.

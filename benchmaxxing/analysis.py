@@ -30,6 +30,8 @@ __all__ = [
     "failure_vector",
     "lineage_overlap_test",
     "confidence_climb",
+    "case_difficulty",
+    "select_uncertain_cases",
 ]
 
 
@@ -238,6 +240,115 @@ def failure_vector(records) -> np.ndarray:
     """
     ordered = sorted(records, key=lambda r: (str(r.case_id), str(r.cue_type)))
     return np.array([int(bool(r.flipped)) for r in ordered], dtype=int)
+
+
+# --- hard-case selection (issue 116) -------------------------------------------------------
+# A cascade needs an uncertain committee. Seeding a shortcut into a committee that already agrees
+# on the right answer is the worst place to look for one, and random MedQA items are mostly easy,
+# which is one reason the first real cascade run came back null. These helpers read the solo
+# records a run already produced and pick out the cases where the committee was not confident:
+# where it got the clean twin wrong, where the models disagreed with each other, or where a
+# cosmetic cue was enough to move the answer.
+
+_FIELD_ALIASES = {
+    "cue_type": ("cue_type", "cue"),
+    "clean_answer": ("clean_answer", "clean"),
+    "contaminated_answer": ("contaminated_answer", "contaminated"),
+}
+
+
+def _field(record, name):
+    """Read a field from a FlipRecord or from a plain dict row, tolerating the saved names.
+
+    The committed ``solo_records.jsonl`` writes ``cue`` / ``clean`` / ``contaminated`` where the
+    dataclass has ``cue_type`` / ``clean_answer`` / ``contaminated_answer``, so a caller can pass
+    either the objects from a live run or the rows from a saved artifact.
+    """
+    for alias in _FIELD_ALIASES.get(name, (name,)):
+        if isinstance(record, dict):
+            if alias in record:
+                return record[alias]
+        elif hasattr(record, alias):
+            return getattr(record, alias)
+    return None
+
+
+def case_difficulty(records) -> dict:
+    """Per case, the three signals that say the committee was not confident.
+
+    Returns ``{case_id: {"clean_accuracy", "disagreement", "flip_rate", "n"}}``:
+
+    - ``clean_accuracy``: fraction of clean reads that were correct, over every model and cue for
+      that case. ``nan`` when no record carried ground truth.
+    - ``disagreement``: 1 minus the share of the most common clean answer, so 0.0 means every
+      model gave the same answer and higher means the roster split.
+    - ``flip_rate``: fraction of that case's twins whose answer moved when the cue was injected.
+    """
+    by_case: dict[str, list] = {}
+    for record in records:
+        by_case.setdefault(str(_field(record, "case_id")), []).append(record)
+
+    difficulty = {}
+    for case_id, rows in by_case.items():
+        correct = [
+            bool(_field(r, "clean_correct")) for r in rows if _field(r, "clean_correct") is not None
+        ]
+        answers = [_field(r, "clean_answer") for r in rows]
+        answers = [a for a in answers if a is not None]
+        modal_share = 0.0
+        if answers:
+            counts: dict = {}
+            for answer in answers:
+                counts[answer] = counts.get(answer, 0) + 1
+            modal_share = max(counts.values()) / len(answers)
+        difficulty[case_id] = {
+            "clean_accuracy": float(np.mean(correct)) if correct else float("nan"),
+            "disagreement": 1.0 - modal_share if answers else float("nan"),
+            "flip_rate": _mean([bool(_field(r, "flipped")) for r in rows]),
+            "n": len(rows),
+        }
+    return difficulty
+
+
+def select_uncertain_cases(records, k: int | None = None, *,
+                           max_clean_accuracy: float | None = None) -> list[str]:
+    """The case ids where the committee was least certain, hardest first.
+
+    Cases are ordered by clean accuracy ascending, then by disagreement and flip rate
+    descending, then by case id, so the result is deterministic for a fixed record set. A case
+    with no ground truth sorts as maximally hard on accuracy only if its other signals say so:
+    an unscoreable accuracy is treated as neutral (0.5) rather than as evidence either way.
+
+    Parameters
+    ----------
+    records:
+        FlipRecord objects, or the dict rows of a saved ``solo_records.jsonl``.
+    k:
+        Keep only the ``k`` hardest. ``None`` returns every case, ranked.
+    max_clean_accuracy:
+        Keep only cases at or below this clean accuracy, applied before ``k``. Pass chance level
+        (0.25 for a four-way MCQ) for the strict reading of "at or below chance".
+    """
+    difficulty = case_difficulty(records)
+
+    def sort_key(item):
+        case_id, signals = item
+        accuracy = signals["clean_accuracy"]
+        accuracy = 0.5 if accuracy != accuracy else accuracy  # nan: neutral, not hardest
+        return (accuracy, -signals["disagreement"], -signals["flip_rate"], case_id)
+
+    ranked = sorted(difficulty.items(), key=sort_key)
+    if max_clean_accuracy is not None:
+        ranked = [
+            (case_id, signals)
+            for case_id, signals in ranked
+            if signals["clean_accuracy"] <= max_clean_accuracy
+        ]
+    if k is not None:
+        if k < 0:
+            raise ValueError("k must be non-negative")
+        ranked = ranked[:k]
+    return [case_id for case_id, _ in ranked]
 
 
 def _phi_fallback(x, y) -> float:

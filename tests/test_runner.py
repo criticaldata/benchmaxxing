@@ -320,6 +320,98 @@ def test_estimates_are_empty_when_there_is_nothing_to_resample():
     assert runner.estimates("cascade", {"per_case": []}, seed=0) == {}
 
 
+# --- hard-case selection -------------------------------------------------------------------
+
+
+@pytest.fixture
+def hard_records(tmp_path) -> Path:
+    """Saved solo records where q2 is the hard case and q1 is easy."""
+    rows = [
+        {"case_id": "q1", "cue": "longest_option", "model": "m1", "clean": "A",
+         "contaminated": "A", "flipped": False, "clean_correct": True,
+         "contaminated_correct": True},
+        {"case_id": "q2", "cue": "longest_option", "model": "m1", "clean": "B",
+         "contaminated": "C", "flipped": True, "clean_correct": False,
+         "contaminated_correct": False},
+    ]
+    path = tmp_path / "solo_records.jsonl"
+    path.write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf-8")
+    return path
+
+
+def test_hard_cases_restrict_the_run(manifest, config_file, hard_records, tmp_path):
+    out = tmp_path / "hard"
+    rc = _run(
+        manifest, out, "cascade",
+        extra=["--config", str(config_file), "--hard-cases", str(hard_records), "--hard-k", "1"],
+    )
+    assert rc == 0
+
+    results = json.loads((out / "results.json").read_text())
+    assert results["plan"]["n_cases"] == 1
+    selection = results["plan"]["case_selection"]
+    assert selection["case_ids"] == ["q2"]  # the case the roster got wrong, not the easy one
+    # both counts are reported, so a --hard-k cut cannot read as the whole hard set
+    assert (selection["n_ranked"], selection["n_selected"]) == (2, 1)
+    # the restriction is part of what makes the run reproducible
+    manifest_json = json.loads((out / "run_manifest.json").read_text())
+    assert manifest_json["config"]["case_selection"]["case_ids"] == ["q2"]
+
+
+def test_hard_case_filter_on_accuracy(manifest, config_file, hard_records, tmp_path, capsys):
+    out = tmp_path / "hard-acc"
+    rc = _run(
+        manifest, out, "pilot",
+        extra=["--config", str(config_file), "--hard-cases", str(hard_records),
+               "--hard-max-accuracy", "0.25", "--dry-run"],
+    )
+    assert rc == 0
+    printed = capsys.readouterr().out
+    assert "hard-case selection: 1 case(s)" in printed
+
+
+def test_missing_hard_case_file_exits_nonzero(manifest, config_file, tmp_path, capsys):
+    rc = _run(manifest, tmp_path / "out", "pilot",
+              extra=["--config", str(config_file), "--hard-cases", str(tmp_path / "nope.jsonl")])
+    assert rc != 0
+    assert "not found" in capsys.readouterr().err.lower()
+
+
+def test_hard_cases_from_another_dataset_exit_nonzero(manifest, config_file, tmp_path, capsys):
+    records = tmp_path / "other.jsonl"
+    records.write_text(
+        json.dumps({"case_id": "not-in-this-manifest", "cue": "c", "model": "m", "clean": "A",
+                    "contaminated": "A", "flipped": False, "clean_correct": False,
+                    "contaminated_correct": False}) + "\n",
+        encoding="utf-8",
+    )
+    rc = _run(manifest, tmp_path / "out", "pilot",
+              extra=["--config", str(config_file), "--hard-cases", str(records)])
+    assert rc != 0
+    assert "same dataset" in capsys.readouterr().err
+
+
+def test_negative_hard_k_is_refused_naming_k(manifest, config_file, hard_records, tmp_path, capsys):
+    # ranked[:-1] would quietly keep everything but the easiest case at full API cost, so a
+    # negative k has to fail loudly instead of slicing.
+    rc = _run(manifest, tmp_path / "out", "cascade",
+              extra=["--config", str(config_file), "--hard-cases", str(hard_records),
+                     "--hard-k", "-1"])
+    assert rc != 0
+    assert "hard-k must be non-negative" in capsys.readouterr().err
+
+
+def test_zero_hard_k_is_refused_naming_k_not_the_manifest(manifest, config_file, hard_records,
+                                                          tmp_path, capsys):
+    # --hard-k 0 selects nothing; the error should name k, not the misleading "same dataset" one.
+    rc = _run(manifest, tmp_path / "out", "cascade",
+              extra=["--config", str(config_file), "--hard-cases", str(hard_records),
+                     "--hard-k", "0"])
+    assert rc != 0
+    err = capsys.readouterr().err
+    assert "kept no cases" in err
+    assert "same dataset" not in err
+
 # --- imaging lane --------------------------------------------------------------------------
 
 IMAGE_CONFIG = {"models": ["mock-a"], "dataset": "nih_cxr14", "cue_set": "image-v1", "seed": 5}

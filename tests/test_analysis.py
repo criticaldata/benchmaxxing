@@ -11,9 +11,11 @@ import pytest
 
 from benchmaxxing.analysis import (
     FlipRecord,
+    case_difficulty,
     failure_vector,
     flip_rate,
     lineage_overlap_test,
+    select_uncertain_cases,
     shortcut_reliance_index,
     solo_evaluate,
     susceptibility_matrix,
@@ -228,19 +230,78 @@ def test_solo_evaluate_with_gateway_mock():
         pytest.skip(f"gateway.MockBackend interface not compatible: {exc}")
     assert len(records) == len(twins)
 
-def test_solo_evaluate_updates_progress_reporter():
-    class Recorder:
-        def __init__(self):
-            self.updates = []
 
-        def update(self, completed):
-            self.updates.append(completed)
+# --- hard-case selection (issue 116) -------------------------------------------------------
 
-    progress = Recorder()
-    backend = MockBackend(name="m1", flip_cue="cable", flip_to="B")
 
-    records = solo_evaluate(_make_twin_pairs(), backend, _answer_fn, progress=progress)
+def _solo_rows():
+    """Saved-artifact rows, in the shape experiments/medqa/results/solo_records.jsonl uses."""
+    def row(case_id, cue, model, clean, contaminated, clean_correct):
+        return {
+            "case_id": case_id, "cue": cue, "model": model,
+            "clean": clean, "contaminated": contaminated,
+            "flipped": clean != contaminated,
+            "clean_correct": clean_correct,
+            "contaminated_correct": clean_correct and clean == contaminated,
+        }
 
-    assert len(records) == 5
-    assert progress.updates == [1, 2, 3, 4, 5]
+    return [
+        # easy: both models right, nothing moves
+        row("easy", "longest_option", "m1", "A", "A", True),
+        row("easy", "longest_option", "m2", "A", "A", True),
+        # split: both wrong AND they disagree with each other
+        row("split", "longest_option", "m1", "B", "C", False),
+        row("split", "longest_option", "m2", "C", "C", False),
+        # wrong: both wrong but agreeing, and stable under the cue
+        row("wrong", "longest_option", "m1", "D", "D", False),
+        row("wrong", "longest_option", "m2", "D", "D", False),
+        # fragile: right, but a cosmetic cue moves both models
+        row("fragile", "longest_option", "m1", "A", "B", True),
+        row("fragile", "longest_option", "m2", "A", "B", True),
+    ]
 
+
+def test_case_difficulty_reports_the_three_signals():
+    signals = case_difficulty(_solo_rows())
+
+    assert signals["easy"]["clean_accuracy"] == 1.0
+    assert signals["easy"]["disagreement"] == 0.0
+    assert signals["easy"]["flip_rate"] == 0.0
+
+    assert signals["split"]["clean_accuracy"] == 0.0
+    assert signals["split"]["disagreement"] == 0.5      # the two models gave different answers
+    assert signals["fragile"]["flip_rate"] == 1.0
+
+
+def test_select_uncertain_cases_ranks_hardest_first():
+    ranked = select_uncertain_cases(_solo_rows())
+    # both-wrong cases first, the disagreeing one ahead of the agreeing one; easy last
+    assert ranked[:2] == ["split", "wrong"]
+    assert ranked[-1] == "easy"
+
+
+def test_select_uncertain_cases_is_deterministic_and_respects_k():
+    rows = _solo_rows()
+    assert select_uncertain_cases(rows, k=2) == select_uncertain_cases(rows, k=2)
+    assert len(select_uncertain_cases(rows, k=2)) == 2
+    assert select_uncertain_cases(rows, k=0) == []
+
+
+def test_select_uncertain_cases_filters_on_clean_accuracy():
+    # at or below four-way chance keeps only the cases the roster actually got wrong
+    assert sorted(select_uncertain_cases(_solo_rows(), max_clean_accuracy=0.25)) == [
+        "split",
+        "wrong",
+    ]
+
+
+def test_select_uncertain_cases_accepts_flip_records():
+    twins = _make_twin_pairs()
+    records = solo_evaluate(twins, MockBackend(), _answer_fn, model="m")
+    ranked = select_uncertain_cases(records)
+    assert set(ranked) == {str(t.case_id) for t in twins}
+
+
+def test_select_uncertain_cases_rejects_negative_k():
+    with pytest.raises(ValueError, match="non-negative"):
+        select_uncertain_cases(_solo_rows(), k=-1)

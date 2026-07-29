@@ -99,6 +99,24 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p_run.add_argument("--limit", type=int, default=None, help="cap the number of cases")
     p_run.add_argument(
+        "--hard-cases",
+        default=None,
+        metavar="PATH",
+        help=(
+            "restrict the run to the cases a previous solo run found hardest "
+            "(a solo_records.jsonl); a cascade needs an uncertain committee"
+        ),
+    )
+    p_run.add_argument(
+        "--hard-k", type=int, default=None, help="how many hard cases to keep (default: all)"
+    )
+    p_run.add_argument(
+        "--hard-max-accuracy",
+        type=float,
+        default=None,
+        help="keep only cases at or below this clean accuracy (e.g. 0.25 for four-way chance)",
+    )
+    p_run.add_argument(
         "--image-root",
         default=None,
         metavar="PATH",
@@ -328,6 +346,55 @@ def _cmd_datasets(args: argparse.Namespace) -> int:
     return _cmd_datasets_list(args)
 
 
+def _select_hard_cases(cases, args) -> tuple[list, dict]:
+    """Keep only the cases a previous solo run found hardest, and describe the selection.
+
+    A cascade needs an uncertain committee: a confident, correct committee is the worst place to
+    look for one. The ranking itself is ``analysis.select_uncertain_cases`` over the records the
+    earlier run already wrote, so this only reads a file and filters.
+    """
+    from pathlib import Path
+
+    from benchmaxxing.analysis import select_uncertain_cases
+
+    path = Path(args.hard_cases)
+    if not path.exists():
+        raise FileNotFoundError(f"Hard-case records not found: {path}")
+    records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    if not records:
+        raise ValueError(f"Hard-case records file is empty: {path}")
+
+    # rank everything first, then cut: reporting both counts keeps the cut visible instead of
+    # letting a --hard-k silently look like the whole hard set
+    ranked = select_uncertain_cases(records, max_clean_accuracy=args.hard_max_accuracy)
+    # guard the cut the way analysis.select_uncertain_cases guards its own k: a negative --hard-k
+    # is a slice that quietly keeps everything but the easiest few at full API cost, and --hard-k 0
+    # selects nothing -- both should fail loudly naming k, not slide into the manifest error below
+    if args.hard_k is not None and args.hard_k < 0:
+        raise ValueError(f"--hard-k must be non-negative, got {args.hard_k}")
+    selected = ranked[: args.hard_k] if args.hard_k is not None else ranked
+    if args.hard_k is not None and ranked and not selected:
+        raise ValueError(
+            f"--hard-k={args.hard_k} kept no cases out of {len(ranked)} ranked; "
+            "drop --hard-k to keep them all or pass a positive count"
+        )
+    order = {case_id: rank for rank, case_id in enumerate(selected)}
+    kept = sorted((c for c in cases if c.case_id in order), key=lambda c: order[c.case_id])
+    if not kept:
+        raise ValueError(
+            f"none of the {len(selected)} hard case ids from {path} are in this manifest; "
+            "the records and the manifest have to come from the same dataset"
+        )
+    return kept, {
+        "source": str(path),
+        "k": args.hard_k,
+        "max_clean_accuracy": args.hard_max_accuracy,
+        "n_ranked": len(ranked),
+        "n_selected": len(selected),
+        "n_in_manifest": len(kept),
+        "case_ids": [c.case_id for c in kept],
+    }
+
 def _cmd_run(args: argparse.Namespace) -> int:
     """Drive one stage runner from a config plus a manifest and write the run directory.
 
@@ -348,6 +415,9 @@ def _cmd_run(args: argparse.Namespace) -> int:
         if args.out:
             config.out_dir = args.out
         cases = load_cases(args.manifest)
+        selection = None
+        if args.hard_cases:
+            cases, selection = _select_hard_cases(cases, args)
         plan = runner.plan_run(
             args.stage,
             cases,
@@ -360,6 +430,8 @@ def _cmd_run(args: argparse.Namespace) -> int:
         print(f"error: {exc}", file=sys.stderr)
         return 1
 
+    if selection is not None:
+        plan["case_selection"] = selection
     if args.dry_run:
         print(f"plan for stage {plan['stage']} (dry run, no API calls)")
         print(f"  models: {', '.join(plan['models'])}")
@@ -370,6 +442,12 @@ def _cmd_run(args: argparse.Namespace) -> int:
         print(f"  lineages: {json.dumps(lineages, sort_keys=True)}")
         print(f"  cues: {', '.join(plan['cue_types'])}")
         print(f"  lane: {plan['lane']}")
+        if selection is not None:
+            print(
+                f"  hard-case selection: {selection['n_in_manifest']} case(s) from "
+                f"{selection['source']} ({selection['n_selected']} selected of "
+                f"{selection['n_ranked']} ranked)"
+            )
         print(f"  cases: {plan['n_cases']}, twins: {plan['n_twins']}")
         if plan["skipped_cases"]:
             skipped = ", ".join(f"{k}={v}" for k, v in sorted(plan["skipped_cases"].items()) if v)
