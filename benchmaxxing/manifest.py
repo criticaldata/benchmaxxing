@@ -33,6 +33,27 @@ _PROBE_DISTRIBUTIONS = (
 )
 
 
+def git_sha() -> str:
+    """Short git commit SHA of the working tree, or 'unknown' outside a checkout.
+
+    Part of what makes an artifact traceable: the library versions say what was installed, this
+    says which revision of the pipeline produced it.
+    """
+    import subprocess
+
+    try:
+        result = subprocess.run(
+            ["git", "rev-parse", "--short", "HEAD"],
+            capture_output=True,
+            text=True,
+            timeout=5,
+            check=True,
+        )
+        return result.stdout.strip()
+    except Exception:  # noqa: BLE001 - degrade gracefully, this is diagnostic output
+        return "unknown"
+
+
 def library_versions() -> dict:
     """Return name -> version for installed numeric/optional deps (for RunManifest stamping)."""
     versions: dict[str, str] = {}

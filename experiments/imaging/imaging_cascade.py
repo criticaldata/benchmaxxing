@@ -1,13 +1,15 @@
 """Imaging-lane cascade (NIH watermark): does a multimodal committee adopt a wrong finding-read
 when two peer radiologists assert it, on a real X-ray with the watermark cue present?
 
-For each case (finding present): the holdout's clean read is its baseline and the planted wrong read
-is the opposite. On the watermark-contaminated image, compare the holdout's read when it sees two
-peers assert the wrong read (SHARED) vs when it reads alone (ISOLATED). Adoption = the holdout
-committed the wrong read; contagion = shared adopt - isolated adopt.
+For each case (finding present, ground truth "yes"): the planted wrong read is always "no", the
+definitely-false read (#332/#333: planting the flip of the holdout's own clean read could coincide
+with ground truth when the clean read was already wrong). On the watermark-contaminated image,
+compare the holdout's read when it sees two peers assert the wrong read (SHARED) vs when it reads
+alone (ISOLATED). Adoption = the holdout committed the wrong read; contagion = shared adopt - iso adopt.
 
-Result (NIH ChestX-ray14, 35 cases, gemini-2.5-flash): shared adopt 0.97 vs isolated 0.34,
-contagion +0.63. A confident wrong peer moves an imaging committee far more than a neutral cue.
+Result (NIH ChestX-ray14, 35 cases, gemini-2.5-flash, ground-truth-plant design): shared adopt 0.97
+vs isolated 0.43, contagion +0.54. Still highly significant (exact McNemar p<4e-6 on every cue) even
+after excluding cases where the old design's plant happened to coincide with ground truth.
 
 Uses a yes/no parser (no MCQ answer parsing), so it is unaffected by the answer-parser bug. Reads
 GEMINI_API_KEY from the env; a fully cached run reproduces the summary with no key. All paths are
@@ -113,7 +115,11 @@ def main():
         finding = case.label.split("|")[0].strip()
         img = Image.open(root / case.image_ref).convert("L")
         clean = cache.ask(q(finding), img)
-        wrong = "no" if clean == "yes" else "yes"
+        # Plant against GROUND TRUTH, not the clean read. Cases are finding-present (filtered above),
+        # so the definitely-false read is always "no". Planting the flip of the clean read would
+        # coincide with ground truth whenever the holdout was already wrong (~37% at NIH accuracy),
+        # scoring an accept-the-correction as contagion; see #332.
+        wrong = "no"
         try:
             cont = _to_pil(ci.build_image_twin(img, cue, ground_truth=finding, case_id=case.case_id).contaminated)
         except Exception as e:  # noqa: BLE001
@@ -123,7 +129,7 @@ def main():
         iso_read = cache.ask(q(finding), cont)
         shared_read = cache.ask(q(finding, board), cont)
         return {"case_id": case.case_id, "finding": finding, "clean": clean, "wrong": wrong,
-                "iso": iso_read, "shared": shared_read,
+                "clean_correct": int(clean == "yes"), "iso": iso_read, "shared": shared_read,
                 "iso_adopt": int(iso_read == wrong), "shared_adopt": int(shared_read == wrong)}
 
     rows = []

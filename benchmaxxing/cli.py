@@ -30,9 +30,9 @@ def build_parser() -> argparse.ArgumentParser:
         help="also print the git commit SHA and which optional extras are installed",
     )
 
-    p_datasets = sub.add_parser("datasets", help="dataset adapter commands")
+    p_datasets = sub.add_parser("datasets", help="dataset readiness commands")
     datasets_sub = p_datasets.add_subparsers(dest="datasets_command", metavar="command")
-    datasets_sub.add_parser("list", help="list the available dataset adapters (the default)")
+    datasets_sub.add_parser("list", help="list dataset readiness status (the default)")
     p_stats = datasets_sub.add_parser(
         "stats", help="summarize and sanity-check a manifest"
     )
@@ -42,6 +42,26 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
         metavar="PATH",
         help="root directory to resolve image_ref paths against (imaging manifests only)",
+    )
+    p_stage = datasets_sub.add_parser(
+        "stage",
+        help="build, validate and record a manifest from a staged raw release",
+    )
+    p_stage.add_argument("name", metavar="NAME", help="a registered dataset adapter name")
+    p_stage.add_argument(
+        "--raw-root",
+        default=None,
+        metavar="PATH",
+        help="the raw release (defaults to $BENCHMAXXING_DATASET_ROOT/<name>, else data/<name>)",
+    )
+    p_stage.add_argument(
+        "--out", default=None, metavar="PATH", help="where to write the manifest"
+    )
+    p_stage.add_argument("--limit", type=int, default=None, help="stage only the first N rows")
+    p_stage.add_argument(
+        "--check-images",
+        action="store_true",
+        help="also confirm every image_ref resolves on disk (imaging datasets)",
     )
 
     sub.add_parser("smoke", help="run the offline end-to-end pipeline smoke on synthetic data")
@@ -116,12 +136,46 @@ def _dataset_names() -> list[str]:
 
 
 def _cmd_datasets_list(_args: argparse.Namespace) -> int:
-    names = _dataset_names()
-    if names:
-        for name in names:
-            print(name)
-    else:
-        print("No dataset adapters are registered yet.")
+    from benchmaxxing.datasets import status
+
+    names = status.names()
+    if not names:
+        print("No dataset status entries are registered yet.")
+        return 0
+
+    headers = (
+        "dataset",
+        "lane",
+        "staged",
+        "adapter",
+        "solo",
+        "cascade",
+        "plausibility",
+        "referee",
+        "blocker",
+    )
+    rows = []
+    for name in names:
+        entry = status.get(name)
+        rows.append(
+            (
+                name,
+                entry.lane,
+                entry.staged,
+                entry.adapter,
+                entry.solo,
+                entry.cascade,
+                entry.plausibility,
+                entry.referee,
+                entry.blocker,
+            )
+        )
+
+    widths = [max(len(str(value)) for value in column) for column in zip(headers, *rows)]
+    print("  ".join(header.ljust(width) for header, width in zip(headers, widths)))
+    print("  ".join("-" * width for width in widths))
+    for row in rows:
+        print("  ".join(str(value).ljust(width) for value, width in zip(row, widths)))
     return 0
 
 
@@ -190,10 +244,44 @@ def _cmd_datasets_stats(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_datasets_stage(args: argparse.Namespace) -> int:
+    """Stage one dataset: build the manifest, validate it, and write its provenance record."""
+    from pathlib import Path
+
+    from benchmaxxing.datasets.staging import SOURCES, stage_dataset
+
+    try:
+        provenance = stage_dataset(
+            args.name,
+            raw_root=args.raw_root,
+            out=args.out,
+            limit=args.limit,
+            check_images=args.check_images,
+        )
+    except KeyError as exc:
+        print(f"error: {exc.args[0] if exc.args else exc}", file=sys.stderr)
+        return 1
+    except (FileNotFoundError, ValueError, NotImplementedError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+
+    source = SOURCES.get(args.name)
+    counts = provenance["counts"]
+    print(f"staged {args.name}: {counts['n_cases']} cases from {provenance['raw_root']}")
+    print(f"  manifest:   {provenance['manifest']}")
+    print(f"  sha256:     {provenance['manifest_sha256']}")
+    print(f"  provenance: {Path(provenance['manifest']).parent / (args.name + '_SOURCE.txt')}")
+    if source:
+        print(f"  source:     {source.url} (access: {source.access})")
+    return 0
+
+
 def _cmd_datasets(args: argparse.Namespace) -> int:
     sub_command = getattr(args, "datasets_command", None)
     if sub_command == "stats":
         return _cmd_datasets_stats(args)
+    if sub_command == "stage":
+        return _cmd_datasets_stage(args)
     return _cmd_datasets_list(args)
 
 

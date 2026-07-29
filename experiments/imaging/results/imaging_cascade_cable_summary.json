@@ -2,8 +2,8 @@
   "n": 35,
   "model": "gemini-2.5-flash",
   "cue": "cable",
-  "new_api_calls_this_run": 35,
+  "new_api_calls_this_run": 13,
   "shared_adopt": 1.0,
-  "isolated_adopt": 0.2,
-  "contagion": 0.8
+  "isolated_adopt": 0.4571,
+  "contagion": 0.5429
 }

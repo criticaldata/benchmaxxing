@@ -33,7 +33,7 @@ def a(s): out.append(s)
 a('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 350" '
   'font-family="system-ui, -apple-system, \'Segoe UI\', Helvetica, Arial, sans-serif">')
 # opaque white background so dark ink/axes are visible in any viewer (SVG has no default bg).
-a(f'<rect x="0" y="0" width="960" height="350" fill="#ffffff"/>')
+a('<rect x="0" y="0" width="960" height="350" fill="#ffffff"/>')
 
 # ---- shared lane legend (top right) ----
 a(f'<g font-size="12.5" fill="{SEC}">')
@@ -62,7 +62,8 @@ def title(x, l1, l2):
             f'<text x="{x}" y="60" font-size="11" fill="{SEC}">{l2}</text>')
 
 def bar(x, w, v, fill, vlab, vcol, stroke=None):
-    y = yv(v); h = 300 - y
+    y = yv(v)
+    h = 300 - y
     st = f' stroke="{stroke}" stroke-width="1.4"' if stroke else ""
     return (f'<rect x="{x}" y="{y:.1f}" width="{w}" height="{h:.1f}" rx="3" fill="{fill}"{st}/>'
             f'<text x="{x+w/2}" y="{y-6:.1f}" font-size="11" font-weight="700" '
@@ -136,8 +137,8 @@ a(title(660, "(c) Gaming: named vs. silent", "imaging drifts more, and names not
 a(y_axis_09(700, 900, "decoy uptake &#916; (rubric on&#8722;off)"))
 # text bar: uptake .275 solid (named)
 a(bar(728, 52, .275, BLUE, ".28", BLUE))
-a(f'<text x="754" y="266" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="middle">named</text>')
-a(f'<text x="754" y="280" font-size="9.5" fill="#ffffff" text-anchor="middle">11/11</text>')
+a('<text x="754" y="266" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="middle">named</text>')
+a('<text x="754" y="280" font-size="9.5" fill="#ffffff" text-anchor="middle">11/11</text>')
 # imaging bar: uptake .83 light fill + diagonal hatch (silent).
 # Hatch lines are clipped ANALYTICALLY to the bar box (no clipPath: renderer-robust).
 by0 = yv(.83)
@@ -147,8 +148,10 @@ a(f'<rect x="{bx0}" y="{byT:.1f}" width="{bx1-bx0}" height="{byB-byT:.1f}" rx="3
 a(f'<g stroke="{ORNG}" stroke-width="1.8">')
 c = 901
 while c <= 1174:
-    xA = max(bx0, c - byB); yA = c - xA
-    xB = min(bx1, c - byT); yB = c - xB
+    xA = max(bx0, c - byB)
+    yA = c - xA
+    xB = min(bx1, c - byT)
+    yB = c - xB
     if xA <= xB:
         a(f'<line x1="{xA:.1f}" y1="{yA:.1f}" x2="{xB:.1f}" y2="{yB:.1f}"/>')
     c += 8
