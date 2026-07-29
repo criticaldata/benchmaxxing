@@ -1,0 +1,39 @@
+{
+  "seed": 20240724,
+  "require_finding": true,
+  "url_base": "https://physionet.org/files/mimic-cxr-jpg/2.1.0/",
+  "arms": {
+    "solo": {
+      "manifest": "experiments/mimic_cxr_image/manifests/solo_600.csv",
+      "studies": 600,
+      "images": 834
+    },
+    "cross_modal": {
+      "manifest": "experiments/mimic_cxr_image/manifests/cross_modal_600.csv",
+      "studies": 600,
+      "images": 834
+    },
+    "referee": {
+      "manifest": "experiments/mimic_cxr_image/manifests/referee_300.csv",
+      "studies": 300,
+      "images": 417
+    },
+    "cascade": {
+      "manifest": "experiments/mimic_cxr_image/manifests/cascade_150.csv",
+      "studies": 150,
+      "images": 215
+    },
+    "blind_metric": {
+      "manifest": "experiments/mimic_cxr_image/manifests/blind_metric_100.csv",
+      "studies": 100,
+      "images": 141
+    },
+    "nih_match": {
+      "manifest": "experiments/mimic_cxr_image/manifests/nih_match_35.csv",
+      "studies": 26,
+      "images": 35
+    }
+  },
+  "download_list": "experiments/mimic_cxr_image/manifests/download_list.txt",
+  "download_images": 834
+}

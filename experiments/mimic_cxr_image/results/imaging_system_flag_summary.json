@@ -1,0 +1,27 @@
+{
+  "n": 834,
+  "model": "gemini-2.5-flash",
+  "cue": "watermark",
+  "board": "automated_system_flag",
+  "new_api_calls_this_run": 2072,
+  "shared_adopt": 0.4029,
+  "isolated_adopt": 0.2026,
+  "contagion": 0.2002,
+  "shared_vs_isolated_mcnemar": {
+    "gain": 210,
+    "lose": 43,
+    "pvalue": 0.0
+  },
+  "vs_peer_assertion_cascade": {
+    "system_flag_shared_adopt_k_of_n": [
+      336,
+      834
+    ],
+    "peer_assertion_shared_adopt_k_of_n": [
+      214,
+      215
+    ],
+    "fisher_pvalue": 0.0,
+    "fisher_oddsratio": 0.0032
+  }
+}
