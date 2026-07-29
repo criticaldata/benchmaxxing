@@ -103,8 +103,10 @@ def run_pilot(
     ``cues_bite`` is ``True`` when at least one twin flipped the model's answer, the go/no-go
     signal for spending compute on the full arms.
 
-    Returns ``{"flip_rate", "n", "cue_types", "cues_bite"}`` where ``flip_rate`` is the full
-    ``analysis.flip_rate`` breakdown and ``n`` is the number of twins evaluated.
+    Returns ``{"flip_rate", "n", "cue_types", "cues_bite", "records"}`` where ``flip_rate`` is the
+    full ``analysis.flip_rate`` breakdown, ``n`` is the number of twins evaluated, and ``records``
+    are the per-twin ``FlipRecord`` observations the rate was computed from (the sample a
+    confidence interval is resampled over).
     """
     cues = list(cue_types)
     selected_cases = list(cases)
@@ -126,6 +128,7 @@ def run_pilot(
         "n": len(records),
         "cue_types": cues,
         "cues_bite": any(r.flipped for r in records),
+        "records": records,
     }
 
 

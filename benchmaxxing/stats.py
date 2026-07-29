@@ -253,6 +253,55 @@ def bootstrap_ci(
     return point, float(low), float(high)
 
 
+def cluster_bootstrap_ci(
+    values: np.ndarray,
+    clusters,
+    statistic: Callable[[np.ndarray], float] = np.mean,
+    n_boot: int = 2000,
+    ci: float = 0.95,
+    seed: int = 0,
+) -> tuple[float, float, float]:
+    """Percentile bootstrap CI that resamples whole clusters instead of single observations.
+
+    ``clusters`` labels each value with the unit it shares correlated structure with -- the case
+    a twin came from, say. Each resample draws the distinct clusters with replacement and pools
+    every observation in the drawn clusters, so the interval answers "does this hold on new
+    clusters" rather than treating correlated observations inside one cluster as independent, which
+    understates the width. ``point`` is ``statistic`` over the observed values, unaffected by the
+    clustering. When every cluster is a singleton this reduces exactly to :func:`bootstrap_ci` with
+    the same seed.
+    """
+    x = np.asarray(values)
+    labels = list(clusters)
+    if x.ndim != 1:
+        raise ValueError("values must be 1-D")
+    if len(labels) != x.shape[0]:
+        raise ValueError("clusters must label every value")
+    if x.shape[0] == 0:
+        raise ValueError("values must be non-empty")
+    if not 0.0 < ci < 1.0:
+        raise ValueError("ci must be in the open interval (0, 1)")
+
+    # group indices by cluster in first-appearance order, so a run of singleton clusters draws the
+    # same index stream as bootstrap_ci and keeps its pinned intervals reproducible
+    grouped: dict = {}
+    for i, label in enumerate(labels):
+        grouped.setdefault(label, []).append(i)
+    groups = [np.asarray(idx) for idx in grouped.values()]
+    n = len(groups)
+
+    rng = np.random.default_rng(seed)
+    draw = rng.integers(0, n, size=(n_boot, n))
+    boot_stats = np.array(
+        [statistic(x[np.concatenate([groups[g] for g in row])]) for row in draw], dtype=float
+    )
+
+    alpha = 1.0 - ci
+    low, high = np.percentile(boot_stats, [100.0 * (alpha / 2.0), 100.0 * (1.0 - alpha / 2.0)])
+    point = float(statistic(x))
+    return point, float(low), float(high)
+
+
 def phi_coefficient(y_true, y_pred) -> float:
     """Phi coefficient for two binary vectors, i.e. the Matthews correlation coefficient.
 

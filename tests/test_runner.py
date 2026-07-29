@@ -9,9 +9,11 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import numpy as np
 import pytest
 
 from benchmaxxing import cli, runner
+from benchmaxxing.analysis import FlipRecord
 from benchmaxxing.config import Config
 from benchmaxxing.data import write_manifest
 from benchmaxxing.schema import Case, Modality
@@ -137,6 +139,114 @@ def test_cascade_spreads_the_seed_only_on_a_shared_board(tmp_path):
     assert len(list((tmp_path / "transcripts").glob("*.jsonl"))) == 4
 
 
+# --- uncertainty ---------------------------------------------------------------------------
+
+
+def _flip_records(n_flipped: int, n_total: int) -> list[FlipRecord]:
+    """A fixed record set: the first ``n_flipped`` twins flipped from correct to wrong."""
+    records = []
+    for i in range(n_total):
+        flipped = i < n_flipped
+        records.append(
+            FlipRecord(
+                case_id=f"c{i}",
+                cue_type="longest_option",
+                model="mock",
+                clean_answer="right",
+                contaminated_answer="wrong" if flipped else "right",
+                ground_truth="right",
+                flipped=flipped,
+                clean_correct=True,
+                contaminated_correct=not flipped,
+            )
+        )
+    return records
+
+
+def test_bootstrap_ci_is_pinned_for_a_fixed_record_set():
+    # 4 of 12 twins flipped. The interval is the seeded percentile bootstrap over those 12
+    # observations, so it is reproducible: a change here is a change in the resampling, not noise.
+    est = runner.estimates("solo", {"records": _flip_records(4, 12)}, seed=0)
+
+    flip = est["flip_rate"]
+    assert flip["point"] == pytest.approx(1 / 3)
+    assert flip["n"] == 12
+    assert flip["ci_level"] == 0.95
+    assert (flip["ci_low"], flip["ci_high"]) == pytest.approx((0.08333333, 0.58333333))
+
+    # the effect size resamples the paired difference, not the two accuracies separately
+    effect = est["shortcut_reliance"]
+    assert effect["point"] == pytest.approx(1 / 3)
+    assert (effect["ci_low"], effect["ci_high"]) == pytest.approx((0.08333333, 0.58333333))
+
+
+def test_bootstrap_ci_is_reproducible():
+    # Same records plus same seed gives the same interval, which is what makes a reported CI
+    # checkable by a reviewer rather than a number that moves on every rerun.
+    records = {"records": _flip_records(4, 12)}
+    assert runner.estimates("solo", records, seed=0) == runner.estimates("solo", records, seed=0)
+
+
+def test_solo_estimates_are_per_model_not_pooled():
+    results = {"records_by_model": {"m1": _flip_records(4, 12), "m2": _flip_records(2, 12)}}
+    est = runner.estimates("solo", results, seed=0)
+
+    assert est["m1::flip_rate"]["point"] == pytest.approx(1 / 3)
+    assert est["m2::flip_rate"]["point"] == pytest.approx(1 / 6)
+    # pooling the two models would report n=24 for a sample of 12 shared twins
+    assert {row["n"] for row in est.values()} == {12}
+
+
+def test_solo_ci_resamples_by_case_not_by_twin():
+    # A case is seen through several cue twins that share its difficulty, so drawing twins iid
+    # counts correlated observations as independent and reports a tighter interval than the
+    # case-level evidence supports. The interval must be resampled over cases instead.
+    records = []
+    for case in range(4):
+        flipped = case < 2  # two of four cases flip on every one of their cues
+        for cue in ("longest_option", "position_bias", "lexical_overlap"):
+            records.append(
+                FlipRecord(
+                    case_id=f"case{case}",
+                    cue_type=cue,
+                    model="mock",
+                    clean_answer="right",
+                    contaminated_answer="wrong" if flipped else "right",
+                    ground_truth="right",
+                    flipped=flipped,
+                    clean_correct=True,
+                    contaminated_correct=not flipped,
+                )
+            )
+    flip = runner.estimates("solo", {"records": records}, seed=0)["flip_rate"]
+    assert flip["point"] == pytest.approx(0.5)  # 6 of 12 twins flipped, unchanged by clustering
+    assert flip["n"] == 12
+    assert flip["n_cases"] == 4
+    # the same 12 values drawn iid, ignoring the case structure, give a strictly narrower interval
+    from benchmaxxing.stats import bootstrap_ci
+
+    _, iid_low, iid_high = bootstrap_ci(
+        np.array([1.0 if r.flipped else 0.0 for r in records]), seed=0
+    )
+    assert (flip["ci_high"] - flip["ci_low"]) > (iid_high - iid_low)
+
+
+def test_cascade_estimates_pair_shared_against_isolated():
+    results = {
+        "per_case": [
+            {"case_id": "a", "shared_adoption": 1.0, "isolated_adoption": 0.0, "onset": 1},
+            {"case_id": "b", "shared_adoption": 0.5, "isolated_adoption": 0.5, "onset": None},
+        ]
+    }
+    est = runner.estimates("cascade", results, seed=0)
+    assert est["adoption_delta"]["point"] == pytest.approx(0.5)
+    assert est["adoption_delta"]["n"] == 2
+    assert est["shared_adoption"]["point"] == pytest.approx(0.75)
+
+
+def test_estimates_are_empty_when_there_is_nothing_to_resample():
+    assert runner.estimates("cascade", {"per_case": []}, seed=0) == {}
+
 # --- the CLI -------------------------------------------------------------------------------
 
 
@@ -153,6 +263,13 @@ def test_each_stage_writes_a_run_directory(manifest, config_file, tmp_path, stag
     summary = (out / "summary.md").read_text()
     assert f"stage {stage}" in summary
     assert "| metric | value |" in summary
+    # every headline estimate ships with its interval
+    assert "95% percentile bootstrap" in summary
+    assert "| metric | estimate | 95% CI | n |" in summary
+    assert results["estimates"]
+    assert all(
+        {"point", "ci_low", "ci_high", "n"} <= set(row) for row in results["estimates"].values()
+    )
 
     assert json.loads((out / "config.json").read_text())["models"]
     manifest_json = json.loads((out / "run_manifest.json").read_text())

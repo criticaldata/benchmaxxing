@@ -119,6 +119,33 @@ def test_bootstrap_ci_validates_inputs():
         stats.bootstrap_ci(np.array([1.0, 2.0]), ci=1.5)
 
 
+def test_cluster_bootstrap_matches_iid_when_every_cluster_is_a_singleton():
+    # With one observation per cluster there is nothing to draw together, so the clustered CI must
+    # equal the ordinary bootstrap for the same seed -- that equivalence keeps the pinned solo
+    # intervals stable for one-twin-per-case data.
+    data = np.arange(12, dtype=float)
+    labels = [f"c{i}" for i in range(12)]
+    assert stats.cluster_bootstrap_ci(data, labels, seed=3) == stats.bootstrap_ci(data, seed=3)
+
+
+def test_cluster_bootstrap_is_wider_under_within_cluster_correlation():
+    # Four clusters, three identical values each: the real sample size is four, not twelve, so the
+    # clustered interval must be wider than pretending the twelve observations are independent.
+    values = np.array([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+    clusters = ["a", "a", "a", "b", "b", "b", "c", "c", "c", "d", "d", "d"]
+    point, low, high = stats.cluster_bootstrap_ci(values, clusters, seed=0)
+    _, iid_low, iid_high = stats.bootstrap_ci(values, seed=0)
+    assert point == pytest.approx(0.5)  # clustering never moves the point estimate
+    assert (high - low) > (iid_high - iid_low)
+
+
+def test_cluster_bootstrap_validates_inputs():
+    with pytest.raises(ValueError):
+        stats.cluster_bootstrap_ci(np.array([1.0, 2.0]), ["a"])  # label per value
+    with pytest.raises(ValueError):
+        stats.cluster_bootstrap_ci(np.array([]), [])
+
+
 def test_phi_coefficient_perfect_and_inverse():
     y = np.array([0, 1, 0, 1, 1, 0])
     assert stats.phi_coefficient(y, y) == pytest.approx(1.0)

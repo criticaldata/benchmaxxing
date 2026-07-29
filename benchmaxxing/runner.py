@@ -37,12 +37,14 @@ from benchmaxxing.prompts import DEFAULT_REGISTRY
 from benchmaxxing.roster import build_committee
 from benchmaxxing.runstore import RunStore
 from benchmaxxing.schema import ModelSpec, RunManifest
+from benchmaxxing.stats import bootstrap_ci, cluster_bootstrap_ci
 
 __all__ = [
     "STAGES",
     "SoloAgent",
     "CommitteeAgent",
     "build_backend",
+    "estimates",
     "model_specs",
     "plan_run",
     "run_stage",
@@ -401,8 +403,148 @@ def _fmt(value) -> str:
     return "-" if value is None else str(value)
 
 
-def summarize(stage: str, results: dict, plan: dict) -> str:
-    """Render the headline numbers of a finished stage as markdown."""
+# --- uncertainty ---------------------------------------------------------------------------
+# A point estimate on its own tells a reader nothing about how much of it is sampling noise, so
+# every headline rate ships with a percentile bootstrap CI over the observations it was computed
+# from (per twin for the solo lane, per case for the cascade), plus the paired effect size that
+# arm is actually about. The bootstrap is stats.bootstrap_ci, seeded from the run's config seed,
+# so a rerun of the same records reproduces the interval exactly.
+
+BOOTSTRAP_RESAMPLES = 2000
+CI_LEVEL = 0.95
+
+
+def _ci(values, seed: int, label: str, clusters=None) -> dict | None:
+    """Point estimate plus its bootstrap CI over ``values``; None when the sample is empty.
+
+    Pass ``clusters`` (one label per value) to resample whole clusters instead of single
+    observations. The solo lane uses it to draw cases rather than twins, so the interval answers
+    "does this hold on new cases" instead of counting correlated same-case twins as independent.
+    """
+    kept = [(v, c) for v, c in zip(values, clusters)] if clusters is not None else None
+    data = np.asarray([v for v in values if v is not None], dtype=float)
+    if data.size == 0:
+        return None
+    if kept is not None:
+        labels = [c for v, c in kept if v is not None]
+        point, low, high = cluster_bootstrap_ci(
+            data, labels, n_boot=BOOTSTRAP_RESAMPLES, ci=CI_LEVEL, seed=seed
+        )
+    else:
+        point, low, high = bootstrap_ci(
+            data, n_boot=BOOTSTRAP_RESAMPLES, ci=CI_LEVEL, seed=seed
+        )
+    out = {
+        "label": label,
+        "point": point,
+        "ci_low": low,
+        "ci_high": high,
+        "n": int(data.size),
+        "ci_level": CI_LEVEL,
+        "n_boot": BOOTSTRAP_RESAMPLES,
+    }
+    if kept is not None:
+        out["n_cases"] = len({c for _, c in kept})
+    return out
+
+
+def _records_by_model(results: dict) -> dict[str, list]:
+    """The per-twin records behind a pilot or solo/overlap result, keyed by model."""
+    by_model = results.get("records_by_model")
+    if by_model:
+        return {str(model): list(recs) for model, recs in by_model.items()}
+    return {"": list(results.get("records", []))}
+
+
+def _solo_estimates(records: list, seed: int, suffix: str) -> dict:
+    """The four solo-lane estimates over one model's records."""
+    scored = [
+        r for r in records if r.clean_correct is not None and r.contaminated_correct is not None
+    ]
+    return {
+        "flip_rate": _ci(
+            [float(r.flipped) for r in records], seed, f"flip rate{suffix}",
+            clusters=[r.case_id for r in records],
+        ),
+        "clean_accuracy": _ci(
+            [float(r.clean_correct) for r in scored], seed, f"clean accuracy{suffix}",
+            clusters=[r.case_id for r in scored],
+        ),
+        "contaminated_accuracy": _ci(
+            [float(r.contaminated_correct) for r in scored],
+            seed,
+            f"contaminated accuracy{suffix}",
+            clusters=[r.case_id for r in scored],
+        ),
+        "shortcut_reliance": _ci(
+            [float(r.clean_correct) - float(r.contaminated_correct) for r in scored],
+            seed,
+            f"shortcut reliance, clean minus contaminated{suffix}",
+            clusters=[r.case_id for r in scored],
+        ),
+    }
+
+
+def estimates(stage: str, results: dict, seed: int = 0) -> dict:
+    """Bootstrap CIs for the headline estimates of a finished stage.
+
+    Returns ``{name: {"point", "ci_low", "ci_high", "n", ...}}``. Two things make the intervals
+    mean what they say. The paired entries (``shortcut_reliance``, ``adoption_delta``) are the
+    effect sizes and resample the per-observation difference rather than the two rates
+    separately, so the interval respects the pairing. And the solo lane is reported per model
+    rather than pooled, and resampled over cases rather than twins: every model answers the same
+    twins and a case's several cue-twins share its difficulty, so pooling models or drawing twins
+    iid would both treat correlated observations as independent and quietly shrink the interval.
+    """
+    if stage == "cascade":
+        per_case = results.get("per_case", [])
+        shared = [row["shared_adoption"] for row in per_case]
+        isolated = [row["isolated_adoption"] for row in per_case]
+        paired = [s - i for s, i in zip(shared, isolated)]
+        found = {
+            "shared_adoption": _ci(shared, seed, "shared adoption"),
+            "isolated_adoption": _ci(isolated, seed, "isolated adoption"),
+            "adoption_delta": _ci(paired, seed, "adoption delta, shared minus isolated"),
+        }
+        return {name: est for name, est in found.items() if est is not None}
+
+    found = {}
+    for model, records in sorted(_records_by_model(results).items()):
+        suffix = f" ({model})" if model else ""
+        prefix = f"{model}::" if model else ""
+        for name, est in _solo_estimates(records, seed, suffix).items():
+            found[prefix + name] = est
+    return {name: est for name, est in found.items() if est is not None}
+
+
+_SOLO_CI_NOTE = (
+    "One row per model: every model answers the same twins, so a pooled interval would "
+    "understate the uncertainty. Resampled over cases (a case's twins are drawn together), so "
+    "the interval is about new cases, not new twins."
+)
+_CASCADE_CI_NOTE = "Resampled over cases."
+
+
+def _estimate_table(est: dict, note: str) -> list[str]:
+    """Render the estimates block as a markdown table."""
+    if not est:
+        return ["(no resampleable observations in this stage's output)", ""]
+    first = next(iter(est.values()))
+    lines = [
+        f"95% percentile bootstrap, {first['n_boot']} resamples. {note}",
+        "",
+        "| metric | estimate | 95% CI | n |",
+        "| --- | --- | --- | --- |",
+    ]
+    for row in est.values():
+        interval = f"[{_fmt(row['ci_low'])}, {_fmt(row['ci_high'])}]"
+        lines.append(f"| {row['label']} | {_fmt(row['point'])} | {interval} | {row['n']} |")
+    lines.append("")
+    return lines
+
+
+def summarize(stage: str, results: dict, plan: dict, est: dict | None = None) -> str:
+    """Render the headline numbers of a finished stage as markdown, with their CIs."""
     lines = [
         f"# benchmaxxing run: stage {stage}",
         "",
@@ -418,7 +560,11 @@ def summarize(stage: str, results: dict, plan: dict) -> str:
     ]
     for name, value in _headline(stage, results).items():
         lines.append(f"| {name} | {_fmt(value)} |")
-    lines.append("")
+    lines += ["", "## Estimates with uncertainty", ""]
+    lines += _estimate_table(
+        estimates(stage, results, plan["seed"]) if est is None else est,
+        _CASCADE_CI_NOTE if stage == "cascade" else _SOLO_CI_NOTE,
+    )
     return "\n".join(lines)
 
 
@@ -471,9 +617,16 @@ def write_outputs(out_dir, stage: str, config, results: dict, plan: dict, *,
         "config": out / "config.json",
         "run_manifest": out / "run_manifest.json",
     }
-    payload = {"run_id": run_id, "stage": stage, "plan": plan, "results": _jsonable(results)}
+    est = estimates(stage, results, config.seed)
+    payload = {
+        "run_id": run_id,
+        "stage": stage,
+        "plan": plan,
+        "estimates": _jsonable(est),
+        "results": _jsonable(results),
+    }
     paths["results"].write_text(json.dumps(payload, indent=2, sort_keys=True), encoding="utf-8")
-    paths["summary"].write_text(summarize(stage, results, plan), encoding="utf-8")
+    paths["summary"].write_text(summarize(stage, results, plan, est), encoding="utf-8")
     paths["config"].write_text(
         json.dumps(config.to_dict(), indent=2, sort_keys=True), encoding="utf-8"
     )
