@@ -223,6 +223,39 @@ def test_cue_strength_sweep_records_are_carried_through():
     assert points[0].records[0].cue_type == "cable"
 
 
+
+
+def test_cue_strength_sweep_updates_progress_reporter():
+    pytest.importorskip("PIL")
+
+    class Recorder:
+        def __init__(self):
+            self.started = []
+            self.updates = []
+
+        def start(self, detail=None):
+            self.started.append(detail)
+
+        def update(self, completed):
+            self.updates.append(completed)
+
+    img = np.zeros((16, 16), dtype=np.uint8)
+    progress = Recorder()
+
+    points = cue_strength_sweep(
+        img,
+        "cable",
+        [0.0, 0.5, 1.0],
+        BrightnessBackend(threshold=5.0),
+        answer_fn=lambda raw: raw,
+        progress=progress,
+    )
+
+    assert len(points) == 3
+    assert progress.started == ["dataset=imaging cases=1 strengths=3 cue=cable"]
+    assert progress.updates == [1, 2, 3]
+
+
 # --------------------------------------------------------------------------- issue 77
 
 

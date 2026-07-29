@@ -227,3 +227,20 @@ def test_solo_evaluate_with_gateway_mock():
     except Exception as exc:  # gateway.MockBackend interface differs: nothing to assert here.
         pytest.skip(f"gateway.MockBackend interface not compatible: {exc}")
     assert len(records) == len(twins)
+
+def test_solo_evaluate_updates_progress_reporter():
+    class Recorder:
+        def __init__(self):
+            self.updates = []
+
+        def update(self, completed):
+            self.updates.append(completed)
+
+    progress = Recorder()
+    backend = MockBackend(name="m1", flip_cue="cable", flip_to="B")
+
+    records = solo_evaluate(_make_twin_pairs(), backend, _answer_fn, progress=progress)
+
+    assert len(records) == 5
+    assert progress.updates == [1, 2, 3, 4, 5]
+

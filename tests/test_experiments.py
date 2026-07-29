@@ -137,6 +137,37 @@ def test_run_solo_baselines_runs_on_a_gemini_roster():
     assert set(res["failure_vectors"]) == {m.name for m in models}
 
 
+
+
+def test_run_pilot_progress_emits_start_and_updates():
+    class Recorder:
+        def __init__(self):
+            self.started = []
+            self.updates = []
+
+        def start(self, detail=None):
+            self.started.append(detail)
+
+        def update(self, completed):
+            self.updates.append(completed)
+
+    cases = [_text_case("c0"), _text_case("c1")]
+    progress = Recorder()
+
+    res = run_pilot(
+        cases,
+        _longest_option_backend,
+        _identity,
+        PILOT_CUES,
+        progress=progress,
+        dataset_name="medqa",
+    )
+
+    assert res["n"] == 4
+    assert progress.started == ["dataset=medqa cases=2 twins=4 cues=2"]
+    assert progress.updates == [1, 2, 3, 4]
+
+
 # --------------------------------------------------------------------------- holes test
 
 

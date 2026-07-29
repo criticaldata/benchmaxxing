@@ -18,6 +18,7 @@ from dataclasses import dataclass
 
 import numpy as np
 
+from benchmaxxing.progress import ProgressReporter
 from benchmaxxing.schema import Condition
 
 __all__ = [
@@ -105,7 +106,9 @@ def _backend_name(backend) -> str:
     return type(backend).__name__
 
 
-def solo_evaluate(twin_pairs, backend, answer_fn, model=None):
+def solo_evaluate(
+    twin_pairs, backend, answer_fn, model=None, progress: ProgressReporter | None = None
+):
     """Run ``backend`` on the clean and contaminated payload of each twin pair.
 
     Parameters
@@ -126,7 +129,7 @@ def solo_evaluate(twin_pairs, backend, answer_fn, model=None):
     """
     model_name = model if model is not None else _backend_name(backend)
     records: list[FlipRecord] = []
-    for tp in twin_pairs:
+    for i, tp in enumerate(twin_pairs, start=1):
         clean_raw = _invoke(backend, tp.payload(Condition.CLEAN))
         contaminated_raw = _invoke(backend, tp.payload(Condition.CONTAMINATED))
         clean_answer = answer_fn(clean_raw)
@@ -147,6 +150,8 @@ def solo_evaluate(twin_pairs, backend, answer_fn, model=None):
                 contaminated_correct=contaminated_correct,
             )
         )
+        if progress is not None:
+            progress.update(i)
     return records
 
 

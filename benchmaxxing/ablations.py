@@ -37,6 +37,7 @@ from benchmaxxing.analysis import flip_rate, solo_evaluate
 from benchmaxxing.blackboard import run_committee
 from benchmaxxing.cues.image import build_image_twin
 from benchmaxxing.onset import cascade_onset
+from benchmaxxing.progress import ProgressReporter, progress_reporter
 from benchmaxxing.referee import score_shortcut
 from benchmaxxing.roster import build_committee, default_roster
 from benchmaxxing.schema import Case, Committee, Condition, Transcript
@@ -301,6 +302,9 @@ def cue_strength_sweep(
     ground_truth: Any = None,
     case_id: str = "image_twin",
     model=None,
+    progress: ProgressReporter | None = None,
+    progress_every_n: int | None = None,
+    dataset_name: str = "imaging",
     **params,
 ) -> list[StrengthPoint]:
     """Dose-response over cue strength: per-strength flip rate on an image twin (issue 76).
@@ -337,7 +341,17 @@ def cue_strength_sweep(
         One dose-response point per strength, in the order given.
     """
     points: list[StrengthPoint] = []
-    for strength in strengths:
+    strength_values = list(strengths)
+    if progress is None and progress_every_n is not None:
+        progress = progress_reporter(
+            len(strength_values), label="cue_strength_sweep", every_n=progress_every_n
+        )
+    if progress is not None:
+        progress.start(
+            f"dataset={dataset_name} cases=1 strengths={len(strength_values)} "
+            f"cue={cue_type}"
+        )
+    for i, strength in enumerate(strength_values, start=1):
         injector_params = dict(params)
         injector_params[strength_param] = strength
         twin = build_image_twin(
@@ -357,6 +371,8 @@ def cue_strength_sweep(
                 records=records,
             )
         )
+        if progress is not None:
+            progress.update(i)
     return points
 
 

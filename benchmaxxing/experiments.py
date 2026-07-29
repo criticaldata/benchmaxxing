@@ -32,6 +32,7 @@ from benchmaxxing.blackboard import run_committee
 from benchmaxxing.cues.text import build_text_twin
 from benchmaxxing.extract import Abstention, parse_mcq_choice
 from benchmaxxing.onset import cascade_onset
+from benchmaxxing.progress import ProgressReporter, progress_reporter
 
 # The committee's outcome rule (majority of committed answers) lives in referee; reuse it for the
 # unseeded baseline verdict rather than reimplementing it, so the two definitions never drift.
@@ -85,7 +86,17 @@ def build_twins(cases, cue_types, limit: int | None = None) -> list:
 _build_twins = build_twins
 
 
-def run_pilot(cases, backend, answer_fn, cue_types, limit: int = 50) -> dict:
+def run_pilot(
+    cases,
+    backend,
+    answer_fn,
+    cue_types,
+    limit: int = 50,
+    *,
+    progress: ProgressReporter | None = None,
+    progress_every_n: int | None = None,
+    dataset_name: str = "text",
+) -> dict:
     """Stage-0 pilot: build twins for the first ``limit`` cases and see if the cues bite.
 
     One model (``backend`` + ``answer_fn``) is run solo over every clean/contaminated twin.
@@ -95,12 +106,25 @@ def run_pilot(cases, backend, answer_fn, cue_types, limit: int = 50) -> dict:
     Returns ``{"flip_rate", "n", "cue_types", "cues_bite"}`` where ``flip_rate`` is the full
     ``analysis.flip_rate`` breakdown and ``n`` is the number of twins evaluated.
     """
-    twins = _build_twins(cases, cue_types, limit=limit)
-    records = solo_evaluate(twins, backend, answer_fn)
+    cues = list(cue_types)
+    selected_cases = list(cases)
+    if limit is not None:
+        selected_cases = selected_cases[:limit]
+    twins = _build_twins(selected_cases, cues)
+    if progress is None and progress_every_n is not None:
+        progress = progress_reporter(
+            len(twins), label="run_pilot", every_n=progress_every_n
+        )
+    if progress is not None:
+        progress.start(
+            f"dataset={dataset_name} cases={len(selected_cases)} "
+            f"twins={len(twins)} cues={len(cues)}"
+        )
+    records = solo_evaluate(twins, backend, answer_fn, progress=progress)
     return {
         "flip_rate": flip_rate(records),
         "n": len(records),
-        "cue_types": list(cue_types),
+        "cue_types": cues,
         "cues_bite": any(r.flipped for r in records),
     }
 
