@@ -30,8 +30,8 @@
     },
     "nih_match": {
       "manifest": "experiments/mimic_cxr_image/manifests/nih_match_35.csv",
-      "studies": 35,
-      "images": 50
+      "studies": 26,
+      "images": 35
     }
   },
   "download_list": "experiments/mimic_cxr_image/manifests/download_list.txt",
