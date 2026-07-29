@@ -100,6 +100,7 @@ Each run caches per call, so an interrupted run resumes cheaply on re-run.
 M=experiments/mimic_cxr_image/manifests ; O=experiments/mimic_cxr_image/results ; RAW=~/mimic-cxr-raw
 
 python -m experiments.imaging.imaging_solo             --manifest $M/solo_600.csv         --image-root $RAW --out $O --n 9999               # #310
+python -m experiments.imaging.imaging_solo             --manifest $M/nih_match_35.csv     --image-root $RAW --out $O/nih_match_35 --n 9999  # NIH-matched (35 images)
 python -m experiments.imaging.imaging_cascade          --manifest $M/cascade_150.csv      --image-root $RAW --out $O/cascade_150 --n 9999   # #311
 python -m experiments.imaging.imaging_system_flag      --manifest $M/solo_600.csv         --image-root $RAW --out $O --n 9999               # #312
 python -m experiments.imaging.imaging_strength_cascade --manifest $M/solo_600.csv         --image-root $RAW --out $O --n 9999               # #313

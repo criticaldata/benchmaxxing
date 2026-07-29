@@ -45,8 +45,13 @@ DEFAULT_SIZES = {
     "referee": 300,
     "cascade": 150,
     "blind_metric": 100,
-    "nih_match": 35,
+    "nih_match": 35,  # IMAGES, not studies (see IMAGE_SIZED_ARMS): matched one-per-observation to NIH n=35
 }
+
+# Arms sized by image count rather than study count. nih_match is the matched-to-NIH cell: NIH runs
+# one image per case, so counting studies here (each expanded to all its views) would ship correlated
+# multi-view clusters and a mismatched n. Sizing by images keeps it exactly n one-per-observation.
+IMAGE_SIZED_ARMS = frozenset({"nih_match"})
 
 DEFAULT_URL_BASE = "https://physionet.org/files/mimic-cxr-jpg/2.1.0/"
 
@@ -71,6 +76,11 @@ def select_arms(cases, seed: int, sizes: dict[str, int], require_finding: bool =
     with the same seed, the smaller arms are strict subsets of the larger ones: the top-100 studies
     are a prefix of the top-300, which are a prefix of the top-600 (the prefix property of
     :func:`subsample_cases`). Returns ``{arm_name: [Case, ...]}``.
+
+    Arms in :data:`IMAGE_SIZED_ARMS` (``nih_match``) are instead sized by image count: the first N
+    images in study-rank order, so the matched-to-NIH cell is n images one-per-observation rather
+    than N studies expanded to more (correlated) views. It stays a prefix of the ranking, so it
+    still nests inside the study-sized arms.
     """
     eligible = [c for c in cases if not require_finding or _is_finding(c)]
     studies: dict[str, list] = {}
@@ -80,8 +90,15 @@ def select_arms(cases, seed: int, sizes: dict[str, int], require_finding: bool =
 
     arms: dict[str, list] = {}
     for arm, n in sizes.items():
-        picked = subsample_cases(study_keys, RunBudget(max_cases=n, seed=seed))
-        arms[arm] = [case for key in picked for case in studies[key]]
+        if arm in IMAGE_SIZED_ARMS:
+            # Rank studies, then take the first n images in that order. Ranking n studies always
+            # yields >= n images (each study has >= 1 image), and the slice is a prefix of the study
+            # ranking, so the arm still nests inside the study-sized arms.
+            picked = subsample_cases(study_keys, RunBudget(max_cases=min(n, len(study_keys)), seed=seed))
+            arms[arm] = [case for key in picked for case in studies[key]][:n]
+        else:
+            picked = subsample_cases(study_keys, RunBudget(max_cases=n, seed=seed))
+            arms[arm] = [case for key in picked for case in studies[key]]
     return arms
 
 
