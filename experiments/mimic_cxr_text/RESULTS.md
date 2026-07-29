@@ -193,3 +193,39 @@ genuine majority-pressure effect, consistent in direction with MedQA's own peer-
 Read together with #316: report-text MCQs are about as susceptible to a lone answer-preserving
 cue as MedQA, and once wrong, susceptible to social pressure — but here it's the number of
 peers, not how case-specific their rationale sounds, that moves the holdout.
+
+## Break-it A (#318): contaminated shared context (system pre-screen flag)
+
+Real-API results for #318, copied from `experiments/medqa/break_it.py`'s arm A into
+`experiments/mimic_cxr_text/break_it_a.py`, adapted per this dataset's report/question split
+(`_mcq` renders `case.report` as clinical context, same as #336/#348) and per #318's explicit
+instruction to choose the flagged wrong answer per-model so it differs from that model's own
+clean baseline (MedQA's original arm A picked one `wrong` per case regardless of model and was
+noted as confounded there: "flag equalled the model's baseline wrong answer, 0.90"). With the
+de-confounded choice, `control_rate` is 0 by construction, so `flag_rate` is directly the honest
+adoption-of-a-counterfactual-flag rate.
+
+n=20 hard cases (126 available), both tiers:
+
+```json
+{
+  "n_cases": 20,
+  "A_contaminated_context": {
+    "control_rate": 0.0,
+    "flag_rate": 0.45,
+    "effect": 0.45,
+    "per_model": {
+      "gemini-2.5-flash": {"control_rate": 0.0, "flag_rate": 0.4, "effect": 0.4},
+      "gemini-2.5-flash-lite": {"control_rate": 0.0, "flag_rate": 0.5, "effect": 0.5}
+    }
+  }
+}
+```
+
+Full record: [`results/break_it_a_summary.json`](results/break_it_a_summary.json).
+
+A wrong "automated pre-screen" flag is adopted by both tiers on MIMIC-CXR text (flash +0.40,
+flash-lite +0.50), comparable in direction and magnitude to MedQA's own system-flag finding
+(+0.26 flash, +0.30 flash-lite, control 0.00). Consistent with #317's cascade result: MIMIC-CXR
+text holdouts defer readily to an asserted wrong answer once they're already wrong alone,
+whether the source is a peer committee or an upstream system signal.
