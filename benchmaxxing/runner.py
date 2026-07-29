@@ -12,8 +12,8 @@ into an option string, and :class:`CommitteeAgent` does the same for a blackboar
 board appended. Prompt design itself is issue 107; these render the same lettered-MCQ shape the
 first real MedQA runs used, so the numbers stay comparable.
 
-The text lane is what runs today. The imaging lane needs the images loaded and injected as arrays
-(see ``experiments/imaging``), so ``cue_set="image-v1"`` raises rather than pretending.
+Both lanes run: ``cue_set="text-v1"`` builds text twins, ``cue_set="image-v1"`` loads the images
+and injects the image cues (that one needs ``--image-root`` and the ``image`` extra).
 """
 
 from __future__ import annotations
@@ -30,11 +30,13 @@ import numpy as np
 from benchmaxxing import gateway
 from benchmaxxing.analysis import flip_rate, shortcut_reliance_index
 from benchmaxxing.blackboard import AgentResponse
+from benchmaxxing.bundle import write_versions
 from benchmaxxing.cues.image import build_image_twin
 from benchmaxxing.cues.text import build_text_twin
 from benchmaxxing.experiments import run_cascade, run_holes_test, run_pilot, run_solo_baselines
 from benchmaxxing.extract import Abstention, parse_mcq_choice
 from benchmaxxing.manifest import library_versions, write_manifest
+from benchmaxxing.onset import adoption_rate
 from benchmaxxing.prompts import DEFAULT_REGISTRY
 from benchmaxxing.roster import build_committee
 from benchmaxxing.runstore import RunStore
@@ -624,8 +626,8 @@ def _run_cascade_stage(cases, specs, backend_for, config, transcript_dir) -> dic
                 "case_id": case.case_id,
                 "onset": result["onset"],
                 "seeded_answer": seeded,
-                "shared_adoption": _adoption(shared, seeded),
-                "isolated_adoption": _adoption(isolated, seeded),
+                "shared_adoption": adoption_rate(shared, seeded),
+                "isolated_adoption": adoption_rate(isolated, seeded),
             }
         )
 
@@ -648,13 +650,6 @@ def _run_cascade_stage(cases, specs, backend_for, config, transcript_dir) -> dic
     }
 
 
-def _adoption(transcript, seeded_answer) -> float:
-    """Fraction of agents (excluding the planted turn) that committed the seeded answer."""
-    seeded_agents = {t.agent_id for t in transcript.turns if t.seeded}
-    committed = {a: v for a, v in transcript.committed.items() if a not in seeded_agents}
-    if not committed:
-        return 0.0
-    return sum(1 for v in committed.values() if v == seeded_answer) / len(committed)
 
 
 # --- outputs -------------------------------------------------------------------------------
@@ -1077,13 +1072,15 @@ def _resolved_roster(config) -> list[dict]:
         for spec in model_specs(config)
     ]
 
+
 def write_outputs(out_dir, stage: str, config, results: dict, plan: dict, *,
                   manifest_path=None, run_id: str | None = None) -> dict:
-    """Write the run directory and return the paths written.
+    """Write the run bundle and return the paths written.
 
-    ``results.json`` and ``summary.md`` are the run; ``config.json`` and ``run_manifest.json``
-    are what make it self-describing (resolved config, model ids, seed, cue-set and dataset
-    revision, and the resolved library versions).
+    ``results.json`` and ``summary.md`` are the run; ``config.json``, ``versions.json`` and
+    ``run_manifest.json`` are what make it self-describing (resolved config, environment, model
+    ids, seed, cue-set and dataset revision). See :mod:`benchmaxxing.bundle` for the bundle
+    contract and for reading one back.
     """
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
@@ -1094,6 +1091,8 @@ def write_outputs(out_dir, stage: str, config, results: dict, plan: dict, *,
         "summary": out / "summary.md",
         "config": out / "config.json",
         "run_manifest": out / "run_manifest.json",
+        # what the run ran on: package version, git SHA, interpreter, pinned library versions
+        "versions": write_versions(out),
     }
     est = estimates(stage, results, config.seed)
     family = family_correction(significance_tests(stage, results, config.seed))

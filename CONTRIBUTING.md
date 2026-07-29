@@ -115,6 +115,10 @@ benchmaxxing run --stage solo --manifest cxr.csv --image-root /data/images --out
 # the worst place to look for one. Ranks the cases from a previous solo run's records.
 benchmaxxing run --stage cascade --manifest medqa.csv --out runs/hard \
     --hard-cases experiments/medqa/results/solo_records.jsonl --hard-k 20
+
+# render a finished run bundle into a standalone HTML report, and recompute the cascade
+# numbers from the saved transcripts (no model calls, no key)
+benchmaxxing report runs/hard --replay
 ```
 
 The smoke is the fastest way to see the whole pipeline compose and to confirm your change did not break a seam. It needs no data and no keys.
@@ -122,6 +126,22 @@ The smoke is the fastest way to see the whole pipeline compose and to confirm yo
 `benchmaxxing run` is the reproducible entry point for a stage: it resolves the config (models, cue set, seed), loads the manifest, injects the cues, calls the matching runner in `benchmaxxing/experiments.py`, and writes a self-describing run directory. A config file may be JSON (no extra needed) or YAML (needs the `config` extra). The default backend is Gemini, so a real run needs `GEMINI_API_KEY` and the `models` extra; `--backend mock` runs the same code path offline. The cascade stage also saves every shared and isolated transcript under `--out/transcripts/` for re-analysis.
 
 `summary.md` reports three things: the headline point estimates, the same estimates with a 95% bootstrap CI (seeded from the config seed, so a rerun reproduces them), and every p-value the stage produced corrected once across the whole family with Benjamini-Hochberg, with the family size stated. A p-value that cannot be adjusted (an undefined overlap, for example) is listed as dropped rather than quietly left out.
+
+### The run bundle
+
+Every run writes one self-contained directory, named `<stage>-<dataset>-<date>` under the config's `out_dir` unless `--out` says otherwise:
+
+```
+runs/cascade-medqa-20260723/
+  config.json         resolved config: models, cue set, seed, limits
+  versions.json       package version, git SHA, python, platform, pinned library versions
+  run_manifest.json   the RunManifest (model ids, prompt versions, dataset revision, roster)
+  results.json        structured output, plus the plan, the estimates and the corrected family
+  summary.md          the artifact a collaborator reads first
+  transcripts/        one saved transcript per case and condition (cascade only)
+```
+
+`benchmaxxing report <dir>` renders it to standalone HTML from the directory alone, and `--replay` recomputes the cascade adoption numbers from `transcripts/` and prints them next to the reported ones, so a reviewer can check a result rather than take it on faith. Do not commit real-run bundles that contain dataset-derived text; keep those outside the repo.
 ## 5. Reuse the originals (the design rule)
 
 The pipeline is thin wrappers over established, version-pinned libraries (numpy/scipy/scikit-learn for statistics, a change-point library for cascade onset, image libraries for cue injection, a single gateway for models). The bespoke core is kept small and tested hardest. Two rules follow:

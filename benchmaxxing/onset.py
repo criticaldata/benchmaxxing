@@ -166,6 +166,29 @@ def deference_rate(solo_correct, committee_answer, seeded_answer) -> float:
     return float(np.count_nonzero(deferred)) / denom
 
 
+def adoption_rate(transcript, seeded_answer) -> float:
+    """Fraction of the committee that ended up on the planted answer.
+
+    The planted turn itself is excluded: it was injected, not decided, so counting it would
+    guarantee a non-zero adoption in every run. Comparing this between the shared and the
+    isolated condition is the cascade contrast, and it is recomputable from a saved transcript,
+    which is what makes a committed run re-analysable without any model calls.
+
+    Args:
+        transcript: a ``schema.Transcript`` (or anything with ``turns`` and ``committed``).
+        seeded_answer: the planted answer to count adoption of.
+
+    Returns:
+        The fraction of non-seed agents whose committed answer is the seeded answer, or 0.0
+        when the committee committed nothing.
+    """
+    seeded_agents = {t.agent_id for t in transcript.turns if t.seeded}
+    committed = {a: v for a, v in transcript.committed.items() if a not in seeded_agents}
+    if not committed:
+        return 0.0
+    return sum(1 for value in committed.values() if value == seeded_answer) / len(committed)
+
+
 def confidence_trajectory(turns: list[Turn]) -> np.ndarray:
     """Extract the per-turn confidence series from a list of schema.Turn.
 
@@ -188,5 +211,6 @@ __all__ = [
     "cascade_onset",
     "contagion_index",
     "deference_rate",
+    "adoption_rate",
     "confidence_trajectory",
 ]

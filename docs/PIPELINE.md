@@ -88,8 +88,10 @@ Stage inputs and outputs
 Supporting modules: `transcript` persists and replays runs (`dump_transcript`, `load_transcript`,
 `replay`); `manifest` records a `RunManifest` (model ids, seed, cue-set and dataset revisions,
 library versions) for reproducibility; `config` and `cli` wire the entry points; `runner` is the
-`benchmaxxing run` wiring that turns a config plus a manifest into a run directory
-(`results.json`, `summary.md`, `config.json`, `run_manifest.json`) by calling the stage runners.
+`benchmaxxing run` wiring that turns a config plus a manifest into a run bundle by calling the
+stage runners; `bundle` defines what that bundle contains (`config.json`, `versions.json`,
+`run_manifest.json`, `results.json`, `summary.md`, `transcripts/`), reads one back, renders it to
+HTML, and replays the cascade numbers from the saved transcripts with no model calls.
 
 A note on the two prescribed stage names above: the scrutiny stage and the experiment stage-runner
 layer are currently provided by the modules listed (the EHR resource-context loader plus the

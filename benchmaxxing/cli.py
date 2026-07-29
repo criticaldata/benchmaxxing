@@ -135,23 +135,26 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="print the resolved plan (models, twins, estimated calls) and spend no API calls",
     )
+
+    p_report = sub.add_parser(
+        "report", help="render a finished run bundle into a standalone HTML report"
+    )
+    p_report.add_argument("bundle", metavar="DIR", help="a run bundle directory")
+    p_report.add_argument(
+        "-o", "--out", default=None, metavar="PATH", help="where to write the HTML"
+    )
+    p_report.add_argument(
+        "--replay",
+        action="store_true",
+        help="recompute the cascade numbers from the saved transcripts and compare them",
+    )
     return parser
 
 def _git_sha() -> str:
     """Short git commit SHA of the working tree, or 'unknown' if unavailable."""
-    import subprocess
+    from benchmaxxing.manifest import git_sha
 
-    try:
-        result = subprocess.run(
-            ["git", "rev-parse", "--short", "HEAD"],
-            capture_output=True,
-            text=True,
-            timeout=5,
-            check=True,
-        )
-        return result.stdout.strip()
-    except Exception:  # noqa: BLE001 - degrade gracefully, this is diagnostic output
-        return "unknown"
+    return git_sha()
 
 
 def _extras_status() -> dict[str, bool]:
@@ -402,9 +405,11 @@ def _cmd_run(args: argparse.Namespace) -> int:
     ``benchmaxxing.runner``, and report where the artifacts landed. All the stage logic lives in
     ``benchmaxxing.experiments`` and the wiring in ``benchmaxxing.runner``.
     """
+    from datetime import datetime
     from pathlib import Path
 
     from benchmaxxing import runner
+    from benchmaxxing.bundle import bundle_dir_name
     from benchmaxxing.config import load_config
     from benchmaxxing.data import load_cases
 
@@ -412,8 +417,13 @@ def _cmd_run(args: argparse.Namespace) -> int:
         config = load_config(args.config)
         if args.dataset:
             config.dataset = args.dataset
-        if args.out:
-            config.out_dir = args.out
+        # --out names the bundle directory; without it, one is named per the bundle convention
+        # (<stage>-<dataset>-<date>) under the config's out_dir, so runs do not overwrite
+        # each other
+        config.out_dir = args.out or str(
+            Path(config.out_dir)
+            / bundle_dir_name(args.stage, config.dataset, datetime.now().strftime("%Y%m%d"))
+        )
         cases = load_cases(args.manifest)
         selection = None
         if args.hard_cases:
@@ -484,10 +494,55 @@ def _cmd_run(args: argparse.Namespace) -> int:
         out_dir, args.stage, config, results, plan, manifest_path=args.manifest
     )
     print(f"stage {args.stage} finished over {plan['n_cases']} cases")
-    for name in ("results", "summary", "config", "run_manifest"):
+    for name in ("results", "summary", "config", "versions", "run_manifest"):
         print(f"  {name}: {paths[name]}")
+    print(f"render it with: benchmaxxing report {out_dir}")
     return 0
 
+
+def _cmd_report(args: argparse.Namespace) -> int:
+    """Render a finished run bundle into HTML, optionally replaying it from the transcripts."""
+    from benchmaxxing.bundle import load_bundle, render_bundle_report, replay_cascade
+
+    try:
+        bundle = load_bundle(args.bundle)
+        out = render_bundle_report(args.bundle, args.out)
+    except (FileNotFoundError, ValueError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+
+    stage = bundle["results"].get("stage")
+    print(f"report: {out}")
+    if not args.replay:
+        return 0
+
+    if stage != "cascade":
+        print(f"replay: nothing to replay for stage {stage!r} (no transcripts)")
+        return 0
+    try:
+        replayed = replay_cascade(args.bundle)
+    except (FileNotFoundError, ValueError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+
+    reported = bundle["results"]["results"]
+    reported_n = reported.get("n_cases", len(reported.get("per_case", [])))
+    print(f"replay: {replayed['n_cases']} case(s) recomputed from transcripts, no model calls")
+    ok = True
+    # a bundle that lost transcripts replays fewer cases than it reports; the surviving subset's
+    # means can still match (pinned adoption, for one), so coverage is checked before the means or
+    # a partial bundle certifies numbers it no longer covers
+    if replayed["skipped"] or replayed["n_cases"] != reported_n:
+        ok = False
+        missing = f", {len(replayed['skipped'])} missing transcripts" if replayed["skipped"] else ""
+        print(f"  coverage: replayed {replayed['n_cases']} of {reported_n} reported case(s)"
+              f"{missing}  MISMATCH")
+    for key in ("shared_adoption", "isolated_adoption", "adoption_delta"):
+        same = abs(replayed[key] - reported[key]) < 1e-9
+        ok = ok and same
+        print(f"  {key}: reported {reported[key]:.4f}, replayed {replayed[key]:.4f}"
+              f"{'' if same else '  MISMATCH'}")
+    return 0 if ok else 1
 
 def _cmd_config_show(args: argparse.Namespace) -> int:
     from benchmaxxing.config import load_config
@@ -637,6 +692,7 @@ _HANDLERS = {
     "config-show": _cmd_config_show,
     "smoke": _cmd_smoke,
     "run": _cmd_run,
+    "report": _cmd_report,
 }
 
 
