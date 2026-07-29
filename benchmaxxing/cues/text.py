@@ -154,11 +154,20 @@ def longest_option_bias(
 def lexical_overlap_bias(case: Case, option_index: int | None = None) -> TwinPair:
     """Increase lexical overlap between the stem and a distractor, without changing the answer.
 
-    The injected cue is surface lexical overlap: salient tokens from the stem are appended to a
-    wrong option so it shares more words with the question. Models that shortcut on "pick the
-    option that echoes the stem" are pushed toward the distractor. The target must be a distractor
-    (never the correct option), so the correct option text and the ground truth stay identical
-    across both conditions.
+    The injected cue is surface lexical overlap: salient tokens from the case's substantive text
+    are appended to a wrong option so it shares more words with that text. Models that shortcut on
+    "pick the option that echoes the stem" are pushed toward the distractor. The target must be a
+    distractor (never the correct option), so the correct option text and the ground truth stay
+    identical across both conditions.
+
+    The token source is ``case.report`` when present, else ``case.question``: some adapters (e.g.
+    ``mimic_cxr_text.py``) keep ``question`` a fixed, dataset-wide prompt stem with no per-case
+    content and put the actual case text in ``report``, in which case drawing from ``question``
+    alone would inject the identical suffix on every case (issue #336 review). Datasets with no
+    separate report (e.g. MedQA) are unaffected: ``case.report`` is ``None`` there, so this falls
+    back to ``case.question`` exactly as before. Tokens that appear in ANY option (not just the
+    target) are excluded, so the injected text can't echo another option's wording back — most
+    importantly, it can't quote the correct answer into a distractor.
     """
 
     _require_text_case(case)
@@ -179,15 +188,22 @@ def lexical_overlap_bias(case: Case, option_index: int | None = None) -> TwinPai
             "change the answer text"
         )
 
-    stem_tokens = _content_tokens(case.question)
+    source_text = case.report or case.question
+    all_option_tokens = {
+        t.lower() for opt in options for t in re.findall(r"[A-Za-z0-9]+", opt)
+    }
+
+    def _not_an_option_word(token: str) -> bool:
+        return token.lower() not in all_option_tokens
+
+    stem_tokens = list(filter(_not_an_option_word, _content_tokens(source_text)))
     if not stem_tokens:
-        stem_tokens = re.findall(r"[A-Za-z0-9]+", case.question)
+        stem_tokens = list(
+            filter(_not_an_option_word, re.findall(r"[A-Za-z0-9]+", source_text or ""))
+        )
 
     target = options[option_index]
-    present = {t.lower() for t in re.findall(r"[A-Za-z0-9]+", target)}
-    to_add = [t for t in stem_tokens if t.lower() not in present]
-    if not to_add:
-        to_add = stem_tokens
+    to_add = stem_tokens
 
     new_target = target + " " + " ".join(to_add) if to_add else target
 
