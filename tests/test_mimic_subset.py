@@ -35,11 +35,31 @@ def _study_set(cases):
 def test_smaller_arms_are_strict_subsets_of_larger_ones():
     # The whole point of one seed: blind < cascade < referee < solo must nest at study level.
     cases = _pool(50)
-    sizes = {"solo": 30, "referee": 20, "cascade": 10, "nih_match": 5}
+    sizes = {"solo": 30, "referee": 20, "cascade": 10}
     arms = select_arms(cases, seed=7, sizes=sizes)
-    solo, referee, cascade, nih = map(_study_set, (arms["solo"], arms["referee"], arms["cascade"], arms["nih_match"]))
-    assert nih < cascade < referee < solo
-    assert len(solo) == 30 and len(nih) == 5
+    solo, referee, cascade = map(_study_set, (arms["solo"], arms["referee"], arms["cascade"]))
+    assert cascade < referee < solo
+    assert len(solo) == 30
+
+
+def test_nih_match_is_sized_by_image_count_and_nests():
+    # nih_match matches NIH's one-image-per-observation shape: sized by IMAGE count, not studies.
+    # 2 images/study, so 5 studies would be 10 images; image-sizing must give exactly 5 images.
+    cases = _pool(50, images_per_study=2)
+    arms = select_arms(cases, seed=7, sizes={"cascade": 10, "nih_match": 5})
+    nih = arms["nih_match"]
+    assert len(nih) == 5                                  # exactly 5 images, not 5 studies (=10 images)
+    assert len(_study_set(nih)) <= 3                      # 5 images span a prefix of ranked studies
+    assert _study_set(nih) < _study_set(arms["cascade"])  # still nests inside the study-sized arm
+
+
+def test_nih_match_is_deterministic_and_odd_image_counts_are_exact():
+    # Exact n even when the walk would overshoot a multi-image study, and stable across runs.
+    cases = _pool(40, images_per_study=3)
+    a = select_arms(cases, seed=2, sizes={"nih_match": 7})["nih_match"]
+    b = select_arms(cases, seed=2, sizes={"nih_match": 7})["nih_match"]
+    assert len(a) == 7
+    assert [c.case_id for c in a] == [c.case_id for c in b]
 
 
 def test_all_images_of_a_selected_study_are_kept():
