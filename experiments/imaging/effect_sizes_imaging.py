@@ -92,10 +92,7 @@ def referee_vs_naive(results_dir):
         "mcnemar_b_gt_c": {"b": b, "c": c, "n": n},
         "achieved_power": round(achieved_power(n, psi, abs(delta)), 4) if delta else None,
         "required_pairs_for_power_0.8": required_pairs(psi, abs(delta)) if delta else None,
-        "note": ("paired bootstrap on (ref_flag==gt) - (naive_flag==gt), same 35 cases. "
-                 "CAVEAT: imaging_referee.jsonl predates #338 and 13 of its 35 rows still carry the "
-                 "old planted read, so this block is not post-fix. The citable referee figures come "
-                 "from the 22-row subgroup both designs agree on, see referee_valid_subgroup.py."),
+        "note": "paired bootstrap on (ref_flag==gt) - (naive_flag==gt), same 35 cases, post-#338.",
     }
 
 
@@ -122,11 +119,12 @@ def main():
             "excludes 0, "
             "and achieved power is 1.0 for all four cues at n=35 (only 7-10 pairs would suffice for "
             "80% power) - this is the best-powered result in the whole project. The referee-vs-naive "
-            "comparison is the opposite case: risk difference 0.17 favoring the referee, but the "
-            "bootstrap interval straddles 0 ([-0.029, 0.343]) and achieved power is only 0.41 (90 "
-            "cases needed for 0.8 power, only 35 available), so despite the suggestive McNemar b=9/c=3 "
-            "asymmetry this comparison should be read as directionally suggestive but not yet powered "
-            "to rule out chance."
+            "comparison is now positive too: risk difference 0.26 favoring the referee, and after the "
+            "#338 regeneration of imaging_referee.jsonl its bootstrap interval EXCLUDES 0 "
+            "([0.029, 0.486]), where the pre-fix draft of this file straddled it ([-0.029, 0.343]). "
+            "Achieved power is 0.59 (56 pairs needed for 0.8, only 35 available), so with McNemar "
+            "b=13/c=4 this is a real separation rather than a directional hint, though still "
+            "under-powered for a tight estimate."
         ),
     }
     (results_dir / "effect_sizes_imaging.json").write_text(json.dumps(out, indent=2))

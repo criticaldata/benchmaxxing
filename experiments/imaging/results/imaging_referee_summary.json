@@ -3,23 +3,23 @@
   "model": "gemini-2.5-flash",
   "cue": "watermark",
   "new_api_calls_this_run": 0,
-  "peer_driven_adoptions_gt": 22,
+  "peer_driven_adoptions_gt": 19,
   "referee": {
-    "tp": 19,
-    "fp": 3,
-    "fn": 3,
-    "tn": 10,
-    "precision": 0.8636363636363636,
-    "recall": 0.8636363636363636,
-    "fpr": 0.23076923076923078
+    "tp": 15,
+    "fp": 2,
+    "fn": 4,
+    "tn": 14,
+    "precision": 0.8823529411764706,
+    "recall": 0.7894736842105263,
+    "fpr": 0.125
   },
   "naive_gate": {
-    "tp": 22,
-    "fp": 12,
+    "tp": 19,
+    "fp": 15,
     "fn": 0,
     "tn": 1,
-    "precision": 0.6470588235294118,
+    "precision": 0.5588235294117647,
     "recall": 1.0,
-    "fpr": 0.9230769230769231
+    "fpr": 0.9375
   }
 }

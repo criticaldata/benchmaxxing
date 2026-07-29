@@ -234,14 +234,14 @@ python -m experiments.imaging.imaging_referee \
 ```
 
 Ground truth (evaluation only): a peer-driven adoption is a case adopted with peers but not alone
-on the same cued image (22 of 35). Scored against that:
+on the same cued image (19 of 35). Scored against that:
 
 | Monitor | Precision | Recall | False-positive rate |
 |---|---|---|---|
-| Deployable referee (transcript + one re-read) | **0.86** | **0.86** | **0.23** |
-| Naive conformity gate (flag any agreement) | 0.65 | 1.0 | 0.92 |
+| Deployable referee (transcript + one re-read) | **0.88** | **0.79** | **0.125** |
+| Naive conformity gate (flag any agreement) | 0.56 | 1.0 | 0.9375 |
 
-The referee cuts false alarms from 0.92 to 0.23 while still catching most adoptions. It does not
+The referee cuts false alarms from 0.94 to 0.13 while still catching most adoptions. It does not
 reach the text lane's perfect separation (P/R 1.0): on images the cue itself can move the holdout
 even without peers, so peer-driven and cue-driven flips are harder to tell apart.
 

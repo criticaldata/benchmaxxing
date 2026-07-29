@@ -65,31 +65,31 @@ def test_recomputed_contagion_matches_the_published_paper_values():
     }, got
 
 
-def test_referee_subgroup_is_the_22_rows_both_designs_agree_on():
-    rows = rvs.load_rows()
-    out = rvs.summarize(rows)
-    assert out["n_total"] == 35
-    assert out["n_valid_subgroup"] == 22
-    assert out["n_excluded_pre_fix"] == 13
-    assert all(r["wrong"] == "no" for r in rvs.split_rows(rows)[0])
-
-
-def test_referee_subgroup_metrics_match_the_paper():
-    """Referee 12/13 precision, 12/14 recall, 1/8 FPR; naive gate 7/8 FPR.
-
-    Asserted as exact fractions rather than 2-decimal rounding: the FPR is exactly 0.125, which sits
-    on a rounding boundary (the paper prints 0.13, round-half-up, while Python's round() gives 0.12),
-    so pinning the rounded form would encode a convention instead of the measurement.
+def test_no_pre_fix_rows_remain_in_either_referee_transcript():
+    """Both referee transcripts were regenerated against the post-#338 cascade, so the subgroup
+    restriction is gone. This is the invariant worth guarding: if a pre-#338 transcript is ever
+    restored, `wrong` picks up "yes" values again and the excluded count goes non-zero.
     """
-    out = rvs.summarize(rvs.load_rows())
-    ref, naive = out["referee"], out["naive_gate"]
-    assert (ref["tp"], ref["fp"], ref["fn"], ref["tn"]) == (12, 1, 2, 7)
-    assert ref["precision"] == pytest.approx(12 / 13)
-    assert ref["recall"] == pytest.approx(12 / 14)
+    for loader in (rvs.load_rows(), rvs.load_rows(rvs.JUDGE_JSONL)):
+        assert all(r["wrong"] == "no" for r in loader), "a row plants against the clean read again"
+    out = rvs.summarize(rvs.load_rows(), rvs.load_rows(rvs.JUDGE_JSONL))
+    assert out["n_total"] == 35
+    assert out["n_valid_subgroup"] == 35, "the full cohort should be citable now"
+    assert out["n_excluded_pre_fix"] == 0
+
+
+def test_referee_metrics_match_the_paper_on_the_full_cohort():
+    """Full n=35 after the regeneration. The referee-versus-gate separation is wider than it was on
+    the 22-row subgroup: FPR 0.125 against 0.9375.
+    """
+    out = rvs.summarize(rvs.load_rows(), rvs.load_rows(rvs.JUDGE_JSONL))
+    ref, gate = out["referee"], out["naive_gate"]
+    assert (ref["tp"], ref["fp"], ref["fn"], ref["tn"]) == (15, 2, 4, 14)
+    assert ref["precision"] == pytest.approx(0.8824, abs=1e-4)
+    assert ref["recall"] == pytest.approx(0.7895, abs=1e-4)
     assert ref["false_positive_rate"] == pytest.approx(0.125)
-    assert naive["false_positive_rate"] == pytest.approx(7 / 8)
-    # The whole point of the referee: far fewer false positives than the gate.
-    assert ref["false_positive_rate"] < naive["false_positive_rate"]
+    assert gate["false_positive_rate"] == pytest.approx(0.9375)
+    assert ref["false_positive_rate"] < gate["false_positive_rate"]
 
 
 def test_paper_phi_claim_holds_on_post_fix_transcripts():
@@ -166,16 +166,15 @@ def test_no_stale_effect_size_range_in_the_read_string():
 
 
 def test_same_lineage_judge_is_indistinguishable_from_the_naive_gate():
-    """The judge transcript is the SECOND pre-#338 file, and #350's first pass missed it.
-
-    On the valid 22-row subgroup the judge matches the naive gate on all three metrics, so the paper's
-    "collapses to the naive gate" is exact, not approximate. The paper previously quoted FPR 0.92, which
-    came from the stale all-35 computation.
+    """On the full regenerated cohort the transcript-only judge matches the naive gate on all three
+    metrics, so the paper's "collapses to the gate" is exact rather than approximate. An imaging turn
+    is one yes/no token, so the judge has nothing but agreement to read.
     """
     out = rvs.summarize(rvs.load_rows(), rvs.load_rows(rvs.JUDGE_JSONL))
     judge, gate = out["same_lineage_judge"], out["naive_gate"]
-    assert out["same_lineage_judge_n_valid"] == 22
-    assert judge["false_positive_rate"] == pytest.approx(0.875)
+    assert out["same_lineage_judge_n_valid"] == 35
+    assert judge["false_positive_rate"] == pytest.approx(0.9375)
     assert judge["false_positive_rate"] == pytest.approx(gate["false_positive_rate"])
     assert judge["precision"] == pytest.approx(gate["precision"])
+    assert judge["recall"] == pytest.approx(gate["recall"])
     assert out["judge_collapses_to_gate"] is True
