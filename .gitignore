@@ -15,4 +15,5 @@ data/
 # (solo_results.json etc.) are committed.
 experiments/mimic_cxr_text/*manifest*.csv
 experiments/mimic_cxr_text/results*/call_cache.jsonl
+experiments/mimic_cxr_text/results*/*call_cache.jsonl
 experiments/mimic_cxr_text/results*/transcripts/
