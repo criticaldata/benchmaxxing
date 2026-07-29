@@ -77,6 +77,16 @@ DATASET_STATUS: dict[str, DatasetStatus] = {
         referee="pending",
         blocker="requires credentialed PhysioNet MIMIC-CXR-JPG access",
     ),
+    "support2": DatasetStatus(
+        lane="tabular",
+        staged="open download, not staged locally",
+        adapter="coded loader",
+        solo="pending",
+        cascade="pending",
+        plausibility="pending",
+        referee="pending",
+        blocker="implementation only, the real run is tracked on #297",
+    ),
     "ehr": DatasetStatus(
         lane="tabular",
         staged="not staged",

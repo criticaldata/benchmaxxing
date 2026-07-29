@@ -108,6 +108,15 @@ SOURCES: dict[str, Source] = {
         layout="mimic-cxr-2.0.0-metadata.csv plus files/pXX/pXXXXXXXX/sYYYYYYYY/*.jpg",
         notes="Credentialing plus CITI training. Stage a small subset before any full run (#92).",
     ),
+    "support2": Source(
+        name="SUPPORT2",
+        url="https://archive.ics.uci.edu/dataset/880/support2",
+        access="open",
+        license="UCI Machine Learning Repository, CC BY 4.0",
+        layout="support2.csv (one row per hospitalised patient)",
+        notes="Tabular Lane C. Registered by #354; this entry added so the adapter is discoverable "
+              "by the staging report rather than only by the registry.",
+    ),
     "ehr": Source(
         name="MIMIC-IV derived resource table",
         url="https://physionet.org/content/mimiciv/",
