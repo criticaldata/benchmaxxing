@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import json
 import re
+import warnings
 from dataclasses import asdict, is_dataclass
 from enum import Enum
 from pathlib import Path
@@ -52,6 +53,7 @@ __all__ = [
     "build_backend",
     "estimates",
     "family_correction",
+    "lineage_sources",
     "significance_tests",
     "model_specs",
     "plan_run",
@@ -95,8 +97,47 @@ def _lineage(model_id: str) -> str:
 
 
 def model_specs(config) -> list[ModelSpec]:
-    """Turn the config's model ids into a roster of ``ModelSpec`` with inferred lineages."""
-    return [ModelSpec(name=name, lineage=_lineage(name)) for name in config.models]
+    """Turn the config into a roster of ``ModelSpec``.
+
+    A config entry that declares its ``lineage`` (and optionally ``tier`` / ``open_weights``)
+    is used as written. A bare model id falls back to :func:`_lineage`. The lineage split is
+    what the same-lineage vs cross-lineage arms are built on, so which of the two happened is
+    recorded per model by :func:`lineage_sources` and stamped into the run manifest.
+    """
+    declared = {entry["id"]: entry for entry in getattr(config, "roster", []) or []}
+    specs = []
+    for name in config.models:
+        entry = declared.get(name, {})
+        lineage = str(entry.get("lineage") or _lineage(name))
+        if not entry.get("lineage") and "/" in name:
+            # an org-namespaced id (meta-llama/llama-3.1-70b) infers to the org, not the family, so
+            # a mixed-convention roster gets a wrong within- vs cross-lineage split with nothing
+            # raising -- make the inference loud instead of leaving it only in the manifest
+            warnings.warn(
+                f"lineage for {name!r} was inferred as {lineage!r} from an org-prefixed id; "
+                "the within- vs cross-lineage split may be wrong. Declare `lineage` in the "
+                "config roster to pin it.",
+                stacklevel=2,
+            )
+        specs.append(
+            ModelSpec(
+                name=name,
+                lineage=lineage,
+                tier=str(entry.get("tier") or "default"),
+                is_open_weights=bool(entry.get("open_weights", False)),
+            )
+        )
+    return specs
+
+
+def lineage_sources(config) -> dict[str, str]:
+    """Per model, whether its lineage was ``declared`` in the config or ``inferred`` from the id."""
+    declared = {
+        entry["id"] for entry in getattr(config, "roster", []) or [] if entry.get("lineage")
+    }
+    return {
+        name: ("declared" if name in declared else "inferred") for name in config.models
+    }
 
 
 # --- backends ------------------------------------------------------------------------------
@@ -271,6 +312,7 @@ def plan_run(stage: str, cases, config, *, limit: int | None = None) -> dict:
         "stage": stage,
         "models": models,
         "lineages": {spec.name: spec.lineage for spec in model_specs(config)},
+        "lineage_sources": lineage_sources(config),
         "cue_types": list(cue_types),
         "n_cases": len(selected),
         "n_twins": n_twins,
@@ -753,6 +795,20 @@ def _headline(stage: str, results: dict) -> dict:
     }
 
 
+def _resolved_roster(config) -> list[dict]:
+    """The roster as the run actually used it, with the provenance of each lineage."""
+    sources = lineage_sources(config)
+    return [
+        {
+            "id": spec.name,
+            "lineage": spec.lineage,
+            "tier": spec.tier,
+            "open_weights": spec.is_open_weights,
+            "lineage_source": sources.get(spec.name, "inferred"),
+        }
+        for spec in model_specs(config)
+    ]
+
 def write_outputs(out_dir, stage: str, config, results: dict, plan: dict, *,
                   manifest_path=None, run_id: str | None = None) -> dict:
     """Write the run directory and return the paths written.
@@ -795,7 +851,9 @@ def write_outputs(out_dir, stage: str, config, results: dict, plan: dict, *,
             cue_set_version=config.cue_set,
             dataset_revision=str(manifest_path) if manifest_path else config.dataset,
             library_versions=library_versions(),
-            config=config.to_dict(),
+            # the resolved roster, not just the ids: a rerun needs to know which lineage each
+            # model was treated as, and whether that came from the config or from the id
+            config={**config.to_dict(), "resolved_roster": _resolved_roster(config)},
         ),
         paths["run_manifest"],
     )

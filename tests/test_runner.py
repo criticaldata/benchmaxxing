@@ -7,6 +7,7 @@ Everything here runs offline: the stages are driven with ``gateway.MockBackend``
 from __future__ import annotations
 
 import json
+import warnings
 from pathlib import Path
 
 import numpy as np
@@ -76,6 +77,69 @@ def test_lineage_inferred_from_the_model_id():
     assert runner._lineage("qwen2.5-72b-instruct") == "qwen"
     assert runner._lineage("llama-3.1-70b") == "llama"
 
+
+def test_declared_lineage_wins_over_the_id_heuristic():
+    # 'my-tuned-cxr' is exactly the case the prefix heuristic gets wrong: the id says nothing
+    # about the family, so the arm split has to come from the config.
+    config = Config.from_dict(
+        {
+            "models": [
+                "gemini-2.5-flash",
+                {"id": "my-tuned-cxr", "lineage": "llama", "tier": "8b", "open_weights": True},
+            ]
+        }
+    )
+    assert config.models == ["gemini-2.5-flash", "my-tuned-cxr"]
+
+    specs = {spec.name: spec for spec in runner.model_specs(config)}
+    assert specs["my-tuned-cxr"].lineage == "llama"
+    assert specs["my-tuned-cxr"].tier == "8b"
+    assert specs["my-tuned-cxr"].is_open_weights is True
+    # the bare id keeps the inferred lineage
+    assert specs["gemini-2.5-flash"].lineage == "gemini"
+    assert runner.lineage_sources(config) == {
+        "gemini-2.5-flash": "inferred",
+        "my-tuned-cxr": "declared",
+    }
+
+
+def test_bare_id_roster_behaves_exactly_as_before():
+    config = Config.from_dict({"models": ["gemini-2.5-flash", "qwen2.5-72b-instruct"]})
+    assert config.roster == []
+    assert [spec.lineage for spec in runner.model_specs(config)] == ["gemini", "qwen"]
+    assert set(runner.lineage_sources(config).values()) == {"inferred"}
+
+
+def test_org_prefixed_inferred_lineage_warns_at_run_time():
+    # 'meta-llama/llama-3.1-70b' infers to 'meta' (the org), not 'llama' (the family), so it would
+    # land in a different lineage than a plain 'llama-3.1-70b' and split the overlap arm wrong. The
+    # heuristic stays the documented fallback, but an org-prefixed inferred id has to be loud.
+    config = Config.from_dict({"models": ["meta-llama/llama-3.1-70b"]})
+    with pytest.warns(UserWarning, match="org-prefixed"):
+        specs = runner.model_specs(config)
+    assert specs[0].lineage == "meta"  # the wart the warning is about
+
+
+def test_declared_lineage_silences_the_org_prefix_warning():
+    # Declaring the lineage is the fix the warning points at, so it must not also warn.
+    config = Config.from_dict(
+        {"models": [{"id": "meta-llama/llama-3.1-70b", "lineage": "llama"}]}
+    )
+    with warnings.catch_warnings():
+        warnings.simplefilter("error")
+        specs = runner.model_specs(config)
+    assert specs[0].lineage == "llama"
+
+
+def test_declared_roster_round_trips_through_the_config():
+    declared = {"models": [{"id": "m", "lineage": "llama", "open_weights": True}], "seed": 2}
+    config = Config.from_dict(declared)
+    assert Config.from_dict(config.to_dict()) == config
+
+
+def test_model_entry_without_an_id_is_rejected():
+    with pytest.raises(ValueError, match="must carry an 'id'"):
+        Config.from_dict({"models": [{"lineage": "llama"}]})
 
 def test_solo_agent_parses_a_letter_reply_into_the_option():
     agent = runner.SoloAgent(runner.build_backend("mock", kind="mock"), name="mock")
@@ -372,6 +436,10 @@ def test_each_stage_writes_a_run_directory(manifest, config_file, tmp_path, stag
     assert manifest_json["cue_set_version"]
     assert manifest_json["library_versions"]["numpy"]
     assert manifest_json["dataset_revision"] == str(manifest)
+    # the roster as the run used it, with where each lineage came from
+    roster = manifest_json["config"]["resolved_roster"]
+    assert [entry["id"] for entry in roster] == CONFIG["models"]
+    assert all(entry["lineage_source"] == "inferred" for entry in roster)
 
 
 def test_dry_run_writes_nothing(manifest, tmp_path, capsys):

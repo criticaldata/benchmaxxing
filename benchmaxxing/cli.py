@@ -342,7 +342,11 @@ def _cmd_run(args: argparse.Namespace) -> int:
     if args.dry_run:
         print(f"plan for stage {plan['stage']} (dry run, no API calls)")
         print(f"  models: {', '.join(plan['models'])}")
-        print(f"  lineages: {json.dumps(plan['lineages'], sort_keys=True)}")
+        lineages = {
+            model: f"{lineage} ({plan['lineage_sources'][model]})"
+            for model, lineage in plan["lineages"].items()
+        }
+        print(f"  lineages: {json.dumps(lineages, sort_keys=True)}")
         print(f"  cues: {', '.join(plan['cue_types'])}")
         print(f"  cases: {plan['n_cases']}, twins: {plan['n_twins']}")
         print(f"  estimated model calls: {plan['estimated_calls']}")

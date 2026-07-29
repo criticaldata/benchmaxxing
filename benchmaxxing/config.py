@@ -24,6 +24,9 @@ class Config:
 
     Attributes:
         models: model ids in the roster for this run.
+        roster: optional per-model declarations (``id``, ``lineage``, ``tier``,
+            ``open_weights``), parallel to ``models``. Empty when the config lists bare ids,
+            in which case lineage is inferred from the id.
         dataset: dataset adapter name (see ``benchmaxxing.datasets``).
         cue_set: cue-set version to inject.
         seed: master random seed for reproducibility.
@@ -31,6 +34,7 @@ class Config:
     """
 
     models: list[str] = field(default_factory=lambda: list(DEFAULT_MODELS))
+    roster: list[dict] = field(default_factory=list)
     dataset: str = "worldmedqa_v2"
     cue_set: str = "v1"
     seed: int = 0
@@ -41,7 +45,16 @@ class Config:
         """Build a Config from a mapping, ignoring unknown keys.
 
         A ``models`` string is promoted to a one-element list and ``seed`` is coerced to
-        int, so hand-written or YAML-parsed configs stay forgiving.
+        int, so hand-written or YAML-parsed configs stay forgiving. A ``models`` entry may
+        also be a mapping that declares the model's lineage instead of leaving it to be
+        guessed from the id::
+
+            models:
+              - gemini-2.5-flash                       # lineage inferred
+              - {id: my-tuned-cxr, lineage: llama, tier: 8b, open_weights: true}
+
+        Declared entries are split into ``models`` (the ids, so every existing caller is
+        unchanged) and ``roster`` (the declarations).
         """
         if data is None:
             return cls()
@@ -55,7 +68,13 @@ class Config:
         if models is not None:
             if isinstance(models, str):
                 models = [models]
-            kwargs["models"] = list(models)
+            ids, roster = _split_roster(models)
+            kwargs["models"] = ids
+            # An explicit roster key wins over one recovered from the model entries, so a
+            # to_dict/from_dict round trip does not double up.
+            kwargs.setdefault("roster", roster)
+        if kwargs.get("roster") is not None:
+            kwargs["roster"] = [dict(entry) for entry in kwargs["roster"]]
         if kwargs.get("seed") is not None:
             kwargs["seed"] = int(kwargs["seed"])
         return cls(**kwargs)
@@ -63,6 +82,30 @@ class Config:
     def to_dict(self) -> dict[str, Any]:
         """Return a plain, JSON-serialisable dict of the config fields."""
         return asdict(self)
+
+
+def _split_roster(models) -> tuple[list[str], list[dict]]:
+    """Split a mixed list of ids and declaration mappings into ids plus declarations.
+
+    A bare id contributes no declaration, so the roster stays empty for the common case and
+    a caller can tell a declared lineage from an inferred one.
+    """
+    ids: list[str] = []
+    roster: list[dict] = []
+    for entry in models:
+        if isinstance(entry, Mapping):
+            model_id = entry.get("id") or entry.get("name")
+            if not model_id:
+                raise ValueError(
+                    f"a model entry must carry an 'id' (or 'name'); got {dict(entry)!r}"
+                )
+            ids.append(str(model_id))
+            declaration = {k: v for k, v in entry.items() if k != "name"}
+            declaration["id"] = str(model_id)
+            roster.append(declaration)
+        else:
+            ids.append(str(entry))
+    return ids, roster
 
 
 def _parse_yaml(text: str) -> dict[str, Any]:
