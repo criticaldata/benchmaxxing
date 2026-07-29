@@ -65,7 +65,9 @@ first_stay AS (
   SELECT
     hadm_id,
     first_careunit,
-    ROW_NUMBER() OVER (PARTITION BY hadm_id ORDER BY intime) AS rn
+    -- intime alone can tie when an admission has two stays starting at the same minute;
+    -- stay_id breaks it so careunit is deterministic across reruns of this query.
+    ROW_NUMBER() OVER (PARTITION BY hadm_id ORDER BY intime, stay_id) AS rn
   FROM `physionet-data.mimiciv_3_1_icu.icustays`
 ),
 admission_info AS (
