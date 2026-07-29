@@ -6,13 +6,17 @@ needed") with two adaptations required by this dataset's report/question split (
 1. ``_mcq`` now renders ``case.report`` as "Clinical context: ..." ahead of the question, same as
    ``experiments/medqa/reproduce.py``'s ``_mcq_prompt``. The MedQA original has no separate
    ``report`` field (the vignette lives in ``question``), so it never needed this.
-2. The case-anchored rationale detail is pulled from ``case.report`` (the actual clinical
-   narrative) instead of ``case.question`` (here, just the fixed short prompt stem, identical
-   across every case) — pulling from ``question`` would make every "anchored" rationale
-   generic/identical, defeating the point of a case-specific anchor.
+2. The case-anchored rationale detail is pulled from the FINDINGS/IMPRESSION body of
+   ``case.report`` (see ``_findings_text``), not the report's leading words. MIMIC-CXR reports
+   open with fixed header boilerplate ("FINAL REPORT", "EXAMINATION: CHEST (PA AND LAT)", ...)
+   before any clinical content, so slicing the first N words (as ``question`` would also do, were
+   it case-specific) mostly captures that boilerplate — making "anchored" and "generic" prompts
+   near-identical and any null result between them uninformative (#348 review).
 
 Everything else (the four conditions, the cache, the Wilson CI + paired McNemar test) is
-unchanged from the MedQA original; see its docstring for the method.
+unchanged from the MedQA original; see its docstring for the method. Two additional paired tests
+are reported beyond the MedQA original: anchored_strong vs generic (a second dose-response point)
+and anchored vs anchored_solo (the majority-vs-single-peer contrast), per #348 review.
 """
 
 from __future__ import annotations
@@ -34,6 +38,21 @@ from benchmaxxing.stats import mcnemar
 
 HOLDOUT = "gemini-2.5-flash-lite"
 _lock = threading.Lock()
+
+# Matches from the first FINDINGS: or IMPRESSION: header to the end of the report, so the
+# case-anchored rationale draws from actual clinical content instead of header boilerplate
+# ("FINAL REPORT", "EXAMINATION: ...", "INDICATION: ...") that precedes it in every MIMIC-CXR
+# report (#348 review).
+_FINDINGS_RE = re.compile(r"(?:FINDINGS|IMPRESSION)\s*:\s*(.*)", re.IGNORECASE | re.DOTALL)
+
+
+def _findings_text(report: str | None) -> str:
+    """Return the FINDINGS/IMPRESSION body of a MIMIC-CXR report, or the whole report if neither
+    header is present (falls back gracefully rather than returning an empty anchor)."""
+    if not report:
+        return ""
+    m = _FINDINGS_RE.search(report)
+    return m.group(1).strip() if m else report.strip()
 
 
 def _key():
@@ -157,7 +176,7 @@ def main():
         wrong = next((o for i, o in enumerate(opts) if i != case.answer_index and o != baseline), None)
         if wrong is None:
             return None
-        detail_source = case.report or case.question or ""
+        detail_source = _findings_text(case.report) or case.question or ""
         d = " ".join(detail_source.split()[:14])
         dl = " ".join(detail_source.split()[:30])
         conds = {
@@ -190,12 +209,21 @@ def main():
         res[cond] = {"conform": k, "n": n, "rate": (k / n) if n else None,
                      "wilson95": [round(lo, 3) if lo is not None else None,
                                   round(hi, 3) if hi is not None else None]}
-    b = sum(1 for r in rows if r["anchored"] and not r["generic"])
-    c = sum(1 for r in rows if r["generic"] and not r["anchored"])
-    mc = mcnemar(b, c)
-    res["anchored_vs_generic_paired"] = {"anchored_only": b, "generic_only": c,
-                                         "mcnemar_stat": mc.statistic, "mcnemar_p": mc.pvalue,
-                                         "rate_diff": (res["anchored"]["rate"] - res["generic"]["rate"]) if n else None}
+    def _paired(cond_a, cond_b):
+        a_only = sum(1 for r in rows if r[cond_a] and not r[cond_b])
+        b_only = sum(1 for r in rows if r[cond_b] and not r[cond_a])
+        mc = mcnemar(a_only, b_only)
+        return {f"{cond_a}_only": a_only, f"{cond_b}_only": b_only,
+                "mcnemar_stat": mc.statistic, "mcnemar_p": mc.pvalue,
+                "rate_diff": (res[cond_a]["rate"] - res[cond_b]["rate"]) if n else None}
+
+    res["anchored_vs_generic_paired"] = _paired("anchored", "generic")
+    # A second dose-response point (does a longer, more specific rationale move it further?).
+    res["anchored_strong_vs_generic_paired"] = _paired("anchored_strong", "generic")
+    # Majority-vs-single-peer contrast (same anchored rationale, one peer vs two): #348 review
+    # flagged this as the contrast that IS significant, which the write-up should foreground
+    # instead of the null anchored-vs-generic comparison.
+    res["anchored_vs_anchored_solo_paired"] = _paired("anchored", "anchored_solo")
     (out / "push_c_summary.json").write_text(json.dumps(res, indent=2))
     print(json.dumps(res, indent=2))
 

@@ -137,14 +137,24 @@ the bare/baseline-relative seed, and a copy of `experiments/medqa/push_c.py`
 (`experiments/mimic_cxr_text/push_c.py`) for the case-anchored plausibility dose-response, per
 #317's "copy this template... adapt the loader if needed."
 
-**Two adaptations were required**, both stemming from this dataset's report/question split
-(#336): `push_c.py`'s `_mcq` builder had no "Clinical context" section at all (MedQA's original
-has no separate `report` field, so it never needed one — without this fix the holdout would be
-answering blind, the same class of bug as #336's bug 2), and the case-anchored rationale's detail
-extraction pulled from `case.question`, which here is a fixed 8-word stem identical across every
-case (would make every "anchored" rationale generic) — fixed to pull from `case.report`, the
-actual clinical narrative. `build_solo_records.py` reconstructs the `--solo-records` input
-`push_c.py` needs (which model) from the already-cached n=600 solo run, with no new API calls.
+**Three adaptations were required**, all stemming from this dataset's report/question split
+(#336) or its report format (#348):
+
+1. `push_c.py`'s `_mcq` builder had no "Clinical context" section at all (MedQA's original has
+   no separate `report` field, so it never needed one) — without this the holdout would answer
+   blind, the same class of bug as #336's bug 2.
+2. The case-anchored rationale's detail extraction originally pulled from `case.question` (here
+   a fixed 8-word stem, identical across every case) — fixed to pull from `case.report`.
+3. **(caught by @sebasmos on the first push_c.py run)** pulling the first 14/30 words of the
+   *whole* report lands on MIMIC-CXR's fixed header boilerplate ("FINAL REPORT", "EXAMINATION:
+   CHEST (PA AND LAT)", "INDICATION: ...") rather than clinical content, so `anchored` and
+   `generic` prompts were near-identical and the anchored-equals-generic null measured the
+   boilerplate, not anchoring. Fixed with `_findings_text()`, which extracts from the first
+   `FINDINGS:`/`IMPRESSION:` header onward (falling back to the whole report if neither is
+   present); spot-checked against real reports to confirm it captures actual clinical sentences.
+
+`build_solo_records.py` reconstructs the `--solo-records` input `push_c.py` needs from the
+already-cached n=600 solo run, with no new API calls.
 
 ### Bare seed (baseline-relative), n=20
 
@@ -161,21 +171,25 @@ Full record: [`results/cascade_results.json`](results/cascade_results.json).
 {
   "n_hard_cases": 60,
   "generic": {"conform": 51, "rate": 0.85, "wilson95": [0.739, 0.919]},
-  "anchored": {"conform": 51, "rate": 0.85, "wilson95": [0.739, 0.919]},
+  "anchored": {"conform": 53, "rate": 0.883, "wilson95": [0.778, 0.942]},
   "anchored_strong": {"conform": 55, "rate": 0.917, "wilson95": [0.819, 0.964]},
-  "anchored_solo": {"conform": 43, "rate": 0.717, "wilson95": [0.592, 0.815]},
-  "anchored_vs_generic_paired": {"anchored_only": 3, "generic_only": 3, "mcnemar_p": 1.0, "rate_diff": 0.0}
+  "anchored_solo": {"conform": 44, "rate": 0.733, "wilson95": [0.61, 0.829]},
+  "anchored_vs_generic_paired": {"mcnemar_p": 0.625, "rate_diff": 0.033},
+  "anchored_strong_vs_generic_paired": {"mcnemar_p": 0.289, "rate_diff": 0.067},
+  "anchored_vs_anchored_solo_paired": {"mcnemar_p": 0.0039, "rate_diff": 0.15}
 }
 ```
 
 Full record: [`results/push_c_summary.json`](results/push_c_summary.json).
 
-Unlike MedQA (generic 0.32 baseline conformity), MIMIC-CXR text's baseline conformity is already
-very high (0.85) — on these "hard" cases (holdout already wrong alone), two confident attendings
-asserting *any* wrong answer, anchored or not, draw strong deference. `anchored` adds nothing
-over `generic` here (McNemar p=1.0, unlike MedQA's significant +0.12 lift), but `anchored_strong`
-(a longer, more specific rationale) does push conformity higher, and `anchored_solo` (a single
-peer instead of two) drops it — a majority-pressure effect, consistent in direction with MedQA.
+Baseline conformity on these "hard" cases (holdout already wrong alone) is high across the
+board (0.85-0.92), much higher than MedQA's generic baseline (0.32) — MIMIC-CXR text holdouts
+defer to two confident attendings far more readily than MedQA holdouts do. Neither
+`anchored` vs `generic` (p=0.625) nor `anchored_strong` vs `generic` (p=0.289) reaches
+significance, so **this is not read as a plausibility dose-response** the way MedQA's is (MedQA:
++0.12 over generic, p=0.041). **The contrast that is significant** is `anchored` vs
+`anchored_solo` (two peers vs one, same anchored rationale): p=0.0039, rate diff +0.15 — a
+genuine majority-pressure effect, consistent in direction with MedQA's own peer-count findings.
 Read together with #316: report-text MCQs are about as susceptible to a lone answer-preserving
-cue as MedQA, but more susceptible to social pressure once wrong, independent of whether that
-pressure cites case-specific detail.
+cue as MedQA, and once wrong, susceptible to social pressure — but here it's the number of
+peers, not how case-specific their rationale sounds, that moves the holdout.
