@@ -21,7 +21,7 @@ from __future__ import annotations
 import json
 import re
 import warnings
-from dataclasses import asdict, is_dataclass
+from dataclasses import asdict, is_dataclass, replace
 from enum import Enum
 from pathlib import Path
 
@@ -30,6 +30,7 @@ import numpy as np
 from benchmaxxing import gateway
 from benchmaxxing.analysis import flip_rate, shortcut_reliance_index
 from benchmaxxing.blackboard import AgentResponse
+from benchmaxxing.cues.image import build_image_twin
 from benchmaxxing.cues.text import build_text_twin
 from benchmaxxing.experiments import run_cascade, run_holes_test, run_pilot, run_solo_baselines
 from benchmaxxing.extract import Abstention, parse_mcq_choice
@@ -66,24 +67,34 @@ __all__ = [
 STAGES = ("pilot", "solo", "overlap", "cascade")
 
 # cue_set version -> the cue types it injects. "v1" is the bare Config default and means the text
-# set, which is the lane that runs end to end today.
+# set.
 TEXT_CUES = ("longest_option", "option_order", "lexical_overlap", "demographic_hint")
+IMAGE_CUES = ("cable", "corner_tag", "watermark", "laterality")
 _TEXT_CUE_SETS = {"v1", "text-v1"}
+_IMAGE_CUE_SETS = {"image-v1"}
 
 CASCADE_ROUNDS = 3
 CASCADE_SEED_SLOT = 1
 
+# The imaging lane asks one yes/no question per finding, the same shape the first real imaging
+# runs used (see experiments/imaging), so the numbers stay comparable.
+IMAGE_OPTIONS = ("yes", "no")
+_NEGATIVE_LABELS = {"", "no finding", "none", "normal"}
 
 def _cue_types(cue_set: str) -> tuple[str, ...]:
     """Resolve a cue-set version into the cue types to inject."""
     if cue_set in _TEXT_CUE_SETS:
         return TEXT_CUES
+    if cue_set in _IMAGE_CUE_SETS:
+        return IMAGE_CUES
     raise ValueError(
-        f"cue_set {cue_set!r} is not runnable through the CLI yet (known: "
-        f"{sorted(_TEXT_CUE_SETS)}). The imaging lane needs the images loaded and injected as "
-        "arrays; see experiments/imaging for that path."
+        f"unknown cue_set {cue_set!r}; expected one of "
+        f"{sorted(_TEXT_CUE_SETS | _IMAGE_CUE_SETS)}"
     )
 
+
+def _is_image_lane(cue_set: str) -> bool:
+    return cue_set in _IMAGE_CUE_SETS
 
 def _lineage(model_id: str) -> str:
     """Infer a model's lineage (family) from its gateway id.
@@ -149,8 +160,13 @@ def _mock_rule(prompt: str, image=None, decoding=None) -> str:
 
     A committee prompt carries the board, so this reproduces the two behaviours the cascade arm
     is about (a peer answer is adopted; otherwise the agent follows the surface cue) without a
-    key. It is a stand-in for smoke and tests, never for a result.
+    key. On the imaging lane there is no option text to follow, so the answer is an arbitrary but
+    deterministic function of the pixels: it exists to be sensitive to an injected artifact, which
+    is what makes the offline run non-degenerate. It is a stand-in for smoke and tests, never for
+    a result.
     """
+    if image is not None:
+        return "yes" if int(np.asarray(image, dtype=np.int64).sum()) % 2 == 0 else "no"
     options = dict(re.findall(r"^([A-Z])\.\s+(.*)$", prompt, flags=re.MULTILINE))
     if not options:
         return ""
@@ -197,14 +213,19 @@ def render_mcq(payload: dict, board: str = "") -> str:
     )
 
 
-def _parse_option(text: str, options) -> str:
+def _parse_option(text: str, options, letters_first: bool = True) -> str:
     """Parse a free-text reply into the exact option string, or an abstention token.
 
-    The prompt asks for a letter, so the letter branch of ``parse_mcq_choice`` is tried first
-    (that is the branch with the answer-declaration patterns and the ambiguity guard). A reply
-    that names the option text instead still resolves, through the same parser's other branch.
+    The MCQ prompt asks for a letter, so the letter branch of ``parse_mcq_choice`` is tried
+    first (that is the branch with the answer-declaration patterns and the ambiguity guard). A
+    reply that names the option text instead still resolves, through the same parser's other
+    branch. The imaging lane passes ``letters_first=False``: its options are the words yes and
+    no, and a stray capital letter in a sentence like "yes, a small apical pneumothorax (A)"
+    would otherwise decide the answer.
     """
-    choice = parse_mcq_choice(text, _letters(len(options)))
+    choice = Abstention.UNPARSEABLE
+    if letters_first:
+        choice = parse_mcq_choice(text, _letters(len(options)))
     if isinstance(choice, Abstention):
         choice = parse_mcq_choice(text, list(options))
     if isinstance(choice, Abstention):
@@ -228,11 +249,17 @@ class SoloAgent:
     def run(self, payload):
         if not isinstance(payload, dict) or "options" not in payload:
             raise TypeError(
-                "SoloAgent drives the text lane and expects a text twin payload "
-                f"(dict with 'question'/'options'), got {type(payload).__name__}."
+                "SoloAgent expects a twin payload (dict with 'question'/'options', plus "
+                f"'image' on the imaging lane), got {type(payload).__name__}."
             )
+        options = tuple(payload["options"])
+        if payload.get("image") is not None:
+            text = self.backend.complete(
+                payload["question"], image=payload["image"], decoding=self.decoding
+            )
+            return _parse_option(text, options, letters_first=False)
         text = self.backend.complete(render_mcq(payload), decoding=self.decoding)
-        return _parse_option(text, tuple(payload["options"]))
+        return _parse_option(text, options)
 
 
 class CommitteeAgent:
@@ -302,15 +329,111 @@ def _twin_count(cases, cue_types) -> int:
     return len(_twins(cases, cue_types))
 
 
+def _positive_findings(case) -> list[str]:
+    """The real findings on a case, in label order, with negative sentinels dropped.
+
+    NIH stores the full pipe-separated ``Finding Labels`` (e.g. ``cardiomegaly|effusion``), so one
+    case can carry several findings; the negatives are never something to ask a reading question
+    about.
+    """
+    labels = (part.strip() for part in (case.label or "").split("|"))
+    return [part for part in labels if part and part.lower() not in _NEGATIVE_LABELS]
+
+
+def image_question(finding: str) -> str:
+    """The yes/no reading question for one finding (the shape experiments/imaging established)."""
+    return (
+        f"You are reading a chest radiograph. Does this X-ray show {finding}? "
+        "Answer with only 'yes' or 'no'."
+    )
+
+
+def load_image(path) -> np.ndarray:
+    """Load one image as the uint8 grayscale array the image cue injectors expect."""
+    try:
+        from PIL import Image
+    except ImportError as exc:  # guarded: the core installs without the image extra
+        raise ImportError(
+            "The imaging lane needs pillow, which is not installed. Install the image extra: "
+            "pip install 'benchmaxxing[image]'."
+        ) from exc
+    with Image.open(path) as handle:
+        return np.asarray(handle.convert("L"), dtype=np.uint8)
+
+
+def image_twins(cases, cue_types, image_root) -> tuple[list, dict]:
+    """Build one twin per (case, image cue), plus a count of what was skipped and why.
+
+    Payloads are dicts carrying the injected array alongside the question and the answer
+    options, because the array alone does not say what the agent was asked. Ground truth is
+    ``"yes"``: the case is labelled with the finding, and the cue is diagnosis-neutral, so a
+    changed answer is the model following the artifact.
+
+    A case with no resolvable image, or with no positive finding to ask about, is skipped and
+    counted rather than aborting a long run. The v1 policy is one question per case, so a
+    multi-finding case is asked only about its first finding; the rest are counted under
+    ``dropped_findings`` so the skip report never claims coverage the run did not have.
+    """
+    if image_root is None:
+        raise ValueError(
+            "the imaging lane needs --image-root: image_ref values in a manifest are relative "
+            "to the directory the images were staged in"
+        )
+    root = Path(image_root)
+    twins: list = []
+    skipped = {
+        "missing_image": 0,
+        "no_finding_label": 0,
+        "unreadable_image": 0,
+        "dropped_findings": 0,
+    }
+    for case in cases:
+        positives = _positive_findings(case)
+        if not positives:
+            skipped["no_finding_label"] += 1
+            continue
+        path = root / (case.image_ref or "")
+        if not case.image_ref or not path.exists():
+            skipped["missing_image"] += 1
+            continue
+        try:
+            array = load_image(path)
+        except (OSError, ValueError):
+            skipped["unreadable_image"] += 1
+            continue
+        # one question per case: the findings past the first are not asked, so count them
+        skipped["dropped_findings"] += len(positives) - 1
+        question = image_question(positives[0])
+        for cue_type in cue_types:
+            pair = build_image_twin(array, cue_type, ground_truth="yes", case_id=case.case_id)
+            twins.append(
+                replace(
+                    pair,
+                    clean={"image": pair.clean, "question": question, "options": IMAGE_OPTIONS},
+                    contaminated={
+                        "image": pair.contaminated,
+                        "question": question,
+                        "options": IMAGE_OPTIONS,
+                    },
+                )
+            )
+    return twins, skipped
+
+
 def plan_run(stage: str, cases, config, *, limit: int | None = None,
-             noise_floor: bool = False) -> dict:
+             noise_floor: bool = False, image_root=None) -> dict:
     """Resolve what a run would do, without calling a model. Backs ``--dry-run``."""
     if stage not in STAGES:
         raise ValueError(f"unknown stage {stage!r}; expected one of {list(STAGES)}")
     cue_types = _cue_types(config.cue_set)
     selected = list(cases)[:limit] if limit is not None else list(cases)
     models = [spec.name for spec in model_specs(config)]
-    n_twins = _twin_count(selected, cue_types)
+    if _is_image_lane(config.cue_set):
+        _refuse_imaging_cascade(stage)
+        twins, skipped = image_twins(selected, cue_types, image_root)
+        n_twins, n_skipped = len(twins), skipped
+    else:
+        n_twins, n_skipped = _twin_count(selected, cue_types), {}
 
     floor_models = 1 if stage == "pilot" else len(models)
     if stage == "pilot":
@@ -329,8 +452,10 @@ def plan_run(stage: str, cases, config, *, limit: int | None = None,
         "lineages": {spec.name: spec.lineage for spec in model_specs(config)},
         "lineage_sources": lineage_sources(config),
         "cue_types": list(cue_types),
+        "lane": "image" if _is_image_lane(config.cue_set) else "text",
         "n_cases": len(selected),
         "n_twins": n_twins,
+        "skipped_cases": n_skipped,
         "estimated_calls": calls,
         "noise_floor": bool(noise_floor) and stage != "cascade",
         "out_dir": config.out_dir,
@@ -338,8 +463,25 @@ def plan_run(stage: str, cases, config, *, limit: int | None = None,
     }
 
 
+def _refuse_imaging_cascade(stage: str) -> None:
+    """The imaging cascade needs a planted turn a radiologist could voice, which does not exist yet.
+
+    ``experiments._shortcut_answer`` picks a distractor from ``case.options``; an imaging case has
+    none, so the planted answer would be a sentinel no agent can ever adopt and the arm would
+    report a confident zero. Refusing is the honest option until the seed builder in #104 / #115
+    covers imaging.
+    """
+    if stage == "cascade":
+        raise ValueError(
+            "the cascade stage is text-lane only for now: the planted shortcut is built from "
+            "case.options, which an imaging case does not have, so an imaging cascade would "
+            "report adoption of an answer no agent can give. See #104 and #115 for the seed "
+            "builder that unblocks it; the solo lane (pilot, solo, overlap) runs on imaging today."
+        )
+
+
 def run_stage(stage: str, cases, config, backend_for, *, limit: int | None = None,
-              transcript_dir=None, noise_floor: bool = False) -> dict:
+              transcript_dir=None, noise_floor: bool = False, image_root=None) -> dict:
     """Run one stage end to end and return its results dict.
 
     ``backend_for(model_id)`` yields the gateway backend for one roster entry, so the same call
@@ -361,14 +503,25 @@ def run_stage(stage: str, cases, config, backend_for, *, limit: int | None = Non
     if not selected:
         raise ValueError("no cases to run: the manifest is empty or --limit is 0")
 
+    skipped: dict = {}
+    if _is_image_lane(config.cue_set):
+        _refuse_imaging_cascade(stage)
+        twins, skipped = image_twins(selected, cue_types, image_root)
+        if not twins:
+            raise ValueError(
+                f"no imaging twins could be built from {len(selected)} case(s): {skipped}. "
+                "Check --image-root and that the manifest carries a positive finding label."
+            )
+    else:
+        twins = _twins(selected, cue_types)
+
     if stage == "pilot":
         agent = SoloAgent(backend_for(specs[0].name), name=specs[0].name)
-        pilot = run_pilot(selected, agent, _identity, cue_types, limit=len(selected))
+        pilot = run_pilot(selected, agent, _identity, cue_types, limit=len(selected), twins=twins)
+        pilot["skipped_cases"] = skipped
         if noise_floor:
             pilot["noise_floor_by_model"] = {
-                specs[0].name: noise_floor_pass(
-                    _twins(selected, cue_types), pilot["records"], agent
-                )
+                specs[0].name: noise_floor_pass(twins, pilot["records"], agent)
             }
         # key the records by the model that produced them, exactly like the solo lane, so the
         # estimates and the floor line up on one model name instead of a special case
@@ -382,12 +535,13 @@ def run_stage(stage: str, cases, config, backend_for, *, limit: int | None = Non
             lambda spec: SoloAgent(backend_for(spec.name), name=spec.name),
             _identity,
             cue_types,
+            twins=twins,
         )
         records = [r for recs in solo["records_by_model"].values() for r in recs]
         solo["flip_rate"] = flip_rate(records)
         solo["shortcut_reliance"] = shortcut_reliance_index(records)
+        solo["skipped_cases"] = skipped
         if noise_floor:
-            twins = _twins(selected, cue_types)
             solo["noise_floor_by_model"] = {
                 spec.name: noise_floor_pass(
                     twins,
@@ -837,6 +991,7 @@ def summarize(stage: str, results: dict, plan: dict, est: dict | None = None,
         f"# benchmaxxing run: stage {stage}",
         "",
         f"- models: {', '.join(plan['models'])}",
+        f"- lane: {plan.get('lane', 'text')}",
         f"- cases: {plan['n_cases']}, twins: {plan['n_twins']}, cue types: "
         f"{', '.join(plan['cue_types'])}",
         f"- seed: {plan['seed']}",
@@ -848,6 +1003,10 @@ def summarize(stage: str, results: dict, plan: dict, est: dict | None = None,
     ]
     for name, value in _headline(stage, results).items():
         lines.append(f"| {name} | {_fmt(value)} |")
+    skipped = {k: v for k, v in (results.get("skipped_cases") or {}).items() if v}
+    if skipped:
+        # a silent skip reads as coverage the run never had
+        lines += ["", "Skipped cases: " + ", ".join(f"{k}={v}" for k, v in sorted(skipped.items()))]
     lines += ["", "## Estimates with uncertainty", ""]
     lines += _estimate_table(
         estimates(stage, results, plan["seed"]) if est is None else est,

@@ -92,6 +92,7 @@ def run_pilot(
     answer_fn,
     cue_types,
     limit: int = 50,
+    twins=None,
     *,
     progress: ProgressReporter | None = None,
     progress_every_n: int | None = None,
@@ -107,12 +108,15 @@ def run_pilot(
     full ``analysis.flip_rate`` breakdown, ``n`` is the number of twins evaluated, and ``records``
     are the per-twin ``FlipRecord`` observations the rate was computed from (the sample a
     confidence interval is resampled over).
+
+    ``twins`` lets a caller pass twin pairs it built itself and skip the text-cue builders. The
+    imaging lane needs that: its twins are injected image arrays, not permuted option lists.
     """
     cues = list(cue_types)
     selected_cases = list(cases)
     if limit is not None:
         selected_cases = selected_cases[:limit]
-    twins = _build_twins(selected_cases, cues)
+    twins = _build_twins(selected_cases, cues) if twins is None else list(twins)
     if progress is None and progress_every_n is not None:
         progress = progress_reporter(
             len(twins), label="run_pilot", every_n=progress_every_n
@@ -132,16 +136,19 @@ def run_pilot(
     }
 
 
-def run_solo_baselines(cases, models, backend_for, answer_fn, cue_types) -> dict:
+def run_solo_baselines(cases, models, backend_for, answer_fn, cue_types, twins=None) -> dict:
     """Run each model solo over the shared twin set (issue 10).
 
     ``backend_for(model)`` yields the backend for one roster entry, so the same twins are scored
     by every model. Returns the models x cue-types susceptibility matrix plus the per-case binary
     failure vector for each model (aligned across models because they share the twin set).
 
+    ``twins`` lets a caller pass twin pairs it built itself (the imaging lane builds injected
+    image arrays); the text-cue builders run only when it is omitted.
+
     Returns ``{"susceptibility_matrix", "failure_vectors", "records_by_model", "n_twins"}``.
     """
-    twins = _build_twins(cases, cue_types)
+    twins = _build_twins(cases, cue_types) if twins is None else list(twins)
     records_by_model: dict[str, list] = {}
     for model in models:
         name = _model_name(model)

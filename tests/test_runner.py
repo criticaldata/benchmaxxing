@@ -160,15 +160,21 @@ def test_solo_agent_reports_an_unparseable_reply():
     assert answer == "unparseable"
 
 
-def test_solo_agent_rejects_an_image_payload():
+def test_solo_agent_rejects_a_payload_it_cannot_read():
     agent = runner.SoloAgent(runner.build_backend("mock", kind="mock"), name="mock")
-    with pytest.raises(TypeError, match="text lane"):
+    with pytest.raises(TypeError, match="twin payload"):
         agent.run(object())
 
 
-def test_image_cue_set_is_refused_with_a_pointer():
+def test_unknown_cue_set_is_refused():
+    config = Config.from_dict({**CONFIG, "cue_set": "nope-v9"})
+    with pytest.raises(ValueError, match="unknown cue_set"):
+        runner.plan_run("pilot", MANIFEST_ROWS, config)
+
+
+def test_image_cue_set_without_an_image_root_is_refused():
     config = Config.from_dict({**CONFIG, "cue_set": "image-v1"})
-    with pytest.raises(ValueError, match="experiments/imaging"):
+    with pytest.raises(ValueError, match="image-root"):
         runner.plan_run("pilot", MANIFEST_ROWS, config)
 
 
@@ -313,6 +319,123 @@ def test_cascade_estimates_pair_shared_against_isolated():
 def test_estimates_are_empty_when_there_is_nothing_to_resample():
     assert runner.estimates("cascade", {"per_case": []}, seed=0) == {}
 
+
+# --- imaging lane --------------------------------------------------------------------------
+
+IMAGE_CONFIG = {"models": ["mock-a"], "dataset": "nih_cxr14", "cue_set": "image-v1", "seed": 5}
+
+
+@pytest.fixture
+def imaging(tmp_path):
+    """A tiny imaging manifest plus its images: two readable, one missing, one negative label."""
+    pytest.importorskip("PIL")
+    import numpy as np
+    from PIL import Image
+
+    root = tmp_path / "images"
+    root.mkdir()
+    rng = np.random.default_rng(0)
+    cases = []
+    for i in range(2):
+        Image.fromarray(rng.integers(40, 200, size=(48, 48)).astype("uint8")).save(
+            root / f"cxr{i}.png"
+        )
+        cases.append(
+            Case(
+                case_id=f"i{i}",
+                patient_id=f"p{i}",
+                modality=Modality.IMAGE,
+                image_ref=f"cxr{i}.png",
+                label="pneumothorax",
+            )
+        )
+    cases.append(
+        Case("i-missing", "p8", Modality.IMAGE, image_ref="gone.png", label="effusion")
+    )
+    cases.append(
+        Case("i-negative", "p9", Modality.IMAGE, image_ref="cxr0.png", label="no finding")
+    )
+    manifest = write_manifest(cases, tmp_path / "imaging.csv")
+    config = tmp_path / "img.json"
+    config.write_text(json.dumps(IMAGE_CONFIG), encoding="utf-8")
+    return manifest, root, config
+
+
+def test_imaging_pilot_writes_a_run_directory(imaging, tmp_path):
+    manifest, root, config = imaging
+    out = tmp_path / "img"
+    rc = _run(
+        manifest, out, "pilot",
+        extra=["--config", str(config), "--image-root", str(root)],
+    )
+    assert rc == 0
+
+    results = json.loads((out / "results.json").read_text())
+    assert results["plan"]["lane"] == "image"
+    # 2 readable cases x 4 image cues
+    assert results["plan"]["n_twins"] == 8
+    assert (out / "summary.md").read_text().count("| ") > 0
+
+
+def test_unresolvable_images_are_counted_not_fatal(imaging, tmp_path):
+    manifest, root, config = imaging
+    out = tmp_path / "img-skips"
+    assert _run(manifest, out, "pilot",
+                extra=["--config", str(config), "--image-root", str(root)]) == 0
+
+    results = json.loads((out / "results.json").read_text())
+    skipped = results["results"]["skipped_cases"]
+    assert skipped["missing_image"] == 1
+    assert skipped["no_finding_label"] == 1
+    # a silent skip would read as coverage the run never had
+    assert "Skipped cases:" in (out / "summary.md").read_text()
+
+
+def test_multi_finding_case_counts_its_dropped_findings(tmp_path):
+    # one question per case: a cardiomegaly|effusion|opacity case is asked only about the first
+    # finding, and the other two must be counted, or the skip report claims coverage never had.
+    pytest.importorskip("PIL")
+    import numpy as np
+    from PIL import Image
+
+    root = tmp_path / "images"
+    root.mkdir()
+    Image.fromarray(np.full((32, 32), 128, dtype="uint8")).save(root / "cxr.png")
+    cases = [
+        Case("m1", "p1", Modality.IMAGE, image_ref="cxr.png", label="cardiomegaly|effusion|opacity"),
+        Case("s1", "p2", Modality.IMAGE, image_ref="cxr.png", label="pneumothorax"),
+    ]
+    twins, skipped = runner.image_twins(cases, ["watermark"], root)
+
+    assert len(twins) == 2  # one twin per case (single cue), both asked
+    assert skipped["dropped_findings"] == 2  # effusion + opacity, never asked
+    assert skipped["no_finding_label"] == 0
+
+
+def test_imaging_lane_needs_an_image_root(imaging, tmp_path, capsys):
+    manifest, _root, config = imaging
+    rc = _run(manifest, tmp_path / "out", "pilot", extra=["--config", str(config)])
+    assert rc != 0
+    assert "--image-root" in capsys.readouterr().err
+
+
+def test_imaging_cascade_is_refused_with_a_pointer(imaging, tmp_path, capsys):
+    manifest, root, config = imaging
+    rc = _run(manifest, tmp_path / "out", "cascade",
+              extra=["--config", str(config), "--image-root", str(root)])
+    assert rc != 0
+    err = capsys.readouterr().err
+    assert "text-lane only" in err and "#104" in err
+
+
+def test_image_answers_parse_from_words_not_stray_letters():
+    # 'yes ... (A)' must resolve to yes: the imaging options are words, so the letter heuristic
+    # that serves the MCQ lane has to stay out of the way here.
+    assert runner._parse_option(
+        "Yes, there is a small apical pneumothorax (A).",
+        runner.IMAGE_OPTIONS,
+        letters_first=False,
+    ) == "yes"
 
 # --- noise floor ---------------------------------------------------------------------------
 

@@ -106,6 +106,10 @@ benchmaxxing run --stage solo --manifest path/to/manifest.csv --out runs/mock --
 # add the decoding-noise control: re-ask each clean payload once, so the flip rate can be
 # read against the rate at which the model changes its mind with no cue present
 benchmaxxing run --stage solo --manifest path/to/manifest.csv --out runs/x --noise-floor
+
+# the imaging lane (Lane A): cue_set "image-v1" in the config, plus the image root that
+# image_ref paths resolve against. Needs the `image` extra.
+benchmaxxing run --stage solo --manifest cxr.csv --image-root /data/images --out runs/cxr
 ```
 
 The smoke is the fastest way to see the whole pipeline compose and to confirm your change did not break a seam. It needs no data and no keys.
