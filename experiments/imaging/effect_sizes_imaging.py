@@ -92,7 +92,10 @@ def referee_vs_naive(results_dir):
         "mcnemar_b_gt_c": {"b": b, "c": c, "n": n},
         "achieved_power": round(achieved_power(n, psi, abs(delta)), 4) if delta else None,
         "required_pairs_for_power_0.8": required_pairs(psi, abs(delta)) if delta else None,
-        "note": "paired bootstrap on (ref_flag==gt) - (naive_flag==gt), same 35 cases",
+        "note": ("paired bootstrap on (ref_flag==gt) - (naive_flag==gt), same 35 cases. "
+                 "CAVEAT: imaging_referee.jsonl predates #338 and 13 of its 35 rows still carry the "
+                 "old planted read, so this block is not post-fix. The citable referee figures come "
+                 "from the 22-row subgroup both designs agree on, see referee_valid_subgroup.py."),
     }
 
 
@@ -114,7 +117,9 @@ def main():
             "is a different quantity from #185's near-total cross-cue overlap finding (phi=Jaccard=1.0 "
             "on WHICH cases flip), not a restatement of it, since a case can flip solo at a moderate "
             "rate yet flip on the same cases regardless of cue. Every cue's cascade contagion delta "
-            "(shared minus isolated adoption) is large (0.63-0.80), its bootstrap interval excludes 0, "
+            "(shared minus isolated adoption) is large (0.54-0.57 under the corrected plant direction of "
+            "#338; an earlier pre-fix draft of this file reported 0.63-0.80), its bootstrap interval "
+            "excludes 0, "
             "and achieved power is 1.0 for all four cues at n=35 (only 7-10 pairs would suffice for "
             "80% power) - this is the best-powered result in the whole project. The referee-vs-naive "
             "comparison is the opposite case: risk difference 0.17 favoring the referee, but the "
