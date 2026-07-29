@@ -1,0 +1,343 @@
+{
+  "description": "Frozen real Gemini responses from experiments/medqa/results/call_cache.jsonl. expected is the option string reproduce._parse_choice must return for the given options. Used as the standing regression guard for every MedQA paper number (#345).",
+  "source": "experiments/medqa/results/call_cache.jsonl",
+  "n_source_entries": 6054,
+  "cases": [
+    {
+      "id": "bare_letter_0",
+      "kind": "bare_letter",
+      "cache_k": "c814f14527d9a9ecbdd4d40f769e0df8815deb764ee286b5efda7782125ab8df",
+      "model": "gemini-2.5-flash",
+      "note": "single-character reply",
+      "options": [
+        "Clinical option A",
+        "Clinical option B",
+        "Clinical option C",
+        "Clinical option D",
+        "Clinical option E"
+      ],
+      "expected": "Clinical option D",
+      "resp": "D"
+    },
+    {
+      "id": "bare_letter_1",
+      "kind": "bare_letter",
+      "cache_k": "9f6d943e2482109ada823907cbeb4b96bbd6351f0fea4e6284f31bf341bd4d8a",
+      "model": "gemini-2.5-flash",
+      "note": "single-character reply",
+      "options": [
+        "Clinical option A",
+        "Clinical option B",
+        "Clinical option C",
+        "Clinical option D",
+        "Clinical option E"
+      ],
+      "expected": "Clinical option D",
+      "resp": "D"
+    },
+    {
+      "id": "bare_letter_2",
+      "kind": "bare_letter",
+      "cache_k": "cb835d71c530956d544c572e49b93f33b1947f80a3ea15c118b86f4258a06659",
+      "model": "gemini-2.5-flash",
+      "note": "single-character reply",
+      "options": [
+        "Clinical option A",
+        "Clinical option B",
+        "Clinical option C",
+        "Clinical option D",
+        "Clinical option E"
+      ],
+      "expected": "Clinical option D",
+      "resp": "D"
+    },
+    {
+      "id": "multi_option_cot_0",
+      "kind": "multi_option_cot",
+      "cache_k": "6bfb238c268ec0a124910a52fbd61b5e3ecc9be2a1e985362b16b906b1672243",
+      "model": "gemini-2.5-flash",
+      "note": "CoT names several options then \\boxed{letter}",
+      "options": [
+        "Desmoplastic melanoma:** A rare, aggressive subtype, often found on sun-damaged skin, particularly head and neck. While sun exposure is a factor, it is not the most common type in African-Americans",
+        "Nodular melanoma:** Accounts for a significant percentage of melanomas, but it is not disproportionately common in African-Americans compared to other types",
+        "Acral lentiginous melanoma (ALM):** This is the *most common type of melanoma in individuals with darker skin tones*, including African-Americans, Asians, and Hispanics. It typically occurs on non-sun-exposed areas such as the palms, soles, and under the nails (subungual). It is not strongly associated with UV radiation exposure. Given her African-American ethnicity, this is the type she is at greatest risk for",
+        "Lentigo maligna melanoma (LMM):** Develops from lentigo maligna, typically on chronically sun-damaged skin, especially on the head and neck of older individuals. While she travels to the Caribbean, her African-American ethnicity provides significant protection against UV-induced melanomas like LMM compared to Caucasians",
+        "Superficial spreading melanoma (SSM):** This is the *most common type of melanoma overall* in Caucasians and is strongly associated with intermittent, intense sun exposure. Due to the protective effects of melanin, SSM is much less common in African-Americans compared to Caucasians"
+      ],
+      "expected": "Acral lentiginous melanoma (ALM):** This is the *most common type of melanoma in individuals with darker skin tones*, including African-Americans, Asians, and Hispanics. It typically occurs on non-sun-exposed areas such as the palms, soles, and under the nails (subungual). It is not strongly associated with UV radiation exposure. Given her African-American ethnicity, this is the type she is at greatest risk for",
+      "resp": "The patient is a 44-year-old African-American woman. The most crucial piece of information for determining the type of melanoma she is at greatest risk for is her ethnicity.\n\nLet's analyze the options in the context of her ethnicity:\n\n*   **A. Desmoplastic melanoma:** A rare, aggressive subtype, often found on sun-damaged skin, particularly head and neck. While sun exposure is a factor, it is not the most common type in African-Americans.\n*   **B. Nodular melanoma:** Accounts for a significant percentage of melanomas, but it is not disproportionately common in African-Americans compared to other types.\n*   **C. Acral lentiginous melanoma (ALM):** This is the *most common type of melanoma in individuals with darker skin tones*, including African-Americans, Asians, and Hispanics. It typically occurs on non-sun-exposed areas such as the palms, soles, and under the nails (subungual). It is not strongly associated with UV radiation exposure. Given her African-American ethnicity, this is the type she is at greatest risk for.\n*   **D. Lentigo maligna melanoma (LMM):** Develops from lentigo maligna, typically on chronically sun-damaged skin, especially on the head and neck of older individuals. While she travels to the Caribbean, her African-American ethnicity provides significant protection against UV-induced melanomas like LMM compared to Caucasians.\n*   **E. Superficial spreading melanoma (SSM):** This is the *most common type of melanoma overall* in Caucasians and is strongly associated with intermittent, intense sun exposure. Due to the protective effects of melanin, SSM is much less common in African-Americans compared to Caucasians.\n\nTherefore, considering her African-American ethnicity, she is at greatest risk for Acral lentiginous melanoma.\n\nThe final answer is $\\boxed{C}$"
+    },
+    {
+      "id": "multi_option_cot_1",
+      "kind": "multi_option_cot",
+      "cache_k": "aaf804781bd2889826565ad91ff2c125ce64ea308edd153e181cf29f7884641d",
+      "model": "gemini-2.5-flash",
+      "note": "CoT names several options then \\boxed{letter}",
+      "options": [
+        "Patent foramen ovale:** This is the most common anatomical defect allowing for a paradoxical embolism. A DVT clot can travel to the right side of the heart, and if right atrial pressure transiently exceeds left atrial pressure (e.g., during a Valsalva maneuver, coughing, or with increased right heart pressures due to a large DVT), the clot can pass through the PFO into the left atrium and then into the systemic arterial circulation, causing a stroke. This perfectly explains the patient's presentation",
+        "Atrial myxoma:** While an atrial myxoma can cause embolic strokes, it does not explain the presence of a DVT in the leg",
+        "Mitral valve vegetation:** Vegetations (e.g., from endocarditis) can embolize and cause stroke, but there are no signs of endocarditis (e.g., no significant fever, no new murmur mentioned), and it does not explain the DVT",
+        "Atrial fibrillation:** Atrial fibrillation is a common cause of cardioembolic stroke, but the patient's pulse is described as \"regular\" (115/min), ruling out atrial fibrillation as the cause of the stroke. Furthermore, it does not explain the DVT",
+        "Carotid artery dissection:** Carotid artery dissection can cause ischemic stroke in young individuals, but it does not explain the DVT in the leg"
+      ],
+      "expected": "Patent foramen ovale:** This is the most common anatomical defect allowing for a paradoxical embolism. A DVT clot can travel to the right side of the heart, and if right atrial pressure transiently exceeds left atrial pressure (e.g., during a Valsalva maneuver, coughing, or with increased right heart pressures due to a large DVT), the clot can pass through the PFO into the left atrium and then into the systemic arterial circulation, causing a stroke. This perfectly explains the patient's presentation",
+      "resp": "The patient presents with an acute ischemic stroke, evidenced by sudden onset of right-sided weakness, hyperreflexia, and a positive Babinski sign on the right. This indicates an upper motor neuron lesion affecting the left cerebral hemisphere.\n\nSimultaneously, she has clear signs of a deep vein thrombosis (DVT) in her left lower leg (swollen, erythematous, tender).\n\nSeveral risk factors contribute to this presentation:\n1.  **Oral Contraceptive Use:** A significant risk factor for venous thromboembolism (VTE), including DVT.\n2.  **Recent Long-Haul Travel:** Prolonged immobility during travel increases the risk of DVT.\n3.  **Smoking:** Contributes to a prothrombotic state and endothelial damage.\n\nThe co-occurrence of a DVT and an arterial stroke in a young, otherwise healthy individual strongly suggests a **paradoxical embolism**. A paradoxical embolism occurs when a thrombus originating in the venous system (like a DVT) crosses into the arterial system without passing through the pulmonary circulation. This typically happens through an intracardiac shunt, most commonly a **patent foramen ovale (PFO)**.\n\nLet's evaluate the options:\n\n*   **A. Patent foramen ovale:** This is the most common anatomical defect allowing for a paradoxical embolism. A DVT clot can travel to the right side of the heart, and if right atrial pressure transiently exceeds left atrial pressure (e.g., during a Valsalva maneuver, coughing, or with increased right heart pressures due to a large DVT), the clot can pass through the PFO into the left atrium and then into the systemic arterial circulation, causing a stroke. This perfectly explains the patient's presentation.\n\n*   **B. Atrial myxoma:** While an atrial myxoma can cause embolic strokes, it does not explain the presence of a DVT in the leg.\n\n*   **C. Mitral valve vegetation:** Vegetations (e.g., from endocarditis) can embolize and cause stroke, but there are no signs of endocarditis (e.g., no significant fever, no new murmur mentioned), and it does not explain the DVT.\n\n*   **D. Atrial fibrillation:** Atrial fibrillation is a common cause of cardioembolic stroke, but the patient's pulse is described as \"regular\" (115/min), ruling out atrial fibrillation as the cause of the stroke. Furthermore, it does not explain the DVT.\n\n*   **E. Carotid artery dissection:** Carotid artery dissection can cause ischemic stroke in young individuals, but it does not explain the DVT in the leg.\n\nGiven the strong evidence for DVT and an arterial stroke, a paradoxical embolism via a PFO is the most likely underlying mechanism.\n\nThe final answer is $\\boxed{A}$"
+    },
+    {
+      "id": "multi_option_cot_2",
+      "kind": "multi_option_cot",
+      "cache_k": "7fd48a314e2b8c5a17abffa9d03819f39cc8e01bb926190f598caf3ca6fb3cfa",
+      "model": "gemini-2.5-flash",
+      "note": "CoT names several options then \\boxed{letter}",
+      "options": [
+        "Polyhydramnios:** This is an excess of amniotic fluid. In post-term pregnancies, the placenta begins to age and function less efficiently, often leading to decreased amniotic fluid volume (oligohydramnios) rather than polyhydramnios. Therefore, this is unlikely to be the greatest risk",
+        "Acute respiratory distress syndrome (ARDS):** In neonates, respiratory distress syndrome (RDS) is primarily associated with prematurity due to surfactant deficiency. While severe birth asphyxia or meconium aspiration can lead to respiratory distress that might be categorized as ARDS, \"meconium aspiration\" is a more specific and direct complication of post-term pregnancy that causes respiratory issues",
+        "Caudal regression syndrome:** This is a rare congenital malformation primarily associated with poorly controlled pregestational diabetes in the mother. The patient's history does not indicate diabetes, and her pregnancy has been uncomplicated. This is not a typical complication of post-term pregnancy",
+        "Meconium aspiration:** Post-term pregnancies are associated with an increased risk of fetal distress, which can lead to the passage of meconium (fetal stool) into the amniotic fluid. The incidence of meconium-stained amniotic fluid increases significantly after 40 weeks' gestation. If the fetus aspirates this meconium, it can lead to meconium aspiration syndrome (MAS), a serious respiratory condition that can cause significant morbidity and mortality in newborns. This is a well-known and significant risk in post-term pregnancies",
+        "Placental abruption:** This is the premature separation of the placenta from the uterus. While placental insufficiency can occur in post-term pregnancies, placental abruption is not a primary or significantly increased risk specifically due to post-term gestation compared to other factors like hypertension or trauma. The risk of meconium aspiration is more directly and substantially linked to post-term pregnancy"
+      ],
+      "expected": "Meconium aspiration:** Post-term pregnancies are associated with an increased risk of fetal distress, which can lead to the passage of meconium (fetal stool) into the amniotic fluid. The incidence of meconium-stained amniotic fluid increases significantly after 40 weeks' gestation. If the fetus aspirates this meconium, it can lead to meconium aspiration syndrome (MAS), a serious respiratory condition that can cause significant morbidity and mortality in newborns. This is a well-known and significant risk in post-term pregnancies",
+      "resp": "The patient is a 36-year-old woman at 42 weeks' gestation, which is considered post-term. Post-term pregnancy (gestation beyond 42 weeks) carries several risks for the fetus due to placental aging and potential fetal distress.\n\nLet's evaluate the given options:\n\n*   **A. Polyhydramnios:** This is an excess of amniotic fluid. In post-term pregnancies, the placenta begins to age and function less efficiently, often leading to decreased amniotic fluid volume (oligohydramnios) rather than polyhydramnios. Therefore, this is unlikely to be the greatest risk.\n*   **B. Acute respiratory distress syndrome (ARDS):** In neonates, respiratory distress syndrome (RDS) is primarily associated with prematurity due to surfactant deficiency. While severe birth asphyxia or meconium aspiration can lead to respiratory distress that might be categorized as ARDS, \"meconium aspiration\" is a more specific and direct complication of post-term pregnancy that causes respiratory issues.\n*   **C. Caudal regression syndrome:** This is a rare congenital malformation primarily associated with poorly controlled pregestational diabetes in the mother. The patient's history does not indicate diabetes, and her pregnancy has been uncomplicated. This is not a typical complication of post-term pregnancy.\n*   **D. Meconium aspiration:** Post-term pregnancies are associated with an increased risk of fetal distress, which can lead to the passage of meconium (fetal stool) into the amniotic fluid. The incidence of meconium-stained amniotic fluid increases significantly after 40 weeks' gestation. If the fetus aspirates this meconium, it can lead to meconium aspiration syndrome (MAS), a serious respiratory condition that can cause significant morbidity and mortality in newborns. This is a well-known and significant risk in post-term pregnancies.\n*   **E. Placental abruption:** This is the premature separation of the placenta from the uterus. While placental insufficiency can occur in post-term pregnancies, placental abruption is not a primary or significantly increased risk specifically due to post-term gestation compared to other factors like hypertension or trauma. The risk of meconium aspiration is more directly and substantially linked to post-term pregnancy.\n\nConsidering the specific risks associated with post-term pregnancy, meconium aspiration is a major and well-documented complication. The increased incidence of fetal distress and the mature fetal gastrointestinal system in post-term infants contribute to a higher likelihood of meconium passage and subsequent aspiration.\n\nThe final answer is $\\boxed{D}$"
+    },
+    {
+      "id": "multi_option_cot_3",
+      "kind": "multi_option_cot",
+      "cache_k": "87459d1e4ab0cde1cfbd756b495bafb0fd4d2636e9bfa327dda41bbdfcd9c059",
+      "model": "gemini-2.5-flash",
+      "note": "CoT names several options then \\boxed{letter}",
+      "options": [
+        "Malaria**: While malaria causes hemolytic anemia and splenomegaly, the peripheral smear would show parasites, and the MCHC is not typically elevated in this manner. The patient's history does not suggest malaria",
+        "Acute myelogenous leukemia (AML)**: AML is a bone marrow malignancy that would present with abnormal white blood cells (blasts) and often pancytopenia. It does not explain spherocytes or elevated MCHC",
+        "Cholecystitis**: Patients with chronic hemolytic anemias like HS are at increased risk for pigment gallstones (bilirubin stones) due to chronic bilirubin overload. These gallstones can lead to cholecystitis. This is a known long-term complication of HS, but it is less common as an immediate or acute complication in a 3-year-old presenting with an acute hemolytic crisis",
+        "Renal papillary necrosis**: This complication is typically associated with sickle cell disease or analgesic nephropathy, not hereditary spherocytosis",
+        "Splenic sequestration crisis**: This is an acute, life-threatening complication seen in young children with hemolytic anemias, including hereditary spherocytosis and sickle cell disease. It occurs when a large amount of blood suddenly pools in the spleen, leading to a rapid and severe drop in hemoglobin, hypovolemic shock, and acute, painful splenic enlargement. Given the patient's age (3 years old), acute anemia, jaundice, and existing splenomegaly, especially after a recent infection, a splenic sequestration crisis is a significant and immediate risk. The spleen is already enlarged, indicating its active role in hemolysis, making it susceptible to acute sequestration"
+      ],
+      "expected": "Splenic sequestration crisis**: This is an acute, life-threatening complication seen in young children with hemolytic anemias, including hereditary spherocytosis and sickle cell disease. It occurs when a large amount of blood suddenly pools in the spleen, leading to a rapid and severe drop in hemoglobin, hypovolemic shock, and acute, painful splenic enlargement. Given the patient's age (3 years old), acute anemia, jaundice, and existing splenomegaly, especially after a recent infection, a splenic sequestration crisis is a significant and immediate risk. The spleen is already enlarged, indicating its active role in hemolysis, making it susceptible to acute sequestration",
+      "resp": "The patient is a 3-year-old boy presenting with fatigue, jaundice, and anemia (Hb 9.4 g/dl) following an upper respiratory tract infection. Examination reveals splenomegaly. Key laboratory findings include an elevated mean corpuscular hemoglobin concentration (MCHC) of 39% and a negative Coombs test. The peripheral blood smear shows numerous spherocytes (small, dense red blood cells lacking central pallor).\n\nThese findings are classic for **Hereditary Spherocytosis (HS)**:\n1.  **Anemia and Jaundice**: Due to chronic hemolysis.\n2.  **Splenomegaly**: The spleen is enlarged due to increased work in removing abnormal spherocytes.\n3.  **Elevated MCHC**: A hallmark of HS, as spherocytes have a reduced surface area-to-volume ratio, leading to increased intracellular hemoglobin concentration.\n4.  **Spherocytes on peripheral smear**: Diagnostic morphological feature.\n5.  **Negative Coombs test**: Rules out autoimmune hemolytic anemia, supporting an intrinsic red blood cell defect like HS.\n6.  **Preceding URI**: Viral infections can trigger or exacerbate hemolytic crises in patients with HS.\n\nNow, let's evaluate the given options in the context of Hereditary Spherocytosis:\n\nA. **Malaria**: While malaria causes hemolytic anemia and splenomegaly, the peripheral smear would show parasites, and the MCHC is not typically elevated in this manner. The patient's history does not suggest malaria.\n\nB. **Acute myelogenous leukemia (AML)**: AML is a bone marrow malignancy that would present with abnormal white blood cells (blasts) and often pancytopenia. It does not explain spherocytes or elevated MCHC.\n\nC. **Cholecystitis**: Patients with chronic hemolytic anemias like HS are at increased risk for pigment gallstones (bilirubin stones) due to chronic bilirubin overload. These gallstones can lead to cholecystitis. This is a known long-term complication of HS, but it is less common as an immediate or acute complication in a 3-year-old presenting with an acute hemolytic crisis.\n\nD. **Renal papillary necrosis**: This complication is typically associated with sickle cell disease or analgesic nephropathy, not hereditary spherocytosis.\n\nE. **Splenic sequestration crisis**: This is an acute, life-threatening complication seen in young children with hemolytic anemias, including hereditary spherocytosis and sickle cell disease. It occurs when a large amount of blood suddenly pools in the spleen, leading to a rapid and severe drop in hemoglobin, hypovolemic shock, and acute, painful splenic enlargement. Given the patient's age (3 years old), acute anemia, jaundice, and existing splenomegaly, especially after a recent infection, a splenic sequestration crisis is a significant and immediate risk. The spleen is already enlarged, indicating its active role in hemolysis, making it susceptible to acute sequestration.\n\nComparing the options, a splenic sequestration crisis is the most acute and potentially life-threatening complication for a 3-year-old with hereditary spherocytosis presenting with an acute hemolytic episode and splenomegaly. While gallstones (leading to cholecystitis) are a long-term risk, splenic sequestration is a more immediate and severe concern in this age group and clinical presentation.\n\nThe final answer is $\\boxed{E}$"
+    },
+    {
+      "id": "multi_option_cot_4",
+      "kind": "multi_option_cot",
+      "cache_k": "80fa078701fd052f6ad30569eb9592452990590306fb78ed0879bd236f206bf6",
+      "model": "gemini-2.5-flash",
+      "note": "CoT names several options then \\boxed{letter}",
+      "options": [
+        "Desmoplastic melanoma:** A rare, aggressive subtype, often found on sun-damaged skin, particularly head and neck. While sun exposure is a factor, it's not specifically linked to African-American ethnicity as the *greatest* risk",
+        "Nodular melanoma:** Accounts for a significant portion of melanomas and can occur anywhere. It's not disproportionately common in African-Americans compared to other types",
+        "Acral lentiginous melanoma (ALM):** This is the most common type of melanoma in individuals with darker skin types (Fitzpatrick IV-VI), including African-Americans, Asians, and Hispanics. It typically occurs on non-sun-exposed areas such as the palms, soles, and under the nails (subungual). Unlike other types, it is *not* strongly associated with UV radiation exposure. Given her ethnicity, this is a very strong candidate",
+        "Lentigo maligna melanoma (LMM):** Develops from lentigo maligna and is strongly associated with chronic sun-damaged skin, typically on the head and neck of older individuals. It is much more common in Caucasians",
+        "Superficial spreading melanoma (SSM):** This is the most common type of melanoma overall, typically occurring on intermittently sun-exposed skin. It is most prevalent in Caucasians and is linked to intermittent intense sun exposure (e.g., sunburns)"
+      ],
+      "expected": "Acral lentiginous melanoma (ALM):** This is the most common type of melanoma in individuals with darker skin types (Fitzpatrick IV-VI), including African-Americans, Asians, and Hispanics. It typically occurs on non-sun-exposed areas such as the palms, soles, and under the nails (subungual). Unlike other types, it is *not* strongly associated with UV radiation exposure. Given her ethnicity, this is a very strong candidate",
+      "resp": "The patient is a 44-year-old African-American woman. This demographic information is crucial.\n\nLet's analyze the options in the context of her ethnicity:\n\n*   **A. Desmoplastic melanoma:** A rare, aggressive subtype, often found on sun-damaged skin, particularly head and neck. While sun exposure is a factor, it's not specifically linked to African-American ethnicity as the *greatest* risk.\n*   **B. Nodular melanoma:** Accounts for a significant portion of melanomas and can occur anywhere. It's not disproportionately common in African-Americans compared to other types.\n*   **C. Acral lentiginous melanoma (ALM):** This is the most common type of melanoma in individuals with darker skin types (Fitzpatrick IV-VI), including African-Americans, Asians, and Hispanics. It typically occurs on non-sun-exposed areas such as the palms, soles, and under the nails (subungual). Unlike other types, it is *not* strongly associated with UV radiation exposure. Given her ethnicity, this is a very strong candidate.\n*   **D. Lentigo maligna melanoma (LMM):** Develops from lentigo maligna and is strongly associated with chronic sun-damaged skin, typically on the head and neck of older individuals. It is much more common in Caucasians.\n*   **E. Superficial spreading melanoma (SSM):** This is the most common type of melanoma overall, typically occurring on intermittently sun-exposed skin. It is most prevalent in Caucasians and is linked to intermittent intense sun exposure (e.g., sunburns).\n\nWhile the patient travels to the Caribbean regularly, implying sun exposure, the question asks for the *greatest risk* for *this woman*. For individuals with darker skin types, including African-Americans, Acral Lentiginous Melanoma (ALM) is the most prevalent subtype, accounting for a disproportionately higher percentage of melanomas in this population compared to Caucasians. The other types are more strongly associated with UV exposure and are more common in lighter-skinned individuals.\n\nTherefore, considering her African-American ethnicity, Acral lentiginous melanoma is the type she is at greatest risk for.\n\nThe final answer is $\\boxed{C}$"
+    },
+    {
+      "id": "multi_option_cot_5",
+      "kind": "multi_option_cot",
+      "cache_k": "a1782179494fa871d9064a44bad8468fff1c1807d9f91e6a7691c97df11969b1",
+      "model": "gemini-2.5-flash",
+      "note": "CoT names several options then \\boxed{letter}",
+      "options": [
+        "Inferior vena cava thrombosis:** This is associated with Budd-Chiari syndrome, which causes hepatic venous outflow obstruction. It typically presents with acute or subacute liver failure, ascites, and hepatomegaly. While it can cause liver enzyme abnormalities, the specific cholestatic pattern with prominent pruritus and sicca symptoms is not typical",
+        "Cutaneous xanthomas:** Chronic cholestasis, particularly PBC, can lead to impaired bile acid excretion, which in turn impairs cholesterol excretion. This often results in significant hypercholesterolemia. High levels of cholesterol and other lipids can deposit in the skin, forming xanthomas (e.g., xanthelasmas, tuberous xanthomas). This is a well-known complication and finding in patients with chronic cholestatic liver diseases like PBC",
+        "Butterfly-shaped vertebrae:** This is a congenital skeletal anomaly associated with Alagille syndrome, a genetic disorder causing chronic cholestasis, typically presenting in childhood. While it causes cholestasis, the patient's age (57 years) makes a new presentation of a congenital syndrome less likely, and the overall clinical picture is more consistent with an acquired autoimmune disease",
+        "Increased CA 19-9 levels:** CA 19-9 is a tumor marker primarily associated with pancreatic cancer and cholangiocarcinoma. While it can be elevated in any condition causing cholestasis (including benign causes), a significant elevation would raise suspicion for malignancy. However, given the strong clinical picture for PBC, and without other signs of malignancy (e.g., mass on ultrasound, significant weight loss), it is not the *most likely* additional finding compared to a direct consequence of chronic cholestasis",
+        "Kayser-Fleischer rings:** These are greenish-brown rings in the cornea, pathognomonic for Wilson's disease, a genetic disorder of copper metabolism. Wilson's disease typically presents at a younger age (usually <40 years) and can cause liver disease, neurological, and psychiatric symptoms. The cholestatic pattern with prominent pruritus and sicca symptoms is not the most typical presentation of Wilson's disease, and the patient's age makes it less likely"
+      ],
+      "expected": "Cutaneous xanthomas:** Chronic cholestasis, particularly PBC, can lead to impaired bile acid excretion, which in turn impairs cholesterol excretion. This often results in significant hypercholesterolemia. High levels of cholesterol and other lipids can deposit in the skin, forming xanthomas (e.g., xanthelasmas, tuberous xanthomas). This is a well-known complication and finding in patients with chronic cholestatic liver diseases like PBC",
+      "resp": "The patient is a 57-year-old woman presenting with a 3-month history of fatigue, 2-month history of generalized itchiness (pruritus), and 2-week history of yellowing of the eyes (jaundice). She also reports persistent dryness of the eyes and dry mucous membranes of the mouth, which are symptoms of sicca syndrome.\n\nLaboratory findings show:\n*   **Conjugated hyperbilirubinemia:** Total bilirubin 3.1 mg/dL, Direct bilirubin 2.5 mg/dL.\n*   **Markedly elevated alkaline phosphatase (ALP):** 452 U/L (normal 30-120 U/L).\n*   **Moderately elevated AST and ALT:** AST 155 U/L, ALT 168 U/L.\n*   The disproportionately high ALP compared to AST/ALT indicates a **cholestatic pattern of liver injury**.\n\nThe combination of fatigue, pruritus, jaundice, sicca symptoms (dry eyes/mouth), and cholestatic liver enzymes in a middle-aged woman is highly suggestive of **Primary Biliary Cholangitis (PBC)**. PBC is an autoimmune disease characterized by progressive destruction of small intrahepatic bile ducts, leading to cholestasis. It predominantly affects middle-aged women and is often associated with other autoimmune conditions, including Sjogren's syndrome (which causes sicca symptoms).\n\nLet's evaluate the given options:\n\n*   **A. Inferior vena cava thrombosis:** This is associated with Budd-Chiari syndrome, which causes hepatic venous outflow obstruction. It typically presents with acute or subacute liver failure, ascites, and hepatomegaly. While it can cause liver enzyme abnormalities, the specific cholestatic pattern with prominent pruritus and sicca symptoms is not typical.\n*   **B. Cutaneous xanthomas:** Chronic cholestasis, particularly PBC, can lead to impaired bile acid excretion, which in turn impairs cholesterol excretion. This often results in significant hypercholesterolemia. High levels of cholesterol and other lipids can deposit in the skin, forming xanthomas (e.g., xanthelasmas, tuberous xanthomas). This is a well-known complication and finding in patients with chronic cholestatic liver diseases like PBC.\n*   **C. Butterfly-shaped vertebrae:** This is a congenital skeletal anomaly associated with Alagille syndrome, a genetic disorder causing chronic cholestasis, typically presenting in childhood. While it causes cholestasis, the patient's age (57 years) makes a new presentation of a congenital syndrome less likely, and the overall clinical picture is more consistent with an acquired autoimmune disease.\n*   **D. Increased CA 19-9 levels:** CA 19-9 is a tumor marker primarily associated with pancreatic cancer and cholangiocarcinoma. While it can be elevated in any condition causing cholestasis (including benign causes), a significant elevation would raise suspicion for malignancy. However, given the strong clinical picture for PBC, and without other signs of malignancy (e.g., mass on ultrasound, significant weight loss), it is not the *most likely* additional finding compared to a direct consequence of chronic cholestasis.\n*   **E. Kayser-Fleischer rings:** These are greenish-brown rings in the cornea, pathognomonic for Wilson's disease, a genetic disorder of copper metabolism. Wilson's disease typically presents at a younger age (usually <40 years) and can cause liver disease, neurological, and psychiatric symptoms. The cholestatic pattern with prominent pruritus and sicca symptoms is not the most typical presentation of Wilson's disease, and the patient's age makes it less likely.\n\nGiven the strong clinical suspicion for Primary Biliary Cholangitis (PBC), which is characterized by chronic cholestasis, the development of hypercholesterolemia and subsequent cutaneous xanthomas is a very common and expected finding.\n\nThe final answer is $\\boxed{B}$"
+    },
+    {
+      "id": "boxed_letter_0",
+      "kind": "boxed_letter",
+      "cache_k": "4b703571cfee4d9c969c1d8be9b73b69efcb0effceb735a51a2997db7edb7edc",
+      "model": "gemini-2.5-flash",
+      "note": "\\boxed{X} with full-text options",
+      "options": [
+        "Clinical option A",
+        "Clinical option B",
+        "Clinical option C",
+        "Clinical option D",
+        "Clinical option E"
+      ],
+      "expected": "Clinical option C",
+      "resp": "The correct answer is **C**.\n\n**Explanation:**\nBetamethasone is a corticosteroid administered to pregnant women at risk of preterm birth to accelerate fetal lung maturity. Its primary mechanism of action in this context is to stimulate the maturation of fetal lungs by promoting the production and release of surfactant. Surfactant is a complex mixture of lipids and proteins that reduces surface tension in the alveoli, preventing their collapse and facilitating breathing after birth.\n\n*   **Type II pneumocytes** (also known as Type II alveolar cells or great alveolar cells) are the cells in the fetal lungs responsible for producing, storing, and secreting pulmonary surfactant.\n*   Betamethasone acts on these cells to enhance their differentiation and increase surfactant synthesis and secretion, thereby improving lung function in preterm infants.\n\nLet's look at why the other options are incorrect:\n*   **A. Bronchial epithelial cells:** While part of the respiratory system, they are not the primary target for surfactant production.\n*   **B. Vascular smooth myocytes:** These cells are involved in blood vessel function, not lung maturity.\n*   **D. Type I pneumocytes:** These cells are primarily involved in gas exchange and form the thin lining of the alveoli; they do not produce surfactant.\n*   **E. Goblet cells:** These cells produce mucus and are found in various epithelial linings, including the respiratory tract, but are not the target for surfactant production.\n\nThe final answer is $\\boxed{C}$"
+    },
+    {
+      "id": "boxed_letter_1",
+      "kind": "boxed_letter",
+      "cache_k": "837678c5998791f963ca659f71075de10636e06fb46b2a4fc9060cd478b6e192",
+      "model": "gemini-2.5-flash",
+      "note": "\\boxed{X} with full-text options",
+      "options": [
+        "Clinical option A",
+        "Clinical option B",
+        "Clinical option C",
+        "Clinical option D",
+        "Clinical option E"
+      ],
+      "expected": "Clinical option D",
+      "resp": "The patient is a 36-year-old woman at 42 weeks' gestation. Her pregnancy has been uncomplicated, and she is coming for induction of labor due to being post-term.\n\nLet's analyze the most significant risk factor for the child in this scenario: **post-term pregnancy (42 weeks' gestation)**.\n\n1.  **Post-term pregnancy (\u226542 weeks):** This is the primary concern. As pregnancy extends beyond term, several risks for the fetus increase:\n    *   **Placental insufficiency:** The placenta may begin to age and function less efficiently, leading to reduced oxygen and nutrient supply to the fetus. This can cause fetal distress.\n    *   **Oligohydramnios:** Decreased amniotic fluid can occur due to placental aging, increasing the risk of cord compression.\n    *   **Macrosomia:** Continued fetal growth can lead to a larger baby, increasing the risk of shoulder dystocia and birth trauma.\n    *   **Meconium passage and aspiration:** The fetal gastrointestinal tract matures, and the fetus is more likely to pass meconium into the amniotic fluid, especially if experiencing stress. If the meconium is aspirated into the lungs, it can cause severe respiratory distress (meconium aspiration syndrome).\n    *   **Increased risk of stillbirth/perinatal mortality.**\n\nNow let's evaluate the options:\n\n*   **A. Polyhydramnios:** This is an *excess* of amniotic fluid. Post-term pregnancy is more commonly associated with *oligohydramnios* (decreased amniotic fluid) due to placental aging. Polyhydramnios is typically linked to conditions like maternal diabetes or fetal anomalies, neither of which is indicated here.\n*   **B. Acute respiratory distress syndrome (ARDS):** In newborns, ARDS is primarily caused by lung immaturity due to *prematurity* (lack of surfactant). This baby is *post-term*, meaning the lungs are mature. While severe respiratory distress can occur from other causes (like meconium aspiration), primary ARDS due to lung immaturity is not a risk for a post-term infant.\n*   **C. Caudal regression syndrome:** This is a rare congenital anomaly strongly associated with *poorly controlled maternal diabetes* in the first trimester. This patient has an uncomplicated pregnancy and no history of diabetes.\n*   **D. Meconium aspiration:** This is a well-known and significant complication of post-term pregnancy. As the fetus matures and potentially experiences stress due to placental insufficiency, meconium passage into the amniotic fluid becomes more likely. If the meconium is aspirated into the lungs, it can lead to severe respiratory compromise (meconium aspiration syndrome).\n*   **E. Placental abruption:** This is the premature separation of the placenta. While a serious complication, it is not specifically or most commonly associated with post-term pregnancy as a primary risk for the child compared to meconium aspiration. Risk factors for abruption include hypertension, trauma, and substance abuse, none of which are present here.\n\nGiven the 42 weeks' gestation, the greatest risk for this patient's child among the options provided is meconium aspiration.\n\nThe final answer is $\\boxed{D}$"
+    },
+    {
+      "id": "boxed_letter_2",
+      "kind": "boxed_letter",
+      "cache_k": "6596aa172b364824ee7832fef888865d1dd46b5410d0c870e619f14ecd168ce6",
+      "model": "gemini-2.5-flash",
+      "note": "\\boxed{X} with full-text options",
+      "options": [
+        "Clinical option A",
+        "Clinical option B",
+        "Clinical option C",
+        "Clinical option D",
+        "Clinical option E"
+      ],
+      "expected": "Clinical option A",
+      "resp": "The patient is a 35-year-old woman presenting with acute onset right-sided weakness, hyperreflexia, and a positive Babinski sign on the right, consistent with an acute ischemic stroke affecting the left cerebral hemisphere.\n\nKey findings and risk factors:\n1.  **Acute Ischemic Stroke:** Sudden onset right-sided weakness with upper motor neuron signs.\n2.  **Deep Vein Thrombosis (DVT):** Swollen, erythematous, and tender left lower leg. This is a classic presentation of DVT.\n3.  **Risk Factors for DVT/Thromboembolism:**\n    *   **Oral Contraceptive Use:** Significantly increases the risk of venous thromboembolism.\n    *   **Smoking:** Further increases the risk of thrombosis, especially when combined with oral contraceptives.\n    *   **Recent Long-Distance Travel (Europe 3 days ago):** A well-known risk factor for DVT due to prolonged immobility.\n4.  **Age:** Stroke in a 35-year-old is unusual and prompts investigation for specific causes, such as paradoxical embolism, vasculitis, dissection, or hypercoagulable states.\n5.  **Vitals:** Tachycardia (115/min) and low-grade fever (38.0\u00b0C) could be related to the DVT, stroke, or a systemic inflammatory response.\n\nThe most compelling connection between an acute ischemic stroke and a DVT in a young patient is a **paradoxical embolism**. A paradoxical embolism occurs when a venous clot (from a DVT) travels from the venous system, bypasses the pulmonary circulation, and enters the systemic arterial circulation, causing an arterial embolism (e.g., stroke). This bypass typically happens through an intracardiac shunt, most commonly a patent foramen ovale (PFO).\n\nLet's evaluate the options:\n\n*   **A. Patent foramen ovale (PFO):** This is the most likely answer. A PFO allows a clot from the venous system (like the DVT in her left leg) to cross from the right atrium to the left atrium, then enter the systemic circulation and travel to the brain, causing a stroke. This perfectly links the DVT and the stroke in this young patient with multiple risk factors for DVT.\n*   **B. Atrial myxoma:** While an atrial myxoma can cause embolic stroke, there are no specific signs pointing to it (e.g., constitutional symptoms, specific heart murmurs, or other embolic phenomena). More importantly, the presence of a DVT strongly suggests a venous source for the embolus, making a paradoxical embolism through a PFO a more direct explanation.\n*   **C. Mitral valve vegetation:** Vegetations (e.g., from endocarditis) can cause embolic stroke. However, endocarditis usually presents with more pronounced fever, new heart murmurs, and other signs of infection. While she has a low-grade fever, the DVT points to a different mechanism.\n*   **D. Atrial fibrillation:** Atrial fibrillation is a common cause of cardioembolic stroke, but the patient's pulse is described as \"regular,\" ruling out atrial fibrillation as the cause of the stroke.\n*   **E. Carotid artery dissection:** Carotid artery dissection can cause stroke in young individuals, often associated with trauma or connective tissue disorders. However, there is no history of trauma, neck pain, or Horner's syndrome. The presence of a DVT makes a paradoxical embolism a much more probable explanation for the stroke.\n\nGiven the clear evidence of a DVT and an acute ischemic stroke in a young patient with risk factors for venous thromboembolism, a paradoxical embolism through a patent foramen ovale is the most likely underlying mechanism.\n\nThe final answer is $\\boxed{A}$"
+    },
+    {
+      "id": "boxed_letter_3",
+      "kind": "boxed_letter",
+      "cache_k": "99719823f04fe03f3c76a3e6e30ef0f0acc4d9ad1e5c21457b97258112e1dc83",
+      "model": "gemini-2.5-flash",
+      "note": "\\boxed{X} with full-text options",
+      "options": [
+        "Clinical option A",
+        "Clinical option B",
+        "Clinical option C",
+        "Clinical option D",
+        "Clinical option E"
+      ],
+      "expected": "Clinical option A",
+      "resp": "The patient is a 44-year-old African-American woman. The most crucial piece of information for determining the type of melanoma she is at greatest risk for is her ethnicity.\n\nLet's analyze the options:\n\n*   **A. Acral lentiginous melanoma (ALM):** This is the most common type of melanoma in individuals with darker skin tones, including African-Americans, Asians, and Hispanics. It typically occurs on the palms, soles, and under the nails (subungual areas), which are often not heavily sun-exposed. It is not primarily linked to UV radiation.\n*   **B. Superficial spreading melanoma (SSM):** This is the most common type of melanoma overall, particularly in Caucasians. It is often associated with intermittent, intense sun exposure and can arise from pre-existing moles.\n*   **C. Lentigo maligna melanoma (LMM):** This type typically develops on chronically sun-damaged skin, usually on the face and neck of older individuals. It is strongly associated with cumulative sun exposure.\n*   **D. Desmoplastic melanoma:** This is a rare and aggressive subtype, often amelanotic (lacking pigment) and can be difficult to diagnose. It often occurs on the head and neck in areas of chronic sun damage.\n*   **E. Nodular melanoma:** This is the second most common type of melanoma and is characterized by rapid vertical growth. It can occur anywhere on the body and is not specifically linked to sun exposure patterns like SSM or LMM.\n\nGiven that the patient is African-American, her risk profile for melanoma differs significantly from that of Caucasians. While she travels to the Caribbean regularly (implying sun exposure), the protective effect of melanin in darker skin tones means that sun-exposed areas are less prone to melanoma compared to Caucasians. When melanoma does occur in African-Americans, it often occurs in non-sun-exposed areas, and Acral Lentiginous Melanoma is the predominant subtype in this population.\n\nTherefore, despite her sun exposure, her ethnicity places her at the greatest risk for Acral Lentiginous Melanoma.\n\nThe final answer is $\\boxed{A}$"
+    },
+    {
+      "id": "boxed_text_0",
+      "kind": "boxed_text",
+      "cache_k": "5248fb396d3dc6479334b275e1094e58aa7bba2652b6062f1d23a20a884be9f0",
+      "model": "gemini-2.5-flash",
+      "note": "\\boxed{\\text{...}} resolved by option-text match (no letter in box)",
+      "options": [
+        "Unrelated distractor alpha",
+        "Unrelated distractor beta",
+        "Anti-mitochondrial antibodies",
+        "Unrelated distractor gamma",
+        "Unrelated distractor delta"
+      ],
+      "expected": "Anti-mitochondrial antibodies",
+      "resp": "The patient's presentation is highly suggestive of Primary Biliary Cholangitis (PBC).\n\nHere's a breakdown of the key features:\n1.  **Demographics:** 57-year-old woman. PBC predominantly affects middle-aged women.\n2.  **Symptoms:** Fatigue, generalized itchiness (pruritus), and jaundice (yellowing of eyes and skin). These are classic symptoms of cholestatic liver disease.\n3.  **Associated Symptoms:** Persistent dryness of the eyes and dry mucous membranes of the mouth (sicca symptoms). These are highly suggestive of Sj\u00f6gren's syndrome, which is the most common autoimmune disease associated with PBC.\n4.  **Physical Examination:** Jaundice, hepatomegaly (liver edge palpable 3 cm below the right costal margin), generalized skin excoriations (due to pruritus).\n5.  **Laboratory Studies:**\n    *   **Cholestatic pattern:** Markedly elevated Alkaline Phosphatase (ALP 452 U/L) with only mildly elevated AST (155 U/L) and ALT (168 U/L). This disproportionate elevation of ALP is characteristic of cholestasis.\n    *   **Conjugated hyperbilirubinemia:** Elevated total bilirubin (3.1 mg/dL) with a high direct bilirubin (2.5 mg/dL), indicating impaired bile excretion.\n    *   Normal CBC and negative viral hepatitis serology rule out other common causes of liver disease.\n6.  **Imaging:** Ultrasonography showing mildly increased echogenicity of the liver is a non-specific finding but does not rule out PBC.\n\nGiven this classic presentation of PBC, the most specific diagnostic serological marker for this condition is **anti-mitochondrial antibodies (AMA)**. AMA are present in 90-95% of patients with PBC. While Sj\u00f6gren's syndrome is a very common associated condition (present in 70-80% of PBC patients, and strongly suggested by the patient's sicca symptoms), AMA is a more prevalent and direct diagnostic marker for PBC itself.\n\nThe final answer is $\\boxed{\\text{Anti-mitochondrial antibodies}}$"
+    },
+    {
+      "id": "boxed_text_1",
+      "kind": "boxed_text",
+      "cache_k": "6e25bd82651152e186bbf1c78a4eb6b1d37ec96d2c411808d5e5bf16f1e27827",
+      "model": "gemini-2.5-flash",
+      "note": "\\boxed{\\text{...}} resolved by option-text match (no letter in box)",
+      "options": [
+        "Unrelated distractor alpha",
+        "Unrelated distractor beta",
+        "Aplastic crisis",
+        "Unrelated distractor gamma",
+        "Unrelated distractor delta"
+      ],
+      "expected": "Aplastic crisis",
+      "resp": "The patient's presentation is highly suggestive of Hereditary Spherocytosis (HS). Key findings include:\n1.  **Anemia (Hb 9.4 g/dl)** and **jaundice**: Indicative of hemolysis.\n2.  **Splenomegaly**: Common in chronic hemolytic anemias as the spleen works to remove abnormal red blood cells.\n3.  **Elevated Mean Corpuscular Hemoglobin Concentration (MCHC) of 39%**: This is a hallmark feature of hereditary spherocytosis, as spherocytes are denser and lack central pallor.\n4.  **Negative Coombs test**: Rules out autoimmune hemolytic anemia, pointing to an intrinsic red blood cell defect.\n5.  **Preceding upper respiratory tract infection (URTI)**: Viral infections are common triggers for acute crises in patients with underlying hemolytic anemias.\n\nHereditary spherocytosis is an inherited disorder of the red blood cell membrane, leading to the formation of fragile, spherical red blood cells (spherocytes) that are prematurely destroyed in the spleen.\n\nPatients with hereditary spherocytosis are at risk for several complications:\n*   **Chronic anemia and jaundice**: Due to ongoing hemolysis.\n*   **Splenomegaly**: Due to increased splenic activity.\n*   **Cholelithiasis (gallstones)**: Due to chronic overproduction of bilirubin from red blood cell breakdown, leading to pigment gallstones. This is a very common long-term complication, often developing in childhood or adolescence.\n*   **Hemolytic crises**: Acute exacerbations of hemolysis, often triggered by infections, leading to worsening anemia and jaundice. The patient's current symptoms are consistent with a hemolytic crisis.\n*   **Aplastic crises**: Severe, life-threatening anemia caused by a temporary cessation of red blood cell production in the bone marrow. These are most commonly triggered by parvovirus B19 infection, which targets erythroid precursors. A preceding viral infection (like the URTI mentioned) makes this a significant concern, especially in children.\n\nConsidering the \"greatest risk\" for a 3-year-old with an acute presentation following an infection:\nWhile cholelithiasis is a very common long-term complication, an **aplastic crisis** is an acute, severe, and potentially life-threatening complication that can rapidly lead to profound anemia requiring urgent blood transfusions. Given the preceding URTI, the risk of parvovirus B19 infection triggering an aplastic crisis is high and represents a more immediate and severe threat than the development of gallstones in a 3-year-old.\n\nThe final answer is $\\boxed{\\text{Aplastic crisis}}$"
+    },
+    {
+      "id": "boxed_text_2",
+      "kind": "boxed_text",
+      "cache_k": "bc25de8bc43ff6feff1d2b9ec25e547ad5a555bd78a3adb78f6b1deb43f32070",
+      "model": "gemini-2.5-flash",
+      "note": "\\boxed{\\text{...}} resolved by option-text match (no letter in box)",
+      "options": [
+        "Unrelated distractor alpha",
+        "Unrelated distractor beta",
+        "Tissue perfusion",
+        "Unrelated distractor gamma",
+        "Unrelated distractor delta"
+      ],
+      "expected": "Tissue perfusion",
+      "resp": "The patient is presenting with signs and symptoms of hypovolemic shock due to acute upper gastrointestinal bleeding, likely exacerbated by underlying chronic liver disease.\n\nKey findings indicating shock:\n*   **Hypotension:** Blood pressure 85/59 mm Hg.\n*   **Tachycardia:** Pulse 122/min.\n*   **Signs of hypoperfusion:** Pale appearance, decreased radial pulses, delayed capillary refill, and altered mental status (disoriented to place and time).\n\nIn hypovolemic shock, the primary problem is a significant reduction in circulating blood volume. This leads to a cascade of physiological changes:\n1.  **Decreased Blood Volume:** The initial insult.\n2.  **Decreased Venous Return (Preload):** Less blood returning to the heart.\n3.  **Decreased Stroke Volume:** The heart pumps less blood with each beat.\n4.  **Decreased Cardiac Output:** Despite compensatory tachycardia, the overall volume of blood pumped per minute is reduced.\n5.  **Decreased Mean Arterial Pressure:** The driving pressure for blood flow to organs is reduced.\n6.  **Decreased Tissue Perfusion:** The ultimate failure in shock, where oxygen and nutrient delivery to the tissues is inadequate to meet metabolic demands.\n\nThe clinical signs observed in the patient (pallor, decreased radial pulses, delayed capillary refill, and disorientation) are all direct indicators of inadequate blood flow and oxygen delivery to the peripheral tissues and the brain, respectively. This directly reflects a decrease in **tissue perfusion**. While blood volume, cardiac output, and mean arterial pressure are also decreased, \"tissue perfusion\" is the most encompassing physiological parameter that describes the ultimate failure of the circulatory system to meet cellular demands, which defines the state of shock.\n\nThe final answer is $\\boxed{\\text{Tissue perfusion}}$"
+    },
+    {
+      "id": "boxed_text_3",
+      "kind": "boxed_text",
+      "cache_k": "161097a48688b3dbd87c66ab07982cd3390efdce6f4aa62008119fa909f9436c",
+      "model": "gemini-2.5-flash",
+      "note": "\\boxed{\\text{...}} resolved by option-text match (no letter in box)",
+      "options": [
+        "Unrelated distractor alpha",
+        "Unrelated distractor beta",
+        "Heme synthesis",
+        "Unrelated distractor gamma",
+        "Unrelated distractor delta"
+      ],
+      "expected": "Heme synthesis",
+      "resp": "The patient's symptoms (abdominal pain, constipation, irritability, developmental delays) combined with the specific peripheral blood smear findings (small, pale red blood cells with basophilic stippling) are highly suggestive of lead poisoning.\n\nLead poisoning primarily impairs several biological processes:\n1.  **Heme synthesis:** Lead inhibits key enzymes in the heme synthesis pathway, particularly delta-aminolevulinic acid dehydratase (ALAD) and ferrochelatase. Inhibition of ferrochelatase prevents the incorporation of iron into protoporphyrin IX, leading to impaired heme formation and subsequent microcytic, hypochromic anemia.\n2.  **Red blood cell maturation:** Lead also inhibits pyrimidine 5'-nucleotidase, an enzyme involved in the degradation of ribosomal RNA. This inhibition leads to the accumulation of ribosomal RNA aggregates within red blood cells, which are seen as basophilic stippling on a peripheral blood smear.\n3.  **Neurological function:** Lead is a neurotoxin that interferes with neurotransmitter systems, ion channels (e.g., calcium channels), and myelination, leading to neurodevelopmental delays, behavioral changes (irritability), and cognitive impairment.\n4.  **Gastrointestinal function:** Lead can cause smooth muscle dysfunction, leading to abdominal pain and constipation.\n\nGiven the specific and characteristic hematological findings (microcytic, hypochromic anemia with basophilic stippling), the most directly and clearly evidenced impaired process is **heme synthesis**. The anemia and basophilic stippling are direct consequences of lead's interference with the biochemical pathways involved in red blood cell production and maturation.\n\nThe final answer is $\\boxed{\\text{Heme synthesis}}$"
+    },
+    {
+      "id": "declaration_0",
+      "kind": "declaration",
+      "cache_k": "dfac7be7be4f7cea95a4a36e11b4c813351902ee8ce6cc373f4f3e60306fd403",
+      "model": "gemini-2.5-flash",
+      "note": "explicit answer declaration without \\boxed",
+      "options": [
+        "Clinical option A",
+        "Clinical option B",
+        "Clinical option C",
+        "Clinical option D",
+        "Clinical option E"
+      ],
+      "expected": "Clinical option D",
+      "resp": "The correct answer is **D**.\n\n**Explanation:**\n\n1.  **Adolescent Development:** Masturbation is a normal, healthy, and common part of sexual development during adolescence. It is a way for teenagers to explore their sexuality, understand their bodies, and relieve sexual tension.\n2.  **Patient's Functioning:** The boy is described as the captain of his high school wrestling team and does reasonably well in school. This indicates good social, academic, and physical functioning, suggesting that his masturbation is not interfering with his daily life or causing significant distress (other than embarrassment when caught, which is normal).\n3.  **Mother's Concern:** The mother's concern likely stems from a lack of understanding about normal adolescent sexual development or personal/cultural beliefs about masturbation. Her worry that he may have a \"problem\" needs to be addressed with accurate information.\n4.  **Embarrassment:** The boy's embarrassment and avoidance of eye contact are normal reactions for an adolescent caught in a private act, especially by a parent. It does not indicate a psychological disorder.\n\n**Why other options are incorrect:**\n\n*   **A. Advise the patient to stop masturbating:** This is inappropriate and harmful. It would cause unnecessary shame, guilt, and anxiety, and is not medically sound advice.\n*   **B. Measure serum testosterone level:** There is no indication of a hormonal imbalance. His physical development and functioning are normal. This would be an unnecessary and potentially misleading test.\n*   **C. Refer the patient for behavioral therapy:** There is no evidence of a behavioral disorder, compulsive sexual behavior, or significant distress/dysfunction that would warrant behavioral therapy. Masturbation itself is not a disorder.\n*   **E. Prescribe sertraline:** Sertraline is an antidepressant/SSRI. There is no indication for psychotropic medication in this scenario. The boy is functioning well, and his embarrassment is a normal emotional response, not a sign of a mental health disorder requiring medication.\n\n**Most Appropriate Next Step:** The most appropriate action is to educate and reassure the mother that her son's behavior is a normal part of adolescent development and does not indicate a \"problem.\" This addresses her primary concern directly and provides accurate medical information."
+    },
+    {
+      "id": "declaration_1",
+      "kind": "declaration",
+      "cache_k": "a26898a4789607836009a01222f7f4d4c4d8b6b7643f346c859a74399be6f777",
+      "model": "gemini-2.5-flash",
+      "note": "explicit answer declaration without \\boxed",
+      "options": [
+        "Clinical option A",
+        "Clinical option B",
+        "Clinical option C",
+        "Clinical option D",
+        "Clinical option E"
+      ],
+      "expected": "Clinical option D",
+      "resp": "The correct answer is **D**.\n\n**Explanation:**\n\n1.  **Normal Adolescent Development:** Masturbation is a normal, healthy, and common part of sexual development during adolescence. It is a way for teenagers to explore their bodies, understand their sexuality, and manage sexual urges.\n2.  **Patient's Functioning:** The boy is 15 years old, captain of his high school wrestling team, and does well in school. This indicates good social, academic, and physical functioning, suggesting that his masturbation is not interfering with his life or causing distress (other than embarrassment when caught, which is normal).\n3.  **Mother's Concern:** The mother's concern stems from a misunderstanding or lack of education about normal adolescent sexual behavior. She perceives it as a \"problem.\"\n4.  **Physician's Role:** The physician's most appropriate role in this situation is to educate and reassure the mother that her son's behavior is normal for his age and does not indicate a \"problem.\" This helps to normalize the behavior and alleviate the mother's anxiety.\n\n**Why other options are incorrect:**\n\n*   **A. Advise the patient to stop masturbating:** This is medically inappropriate and potentially harmful. It would shame the patient for a normal developmental behavior and could lead to feelings of guilt or anxiety.\n*   **B. Measure serum testosterone level:** There is no clinical indication for this. His age, normal physical exam, and the nature of the complaint (normal sexual behavior) do not suggest a hormonal imbalance.\n*   **C. Refer the patient for behavioral therapy:** This is unnecessary and would pathologize a normal developmental stage. There is no evidence of a behavioral disorder.\n*   **E. Prescribe sertraline:** Sertraline is an antidepressant. There is no indication for antidepressant medication in this case. The patient is not exhibiting symptoms of depression, anxiety, or any other condition that would warrant psychotropic medication."
+    },
+    {
+      "id": "declaration_2",
+      "kind": "declaration",
+      "cache_k": "bf8aa436c5a5b3f4e139f20674d85932cf1370d655bf1ee920caaae0259bf7f3",
+      "model": "gemini-2.5-flash",
+      "note": "explicit answer declaration without \\boxed",
+      "options": [
+        "Clinical option A",
+        "Clinical option B",
+        "Clinical option C",
+        "Clinical option D",
+        "Clinical option E"
+      ],
+      "expected": "Clinical option C",
+      "resp": "The correct answer is **C**.\n\nHere's why:\n\n1.  **Aminoacyl-tRNA Synthetases (aaRS):** Normally, the aminoacyl-tRNA synthetases are responsible for attaching the correct amino acid to its cognate tRNA. They have proofreading mechanisms to ensure this specificity. In this experiment, this natural proofreading step is bypassed by biochemically charging Lys-tRNA with valine.\n2.  **Ribosome's Role in Translation:** The ribosome's primary role during elongation is to read the mRNA codons and facilitate the binding of tRNAs with complementary anticodons. It checks for the correct codon-anticodon pairing in the A-site.\n3.  **Lack of Amino Acid Proofreading by Ribosome:** Crucially, the ribosome does *not* have a mechanism to directly \"read\" or proofread the amino acid attached to the tRNA once the tRNA has successfully bound via its anticodon. Its main check is the physical fit and hydrogen bonding between the codon and anticodon.\n4.  **Experimental Outcome:** Since the Lys-tRNA (now carrying valine) still has the correct anticodon for lysine codons, it will successfully bind to the lysine codons on the mRNA. The ribosome, recognizing the correct codon-anticodon match, will then incorporate the valine into the growing peptide chain wherever a lysine codon appears.\n\nLet's look at why other options are incorrect:\n\n*   **A & B:** The ribosome does not recognize the mischarged amino acid itself during elongation. Its proofreading is primarily focused on the codon-anticodon interaction, not the amino acid attached to the tRNA. It cannot remove the valine or terminate translation based solely on an incorporated incorrect amino acid.\n*   **D:** The proteasome degrades proteins, not RNA molecules like tRNA.\n*   **E:** Aminoacyl-tRNA synthetases act *before* translation to charge tRNAs. They do not remove mischarged tRNAs from the translational machinery once they are already charged and participating in protein synthesis. The mischarging in this experiment bypassed the synthetase's natural proofreading."
+    },
+    {
+      "id": "declaration_3",
+      "kind": "declaration",
+      "cache_k": "5dc0759c7746e4984e0df5e35038b897d62421dfc2bf445242b40614e1a4f4d1",
+      "model": "gemini-2.5-flash",
+      "note": "explicit answer declaration without \\boxed",
+      "options": [
+        "Clinical option A",
+        "Clinical option B",
+        "Clinical option C",
+        "Clinical option D",
+        "Clinical option E"
+      ],
+      "expected": "Clinical option B",
+      "resp": "The correct answer is **B**.\n\nHere's why:\n\n*   The space posterior to the stomach is known as the **lesser sac** (or omental bursa).\n*   The **gastrohepatic ligament** is part of the lesser omentum. It extends from the lesser curvature of the stomach and the first part of the duodenum to the liver (specifically, the porta hepatis).\n*   This ligament forms the **anterior wall** of the lesser sac.\n*   To access the pancreas, which lies retroperitoneally posterior to the stomach and within the lesser sac, surgeons commonly enter the lesser sac by dividing the avascular portion of the gastrohepatic ligament. This provides a direct route to the anterior surface of the pancreas.\n\nLet's briefly look at why the other options are incorrect:\n\n*   **A. Phrenoesophageal ligament:** Connects the esophagus to the diaphragm; not involved in accessing the lesser sac.\n*   **C. Phrenicocolic ligament:** Connects the diaphragm to the splenic flexure of the colon; not involved in accessing the lesser sac.\n*   **D. Ligamentum venosum:** A fibrous remnant within the liver; not a ligament to be cut for this access.\n*   **E. Falciform ligament:** Attaches the liver to the anterior abdominal wall and diaphragm; not involved in accessing the lesser sac."
+    }
+  ]
+}
