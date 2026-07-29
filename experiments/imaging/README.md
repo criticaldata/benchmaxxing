@@ -375,10 +375,10 @@ python -m experiments.imaging.effect_sizes_imaging
 
 | Arm | Risk difference | Bootstrap 95% CI | Achieved power | Pairs needed for 0.8 power |
 |---|---|---|---|---|
-| Cascade contagion, cable | 0.54 | [0.371, 0.714] | 1.0 | 7 |
-| Cascade contagion, corner tag | 0.54 | [0.371, 0.714] | 1.0 | 8 |
-| Cascade contagion, laterality | 0.57 | [0.400, 0.743] | 1.0 | 9 |
-| Cascade contagion, watermark | 0.63 | [0.457, 0.771] | 1.0 | 10 |
+| Cascade contagion, cable | 0.54 | [0.400, 0.714] | 1.00 | 12 |
+| Cascade contagion, corner tag | 0.54 | [0.371, 0.714] | 1.00 | 12 |
+| Cascade contagion, laterality | 0.57 | [0.400, 0.743] | 1.00 | 12 |
+| Cascade contagion, watermark | 0.54 | [0.371, 0.714] | 1.00 | 12 |
 | Referee vs naive (paired accuracy) | 0.17 | [-0.029, 0.343] | 0.41 | 90 |
 
 Solo flip rates (bootstrap CIs, not a risk difference since there is only one condition): cable

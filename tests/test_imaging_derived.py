@@ -121,3 +121,45 @@ def test_recompute_refuses_to_derive_from_a_pre_fix_transcript(tmp_path, monkeyp
     monkeypatch.setattr(rd, "RESULTS", fake)
     with pytest.raises(SystemExit):
         rd.per_cue()
+
+
+def test_every_bootstrap_ci_brackets_its_own_point_estimate():
+    """The check that would have caught the patched-keys bug directly (@Agastya191 on #350).
+
+    The old rebuild() wrote risk_difference but inherited bootstrap95 from the pre-fix file, so cable
+    shipped 0.5429 with a CI of [0.6571, 0.9143]. Nothing in the suite noticed, because the expected
+    object was read off the same file under test.
+    """
+    obj = json.loads((RESULTS / "effect_sizes_imaging.json").read_text())
+    for name, block in obj["cascade_contagion_delta"].items():
+        rd, ci = block["risk_difference"], block["bootstrap95"]
+        assert ci[0] <= rd <= ci[1], f"{name}: point estimate {rd} outside its own CI {ci}"
+
+
+def test_effect_sizes_are_rebuilt_not_patched():
+    """rebuild() must regenerate the whole effect-sizes block, inheriting nothing from the old file.
+
+    Sentinel values are planted in keys the old implementation never touched. If any survives, the
+    file is being patched again rather than rebuilt, and the drift check is circular.
+    """
+    p = RESULTS / "effect_sizes_imaging.json"
+    before = p.read_text()
+    try:
+        poisoned = json.loads(before)
+        for block in poisoned["cascade_contagion_delta"].values():
+            block["bootstrap95"] = [-99.0, -98.0]
+            block["achieved_power"] = -1.0
+        p.write_text(json.dumps(poisoned, indent=2))
+        out = rd.rebuild(rd.per_cue())[p.name]
+        for name, block in out["cascade_contagion_delta"].items():
+            assert block["bootstrap95"] != [-99.0, -98.0], f"{name}: CI inherited from the old file"
+            assert block["achieved_power"] != -1.0, f"{name}: power inherited from the old file"
+    finally:
+        p.write_text(before)
+
+
+def test_no_stale_effect_size_range_in_the_read_string():
+    """The generator's prose said "large (0.63-0.80)", the pre-fix range, after the fix landed."""
+    obj = json.loads((RESULTS / "effect_sizes_imaging.json").read_text())
+    read = obj.get("read", "")
+    assert "0.54-0.57" in read, "read string does not state the corrected contagion range"

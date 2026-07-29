@@ -34,6 +34,8 @@ import json
 import sys
 from pathlib import Path
 
+from experiments.imaging import effect_sizes_imaging
+
 HERE = Path(__file__).resolve().parent
 RESULTS = HERE / "results"
 
@@ -137,25 +139,28 @@ def spearman(xs, ys):
 
 
 def rebuild(cues):
-    """Return {filename: updated json object} for every derived file."""
+    """Return {filename: rebuilt json object} for every derived file.
+
+    For ``effect_sizes_imaging.json`` this DELEGATES to that script's own ``main()`` rather than
+    patching individual keys. Patching was a real bug (@Agastya191 on #350): it wrote
+    ``risk_difference``/``shared_adopt``/``iso_adopt``/``n`` but inherited ``bootstrap95``,
+    ``achieved_power`` and ``required_pairs_for_power_0.8`` from the pre-fix file, so cable shipped
+    0.5429 with a CI of [0.6571, 0.9143] that excludes its own point estimate. It also made the drift
+    check circular: the expected object was read off the same file it was validating, so every key
+    ``rebuild`` did not touch could never disagree. Delegating rebuilds the whole block from the
+    transcripts, CIs and power included, and nothing is inherited.
+    """
     updates = {}
 
     p = RESULTS / "effect_sizes_imaging.json"
     if p.exists():
-        obj = json.loads(p.read_text())
-        block = obj.get("cascade_contagion_delta")
-        if isinstance(block, dict):
-            for cue, stats in cues.items():
-                if cue in block and isinstance(block[cue], dict):
-                    block[cue]["risk_difference"] = round(stats["risk_difference"], 4)
-                    block[cue]["shared_adopt"] = round(stats["shared_adopt"], 4)
-                    block[cue]["iso_adopt"] = round(stats["iso_adopt"], 4)
-                    block[cue]["n"] = stats["n"]
-            obj["provenance"] = (
-                "cascade_contagion_delta recomputed from the post-#338 per-cue transcripts by "
-                "experiments/imaging/recompute_derived.py"
-            )
-            updates[p.name] = obj
+        before = p.read_text()
+        try:
+            effect_sizes_imaging.main()          # writes the file from the transcripts
+            updates[p.name] = json.loads(p.read_text())
+        finally:
+            p.write_text(before)                 # leave the tree untouched; --write re-applies
+        _assert_ci_brackets_point(updates[p.name])
 
     p = RESULTS / "claim4_quantification.json"
     if p.exists():
@@ -182,6 +187,27 @@ def rebuild(cues):
             updates[p.name] = obj
 
     return updates
+
+
+def _assert_ci_brackets_point(obj):
+    """Every bootstrap interval must contain its own point estimate.
+
+    This is the check that would have caught the patched-keys bug directly, and it is the discipline
+    effect_sizes_imaging.py's own docstring already records for the text lane.
+    """
+    bad = []
+    for name, block in (obj.get("cascade_contagion_delta") or {}).items():
+        if not isinstance(block, dict):
+            continue
+        rd, ci = block.get("risk_difference"), block.get("bootstrap95")
+        if rd is None or not ci:
+            continue
+        if not (ci[0] <= rd <= ci[1]):
+            bad.append(f"{name}: rd={rd} outside CI {ci}")
+    if bad:
+        raise SystemExit(
+            "bootstrap interval does not bracket its own point estimate:\n  " + "\n  ".join(bad)
+        )
 
 
 def main():
