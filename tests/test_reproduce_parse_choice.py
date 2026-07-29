@@ -1,6 +1,6 @@
 """Regression suite for ``experiments/medqa/reproduce.py``'s answer parser (#345).
 
-``reproduce._parse_choice`` is the function behind every MedQA number currently in the paper
+The parser reproduce.py uses is the function behind every MedQA number currently in the paper
 (solo flip rates, cascade contagion, referee metrics, …). It has no other committed test. PR #342
 showed that swapping it for the shared ``extract.parse_mcq_choice`` silently disagrees on ~5.5% of
 real cached Gemini replies — caught only by an ad hoc cache diff. This suite is the standing
@@ -39,7 +39,10 @@ def _load_reproduce():
 
 
 reproduce = _load_reproduce()
-parse = reproduce._parse_choice
+# #102 centralized the parser: reproduce.py no longer defines its own _parse_choice, it imports
+# parse_legacy_string from benchmaxxing.extract. Resolve whichever this checkout exposes so the
+# fixture coverage keeps testing the function actually behind every MedQA number in the paper.
+parse = getattr(reproduce, "_parse_choice", None) or reproduce.parse_legacy_string
 
 
 # Full-text options, matching what reproduce.py passes from MedQA payloads (not bare A–E).
@@ -133,7 +136,7 @@ def test_synthetic_reply_shapes(text, options, expected, case_id):
     ids=[f"{c['kind']}:{c['id']}" for c in CACHE_FIXTURES],
 )
 def test_real_cache_fixture(fixture):
-    """Pin ``_parse_choice`` against frozen real Gemini replies from call_cache.jsonl."""
+    """Pin the parser against frozen real Gemini replies from call_cache.jsonl."""
     assert parse(fixture["resp"], list(fixture["options"])) == fixture["expected"]
 
 

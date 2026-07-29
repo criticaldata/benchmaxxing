@@ -188,6 +188,15 @@ def parse_mcq_choice(text: str, options: tuple[str, ...] | list[str]) -> int | A
 
     # ── Branch: standard MCQ letter options (A–E etc.) ──────────────────
 
+    # A reply that is nothing but a single letter, in either case. The pre-centralization parser had
+    # this as its last fallback (`len(t) == 1 and t.upper() in letters`) and it is the shape a model
+    # uses when it answers tersely. Handled explicitly rather than by making the scan below
+    # case-insensitive, because a case-insensitive standalone-letter scan over prose would match the
+    # lowercase article "a" and reintroduce the bug that scan is guarded against.
+    stripped = text.strip()
+    if len(stripped) == 1 and stripped.upper() in valid_letters:
+        return ord(stripped.upper()) - ord("A")
+
     # Heuristic 2: Trailing standalone letter.
     # Match standalone valid letters (word-boundary enclosed).
     valid_chars = "".join(sorted(valid_letters))
