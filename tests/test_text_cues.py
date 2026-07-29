@@ -124,7 +124,9 @@ def test_lexical_overlap_increases_overlap_and_preserves_answer():
 
     target = tp.cue_params["option_index"]
     assert target != case.answer_index  # cue lands on a distractor
-    stem = case.question
+    # The cue draws from case.report when present (make_case() sets both fields); see the
+    # function docstring for why report, not question, is the token source when both exist.
+    stem = case.report
     clean_overlap = _overlap(stem, tp.clean["options"][target])
     dirty_overlap = _overlap(stem, tp.contaminated["options"][target])
     assert dirty_overlap > clean_overlap
@@ -141,6 +143,46 @@ def test_lexical_overlap_rejects_targeting_correct_option():
 def test_lexical_overlap_is_deterministic():
     case = make_case()
     assert lexical_overlap_bias(case) == lexical_overlap_bias(case)
+
+
+def test_lexical_overlap_draws_from_report_not_a_fixed_question_stem():
+    # Regression (#336 review): when question is a fixed, dataset-wide stem (mimic_cxr_text.py's
+    # shape) and report carries the actual per-case text, two cases sharing the same question but
+    # different reports must get DIFFERENT injected tokens. Drawing from question alone would
+    # inject the same constant suffix on every case, collapsing this cue into a duplicate of
+    # longest_option_bias instead of a genuine per-case lexical signal.
+    stem = "What is the primary finding described in this report?"
+    case_a = Case(
+        case_id="a", patient_id="p1", modality=Modality.TEXT,
+        report="Large right pneumothorax with a chest tube in place.",
+        question=stem, options=("Cardiomegaly", "Edema", "Pneumothorax", "Consolidation"),
+        answer_index=2,
+    )
+    case_b = Case(
+        case_id="b", patient_id="p2", modality=Modality.TEXT,
+        report="Mild cardiomegaly with vascular congestion.",
+        question=stem, options=("Cardiomegaly", "Edema", "Pneumothorax", "Consolidation"),
+        answer_index=0,
+    )
+    tp_a = lexical_overlap_bias(case_a)
+    tp_b = lexical_overlap_bias(case_b)
+    assert tp_a.cue_params["added_tokens"] != tp_b.cue_params["added_tokens"]
+
+
+def test_lexical_overlap_never_injects_another_options_wording():
+    # Regression (#336 review): a report that names the correct finding must not leak that name
+    # into a distractor's text via the injected tokens.
+    case = Case(
+        case_id="c", patient_id="p1", modality=Modality.TEXT,
+        report="Findings consistent with cardiomegaly and mild vascular congestion.",
+        question="What is the primary finding described in this report?",
+        options=("Cardiomegaly", "Edema", "Pneumothorax", "Consolidation"),
+        answer_index=0,
+    )
+    tp = lexical_overlap_bias(case)
+    added = " ".join(tp.cue_params["added_tokens"]).lower()
+    for option in case.options:
+        assert option.lower() not in added
 
 
 # --------------------------------------------------------------------------------------------
