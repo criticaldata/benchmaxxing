@@ -97,6 +97,15 @@ DATASET_STATUS: dict[str, DatasetStatus] = {
         referee="pending",
         blocker="stage the official MedMCQA release",
     ),
+    "mimic_cxr_text": DatasetStatus(
+        lane="text",
+        staged="staged",
+        adapter="coded",
+        solo="done",
+        cascade="done",
+        plausibility="done",
+        referee="done",
+    ),
 }
 
 
