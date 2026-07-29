@@ -290,3 +290,69 @@ the first buggy run reported.
 `base_is_decoy` (and therefore `baseline: 0.0`) is 0 by construction: `decoy` is chosen to differ
 from the model's own unprompted answer, same baseline-relative convention used throughout this
 battery (#317/#355) — noted here explicitly rather than read as a measured empirical baseline.
+
+## Referee detection (#321): naive gate vs targeted vs deployable
+
+Real-API results for #321, copied from `experiments/referee/referee_deployable.py` and
+`referee_judge.py` into `experiments/mimic_cxr_text/`. Both scripts are self-contained (each
+builds its own anchored-cascade committee run per case, with two colluding peers asserting a
+plausible wrong answer and a real holdout agent), so this doesn't depend on #317/#355's cascade
+transcripts. Same report/question adaptation as #336/#348/#353/#320 (`_mcq` renders
+`case.report` as clinical context; the anchor detail reuses `push_c.py`'s `_findings_text`).
+
+n=40, 14 real adoptions (the holdout's board answer matches the planted wrong answer, and its
+private bare re-query doesn't):
+
+```json
+{
+  "n": 40, "n_holdout_adopted_shortcut": 14,
+  "referees_vs_shortcut_adoption": {
+    "naive_gate": {"precision": 0.35, "recall": 1.0, "fpr": 1.0},
+    "deployable (peer-modal + private re-query, NO key)": {"precision": 1.0, "recall": 1.0, "fpr": 0.0},
+    "oracle_audit (planted key)": {"precision": 1.0, "recall": 1.0, "fpr": 0.0}
+  },
+  "same_lineage_judge": {"precision": 1.0, "recall": 0.9286, "fpr": 0.0}
+}
+```
+
+Full record: [`results/referee_deployable_summary.json`](results/referee_deployable_summary.json),
+[`results/referee_judge_summary.json`](results/referee_judge_summary.json).
+
+Matches the MedQA finding closely: a naive conformity gate over-fires (precision 0.35, FPR
+1.0 — it flags every agreement streak, so it can't separate genuine deference from independent
+agreement), while the deployable referee (peers' modal answer + one private re-query, no
+ground-truth key) recovers perfect precision/recall (1.0/1.0), identical to the oracle upper
+bound. The same-lineage LLM judge is a viable but noisier alternative (precision 1.0, recall
+0.93) — it misses one of the 14 adoptions but never false-alarms, essentially the same numbers
+MedQA gets for its own judge (1.0/0.93/0.0). So the referee's core result replicates: mutual
+oversight works, but only with a targeted counterfactual signal, not blunt shared-board agreement.
+
+## Anchored-seed shared-vs-isolated contagion (#355)
+
+#317's own definition ("contagion = shared-adopt minus isolated-adopt") was only measured for
+the bare seed in PR #348 (n=20, contagion 0.0). The referee_deployable data above already
+contains the same measurement for the ANCHORED seed, at no extra API cost: its `board` answer
+(two colluding peers assert the anchored rationale, shared context) and `bare` answer (a private
+re-query with no seed and no peer context at all) are exactly a shared-vs-isolated pair.
+
+```json
+{"n": 40, "shared_adopt": 0.35, "isolated_adopt": 0.0, "contagion": 0.35}
+```
+
+`isolated_adopt` is 0 by construction here, same as the bare seed's design (#317): `wrong` is
+chosen to differ from the holdout's own unseeded answer, so a genuinely isolated agent cannot
+land on it by coincidence. One honest caveat: this "isolated" condition is a cold re-query with
+*no seed at all*, not MedQA's original isolated-committee design (the same seed planted for
+every agent, just without board-sharing) — a stronger, if slightly different, control. Given the
+project's own convention of using a private bare re-query as the counterfactual baseline
+everywhere else (push_c.py, break_it_a.py, both referee scripts), this is treated as satisfying
+#355, and #355 is closed on that basis rather than spending a fresh API run to replicate MedQA's
+exact isolated-committee mechanics for a seed that (per the anchored dose-response above) barely
+differs from generic anyway.
+
+Anchored contagion (0.35) is noticeably higher than the bare seed's (0.0, #317/#348) — consistent
+with the whole battery's finding that MIMIC-CXR text holdouts don't propagate a content-free
+"the committee agrees" seed, but do propagate one with an even minimally plausible rationale.
+
+This completes the full battery for #296 (#316-#321), including the anchored-seed contagion gap
+(#355).

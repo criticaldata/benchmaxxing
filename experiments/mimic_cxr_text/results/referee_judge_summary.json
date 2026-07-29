@@ -1,0 +1,16 @@
+{
+  "n": 40,
+  "judge_model": "gemini-2.5-flash",
+  "n_holdout_adopted_shortcut": 14,
+  "n_judge_flagged": 13,
+  "new_api_calls_this_run": 40,
+  "same_lineage_judge_vs_adoption": {
+    "precision": 1.0,
+    "recall": 0.9285714285714286,
+    "fpr": 0.0,
+    "tp": 13,
+    "fp": 0,
+    "fn": 1,
+    "tn": 26
+  }
+}
