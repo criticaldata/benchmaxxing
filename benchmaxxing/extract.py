@@ -163,7 +163,12 @@ def parse_mcq_choice(text: str, options: tuple[str, ...] | list[str]) -> int | A
         text_lower = text.lower()
         matches: set[int] = set()
         for i, opt in enumerate(options):
-            if re.search(rf"\b{re.escape(opt.lower())}\b", text_lower):
+            # (?<!\w)...(?!\w) rather than \b...\b: a clinical option very often ends in a
+            # full stop, and \b after a literal "." can never match, since it needs a word
+            # character on the far side. That made every such option invisible to this search,
+            # so a reply like "B. A type 1 error occurs when ..." came back unparseable even
+            # though it quotes the option verbatim. Lookarounds handle the punctuation case.
+            if re.search(rf"(?<!\w){re.escape(opt.lower())}(?!\w)", text_lower):
                 matches.add(i)
         if len(matches) == 1:
             return matches.pop()
