@@ -108,6 +108,7 @@ The smoke is the fastest way to see the whole pipeline compose and to confirm yo
 
 `benchmaxxing run` is the reproducible entry point for a stage: it resolves the config (models, cue set, seed), loads the manifest, injects the cues, calls the matching runner in `benchmaxxing/experiments.py`, and writes a self-describing run directory. A config file may be JSON (no extra needed) or YAML (needs the `config` extra). The default backend is Gemini, so a real run needs `GEMINI_API_KEY` and the `models` extra; `--backend mock` runs the same code path offline. The cascade stage also saves every shared and isolated transcript under `--out/transcripts/` for re-analysis.
 
+`summary.md` reports three things: the headline point estimates, the same estimates with a 95% bootstrap CI (seeded from the config seed, so a rerun reproduces them), and every p-value the stage produced corrected once across the whole family with Benjamini-Hochberg, with the family size stated. A p-value that cannot be adjusted (an undefined overlap, for example) is listed as dropped rather than quietly left out.
 ## 5. Reuse the originals (the design rule)
 
 The pipeline is thin wrappers over established, version-pinned libraries (numpy/scipy/scikit-learn for statistics, a change-point library for cascade onset, image libraries for cue injection, a single gateway for models). The bespoke core is kept small and tested hardest. Two rules follow:

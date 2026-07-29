@@ -35,6 +35,42 @@ def test_mcnemar_no_discordant_pairs():
     assert res.pvalue == 1.0
 
 
+def test_paired_permutation_exact_small_sample():
+    # four unanimous positive pairs: only the all-+ and all-- sign vectors match |sum|, so the
+    # exact two-sided p is 2/2**4. This is the honest floor a handful of pairs cannot beat.
+    res = stats.paired_permutation_test([1.0, 1.0, 1.0, 1.0])
+    assert res.statistic == pytest.approx(1.0)
+    assert res.pvalue == pytest.approx(0.125)
+
+
+def test_paired_permutation_uses_magnitude_not_just_sign():
+    # same sign pattern (+,+,+,-), so a sign test / McNemar gives both the identical 0.625; the
+    # permutation test weights the magnitudes and separates them.
+    same_signs = stats.paired_permutation_test([1.0, 1.0, 1.0, -1.0]).pvalue
+    one_is_bigger = stats.paired_permutation_test([3.0, 1.0, 1.0, -1.0]).pvalue
+    assert same_signs == pytest.approx(0.625)
+    assert one_is_bigger == pytest.approx(0.5)
+    assert one_is_bigger != same_signs
+
+
+def test_paired_permutation_drops_ties_and_handles_all_zero():
+    # zero differences carry no sign information: dropping them leaves [1,1,1,1] -> 0.125
+    assert stats.paired_permutation_test([0.0, 0.0, 1.0, 1.0, 1.0, 1.0]).pvalue == pytest.approx(
+        0.125
+    )
+    # nothing but ties -> no evidence against the null
+    assert stats.paired_permutation_test([0.0, 0.0, 0.0]).pvalue == 1.0
+
+
+def test_paired_permutation_sampled_path_is_seeded():
+    # more nonzero pairs than the exact cap forces the Monte Carlo path; it must be reproducible
+    diffs = [((-1) ** i) * (0.1 + 0.01 * i) for i in range(30)]
+    assert diffs and len([d for d in diffs if d != 0.0]) > 18
+    a = stats.paired_permutation_test(diffs, n_permutations=5000, seed=7).pvalue
+    b = stats.paired_permutation_test(diffs, n_permutations=5000, seed=7).pvalue
+    assert a == b
+
+
 def test_cochran_q_reduces_to_mcnemar_chisquare_for_two_conditions():
     # For k=2, Q == (b - c)^2 / (b + c) with b = (1,0) count, c = (0,1) count.
     # Build columns: 6 rows (1,0), 2 rows (0,1), plus some concordant rows (dropped by Q).

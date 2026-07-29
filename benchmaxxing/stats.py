@@ -23,12 +23,14 @@ __all__ = [
     "FisherResult",
     "CMHResult",
     "MultipleComparisonResult",
+    "PermutationResult",
     "mcnemar",
     "cochran_q",
     "fisher_exact",
     "cochran_mantel_haenszel",
     "mixed_effects_logit",
     "bootstrap_ci",
+    "paired_permutation_test",
     "phi_coefficient",
     "jaccard",
     "cohen_kappa",
@@ -70,6 +72,13 @@ class MultipleComparisonResult(NamedTuple):
 
     pvalues_adjusted: np.ndarray
     reject: np.ndarray
+
+
+class PermutationResult(NamedTuple):
+    """Result of a paired sign-flip permutation test. ``statistic`` is the mean difference."""
+
+    statistic: float
+    pvalue: float
 
 
 def mcnemar(b: int, c: int) -> McNemarResult:
@@ -301,6 +310,51 @@ def cluster_bootstrap_ci(
     point = float(statistic(x))
     return point, float(low), float(high)
 
+
+# Above this many nonzero pairs the 2**m sign patterns are too many to enumerate, so switch to
+# sampling. 2**18 = 262144 rows is still cheap; beyond it Monte Carlo is indistinguishable.
+_PERMUTATION_EXACT_MAX = 18
+
+
+def paired_permutation_test(
+    differences: Sequence[float],
+    n_permutations: int = 10000,
+    seed: int = 0,
+) -> PermutationResult:
+    """Two-sided paired permutation test that the mean paired difference is zero.
+
+    The randomization is the sign flip: under the null that each paired difference is symmetric
+    about zero, flipping a difference's sign is equally likely, so the reference distribution is
+    the mean difference over the sign assignments. Unlike a sign test it keeps every pair's
+    magnitude, and unlike McNemar it does not collapse continuous per-case rates to a win/lose
+    count -- so it is the paired-difference analogue of the ``adoption_delta`` bootstrap CI.
+
+    Zero differences carry no sign information; with ``m`` nonzero pairs and ``m`` small enough
+    all ``2**m`` sign vectors are enumerated for an exact p-value, otherwise ``n_permutations``
+    sign vectors are sampled (seeded) and the p-value uses the ``(hits + 1) / (draws + 1)`` bound
+    so it is never zero. Note the exact p is floored at ``2 / 2**m``: a handful of pairs cannot
+    reach small p no matter how large the gap, which is an honest limit of the sample size.
+    """
+    diffs = np.asarray([d for d in differences if d is not None], dtype=float)
+    observed = float(np.mean(diffs)) if diffs.size else 0.0
+    nonzero = diffs[diffs != 0.0]
+    m = int(nonzero.size)
+    if m == 0:
+        return PermutationResult(statistic=observed, pvalue=1.0)
+
+    # |mean| >= |observed| collapses to |sign . nonzero| >= |sum(nonzero)| (the pair count is a
+    # shared denominator that cancels); the tolerance absorbs float rounding on fractional rates.
+    target = abs(float(nonzero.sum())) - 1e-12
+    if m <= _PERMUTATION_EXACT_MAX:
+        bits = (np.arange(2**m)[:, None] >> np.arange(m)) & 1
+        signs = 1.0 - 2.0 * bits
+        pvalue = float(np.mean(np.abs(signs @ nonzero) >= target))
+        return PermutationResult(statistic=observed, pvalue=pvalue)
+
+    rng = np.random.default_rng(seed)
+    signs = rng.choice(np.array([-1.0, 1.0]), size=(n_permutations, m))
+    hits = int(np.count_nonzero(np.abs(signs @ nonzero) >= target))
+    return PermutationResult(statistic=observed, pvalue=(hits + 1) / (n_permutations + 1))
 
 def phi_coefficient(y_true, y_pred) -> float:
     """Phi coefficient for two binary vectors, i.e. the Matthews correlation coefficient.

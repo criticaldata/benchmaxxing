@@ -17,6 +17,7 @@ from benchmaxxing.analysis import FlipRecord
 from benchmaxxing.config import Config
 from benchmaxxing.data import write_manifest
 from benchmaxxing.schema import Case, Modality
+from benchmaxxing.stats import multiple_comparison
 
 MANIFEST_ROWS = [
     Case(
@@ -247,6 +248,95 @@ def test_cascade_estimates_pair_shared_against_isolated():
 def test_estimates_are_empty_when_there_is_nothing_to_resample():
     assert runner.estimates("cascade", {"per_case": []}, seed=0) == {}
 
+
+# --- multiple comparisons ------------------------------------------------------------------
+
+
+def test_family_is_one_test_per_model_per_cue():
+    records = _flip_records(4, 12)
+    results = {"records_by_model": {"m1": records, "m2": records}}
+    tests = runner.significance_tests("solo", results)
+
+    assert len(tests) == 2  # one cue in the fixture, two models
+    assert {row["test"] for row in tests} == {"mcnemar"}
+    assert all(row["discordant"] == 4 for row in tests)
+
+
+def test_cascade_family_is_a_paired_permutation_on_the_adoption_gap():
+    # a tie (shared == isolated) carries no sign; the six clean positive gaps drive the test
+    per_case = [
+        {"shared_adoption": 1.0, "isolated_adoption": 0.0},
+        {"shared_adoption": 0.67, "isolated_adoption": 0.0},
+        {"shared_adoption": 0.5, "isolated_adoption": 0.5},
+    ] * 3
+    tests = runner.significance_tests("cascade", {"per_case": per_case}, seed=0)
+    assert len(tests) == 1
+    row = tests[0]
+    assert row["test"] == "paired_permutation"
+    # the statistic is the mean shared-minus-isolated gap: the same quantity as the delta CI
+    gaps = [c["shared_adoption"] - c["isolated_adoption"] for c in per_case]
+    assert row["statistic"] == pytest.approx(sum(gaps) / len(gaps))
+    assert row["discordant"] == 6  # the three ties do not count
+    # six unanimous positive pairs clear alpha where McNemar's sign-test floor could not
+    assert row["p_value"] < 0.05
+
+
+def test_overlap_permutation_test_joins_the_family():
+    results = {
+        "records_by_model": {"m1": _flip_records(4, 12)},
+        "overlap": {"p_value": 0.03, "observed_diff": 0.2, "n_models": 3},
+    }
+    labels = [row["label"] for row in runner.significance_tests("overlap", results)]
+    assert "within vs cross lineage failure overlap" in labels
+
+
+def test_correction_matches_stats_multiple_comparison():
+    raw = [0.001, 0.02, 0.04, 0.3, 0.9]
+    tests = [{"label": f"t{i}", "p_value": p, "test": "mcnemar"} for i, p in enumerate(raw)]
+    family = runner.family_correction(tests)
+
+    expected = multiple_comparison(raw, method="bh", alpha=0.05)
+    assert [row["p_adjusted"] for row in family["tests"]] == pytest.approx(
+        list(expected.pvalues_adjusted)
+    )
+    assert [row["reject"] for row in family["tests"]] == list(expected.reject)
+    assert family["family_size"] == 5
+    assert family["method"] == "bh"
+
+
+def test_holm_is_available_as_the_stricter_alternative():
+    raw = [0.001, 0.02, 0.04]
+    tests = [{"label": f"t{i}", "p_value": p} for i, p in enumerate(raw)]
+    family = runner.family_correction(tests, method="holm")
+    expected = multiple_comparison(raw, method="holm")
+    assert [row["p_adjusted"] for row in family["tests"]] == pytest.approx(
+        list(expected.pvalues_adjusted)
+    )
+
+
+def test_nan_pvalue_is_dropped_with_a_note_not_silently():
+    # stats.multiple_comparison refuses a nan (one would wipe out every BH rejection), so the
+    # family drops it and says so, and the family size counts only the tests actually corrected.
+    tests = [
+        {"label": "real", "p_value": 0.01},
+        {"label": "undefined overlap", "p_value": float("nan")},
+        {"label": "also real", "p_value": 0.2},
+    ]
+    family = runner.family_correction(tests)
+
+    assert family["family_size"] == 2
+    assert family["n_dropped"] == 1
+    assert family["dropped"] == [
+        {"label": "undefined overlap", "reason": "p-value is not finite"}
+    ]
+    assert [row["label"] for row in family["tests"]] == ["real", "also real"]
+
+
+def test_empty_family_is_reported_not_crashed():
+    family = runner.family_correction([])
+    assert family["family_size"] == 0
+    assert family["tests"] == []
+
 # --- the CLI -------------------------------------------------------------------------------
 
 
@@ -271,6 +361,12 @@ def test_each_stage_writes_a_run_directory(manifest, config_file, tmp_path, stag
         {"point", "ci_low", "ci_high", "n"} <= set(row) for row in results["estimates"].values()
     )
 
+    # the family of tests is corrected once, and its size is stated
+    family = results["family_correction"]
+    assert "Family size:" in summary
+    assert "| test | raw p | adjusted p | reject |" in summary
+    assert family["family_size"] == len(family["tests"])
+    assert all("p_adjusted" in row and "reject" in row for row in family["tests"])
     assert json.loads((out / "config.json").read_text())["models"]
     manifest_json = json.loads((out / "run_manifest.json").read_text())
     assert manifest_json["cue_set_version"]

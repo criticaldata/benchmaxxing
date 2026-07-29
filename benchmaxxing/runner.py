@@ -37,7 +37,13 @@ from benchmaxxing.prompts import DEFAULT_REGISTRY
 from benchmaxxing.roster import build_committee
 from benchmaxxing.runstore import RunStore
 from benchmaxxing.schema import ModelSpec, RunManifest
-from benchmaxxing.stats import bootstrap_ci, cluster_bootstrap_ci
+from benchmaxxing.stats import (
+    bootstrap_ci,
+    cluster_bootstrap_ci,
+    mcnemar,
+    multiple_comparison,
+    paired_permutation_test,
+)
 
 __all__ = [
     "STAGES",
@@ -45,6 +51,8 @@ __all__ = [
     "CommitteeAgent",
     "build_backend",
     "estimates",
+    "family_correction",
+    "significance_tests",
     "model_specs",
     "plan_run",
     "run_stage",
@@ -543,7 +551,148 @@ def _estimate_table(est: dict, note: str) -> list[str]:
     return lines
 
 
-def summarize(stage: str, results: dict, plan: dict, est: dict | None = None) -> str:
+# --- multiple comparisons ------------------------------------------------------------------
+# A stage report is a family of tests, not one test: a McNemar per model per cue, plus the
+# overlap permutation test and the cascade's shared-vs-isolated comparison. Reporting the raw
+# p-values side by side would inflate the false positives across the family, so the whole family
+# is collected first, corrected once (Benjamini-Hochberg by default), and reported with its size
+# stated, so nobody has to guess how many tests the number they are reading came from.
+
+FAMILY_METHOD = "bh"
+FAMILY_ALPHA = 0.05
+
+
+def significance_tests(stage: str, results: dict, seed: int = 0) -> list[dict]:
+    """Every p-value this stage's report presents, as ``{label, p_value, test, n}`` rows."""
+    if stage == "cascade":
+        return _cascade_tests(results, seed)
+
+    rows = []
+    for model, records in sorted(_records_by_model(results).items()):
+        suffix = f" ({model})" if model else ""
+        for cue in sorted({r.cue_type for r in records}):
+            scored = [
+                r
+                for r in records
+                if r.cue_type == cue
+                and r.clean_correct is not None
+                and r.contaminated_correct is not None
+            ]
+            if not scored:
+                continue
+            # discordant cells: the cue broke a correct answer (b) or fixed a wrong one (c)
+            b = sum(1 for r in scored if r.clean_correct and not r.contaminated_correct)
+            c = sum(1 for r in scored if not r.clean_correct and r.contaminated_correct)
+            result = mcnemar(b, c)
+            rows.append(
+                {
+                    "label": f"clean vs contaminated accuracy, cue {cue}{suffix}",
+                    "test": "mcnemar",
+                    "p_value": result.pvalue,
+                    "statistic": result.statistic,
+                    "n": len(scored),
+                    "discordant": b + c,
+                }
+            )
+
+    overlap = results.get("overlap")
+    if overlap:
+        rows.append(
+            {
+                "label": "within vs cross lineage failure overlap",
+                "test": "permutation",
+                "p_value": overlap.get("p_value"),
+                "statistic": overlap.get("observed_diff"),
+                "n": overlap.get("n_models"),
+            }
+        )
+    return rows
+
+
+def _cascade_tests(results: dict, seed: int = 0) -> list[dict]:
+    """The cascade family: shared vs isolated adoption of the planted answer, paired by case.
+
+    Tests the same per-case adoption gap the ``adoption_delta`` bootstrap CI is built on, so the
+    p-value and the interval answer one question. A paired sign-flip permutation over the per-case
+    ``shared - isolated`` differences keeps each case's magnitude, instead of the old McNemar that
+    collapsed the continuous rates to a win/lose sign and could not reach significance on a
+    handful of cases however wide the gap (#128 review).
+    """
+    per_case = results.get("per_case", [])
+    if not per_case:
+        return []
+    diffs = [row["shared_adoption"] - row["isolated_adoption"] for row in per_case]
+    result = paired_permutation_test(diffs, seed=seed)
+    return [
+        {
+            "label": "shared vs isolated adoption of the planted answer",
+            "test": "paired_permutation",
+            "p_value": result.pvalue,
+            "statistic": result.statistic,
+            "n": len(per_case),
+            "discordant": sum(1 for d in diffs if d != 0.0),
+        }
+    ]
+
+
+def family_correction(tests, method: str = FAMILY_METHOD, alpha: float = FAMILY_ALPHA) -> dict:
+    """Correct a family of p-values for multiple comparisons and report the family size.
+
+    Non-finite p-values (an undefined overlap, for example) cannot be adjusted:
+    ``stats.multiple_comparison`` refuses them rather than letting one nan wipe out every
+    rejection in a Benjamini-Hochberg step-up. They are dropped here and listed under
+    ``dropped``, so the family size stays an honest count of the tests that were actually
+    corrected and nothing disappears silently.
+    """
+    rows = list(tests)
+    usable, dropped = [], []
+    for row in rows:
+        p = row.get("p_value")
+        (usable if p is not None and np.isfinite(p) else dropped).append(row)
+
+    corrected = []
+    if usable:
+        result = multiple_comparison([row["p_value"] for row in usable], method=method,
+                                     alpha=alpha)
+        for row, adjusted, reject in zip(usable, result.pvalues_adjusted, result.reject):
+            corrected.append({**row, "p_adjusted": float(adjusted), "reject": bool(reject)})
+
+    return {
+        "method": method,
+        "alpha": alpha,
+        "family_size": len(usable),
+        "n_dropped": len(dropped),
+        "dropped": [{"label": row["label"], "reason": "p-value is not finite"} for row in dropped],
+        "tests": corrected,
+    }
+
+
+def _family_table(family: dict) -> list[str]:
+    """Render the corrected family as a markdown table."""
+    if not family["tests"] and not family["dropped"]:
+        return ["(this stage reports no p-values)", ""]
+    lines = [
+        f"Family size: {family['family_size']} test(s), corrected with "
+        f"{family['method'].upper()} at alpha={family['alpha']}.",
+        "",
+        "| test | raw p | adjusted p | reject |",
+        "| --- | --- | --- | --- |",
+    ]
+    for row in family["tests"]:
+        lines.append(
+            f"| {row['label']} | {_fmt(row['p_value'])} | {_fmt(row['p_adjusted'])} | "
+            f"{'yes' if row['reject'] else 'no'} |"
+        )
+    lines.append("")
+    for row in family["dropped"]:
+        lines.append(f"Dropped from the family: {row['label']} ({row['reason']}).")
+    if family["dropped"]:
+        lines.append("")
+    return lines
+
+
+def summarize(stage: str, results: dict, plan: dict, est: dict | None = None,
+              family: dict | None = None) -> str:
     """Render the headline numbers of a finished stage as markdown, with their CIs."""
     lines = [
         f"# benchmaxxing run: stage {stage}",
@@ -564,6 +713,11 @@ def summarize(stage: str, results: dict, plan: dict, est: dict | None = None) ->
     lines += _estimate_table(
         estimates(stage, results, plan["seed"]) if est is None else est,
         _CASCADE_CI_NOTE if stage == "cascade" else _SOLO_CI_NOTE,
+    )
+    lines += ["## Significance, corrected across the family", ""]
+    lines += _family_table(
+        family_correction(significance_tests(stage, results, plan["seed"])) if family is None
+        else family
     )
     return "\n".join(lines)
 
@@ -618,15 +772,17 @@ def write_outputs(out_dir, stage: str, config, results: dict, plan: dict, *,
         "run_manifest": out / "run_manifest.json",
     }
     est = estimates(stage, results, config.seed)
+    family = family_correction(significance_tests(stage, results, config.seed))
     payload = {
         "run_id": run_id,
         "stage": stage,
         "plan": plan,
         "estimates": _jsonable(est),
+        "family_correction": _jsonable(family),
         "results": _jsonable(results),
     }
     paths["results"].write_text(json.dumps(payload, indent=2, sort_keys=True), encoding="utf-8")
-    paths["summary"].write_text(summarize(stage, results, plan, est), encoding="utf-8")
+    paths["summary"].write_text(summarize(stage, results, plan, est, family), encoding="utf-8")
     paths["config"].write_text(
         json.dumps(config.to_dict(), indent=2, sort_keys=True), encoding="utf-8"
     )
