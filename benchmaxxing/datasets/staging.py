@@ -116,6 +116,18 @@ SOURCES: dict[str, Source] = {
         layout="a CSV of resource-constraint contexts (bed occupancy, staffing, budget pressure)",
         notes="Feeds the stage-5 scrutiny panel, not a case manifest.",
     ),
+    "mimic_cxr_text": Source(
+        name="MIMIC-CXR report text + CheXpert labels",
+        url="https://physionet.org/content/mimic-cxr/",
+        access="credentialed",
+        license="PhysioNet credentialed health data licence",
+        layout=(
+            "free-text reports (pXX/pYYYY/sZZZZ.txt) plus mimic-cxr-2.0.0-chexpert.csv[.gz] "
+            "(from the separate mimic-cxr-jpg release's label file) -- two roots, not one, "
+            "see build_manifest's docstring"
+        ),
+        notes="Staged and verified: full #296 battery (#316-#321) run against the real API.",
+    ),
 }
 
 

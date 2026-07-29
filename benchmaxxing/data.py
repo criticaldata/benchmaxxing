@@ -166,6 +166,7 @@ def _text_case(row: dict, index: int, case_id: str) -> Case:
         modality=Modality.TEXT,
         label=None if label is None else str(label),
         question=str(question),
+        report=_none_or_str(_get(row, "report")),
         options=options,
         answer_index=answer_index,
         meta=_parse_meta(row.get("meta")),

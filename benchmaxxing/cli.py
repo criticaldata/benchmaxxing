@@ -30,9 +30,9 @@ def build_parser() -> argparse.ArgumentParser:
         help="also print the git commit SHA and which optional extras are installed",
     )
 
-    p_datasets = sub.add_parser("datasets", help="dataset adapter commands")
+    p_datasets = sub.add_parser("datasets", help="dataset readiness commands")
     datasets_sub = p_datasets.add_subparsers(dest="datasets_command", metavar="command")
-    datasets_sub.add_parser("list", help="list the available dataset adapters (the default)")
+    datasets_sub.add_parser("list", help="list dataset readiness status (the default)")
     p_stats = datasets_sub.add_parser(
         "stats", help="summarize and sanity-check a manifest"
     )
@@ -136,12 +136,46 @@ def _dataset_names() -> list[str]:
 
 
 def _cmd_datasets_list(_args: argparse.Namespace) -> int:
-    names = _dataset_names()
-    if names:
-        for name in names:
-            print(name)
-    else:
-        print("No dataset adapters are registered yet.")
+    from benchmaxxing.datasets import status
+
+    names = status.names()
+    if not names:
+        print("No dataset status entries are registered yet.")
+        return 0
+
+    headers = (
+        "dataset",
+        "lane",
+        "staged",
+        "adapter",
+        "solo",
+        "cascade",
+        "plausibility",
+        "referee",
+        "blocker",
+    )
+    rows = []
+    for name in names:
+        entry = status.get(name)
+        rows.append(
+            (
+                name,
+                entry.lane,
+                entry.staged,
+                entry.adapter,
+                entry.solo,
+                entry.cascade,
+                entry.plausibility,
+                entry.referee,
+                entry.blocker,
+            )
+        )
+
+    widths = [max(len(str(value)) for value in column) for column in zip(headers, *rows)]
+    print("  ".join(header.ljust(width) for header, width in zip(headers, widths)))
+    print("  ".join("-" * width for width in widths))
+    for row in rows:
+        print("  ".join(str(value).ljust(width) for value, width in zip(row, widths)))
     return 0
 
 

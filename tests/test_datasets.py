@@ -5,10 +5,12 @@ from __future__ import annotations
 import pytest
 
 from benchmaxxing.data import load_cases, write_manifest
-from benchmaxxing.datasets import base, registry
+from benchmaxxing.datasets import base, registry, status
 from benchmaxxing.schema import Case, Modality
 
-EXPECTED_DATASETS = {"mimic_cxr", "chexpert", "nih_cxr14", "medqa", "medmcqa", "pubmedqa", "ehr"}
+EXPECTED_DATASETS = {
+    "mimic_cxr", "mimic_cxr_text", "chexpert", "nih_cxr14", "medqa", "medmcqa", "pubmedqa", "ehr",
+}
 
 
 def _write_text(path, text):
@@ -65,6 +67,26 @@ def test_mcq_round_trip(tmp_path):
     assert got.answer_index == 2
 
 
+def test_text_case_report_round_trips(tmp_path):
+    # Regression: a TEXT-modality Case's `report` (used by Lane B adapters that carry a
+    # long-form context alongside a short question, e.g. mimic_cxr_text/pubmedqa) must survive
+    # a manifest round trip, same as _image_case already does for imaging cases.
+    cases = [
+        Case(
+            "q1",
+            "p1",
+            Modality.TEXT,
+            question="What is the primary finding?",
+            report="FINDINGS: a full clinical report goes here.",
+            options=("Cardiomegaly", "Edema"),
+            answer_index=0,
+        ),
+    ]
+    out = write_manifest(cases, tmp_path / "mcq_report.csv")
+    reloaded = load_cases(out)
+    assert reloaded[0].report == "FINDINGS: a full clinical report goes here."
+
+
 def test_load_mcq_csv_without_patient_id(tmp_path):
     manifest = _write_text(
         tmp_path / "mcq.csv",
@@ -113,6 +135,50 @@ def test_registry_get_unknown_raises():
         registry.get("nope")
 
 
+def test_dataset_status_covers_registered_adapters():
+    registered = set(registry.names())
+    status_names = set(status.names())
+
+    assert registered <= status_names
+    for name in registered:
+        entry = status.get(name)
+        assert entry.lane
+        assert entry.staged
+        assert entry.adapter
+        assert entry.solo
+        assert entry.cascade
+        assert entry.plausibility
+        assert entry.referee
+
+
+def test_dataset_status_coverage_values_are_explicit():
+    allowed = {"done", "pending", "not applicable"}
+
+    for name in status.names():
+        entry = status.get(name)
+        assert entry.solo in allowed
+        assert entry.cascade in allowed
+        assert entry.plausibility in allowed
+        assert entry.referee in allowed
+
+
+def test_dataset_status_adapter_claims_match_registry():
+    registered = set(registry.names())
+
+    for name in status.names():
+        entry = status.get(name)
+        assert entry.adapter in status.ADAPTER_STATUSES
+        if entry.adapter in status.CODED_ADAPTER_STATUSES:
+            assert name in registered
+
+
+def test_dataset_status_get_unknown_raises():
+    with pytest.raises(KeyError, match="Unknown dataset status"):
+        status.get("nope")
+
+
+
+
 def test_adapter_build_manifest_fails_loudly_on_missing_data(tmp_path):
     # mimic_cxr is implemented; pointed at an empty dir (no metadata csv) it must raise a
     # clear error rather than silently produce an empty or wrong manifest.
@@ -128,7 +194,11 @@ def test_all_adapters_fail_loudly_on_missing_data(tmp_path):
     for name in EXPECTED_DATASETS:
         module = registry.get(name)
         with pytest.raises((FileNotFoundError, ValueError, NotImplementedError)):
-            module.build_manifest(tmp_path, tmp_path / f"{name}.csv")
+            if name == "mimic_cxr_text":
+                # Takes separate report/labels roots instead of one raw_root (see its docstring).
+                module.build_manifest(tmp_path, tmp_path, tmp_path / f"{name}.csv")
+            else:
+                module.build_manifest(tmp_path, tmp_path / f"{name}.csv")
 
 
 def test_finalize_writes_and_rejects_duplicates(tmp_path):
