@@ -206,6 +206,18 @@ def parse_mcq_choice(text: str, options: tuple[str, ...] | list[str]) -> int | A
     if not all_letters:
         return Abstention.UNPARSEABLE
 
+    if not is_letter_options:
+        # For full-text options this is the last resort, reached only when no option string appeared
+        # in the reply. The pre-centralization parser anchored it at the END of the text
+        # (r"\b([A-Z])\b\s*[.)]?\s*$"), which matters: scanning the whole reply instead picks up a
+        # LEADING article, so "A biopsy of the mass is likely to show myxoma." resolved to option A.
+        # Measured on real cached replies that accounted for every remaining disagreement with the
+        # old parser. Keep the anchor.
+        tail_match = re.search(rf"\b([{valid_chars}])\b\s*[.)]?\s*$", text.strip(), re.IGNORECASE)
+        if not tail_match:
+            return Abstention.UNPARSEABLE
+        return ord(tail_match.group(1).upper()) - ord("A")
+
     # Ambiguity guard: if the last 40 characters of the text contain
     # more than one *distinct* valid letter, the answer is ambiguous.
     tail = text[-40:]
