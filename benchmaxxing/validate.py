@@ -118,7 +118,10 @@ def _check_duplicates(cases: list[Case], report: ValidationReport) -> None:
 
 def _check_images(cases: list[Case], base: Path, report: ValidationReport) -> None:
     for case in cases:
-        if case.modality is not Modality.IMAGE or not case.image_ref:
+        # A text/MCQ case can carry an image too (for example ProbMed).  Explicit text modality
+        # preserves its question/options during manifest I/O, but the image still has to resolve
+        # before an image-cue run can use it.
+        if not case.image_ref:
             continue
         report.n_images_checked += 1
         candidate = base / case.image_ref
@@ -147,8 +150,8 @@ def validate_manifest(
     * every ``case_id`` is unique;
     * the required fields for each modality are present and non-empty (imaging cases must carry a
       ground-truth ``label``);
-    * when ``check_images`` is set, each imaging ``image_ref`` resolves to a file. Relative refs are
-      resolved against ``root`` if given, otherwise against the manifest's own directory.
+    * when ``check_images`` is set, each case carrying an ``image_ref`` resolves to a file. Relative
+      refs are resolved against ``root`` if given, otherwise against the manifest's own directory.
 
     Problems are collected rather than raised, so a malformed or missing manifest still yields a
     report (with a single ``load_error`` problem) instead of an exception. A valid manifest yields a

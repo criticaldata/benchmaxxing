@@ -13,7 +13,9 @@ board appended. Prompt design itself is issue 107; these render the same lettere
 first real MedQA runs used, so the numbers stay comparable.
 
 Both lanes run: ``cue_set="text-v1"`` builds text twins, ``cue_set="image-v1"`` loads the images
-and injects the image cues (that one needs ``--image-root`` and the ``image`` extra).
+and injects the image cues (that one needs ``--image-root`` and the ``image`` extra).  A text MCQ
+that also carries ``image_ref`` is a multimodal case: its own question/options are sent with each
+clean or cued image rather than being replaced by the generic imaging question.
 """
 
 from __future__ import annotations
@@ -256,10 +258,11 @@ class SoloAgent:
             )
         options = tuple(payload["options"])
         if payload.get("image") is not None:
+            prompt = render_mcq(payload) if payload.get("mcq") else payload["question"]
             text = self.backend.complete(
-                payload["question"], image=payload["image"], decoding=self.decoding
+                prompt, image=payload["image"], decoding=self.decoding
             )
-            return _parse_option(text, options, letters_first=False)
+            return _parse_option(text, options, letters_first=bool(payload.get("mcq")))
         text = self.backend.complete(render_mcq(payload), decoding=self.decoding)
         return _parse_option(text, options)
 
@@ -367,9 +370,9 @@ def image_twins(cases, cue_types, image_root) -> tuple[list, dict]:
     """Build one twin per (case, image cue), plus a count of what was skipped and why.
 
     Payloads are dicts carrying the injected array alongside the question and the answer
-    options, because the array alone does not say what the agent was asked. Ground truth is
-    ``"yes"``: the case is labelled with the finding, and the cue is diagnosis-neutral, so a
-    changed answer is the model following the artifact.
+    options, because the array alone does not say what the agent was asked. Standard image cases
+    become a yes/no question about their first positive finding. Multimodal MCQ cases retain their
+    own question/options/answer index (as ProbMed requires).
 
     A case with no resolvable image, or with no positive finding to ask about, is skipped and
     counted rather than aborting a long run. The v1 policy is one question per case, so a
@@ -390,10 +393,16 @@ def image_twins(cases, cue_types, image_root) -> tuple[list, dict]:
         "dropped_findings": 0,
     }
     for case in cases:
-        positives = _positive_findings(case)
-        if not positives:
-            skipped["no_finding_label"] += 1
-            continue
+        multimodal_mcq = (
+            case.question is not None
+            and case.options is not None
+            and case.answer_index is not None
+        )
+        if not multimodal_mcq:
+            positives = _positive_findings(case)
+            if not positives:
+                skipped["no_finding_label"] += 1
+                continue
         path = root / (case.image_ref or "")
         if not case.image_ref or not path.exists():
             skipped["missing_image"] += 1
@@ -403,19 +412,38 @@ def image_twins(cases, cue_types, image_root) -> tuple[list, dict]:
         except (OSError, ValueError):
             skipped["unreadable_image"] += 1
             continue
-        # one question per case: the findings past the first are not asked, so count them
-        skipped["dropped_findings"] += len(positives) - 1
-        question = image_question(positives[0])
+        if multimodal_mcq:
+            question = case.question
+            options = tuple(case.options)
+            ground_truth = options[case.answer_index]
+            report = case.report
+        else:
+            # one question per case: the findings past the first are not asked, so count them
+            skipped["dropped_findings"] += len(positives) - 1
+            question = image_question(positives[0])
+            options = IMAGE_OPTIONS
+            ground_truth = "yes"
+            report = None
         for cue_type in cue_types:
-            pair = build_image_twin(array, cue_type, ground_truth="yes", case_id=case.case_id)
+            pair = build_image_twin(
+                array, cue_type, ground_truth=ground_truth, case_id=case.case_id
+            )
             twins.append(
                 replace(
                     pair,
-                    clean={"image": pair.clean, "question": question, "options": IMAGE_OPTIONS},
+                    clean={
+                        "image": pair.clean,
+                        "question": question,
+                        "options": options,
+                        "report": report,
+                        "mcq": multimodal_mcq,
+                    },
                     contaminated={
                         "image": pair.contaminated,
                         "question": question,
-                        "options": IMAGE_OPTIONS,
+                        "options": options,
+                        "report": report,
+                        "mcq": multimodal_mcq,
                     },
                 )
             )
@@ -454,7 +482,13 @@ def plan_run(stage: str, cases, config, *, limit: int | None = None,
         "lineages": {spec.name: spec.lineage for spec in model_specs(config)},
         "lineage_sources": lineage_sources(config),
         "cue_types": list(cue_types),
-        "lane": "image" if _is_image_lane(config.cue_set) else "text",
+        "lane": (
+            "multimodal"
+            if _is_image_lane(config.cue_set) and any(
+                case.image_ref and case.question and case.options for case in selected
+            )
+            else "image" if _is_image_lane(config.cue_set) else "text"
+        ),
         "n_cases": len(selected),
         "n_twins": n_twins,
         "skipped_cases": n_skipped,

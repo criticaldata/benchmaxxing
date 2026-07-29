@@ -16,6 +16,7 @@ from benchmaxxing.datasets import (
     mimic_cxr,
     mimic_cxr_text,
     nih_cxr14,
+    probmed,
     pubmedqa,
     support2,
 )
@@ -28,6 +29,7 @@ REGISTRY: dict[str, ModuleType] = {
     medqa.SPEC.name: medqa,
     medmcqa.SPEC.name: medmcqa,
     pubmedqa.SPEC.name: pubmedqa,
+    probmed.SPEC.name: probmed,
     ehr.SPEC.name: ehr,
     support2.SPEC.name: support2,
 }

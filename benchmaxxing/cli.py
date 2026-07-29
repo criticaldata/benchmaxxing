@@ -120,7 +120,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--image-root",
         default=None,
         metavar="PATH",
-        help="root directory image_ref paths resolve against (required for the imaging lane)",
+        help="root directory image_ref paths resolve against (required for image-cue and multimodal runs)",
     )
     p_run.add_argument(
         "--noise-floor",

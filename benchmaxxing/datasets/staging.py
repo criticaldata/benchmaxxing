@@ -126,6 +126,15 @@ SOURCES: dict[str, Source] = {
         notes="Tabular Lane C. Registered by #354; this entry added so the adapter is discoverable "
               "by the staging report rather than only by the registry.",
     ),
+    "probmed": Source(
+        name="ProbMed",
+        url="https://huggingface.co/datasets/rippleripple/ProbMed",
+        access="registration",
+        license="Hugging Face gated release, cite Yan et al. 2025",
+        layout="test.json (flat JSON list of QA records) plus a probmed/ image folder",
+        notes="Gated: request access on the HF dataset page before staging. Use cue_set='image-v1' "
+        "with --image-root after the manifest and probmed/ image tree are staged.",
+    ),
     "ehr": Source(
         name="MIMIC-IV derived resource table",
         url="https://physionet.org/content/mimiciv/",

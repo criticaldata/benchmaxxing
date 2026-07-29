@@ -7,6 +7,8 @@ Text / MCQ (Lane B): case_id, question, options (pipe-separated), answer_index[,
 
 Detection is by column content: a non-empty ``image_ref`` marks an imaging case, a non-empty
 ``question`` marks a text case. An explicit ``modality`` column, when present, wins over inference.
+That explicit text modality also permits a multimodal MCQ: its question/options and image reference
+round-trip together.
 """
 
 from __future__ import annotations
@@ -160,11 +162,13 @@ def _text_case(row: dict, index: int, case_id: str) -> Case:
     answer_index = _parse_answer_index(row.get("answer_index"), index, case_id, len(options))
     patient_id = _get(row, "patient_id")
     label = _get(row, "label")
+    image_ref = _get(row, "image_ref")
     return Case(
         case_id=case_id,
         patient_id=str(patient_id) if patient_id is not None else case_id,
         modality=Modality.TEXT,
         label=None if label is None else str(label),
+        image_ref=None if image_ref is None else str(image_ref),
         question=str(question),
         report=_none_or_str(_get(row, "report")),
         options=options,

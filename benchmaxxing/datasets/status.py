@@ -57,6 +57,16 @@ DATASET_STATUS: dict[str, DatasetStatus] = {
         referee="pending",
         blocker="stage the official PubMedQA ori_pqal.json release",
     ),
+    "probmed": DatasetStatus(
+        lane="multimodal",
+        staged="not staged",
+        adapter="coded",
+        solo="pending",
+        cascade="pending",
+        plausibility="pending",
+        referee="pending",
+        blocker="requires HF access to the gated rippleripple/ProbMed, staging test.json and images, then real VLM runs",
+    ),
     "chexpert": DatasetStatus(
         lane="imaging",
         staged="blocked",
