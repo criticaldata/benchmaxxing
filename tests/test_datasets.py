@@ -8,7 +8,9 @@ from benchmaxxing.data import load_cases, write_manifest
 from benchmaxxing.datasets import base, registry, status
 from benchmaxxing.schema import Case, Modality
 
-EXPECTED_DATASETS = {"mimic_cxr", "chexpert", "nih_cxr14", "medqa", "medmcqa", "pubmedqa", "ehr"}
+EXPECTED_DATASETS = {
+    "mimic_cxr", "mimic_cxr_text", "chexpert", "nih_cxr14", "medqa", "medmcqa", "pubmedqa", "ehr",
+}
 
 
 def _write_text(path, text):
@@ -63,6 +65,26 @@ def test_mcq_round_trip(tmp_path):
     assert got.modality is Modality.TEXT
     assert got.options == ("Aorta", "Vena cava", "Pulmonary artery")
     assert got.answer_index == 2
+
+
+def test_text_case_report_round_trips(tmp_path):
+    # Regression: a TEXT-modality Case's `report` (used by Lane B adapters that carry a
+    # long-form context alongside a short question, e.g. mimic_cxr_text/pubmedqa) must survive
+    # a manifest round trip, same as _image_case already does for imaging cases.
+    cases = [
+        Case(
+            "q1",
+            "p1",
+            Modality.TEXT,
+            question="What is the primary finding?",
+            report="FINDINGS: a full clinical report goes here.",
+            options=("Cardiomegaly", "Edema"),
+            answer_index=0,
+        ),
+    ]
+    out = write_manifest(cases, tmp_path / "mcq_report.csv")
+    reloaded = load_cases(out)
+    assert reloaded[0].report == "FINDINGS: a full clinical report goes here."
 
 
 def test_load_mcq_csv_without_patient_id(tmp_path):
@@ -172,7 +194,11 @@ def test_all_adapters_fail_loudly_on_missing_data(tmp_path):
     for name in EXPECTED_DATASETS:
         module = registry.get(name)
         with pytest.raises((FileNotFoundError, ValueError, NotImplementedError)):
-            module.build_manifest(tmp_path, tmp_path / f"{name}.csv")
+            if name == "mimic_cxr_text":
+                # Takes separate report/labels roots instead of one raw_root (see its docstring).
+                module.build_manifest(tmp_path, tmp_path, tmp_path / f"{name}.csv")
+            else:
+                module.build_manifest(tmp_path, tmp_path / f"{name}.csv")
 
 
 def test_finalize_writes_and_rejects_duplicates(tmp_path):

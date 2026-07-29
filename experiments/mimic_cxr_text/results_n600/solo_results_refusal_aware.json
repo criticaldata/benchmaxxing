@@ -1,0 +1,48 @@
+{
+  "gemini-2.5-flash": {
+    "total_calls": 1800,
+    "abstention_rate": 0.0,
+    "flip_rate_excl_abstentions": 0.0811,
+    "n_valid_pairs": 1800,
+    "per_cue": {
+      "longest_option": {
+        "flip_rate_excl_abstentions": 0.105,
+        "abstention_rate": 0.0,
+        "n_valid_pairs": 600
+      },
+      "option_order": {
+        "flip_rate_excl_abstentions": 0.045,
+        "abstention_rate": 0.0,
+        "n_valid_pairs": 600
+      },
+      "lexical_overlap": {
+        "flip_rate_excl_abstentions": 0.0933,
+        "abstention_rate": 0.0,
+        "n_valid_pairs": 600
+      }
+    }
+  },
+  "gemini-2.5-flash-lite": {
+    "total_calls": 1800,
+    "abstention_rate": 0.0,
+    "flip_rate_excl_abstentions": 0.1272,
+    "n_valid_pairs": 1800,
+    "per_cue": {
+      "longest_option": {
+        "flip_rate_excl_abstentions": 0.1217,
+        "abstention_rate": 0.0,
+        "n_valid_pairs": 600
+      },
+      "option_order": {
+        "flip_rate_excl_abstentions": 0.0917,
+        "abstention_rate": 0.0,
+        "n_valid_pairs": 600
+      },
+      "lexical_overlap": {
+        "flip_rate_excl_abstentions": 0.1683,
+        "abstention_rate": 0.0,
+        "n_valid_pairs": 600
+      }
+    }
+  }
+}

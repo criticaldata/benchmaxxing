@@ -9,3 +9,10 @@ data/
 # secrets: never commit API keys
 .env
 *.env
+
+# credentialed raw data (PhysioNet DUA): manifests and call caches embed full MIMIC-CXR report
+# text, which must not be redistributed outside credentialed access. Only aggregate results
+# (solo_results.json etc.) are committed.
+experiments/mimic_cxr_text/*manifest*.csv
+experiments/mimic_cxr_text/results*/call_cache.jsonl
+experiments/mimic_cxr_text/results*/transcripts/
