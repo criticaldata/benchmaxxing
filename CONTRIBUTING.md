@@ -91,9 +91,22 @@ benchmaxxing config-show
 #   cue injection -> solo baselines -> shared vs isolated committee with a seeded shortcut
 #   -> cascade onset -> referee scoring + gate -> blind-metric probe
 benchmaxxing smoke
+
+# run one experiment stage from a config plus a manifest, and write the run directory
+# (results.json, summary.md, config.json, run_manifest.json) into --out
+benchmaxxing run --stage {pilot,solo,overlap,cascade} --manifest path/to/manifest.csv \
+    --dataset medqa --config path/to/config.json --out runs/my-run
+
+# see what a run would do (models, twins, estimated model calls) without spending any calls
+benchmaxxing run --stage cascade --manifest path/to/manifest.csv --out runs/my-run --dry-run
+
+# same command, no key and no data: the mock backend is the offline stand-in
+benchmaxxing run --stage solo --manifest path/to/manifest.csv --out runs/mock --backend mock
 ```
 
 The smoke is the fastest way to see the whole pipeline compose and to confirm your change did not break a seam. It needs no data and no keys.
+
+`benchmaxxing run` is the reproducible entry point for a stage: it resolves the config (models, cue set, seed), loads the manifest, injects the cues, calls the matching runner in `benchmaxxing/experiments.py`, and writes a self-describing run directory. A config file may be JSON (no extra needed) or YAML (needs the `config` extra). The default backend is Gemini, so a real run needs `GEMINI_API_KEY` and the `models` extra; `--backend mock` runs the same code path offline. The cascade stage also saves every shared and isolated transcript under `--out/transcripts/` for re-analysis.
 
 ## 5. Reuse the originals (the design rule)
 

@@ -1,0 +1,60 @@
+{
+  "plan": {
+    "cue_types": [
+      "longest_option",
+      "option_order",
+      "lexical_overlap",
+      "demographic_hint"
+    ],
+    "estimated_calls": 120,
+    "lineages": {
+      "gemini-2.5-flash": "gemini"
+    },
+    "models": [
+      "gemini-2.5-flash"
+    ],
+    "n_cases": 20,
+    "n_twins": 60,
+    "out_dir": "/home/sebasmos/.claude/jobs/1b5b5b66/tmp/pilot251",
+    "seed": 0,
+    "stage": "pilot"
+  },
+  "results": {
+    "cue_types": [
+      "longest_option",
+      "option_order",
+      "lexical_overlap",
+      "demographic_hint"
+    ],
+    "cues_bite": true,
+    "flip_rate": {
+      "n": 60,
+      "overall": 0.06666666666666667,
+      "per_cue": {
+        "lexical_overlap": 0.1,
+        "longest_option": 0.05,
+        "option_order": 0.05
+      }
+    },
+    "n": 60
+  },
+  "run_id": "pilot-medqa-seed0",
+  "stage": "pilot",
+  "provenance_note": "Real Gemini API run on real MedQA-USMLE (test split), temperature 0, 120 calls, driven through `benchmaxxing run --stage pilot` rather than experiments/medqa/reproduce.py. This is the independent-code-path check #251 was asked for.",
+  "cross_check_against_committed_solo": {
+    "committed_source": "experiments/medqa/results/solo_results.json (gemini-2.5-flash, 100 cases, 300 twins)",
+    "committed": {
+      "overall": 0.0633,
+      "longest_option": 0.05,
+      "option_order": 0.05,
+      "lexical_overlap": 0.09
+    },
+    "this_pilot": {
+      "overall": 0.0667,
+      "longest_option": 0.05,
+      "option_order": 0.05,
+      "lexical_overlap": 0.1
+    },
+    "read": "Two of three shared cues match exactly and the third is within 0.01, on a disjoint 20-case sample through a different runner. The paper's MedQA solo susceptibility reproduces independently of reproduce.py."
+  }
+}

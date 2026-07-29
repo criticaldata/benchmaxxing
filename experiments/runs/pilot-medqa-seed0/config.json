@@ -1,0 +1,9 @@
+{
+  "cue_set": "v1",
+  "dataset": "medqa",
+  "models": [
+    "gemini-2.5-flash"
+  ],
+  "out_dir": "/home/sebasmos/.claude/jobs/1b5b5b66/tmp/pilot251",
+  "seed": 0
+}

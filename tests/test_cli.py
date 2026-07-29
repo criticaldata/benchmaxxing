@@ -6,6 +6,7 @@ so it skips cleanly when pyyaml (the optional ``config`` extra) is not installed
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 import pytest
@@ -196,6 +197,15 @@ def test_datasets_list_subcommand_matches_bare_datasets(
     out_list = capsys.readouterr().out
     assert rc_bare == rc_list == 0
     assert out_bare == out_list
+
+
+def test_load_config_from_json(tmp_path: Path) -> None:
+    # JSON needs no optional extra, so a run is configurable on a bare core install.
+    path = tmp_path / "cfg.json"
+    path.write_text(json.dumps({"seed": 5, "dataset": "medqa", "models": ["a", "b"]}))
+    config = load_config(str(path))
+    assert config.seed == 5
+    assert config.models == ["a", "b"]
 
 
 def test_load_config_from_yaml(tmp_path: Path) -> None:

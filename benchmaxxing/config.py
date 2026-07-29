@@ -1,13 +1,14 @@
 """Run configuration for benchmaxxing.
 
-A tiny, dependency-light config layer. A YAML file is parsed when pyyaml is importable
-(the optional ``config`` extra); otherwise a plain dict is accepted directly so the core
-stays usable with no extra installed. Everything resolves to a :class:`Config` dataclass
-with ``from_dict`` / ``to_dict`` for round-tripping.
+A tiny, dependency-light config layer. A JSON file is parsed with the standard library and a
+YAML file when pyyaml is importable (the optional ``config`` extra); a plain dict is also
+accepted directly so the core stays usable with no extra installed. Everything resolves to a
+:class:`Config` dataclass with ``from_dict`` / ``to_dict`` for round-tripping.
 """
 
 from __future__ import annotations
 
+import json
 from collections.abc import Mapping
 from dataclasses import asdict, dataclass, field, fields
 from pathlib import Path
@@ -83,7 +84,8 @@ def load_config(path: str | Path | Mapping[str, Any] | Config | None = None) -> 
     - ``path is None``: return the default config.
     - ``path`` is a Config: return it unchanged.
     - ``path`` is a mapping: build directly from it (no YAML parser needed).
-    - ``path`` is a file path: parse it as YAML. This needs pyyaml (the ``config`` extra);
+    - ``path`` is a ``.json`` file: parsed with the standard library, so a run needs no extra.
+    - ``path`` is any other file: parsed as YAML. This needs pyyaml (the ``config`` extra);
       a clear ImportError is raised if pyyaml is not importable.
     """
     if path is None:
@@ -92,5 +94,8 @@ def load_config(path: str | Path | Mapping[str, Any] | Config | None = None) -> 
         return path
     if isinstance(path, Mapping):
         return Config.from_dict(path)
-    text = Path(path).read_text(encoding="utf-8")
+    file = Path(path)
+    text = file.read_text(encoding="utf-8")
+    if file.suffix.lower() == ".json":
+        return Config.from_dict(json.loads(text))
     return Config.from_dict(_parse_yaml(text))

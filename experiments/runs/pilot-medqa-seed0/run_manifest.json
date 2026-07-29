@@ -1,0 +1,34 @@
+{
+  "config": {
+    "cue_set": "v1",
+    "dataset": "medqa",
+    "models": [
+      "gemini-2.5-flash"
+    ],
+    "out_dir": "/home/sebasmos/.claude/jobs/1b5b5b66/tmp/pilot251",
+    "seed": 0
+  },
+  "cue_set_version": "v1",
+  "dataset_revision": "/home/sebasmos/Documents/DATASET/medqa/manifest_test.csv",
+  "library_versions": {
+    "google-genai": "1.39.1",
+    "numpy": "2.5.1",
+    "pillow": "10.4.0",
+    "pyyaml": "6.0.2",
+    "scikit-learn": "1.7.2",
+    "scipy": "1.16.2",
+    "statsmodels": "0.14.6",
+    "torch": "2.9.1",
+    "transformers": "4.56.2"
+  },
+  "model_ids": [
+    "gemini-2.5-flash"
+  ],
+  "prompt_versions": {
+    "committee_member": "v1",
+    "orchestrator": "v1",
+    "referee": "v1"
+  },
+  "run_id": "pilot-medqa-seed0",
+  "seed": 0
+}

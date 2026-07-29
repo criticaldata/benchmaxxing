@@ -12,6 +12,10 @@ import json
 import sys
 
 
+# Listed here so --help keeps working even when the runner's imports (numpy) are unavailable.
+_STAGES = ("pilot", "solo", "overlap", "cascade")
+
+
 def build_parser() -> argparse.ArgumentParser:
     """Construct the argument parser with the version, datasets, and config-show commands."""
     parser = argparse.ArgumentParser(
@@ -73,6 +77,31 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
         metavar="PATH",
         help="optional YAML config file to resolve and print (defaults are shown otherwise)",
+    )
+
+    p_run = sub.add_parser("run", help="run one experiment stage from a config and a manifest")
+    p_run.add_argument(
+        "--stage", required=True, choices=list(_STAGES), help="which stage runner to drive"
+    )
+    p_run.add_argument("--manifest", required=True, metavar="PATH", help="case manifest to run on")
+    p_run.add_argument(
+        "--dataset", default=None, help="dataset adapter name recorded with the run"
+    )
+    p_run.add_argument(
+        "-c", "--config", default=None, metavar="PATH", help="YAML config for models/cues/seed"
+    )
+    p_run.add_argument("--out", default=None, metavar="DIR", help="run directory to write")
+    p_run.add_argument(
+        "--backend",
+        default="gemini",
+        choices=("gemini", "mock"),
+        help="model backend: gemini (needs a key) or mock (offline stand-in)",
+    )
+    p_run.add_argument("--limit", type=int, default=None, help="cap the number of cases")
+    p_run.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="print the resolved plan (models, twins, estimated calls) and spend no API calls",
     )
     return parser
 
@@ -285,6 +314,71 @@ def _cmd_datasets(args: argparse.Namespace) -> int:
     return _cmd_datasets_list(args)
 
 
+def _cmd_run(args: argparse.Namespace) -> int:
+    """Drive one stage runner from a config plus a manifest and write the run directory.
+
+    Thin on purpose: resolve the config, load the cases, hand a backend factory to
+    ``benchmaxxing.runner``, and report where the artifacts landed. All the stage logic lives in
+    ``benchmaxxing.experiments`` and the wiring in ``benchmaxxing.runner``.
+    """
+    from pathlib import Path
+
+    from benchmaxxing import runner
+    from benchmaxxing.config import load_config
+    from benchmaxxing.data import load_cases
+
+    try:
+        config = load_config(args.config)
+        if args.dataset:
+            config.dataset = args.dataset
+        if args.out:
+            config.out_dir = args.out
+        cases = load_cases(args.manifest)
+        plan = runner.plan_run(args.stage, cases, config, limit=args.limit)
+    except (FileNotFoundError, ValueError, ImportError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+
+    if args.dry_run:
+        print(f"plan for stage {plan['stage']} (dry run, no API calls)")
+        print(f"  models: {', '.join(plan['models'])}")
+        print(f"  lineages: {json.dumps(plan['lineages'], sort_keys=True)}")
+        print(f"  cues: {', '.join(plan['cue_types'])}")
+        print(f"  cases: {plan['n_cases']}, twins: {plan['n_twins']}")
+        print(f"  estimated model calls: {plan['estimated_calls']}")
+        print(f"  would write to: {plan['out_dir']}")
+        return 0
+
+    out_dir = Path(config.out_dir)
+    backends: dict[str, object] = {}
+
+    def backend_for(model_id: str):
+        if model_id not in backends:
+            backends[model_id] = runner.build_backend(model_id, kind=args.backend)
+        return backends[model_id]
+
+    try:
+        results = runner.run_stage(
+            args.stage,
+            cases,
+            config,
+            backend_for,
+            limit=args.limit,
+            transcript_dir=out_dir / "transcripts" if args.stage == "cascade" else None,
+        )
+    except (ImportError, ValueError, TypeError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+
+    paths = runner.write_outputs(
+        out_dir, args.stage, config, results, plan, manifest_path=args.manifest
+    )
+    print(f"stage {args.stage} finished over {plan['n_cases']} cases")
+    for name in ("results", "summary", "config", "run_manifest"):
+        print(f"  {name}: {paths[name]}")
+    return 0
+
+
 def _cmd_config_show(args: argparse.Namespace) -> int:
     from benchmaxxing.config import load_config
 
@@ -432,6 +526,7 @@ _HANDLERS = {
     "datasets": _cmd_datasets,
     "config-show": _cmd_config_show,
     "smoke": _cmd_smoke,
+    "run": _cmd_run,
 }
 
 
