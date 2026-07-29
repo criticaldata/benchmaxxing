@@ -1,0 +1,72 @@
+{
+  "n_records": 600,
+  "noise_floor_by_model": {
+    "gemini-2.5-flash": 0.0,
+    "gemini-2.5-flash-lite": 0.0
+  },
+  "flip_rate_by_model": {
+    "gemini-2.5-flash": {
+      "overall": 0.05333333333333334,
+      "per_cue": {
+        "lexical_overlap": 0.06,
+        "longest_option": 0.05,
+        "option_order": 0.05
+      },
+      "n": 300
+    },
+    "gemini-2.5-flash-lite": {
+      "overall": 0.12333333333333334,
+      "per_cue": {
+        "lexical_overlap": 0.16,
+        "longest_option": 0.12,
+        "option_order": 0.09
+      },
+      "n": 300
+    }
+  },
+  "susceptibility_matrix": {
+    "models": [
+      "gemini-2.5-flash",
+      "gemini-2.5-flash-lite"
+    ],
+    "cues": [
+      "lexical_overlap",
+      "longest_option",
+      "option_order"
+    ],
+    "matrix": [
+      [
+        0.06,
+        0.05,
+        0.05
+      ],
+      [
+        0.16,
+        0.12,
+        0.09
+      ]
+    ]
+  },
+  "overlap": {
+    "metric": "phi",
+    "within_mean": 0.27189456631886794,
+    "cross_mean": NaN,
+    "observed_diff": NaN,
+    "p_value": NaN,
+    "n_permutations": 0,
+    "n_models": 2
+  },
+  "rerun_provenance": {
+    "why": "solo_results.json could not be fully regenerated: lexical_overlap was only 68/100 replayable from the committed cache because the cue builder in benchmaxxing/cues/text.py changed after that run. This is the same cohort re-run with the CURRENT builder and parser so the lane is reproducible end to end. 64 new Gemini calls, temperature 0, the other 68 replayed from cache.",
+    "cohort": "the committed 100 case_ids in solo_manifest_case_ids.txt, MedQA-USMLE test split",
+    "unchanged_vs_committed": {
+      "longest_option": "0.05 flash / 0.12 flash-lite",
+      "option_order": "0.05 / 0.09"
+    },
+    "changed_vs_committed": {
+      "lexical_overlap": "flash 0.09 -> 0.06, flash-lite 0.14 -> 0.16",
+      "cause": "cue builder change only; the parser is now verified to agree with the pre-centralization one on every replayable response"
+    },
+    "noise_floor_caveat": "The floor is an uncached temperature>0 control over cases[:15], so it is a 15-item estimate. flash came out 1/15 = 0.0667 on the committed run and 0/15 = 0.0 here. A single resampled case moves it, so a flip rate of 0.05 to 0.06 is NOT separable from flash's own floor either way. flash-lite at 0.09 to 0.16 against 0.0 is separable."
+  }
+}

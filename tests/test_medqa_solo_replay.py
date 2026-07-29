@@ -46,6 +46,25 @@ def test_committed_per_cue_rates_are_what_the_paper_reports(model, cue, expected
     assert committed["flip_rate_by_model"][model]["per_cue"][cue] == pytest.approx(expected)
 
 
+def test_the_rerun_reproduces_the_two_builder_stable_cues():
+    """The rerun exists because lexical_overlap was not replayable. The other two cues must be
+    untouched by it, otherwise the rerun changed more than the one cue it was meant to close."""
+    r = json.loads((RES / "solo_results_rerun_2026-07-29.json").read_text())
+    c = json.loads((RES / "solo_results.json").read_text())
+    for model, cue in (("gemini-2.5-flash", "longest_option"), ("gemini-2.5-flash", "option_order"),
+                       ("gemini-2.5-flash-lite", "longest_option"), ("gemini-2.5-flash-lite", "option_order")):
+        assert r["flip_rate_by_model"][model]["per_cue"][cue] == pytest.approx(
+            c["flip_rate_by_model"][model]["per_cue"][cue]), (model, cue)
+
+
+def test_the_noise_floor_caveat_is_recorded():
+    """The floor is a 15-item control and moved by one case between runs, so any claim that a flip
+    rate sits above or below it must stay hedged. Pin the caveat so it is not dropped."""
+    r = json.loads((RES / "solo_results_rerun_2026-07-29.json").read_text())
+    note = r["rerun_provenance"]["noise_floor_caveat"]
+    assert "15" in note and "NOT separable" in note
+
+
 def test_cache_is_present_and_keyed_as_expected():
     """The replay depends on sha256(model \\x00 prompt) keys; guard the shape."""
     lines = [ln for ln in (RES / "call_cache.jsonl").read_text().splitlines() if ln.strip()]
