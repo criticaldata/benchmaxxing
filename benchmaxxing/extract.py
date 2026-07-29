@@ -65,15 +65,18 @@ _DECLARATION_PATTERNS = (
     # with, and the most reliable signal: it wins even when a distractor letter sits in the trailing
     # window that Heuristic 2 guards. Only the bare-letter form was matched before, so the far more
     # common \text{} form fell through to Heuristic 2 and mis-scored decisive replies as abstentions.
-    r"\\boxed\{\s*(?:\\(?:text|textbf|mathrm)\{)?\s*[*_$]*\(?([A-Z])",
+    # The (?![A-Za-z]) guard is load-bearing: without it \boxed{\text{Anti-mitochondrial
+    # antibodies}} captures the "A" of "Anti" and scores a full-text answer as option A. The bare
+    # \boxed{C} and \boxed{\text{C. ...}} forms still match, since C is followed by } or ".".
+    r"\\boxed\{\s*(?:\\(?:text|textbf|mathrm)\{)?\s*[*_$]*\(?([A-Z])(?![A-Za-z])",
     # "The final answer is C", "final answer: C"
-    r"final\s+answer\s+(?:is|[:=-])\s*([A-Z])\b",
+    r"final\s+answer\s+(?:is|[:=-])\s*[*_]*\(?([A-Z])\b",
     # "The correct answer is C", "the correct option is B"
-    r"correct\s+(?:answer|option)\s+is\s+([A-Z])\b",
+    r"correct\s+(?:answer|option)\s+is\s+[*_]*\(?([A-Z])\b",
     # "The answer is C", "My answer is B"
-    r"(?:the|my)\s+answer\s+is\s+([A-Z])\b",
+    r"(?:the|my)\s+answer\s+is\s+[*_]*\(?([A-Z])\b",
     # "Answer: C", "Answer - C"
-    r"answer\s*[:=-]\s*([A-Z])\b",
+    r"answer\s*[:=-]\s*[*_]*\(?([A-Z])\b",
     # "I choose C", "I would choose B", "I'll choose A"
     r"i(?:'ll|\s+would)?\s+choose\s+([A-Z])\b",
     # "I select C"
@@ -164,10 +167,24 @@ def parse_mcq_choice(text: str, options: tuple[str, ...] | list[str]) -> int | A
                 matches.add(i)
         if len(matches) == 1:
             return matches.pop()
-        
-        # We also try Heuristic 2 (standalone trailing letters) as a fallback
-        # for non-letter options, just in case the model dropped the declaration
-        # and only printed the letter.
+        if matches:
+            # Multi-match must NOT fall through to the trailing-letter scan: with options like
+            # "Type II pneumocytes" a bare "A" in the prose is almost always the English article,
+            # so falling through turned "... plausible. A surfactant deficiency ..." into a
+            # confident vote for option A.
+            ranked = sorted((text_lower.rfind(options[i].lower()), i) for i in matches)
+            last_pos, last_i = ranked[-1]
+            prev_pos, prev_i = ranked[-2]
+            gap = text_lower[prev_pos + len(options[prev_i]):last_pos]
+            if re.fullmatch(r"\s*(?:or|/|versus|vs\.?)\s*", gap):
+                # An explicit disjunction ("yes or no"), not a conclusion. Abstaining is the honest
+                # read and it is what this module's own yes/no/maybe goldens require.
+                return Abstention.UNPARSEABLE
+            # Otherwise keep the pre-centralization behaviour, the last-mentioned option, so this
+            # refactor moves no committed number.
+            return last_i
+        # No option text present at all. Legacy still allowed a bare or trailing letter here, which
+        # is how a reply of just "D" resolved against full-text options, so fall through.
 
     # ── Branch: standard MCQ letter options (A–E etc.) ──────────────────
 
