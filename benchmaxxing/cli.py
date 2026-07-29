@@ -99,6 +99,14 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p_run.add_argument("--limit", type=int, default=None, help="cap the number of cases")
     p_run.add_argument(
+        "--noise-floor",
+        action="store_true",
+        help=(
+            "also measure the decoding-noise floor (re-ask each clean payload once) and report "
+            "the flip rate against it; costs one extra call per twin"
+        ),
+    )
+    p_run.add_argument(
         "--dry-run",
         action="store_true",
         help="print the resolved plan (models, twins, estimated calls) and spend no API calls",
@@ -334,7 +342,9 @@ def _cmd_run(args: argparse.Namespace) -> int:
         if args.out:
             config.out_dir = args.out
         cases = load_cases(args.manifest)
-        plan = runner.plan_run(args.stage, cases, config, limit=args.limit)
+        plan = runner.plan_run(
+            args.stage, cases, config, limit=args.limit, noise_floor=args.noise_floor
+        )
     except (FileNotFoundError, ValueError, ImportError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 1
@@ -350,6 +360,7 @@ def _cmd_run(args: argparse.Namespace) -> int:
         print(f"  cues: {', '.join(plan['cue_types'])}")
         print(f"  cases: {plan['n_cases']}, twins: {plan['n_twins']}")
         print(f"  estimated model calls: {plan['estimated_calls']}")
+        print(f"  noise-floor control: {'on' if plan['noise_floor'] else 'off'}")
         print(f"  would write to: {plan['out_dir']}")
         return 0
 
@@ -369,6 +380,7 @@ def _cmd_run(args: argparse.Namespace) -> int:
             backend_for,
             limit=args.limit,
             transcript_dir=out_dir / "transcripts" if args.stage == "cascade" else None,
+            noise_floor=plan["noise_floor"],
         )
     except (ImportError, ValueError, TypeError) as exc:
         print(f"error: {exc}", file=sys.stderr)

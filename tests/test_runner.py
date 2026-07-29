@@ -7,6 +7,7 @@ Everything here runs offline: the stages are driven with ``gateway.MockBackend``
 from __future__ import annotations
 
 import json
+import re
 import warnings
 from pathlib import Path
 
@@ -312,6 +313,136 @@ def test_cascade_estimates_pair_shared_against_isolated():
 def test_estimates_are_empty_when_there_is_nothing_to_resample():
     assert runner.estimates("cascade", {"per_case": []}, seed=0) == {}
 
+
+# --- noise floor ---------------------------------------------------------------------------
+
+
+class _FlakyBackend:
+    """Answers the same prompt differently every other call: a scripted non-zero noise floor."""
+
+    def __init__(self):
+        self.calls = 0
+
+    def complete(self, prompt, image=None, decoding=None):
+        self.calls += 1
+        letters = re.findall(r"^([A-Z])\.", prompt, flags=re.MULTILINE)
+        return f"The answer is {letters[self.calls % 2]}."
+
+
+def test_noise_floor_is_zero_for_a_deterministic_backend(manifest, config_file, tmp_path):
+    out = tmp_path / "floor"
+    assert _run(manifest, out, "solo", extra=["--config", str(config_file), "--noise-floor"]) == 0
+
+    results = json.loads((out / "results.json").read_text())
+    floors = results["results"]["noise_floor_by_model"]
+    assert all(floor["rate"] == 0.0 for floor in floors.values())
+
+    est = results["estimates"]
+    model = CONFIG["models"][0]
+    # with a zero floor the adjusted rate is the raw rate
+    assert est[f"{model}::flip_rate_above_floor"]["point"] == pytest.approx(
+        est[f"{model}::flip_rate"]["point"]
+    )
+    assert "noise floor" in (out / "summary.md").read_text()
+    assert json.loads((out / "run_manifest.json").read_text())["config"]["noise_floor"] is True
+
+
+def test_noise_floor_estimates_resample_by_case_like_the_rest_of_the_solo_lane():
+    # The floor and the floor-adjusted rate are per-twin quantities on the same twins as
+    # flip_rate, so they have to be clustered by case too. Otherwise the adjusted rate reports a
+    # tighter interval than the raw rate it corrects, which reads as the correction buying
+    # precision it did not.
+    records = []
+    for case in range(4):
+        flipped = case < 2
+        for cue in ("longest_option", "position_bias", "lexical_overlap"):
+            records.append(
+                FlipRecord(
+                    case_id=f"case{case}",
+                    cue_type=cue,
+                    model="mock",
+                    clean_answer="right",
+                    contaminated_answer="wrong" if flipped else "right",
+                    ground_truth="right",
+                    flipped=flipped,
+                    clean_correct=True,
+                    contaminated_correct=not flipped,
+                )
+            )
+    floor = {"rate": 0.0, "n": len(records), "per_twin": [0.0] * len(records)}
+    est = runner._solo_estimates(records, seed=1, suffix="", floor=floor)
+    for key in ("noise_floor", "flip_rate_above_floor"):
+        # n_cases is only set when the estimate was clustered
+        assert est[key]["n_cases"] == 4, key
+        assert est[key]["n"] == 12, key
+    raw = est["flip_rate"]
+    adjusted = est["flip_rate_above_floor"]
+    # a zero floor leaves the point estimate alone, and the interval is no tighter than the raw
+    # rate's now that both draw the same 4 cases
+    assert adjusted["point"] == pytest.approx(raw["point"])
+    assert adjusted["ci_high"] - adjusted["ci_low"] >= raw["ci_high"] - raw["ci_low"] - 1e-12
+
+
+def test_noise_floor_is_non_zero_for_a_flaky_backend():
+    config = Config.from_dict({**CONFIG, "models": ["flaky"]})
+    backend = _FlakyBackend()
+    results = runner.run_stage(
+        "solo", MANIFEST_ROWS, config, lambda _id: backend, noise_floor=True
+    )
+
+    floor = results["noise_floor_by_model"]["flaky"]
+    assert floor["rate"] > 0.0
+    assert floor["n"] == results["n_twins"]
+
+    est = runner.estimates("solo", results, seed=0)
+    raw = est["flaky::flip_rate"]["point"]
+    adjusted = est["flaky::flip_rate_above_floor"]["point"]
+    # the floor eats part of the raw rate, which is the whole point of measuring it
+    assert adjusted == pytest.approx(raw - floor["rate"])
+
+
+def test_noise_floor_is_off_by_default(manifest, config_file, tmp_path):
+    out = tmp_path / "nofloor"
+    assert _run(manifest, out, "solo", extra=["--config", str(config_file)]) == 0
+    results = json.loads((out / "results.json").read_text())
+    assert "noise_floor_by_model" not in results["results"]
+    assert json.loads((out / "run_manifest.json").read_text())["config"]["noise_floor"] is False
+
+
+def test_noise_floor_pass_refuses_a_record_with_no_twin():
+    with pytest.raises(ValueError, match="no twin for record"):
+        runner.noise_floor_pass([], _flip_records(1, 1), object())
+
+
+def test_noise_floor_matches_twins_to_records_by_key_not_position():
+    # The twin list and the record list come from separate builders. If they ever fall out of the
+    # same order, positional pairing re-asks the wrong case's clean payload and subtracts the wrong
+    # noise. Keying by (case_id, cue_type) keeps each record matched to its own twin either way.
+    class _Twin:
+        def __init__(self, case_id, clean):
+            self.case_id, self.cue_type, self._clean = case_id, "longest_option", clean
+
+        def payload(self, _condition):
+            return self._clean
+
+    class _Echo:
+        def run(self, payload):
+            return payload  # the clean re-ask returns the case's own clean payload
+
+    def _rec(case_id, clean):
+        return FlipRecord(
+            case_id=case_id, cue_type="longest_option", model="m", clean_answer=clean,
+            contaminated_answer="x", ground_truth=None, flipped=True,
+            clean_correct=None, contaminated_correct=None,
+        )
+
+    records = [_rec("a", "ans-a"), _rec("b", "ans-b")]
+    twins = [_Twin("b", "ans-b"), _Twin("a", "ans-a")]  # reversed against the records
+    floor = runner.noise_floor_pass(twins, records, _Echo())
+    # each record was re-asked its OWN clean payload (== its clean_answer), so nothing moved;
+    # the old positional zip would have paired a with b and reported a spurious floor of 1.0
+    assert floor["per_twin"] == [0.0, 0.0]
+    assert floor["rate"] == 0.0
 
 # --- multiple comparisons ------------------------------------------------------------------
 

@@ -102,6 +102,10 @@ benchmaxxing run --stage cascade --manifest path/to/manifest.csv --out runs/my-r
 
 # same command, no key and no data: the mock backend is the offline stand-in
 benchmaxxing run --stage solo --manifest path/to/manifest.csv --out runs/mock --backend mock
+
+# add the decoding-noise control: re-ask each clean payload once, so the flip rate can be
+# read against the rate at which the model changes its mind with no cue present
+benchmaxxing run --stage solo --manifest path/to/manifest.csv --out runs/x --noise-floor
 ```
 
 The smoke is the fastest way to see the whole pipeline compose and to confirm your change did not break a seam. It needs no data and no keys.

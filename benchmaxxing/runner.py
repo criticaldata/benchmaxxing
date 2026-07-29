@@ -37,7 +37,7 @@ from benchmaxxing.manifest import library_versions, write_manifest
 from benchmaxxing.prompts import DEFAULT_REGISTRY
 from benchmaxxing.roster import build_committee
 from benchmaxxing.runstore import RunStore
-from benchmaxxing.schema import ModelSpec, RunManifest
+from benchmaxxing.schema import Condition, ModelSpec, RunManifest
 from benchmaxxing.stats import (
     bootstrap_ci,
     cluster_bootstrap_ci,
@@ -54,6 +54,7 @@ __all__ = [
     "estimates",
     "family_correction",
     "lineage_sources",
+    "noise_floor_pass",
     "significance_tests",
     "model_specs",
     "plan_run",
@@ -279,20 +280,30 @@ def _identity(raw):
     return raw
 
 
-def _twin_count(cases, cue_types) -> int:
-    """How many twins the cue builders will actually produce over these cases."""
-    n = 0
+def _twins(cases, cue_types) -> list:
+    """Every twin the cue builders can make over these cases, in the runners' own order.
+
+    Mirrors ``experiments._build_twins``: a (case, cue) pair the cue cannot be built for is
+    skipped rather than aborting the run. The order matters, because the noise-floor pass zips
+    these twins against the records ``solo_evaluate`` produced from the same list.
+    """
+    twins = []
     for case in cases:
         for cue_type in cue_types:
             try:
-                build_text_twin(case, cue_type)
+                twins.append(build_text_twin(case, cue_type))
             except (ValueError, TypeError):
                 continue
-            n += 1
-    return n
+    return twins
 
 
-def plan_run(stage: str, cases, config, *, limit: int | None = None) -> dict:
+def _twin_count(cases, cue_types) -> int:
+    """How many twins the cue builders will actually produce over these cases."""
+    return len(_twins(cases, cue_types))
+
+
+def plan_run(stage: str, cases, config, *, limit: int | None = None,
+             noise_floor: bool = False) -> dict:
     """Resolve what a run would do, without calling a model. Backs ``--dry-run``."""
     if stage not in STAGES:
         raise ValueError(f"unknown stage {stage!r}; expected one of {list(STAGES)}")
@@ -301,6 +312,7 @@ def plan_run(stage: str, cases, config, *, limit: int | None = None) -> dict:
     models = [spec.name for spec in model_specs(config)]
     n_twins = _twin_count(selected, cue_types)
 
+    floor_models = 1 if stage == "pilot" else len(models)
     if stage == "pilot":
         calls = 2 * n_twins
     elif stage in ("solo", "overlap"):
@@ -308,6 +320,9 @@ def plan_run(stage: str, cases, config, *, limit: int | None = None) -> dict:
     else:
         # shared plus isolated, minus the one planted turn each run does not generate
         calls = 2 * len(selected) * (CASCADE_ROUNDS * len(models) - 1)
+    # the floor re-asks each clean payload once more; the first ask is already paid for
+    if noise_floor and stage != "cascade":
+        calls += n_twins * floor_models
     return {
         "stage": stage,
         "models": models,
@@ -317,19 +332,24 @@ def plan_run(stage: str, cases, config, *, limit: int | None = None) -> dict:
         "n_cases": len(selected),
         "n_twins": n_twins,
         "estimated_calls": calls,
+        "noise_floor": bool(noise_floor) and stage != "cascade",
         "out_dir": config.out_dir,
         "seed": config.seed,
     }
 
 
 def run_stage(stage: str, cases, config, backend_for, *, limit: int | None = None,
-              transcript_dir=None) -> dict:
+              transcript_dir=None, noise_floor: bool = False) -> dict:
     """Run one stage end to end and return its results dict.
 
     ``backend_for(model_id)`` yields the gateway backend for one roster entry, so the same call
     runs offline against a ``MockBackend`` and unchanged against a real Gemini roster. ``limit``
     caps the cases fed to the stage. For the cascade stage, ``transcript_dir`` (when given) is
     where the shared and isolated transcripts are saved through :class:`RunStore`.
+
+    ``noise_floor`` adds the decoding-noise control to the solo lane (see :func:`noise_floor_pass`):
+    one extra ask of each clean payload, so a flip rate can be read against the rate at which the
+    same model answers the same uncontaminated prompt differently.
     """
     if stage not in STAGES:
         raise ValueError(f"unknown stage {stage!r}; expected one of {list(STAGES)}")
@@ -343,7 +363,17 @@ def run_stage(stage: str, cases, config, backend_for, *, limit: int | None = Non
 
     if stage == "pilot":
         agent = SoloAgent(backend_for(specs[0].name), name=specs[0].name)
-        return run_pilot(selected, agent, _identity, cue_types, limit=len(selected))
+        pilot = run_pilot(selected, agent, _identity, cue_types, limit=len(selected))
+        if noise_floor:
+            pilot["noise_floor_by_model"] = {
+                specs[0].name: noise_floor_pass(
+                    _twins(selected, cue_types), pilot["records"], agent
+                )
+            }
+        # key the records by the model that produced them, exactly like the solo lane, so the
+        # estimates and the floor line up on one model name instead of a special case
+        pilot["records_by_model"] = {specs[0].name: pilot.pop("records")}
+        return pilot
 
     if stage in ("solo", "overlap"):
         solo = run_solo_baselines(
@@ -356,6 +386,16 @@ def run_stage(stage: str, cases, config, backend_for, *, limit: int | None = Non
         records = [r for recs in solo["records_by_model"].values() for r in recs]
         solo["flip_rate"] = flip_rate(records)
         solo["shortcut_reliance"] = shortcut_reliance_index(records)
+        if noise_floor:
+            twins = _twins(selected, cue_types)
+            solo["noise_floor_by_model"] = {
+                spec.name: noise_floor_pass(
+                    twins,
+                    solo["records_by_model"][spec.name],
+                    SoloAgent(backend_for(spec.name), name=spec.name),
+                )
+                for spec in specs
+            }
         if stage == "solo":
             return solo
         solo["overlap"] = run_holes_test(
@@ -367,6 +407,44 @@ def run_stage(stage: str, cases, config, backend_for, *, limit: int | None = Non
 
     return _run_cascade_stage(selected, specs, backend_for, config, transcript_dir)
 
+
+def noise_floor_pass(twins, records, agent) -> dict:
+    """Re-ask each clean payload once and measure how often the answer moves with no cue present.
+
+    A flip rate counts answers that changed between the clean and contaminated twin, but a model
+    at a non-zero temperature also changes its mind when nothing changed at all. That rate is the
+    noise floor, and a flip rate is only evidence of cue reliance to the extent it sits above it.
+    The clean answer from the main pass is reused as the first ask, so this costs one extra call
+    per twin rather than two.
+
+    Returns ``{"rate", "n", "per_twin"}``, where ``per_twin`` is aligned with ``records`` so the
+    floor-adjusted flip rate can be resampled as a paired difference.
+
+    Each record is matched to its twin by ``(case_id, cue_type)`` rather than by position: the two
+    lists come from separate twin builders, and a length check would pass a reordering that pairs a
+    record with the wrong twin's clean payload, silently subtracting the wrong noise. The key makes
+    the pairing correct regardless of order.
+    """
+    records = list(records)
+    # key on str() both sides: solo_evaluate stores case_id/cue_type as str on the record, so match
+    # the twin key to that rather than relying on the twin already carrying str-typed fields
+    twins_by_key = {(str(t.case_id), str(t.cue_type)): t for t in twins}
+    changed = []
+    for record in records:
+        key = (str(record.case_id), str(record.cue_type))
+        twin = twins_by_key.get(key)
+        if twin is None:
+            raise ValueError(
+                f"noise floor has no twin for record {key}; the twin list must be the one the "
+                "records were produced from"
+            )
+        again = agent.run(twin.payload(Condition.CLEAN))
+        changed.append(1.0 if again != record.clean_answer else 0.0)
+    return {
+        "rate": float(np.mean(changed)) if changed else float("nan"),
+        "n": len(changed),
+        "per_twin": changed,
+    }
 
 def _run_cascade_stage(cases, specs, backend_for, config, transcript_dir) -> dict:
     """Seed a shortcut into the committee for every case and aggregate the adoption gap."""
@@ -506,11 +584,28 @@ def _records_by_model(results: dict) -> dict[str, list]:
     return {"": list(results.get("records", []))}
 
 
-def _solo_estimates(records: list, seed: int, suffix: str) -> dict:
-    """The four solo-lane estimates over one model's records."""
+def _solo_estimates(records: list, seed: int, suffix: str, floor: dict | None = None) -> dict:
+    """The four solo-lane estimates over one model's records, plus the floor when it was run."""
     scored = [
         r for r in records if r.clean_correct is not None and r.contaminated_correct is not None
     ]
+    extra = {}
+    if floor and floor.get("per_twin"):
+        per_twin = list(floor["per_twin"])
+        flips = [float(r.flipped) for r in records]
+        # per_twin is aligned with records, so the floor resamples by case like every other
+        # solo estimate: otherwise the floor-adjusted rate reports a tighter interval than the
+        # raw flip rate it corrects
+        aligned = len(per_twin) == len(flips)
+        cases = [r.case_id for r in records] if aligned else None
+        extra["noise_floor"] = _ci(per_twin, seed, f"noise floor{suffix}", clusters=cases)
+        if aligned:
+            extra["flip_rate_above_floor"] = _ci(
+                [flip - noise for flip, noise in zip(flips, per_twin)],
+                seed,
+                f"flip rate above the noise floor{suffix}",
+                clusters=cases,
+            )
     return {
         "flip_rate": _ci(
             [float(r.flipped) for r in records], seed, f"flip rate{suffix}",
@@ -532,6 +627,7 @@ def _solo_estimates(records: list, seed: int, suffix: str) -> dict:
             f"shortcut reliance, clean minus contaminated{suffix}",
             clusters=[r.case_id for r in scored],
         ),
+        **extra,
     }
 
 
@@ -558,11 +654,12 @@ def estimates(stage: str, results: dict, seed: int = 0) -> dict:
         }
         return {name: est for name, est in found.items() if est is not None}
 
+    floors = results.get("noise_floor_by_model") or {}
     found = {}
     for model, records in sorted(_records_by_model(results).items()):
         suffix = f" ({model})" if model else ""
         prefix = f"{model}::" if model else ""
-        for name, est in _solo_estimates(records, seed, suffix).items():
+        for name, est in _solo_estimates(records, seed, suffix, floors.get(model)).items():
             found[prefix + name] = est
     return {name: est for name, est in found.items() if est is not None}
 
@@ -764,14 +861,25 @@ def summarize(stage: str, results: dict, plan: dict, est: dict | None = None,
     return "\n".join(lines)
 
 
+def _floor_headline(results: dict) -> dict:
+    """The pooled noise floor, when the control ran. Empty otherwise."""
+    floors = results.get("noise_floor_by_model") or {}
+    rates = [floor["rate"] for floor in floors.values() if floor.get("n")]
+    if not rates:
+        return {}
+    return {"noise floor": float(np.mean(rates))}
+
+
 def _headline(stage: str, results: dict) -> dict:
     """The few numbers a reader wants first, per stage."""
     if stage == "pilot":
-        return {
+        headline = {
             "flip rate": results["flip_rate"]["overall"],
             "twins": results["n"],
             "cues bite": results["cues_bite"],
         }
+        headline.update(_floor_headline(results))
+        return headline
     if stage in ("solo", "overlap"):
         headline = {
             "flip rate": results["flip_rate"]["overall"],
@@ -780,6 +888,7 @@ def _headline(stage: str, results: dict) -> dict:
             "shortcut reliance": results["shortcut_reliance"]["overall"],
             "twins per model": results["n_twins"],
         }
+        headline.update(_floor_headline(results))
         overlap = results.get("overlap")
         if overlap:
             headline["within-lineage overlap"] = overlap.get("within_mean")
@@ -853,7 +962,11 @@ def write_outputs(out_dir, stage: str, config, results: dict, plan: dict, *,
             library_versions=library_versions(),
             # the resolved roster, not just the ids: a rerun needs to know which lineage each
             # model was treated as, and whether that came from the config or from the id
-            config={**config.to_dict(), "resolved_roster": _resolved_roster(config)},
+            config={
+                **config.to_dict(),
+                "resolved_roster": _resolved_roster(config),
+                "noise_floor": bool(plan.get("noise_floor")),
+            },
         ),
         paths["run_manifest"],
     )
