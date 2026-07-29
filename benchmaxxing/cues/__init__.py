@@ -1,1 +1,1 @@
-"""Cue injection: image overlays and text perturbations, twin-pair builders."""
+"""Cue injection: image overlays, text perturbations, tabular re-renderings; twin-pair builders."""

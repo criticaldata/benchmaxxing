@@ -9,7 +9,7 @@ from benchmaxxing.datasets import base, registry, status
 from benchmaxxing.schema import Case, Modality
 
 EXPECTED_DATASETS = {
-    "mimic_cxr", "mimic_cxr_text", "chexpert", "nih_cxr14", "medqa", "medmcqa", "pubmedqa", "ehr",
+    "mimic_cxr", "mimic_cxr_text", "chexpert", "nih_cxr14", "medqa", "medmcqa", "pubmedqa", "ehr", "support2",
 }
 
 

@@ -1,0 +1,994 @@
+{
+  "source_csv": "support2.csv",
+  "source_sha256": "79621945edf2a5c8dc36359684ff356d3c6025e773ba4fefac26f865f7894c78",
+  "target": "hospdead",
+  "n_cohort": 9105,
+  "n_cases": 120,
+  "n_by_outcome": {
+    "survives": 60,
+    "dies": 60
+  },
+  "excluded_columns": [
+    "surv2m",
+    "surv6m",
+    "prg2m",
+    "prg6m",
+    "sps",
+    "aps",
+    "avtisst",
+    "hospdead",
+    "death",
+    "d.time",
+    "slos",
+    "sfdm2",
+    "dnr",
+    "dnrday",
+    "charges",
+    "totcst",
+    "totmcst",
+    "adlp",
+    "adlsc"
+  ],
+  "cases": [
+    {
+      "case_id": "support2-1",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 23,
+      "n_absent": 3,
+      "vignette_sha256": "f1c39d0ba08ac2ebe398e7a87ffa104f1e6c9dc027d8f16c87ef632454058356"
+    },
+    {
+      "case_id": "support2-10",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 20,
+      "n_absent": 6,
+      "vignette_sha256": "5c29cda768e03c7a21db67f6255bf23fc77fff142bb3157c762fdebbac24be16"
+    },
+    {
+      "case_id": "support2-101",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 23,
+      "n_absent": 3,
+      "vignette_sha256": "a18d1d734d1414299bc5adc5869a22a32f17019b65648f5a596fc818496502d3"
+    },
+    {
+      "case_id": "support2-11",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "6f6ac8468e0d64d4e3e933c866f5d19f6a646a525d98743d0e94e00830ef5e66"
+    },
+    {
+      "case_id": "support2-112",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "9e0bfd54fe4d5bd053d9c027eeb4476272a371dbba5f061dd147e85173bee422"
+    },
+    {
+      "case_id": "support2-12",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 19,
+      "n_absent": 7,
+      "vignette_sha256": "29cfa41d94ecffce289c39df5f9884d233c31e00d9d2a00f04910bc112171255"
+    },
+    {
+      "case_id": "support2-122",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "86f0cd1670a6cafbd29040063e4bf750634aff55cacf029924464c665ebbacf3"
+    },
+    {
+      "case_id": "support2-124",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "bec28f7b9d5269144f6d740c9a70aa6759ac37402729357f1a858792fceef2b1"
+    },
+    {
+      "case_id": "support2-127",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 19,
+      "n_absent": 7,
+      "vignette_sha256": "234c4717603e06ccaaed95faaa107a8f8ae56ee50f62a1235e02e44a3037d4ce"
+    },
+    {
+      "case_id": "support2-13",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "8962ec5e61195214406f3420da769e16f4efaf0dbee5c142a48584462d832745"
+    },
+    {
+      "case_id": "support2-132",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 23,
+      "n_absent": 3,
+      "vignette_sha256": "4c7a98f1dc05517eb5a17d58ad4181e73584673dff9325f90938d4317db9e1f5"
+    },
+    {
+      "case_id": "support2-133",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "2f5e310dc316ee5c52589c04497600d3c76272ea03c4d0a01f19d0af0af4bbb3"
+    },
+    {
+      "case_id": "support2-136",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "4f56443f97917b332cd631283d498777e35bc4bea15be41d86b4914c24876815"
+    },
+    {
+      "case_id": "support2-14",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 20,
+      "n_absent": 6,
+      "vignette_sha256": "79c0584d7adbc5bebdd7b1803e2f2c4fd12cc9c138716c1418fe67b59d43a47e"
+    },
+    {
+      "case_id": "support2-140",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "5df5c7b082c6b7de6198f81f1f9cc2f7c0c69911d5140c06151e0311132938d0"
+    },
+    {
+      "case_id": "support2-143",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "1189996ca78bf6f56759c94cc31ec2249049f50fbed3c36539bfac17b3c41680"
+    },
+    {
+      "case_id": "support2-148",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "a2d95ebe7636d11c01f7739342ccf2f0fd78e087aae79cef5fc5963a8a4a7f52"
+    },
+    {
+      "case_id": "support2-15",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 20,
+      "n_absent": 6,
+      "vignette_sha256": "e829f4d60a48c576ca7314b714809031b240d3036d56c171c0ece1a62dcddf98"
+    },
+    {
+      "case_id": "support2-153",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "222a421d0f00f911b81e1afb45bb895b6910cabf80869255228e7cb2df904bc3"
+    },
+    {
+      "case_id": "support2-156",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "1afb1e7a6b4460036665e305db3701a067a18271e5c5d899534826aa65358cb4"
+    },
+    {
+      "case_id": "support2-16",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "3c28e9d7895bb8f767600ca657bc5b23380af8ce26a3b8f9370e63c9f8d5a8bd"
+    },
+    {
+      "case_id": "support2-163",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "592c84c295472644724c3ec0cc357cc66bfa16f192d47527bba3ee9a1c36fcc6"
+    },
+    {
+      "case_id": "support2-165",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "a90f4b944aa3ca1f431a33d659088103dfa72f6a1ad77a4efadf37f9191ce9a7"
+    },
+    {
+      "case_id": "support2-166",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 20,
+      "n_absent": 6,
+      "vignette_sha256": "ae707fac910c942a3eafd2f8dfbdda1465c6bb8a5c7b2fa9b69a845ad7626af5"
+    },
+    {
+      "case_id": "support2-167",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "8a2a39aa2cd676c1c17bf2ce4182e7434411574c117806109ad7c9327b8d94db"
+    },
+    {
+      "case_id": "support2-17",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "a9e0d5b44d22c7e68aaa19de4d436298db753ddc9557c109626d270a3dc5894b"
+    },
+    {
+      "case_id": "support2-174",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "823adba59b880dbd885a63a13abac8602885cd98d96c06a33b74648713b07994"
+    },
+    {
+      "case_id": "support2-175",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 23,
+      "n_absent": 3,
+      "vignette_sha256": "538b28435c89561c0a4db3b92f5b15caac2206efab229a08f9c09c864fcad3ca"
+    },
+    {
+      "case_id": "support2-179",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "2459e28af2fab2275a8f99f332e3823fbf59c96c8c39f7b5e6c751c432216324"
+    },
+    {
+      "case_id": "support2-18",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 23,
+      "n_absent": 3,
+      "vignette_sha256": "7e602ca4dbc2210a35b25e011cdec60e9887c2441a44403499acfa1f17e61094"
+    },
+    {
+      "case_id": "support2-180",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 20,
+      "n_absent": 6,
+      "vignette_sha256": "a1f218d16154e25c36c89380f9b4aa3c5b9ab6b7845a313994d86da8205b62e3"
+    },
+    {
+      "case_id": "support2-184",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "5ee4b0520e627c68d2102745e2ef3811d0cc0ded92bca613561dd9115eb94b53"
+    },
+    {
+      "case_id": "support2-187",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 20,
+      "n_absent": 6,
+      "vignette_sha256": "ee2a7b3b6484b8cbe9d297a73f36b74bb4daebb61b03cbcadf61026fc292d7bf"
+    },
+    {
+      "case_id": "support2-188",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 20,
+      "n_absent": 6,
+      "vignette_sha256": "37f0af20e703f53db69eeffbe3401e30e4dd21e7cf9086887895718e59c5a623"
+    },
+    {
+      "case_id": "support2-19",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "b1de6edd8dcfaeb023934a8f15cb1225109c1be4143efc76f9c1fa2b98292b20"
+    },
+    {
+      "case_id": "support2-2",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "a7909725fd4dd5a73c03afd17b50ffc1ffaa5e9b3a7337b17ec2910b9040644e"
+    },
+    {
+      "case_id": "support2-20",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 17,
+      "n_absent": 9,
+      "vignette_sha256": "cfd760ab486be1815198195ce169b8082e93b569fc87efd435dc03f9a513c9a6"
+    },
+    {
+      "case_id": "support2-204",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 23,
+      "n_absent": 3,
+      "vignette_sha256": "5f8374c9596f7edbbad0a314956b21dda7506611d621a028c9d58dd711889a1f"
+    },
+    {
+      "case_id": "support2-206",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 20,
+      "n_absent": 6,
+      "vignette_sha256": "0d515fc53891a242c587309d760d9885c4c2a3bc6835e851fed18d55c03ff438"
+    },
+    {
+      "case_id": "support2-207",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "f38eb66c9c686759e095aedfaa6d218c2f7dd50b6f1171968b2a9788eb4bef63"
+    },
+    {
+      "case_id": "support2-21",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "b5c9a2eaa987c8904ea8be2870f81b9fa2acd8c99c4822182e6428eaab82f022"
+    },
+    {
+      "case_id": "support2-210",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "21a848622b40495aecbaab4589fc632afff01d086e6521d34fd53e10005aa73a"
+    },
+    {
+      "case_id": "support2-211",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 19,
+      "n_absent": 7,
+      "vignette_sha256": "b16ea9b579dd874b62593089462cd84ef9bf878c4626386a614e7b317308a97e"
+    },
+    {
+      "case_id": "support2-215",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 20,
+      "n_absent": 6,
+      "vignette_sha256": "414054f5b8c03d8efe89ac7007c7b9a4aaead9434daa43b7407ac5c79a4154e2"
+    },
+    {
+      "case_id": "support2-22",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 20,
+      "n_absent": 6,
+      "vignette_sha256": "61e4bbace68c394c37343166edce564d8ed3e34a5e37afff05b30185f184b399"
+    },
+    {
+      "case_id": "support2-224",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "0361b648f6f0a84c5c693cd62789528b8f377ac7fc9153f7c3b56b9fb2abc22a"
+    },
+    {
+      "case_id": "support2-225",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "1f79949050dc7d3b07e320d7d82b73b0a31019e5f83ffd595b789fc8a25ce0dd"
+    },
+    {
+      "case_id": "support2-23",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 23,
+      "n_absent": 3,
+      "vignette_sha256": "19b687650096cb8fcab2de9a5348a64315495a7d4e5c8871c3db5f64b28b6056"
+    },
+    {
+      "case_id": "support2-239",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "19e1dde57710af6afa4deb4e74880f7ef5e0f6c3f346262c07fb8066242c02ab"
+    },
+    {
+      "case_id": "support2-24",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 18,
+      "n_absent": 8,
+      "vignette_sha256": "c4b7c58fbde762802ed993d9b3f6f4e9ca6cb8efcfd6d544ba2ea8d498443e85"
+    },
+    {
+      "case_id": "support2-240",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 23,
+      "n_absent": 3,
+      "vignette_sha256": "0055845aef3372adedcd24862966ef198ab8da72cecf8b3c717ea1d17b8a443b"
+    },
+    {
+      "case_id": "support2-246",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 23,
+      "n_absent": 3,
+      "vignette_sha256": "4dd77079507f446065630b4164a166628bc200f3522dbe03fab28f8c019fb606"
+    },
+    {
+      "case_id": "support2-247",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "2bfbd3c2a6cc397f22e70318f6017cc82b87161f21cf208a5fa3ae008f85f24e"
+    },
+    {
+      "case_id": "support2-25",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 20,
+      "n_absent": 6,
+      "vignette_sha256": "eccf674428677e2eefea26e72ed30e5b6d2f1eda77f59a771486147ac4526a79"
+    },
+    {
+      "case_id": "support2-250",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "5d38e604f39f1736e7a9a2eb6a774c482610514c6bb958f349591a17e8ac7b98"
+    },
+    {
+      "case_id": "support2-26",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 23,
+      "n_absent": 3,
+      "vignette_sha256": "64ebd8e99a785cabe754d7e826f14e41807c4f7adf8f9bbde4df0ed69a2f8cee"
+    },
+    {
+      "case_id": "support2-27",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 19,
+      "n_absent": 7,
+      "vignette_sha256": "5cbc6df4f0963f5021bed3a6c5e95735fcdc354769a7cb0a3d3c5d2a06be2ce6"
+    },
+    {
+      "case_id": "support2-28",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 23,
+      "n_absent": 3,
+      "vignette_sha256": "2cca58d37058b4a3e41f3df9df20f46bf1ccebf576845c813fe1e83102dd0f0c"
+    },
+    {
+      "case_id": "support2-29",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 20,
+      "n_absent": 6,
+      "vignette_sha256": "74fac480a405cd2ae644d94cc54043bbfd1d1ec2dd9853a137f2e5e4013e8c56"
+    },
+    {
+      "case_id": "support2-3",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "8622eee559ae454deab12e1c781c321937d0dc15a928437ebc272e0cb063c37f"
+    },
+    {
+      "case_id": "support2-30",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 23,
+      "n_absent": 3,
+      "vignette_sha256": "b863ab1de957a3406fcf765743af14e3af014beadcc2528cf75a147131df25af"
+    },
+    {
+      "case_id": "support2-31",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "7866fe3ccdccc0ff019f41dd104019c105b4e365dc7f6144d248e551bea64f86"
+    },
+    {
+      "case_id": "support2-32",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 23,
+      "n_absent": 3,
+      "vignette_sha256": "2d1b9bbe71f687aa7d7ec4c81970e3d4a6c7af1ad248d97a3c22f47394e6fcb5"
+    },
+    {
+      "case_id": "support2-33",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "1be97104e7124e23d77721b63ae3109e5fd56297b83372f64007e523e3f0d196"
+    },
+    {
+      "case_id": "support2-34",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "f0915ddfc806961f02598140f1fd50e03452ecd988d2742cd394ddb1c305f0a5"
+    },
+    {
+      "case_id": "support2-35",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 17,
+      "n_absent": 9,
+      "vignette_sha256": "ccff2c564eda0adf0d665e1c22349bbab8504fe906cffc50f00c8cb2d97a08f2"
+    },
+    {
+      "case_id": "support2-36",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "0a2b22d812aed1fc75a6d1251a45346716959d0378b86a7ed607f719bf732e99"
+    },
+    {
+      "case_id": "support2-37",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "270d4a723ae47fbcf3f5e7cb3671a1c404c2024a77af344f6702575425a9ee88"
+    },
+    {
+      "case_id": "support2-38",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "b4c2223f62cbf5d6f3afbc4512321365615cb7292d1ba38793fc43edf0d5c48c"
+    },
+    {
+      "case_id": "support2-39",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 20,
+      "n_absent": 6,
+      "vignette_sha256": "8def8640e9438b53fadb3184144ad68f11a448442bc2a00e82f03d9690668008"
+    },
+    {
+      "case_id": "support2-4",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 19,
+      "n_absent": 7,
+      "vignette_sha256": "7b0e89fa63bfe48b7b4f40898044fe20778fc747243f88186e7a130052a8b9e0"
+    },
+    {
+      "case_id": "support2-40",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "fb20e771589af88454bc2886059d5189de15e95c8654124ca6ab0e7459442707"
+    },
+    {
+      "case_id": "support2-41",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 20,
+      "n_absent": 6,
+      "vignette_sha256": "665956190fe3f0677fc6557e6a1077927799ce0bd20f13ea98ed8ffe69ccd7fa"
+    },
+    {
+      "case_id": "support2-42",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 20,
+      "n_absent": 6,
+      "vignette_sha256": "18bbca5e8d8dd8d659fc95128785d6683d49cf69d4eeb5c89bc54bc26e35e68a"
+    },
+    {
+      "case_id": "support2-43",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "b1c8393116efe464dbe5637bc61937869120d8d70946171d029c413bd5bc2c57"
+    },
+    {
+      "case_id": "support2-44",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "d0ed1a4125d15bbebe3115a44e8ab294686c4be9d2af03280126303327e698b4"
+    },
+    {
+      "case_id": "support2-45",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "9758b952088e0fcceb35b29cd16ca3bdb6de13dd333845ad4994034e3b46aa5e"
+    },
+    {
+      "case_id": "support2-46",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "20f10cc8c0ca7e9a2ca2c0ac9fe1f363eb0d625678a7c810a76c16b63d843f77"
+    },
+    {
+      "case_id": "support2-47",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 23,
+      "n_absent": 3,
+      "vignette_sha256": "543582eef6f3937ea4e226444791637d55f8ab4077e188de7631b611240eedbc"
+    },
+    {
+      "case_id": "support2-48",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 23,
+      "n_absent": 3,
+      "vignette_sha256": "e506a95a9ab611e676eaf3457784712cba085311d40b1ec2aefe134407027844"
+    },
+    {
+      "case_id": "support2-49",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "41de0267068699b612a47418fdc9438944c314f0f6c7e7d39afcfa4f571b1bf3"
+    },
+    {
+      "case_id": "support2-5",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "6e0fd25ae42a8323302ec448cd090beb6749556bcbc4fa78579bd4022a2b8b93"
+    },
+    {
+      "case_id": "support2-50",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "25ac82559c0666fe43a4ddf38d08d2d50656823723cbb668861b3d513e2fbe48"
+    },
+    {
+      "case_id": "support2-51",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "2138ad8e133c48974fcab8da39fa466b89ee84fa2935d1d04883a900f269e741"
+    },
+    {
+      "case_id": "support2-52",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 18,
+      "n_absent": 8,
+      "vignette_sha256": "5c64b25f6b7dd8e98bba9e2ddd54832181592318436f32539ddba2110fa99520"
+    },
+    {
+      "case_id": "support2-53",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 23,
+      "n_absent": 3,
+      "vignette_sha256": "3452dbb4b8a5f58878337a77b05dbd2bab74862c08e8fa16293f986116ca0e9b"
+    },
+    {
+      "case_id": "support2-54",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "f7cf068cd6e6214d89d37a2c4a5e1460f247b374cec55d08a70b1f9da6b1e986"
+    },
+    {
+      "case_id": "support2-55",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 20,
+      "n_absent": 6,
+      "vignette_sha256": "fb830646a416ff90260047fb18946f33b23bba9c0a99e7ae0e004f7eb8e27a8d"
+    },
+    {
+      "case_id": "support2-56",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "12f9b5d729bbc88ea8c2b8db4d5370a87c1083dd5f26a9a0641e407ab08d2d15"
+    },
+    {
+      "case_id": "support2-57",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 23,
+      "n_absent": 3,
+      "vignette_sha256": "fe6440664f09a6011b257a86dc1197f592abf06a3fdcebb645788e4dcd38b02e"
+    },
+    {
+      "case_id": "support2-58",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 23,
+      "n_absent": 3,
+      "vignette_sha256": "d049e8b1fd384ff05937e4f6806f2ecaf54ad97c4933c4d81579051e023c45b2"
+    },
+    {
+      "case_id": "support2-59",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 20,
+      "n_absent": 6,
+      "vignette_sha256": "e40cf8613a6488e7ab8329d5ed2b01fa542d6b335f830382814295ca7ad55446"
+    },
+    {
+      "case_id": "support2-6",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "2df13677a03a2f9c31672ab33ad04da29465649b8e9a167c9e4bb3e6dca1a151"
+    },
+    {
+      "case_id": "support2-60",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "0e47b01d18a69e4bf59a6524e93c26869f36fc55d358e0e8c6eb4f69ca6833fc"
+    },
+    {
+      "case_id": "support2-61",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 18,
+      "n_absent": 8,
+      "vignette_sha256": "713e1b3c7ef39fc418a5e11147b3c29a83be0c8374513b3a15c760ebeb8ff1cd"
+    },
+    {
+      "case_id": "support2-62",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 20,
+      "n_absent": 6,
+      "vignette_sha256": "63318628247c7bd5744c4e715b90009c122fce4c8edc034fb1e1dab1f66e600a"
+    },
+    {
+      "case_id": "support2-63",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "e46e4788651412786b3de7e436cf119d5135343b0c5c4f8ef59c16811a4aea56"
+    },
+    {
+      "case_id": "support2-64",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 20,
+      "n_absent": 6,
+      "vignette_sha256": "fa2c004b1b08777c04238e2d95cb50177e4a437086341f7a10a9d021bc31a11a"
+    },
+    {
+      "case_id": "support2-65",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 23,
+      "n_absent": 3,
+      "vignette_sha256": "188fd42e92f44edcab85fbf768a7701625c40d304d6640305405012ba19a1d63"
+    },
+    {
+      "case_id": "support2-66",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 20,
+      "n_absent": 6,
+      "vignette_sha256": "e06b0d97bc3270163ad5827f2e3cdb635eae5f225f3a2984b50fa035166b5943"
+    },
+    {
+      "case_id": "support2-67",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "f2fb5cbd7f6f228cf87f74aa2d87f075e0ae1ec9bc81da93b642ff40cd0484b6"
+    },
+    {
+      "case_id": "support2-68",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 23,
+      "n_absent": 3,
+      "vignette_sha256": "aeeb07db3603f98a77eb9cebae519a0739f7adbeff2f968a32c4a8718efb2083"
+    },
+    {
+      "case_id": "support2-69",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 18,
+      "n_absent": 8,
+      "vignette_sha256": "480b46a8a0b8c0ca7ffcdf850abaa8efa8e2fd3ebffe3fbc9408378cc6f2eb24"
+    },
+    {
+      "case_id": "support2-7",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 23,
+      "n_absent": 3,
+      "vignette_sha256": "2c9cb690600f0f8d4aa80eb80a174d13a69a2b1efc134a13a4af73656dad7407"
+    },
+    {
+      "case_id": "support2-70",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "492f5925d3a32f8c8d7ef577c1399504cc40c20b4260f91dad5c994019845c9e"
+    },
+    {
+      "case_id": "support2-71",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 23,
+      "n_absent": 3,
+      "vignette_sha256": "a43e4fd7b5e65c438ff211cba06429258c030f78a094c55cfe04104d8703798c"
+    },
+    {
+      "case_id": "support2-72",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "971627b323be0bc30e905f59bd7e1c09add53f036262dec9ec535beae4de07e5"
+    },
+    {
+      "case_id": "support2-73",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 23,
+      "n_absent": 3,
+      "vignette_sha256": "1b4e84785be1ce73303f73d36652d41a65f36dd4060c2181f7ec101f66c0a1a2"
+    },
+    {
+      "case_id": "support2-74",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "984dd2cda32fce2b154344c8a1ff86792be441588d7b23f18a7256c1f07f204c"
+    },
+    {
+      "case_id": "support2-75",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "3e322684948bf49c72c067f084fa570897f19f717be9f4cedd6f6b655f6ee3d7"
+    },
+    {
+      "case_id": "support2-76",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "bc5d9054eb78586e8f8b148b4a4cfce717af09cf7ae496cbe67ccf091fffb071"
+    },
+    {
+      "case_id": "support2-79",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "54d7f5bf08d3a320d7178190ae2640d8f37c02cba1ce3f3eb0af5cfb6e242a62"
+    },
+    {
+      "case_id": "support2-8",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "4f29e4e18efa4fc06998a3bcebd8220d7db262d8c42fef973e00fce318ca14a7"
+    },
+    {
+      "case_id": "support2-84",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "5ca202432698c750dd9a38d4a5cfa1018088cf595e9e2f2b6d81945119e5d6a7"
+    },
+    {
+      "case_id": "support2-89",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 23,
+      "n_absent": 3,
+      "vignette_sha256": "5a8594ec3e9ff6b99b38bbf1b10b394aaaf945ecff72bc36e20cebe985f9d70f"
+    },
+    {
+      "case_id": "support2-9",
+      "answer_index": 0,
+      "label": "Survives to hospital discharge",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "44ec37d760e2c2a8c793776e5650b631b34137b978a6df9e16758d4ce1f5f666"
+    },
+    {
+      "case_id": "support2-91",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "fa31a7fbdc80d1470f7114b700d9c10d05e4f4947b969b837d86f4d3de982abf"
+    },
+    {
+      "case_id": "support2-92",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "6c5dc35467b15d597d8b6e4d2de49faffcfe70ff865acef82ab5b96c91e0fbd6"
+    },
+    {
+      "case_id": "support2-94",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 21,
+      "n_absent": 5,
+      "vignette_sha256": "584bc46e706184e05d1384f08647e078bf04773dd78cfc915f33b6c05fb8d14a"
+    },
+    {
+      "case_id": "support2-97",
+      "answer_index": 1,
+      "label": "Dies in hospital",
+      "n_fields": 22,
+      "n_absent": 4,
+      "vignette_sha256": "6d98f9025b3bb9bc13d5b58c7e99440ee967e9d8b3988a7b8a111334cb2a40c7"
+    }
+  ]
+}
