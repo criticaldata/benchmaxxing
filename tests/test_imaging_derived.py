@@ -163,3 +163,19 @@ def test_no_stale_effect_size_range_in_the_read_string():
     obj = json.loads((RESULTS / "effect_sizes_imaging.json").read_text())
     read = obj.get("read", "")
     assert "0.54-0.57" in read, "read string does not state the corrected contagion range"
+
+
+def test_same_lineage_judge_is_indistinguishable_from_the_naive_gate():
+    """The judge transcript is the SECOND pre-#338 file, and #350's first pass missed it.
+
+    On the valid 22-row subgroup the judge matches the naive gate on all three metrics, so the paper's
+    "collapses to the naive gate" is exact, not approximate. The paper previously quoted FPR 0.92, which
+    came from the stale all-35 computation.
+    """
+    out = rvs.summarize(rvs.load_rows(), rvs.load_rows(rvs.JUDGE_JSONL))
+    judge, gate = out["same_lineage_judge"], out["naive_gate"]
+    assert out["same_lineage_judge_n_valid"] == 22
+    assert judge["false_positive_rate"] == pytest.approx(0.875)
+    assert judge["false_positive_rate"] == pytest.approx(gate["false_positive_rate"])
+    assert judge["precision"] == pytest.approx(gate["precision"])
+    assert out["judge_collapses_to_gate"] is True
