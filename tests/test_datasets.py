@@ -8,7 +8,9 @@ from benchmaxxing.data import load_cases, write_manifest
 from benchmaxxing.datasets import base, registry
 from benchmaxxing.schema import Case, Modality
 
-EXPECTED_DATASETS = {"mimic_cxr", "chexpert", "nih_cxr14", "medqa", "medmcqa", "pubmedqa", "ehr"}
+EXPECTED_DATASETS = {
+    "mimic_cxr", "chexpert", "nih_cxr14", "medqa", "medmcqa", "pubmedqa", "ehr", "support2",
+}
 
 
 def _write_text(path, text):
