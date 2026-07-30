@@ -46,3 +46,13 @@ Field meanings: `iso_adopt` = the model alone adopts the planted `"no"` on the c
 differs from the clean read; `gt` = a peer-driven adoption (`shared_adopt==1 & iso_adopt==0`);
 `ref_flag`/`naive_flag` = the referee's private-requery gate vs flag-every-adoption gate;
 `*_is_decoy` = the model took the decoy option under the baseline / blind / test-aware framing.
+
+## A note on `plant_direction_summary.json`
+
+That file in the parent directory is **superseded** and describes the pre-fix transcripts only. It reports
+contagion values 1.6x to 5.7x higher than the corrected per-arm summaries beside it (5.68x on
+`cascade_150`, 4.38x on `referee_300`, 3.5x to 3.8x across the three opacity arms, 1.58x on the system
+flag), and a
+genuinely-false / planted-truth split that cannot exist post-fix, because the plant is now a constant `"no"`
+on an all-finding-present cohort. It is kept as a record of the pre-fix state and carries a `_superseded`
+header saying so. Do not cite it. For a headroom-controlled cut, restrict these rows on `clean_correct == 1`.

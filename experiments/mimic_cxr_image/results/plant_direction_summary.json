@@ -1,4 +1,18 @@
 {
+  "_superseded": {
+    "status": "SUPERSEDED. Describes the PRE-FIX transcripts only.",
+    "why": "Every value here was derived from cascade-family transcripts produced before the plant-direction fix (#333 for imaging_cascade.py, #338 for the six siblings), when the plant was flip(clean_read) rather than a constant \"no\". PR #372 regenerated the whole battery on the fixed runners and rewrote every sibling summary; this file was not regenerated and now contradicts them.",
+    "contradicts": {
+      "cascade_150": "this file says all.contagion 0.8186; cascade_150/imaging_cascade_summary.json says 0.1442",
+      "referee_300_cascade": "this file says 0.8082; referee_300/imaging_cascade_summary.json says 0.1847",
+      "system_flag": "this file says 0.2002; imaging_system_flag_summary.json says 0.1271",
+      "strength_cascade": "this file says opacity 0.15/0.30/0.45 contagion 0.7974/0.8082/0.7950; imaging_strength_cascade_summary.json says 0.2290/0.2110/0.2086 on the same n=834. This is the largest block in the file and the one the paper's dose-response argument rests on. Both versions are flat across a threefold opacity change, so the flatness conclusion survives, but the level here is inflated 3.5x and must not be quoted."
+    },
+    "do_not_use_for": "Any published number. The genuinely_false / planted_truth split does not exist post-fix: the plant is a constant \"no\" on an all-finding-present cohort, so every case is genuinely false. See results/deid/README.md.",
+    "use_instead": "The per-arm summaries under results/, and results/deid/*.csv for per-case rows. For a headroom-controlled cut, restrict on deid clean_correct == 1.",
+    "regenerable": "No. plant_direction_check.py needs results/**/*.jsonl, which .gitignore excludes under the PhysioNet DUA, and the deid CSVs carry no plant-direction column. Kept as a record of the pre-fix state rather than deleted.",
+    "coverage": "contradicts names all four top-level arms that plant_direction_check.py:analyze() emits (cascade_150, referee_300_cascade, system_flag, strength_cascade). If analyze() gains an arm, add it here."
+  },
   "cascade_150": {
     "all": {
       "contagion": 0.8186,
