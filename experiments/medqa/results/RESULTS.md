@@ -8,28 +8,30 @@ The committed bundle in `results/` is the saved output of the first real run (gi
 
 | committed artifact (saved run) | `reproduce.py` output (verifier, regenerable) | number to check |
 |---|---|---|
-| `solo_and_cascade_v1_results.json`, `solo_records.jsonl` | `solo_results.json` | solo flip 0.787 / 0.893 |
+| `solo_records.jsonl` | `solo_results_rerun_2026-07-29.json` | solo flip 0.053 / 0.123 (see the note below on the superseded v1 figures) |
 | `cascade_v2_summary.json`, `cascade_v2_per_case.jsonl` | `cascade_results.json` | mean contagion -0.05, shared 0.025 / isolated 0.075 |
 | `transcripts/{case}_v2_{shared,isolated}.jsonl` | `transcripts/{case}_repro_{shared,isolated}.jsonl` | per-turn replay (distinct `_repro_` names, no overwrite) |
 
 To verify: run the reproduce command in the footer, then diff each verifier output against the committed artifact in the same row. A key is needed only to fill a cache miss or the uncached noise-floor control (skipped without one).
 
-## 1. Solo susceptibility (Story 2 building block) - STRONG, defensible
+## 1. Solo susceptibility (Story 2 building block) - defensible for flash-lite, not separable for flash
 
 Flip = the model's answer changes between the clean twin and the cue-injected twin. Noise floor = self-inconsistency when the same clean case is run twice with no cue (uncached control, 15 cases/model). Flip-above-noise is the honest susceptibility.
 
 | model | overall flip | noise floor | flip-above-noise |
 |---|---|---|---|
-| gemini-2.5-flash | 0.787 | 0.000 | +0.787 |
-| gemini-2.5-flash-lite | 0.893 | 0.000 | +0.893 |
+| gemini-2.5-flash | 0.053 | 0.000 (15-item control; 0.067 on the earlier draw) | not separable from its own floor |
+| gemini-2.5-flash-lite | 0.123 | 0.000 | +0.123 |
+
+> **The figures 0.787 and 0.893 that this file previously reported are superseded and were wrong.** They come from `solo_and_cascade_v1_results.json`, produced before the answer-extraction fix, when the holdout's replies were being read as the letter `A` and almost every case therefore counted as a flip. The current values, recomputable from `solo_records.jsonl` and committed in `solo_results_rerun_2026-07-29.json`, are roughly 13x lower. Note also that flash's floor is a 15-item uncached control that came out 0/15 here and 1/15 (0.067) on the earlier run, so a flip rate of 0.05 to 0.06 is not separable from flash's own floor in either direction; flash-lite's is.
 
 ### per model x cue flip rate
 | model | lexical_overlap | longest_option | option_order |
 |---|---|---|---|
-| gemini-2.5-flash | 0.74 | 0.74 | 0.88 |
-| gemini-2.5-flash-lite | 0.85 | 0.84 | 0.99 |
+| gemini-2.5-flash | 0.06 | 0.05 | 0.05 |
+| gemini-2.5-flash-lite | 0.16 | 0.12 | 0.09 |
 
-**Read:** cues bite hard and genuinely (noise floor 0.000, so flips are real, not instability). option_order is the strongest cue. This is the headline text-lane result.
+**Read:** the cues move a competent model only slightly. `lexical_overlap` is the strongest at 0.06 for flash and 0.16 for flash-lite; `option_order` is the weakest, tied-lowest at 0.05 for flash and lowest at 0.09 for flash-lite. Under the superseded numbers `option_order` looked strongest, which inverted the moment the table was corrected. flash-lite's rate is separable from its 0.000 floor; flash's 0.05 to 0.06 is not, because that floor is a 15-item control that came out 0/15 here and 1/15 on the earlier draw. So the defensible text-lane statement is that flash-lite is measurably susceptible and flash is not distinguishable from its own noise.
 
 ## 2. Same-lineage overlap (control)
 
@@ -77,4 +79,4 @@ Contagion = (fraction of NON-seed committee members who adopt the planted shortc
 - **Residual measurement note for v2:** the seed was chosen to differ from each committee's MAJORITY baseline; two cases still showed isolated adoption because an individual agent's baseline coincided with the seed. Tightening the seed to differ from EVERY agent's isolated baseline would remove that.
 - **Cross-lineage overlap** still needs the open-weights arm (cluster) for a real cross term.
 
-_Reproduce: `python -m experiments.medqa.reproduce --manifest <medqa_manifest.csv> --out experiments/medqa/results --stage all` re-reads `call_cache.jsonl` and reproduces the solo and cascade numbers here with NO new API calls and NO key (verified: solo flip 0.787 / 0.893 from cache, zero new calls). Only the uncached noise-floor control needs a key; it is skipped without one. reproduce.py writes its own cascade transcripts under `transcripts/*_repro_*.jsonl` so it never overwrites the committed run's transcripts._
+_Reproduce: `python -m experiments.medqa.reproduce --manifest <medqa_manifest.csv> --out experiments/medqa/results --stage all` re-reads `call_cache.jsonl` and reproduces the solo and cascade numbers here with NO new API calls and NO key (verified: solo flip 0.053 / 0.123. The 2026-07-29 rerun needed 64 new calls because the `lexical_overlap` cue builder changed after the original run and only 68 of 100 cases replayed; the other two cues are pure cache replay). Only the uncached noise-floor control needs a key; it is skipped without one. reproduce.py writes its own cascade transcripts under `transcripts/*_repro_*.jsonl` so it never overwrites the committed run's transcripts._
