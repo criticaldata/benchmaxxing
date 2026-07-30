@@ -1,27 +1,11 @@
 {
-  "family_size": 9,
+  "family_size": 8,
   "correction": "BH and Holm at alpha=0.05 over the committee-structure headline family",
   "contrasts": [
     {
       "n": 60,
-      "rate_a": 0.0,
+      "rate_a": 0.2,
       "rate_b": 0.9167,
-      "delta": 0.9167,
-      "delta_ci95": [
-        0.8333,
-        0.9833
-      ],
-      "mcnemar_gain": 55,
-      "mcnemar_lose": 0,
-      "pvalue": 0.0,
-      "label": "authority_ladder: guideline vs control",
-      "survives_bh": true,
-      "survives_holm": true
-    },
-    {
-      "n": 60,
-      "rate_a": 0.0,
-      "rate_b": 0.7167,
       "delta": 0.7167,
       "delta_ci95": [
         0.6,
@@ -30,7 +14,7 @@
       "mcnemar_gain": 43,
       "mcnemar_lose": 0,
       "pvalue": 0.0,
-      "label": "authority_ladder: senior vs control",
+      "label": "authority_ladder: guideline vs colleague",
       "survives_bh": true,
       "survives_holm": true
     },
@@ -80,7 +64,7 @@
       "pvalue": 0.0146333,
       "label": "super_additivity: both vs peer-alone",
       "survives_bh": true,
-      "survives_holm": true
+      "survives_holm": false
     },
     {
       "n": 15,
@@ -116,35 +100,35 @@
     },
     {
       "n": 25,
-      "rate_a": 0.0,
-      "rate_b": 0.16,
-      "delta": 0.16,
+      "rate_a": 0.16,
+      "rate_b": 0.2,
+      "delta": 0.04,
       "delta_ci95": [
-        0.04,
-        0.32
+        -0.12,
+        0.2
       ],
-      "mcnemar_gain": 4,
-      "mcnemar_lose": 0,
-      "pvalue": 0.125,
-      "label": "majority_pressure: k1 vs isolated",
+      "mcnemar_gain": 3,
+      "mcnemar_lose": 2,
+      "pvalue": 1.0,
+      "label": "majority_pressure: 2-peer vs 1-peer",
       "survives_bh": false,
       "survives_holm": false
     },
     {
       "n": 62,
-      "rate_a": 0.2903,
-      "rate_b": 1.0,
-      "delta": 0.7097,
+      "rate_a": 0.1935,
+      "rate_b": 0.2903,
+      "delta": 0.0968,
       "delta_ci95": [
-        0.5968,
-        0.8226
+        -0.0323,
+        0.2097
       ],
-      "mcnemar_gain": 44,
-      "mcnemar_lose": 0,
-      "pvalue": 0.0,
-      "label": "orchestrator: wrong-orch vs wrong-peer",
-      "survives_bh": true,
-      "survives_holm": true
+      "mcnemar_gain": 11,
+      "mcnemar_lose": 5,
+      "pvalue": 0.21011353,
+      "label": "orchestrator: wrong-peer vs honest-orch over 2 wrong peers",
+      "survives_bh": false,
+      "survives_holm": false
     }
   ],
   "read": "One consistent multiple-comparison scope over the committee-structure battery, each headline contrast reported as an adoption-rate delta with a paired bootstrap 95% CI and a paired McNemar p, then BH- and Holm-corrected together. Findings that survive Holm (the strictest) are the robust ones to foreground; those surviving only BH or neither are real but correction-sensitive and should be stated as such."
