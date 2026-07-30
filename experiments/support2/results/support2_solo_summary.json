@@ -1,0 +1,85 @@
+{
+  "n": 120,
+  "model": "gemini-2.5-flash-lite",
+  "clean_accuracy": 0.6833333333333333,
+  "information_identical_cues": [
+    "field_order",
+    "unit_rescale",
+    "precision_inflation",
+    "redundant_restatement",
+    "missingness_recode"
+  ],
+  "cues": {
+    "field_order": {
+      "flip_rate": 0.25833333333333336,
+      "n": 120,
+      "n_skipped": 0,
+      "flip_above_noise": 0.01666666666666669,
+      "vs_noise_mcnemar": {
+        "gain": 16,
+        "lose": 14,
+        "pvalue": 0.855536
+      }
+    },
+    "unit_rescale": {
+      "flip_rate": 0.30833333333333335,
+      "n": 120,
+      "n_skipped": 0,
+      "flip_above_noise": 0.06666666666666668,
+      "vs_noise_mcnemar": {
+        "gain": 20,
+        "lose": 12,
+        "pvalue": 0.215327
+      }
+    },
+    "precision_inflation": {
+      "flip_rate": 0.18333333333333332,
+      "n": 120,
+      "n_skipped": 0,
+      "flip_above_noise": -0.05833333333333335,
+      "vs_noise_mcnemar": {
+        "gain": 10,
+        "lose": 17,
+        "pvalue": 0.247789
+      }
+    },
+    "redundant_restatement": {
+      "flip_rate": 0.2833333333333333,
+      "n": 120,
+      "n_skipped": 0,
+      "flip_above_noise": 0.04166666666666666,
+      "vs_noise_mcnemar": {
+        "gain": 19,
+        "lose": 14,
+        "pvalue": 0.48685
+      }
+    },
+    "missingness_recode": {
+      "flip_rate": 0.2,
+      "n": 120,
+      "n_skipped": 0,
+      "flip_above_noise": -0.04166666666666666,
+      "vs_noise_mcnemar": {
+        "gain": 7,
+        "lose": 12,
+        "pvalue": 0.359283
+      }
+    },
+    "administrative_hint": {
+      "flip_rate": 0.23333333333333334,
+      "n": 120,
+      "n_skipped": 0,
+      "flip_above_noise": -0.008333333333333331,
+      "vs_noise_mcnemar": {
+        "gain": 13,
+        "lose": 14,
+        "pvalue": 1.0
+      }
+    }
+  },
+  "noise_floor": 0.24166666666666667,
+  "noise_floor_n": 120,
+  "noise_temperature": 1.0,
+  "new_api_calls_this_run": 960,
+  "read": "Per-cue flip rate is the fraction of patients whose prognosis changed when the record was re-rendered without changing what it says. The noise floor is the same model disagreeing with itself on an unchanged record at temperature>0; flip_above_noise subtracts it and vs_noise_mcnemar tests the same contrast pairwise. Only information_identical_cues support the strong claim (identical facts, different surface form); administrative_hint adds a line to the record and is the weaker comparator."
+}

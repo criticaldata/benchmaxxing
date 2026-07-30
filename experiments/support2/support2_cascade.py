@@ -117,7 +117,11 @@ def main():
         "n": len(rows),
         "model": MODEL,
         "committee": [m.name for m in COMMITTEE.members],
-        "seed_style": "reasoned (case-anchored rationale quoted from the patient's own record)",
+        # run_board computes a case-anchored rationale and attaches it to the transcript, but the
+        # holdout's prompt renders only "- agent: answer". The rationale never reaches the model, so
+        # this arm measures adoption of a bare peer vote. #369 fixes the renderer.
+        "seed_style": "answer_only (peers' committed answers; the computed rationale is not rendered "
+                      "into the holdout's prompt)",
         "bare_accuracy": (sum(r["bare_correct"] for r in rows) / len(rows)) if rows else None,
         "arms": {arm: _arm_summary(rows, arm) for arm in ARMS},
     }
@@ -141,8 +145,10 @@ def main():
         "gain counts holdouts the board moved ONTO a seed they would not have picked alone, lose "
         "counts holdouts it moved OFF one they would have. wrong_seed is the headline arm but is "
         "only eligible to recruit where the holdout was right on its own; flip_seed is eligible "
-        "everywhere by construction and its polarity split says whether a confidently wrong peer "
-        "pair recruits as well as a confidently right one."
+        "everywhere by construction and its polarity split says whether a peer pair asserting the "
+        "wrong prognosis recruits as well as one asserting the right one. See seed_style: the board "
+        "shows bare answers, so this is bare-vote adoption and the peers' stated confidence never "
+        "reached the prompt."
     )
     (out / "support2_cascade.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows))
     (out / "support2_cascade_summary.json").write_text(json.dumps(summary, indent=2))
