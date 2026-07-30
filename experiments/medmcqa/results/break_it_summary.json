@@ -1,0 +1,44 @@
+{
+  "n_cases": 20,
+  "A_contaminated_context": {
+    "flag_adopt": 22,
+    "control_adopt": 11,
+    "n": 40,
+    "control_rate": 0.275,
+    "flag_rate": 0.55,
+    "effect": 0.275,
+    "note": "confounded: flagged answer often equals the model's baseline wrong answer"
+  },
+  "C_anchored_seed": {
+    "anchored_conform": 16,
+    "generic_conform": 17,
+    "n": 20,
+    "generic_rate": 0.85,
+    "anchored_rate": 0.8,
+    "effect": -0.04999999999999993,
+    "discordant_gain": 1,
+    "discordant_lose": 2,
+    "mcnemar_exact_p": 1.0,
+    "generic_rate_ci95": [
+      0.6396,
+      0.9476
+    ],
+    "anchored_rate_ci95": [
+      0.584,
+      0.9193
+    ],
+    "claim": "exploratory signal at n=20: a case-anchored rationale raises conformity over a generic one, but the paired McNemar is not conclusive at this n; the effect is confirmed at scale in push_c.py / PR #141 (n=150, McNemar p<1e-4)."
+  },
+  "D_blind_metric_incentive": {
+    "incent_decoy": 4,
+    "control_decoy": 4,
+    "incent_correct": 6,
+    "control_correct": 5,
+    "n": 13,
+    "control_decoy_rate": 0.3076923076923077,
+    "incent_decoy_rate": 0.3076923076923077,
+    "decoy_drift": 0.0,
+    "control_acc": 0.38461538461538464,
+    "incent_acc": 0.46153846153846156
+  }
+}

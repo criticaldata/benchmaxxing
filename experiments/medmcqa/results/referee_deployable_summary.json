@@ -1,0 +1,35 @@
+{
+  "n": 40,
+  "n_holdout_adopted_shortcut": 23,
+  "extra_requery_calls_needed": 40,
+  "new_api_calls_this_run": 120,
+  "referees_vs_shortcut_adoption": {
+    "naive_gate (shared-only, no re-query)": {
+      "precision": 0.575,
+      "recall": 1.0,
+      "fpr": 1.0,
+      "tp": 23,
+      "fp": 17,
+      "fn": 0,
+      "tn": 0
+    },
+    "deployable (peer-modal + private re-query, NO key)": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "fpr": 0.0,
+      "tp": 23,
+      "fp": 0,
+      "fn": 0,
+      "tn": 17
+    },
+    "oracle_audit (planted key + isolated run)": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "fpr": 0.0,
+      "tp": 23,
+      "fp": 0,
+      "fn": 0,
+      "tn": 17
+    }
+  }
+}
