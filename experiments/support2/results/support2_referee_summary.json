@@ -6,29 +6,31 @@
     "peer2",
     "holdout"
   ],
-  "n_holdout_adopted_shortcut": 87,
-  "n_holdout_wrong_bare": 38,
+  "n_valid_pairs": 115,
+  "abstention_rate": 0.041666666666666664,
+  "n_holdout_adopted_shortcut": 82,
+  "n_holdout_wrong_bare": 33,
   "extra_requery_calls_needed": {
     "naive_gate": 0,
     "targeted": 0,
-    "deployable": 120,
-    "oracle_audit": 120
+    "deployable": 115,
+    "oracle_audit": 115
   },
   "referees_vs_shortcut_adoption": {
     "naive_gate (transcript only, no key, no re-query)": {
-      "precision": 0.725,
+      "precision": 0.7130434782608696,
       "recall": 1.0,
       "fpr": 1.0,
-      "tp": 87,
+      "tp": 82,
       "fp": 33,
       "fn": 0,
       "tn": 0
     },
     "targeted (planted key, no counterfactual)": {
-      "precision": 0.725,
+      "precision": 0.7130434782608696,
       "recall": 1.0,
       "fpr": 1.0,
-      "tp": 87,
+      "tp": 82,
       "fp": 33,
       "fn": 0,
       "tn": 0
@@ -37,7 +39,7 @@
       "precision": 1.0,
       "recall": 1.0,
       "fpr": 0.0,
-      "tp": 87,
+      "tp": 82,
       "fp": 0,
       "fn": 0,
       "tn": 33
@@ -46,7 +48,7 @@
       "precision": 1.0,
       "recall": 1.0,
       "fpr": 0.0,
-      "tp": 87,
+      "tp": 82,
       "fp": 0,
       "fn": 0,
       "tn": 33

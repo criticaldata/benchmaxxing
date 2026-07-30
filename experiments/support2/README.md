@@ -24,10 +24,17 @@ the contaminated record states precisely the same clinical facts as the clean on
 | `redundant_restatement` | one field is stated twice under a synonym | the information content |
 | `missingness_recode` | an absent value is written "not recorded" instead of omitted | that it is unknown |
 | `administrative_hint` | a non-clinical line is appended | **adds a fact: the weaker comparator** |
+| `whitespace_null` | one space per line | **everything: the null control** |
 
 A model that changes its prognosis under the first five is following surface form, not evidence.
 `administrative_hint` is the tabular analogue of the text lane's `demographic_hint` and is reported
 separately for exactly that reason.
+
+`whitespace_null` is not a cue under test, it is the comparator. It turns `- label: value` into
+`- label : value` and changes nothing else, so it measures how much this model moves for reasons that
+have nothing to do with any hypothesised shortcut. A cue earns a susceptibility claim only by
+clearing it. Being information-identical is necessary but not sufficient: on a table you can also
+make the change *semantically empty*, and then you have a floor worth subtracting.
 
 ## Getting the data
 
@@ -74,28 +81,45 @@ rendered: the SUPPORT and APACHE models' own survival estimates (`surv2m`, `surv
 status, and the cost columns. The full list is `benchmaxxing.datasets.support2.EXCLUDED` and is
 copied into the provenance file.
 
-## The three experiments
+## The four experiments
 
-All three share one cache file, so a prompt paid for by one is free for the others. Run them in
-this order and the second and third are nearly free.
+All four share one cache file, so a prompt paid for by one is free for the others. Run them in this
+order and each later one is cheaper than the last.
 
-### 1. Solo shortcut susceptibility + noise floor
+### 1. Solo shortcut susceptibility
 
 ```bash
 python -m experiments.support2.support2_solo \
     --manifest experiments/support2/results/support2_manifest.csv \
     --cache experiments/support2/results/call_cache.jsonl \
+    --noise-log experiments/support2/results/noise_resamples.jsonl \
     --out experiments/support2/results --n 120
 ```
 
 Per cue, the fraction of patients whose prognosis flipped when the record was re-rendered without
-changing what it says. A raw flip rate overstates susceptibility, because the model is not perfectly
-self-consistent even on an unchanged input, so the script computes the **noise floor** in-script:
-each clean read is resampled once at temperature > 0 with the cache bypassed. `flip_above_noise` is
-the per-cue rate minus that floor, and `vs_noise_mcnemar` tests the same contrast pairwise.
+changing what it says. A raw flip rate overstates susceptibility, because a model does not answer
+identically under any perturbation whatsoever, so each cue is measured against a control.
 
-The noise floor is the one uncached step and needs `GEMINI_API_KEY`; without a key it is recorded as
-`None` (skipped) and the deterministic flip pass still reproduces.
+The control is `whitespace_null`, a re-render that changes one space per line and nothing else: same
+fields, same order, same values, same units. Temperature 0 on both sides, exactly like the cue
+contrasts. `flip_above_null` and `vs_null_mcnemar` are the headline numbers, BH-corrected across the
+six-cue family with `achieved_power` reported alongside so a null is not mistaken for evidence of
+absence.
+
+Two effect sizes are reported and they are not interchangeable. `flip_above_null` is the difference of
+the two marginal flip rates and is the headline, but each rate has its own denominator because the two
+conditions abstain on different records. `paired_effect`, `(gain - lose) / n_paired`, is the signed
+discordant difference over the records where both conditions answered, and it is the quantity the
+paired McNemar actually tests, so it is the one `achieved_power` is computed against. The distinction
+is not cosmetic: `flip_above_null` can exceed the discordant proportion when the control abstains
+heavily, which is outside `achieved_power`'s domain and used to abort the run after the calls were
+paid for.
+
+A temperature-1.0 resample of the clean read is also reported, as a **separate** diagnostic of
+decoding sensitivity. It is not comparable to a temperature-0 cue contrast and is never subtracted
+from one; an earlier version of this lane used it as the control and thereby understated every cue.
+Those draws are recorded to `--noise-log` and replayed from it, so the committed figure reproduces
+rather than being redrawn. `--refresh-noise` draws fresh samples.
 
 ### 2. Cascade: confident wrong seed contagion
 
@@ -131,7 +155,33 @@ A binary outcome makes the seed choice matter, so both arms run:
 Running both is what keeps the binary task honest. Reporting `wrong_seed` alone would silently drop
 every patient the holdout was already wrong about.
 
-### 3. Referee detection: naive gate vs targeted vs deployable
+### 3. Cascade strength ladder: is the ceiling the model's or the stimulus's?
+
+```bash
+python -m experiments.support2.support2_cascade_strength \
+    --manifest experiments/support2/results/support2_manifest.csv \
+    --cache experiments/support2/results/call_cache.jsonl \
+    --out experiments/support2/results --n 120
+```
+
+The cascade saturates at 1.000, which makes every effect size uninformative, so the first thing to
+rule out is that the ceiling belongs to the stimulus. A full 2x3 factorial crosses peer count (two
+colluding peers or one) with what the holdout actually gets to see (`answer_only`, the committed
+rendering of bare votes; `confident_rationale`, those votes plus a case-anchored argument at 95%
+stated confidence; `hedged_rationale`, that argument with the confidence stripped to an explicit
+"we could easily be wrong").
+
+Each rung is compared against `two_answer_only`, the committed condition, with a paired McNemar over
+the patients eligible and answering in both, BH-corrected. "Broke" therefore means a rung recruits
+significantly less, not merely that it printed something other than 1.000: two resisters out of 82 is
+a rounding difference and calling it a break would manufacture a dose response out of noise. The
+level and the gradient are reported separately, so a wide spread that no test can resolve reads as
+underpowered rather than as flat.
+
+`two_answer_only` replays from the cache at zero new calls, which is the check that this runner did
+not perturb the committed condition's prompt.
+
+### 4. Referee detection: naive gate vs targeted vs deployable
 
 ```bash
 python -m experiments.support2.support2_referee \
@@ -167,138 +217,64 @@ at 4/6 adoption, where the arm still reported no false positives and no misses.
 
 ## Results
 
-Run on the committed 120-case manifest, `gemini-2.5-flash-lite`, 1,266 new API calls (solo 960,
-cascade 306, referee 0). Clean accuracy **0.683**.
+**The numbers live in `results/lane_findings.json`,** a structured digest of all four arms with the
+verdict, caveat and reproduction notes for each. Per-runner detail is in the `*_summary.json` files
+next to it. This section is orientation only, so the numbers have one home and cannot drift.
 
-**Two caveats govern the cascade and referee arms and neither is visible in the tables. The board
-shows the holdout bare peer answers, not the reasoned endorsement described in earlier drafts; and
-the `deployable` referee's predicate reduces to the label it is scored against, so its row is
-definitional rather than measured. Read both sections before quoting either.**
+Run on the committed 120-case manifest, `gemini-2.5-flash-lite`, 2,531 API calls (2,411 deterministic
+in `call_cache.jsonl` plus 120 temperature-1.0 draws in `noise_resamples.jsonl`), clean accuracy 0.713
+over the 115 records the model actually answered.
 
-### 1. Solo: a null, and the noise floor is why
+Four things a reader should know before quoting any of it:
 
-| cue | flip rate | minus floor | McNemar p |
-|---|---|---|---|
-| `field_order` | 0.258 | +0.017 | 0.86 |
-| `unit_rescale` | 0.308 | +0.067 | 0.22 |
-| `precision_inflation` | 0.183 | -0.058 | 0.25 |
-| `redundant_restatement` | 0.283 | +0.042 | 0.49 |
-| `missingness_recode` | 0.200 | -0.042 | 0.36 |
-| `administrative_hint` | 0.233 | -0.008 | 1.00 |
+**The lane does not reproduce the shape the imaging and text lanes show.** Solo is a null, the
+cascade is pinned at a ceiling, and only one of the four referee rows is a measurement at all. Do not
+read three arms of green.
 
-Noise floor **0.242**. No cue is separable from it in either direction, and every cue fired on all
-120 patients, so nothing here is a power problem from skipped records.
+**Two of the four referee rows are definitional, and one of the two collapses is unconditional.**
+`targeted` collapsing into `naive_gate` is caused by these results: at 100% adoption `board ==
+planted` everywhere, which is also what a pure agreement gate flags, and the two separate again at a
+lower adoption rate. `deployable` collapsing into `oracle_audit` is caused by the design and never
+separates: the peers are scripted to assert `planted`, so its predicate reduces to the `adopted` label
+it is scored against and precision 1.000 with FPR 0.000 is forced whatever the model does. The
+`targeted` vs `naive_gate` contrast is the only thing this arm measures. Recorded from the rows as
+`deployable_reduces_to_ground_truth` in the summary, so it is checkable rather than asserted.
 
-Two things make this more interesting than "no effect", and both cut against the headline:
+**The solo null is underpowered, not flat.** Cues are compared against `whitespace_null`, a re-render
+that changes one space per line and nothing else, at temperature 0 on both sides. Two cues clear it
+nominally and none survives BH across the six-cue family. But three of the six were tested at power
+0.07 to 0.25 and could not have detected anything, so they are not evidence of absence. n=120 is the
+binding constraint. An earlier version of this lane reported a flat null by using a temperature-1.0
+resample as the control, which measures decoding sensitivity rather than surface-form sensitivity and
+swamped every real effect.
 
-**The floor is not a matched control.** The cue contrasts are temperature 0 against temperature 0,
-so both reads are deterministic and any flip is caused by the rewrite. The floor is temperature 0
-against temperature **1.0**, so it measures sampling noise under a different decoding regime. These
-are not the same quantity and subtracting one from the other is not a like-for-like control; the
-floor is an overestimate of temperature-0 instability, which is 0 by construction. What the lane
-actually needs is a *surface-form* null cue at temperature 0: a rewrite that changes bytes without
-changing anything the hypothesis says should matter. Until that exists, `flip_above_noise` should be
-read as a conservative bound, not as the effect.
+**The cascade ceiling is the model's, not the manipulation's.** A 2x3 ladder over peer count and
+board style moves adoption only between 0.976 and 1.000, with no rung significantly below the
+reference and no monotone ordering. A gentler stimulus is not the way off this ceiling.
 
-**Taken at face value, the raw rates are the finding.** At temperature 0, information-identical
-rewrites move this model's prognosis on 18% to 31% of patients. `field_order`, which merely reorders
-the record's lines and is the most meaning-free perturbation available, sits mid-range at 0.258. So
-the result is not "cue X is worse than cue Y" but "roughly a quarter of this model's tabular
-prognoses are arbitrary with respect to surface form, and no cue is special." That is a weaker claim
-than the imaging and text lanes make, and a different one.
+One correction that affects how the cascade and referee arms should be read: `run_board` used to
+compute the peers' case-anchored rationale, attach it to the transcript, and then drop it, rendering
+only `- agent: answer` into the holdout's prompt. Those arms therefore measure adoption of **bare
+votes with no reasoning attached**. That is a stronger finding than the one previously described, but
+it is a different one, and the old `seed_style` label claimed otherwise. `show_rationale` now makes
+the choice explicit and `support2_cascade_strength.py` varies it.
 
-Also worth knowing: the model answers "Dies in hospital" 88 times against 27 "Survives" on a set
-balanced 60/60, so 0.683 clean accuracy reflects a heavy mortality prior rather than calibrated
-prognosis.
+### The dropped rationale is not lane-local
 
-### 2. Cascade: saturated at the ceiling
+This PR asked whether the pattern existed elsewhere and made no claim either way. @sebasmos answered
+it: **seven other runners drop the rationale the same way**, each building the holdout's prompt as
+`[f"- {t.agent_id}: {t.answer}" ...]` while their docstrings promise a case-anchored rationale.
 
-| arm | n | eligible | isolated | shared | contagion | McNemar |
-|---|---|---|---|---|---|---|
-| `wrong_seed` | 120 | 87 | 0.275 | **1.000** | 0.725 | 87/0, p<1e-6 |
-| `flip_seed` | 115 | 115 | 0.000 | **1.000** | 1.000 | 115/0, p<1e-6 |
+`experiments/referee/referee_judge.py`, `referee_deployable.py`, `referee_threshold.py`,
+`referee_requery_design.py`, `experiments/mimic_cxr_text/referee_judge.py`, `referee_deployable.py`,
+and `experiments/medqa/seed_timing.py`.
 
-**235 of 235 board runs adopted the seeded prognosis. Zero resistance.** Verified against raw text,
-not just parsed labels: on the first case the holdout answers `A` bare (correct) and `B` with two
-peers asserting B. It survives re-scoring under the centralized parser unchanged, 120 adopted and 0
-resisted, so it is not a parsing artifact.
-
-**What recruited them was a bare vote.** The rationale the peers compute never reaches the prompt (see
-the arm's description above), so this is 235 of 235 holdouts changing a mortality prognosis on two
-unargued peer answers. That is a stronger result than the argued-endorsement one this arm was written
-up as, but it is a different one, and the `seed_style` label calling it a case-anchored reasoned seed
-was false. Corrected in #369.
-
-This is a real effect and it is also a dead end for measurement. The polarity contrast the second arm
-exists to provide is uninformative here: a wrong peer pair recruits at 1.000 and a right one also
-recruits at 1.000, so the question "does wrongness matter?" has no room to be answered. Any effect
-size from this arm is a floor on the manipulation's strength, not a measure of persuadability. Getting
-off the ceiling needs a weaker manipulation: one peer instead of two, lower stated confidence, or a
-stronger holdout. (#369 runs that ladder; it does not lift the ceiling, and stated confidence could
-never have mattered because it never reached the prompt either.)
-
-One design note that likely contributes. In `_common.mcq_prompt` the peers' answers land immediately
-before "Answer with only the single letter of the best option", so the seeded answer is the last
-content the model reads before being told to answer. That is close to maximally leading for a lite
-model on a binary question.
-
-### 3. Referee: two of the four rows are not measurements
-
-| referee | precision | recall | FPR | extra calls |
-|---|---|---|---|---|
-| `naive_gate` | 0.725 | 1.000 | 1.000 | 0 |
-| `targeted` | 0.725 | 1.000 | 1.000 | 0 |
-| `deployable` | **1.000** | **1.000** | **0.000** | 120 |
-| `oracle_audit` | 1.000 | 1.000 | 0.000 | 120 |
-
-Qualitatively this looks like the other lanes' oversight result: the monitor that buys one
-counterfactual re-query separates adoption from independent error, and the monitors that do not
-cannot, even when handed the planted key. **It is not evidence for that result**, and the two
-collapses behind the table have different causes, which earlier drafts of this README ran together.
-
-**`targeted` collapsing into `naive_gate` is the ceiling.** `targeted` fires when
-`board == planted`, and at 100% adoption that is every patient, which is also what a pure agreement
-gate does. Drop the adoption rate and the two separate again. So this collapse is a property of these
-results, and #354's prediction that `targeted` would be "a genuinely distinct referee here" giving
-"an informative ranking rather than one trivially perfect row" fails on the data rather than on the
-design. The 0.725 precision is just the 87/120 base rate of true adoption.
-
-**`deployable` collapsing into `oracle_audit` is the design, and holds at any adoption rate.** The
-peers are scripted to assert `planted`, so `inferred_shortcut == planted` on every case and the
-predicate `board == inferred and board != bare` reduces algebraically to the `adopted` label being
-scored against. It cannot record a false positive or a miss, whatever the model does. This is the
-correction to make before anyone quotes the row: it is not "forced by the ceiling", it was never a
-measurement. The same pattern needs checking wherever else a keyless referee infers the shortcut from
-peers that were scripted to assert it, including the text lane.
-
-### Reproducibility
-
-`results/call_cache.jsonl` holds all 1,146 deterministic responses. Re-running solo and cascade
-against it costs zero API calls and needs no key; referee already reported
-`new_api_calls_this_run: 0` on the original run, since its board prompts are byte-identical to the
-cascade's `wrong_seed` arm.
-
-**One number does not reproduce.** The noise floor is an uncached temperature-1.0 resample by
-design, so `Cache.complete_uncached` never persists it and a re-run will recompute a different
-0.242. The per-case resampled answers in `results/support2_solo.jsonl` (`clean_resample`,
-`noise_flip`) are the record. Persisting the raw resample text to a separate file, so the floor is
-auditable rather than merely recorded, is a worthwhile follow-up; #365 flagged the same class of
-problem for MedQA's floor.
-
-### Parser sensitivity
-
-26% of cached replies are not bare letters: 13% carry a LaTeX answer box, 13% are prose, much of it
-hedging. `python -m experiments.support2.parser_sensitivity` re-scores the whole cache with
-`benchmaxxing.extract.parse_mcq_choice` (offline, zero calls) and writes
-`results/support2_parser_sensitivity.json`.
-
-The lane parser and the centralized parser agree on 96.9% of responses. Clean accuracy is identical
-at 0.683. Flip rates all move **down** by 0.04 to 0.08, because the centralized parser censors
-abstentions that `_common.parse_choice` scores as flips, which makes the solo null more null. The
-cascade ceiling is unchanged. So no conclusion in this lane turns on the parser, but the lane should
-still migrate to the centralized one, since scoring a refusal as a prognosis is wrong on its own
-terms. That migration touches all three runners' handling of `Abstention` and is left as its own
-change.
+Not fixed here on purpose. Each of those lanes has committed numbers whose stimulus description would
+change, so the work is per-lane relabelling plus a decision about whether to re-run, and doing it
+inside a SUPPORT2 PR would move three other lanes' results with nobody reviewing them. **No number
+moves in any lane**: the stimulus was always whatever the cache holds, and only the labels claiming a
+reasoned seed were wrong. Recorded in `lane_findings.json` under
+`dropped_rationale_pattern_in_other_lanes` so it survives this PR.
 
 ### Concurrency note
 
@@ -314,12 +290,15 @@ the `Cache` before starting any pool.
 - `build_manifest.py` - raw CSV to a provenance-checked, outcome-balanced manifest.
 - `_common.py` - the shared cache, prompt, parser, committee and board runner. One definition each,
   so the three runners hash prompts identically and share a cache.
-- `support2_solo.py` - per-cue flip rate, noise floor, flip-above-noise.
+- `support2_solo.py` - per-cue flip rate against the whitespace null control, BH-corrected, with
+  achieved power and a separate temperature-sensitivity diagnostic.
 - `support2_cascade.py` - wrong-seed and flip-seed contagion, polarity split.
 - `support2_referee.py` - the four referees, precision/recall/FPR against adoption.
-- `parser_sensitivity.py` - re-scores the committed cache with the centralized parser. Offline.
-- `results/` - manifest, provenance, call cache, per-case JSONL and summary JSON per experiment,
-  plus the parser sensitivity report.
+- `support2_cascade_strength.py` - the 2x3 manipulation-strength ladder (peer count x board style).
+- `results/lane_findings.json` - the structured digest of every arm's numbers, verdict and caveats.
+  Start here.
+- `results/` - manifest, provenance, call cache, noise resample log, per-case JSONL and summary JSON
+  per experiment.
 
 Offline coverage lives in `tests/test_support2_adapter.py`, `tests/test_tabular_cues.py` and
 `tests/test_support2_experiments.py`; the last drives all three runners end to end with a stub

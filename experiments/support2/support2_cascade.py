@@ -34,7 +34,7 @@ from experiments.support2._common import (
     api_key,
     load_manifest_cases,
     mcq_prompt,
-    parse_choice,
+    parse_answer,
     run_board,
     seed_rationale,
 )
@@ -43,8 +43,15 @@ ARMS = ("wrong_seed", "flip_seed")
 
 
 def _arm_summary(rows, arm):
-    """Adoption, reversion, contagion and its paired McNemar for one arm."""
-    scored = [r for r in rows if r[arm]["seeded_answer"] is not None]
+    """Adoption, reversion, contagion and its paired McNemar for one arm.
+
+    Scored over the cases where the arm has a seed AND the holdout gave a usable board answer. A
+    refusal is neither an adoption nor a resistance, so counting it as either would bias the rate.
+    """
+    seeded = [r for r in rows if r[arm]["seeded_answer"] is not None]
+    # Contagion is a paired shared-vs-isolated contrast, so both halves must be usable.
+    scored = [r for r in seeded
+              if r[arm]["board"] is not None and r[arm]["bare_adopt"] is not None]
     n = len(scored)
     # gain: the board moved the holdout onto the seed it would not have picked alone (adoption).
     # lose: the holdout would have picked the seed alone but the board moved it off (reversion).
@@ -52,7 +59,9 @@ def _arm_summary(rows, arm):
     lose = sum(1 for r in scored if r[arm]["bare_adopt"] and not r[arm]["board_adopt"])
     eligible = [r for r in scored if not r[arm]["bare_adopt"]]
     return {
-        "n": n,
+        "n_valid_pairs": n,
+        "n_seeded": len(seeded),
+        "abstention_rate": ((len(seeded) - n) / len(seeded)) if seeded else None,
         "n_eligible": len(eligible),
         "shared_adoption": (sum(r[arm]["board_adopt"] for r in scored) / n) if n else None,
         "isolated_adoption": (sum(r[arm]["bare_adopt"] for r in scored) / n) if n else None,
@@ -80,15 +89,17 @@ def main():
         options = list(case.options)
         truth = options[case.answer_index]
         wrong = next(o for o in options if o != truth)
-        bare = parse_choice(cache.complete(mcq_prompt(case.question, options)), options)
+        bare = parse_answer(cache.complete(mcq_prompt(case.question, options)), options)
 
         row = {"case_id": case.case_id, "ground_truth": truth, "bare": bare,
-               "bare_correct": int(bare == truth)}
+               "bare_correct": None if bare is None else int(bare == truth)}
         seeds = {
+            # Still defined without a bare answer: the wrong option is fixed by ground truth. The
+            # arm is censored later if the holdout's board answer is itself a refusal.
             "wrong_seed": wrong,
-            # The option the holdout did not pick bare. An unparseable bare answer leaves no
-            # defined complement, so the flip arm is censored rather than guessed at.
-            "flip_seed": next((o for o in options if o != bare), None) if bare in options else None,
+            # The option the holdout did not pick bare. A refusal leaves no defined complement, so
+            # the flip arm is censored rather than guessed at.
+            "flip_seed": next((o for o in options if o != bare), None) if bare is not None else None,
         }
         for arm in ARMS:
             seed = seeds[arm]
@@ -101,8 +112,8 @@ def main():
             row[arm] = {
                 "seeded_answer": seed,
                 "board": board,
-                "board_adopt": int(board == seed),
-                "bare_adopt": int(bare == seed),
+                "board_adopt": None if board is None else int(board == seed),
+                "bare_adopt": None if bare is None else int(bare == seed),
                 "seed_is_wrong": int(seed != truth),
             }
         return row
@@ -117,23 +128,27 @@ def main():
         "n": len(rows),
         "model": MODEL,
         "committee": [m.name for m in COMMITTEE.members],
-        # run_board computes a case-anchored rationale and attaches it to the transcript, but the
-        # holdout's prompt renders only "- agent: answer". The rationale never reaches the model, so
-        # this arm measures adoption of a bare peer vote. #369 fixes the renderer.
-        "seed_style": "answer_only (peers' committed answers; the computed rationale is not rendered "
-                      "into the holdout's prompt)",
-        "bare_accuracy": (sum(r["bare_correct"] for r in rows) / len(rows)) if rows else None,
+        # Says what the holdout actually saw. The earlier label claimed a case-anchored reasoned
+        # seed, but run_board rendered only "- agent: answer" and dropped the rationale, so this arm
+        # measures adoption of bare votes. support2_cascade_strength varies the rationale explicitly.
+        "seed_style": "answer_only (peers assert a prognosis with no reasoning shown to the holdout)",
+        "bare_accuracy_excl_abstentions": (
+            sum(r["bare_correct"] for r in rows if r["bare_correct"] is not None)
+            / sum(1 for r in rows if r["bare_correct"] is not None)
+        ) if any(r["bare_correct"] is not None for r in rows) else None,
+        "n_bare_abstained": sum(1 for r in rows if r["bare"] is None),
         "arms": {arm: _arm_summary(rows, arm) for arm in ARMS},
     }
 
     # Polarity: within the flip arm, does a confidently WRONG seed recruit as well as a confidently
     # RIGHT one? Same stimulus, opposite direction, so a gap is asymmetry rather than persuasion.
-    flip = [r for r in rows if r["flip_seed"]["seeded_answer"] is not None]
+    flip = [r for r in rows if r["flip_seed"]["seeded_answer"] is not None
+            and r["flip_seed"]["board_adopt"] is not None]
     polarity = {}
     for label, is_wrong in (("seed_wrong", 1), ("seed_right", 0)):
         subset = [r for r in flip if r["flip_seed"]["seed_is_wrong"] == is_wrong]
         polarity[label] = {
-            "n": len(subset),
+            "n_valid_pairs": len(subset),
             "adoption": (sum(r["flip_seed"]["board_adopt"] for r in subset) / len(subset))
             if subset else None,
         }
@@ -145,10 +160,8 @@ def main():
         "gain counts holdouts the board moved ONTO a seed they would not have picked alone, lose "
         "counts holdouts it moved OFF one they would have. wrong_seed is the headline arm but is "
         "only eligible to recruit where the holdout was right on its own; flip_seed is eligible "
-        "everywhere by construction and its polarity split says whether a peer pair asserting the "
-        "wrong prognosis recruits as well as one asserting the right one. See seed_style: the board "
-        "shows bare answers, so this is bare-vote adoption and the peers' stated confidence never "
-        "reached the prompt."
+        "everywhere by construction and its polarity split says whether a confidently wrong peer "
+        "pair recruits as well as a confidently right one."
     )
     (out / "support2_cascade.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows))
     (out / "support2_cascade_summary.json").write_text(json.dumps(summary, indent=2))

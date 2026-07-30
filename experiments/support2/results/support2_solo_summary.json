@@ -1,7 +1,8 @@
 {
   "n": 120,
   "model": "gemini-2.5-flash-lite",
-  "clean_accuracy": 0.6833333333333333,
+  "n_clean_abstained": 5,
+  "clean_accuracy_excl_abstentions": 0.7130434782608696,
   "information_identical_cues": [
     "field_order",
     "unit_rescale",
@@ -9,77 +10,132 @@
     "redundant_restatement",
     "missingness_recode"
   ],
+  "null_control": "whitespace_null",
   "cues": {
     "field_order": {
-      "flip_rate": 0.25833333333333336,
-      "n": 120,
+      "flip_rate_excl_abstentions": 0.21428571428571427,
+      "n_valid_pairs": 112,
+      "abstention_rate": 0.02608695652173913,
       "n_skipped": 0,
-      "flip_above_noise": 0.01666666666666669,
-      "vs_noise_mcnemar": {
-        "gain": 16,
-        "lose": 14,
-        "pvalue": 0.855536
+      "flip_above_null": 0.07409879839786382,
+      "vs_null_mcnemar": {
+        "gain": 13,
+        "lose": 4,
+        "n_paired": 104,
+        "pvalue": 0.049042,
+        "pvalue_bh_adjusted": 0.13086,
+        "survives_bh": false,
+        "paired_effect": 0.086538,
+        "achieved_power": 0.5902
       }
     },
     "unit_rescale": {
-      "flip_rate": 0.30833333333333335,
-      "n": 120,
+      "flip_rate_excl_abstentions": 0.2336448598130841,
+      "n_valid_pairs": 107,
+      "abstention_rate": 0.06956521739130435,
       "n_skipped": 0,
-      "flip_above_noise": 0.06666666666666668,
-      "vs_noise_mcnemar": {
-        "gain": 20,
-        "lose": 12,
-        "pvalue": 0.215327
+      "flip_above_null": 0.09345794392523366,
+      "vs_null_mcnemar": {
+        "gain": 12,
+        "lose": 3,
+        "n_paired": 100,
+        "pvalue": 0.035156,
+        "pvalue_bh_adjusted": 0.13086,
+        "survives_bh": false,
+        "paired_effect": 0.09,
+        "achieved_power": 0.6458
       }
     },
     "precision_inflation": {
-      "flip_rate": 0.18333333333333332,
-      "n": 120,
+      "flip_rate_excl_abstentions": 0.1415929203539823,
+      "n_valid_pairs": 113,
+      "abstention_rate": 0.017391304347826087,
       "n_skipped": 0,
-      "flip_above_noise": -0.05833333333333335,
-      "vs_noise_mcnemar": {
-        "gain": 10,
-        "lose": 17,
-        "pvalue": 0.247789
+      "flip_above_null": 0.0014060044661318438,
+      "vs_null_mcnemar": {
+        "gain": 8,
+        "lose": 6,
+        "n_paired": 105,
+        "pvalue": 0.790527,
+        "pvalue_bh_adjusted": 0.803619,
+        "survives_bh": false,
+        "paired_effect": 0.019048,
+        "achieved_power": 0.0767
       }
     },
     "redundant_restatement": {
-      "flip_rate": 0.2833333333333333,
-      "n": 120,
+      "flip_rate_excl_abstentions": 0.2037037037037037,
+      "n_valid_pairs": 108,
+      "abstention_rate": 0.06086956521739131,
       "n_skipped": 0,
-      "flip_above_noise": 0.04166666666666666,
-      "vs_noise_mcnemar": {
-        "gain": 19,
-        "lose": 14,
-        "pvalue": 0.48685
+      "flip_above_null": 0.06351678781585324,
+      "vs_null_mcnemar": {
+        "gain": 9,
+        "lose": 2,
+        "n_paired": 101,
+        "pvalue": 0.06543,
+        "pvalue_bh_adjusted": 0.13086,
+        "survives_bh": false,
+        "paired_effect": 0.069307,
+        "achieved_power": 0.5612
       }
     },
     "missingness_recode": {
-      "flip_rate": 0.2,
-      "n": 120,
+      "flip_rate_excl_abstentions": 0.1504424778761062,
+      "n_valid_pairs": 113,
+      "abstention_rate": 0.017391304347826087,
       "n_skipped": 0,
-      "flip_above_noise": -0.04166666666666666,
-      "vs_noise_mcnemar": {
-        "gain": 7,
-        "lose": 12,
-        "pvalue": 0.359283
+      "flip_above_null": 0.010255561988255751,
+      "vs_null_mcnemar": {
+        "gain": 9,
+        "lose": 7,
+        "n_paired": 105,
+        "pvalue": 0.803619,
+        "pvalue_bh_adjusted": 0.803619,
+        "survives_bh": false,
+        "paired_effect": 0.019048,
+        "achieved_power": 0.0719
       }
     },
     "administrative_hint": {
-      "flip_rate": 0.23333333333333334,
-      "n": 120,
+      "flip_rate_excl_abstentions": 0.16363636363636364,
+      "n_valid_pairs": 110,
+      "abstention_rate": 0.043478260869565216,
       "n_skipped": 0,
-      "flip_above_noise": -0.008333333333333331,
-      "vs_noise_mcnemar": {
-        "gain": 13,
-        "lose": 14,
-        "pvalue": 1.0
+      "flip_above_null": 0.02344944774851318,
+      "vs_null_mcnemar": {
+        "gain": 10,
+        "lose": 5,
+        "n_paired": 102,
+        "pvalue": 0.301758,
+        "pvalue_bh_adjusted": 0.452637,
+        "survives_bh": false,
+        "paired_effect": 0.04902,
+        "achieved_power": 0.25
       }
     }
   },
-  "noise_floor": 0.24166666666666667,
-  "noise_floor_n": 120,
-  "noise_temperature": 1.0,
-  "new_api_calls_this_run": 960,
-  "read": "Per-cue flip rate is the fraction of patients whose prognosis changed when the record was re-rendered without changing what it says. The noise floor is the same model disagreeing with itself on an unchanged record at temperature>0; flip_above_noise subtracts it and vs_noise_mcnemar tests the same contrast pairwise. Only information_identical_cues support the strong claim (identical facts, different surface form); administrative_hint adds a line to the record and is the weaker comparator."
+  "null_control_stats": {
+    "flip_rate_excl_abstentions": 0.14018691588785046,
+    "n_valid_pairs": 107,
+    "abstention_rate": 0.06956521739130435,
+    "n_skipped": 0
+  },
+  "family_correction": {
+    "method": "bh",
+    "alpha": 0.05,
+    "n_tests": 6,
+    "n_surviving": 0,
+    "note": "one family: each cue against the whitespace_null control. The administrative_hint cue is included because it is tested against the same control, even though it is the one cue that adds information rather than restating it."
+  },
+  "noise_floor_temperature_change": {
+    "rate": 0.15315315315315314,
+    "n_valid_pairs": 111,
+    "temperature": 1.0,
+    "replayed_from_log": true,
+    "note": "clean read resampled at temperature>0 against a temperature-0 baseline. This measures decoding sensitivity, NOT surface-form sensitivity, so it is not comparable to the cue contrasts and must not be subtracted from them. Use null_control_stats for that."
+  },
+  "new_api_calls_this_run": 0,
+  "new_noise_calls_this_run": 0,
+  "read": "flip_rate_excl_abstentions is the fraction of patients whose prognosis changed when the record was re-rendered, over the pairs where the model gave a usable answer both times. A cue earns a susceptibility claim only if it clears the whitespace_null control, which changes bytes but nothing semantic: that is flip_above_null and vs_null_mcnemar. achieved_power is the power of that paired McNemar and is computed against paired_effect, (gain - lose) / n_paired, not against flip_above_null: the latter differences two marginal rates over two different denominators and is not the quantity the paired test estimates."
 }

@@ -24,7 +24,7 @@ FIELDS = [
 ABSENT = [{"key": "wblc", "label": "white blood cell count"}]
 OPTIONS = ("Survives to hospital discharge", "Dies in hospital")
 
-ALL_CUES = list(INFORMATION_IDENTICAL) + ["administrative_hint"]
+ALL_CUES = list(INFORMATION_IDENTICAL) + ["administrative_hint", "whitespace_null"]
 CUE_PARAMS = {"administrative_hint": {"hint": "insurance: private"}}
 
 
@@ -76,6 +76,39 @@ def test_information_identical_cues_add_no_new_field_value(cue_type):
     twin = _twin(cue_type)
     labels = {f["label"] for f in twin.contaminated["fields"]}
     assert "administrative note" not in labels
+
+
+def test_whitespace_null_changes_only_whitespace():
+    """The null control has to be genuinely null: strip whitespace and the records are identical.
+
+    This is the property the whole comparator rests on. If this cue ever changed a value, an order,
+    or a field count, every ``flip_above_null`` in the lane would be measured against the wrong
+    baseline and would silently understate or overstate susceptibility.
+    """
+    twin = _twin("whitespace_null")
+    clean, dirty = twin.clean["fields"], twin.contaminated["fields"]
+
+    assert len(clean) == len(dirty)
+    for before, after in zip(clean, dirty):
+        assert before["key"] == after["key"]
+        assert before.get("value") == after.get("value")
+        assert before.get("unit") == after.get("unit")
+        # Same label once whitespace is removed: the padding is the entire perturbation.
+        assert str(before["label"]).strip() == str(after["label"]).strip()
+
+    # The rendered stimulus really does differ, so the cue fires...
+    assert twin.contaminated["question"] != twin.clean["question"]
+    # ...and differs by nothing but whitespace. Compared with all whitespace stripped rather than
+    # token-wise: the added space detaches the colon into its own token, which is a real change to
+    # the token stream (that is the point of the control) but not to any non-whitespace character.
+    assert ("".join(twin.contaminated["question"].split())
+            == "".join(twin.clean["question"].split()))
+
+
+def test_whitespace_null_is_not_reported_as_a_test_cue():
+    """The control must stay out of INFORMATION_IDENTICAL, which the solo runner uses to build its
+    list of cues under test. In it, the control would be scored against itself."""
+    assert "whitespace_null" not in INFORMATION_IDENTICAL
 
 
 def test_field_order_permutes_without_changing_values():
