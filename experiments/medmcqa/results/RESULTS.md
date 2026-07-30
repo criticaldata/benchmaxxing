@@ -23,13 +23,18 @@ modified.
 
 Flip = the model's answer changes between the clean twin and the cue-injected twin (same
 question, one cosmetic cue added, ground truth unchanged). Noise floor = self-inconsistency when
-the same clean case is run twice with no cue (uncached control, 15 cases/model). Flip-above-noise
-is the honest susceptibility.
+the same clean case is run twice with no cue.
 
-| model | clean acc | overall flip | noise floor | flip-above-noise |
-|---|---|---|---|---|
-| gemini-2.5-flash | 0.830 | 0.120 | 0.067 | +0.053 |
-| gemini-2.5-flash-lite | 0.770 | 0.237 | 0.000 | +0.237 |
+| model | clean acc | overall flip (n=100) | noise floor (n=15) |
+|---|---|---|---|
+| gemini-2.5-flash | 0.830 | 0.120 | 1/15 = 0.067, Wilson 95% [0.012, 0.298] |
+| gemini-2.5-flash-lite | 0.770 | 0.237 | 0/15 = 0.000, Wilson 95% [0.000, 0.204] |
+
+The noise floor is measured on only the first 15 cases per model, so it is one flip (flash) and
+zero flips (flash-lite): Fisher p=1.0 between the tiers, and the Wilson intervals are far too wide
+to subtract from the n=100 flip rate. A "flip-above-noise" figure would difference two quantities
+measured at different n (15 vs 100), which is not commensurable, so it is deliberately not reported
+here; the floor should be re-run at n=100 before any noise-adjusted susceptibility is read off it.
 
 ### per model x cue flip rate
 | model | lexical_overlap | longest_option | option_order |
@@ -37,11 +42,12 @@ is the honest susceptibility.
 | gemini-2.5-flash | 0.15 | 0.11 | 0.10 |
 | gemini-2.5-flash-lite | 0.27 | 0.26 | 0.18 |
 
-**Read.** The weaker tier (flash-lite) is about twice as cue-susceptible as flash, the expected
-direction. The noise floor matters here: flash's 0.120 flip rate sits only 0.053 above its 0.067
-temp-0 noise floor, so much of flash's apparent susceptibility is decoding nondeterminism rather
-than the cue; flash-lite's 0.237 is clean signal (0.000 floor). Lexical overlap is the strongest
-cue for both tiers.
+**Read.** The weaker tier (flash-lite) is about twice as cue-susceptible as flash, and the gap is
+paired-solid rather than a floor artifact: recomputed from `solo_records.jsonl`, flash-lite flips on
+46 case-cue pairs where flash does not, against 11 the other way (McNemar p=3.3e-06). The earlier
+reading that "much of flash's apparent susceptibility is decoding nondeterminism" rested on a single
+flip in the 15-case floor and is withdrawn until the floor is measured at the same n=100. Lexical
+overlap is the strongest cue for both tiers.
 
 Lineage overlap: within-lineage phi 0.398 (the two Gemini tiers fail on moderately overlapping
 cases). The cross-lineage arm is undefined here (`nan`) because both models are the same lineage;

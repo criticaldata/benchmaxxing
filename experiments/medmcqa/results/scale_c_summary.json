@@ -1,7 +1,7 @@
 {
   "n_hard_cases": 110,
   "holdout": "gemini-2.5-flash-lite",
-  "note": "Salvaged from the committed call_cache after the live run hung at write-time; all adoption values are recomputed offline from cached temp-0 responses with scale_c's own parser.",
+  "note": "Salvaged from the committed call_cache (experiments/medmcqa/results/call_cache.jsonl, now tracked) after the live run hung at write-time; all adoption values are recomputed offline from cached temp-0 responses with scale_c's own parser, so the numbers reproduce from the committed cache. Provenance caveat: 110 hard cases were retained of the run's target. If the target was the default 150, the retained 110 are those whose full condition set finished caching first (rows accumulate through as_completed), so they are latency-ordered rather than a random 110 -- the paired McNemar contrasts are unaffected, but the marginal rates should be read with that selection in mind. A live re-run is the clean fix; the cache commit closes the reproducibility gap meanwhile.",
   "generic": {
     "conform": 79,
     "n": 110,
