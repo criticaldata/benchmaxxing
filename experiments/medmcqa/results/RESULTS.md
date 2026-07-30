@@ -259,28 +259,30 @@ confirms section 2, there is no sustained regime change to detect.
 
 ## 11. Referee detection - the named contribution (issue #322)
 
-Can a monitor catch the adoption? Over 40 cascade cases with 23 holdout adoptions of the planted
-shortcut, reusing `experiments/referee/referee_deployable.py` and `referee_judge.py` on the MedMCQA
-manifest (the shared templates #357 ports for MIMIC-CXR).
+Can a monitor catch the adoption? Over 40 cases (23 holdout adoptions), reusing
+`experiments/referee/referee_deployable.py` and `referee_judge.py` on the MedMCQA manifest (the
+shared templates #357 ports for MIMIC-CXR). The planted arm alone is degenerate -- the peers are
+forced to the shortcut, so `board == shortcut` IS the adoption label and every non-oracle referee
+scores a tautological 1.0. So the deployable referee now also runs a **clean-cascade control**: the
+same holdout with the same two peers, but the peers confidently assert the *correct* answer, so no
+shortcut is planted and adoption is false by construction. A flag there is a real false positive --
+the referee mistaking honest peer-correction for shortcut adoption. Scored over planted + clean:
 
-| referee | precision | recall | FPR | real detection? |
+| referee | precision | recall | FPR | note |
 |---|---|---|---|---|
-| naive conformity gate (fires on any agreement) | 0.575 | 1.00 | 1.00 | no -- flags everything |
-| deployable (peer-modal + private re-query) | 1.00 | 1.00 | 0.00 | **no -- identity, see below** |
-| oracle audit (planted key + isolated counterfactual) | 1.00 | 1.00 | 0.00 | no -- it IS the label |
-| same-lineage LLM judge | 1.00 | 0.91 | 0.00 | yes |
+| naive conformity gate | 0.29 | 1.00 | 1.00 | flags every agreement, useless |
+| deployable (peer-modal + private re-query, NO key) | **0.74** | 1.00 | 0.14 | real detector, but false-alarms on honest correction |
+| oracle audit (planted key + isolated counterfactual) | 1.00 | 1.00 | 0.00 | upper bound (has the key) |
+| same-lineage LLM judge (NO key) | 1.00 | 0.91 | 0.00 | real detector, no re-query |
 
-**Read (corrected).** The one honest result is the **same-lineage LLM judge**: given just the
-transcript, no privileged key and no forced-peer shortcut handed to it, it catches 21 of 23
-adoptions (recall 0.91, precision 1.0, FPR 0.0). The "deployable" referee's precision/recall 1.0 is
-NOT detection: in this planted-shortcut setup the peers are forced to assert the same wrong answer,
-so its inferred shortcut is exactly that answer and its decision `(board == inferred) and (board !=
-bare)` reduces algebraically to the adoption label it is scored against. The oracle is the label by
-definition too. So the earlier headline "a deployable monitor matches the oracle" is withdrawn --
-those two are identities, not measurements. The defensible claim is narrower: an LLM judge detects
-the adoption reasonably well; showing a *deployable* referee works needs a setup where the shortcut
-is not the forced-peer answer the referee re-derives (a real fix to the script + re-run, tracked as
-follow-up), not this one.
+**Read.** With the clean control the numbers become honest. The deployable referee catches every
+adoption (recall 1.0) but false-alarms on 8 of the 57 clean cascades (precision 0.74, FPR 0.14): it
+flags any case where the holdout moves to the peers' answer, so when honest peers *correct* a wrong
+holdout it fires too -- the real cost of having no ground-truth key. The oracle, which has the key,
+is not fooled (precision 1.0), so that gap is exactly what the key buys. The same-lineage LLM judge
+is the strongest key-free detector (recall 0.91, precision 1.0). So the corrected headline: a
+deployable, key-free monitor detects the adoption with recall 1.0 and precision 0.74, and an LLM
+judge trades a little recall (0.91) for perfect precision -- not the earlier tautological 1.0/1.0.
 
 ## Comparison to the MedQA reference (a caveat worth flagging)
 
