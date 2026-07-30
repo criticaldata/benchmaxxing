@@ -2,26 +2,26 @@
   "n": 834,
   "model": "gemini-2.5-flash",
   "cue": "watermark",
-  "new_api_calls_this_run": 5837,
+  "new_api_calls_this_run": 5003,
   "strength_x_cascade": {
     "opacity_0.15": {
-      "solo_flip": 0.2026,
-      "iso_adopt": 0.2026,
-      "shared_adopt": 1.0,
-      "contagion": 0.7974
+      "solo_flip": 0.1882,
+      "iso_adopt": 0.7698,
+      "shared_adopt": 0.9988,
+      "contagion": 0.229
     },
     "opacity_0.3": {
-      "solo_flip": 0.1918,
-      "iso_adopt": 0.1918,
+      "solo_flip": 0.1859,
+      "iso_adopt": 0.789,
       "shared_adopt": 1.0,
-      "contagion": 0.8082
+      "contagion": 0.211
     },
     "opacity_0.45": {
-      "solo_flip": 0.2026,
-      "iso_adopt": 0.2026,
+      "solo_flip": 0.1954,
+      "iso_adopt": 0.789,
       "shared_adopt": 0.9976,
-      "contagion": 0.795
+      "contagion": 0.2086
     }
   },
-  "read": "Watermark cue swept across opacity 0.15 / 0.30 / 0.45, each crossed with solo vs committee: {'opacity_0.15': {'solo_flip': 0.2026, 'iso_adopt': 0.2026, 'shared_adopt': 1.0, 'contagion': 0.7974}, 'opacity_0.3': {'solo_flip': 0.1918, 'iso_adopt': 0.1918, 'shared_adopt': 1.0, 'contagion': 0.8082}, 'opacity_0.45': {'solo_flip': 0.2026, 'iso_adopt': 0.2026, 'shared_adopt': 0.9976, 'contagion': 0.795}}. If solo_flip rises with opacity the stimulus strength knob works; if contagion (shared minus isolated) ALSO rises with opacity a stronger solo cue cascades more, whereas a flat, large contagion across opacities means the confident wrong peer dominates and stimulus strength barely matters once a peer is on the board."
+  "read": "Watermark cue swept across opacity 0.15 / 0.30 / 0.45, each crossed with solo vs committee: {'opacity_0.15': {'solo_flip': 0.1882, 'iso_adopt': 0.7698, 'shared_adopt': 0.9988, 'contagion': 0.229}, 'opacity_0.3': {'solo_flip': 0.1859, 'iso_adopt': 0.789, 'shared_adopt': 1.0, 'contagion': 0.211}, 'opacity_0.45': {'solo_flip': 0.1954, 'iso_adopt': 0.789, 'shared_adopt': 0.9976, 'contagion': 0.2086}}. If solo_flip rises with opacity the stimulus strength knob works; if contagion (shared minus isolated) ALSO rises with opacity a stronger solo cue cascades more, whereas a flat, large contagion across opacities means the confident wrong peer dominates and stimulus strength barely matters once a peer is on the board."
 }
