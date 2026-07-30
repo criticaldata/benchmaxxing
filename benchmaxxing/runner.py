@@ -31,7 +31,7 @@ import numpy as np
 
 from benchmaxxing import gateway
 from benchmaxxing.analysis import flip_rate, shortcut_reliance_index
-from benchmaxxing.blackboard import AgentResponse
+from benchmaxxing.blackboard import AgentResponse, render_board
 from benchmaxxing.bundle import write_versions
 from benchmaxxing.cues.image import build_image_twin
 from benchmaxxing.cues.text import build_text_twin
@@ -268,24 +268,29 @@ class SoloAgent:
 
 
 class CommitteeAgent:
-    """Bridge a gateway backend into a blackboard turn: case plus visible board in, answer out."""
+    """Bridge a gateway backend into a blackboard turn: case plus visible board in, answer out.
 
-    def __init__(self, backend, name: str | None = None, decoding: dict | None = None):
+    ``show_rationale`` decides whether a peer's ``content`` reaches the next agent under its vote,
+    and defaults to False, the answer-only board every committed run used (#373).
+    """
+
+    def __init__(self, backend, name: str | None = None, decoding: dict | None = None,
+                 show_rationale: bool = False):
         self.backend = backend
         self.name = name or getattr(backend, "model", type(backend).__name__)
         self.decoding = decoding
+        self.show_rationale = show_rationale
 
     def _board(self, view) -> str:
         options = list(view.case.options or ())
         letters = _letters(len(options))
-        lines = []
-        for turn in view.visible_turns:
-            if turn.answer is None or turn.answer not in options:
-                continue
-            lines.append(f"- {turn.agent_id}: {letters[options.index(turn.answer)]}")
-        if not lines:
-            return ""
-        return "Committee board so far:\n" + "\n".join(lines) + "\n\n"
+        return render_board(
+            view.visible_turns,
+            "Committee board so far:",
+            show_rationale=self.show_rationale,
+            self_id=view.agent_id,
+            answer_fn=lambda a: letters[options.index(a)] if a in options else None,
+        )
 
     def respond(self, view):
         case = view.case
@@ -645,7 +650,8 @@ def _run_cascade_stage(cases, specs, backend_for, config, transcript_dir) -> dic
         result = run_cascade(
             committee,
             case,
-            lambda spec: CommitteeAgent(backend_for(spec.name), name=spec.name),
+            lambda spec: CommitteeAgent(backend_for(spec.name), name=spec.name,
+                                        show_rationale=config.show_rationale),
             seed_index=CASCADE_SEED_SLOT,
             rounds=CASCADE_ROUNDS,
         )

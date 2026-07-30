@@ -18,7 +18,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from benchmaxxing import gateway
-from benchmaxxing.blackboard import AgentResponse, run_committee
+from benchmaxxing.blackboard import AgentResponse, render_board, run_committee
 from benchmaxxing.data import load_cases
 from benchmaxxing.roster import build_committee
 from benchmaxxing.schema import Condition, ModelSpec
@@ -111,6 +111,9 @@ def main():
     ap.add_argument("--cache", default="experiments/mimic_cxr_text/results/referee_call_cache.jsonl")
     ap.add_argument("--out", default="experiments/mimic_cxr_text/results")
     ap.add_argument("--n", type=int, default=40)
+    ap.add_argument("--show-rationale", action="store_true",
+                    help="render each peer's reasoning under its vote (#373); off is the "
+                         "committed answer-only board, which the cache replays at zero calls")
     args = ap.parse_args()
 
     out = Path(args.out)
@@ -144,8 +147,9 @@ def main():
 
             class _Hold:
                 def respond(self, view):
-                    lines = [f"- {t.agent_id}: {t.answer}" for t in view.visible_turns if t.answer is not None]
-                    board = ("Senior colleagues on the panel have said:\n" + "\n".join(lines) + "\n\n") if lines else ""
+                    board = render_board(view.visible_turns, "Senior colleagues on the panel have said:",
+                                         show_rationale=args.show_rationale,
+                                         self_id=view.agent_id)
                     p, _ = _mcq(case, board)
                     t = cache.complete(HOLDOUT, p)
                     return AgentResponse(content=t[:120], answer=_parse(t, opts), confidence=0.6)

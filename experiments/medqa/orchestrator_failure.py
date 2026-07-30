@@ -34,7 +34,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from benchmaxxing import gateway
-from benchmaxxing.blackboard import AgentResponse, run_committee
+from benchmaxxing.blackboard import AgentResponse, render_board, run_committee
 from benchmaxxing.data import load_cases
 from benchmaxxing.roster import build_committee
 from benchmaxxing.schema import Condition, ModelSpec
@@ -93,6 +93,9 @@ def main():
     ap.add_argument("--cache", default="experiments/medqa/results/orchestrator_cache.jsonl")
     ap.add_argument("--out", default="experiments/medqa/results")
     ap.add_argument("--n", type=int, default=80)
+    ap.add_argument("--show-rationale", action="store_true",
+                    help="render each peer's reasoning under its vote (#373); off is the "
+                         "committed answer-only board, which the cache replays at zero calls")
     args = ap.parse_args()
 
     out = Path(args.out)
@@ -110,9 +113,9 @@ def main():
             def respond(self, view):
                 payload = {"question": getattr(view.case, "question", "") or "",
                            "options": getattr(view.case, "options", ()) or ()}
-                lines = [f"- {t.agent_id} answered: {t.answer}"
-                         for t in view.visible_turns if t.answer is not None]
-                board = ("Panel so far:\n" + "\n".join(lines) + "\n\n") if lines else ""
+                board = render_board(view.visible_turns, "Panel so far:",
+                                     verb=" answered: ", show_rationale=args.show_rationale,
+                                     self_id=view.agent_id)
                 text = cache.complete(backend_model, _mcq_prompt(payload, board))
                 return AgentResponse(content=text[:150], answer=parse_legacy_string(text, list(payload["options"])))
         return _C()

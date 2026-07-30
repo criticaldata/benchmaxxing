@@ -34,6 +34,10 @@ The referee hooks:
   is flagged ``context=True`` so every agent sees it in isolated mode too, which isolates the
   shared-context channel from peer conformity. It consumes no member slot and stays out of the
   per-agent committed map.
+
+:func:`render_board` turns a view's ``visible_turns`` back into the prompt block the next agent
+reads. It lives here rather than in each runner because every runner used to write that loop
+inline and every copy dropped ``turn.content`` (#373).
 """
 
 from __future__ import annotations
@@ -163,6 +167,58 @@ def _visible_turns(state: BlackboardState, agent_id: str) -> tuple[Turn, ...]:
     if state.shared:
         return tuple(state.turns)
     return tuple(t for t in state.turns if t.agent_id == agent_id or t.context)
+
+
+def render_board(
+    turns: Sequence[Turn],
+    header: str,
+    *,
+    verb: str = ": ",
+    show_rationale: bool = False,
+    self_id: str | None = None,
+    answer_fn: Callable[[Any], str | None] | None = None,
+) -> str:
+    """Render the turns an agent can see as the board block its prompt carries.
+
+    ``show_rationale`` is what decides whether a peer's ``content`` reaches the next agent at all.
+    It defaults to False because that is what every committed cache contains: until #373 each runner
+    built this loop inline as ``- agent: answer`` and dropped ``content``, so a seeded peer's
+    rationale was computed, committed to the transcript, and then never rendered. A confident
+    case-anchored argument and an explicit guess produced byte-identical stimuli, which is why the
+    seed-confidence and rationale-validity arms could not measure anything through the board. Both
+    conditions are worth running, so this is a knob rather than a correction, and answer-only is now
+    a documented condition instead of an erased mistake.
+
+    ``header`` and ``verb`` carry each lane's committed wording, so the default rendering is
+    byte-identical to the inline version it replaces and existing caches still replay at zero calls.
+    ``self_id`` is the reading agent: its own turns stay bare votes, because quoting an agent's
+    reasoning back at itself is not peer pressure. ``answer_fn`` renders a committed answer (the
+    core text lane letters it) and drops the turn by returning ``None``. Stated confidence is shown
+    with the rationale, since a claim's strength is part of what a peer asserts (#221).
+
+    A rationale is indented under its vote line by line. On the live-peer lanes ``content`` is a real
+    reply rather than a scripted sentence, so it can arrive multi-line: left as-is, its continuation
+    lines would sit at the margin like new board entries, and a blank line inside it would make the
+    block look like it had ended. The block itself always terminates in one blank line, with the
+    rationale shown or not, because that separator is part of the committed prompt.
+    """
+    lines = []
+    for turn in turns:
+        if turn.answer is None:
+            continue
+        shown = str(turn.answer) if answer_fn is None else answer_fn(turn.answer)
+        if shown is None:
+            continue
+        rationale = (turn.content or "").strip() if show_rationale else ""
+        if rationale and turn.agent_id != self_id:
+            stated = "" if turn.confidence is None else f" ({turn.confidence:.0%})"
+            body = "\n".join(f"  {ln.strip()}" for ln in rationale.splitlines() if ln.strip())
+            lines.append(f"- {turn.agent_id}{stated}{verb}{shown}\n{body}")
+        else:
+            lines.append(f"- {turn.agent_id}{verb}{shown}")
+    if not lines:
+        return ""
+    return f"{header}\n" + "\n".join(lines) + "\n\n"
 
 
 def _commit(

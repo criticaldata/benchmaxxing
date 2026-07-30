@@ -14,7 +14,7 @@ import threading
 from pathlib import Path
 
 from benchmaxxing import gateway
-from benchmaxxing.blackboard import AgentResponse, run_committee
+from benchmaxxing.blackboard import AgentResponse, render_board, run_committee
 from benchmaxxing.extract import Abstention, parse_mcq_choice
 from benchmaxxing.roster import build_committee
 from benchmaxxing.schema import Condition, ModelSpec
@@ -229,7 +229,8 @@ def run_board(cache, case, options, seeded_answer, rationale, rounds: int = 2,
     ``- agent: answer`` was ever rendered. So the original run measured adoption of **bare votes**,
     not of a reasoned argument, and the confidence knob could not have had any effect because it
     never appeared in the prompt. Both conditions are worth measuring, so this is a knob rather than
-    a correction, but the two must not be conflated.
+    a correction, but the two must not be conflated. The rendering itself now lives in
+    ``blackboard.render_board``, which every other lane shares (#373).
     """
     committee = committee or COMMITTEE
 
@@ -243,17 +244,9 @@ def run_board(cache, case, options, seeded_answer, rationale, rounds: int = 2,
 
         class _Holdout:
             def respond(self, view):
-                lines = []
-                for turn in view.visible_turns:
-                    if turn.answer is None:
-                        continue
-                    if show_rationale and turn.content and turn.agent_id != "holdout":
-                        stated = "" if turn.confidence is None else f" ({turn.confidence:.0%})"
-                        lines.append(f"- {turn.agent_id}{stated}: {turn.answer}\n  {turn.content}")
-                    else:
-                        lines.append(f"- {turn.agent_id}: {turn.answer}")
-                board = ("Senior colleagues on the panel have said:\n" + "\n".join(lines) + "\n\n"
-                         if lines else "")
+                board = render_board(view.visible_turns,
+                                     "Senior colleagues on the panel have said:",
+                                     show_rationale=show_rationale, self_id=view.agent_id)
                 text = cache.complete(mcq_prompt(case.question, options, board=board))
                 return AgentResponse(content=text[:120], answer=parse_answer(text, options),
                                      confidence=0.6)

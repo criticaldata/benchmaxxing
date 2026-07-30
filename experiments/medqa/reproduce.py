@@ -35,7 +35,7 @@ from benchmaxxing import gateway
 from benchmaxxing.analysis import (
     FlipRecord, failure_vector, flip_rate, lineage_overlap_test, susceptibility_matrix,
 )
-from benchmaxxing.blackboard import AgentResponse, run_committee
+from benchmaxxing.blackboard import AgentResponse, render_board, run_committee
 from benchmaxxing.cues.text import build_text_twin
 from benchmaxxing.data import load_cases
 from benchmaxxing.onset import cascade_onset
@@ -188,10 +188,12 @@ def run_solo(cases, out, api_key, cache):
     return result
 
 
-def run_cascade(cases, out, api_key, cache):
+def run_cascade(cases, out, api_key, cache, show_rationale: bool = False):
     """Cascade with a BASELINE-RELATIVE seed (issue #104): the planted shortcut differs from
     each committee's isolated baseline, so contagion (shared minus isolated adoption) is
-    well defined. See issue #96 / #122 discussion for why the first-distractor seed was invalid."""
+    well defined. See issue #96 / #122 discussion for why the first-distractor seed was invalid.
+
+    ``show_rationale`` defaults to False, the committed answer-only board (#373)."""
     backends = {model: CachedBackend(model, api_key, cache) for _, model in COMMITTEE}
     model_by_agent = dict(COMMITTEE)
     committee = build_committee([ModelSpec(name=a, lineage="gemini", tier=m, is_open_weights=False)
@@ -207,9 +209,9 @@ def run_cascade(cases, out, api_key, cache):
                 payload = {"question": getattr(view.case, "question", "") or "",
                            "options": getattr(view.case, "options", ()) or (),
                            "report": getattr(view.case, "report", "") or ""}
-                lines = [f"- {t.agent_id} answered: {t.answer}"
-                         for t in view.visible_turns if t.answer is not None]
-                board = ("Other panelists so far:\n" + "\n".join(lines) + "\n\n") if lines else ""
+                board = render_board(view.visible_turns, "Other panelists so far:",
+                                     verb=" answered: ", show_rationale=show_rationale,
+                                     self_id=view.agent_id)
                 text = backend.complete(_mcq_prompt(payload, board), decoding={"temperature": 0})
                 return AgentResponse(content=text[:150],
                                      answer=parse_legacy_string(text, list(payload["options"])))
@@ -261,6 +263,9 @@ def main():
     ap.add_argument("--solo-n", type=int, default=100)
     ap.add_argument("--cascade-n", type=int, default=20)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--show-rationale", action="store_true",
+                    help="render each peer's reasoning under its vote (#373); off is the "
+                         "committed answer-only board, which the cache replays at zero calls")
     args = ap.parse_args()
 
     api_key = _get_key()
@@ -276,7 +281,7 @@ def main():
         print("solo:", {m: round(v["overall"], 3) for m, v in r["flip_rate_by_model"].items()},
               "| noise floor:", r["noise_floor_by_model"])
     if args.stage in ("cascade", "all"):
-        s = run_cascade(cases[:args.cascade_n], out, api_key, cache)
+        s = run_cascade(cases[:args.cascade_n], out, api_key, cache, args.show_rationale)
         print("cascade: mean_contagion=", s["mean_contagion"],
               "shared_adopt=", s["mean_shared_adopt"], "isolated_adopt=", s["mean_isolated_adopt"])
 

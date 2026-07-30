@@ -128,8 +128,8 @@
   ],
 
   "dropped_rationale_pattern_in_other_lanes": {
-    "status": "confirmed present, not fixed here",
-    "credit": "@sebasmos, who answered #369's open question by finding all seven",
+    "status": "fixed repo-wide in #373",
+    "credit": "@sebasmos, who answered #369's open question by finding all seven, then audited the whole repo in #373 and found 16 renderers",
     "pattern": "the runner builds the peers' rationale and attaches it to the transcript, then renders the holdout's prompt as `[f\"- {t.agent_id}: {t.answer}\" for t in view.visible_turns if t.answer is not None]`, which drops it. The docstring promises a case-anchored rationale that never reaches the model.",
     "runners": [
       "experiments/referee/referee_judge.py",
@@ -138,9 +138,19 @@
       "experiments/referee/referee_requery_design.py",
       "experiments/mimic_cxr_text/referee_judge.py",
       "experiments/mimic_cxr_text/referee_deployable.py",
-      "experiments/medqa/seed_timing.py"
+      "experiments/medqa/seed_timing.py",
+      "experiments/medqa/reproduce.py",
+      "experiments/medqa/true_peer_control.py",
+      "experiments/medqa/majority_pressure.py",
+      "experiments/medqa/unanimity_break.py",
+      "experiments/medqa/hierarchy_dominance.py",
+      "experiments/medqa/hierarchy_temp.py",
+      "experiments/medqa/orchestrator_failure.py",
+      "experiments/medqa/live_peer_organic.py",
+      "experiments/cascade/multi_round.py",
+      "benchmaxxing/runner.py (CommitteeAgent, the core cascade stage, which letters the votes and dropped content the same way)"
     ],
-    "why_not_fixed_here": "each of those lanes has committed numbers whose stimulus description would change, so the fix is per-lane relabelling plus a decision about whether to re-run, not a mechanical edit. Doing it inside a SUPPORT2 PR would move three other lanes' results with no reviewer looking at them.",
-    "what_does_not_change": "no number in any lane. The stimulus was always what the cache holds; only the labels claiming a reasoned seed were wrong."
+    "fix": "`blackboard.render_board` is now the single renderer, carrying the same `show_rationale` knob this lane already had and defaulting to the committed answer-only board. The default was checked byte-for-byte against every runner's previous inline loop, so each committed cache still replays at zero calls; each runner also takes `--show-rationale` to put the argument on the board.",
+    "what_does_not_change": "no number in any lane. The stimulus was always what the cache holds and the default rendering is unchanged; only the labels claiming a reasoned seed were wrong, and #373 corrects those in the runners' docstrings."
   }
 }

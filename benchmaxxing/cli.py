@@ -131,6 +131,14 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     p_run.add_argument(
+        "--show-rationale",
+        action="store_true",
+        help=(
+            "show each agent's reasoning under its vote on the committee board; without it the "
+            "board carries votes alone, which is what every committed run measured"
+        ),
+    )
+    p_run.add_argument(
         "--dry-run",
         action="store_true",
         help="print the resolved plan (models, twins, estimated calls) and spend no API calls",
@@ -417,6 +425,8 @@ def _cmd_run(args: argparse.Namespace) -> int:
         config = load_config(args.config)
         if args.dataset:
             config.dataset = args.dataset
+        if args.show_rationale:
+            config.show_rationale = True
         # --out names the bundle directory; without it, one is named per the bundle convention
         # (<stage>-<dataset>-<date>) under the config's out_dir, so runs do not overwrite
         # each other

@@ -139,8 +139,9 @@ rationale anchored on the patient's own record ("with a mean arterial pressure o
 respiratory rate of 32 breaths/min, ...") and attaches it to the transcript, but the holdout's prompt
 renders only `- agent: answer`, so the rationale never reaches the model. Confident and hedged
 rationales produce byte-identical stimuli. This arm therefore measures adoption of a bare peer vote,
-not of an argued endorsement. #369 fixes the renderer and makes the choice an explicit knob; until
-these numbers are regenerated on top of it, read them as bare-vote adoption.
+not of an argued endorsement. #369 fixes the renderer and makes the choice an explicit knob (#373
+moves that renderer into `blackboard.render_board`, where every lane shares it); until these numbers
+are regenerated on top of it, read them as bare-vote adoption.
 
 A binary outcome makes the seed choice matter, so both arms run:
 
@@ -269,12 +270,14 @@ it: **seven other runners drop the rationale the same way**, each building the h
 `referee_requery_design.py`, `experiments/mimic_cxr_text/referee_judge.py`, `referee_deployable.py`,
 and `experiments/medqa/seed_timing.py`.
 
-Not fixed here on purpose. Each of those lanes has committed numbers whose stimulus description would
-change, so the work is per-lane relabelling plus a decision about whether to re-run, and doing it
-inside a SUPPORT2 PR would move three other lanes' results with nobody reviewing them. **No number
-moves in any lane**: the stimulus was always whatever the cache holds, and only the labels claiming a
-reasoned seed were wrong. Recorded in `lane_findings.json` under
-`dropped_rationale_pattern_in_other_lanes` so it survives this PR.
+His #373 audit then took it repo-wide and found 16 renderers, adding the whole MedQA panel set,
+`experiments/cascade/multi_round.py`, and `CommitteeAgent` in the core cascade stage, which letters
+its votes and drops `content` the same way. **Fixed there, not here.** `blackboard.render_board` is
+now the single renderer every lane calls, carrying this lane's `show_rationale` knob and defaulting
+to the answer-only board; the default was checked byte-for-byte against each runner's previous
+inline loop, so every committed cache still replays at zero calls. **No number moves in any lane**:
+the stimulus was always whatever the cache holds, and only the labels claiming a reasoned seed were
+wrong. Recorded in `lane_findings.json` under `dropped_rationale_pattern_in_other_lanes`.
 
 ### Concurrency note
 
