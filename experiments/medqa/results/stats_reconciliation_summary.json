@@ -1,36 +1,20 @@
 {
-  "family_size": 9,
+  "family_size": 8,
   "correction": "BH and Holm at alpha=0.05 over the committee-structure headline family",
   "contrasts": [
     {
       "n": 120,
-      "rate_a": 0.0,
+      "rate_a": 0.175,
       "rate_b": 0.925,
-      "delta": 0.925,
+      "delta": 0.75,
       "delta_ci95": [
-        0.875,
-        0.9667
+        0.675,
+        0.825
       ],
-      "mcnemar_gain": 111,
+      "mcnemar_gain": 90,
       "mcnemar_lose": 0,
       "pvalue": 0.0,
-      "label": "authority_ladder: guideline vs control",
-      "survives_bh": true,
-      "survives_holm": true
-    },
-    {
-      "n": 120,
-      "rate_a": 0.0,
-      "rate_b": 0.7167,
-      "delta": 0.7167,
-      "delta_ci95": [
-        0.6333,
-        0.7917
-      ],
-      "mcnemar_gain": 86,
-      "mcnemar_lose": 0,
-      "pvalue": 0.0,
-      "label": "authority_ladder: senior vs control",
+      "label": "authority_ladder: guideline vs colleague",
       "survives_bh": true,
       "survives_holm": true
     },
@@ -116,33 +100,33 @@
     },
     {
       "n": 40,
-      "rate_a": 0.0,
-      "rate_b": 0.125,
-      "delta": 0.125,
+      "rate_a": 0.125,
+      "rate_b": 0.15,
+      "delta": 0.025,
       "delta_ci95": [
-        0.025,
-        0.225
+        -0.05,
+        0.125
       ],
-      "mcnemar_gain": 5,
-      "mcnemar_lose": 0,
-      "pvalue": 0.0625,
-      "label": "majority_pressure: k1 vs isolated",
+      "mcnemar_gain": 2,
+      "mcnemar_lose": 1,
+      "pvalue": 1.0,
+      "label": "majority_pressure: 2-peer vs 1-peer",
       "survives_bh": false,
       "survives_holm": false
     },
     {
       "n": 84,
-      "rate_a": 0.1667,
-      "rate_b": 1.0,
-      "delta": 0.8333,
+      "rate_a": 0.0238,
+      "rate_b": 0.1667,
+      "delta": 0.1429,
       "delta_ci95": [
-        0.75,
-        0.9048
+        0.0714,
+        0.2262
       ],
-      "mcnemar_gain": 70,
+      "mcnemar_gain": 12,
       "mcnemar_lose": 0,
-      "pvalue": 0.0,
-      "label": "orchestrator: wrong-orch vs wrong-peer",
+      "pvalue": 0.00048828,
+      "label": "orchestrator: wrong-peer vs honest-orch over 2 wrong peers",
       "survives_bh": true,
       "survives_holm": true
     }
