@@ -11,7 +11,8 @@ qa_type vocabulary (verified on the real gated data):
 gt questions answer "yes"; hallu (adversarial, false attribute) answer "no".
 
 Rendered into the text/MCQ lane (options=("yes","no")) so existing flip-rate scoring runs; the
-grounding image path is carried in meta['image_ref'] (imaging lane #254 pending).
+grounding image path is a first-class Case.image_ref (also mirrored in meta); an
+image-v1 run sends the pixels. Text/MCQ scoring runs today via options=("yes","no").
 """
 
 from __future__ import annotations
@@ -136,6 +137,7 @@ def _case_from_record(record: dict, index: int) -> Case:
         case_id=case_id,
         patient_id=image_id,
         modality=Modality.TEXT,
+        image_ref=str(record["image"]),
         label=family,
         question=str(record["question"]),
         options=_OPTIONS,

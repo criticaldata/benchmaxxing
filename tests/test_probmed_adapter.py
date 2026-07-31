@@ -11,9 +11,11 @@ import json
 
 import pytest
 
+from benchmaxxing import runner
+from benchmaxxing.config import Config
 from benchmaxxing.data import load_cases
 from benchmaxxing.datasets import probmed, registry
-from benchmaxxing.schema import Modality
+from benchmaxxing.schema import Modality, TwinPair
 
 _RECORDS = [
     {"id": "img1", "i": 0, "image": "probmed/img1.jpg", "image_type": "X-ray - Chest",
@@ -61,6 +63,7 @@ def test_every_record_is_a_yes_no_text_case(tmp_path):
         assert c.modality is Modality.TEXT
         assert c.options == ("yes", "no")
         assert c.answer_index in (0, 1)
+        assert c.image_ref == "probmed/img1.jpg"          # first-class field (imaging lane)
         assert c.meta["image_ref"] == "probmed/img1.jpg"
         assert c.meta["image_type"] == "X-ray - Chest"
         assert c.meta["src_dataset"] == "MIMIC"
@@ -113,6 +116,7 @@ def test_round_trip_preserves_meta(tmp_path):
         "group_key": "img1:entity:0", "image_ref": "probmed/img1.jpg", "gt_answer": "no",
         "image_type": "X-ray - Chest", "src_dataset": "MIMIC",
     }
+    assert ent.image_ref == "probmed/img1.jpg"
     assert ent.options == ("yes", "no")
     assert ent.answer_index == 1
 
@@ -157,3 +161,35 @@ def test_non_list_json_raises(tmp_path):
     (tmp_path / "test.json").write_text(json.dumps({"not": "a list"}), encoding="utf-8")
     with pytest.raises(ValueError, match="must be a JSON list"):
         probmed.build_manifest(tmp_path, tmp_path / "m.csv")
+
+
+def test_image_cue_runner_sends_probmed_question_options_and_pixels(tmp_path, monkeypatch):
+    import numpy as np
+
+    image_dir = tmp_path / "probmed"
+    image_dir.mkdir()
+    (image_dir / "img1.jpg").write_bytes(b"image fixture")
+    monkeypatch.setattr(runner, "load_image", lambda _path: np.full((32, 32), 120, dtype="uint8"))
+    monkeypatch.setattr(runner, "_cue_types", lambda _cue_set: ("cable",))
+    monkeypatch.setattr(
+        runner, "build_image_twin",
+        lambda image, cue_type, ground_truth, case_id: TwinPair(
+            case_id=case_id, cue_type=cue_type, clean=image.copy(),
+            contaminated=image + 1, ground_truth=ground_truth),
+    )
+    case = _build(tmp_path)[0]  # first record: modality_gt, "Is this an X-ray?"
+
+    class RecordingBackend:
+        def __init__(self): self.calls = []
+        def complete(self, prompt, image=None, decoding=None):
+            self.calls.append((prompt, image)); return "A"
+
+    backend = RecordingBackend()
+    config = Config.from_dict({"models": ["vision-model"], "cue_set": "image-v1"})
+    result = runner.run_stage("pilot", [case], config, lambda _model: backend, image_root=tmp_path)
+
+    assert result["n"] == 1
+    assert len(backend.calls) == 2  # image case reaches the vision backend, not skipped
+    assert all("Question: Is this an X-ray?" in prompt for prompt, _ in backend.calls)
+    assert all("A. yes" in prompt and "B. no" in prompt for prompt, _ in backend.calls)
+    assert all(image is not None and image.shape == (32, 32) for _, image in backend.calls)
