@@ -323,24 +323,43 @@ def test_referee_ranks_the_three_detectors(offline, monkeypatch, manifest, tmp_p
 
 
 def test_deployable_referee_is_degenerate_by_construction(offline, monkeypatch, manifest, tmp_path):
-    """The deployable row reduces to the label it is scored against, so it measures nothing.
+    """The planted arm is degenerate by construction; the clean-control arm is what makes it citable.
 
-    Pinned as a property of the design, not of a run: while the peers assert `planted`, the inferred
-    shortcut IS `planted` and the predicate collapses to `adopted`. If a future change gives the peers
-    an answer other than the planted one on some cases, this test goes red and the deployable row
-    starts carrying information -- which is the point at which it may be cited again.
+    On the planted arm the peers assert `planted`, so the inferred shortcut IS `planted` and the
+    predicate collapses to `adopted`. That is pinned below as a property of the design.
+
+    The original version of this test said it should go red if a future change ever gave the peers an
+    answer other than the planted one, and that this would be the point at which the deployable row
+    may be cited again. That change has now been made: the honest-peer clean arm asserts the TRUTH, so
+    adoption is false by construction there and a deployable flag is a genuine false positive. So the
+    test now pins both halves, the degeneracy of the planted block and the falsifiability the clean
+    block buys, and it goes red if either is lost.
     """
     out = _run(support2_referee, monkeypatch, manifest, tmp_path)
     summary = json.loads((out / "support2_referee_summary.json").read_text())
     rows = [json.loads(line) for line in
             (out / "support2_referee.jsonl").read_text().splitlines() if line.strip()]
 
+    # The reduction still holds ON THE PLANTED ARM, which is what makes the planted-only block a
+    # definitional upper bound rather than a measurement.
     reduction = summary["deployable_reduces_to_ground_truth"]
     assert reduction["inferred_shortcut_always_planted"] is True
     assert reduction["deployable_identical_to_adopted"] is True
 
-    # The reduction is what makes the two perfect rows definitional, so state the consequence too:
-    # deployable and oracle_audit are the same predicate on every scored case.
     scored = [r for r in rows if not r["abstained"]]
-    assert scored
-    assert all(r["deployable"] == r["oracle"] == r["adopted"] for r in scored)
+    planted = [r for r in scored if r["arm"] == "planted"]
+    clean = [r for r in scored if r["arm"] == "clean"]
+    assert planted
+    assert all(r["deployable"] == r["oracle"] == r["adopted"] for r in planted)
+
+    # This test's original docstring said that if a future change ever gave the peers an answer
+    # other than the planted one, it should go red, and that this is the point at which the
+    # deployable row may be cited again. That change is the honest-peer clean control, so the
+    # condition is now asserted rather than waited for: on the clean arm the peers assert the TRUTH,
+    # adoption is false by construction, and a deployable flag there is a genuine false positive.
+    assert clean, "the clean-control arm must exist, or the deployable row is definitional again"
+    assert all(r["adopted"] is False for r in clean)
+    assert any(r["deployable"] != r["adopted"] for r in clean), (
+        "the clean arm must be able to produce a false positive, otherwise it is not a comparator "
+        "and the deployable row is still unfalsifiable"
+    )
