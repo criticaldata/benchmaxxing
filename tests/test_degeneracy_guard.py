@@ -180,7 +180,7 @@ def test_columns_that_genuinely_vary_are_not_flagged(keys, path, column):
 # line in a 122-entry JSON file, which a reviewer skimming a diff will not catch. I demonstrated
 # that hole before closing it, by planting a fresh constant column and hiding it behind one
 # boilerplate reason with the whole suite green.
-PREEXISTING_CEILING = 122
+PREEXISTING_CEILING = 113
 
 
 def test_the_preexisting_baseline_can_only_shrink():
