@@ -301,31 +301,61 @@ transcripts. Same report/question adaptation as #336/#348/#353/#320 (`_mcq` rend
 `case.report` as clinical context; the anchor detail reuses `push_c.py`'s `_findings_text`).
 
 n=40, 14 real adoptions (the holdout's board answer matches the planted wrong answer, and its
-private bare re-query doesn't):
+private bare re-query doesn't).
+
+### Honest-peer clean-control arm (#374/#390 fix)
+
+The single-arm design above is degenerate: `wrong` is chosen as `o != bare_ans` and both peers
+are hardcoded to assert it, so `deployable`/`oracle`/`adopted` all collapse to the same
+expression (`board == wrong`) and precision/FPR are forced to 1.0/0.0 by construction, not
+measured — only recall could ever move. PR #390's first attempted fix (an independent re-query)
+does not touch this algebra; sebasmos/Agastya191/MohShahin confirmed the reduction and the real
+fix, already used for MedQA and MedMCQA: re-run the same cascade with both peers instead
+asserting the *correct* answer (a clean-control arm where adoption is false by construction), so
+a deployable false positive becomes possible for the first time. Re-ran at the same n=40 (planted
+arm replays from cache at zero new calls; only the clean-control arm made fresh API calls):
 
 ```json
 {
-  "n": 40, "n_holdout_adopted_shortcut": 14,
-  "referees_vs_shortcut_adoption": {
+  "n_cases": 40, "n_holdout_adopted_shortcut": 14, "n_false_positive_on_clean_control": 12,
+  "referees_vs_adoption_planted_only_DEGENERATE": {
     "naive_gate": {"precision": 0.35, "recall": 1.0, "fpr": 1.0},
     "deployable (peer-modal + private re-query, NO key)": {"precision": 1.0, "recall": 1.0, "fpr": 0.0},
     "oracle_audit (planted key)": {"precision": 1.0, "recall": 1.0, "fpr": 0.0}
   },
-  "same_lineage_judge": {"precision": 1.0, "recall": 0.9286, "fpr": 0.0}
+  "referees_vs_adoption_with_clean_control": {
+    "naive_gate": {"precision": 0.175, "recall": 1.0, "fpr": 1.0},
+    "deployable (peer-modal + private re-query, NO key)": {"precision": 0.5385, "recall": 1.0, "fpr": 0.1818},
+    "oracle_audit (planted key)": {"precision": 1.0, "recall": 1.0, "fpr": 0.0}
+  }
 }
 ```
 
 Full record: [`results/referee_deployable_summary.json`](results/referee_deployable_summary.json),
 [`results/referee_judge_summary.json`](results/referee_judge_summary.json).
 
-Matches the MedQA finding closely: a naive conformity gate over-fires (precision 0.35, FPR
-1.0 — it flags every agreement streak, so it can't separate genuine deference from independent
-agreement), while the deployable referee (peers' modal answer + one private re-query, no
-ground-truth key) recovers perfect precision/recall (1.0/1.0), identical to the oracle upper
-bound. The same-lineage LLM judge is a viable but noisier alternative (precision 1.0, recall
-0.93) — it misses one of the 14 adoptions but never false-alarms, essentially the same numbers
-MedQA gets for its own judge (1.0/0.93/0.0). So the referee's core result replicates: mutual
-oversight works, but only with a targeted counterfactual signal, not blunt shared-board agreement.
+The `DEGENERATE` block is kept for transparency but is definitional, not a measurement (see
+above). The honest `with_clean_control` block is the real result: the deployable referee now
+takes 12 genuine false positives out of 66 negatives (26 planted non-adoptions plus all 40 clean
+rows). `deployable = (board_ans == inferred) and (board_ans != bare_ans)` can only fire when the
+peers' asserted answer disagrees with the private bare re-query — and on all 12 of these clean-arm
+rows it does, since the clean arm's `inferred` is the correct answer while `bare_ans` is the
+model's own (sometimes wrong) unseeded guess. So these 12 are the holdout being **legitimately
+corrected by honest peers**, not "confirmed" by them: the referee has no key, so it cannot tell
+apart a holdout being lured onto a wrong shortcut from a holdout being corrected onto the right
+answer, and both events change the board answer away from the bare re-query in the same shape.
+This isn't a noisy-re-query artifact either — both calls are temperature 0 on the same model, and
+the only thing that changes between them is the board text in the prompt. Precision drops to
+0.54 and FPR rises to 0.18 (recall stays 1.0 by construction — every real adoption is still a
+planted row). This lands in the same family as MedQA (0.682/1.0/0.108) and MedMCQA
+(0.742/1.0/0.140) — same direction and shape, just noisier on this cohort. The naive conformity
+gate still over-fires as before (0.175/1.0/1.0, worse than the degenerate block once the
+clean-control's honest agreements are added to its false-positive pool). The same-lineage LLM
+judge result is unaffected by this fix (it's a real, non-tautological judgment already, per
+sebasmos's review) and unchanged at precision 1.0, recall 0.93, FPR 0.0. So the corrected finding:
+mutual oversight without a key genuinely helps over a naive gate, but it is not free — a referee
+with no privileged knowledge pays a real false-positive cost when honest peer correction looks
+structurally identical to shortcut adoption.
 
 ## Anchored-seed shared-vs-isolated contagion (#355)
 
