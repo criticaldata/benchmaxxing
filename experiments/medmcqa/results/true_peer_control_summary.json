@@ -1,0 +1,8 @@
+{
+  "n_solo_wrong_cases": 15,
+  "holdout": "holdout",
+  "new_api_calls_this_run": 90,
+  "wrong_peer_adoption": 0.2,
+  "correct_peer_adoption": 0.5333,
+  "read": "On 15 cases the flash-lite holdout gets wrong alone, a single confident peer asserting the CORRECT answer is adopted 0.5333 of the time, versus 0.2 for a confident peer asserting a WRONG answer. If these two rates are close, the holdout is deferring to a confident peer's position rather than discerning content (generic conformity); a much higher correct-peer rate would instead show the holdout can tell a right assertion from a wrong one. This is the project's first true-peer control and directly probes whether the cascade is error injection or conformity."
+}

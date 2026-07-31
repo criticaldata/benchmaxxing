@@ -20,16 +20,22 @@ from benchmaxxing.stats import mcnemar
 RESULTS = Path("experiments/medqa/results")
 
 # Each headline contrast: (label, filename, flag_a, flag_b) with the claim being "b differs from a".
+# Each headline contrast: (label, filename, flag_a, flag_b), claim being "b differs from a". Both
+# arms must actually vary across cases -- a McNemar against a structurally-constant baseline is a
+# one-sided degenerate test, not a paired comparison. So the vs-control (control adoption is 0 by
+# construction: the seed is chosen != the holdout's own answer), vs-isolated (same, 0-peer), and
+# vs-wrong-orchestrator (the orchestrator's forced answer IS the output, so 1 by construction)
+# contrasts are NOT in the family; those baselines are reported descriptively in RESULTS.md, and
+# the authority/majority/orchestrator effects enter here through their non-degenerate rungs.
 CONTRASTS = [
-    ("authority_ladder: guideline vs control", "authority_ladder.jsonl", "control_adopt", "clinical_guideline_adopt"),
-    ("authority_ladder: senior vs control", "authority_ladder.jsonl", "control_adopt", "senior_attending_adopt"),
+    ("authority_ladder: guideline vs colleague", "authority_ladder.jsonl", "colleague_adopt", "clinical_guideline_adopt"),
     ("seed_confidence: confident vs hedged", "seed_confidence.jsonl", "hedged_adopt", "confident_adopt"),
     ("rationale_validity: any-reasoning vs bare", "rationale_validity.jsonl", "bare_adopt", "valid_wrong_adopt"),
     ("super_additivity: both vs peer-alone", "super_additivity.jsonl", "peer_adopt", "both_adopt"),
     ("true_peer: correct vs wrong peer", "true_peer_control.jsonl", "wrong_peer_adopt", "correct_peer_adopt"),
     ("unanimity: unanimous vs with-dissenter", "unanimity_break.jsonl", "with_dissenter_adopt", "unanimous_wrong_adopt"),
-    ("majority_pressure: k1 vs isolated", "majority_pressure.jsonl", "isolated_adopt", "k1_adopt"),
-    ("orchestrator: wrong-orch vs wrong-peer", "orchestrator_failure.jsonl", "wrong_peer_output_wrong", "wrong_orch_output_wrong"),
+    ("majority_pressure: 2-peer vs 1-peer", "majority_pressure.jsonl", "k1_adopt", "k2_adopt"),
+    ("orchestrator: wrong-peer vs honest-orch over 2 wrong peers", "orchestrator_failure.jsonl", "honest_orch_output_wrong", "wrong_peer_output_wrong"),
 ]
 
 
@@ -93,7 +99,14 @@ def _holm(pvals):
 def main():
     ap = argparse.ArgumentParser(description="Stats reconciliation over the committee-structure battery (#237).")
     ap.add_argument("--out", default="experiments/medqa/results")
+    ap.add_argument("--results-dir", default=None,
+                    help="dir holding the per-case arm jsonls (default: the MedQA lane); point at "
+                         "experiments/medmcqa/results to reconcile the MedMCQA battery")
     args = ap.parse_args()
+
+    global RESULTS
+    if args.results_dir:
+        RESULTS = Path(args.results_dir)
 
     rows_out = []
     for label, fn, a, b in CONTRASTS:

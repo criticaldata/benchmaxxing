@@ -137,6 +137,153 @@ strong 0.61, both p<1e-4):
 So the cascade-under-plausible-authority effect does replicate on MedMCQA (significant anchoring
 gain), but the shape differs: a higher floor and a flatter top.
 
+## 5. Break-it D: blind-metric decoy (issue #290)
+
+A hidden rubric secretly rewards the longest option; we measure drift toward that decoy under the
+incentive vs a control, over 13 hard cases (holdout wrong on the clean question). Script:
+`experiments/medqa/break_it.py` (D arm), unchanged.
+
+| condition | picks the decoy (longest option) | accuracy |
+|---|---|---|
+| control | 0.308 | 0.385 |
+| blind-metric incentive | 0.308 | 0.462 |
+
+**Read: null on MedMCQA.** The hidden longest-option incentive produces zero decoy drift (0.308
+either way); the model does not shift toward the decoy when the rubric secretly rewards it. Unlike
+break-it A (system flag) and C (anchored plausible seed), this weaker, non-social manipulation does
+not move the model. n=13 is small, but the point estimate is a flat 0.0 drift.
+
+## 6. Committee-structure battery, corrected as one family (issue #237 analog)
+
+Eight headline adoption-rate contrasts across the committee-structure arms, folded into one
+multiple-comparison family (`stats_reconciliation_summary.json`): each is an adoption-rate delta
+with a paired bootstrap 95% CI and a paired McNemar p, corrected together with BH and Holm. Only
+**non-degenerate** contrasts are in the family. A McNemar against a structurally-constant baseline
+is a one-sided test against a constant, not a paired comparison, so three such baselines are
+excluded: control adoption is 0 by construction (the seed is chosen != the holdout's own answer),
+the isolated 0-peer arm is likewise 0, and the wrong orchestrator's forced answer *is* the committee
+output so it is 1. Those effects enter through their non-degenerate rungs (guideline vs colleague,
+2-peer vs 1-peer, wrong-peer vs honest-orchestrator), and the constant baselines are reported
+descriptively in §9.
+
+| contrast | delta | 95% CI | McNemar p | Holm |
+|---|---|---|---|---|
+| authority_ladder: guideline vs colleague | +0.717 | [0.600, 0.833] | ~0 | ✓ |
+| unanimity: unanimous vs with-dissenter | +0.395 | [0.237, 0.553] | 6.1e-05 | ✓ |
+| rationale_validity: any-reasoning vs bare | -0.342 | [-0.442, -0.250] | ~0 | ✓ |
+| seed_confidence: confident vs hedged | +0.260 | [0.180, 0.350] | 3e-08 | ✓ |
+| super_additivity: both vs peer-alone | +0.108 | [0.033, 0.192] | 0.015 | . |
+| orchestrator: wrong-peer vs honest-orch over 2 wrong | +0.097 | [-0.032, 0.210] | 0.21 | . |
+| true_peer: correct vs wrong peer | +0.333 | [0.000, 0.667] | 0.125 | . |
+| majority_pressure: 2-peer vs 1-peer | +0.040 | [-0.120, 0.200] | 1.0 | . |
+
+**Read: 4 of 8 survive Holm** (the strictest correction). The robust findings are the authority-rung
+effect (a clinical-guideline citation is adopted +0.72 over a colleague, the ladder in §9), the
+dissenter break (a single ally cuts adoption by 0.40), the reasoning-collapse (any rationale drops
+adoption by 0.34, see §7), and confidence elasticity (+0.26). Super-additivity (+0.11, p=0.015)
+survives BH but not Holm once the family is restricted to real contrasts. The rest are null or
+underpowered: measured properly, a wrong 2-of-3 majority is no worse than one wrong peer (+0.04,
+p=1.0), and a lone wrong peer poisons the output no more than an honest orchestrator gating two
+wrong peers (+0.10, p=0.21). The earlier "+0.92 authority vs control", "+0.71 orchestrator vs
+wrong-peer" and "+0.16 majority vs isolated" were contrasts against constants and are withdrawn.
+
+## 7. Seed shape (issues #269-#274)
+
+How the shape of the planted wrong answer changes adoption, holding the source (a wrong senior
+peer) fixed. Holdout gemini-2.5-flash-lite on solo-wrong cases.
+
+| arm | conditions (adoption) | finding |
+|---|---|---|
+| seed_confidence (#271) | hedged 0.18 -> confident 0.44 | confidence elasticity +0.26; a confident wrong peer is adopted ~2.4x more than a hedged one |
+| rationale_validity (#270) | bare 0.71 -> plausible-wrong 0.37 -> fallacious 0.39 | **attaching ANY reasoning collapses adoption** (both vs bare p<1e-9); the two reasoned arms are indistinguishable |
+| plausible_distractor (#269) | implausible 0.74 -> plausible 0.82 | discernment-gated but weak (+0.08, p=0.15) |
+| dose_response (#273) | faint 0.21 -> lean 0.46 -> plain 0.77 -> emphatic 0.55 | graded, but plateaus/drops at emphatic certainty |
+| text_cue_types (#274) | baseline 0.74; primacy 0.57; negation 0.93; qualifier 0.75 | negation ("rules out your own pick") is the strongest cue; primacy lowers adoption |
+| attributed_tier (#272) | small-model 0.42 -> unlabeled 0.84 -> SOTA-model 0.72 -> attending 0.81 | swayed by the STATED capability of the source, not the content |
+
+**Read.** The counterintuitive one is rationale_validity: a bare "the answer is X" from a senior is
+adopted 0.71 of the time, but *any* attached reasoning, valid-looking or openly fallacious, cuts
+that to ~0.38. On these MCQ cases the holdout scrutinizes stated reasoning (and finds it wanting)
+but defers to bare authority. Confidence and stated source-capability both move adoption in the
+expected direction; plausibility of the specific distractor barely does.
+
+## 8. Committee size & social pressure (issues #275-#279)
+
+| arm | conditions (adoption) | finding |
+|---|---|---|
+| committee_size_sweep (#276) | alone 0.74 -> +1 honest 0.27 -> +2 0.19 -> +4 0.18 | an honest majority DILUTES a single wrong seed (safety in numbers), monotone |
+| unanimity_break (#277) | unanimous-2-wrong 0.42 -> one correct dissenter 0.03 | a single ally breaks conformity (-0.39), Asch-consistent |
+| deliberation_framing (#278) | none 0.74 -> collaborative 0.56 -> independent 0.37 -> critical 0.28 | dissent-licensing framing is a cheap prompt-time lever |
+| majority_pressure (#275) | isolated 0.0 (by construction) -> 1-peer 0.16 -> 2-peer 0.20 | the real 2-vs-1-peer contrast is a **null**: +0.04, McNemar p=1.0 (isolated is 0 by construction, so "vs isolated" is not a valid test) |
+| super_additivity (#279) | flag+peer +0.11 over peer alone (p=0.015, BH but not Holm) | the 2x2 interaction is sub-additive (both minus the sum of singles = -0.59): the two overlap, they don't stack |
+
+**Read.** Numbers protect: a lone wrong seed is diluted from 0.74 to 0.18 as honest peers
+accumulate, and a single dissenter is even more effective than dilution (0.42 -> 0.03).
+Deliberation framing that licenses dissent ("think independently", "be critical") drops adoption to
+0.28 with one instruction line, a deployment-time mitigation. Two arms come out weaker than the
+first pass suggested once measured against a real (non-constant) baseline: a wrong 2-of-3 majority
+is no more persuasive than a single wrong peer (+0.04, p=1.0), and the flag+peer super-additivity
+survives BH but not Holm, and is sub-additive besides.
+
+## 9. Hierarchy & orchestrator (issues #280-#283)
+
+| arm | result | finding |
+|---|---|---|
+| authority_ladder (#282) | colleague 0.20 < automated 0.70 < senior 0.72 < guideline 0.92 (control 0 by construction) | adoption rises with the authority rung; the tested contrast is guideline vs colleague (+0.72, survives Holm in §6) |
+| leader_as_auditor (#283) | as peer 0.74 -> as auditor 0.19 -> as attending-of-record 0.49 | re-pointing the holdout to an oversight role is a cheap remediation |
+| orchestrator_failure (#281) | wrong peer poisons 0.29; honest-orch over 2 wrong peers 0.19; wrong-orch 1.0 **by construction** | the "1.0" is structural (the orchestrator's forced answer IS the output), not a finding; the real contrast (wrong-peer vs honest-orch) is +0.10, p=0.21, **n.s.** |
+| hierarchy_dominance (#280) | dominance rate 1.0 (degenerate) | **methodological null**: at temp 0 the committee converges to unanimity, so every agent "dominates" and the metric is a tie-break artifact |
+
+**Read.** Authority is the real result here: adoption climbs from a colleague (0.20) to a
+clinical-guideline citation (0.92), and guideline-vs-colleague is the non-degenerate contrast that
+survives Holm in §6. The orchestrator arm does NOT show a single-point-of-failure once measured
+honestly: the "wrong orchestrator poisons 1.0" is a tautology (its forced answer is defined to be
+the output), and the valid comparison -- does a lone wrong peer poison more than an honest
+orchestrator synthesizing over two wrong peers -- is not significant (+0.10, p=0.21). Two earlier
+headline claims (orchestrator single-point-of-failure, hierarchy dominance) are withdrawn as
+construction artifacts.
+
+## 10. Controls & robustness (issues #284-#287)
+
+| arm | result | finding |
+|---|---|---|
+| true_peer_control (#284) | wrong peer 0.20 vs correct peer 0.53 | negative control passes: a *correct* peer is adopted more than a wrong one, so the deference is not blind conformity |
+| test_awareness (#285) | neutral 0.74; accuracy-framed 0.58; agreement-framed 0.62 | stated evaluation framing is a modest lever (accuracy framing mildly resists) |
+| temperature_sensitivity (#286) | t0.0 0.74, t0.3 0.72, t0.7 0.75, t1.0 0.71 | flat across temperature: the cascade is not a greedy-decoding artifact, it survives sampling |
+| onset (#287) | onset detected 20/20, turns {1,2,7}; contagion 0.025 | on the near-null bare cascade, onset is a transient single-turn blip, not a sustained tipping point |
+
+**Read.** The true-peer control is the important one: adoption tracks correctness (0.53 correct vs
+0.20 wrong), so the deference measured throughout is not indiscriminate agreement.
+Temperature-invariance rules out a decoding artifact. Onset over the bare-cascade transcripts
+confirms section 2, there is no sustained regime change to detect.
+
+## 11. Referee detection - the named contribution (issue #322)
+
+Can a monitor catch the adoption? Over 40 cases (23 holdout adoptions), reusing
+`experiments/referee/referee_deployable.py` and `referee_judge.py` on the MedMCQA manifest (the
+shared templates #357 ports for MIMIC-CXR). The planted arm alone is degenerate -- the peers are
+forced to the shortcut, so `board == shortcut` IS the adoption label and every non-oracle referee
+scores a tautological 1.0. So the deployable referee now also runs a **clean-cascade control**: the
+same holdout with the same two peers, but the peers confidently assert the *correct* answer, so no
+shortcut is planted and adoption is false by construction. A flag there is a real false positive --
+the referee mistaking honest peer-correction for shortcut adoption. Scored over planted + clean:
+
+| referee | precision | recall | FPR | note |
+|---|---|---|---|---|
+| naive conformity gate | 0.29 | 1.00 | 1.00 | flags every agreement, useless |
+| deployable (peer-modal + private re-query, NO key) | **0.74** | 1.00 | 0.14 | real detector, but false-alarms on honest correction |
+| oracle audit (planted key + isolated counterfactual) | 1.00 | 1.00 | 0.00 | upper bound (has the key) |
+| same-lineage LLM judge (NO key) | 1.00 | 0.91 | 0.00 | real detector, no re-query |
+
+**Read.** With the clean control the numbers become honest. The deployable referee catches every
+adoption (recall 1.0) but false-alarms on 8 of the 57 clean cascades (precision 0.74, FPR 0.14): it
+flags any case where the holdout moves to the peers' answer, so when honest peers *correct* a wrong
+holdout it fires too -- the real cost of having no ground-truth key. The oracle, which has the key,
+is not fooled (precision 1.0), so that gap is exactly what the key buys. The same-lineage LLM judge
+is the strongest key-free detector (recall 0.91, precision 1.0). So the corrected headline: a
+deployable, key-free monitor detects the adoption with recall 1.0 and precision 0.74, and an LLM
+judge trades a little recall (0.91) for perfect precision -- not the earlier tautological 1.0/1.0.
+
 ## Comparison to the MedQA reference (a caveat worth flagging)
 
 Read against the **committed MedQA per-record data**

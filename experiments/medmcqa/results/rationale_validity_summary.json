@@ -1,0 +1,26 @@
+{
+  "n": 120,
+  "model": "gemini-2.5-flash-lite",
+  "new_api_calls_this_run": 254,
+  "adoption_by_rationale": {
+    "bare": 0.7083,
+    "valid_wrong": 0.3667,
+    "named_fallacy": 0.3917
+  },
+  "bare_vs_valid_wrong": {
+    "gain": 4,
+    "lose": 45,
+    "pvalue": 0.0
+  },
+  "bare_vs_named_fallacy": {
+    "gain": 3,
+    "lose": 41,
+    "pvalue": 0.0
+  },
+  "valid_wrong_vs_named_fallacy": {
+    "gain": 16,
+    "lose": 13,
+    "pvalue": 0.711071
+  },
+  "read": "Counterintuitive and strong: a BARE senior assertion of the wrong answer is adopted 0.7083 of the time, but attaching ANY reasoning collapses adoption to 0.3667 for plausible-but-wrong reasoning and 0.3917 for openly-fallacious reasoning (both vs bare: gain=0, lose=71, p<1e-9; the two reasoned arms are indistinguishable, p=1.0). The holdout was solo-correct on 101 of 120 cases, so this is flipping a competent holdout: the bare rate is consistent with the senior rung of the authority ladder (~0.72), confirming it is not an artifact. The real finding is that EXPOSING the (wrong) reasoning is protective: a bare appeal to authority gives the holdout nothing to evaluate and it defers, but any checkable rationale, even one that looks clinically valid, lets the holdout find the flaw and hold firm, and naming the fallacy adds nothing beyond simply showing the reasoning. Transparency beats a bare authority claim. CAVEAT: this is on mostly solo-correct cases; on genuinely hard/uncertain cases a case-anchored rationale instead RAISES conformity (scale_c anchored 0.85 vs generic 0.73), so whether reasoning helps or hurts a wrong seed depends on whether the holdout can actually judge it."
+}

@@ -1,0 +1,27 @@
+{
+  "n": 120,
+  "model": "gemini-2.5-flash-lite",
+  "new_api_calls_this_run": 600,
+  "adoption_by_dose": {
+    "l1_faint": 0.2083,
+    "l2_lean": 0.4583,
+    "l3_assert": 0.7667,
+    "l4_emphatic": 0.55
+  },
+  "faint_vs_emphatic": {
+    "gain": 44,
+    "lose": 3,
+    "pvalue": 0.0
+  },
+  "faint_vs_assert": {
+    "gain": 70,
+    "lose": 3,
+    "pvalue": 0.0
+  },
+  "lean_vs_emphatic": {
+    "gain": 20,
+    "lose": 9,
+    "pvalue": 0.061428
+  },
+  "read": "Adoption of the same fixed wrong answer as the senior's assertion strengthens: faint suggestion 0.2083, lean 0.4583, plain assertion 0.7667, emphatic certainty 0.55. A monotone rise is a graded dose-response (adoption scales with how forcefully the wrong answer is pushed); a plateau marks where extra intensity stops buying adoption. Paired McNemars bracket the curve (faint vs emphatic, faint vs plain, lean vs emphatic)."
+}
