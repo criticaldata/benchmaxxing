@@ -64,11 +64,15 @@ class _Cache:
             raise SystemExit("Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key).")
         resp = self._gw.RetryBackend(self._gw.GeminiBackend(model=MODEL, api_key=self.key),
                                      tries=5, backoff=3.0).complete(prompt, image=pil, decoding={"temperature": 0})
+        # The append is deliberately OUTSIDE the lock. Holding a global lock across a file write
+        # serialises every worker behind it, and on synced or network storage (OneDrive) that write
+        # can block for seconds, which collapses throughput to roughly one call per append. The
+        # in-memory dict still needs the lock; a single short line appended in 'a' mode does not.
         with _lock:
             self.store[k] = resp
             self.calls += 1
-            with open(self.path, "a") as f:
-                f.write(json.dumps({"k": k, "resp": resp}) + "\n")
+        with open(self.path, "a") as f:
+            f.write(json.dumps({"k": k, "resp": resp}) + "\n")
         return parse_yesno(resp)
 
 
