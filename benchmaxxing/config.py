@@ -31,6 +31,9 @@ class Config:
         cue_set: cue-set version to inject.
         seed: master random seed for reproducibility.
         out_dir: directory where run artifacts are written.
+        show_rationale: whether the committee board shows each agent's reasoning under its vote
+            (#373). False is the committed answer-only board; it is recorded here rather than
+            left implicit so a run states which stimulus it used.
     """
 
     models: list[str] = field(default_factory=lambda: list(DEFAULT_MODELS))
@@ -39,6 +42,7 @@ class Config:
     cue_set: str = "v1"
     seed: int = 0
     out_dir: str = "runs"
+    show_rationale: bool = False
 
     @classmethod
     def from_dict(cls, data: Mapping[str, Any] | None) -> "Config":

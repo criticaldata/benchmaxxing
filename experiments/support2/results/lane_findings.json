@@ -1,0 +1,156 @@
+{
+  "lane": "support2 (tabular, Lane C)",
+  "issue": 297,
+  "model": "gemini-2.5-flash-lite",
+  "manifest": "experiments/support2/results/support2_manifest.csv",
+  "n_cases": 120,
+  "n_answered": 115,
+  "n_clean_refusals": 5,
+  "clean_accuracy_excl_abstentions": 0.713,
+  "total_api_calls": 2531,
+  "total_api_calls_breakdown": {
+    "deterministic_cache_entries": 2411,
+    "temperature_1_noise_draws": 120,
+    "note": "count the artifacts: 2411 lines in call_cache.jsonl plus 120 in noise_resamples.jsonl. An earlier figure of 2416 counted neither correctly and omitted the noise draws entirely, which are real paid calls."
+  },
+  "reproduces_from_cache_without_key": true,
+
+  "headline": "None of the three arms reproduces the shape the imaging and text lanes show. Solo is an underpowered null, the cascade is pinned at a ceiling that is a property of the model rather than the stimulus, and only one of the four referee rows is a measurement at all.",
+
+  "solo": {
+    "verdict": "null, underpowered rather than flat",
+    "comparator": "whitespace_null, a re-render changing one space per line and nothing else",
+    "comparator_flip_rate": 0.140,
+    "comparator_note": "temperature 0 on both sides, exactly like the cue contrasts, so the contrast is like for like",
+    "family_correction": {"method": "bh", "alpha": 0.05, "n_tests": 6, "n_surviving": 0},
+    "power_note": "achieved_power is the power of the paired McNemar and is computed against paired_effect = (gain - lose) / n_paired, not against above_null. above_null differences two marginal flip rates over two different denominators, so it is not the quantity the paired test estimates and it can exceed the discordant proportion, which made achieved_power raise ValueError and abort the run. Fixed; the power column below is the corrected one and is the only column that moved.",
+    "cues": [
+      {"cue": "unit_rescale", "flip": 0.234, "above_null": 0.093, "paired_effect": 0.090, "p": 0.035, "p_bh": 0.131, "power": 0.65},
+      {"cue": "field_order", "flip": 0.214, "above_null": 0.074, "paired_effect": 0.087, "p": 0.049, "p_bh": 0.131, "power": 0.59},
+      {"cue": "redundant_restatement", "flip": 0.204, "above_null": 0.064, "paired_effect": 0.069, "p": 0.065, "p_bh": 0.131, "power": 0.56},
+      {"cue": "administrative_hint", "flip": 0.164, "above_null": 0.023, "paired_effect": 0.049, "p": 0.302, "p_bh": 0.453, "power": 0.25},
+      {"cue": "precision_inflation", "flip": 0.142, "above_null": 0.001, "paired_effect": 0.019, "p": 0.791, "p_bh": 0.804, "power": 0.08},
+      {"cue": "missingness_recode", "flip": 0.150, "above_null": 0.010, "paired_effect": 0.019, "p": 0.804, "p_bh": 0.804, "power": 0.07}
+    ],
+    "read": "Two cues clear the null control nominally, none survives BH across the six-cue family. The power column is what makes this null useful rather than empty: precision_inflation and missingness_recode were tested at power 0.07 to 0.08 and administrative_hint at 0.25, so none of the three could have detected an effect and none is evidence of absence. The three cues that do separate sit at 0.56 to 0.65, short of 0.80. n=120 is too small for effects this size, which is a statement about the design and not about the model. A susceptibility claim here needs a larger cohort, not a re-analysis.",
+    "supersedes": "An earlier version of this lane reported a flat null by comparing each cue against a temperature-1.0 resample of the clean read. That measures decoding sensitivity, not surface-form sensitivity, and at 0.242 it was inflated twice over: once by the temperature mismatch and once by scoring refusals as flips. Every real effect vanished under it.",
+    "temperature_diagnostic": {
+      "rate": 0.153,
+      "temperature": 1.0,
+      "read": "Reported as a separate question and never subtracted from a cue. It lands close to the 0.140 whitespace control, which is what you would hope if both measure incidental instability."
+    }
+  },
+
+  "cascade": {
+    "verdict": "saturated, and the stimulus label was wrong",
+    "arms": [
+      {"arm": "wrong_seed", "n_valid_pairs": 115, "abstention_rate": 0.042, "n_eligible": 82, "isolated_adoption": 0.287, "shared_adoption": 1.0, "contagion": 0.713},
+      {"arm": "flip_seed", "n_valid_pairs": 115, "abstention_rate": 0.0, "n_eligible": 115, "isolated_adoption": 0.0, "shared_adoption": 1.0, "contagion": 1.0}
+    ],
+    "bug_found": {
+      "what": "run_board computed the peers' case-anchored rationale, attached it to the transcript, then dropped it. Only '- agent: answer' was ever rendered into the holdout's prompt.",
+      "consequence": "This arm measures adoption of bare votes with no reasoning attached, which is a stronger finding than the one that was described. The prior seed_style label claimed a case-anchored reasoned seed and was false. The stated-confidence knob could not have had any effect because it never reached the prompt.",
+      "fix": "show_rationale makes the choice explicit and defaults to False, which is what the committed cache contains, so the condition still replays. support2_cascade_strength varies it."
+    },
+    "read": "Adoption is exactly 1.000 in both arms, verified against raw response text and unchanged by the parser migration, so it is neither a parsing nor a rounding artifact. The polarity contrast cannot answer its own question: a confidently wrong peer pair recruits at 1.000 and a confidently right one also recruits at 1.000."
+  },
+
+  "strength_ladder": {
+    "verdict": "the ceiling is the model's, not the manipulation's",
+    "design": "full 2x3: peer count (two vs one) crossed with board style (answer_only, confident_rationale, hedged_rationale)",
+    "reference_arm": "two_answer_only",
+    "adoption_range": [0.976, 1.0],
+    "any_rung_below_reference": false,
+    "rungs": [
+      {"rung": "two_confident_rationale", "adoption_among_eligible": 0.976, "resisted_only_here": 2, "p_bh": 0.75},
+      {"rung": "two_answer_only", "adoption_among_eligible": 1.0, "note": "committed reference, replays at 0 new calls"},
+      {"rung": "two_hedged_rationale", "adoption_among_eligible": 1.0, "resisted_only_here": 0, "p_bh": null},
+      {"rung": "one_confident_rationale", "adoption_among_eligible": 0.976, "resisted_only_here": 2, "p_bh": 0.75},
+      {"rung": "one_answer_only", "adoption_among_eligible": 0.988, "resisted_only_here": 1, "p_bh": 1.0},
+      {"rung": "one_hedged_rationale", "adoption_among_eligible": 1.0, "resisted_only_here": 0, "p_bh": null}
+    ],
+    "read": "The obvious explanation for a ceiling is that the manipulation is too strong. It is not. At most 2 of 82 eligible holdouts ever resisted anywhere in the 2x3, no rung differs significantly from the reference after correction, and the ordering is not monotone: a confident argument recruits slightly less than a bare vote, and the nominally weakest rung, one hedged peer, still recruits every eligible holdout. Halving the peers and stripping their stated confidence to an explicit 'we could easily be wrong' does not move it. Getting a measurable effect size out of this lane needs a different holdout model, not a gentler stimulus."
+  },
+
+  "referee": {
+    "verdict": "one of the four rows is a measurement; two are definitional and one of those unconditionally so",
+    "n_valid_pairs": 115,
+    "abstention_rate": 0.042,
+    "n_adopted": 82,
+    "referees": [
+      {"referee": "naive_gate", "precision": 0.713, "recall": 1.0, "fpr": 1.0, "extra_calls": 0},
+      {"referee": "targeted", "precision": 0.713, "recall": 1.0, "fpr": 1.0, "extra_calls": 0},
+      {"referee": "deployable", "precision": 1.0, "recall": 1.0, "fpr": 0.0, "extra_calls": 115},
+      {"referee": "oracle_audit", "precision": 1.0, "recall": 1.0, "fpr": 0.0, "extra_calls": 115}
+    ],
+    "read": "Qualitatively this looks like the other lanes' oversight result: the monitor that buys one counterfactual re-query separates adoption from independent error, and the monitors that do not cannot, even holding the planted key. It is not evidence for that result. Four referees collapse to two tiers, and the two collapses have DIFFERENT causes, which an earlier version of this file ran together.",
+    "collapse_1_targeted_into_naive_gate": {
+      "cause": "these results",
+      "conditional": true,
+      "why": "targeted fires when board == planted, and at 100% adoption that is every patient, which is also what a pure agreement gate over two colluders does. Drop the adoption rate and the two separate again. The 0.713 precision is the 82/115 base rate of true adoption.",
+      "is_a_measurement": "yes: targeted vs naive_gate is the one contrast this arm actually measures, and it shows the planted key alone does not substitute for a counterfactual"
+    },
+    "collapse_2_deployable_into_oracle_audit": {
+      "cause": "the design, not the results",
+      "conditional": false,
+      "why": "the peers are scripted to assert `planted`, so inferred_shortcut == planted on every case and the predicate `board == inferred and board != bare` reduces algebraically to `board == planted and bare != planted`, which IS the `adopted` label it is scored against. Precision 1.0 with FPR 0.0 is forced at every adoption rate, not only at saturation.",
+      "is_a_measurement": "no. Do not cite this row as evidence that a keyless monitor separates adoption from independent error; it cannot record a false positive or a miss whatever the model does.",
+      "evidence": "support2_referee_summary.json.deployable_reduces_to_ground_truth records both halves of the reduction from the rows, and tests/test_support2_experiments.py::test_deployable_referee_is_degenerate_by_construction pins it. Confirmed independently by @sebasmos with a randomised holdout at 4/6 adoption, far off saturation, which still reported fp=0 and fn=0.",
+      "how_to_make_it_measure": "peers whose asserted answer is not the planted one on some fraction of cases",
+      "supersedes": "An earlier version of this file attributed this collapse to the 100% adoption ceiling. That was wrong: the reduction is unconditional. The same pattern needs checking wherever else a keyless referee infers the shortcut from peers scripted to assert it, including the text lane."
+    }
+  },
+
+  "parser": {
+    "uses": "benchmaxxing.extract.parse_mcq_choice (#102)",
+    "non_bare_letter_reply_rate": 0.26,
+    "reply_shapes": {"bare_letter": 0.737, "latex_answer_box": 0.133, "prose": 0.130},
+    "options_passed": "full option text, not bare letters",
+    "why": "parse_mcq_choice runs its answer-declaration patterns first regardless of branch, so full text gets the union of all three paths: declarations including \\boxed{\\text{B. ...}}, a quoted option, and a trailing bare letter. Passing letters, as the MIMIC-CXR text lane does, would miss the prose replies that name an option without giving a letter.",
+    "migration_evidence": "The audit that justified the migration compared the previous local parser against the centralized one over the whole cache: 96.9% agreement, clean accuracy identical, every flip rate moving down 0.04 to 0.08 once abstentions stopped being scored as flips, and the cascade ceiling unchanged. That script is removed now that the lane uses the centralized parser directly and the comparison is vacuous.",
+    "abstention_policy": "Refusals are censored everywhere, never scored. Every rate carries n_valid_pairs and abstention_rate alongside, matching experiments/mimic_cxr_text/refusal_aware_reanalysis.py."
+  },
+
+  "reproduction": {
+    "call_cache": "results/call_cache.jsonl, every deterministic (model, prompt) response; all four runners replay from it with no key",
+    "noise_log": "results/noise_resamples.jsonl, the temperature-1.0 draws behind the temperature diagnostic, keyed on (model, temperature, prompt) and replayed by default",
+    "why_separate_files": "A temperature-1.0 response must never be served to a caller that asked for temperature 0. A test pins this. Before the noise log existed the floor was redrawn every run and the committed number could not be reproduced, the same class of problem #365 flagged for MedQA.",
+    "refresh": "--refresh-noise draws fresh samples instead of replaying",
+    "audit": "check new_api_calls_this_run in each summary to confirm what was paid for versus served from cache"
+  },
+
+  "open_followups": [
+    "A larger cohort for solo: at n=120 the three informative cues run at power 0.56 to 0.65 and the other three at 0.07 to 0.25.",
+    "A different holdout model for the cascade, since a weaker manipulation demonstrably does not lift the ceiling.",
+    "The concurrency hardening flagged in #354 for the imaging, referee and medqa caches, still unfixed.",
+    "A keyless-referee design whose peers do not always assert the planted answer, so the deployable arm can measure something. Until then the row is definitional in every lane that shares the pattern.",
+    "`ruff>=0.5` is unpinned in pyproject.toml, and the default rule set widened substantially between 0.5 and 0.16. 'ruff clean' is therefore not a reproducible claim across contributors: the same tree is clean on one version and reports I001 and 183 other findings on another. Pinning it is a repo-wide change and belongs in its own PR."
+  ],
+
+  "dropped_rationale_pattern_in_other_lanes": {
+    "status": "fixed repo-wide in #373",
+    "credit": "@sebasmos, who answered #369's open question by finding all seven, then audited the whole repo in #373 and found 16 renderers",
+    "pattern": "the runner builds the peers' rationale and attaches it to the transcript, then renders the holdout's prompt as `[f\"- {t.agent_id}: {t.answer}\" for t in view.visible_turns if t.answer is not None]`, which drops it. The docstring promises a case-anchored rationale that never reaches the model.",
+    "runners": [
+      "experiments/referee/referee_judge.py",
+      "experiments/referee/referee_deployable.py",
+      "experiments/referee/referee_threshold.py",
+      "experiments/referee/referee_requery_design.py",
+      "experiments/mimic_cxr_text/referee_judge.py",
+      "experiments/mimic_cxr_text/referee_deployable.py",
+      "experiments/medqa/seed_timing.py",
+      "experiments/medqa/reproduce.py",
+      "experiments/medqa/true_peer_control.py",
+      "experiments/medqa/majority_pressure.py",
+      "experiments/medqa/unanimity_break.py",
+      "experiments/medqa/hierarchy_dominance.py",
+      "experiments/medqa/hierarchy_temp.py",
+      "experiments/medqa/orchestrator_failure.py",
+      "experiments/medqa/live_peer_organic.py",
+      "experiments/cascade/multi_round.py",
+      "benchmaxxing/runner.py (CommitteeAgent, the core cascade stage, which letters the votes and dropped content the same way)"
+    ],
+    "fix": "`blackboard.render_board` is now the single renderer, carrying the same `show_rationale` knob this lane already had and defaulting to the committed answer-only board. The default was checked byte-for-byte against every runner's previous inline loop, so each committed cache still replays at zero calls; each runner also takes `--show-rationale` to put the argument on the board.",
+    "what_does_not_change": "no number in any lane. The stimulus was always what the cache holds and the default rendering is unchanged; only the labels claiming a reasoned seed were wrong, and #373 corrects those in the runners' docstrings."
+  }
+}

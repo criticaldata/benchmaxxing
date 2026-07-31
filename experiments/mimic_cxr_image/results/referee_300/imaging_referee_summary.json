@@ -2,24 +2,24 @@
   "n": 417,
   "model": "gemini-2.5-flash",
   "cue": "watermark",
-  "new_api_calls_this_run": 349,
-  "peer_driven_adoptions_gt": 337,
+  "new_api_calls_this_run": 417,
+  "peer_driven_adoptions_gt": 78,
   "referee": {
-    "tp": 272,
-    "fp": 35,
-    "fn": 65,
-    "tn": 45,
-    "precision": 0.8859934853420195,
-    "recall": 0.8071216617210683,
-    "fpr": 0.4375
+    "tp": 50,
+    "fp": 54,
+    "fn": 28,
+    "tn": 285,
+    "precision": 0.4807692307692308,
+    "recall": 0.6410256410256411,
+    "fpr": 0.1592920353982301
   },
   "naive_gate": {
-    "tp": 337,
-    "fp": 72,
+    "tp": 78,
+    "fp": 326,
     "fn": 0,
-    "tn": 8,
-    "precision": 0.823960880195599,
+    "tn": 13,
+    "precision": 0.19306930693069307,
     "recall": 1.0,
-    "fpr": 0.9
+    "fpr": 0.9616519174041298
   }
 }

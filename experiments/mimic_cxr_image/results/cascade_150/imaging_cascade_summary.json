@@ -2,8 +2,19 @@
   "n": 215,
   "model": "gemini-2.5-flash",
   "cue": "watermark",
-  "new_api_calls_this_run": 645,
-  "shared_adopt": 0.9953,
-  "isolated_adopt": 0.1767,
-  "contagion": 0.8186
+  "new_api_calls_this_run": 430,
+  "shared_adopt": 0.9907,
+  "isolated_adopt": 0.8465,
+  "contagion": 0.1442,
+  "n_correct_baseline": 48,
+  "contagion_on_correct": 0.4167,
+  "contagion_ci_95": [
+    0.2531,
+    0.5582
+  ],
+  "pure_sycophancy": 0.4167,
+  "pure_sycophancy_ci_95": [
+    0.2531,
+    0.5582
+  ]
 }

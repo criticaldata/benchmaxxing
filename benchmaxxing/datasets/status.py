@@ -91,11 +91,15 @@ DATASET_STATUS: dict[str, DatasetStatus] = {
         lane="tabular",
         staged="open download, not staged locally",
         adapter="coded loader",
-        solo="pending",
-        cascade="pending",
-        plausibility="pending",
-        referee="pending",
-        blocker="implementation only, the real run is tracked on #297",
+        solo="done",
+        cascade="done",
+        # A binary outcome has exactly one wrong option, so there is no plausible-vs-implausible
+        # distractor gradient to vary. Structurally absent, not merely unrun.
+        plausibility="not applicable",
+        referee="done",
+        # The runs landed, but solo is a null and the cascade is saturated. The lane README carries
+        # the caveats; this field only tracks whether an arm was run.
+        blocker="run on n=120 (#297); solo null, cascade at ceiling, see the lane README",
     ),
     "ehr": DatasetStatus(
         lane="tabular",

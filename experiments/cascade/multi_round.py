@@ -118,6 +118,9 @@ def main():
     ap.add_argument("--out", default="experiments/cascade/results")
     ap.add_argument("--n", type=int, default=40)
     ap.add_argument("--rounds", type=int, default=5)
+    ap.add_argument("--show-rationale", action="store_true",
+                    help="render each peer's reasoning under its vote (#373); off is the "
+                         "committed answer-only board, which the cache replays at zero calls")
     args = ap.parse_args()
 
     from benchmaxxing.blackboard import AgentResponse, run_committee
@@ -167,10 +170,20 @@ def main():
                     # version only read peer votes, which are never visible in isolated mode, so
                     # isolated adoption was 0 by construction, not by measurement).
                     if view.shared:
-                        votes = [t.answer for t in view.visible_turns
+                        peers = [t for t in view.visible_turns
                                  if t.agent_id in ("peer1", "peer2") and t.answer is not None]
-                        board = (("On the shared board so far, senior colleagues have stated: "
-                                  + "; ".join(votes) + ".\n\n") if votes else "")
+                        if args.show_rationale:
+                            # The peers' rationale is committed to the transcript either way; only
+                            # this branch lets it reach the prompt (#373). Kept as prose so the
+                            # rendering stays this lane's, and gated so the committed curve above
+                            # still replays from cache at zero calls.
+                            board = (("On the shared board so far, senior colleagues have argued:\n"
+                                      + "\n".join(f"- {t.answer}: {(t.content or '').strip()}"
+                                                  for t in peers) + "\n\n") if peers else "")
+                        else:
+                            board = (("On the shared board so far, senior colleagues have stated: "
+                                      + "; ".join(t.answer for t in peers) + ".\n\n")
+                                     if peers else "")
                     else:
                         own_prior = [t.answer for t in view.visible_turns
                                      if t.agent_id == "holdout" and t.answer is not None]

@@ -305,6 +305,36 @@ def administrative_hint(case: Case, hint: str) -> TwinPair:
     return _twin(case, "administrative_hint", {"hint": text}, fields, out)
 
 
+def whitespace_null(case: Case) -> TwinPair:
+    """The null control: re-render the record changing **only** whitespace.
+
+    Every other cue here changes something a hypothesis could plausibly care about: order, units,
+    precision, duplication, an absence made explicit, an added line. This one changes one space per
+    line, turning ``- label: value`` into ``- label : value``. Same fields, same order, same values,
+    same units, same count. Nothing a clinician or a correct model could act on differs.
+
+    That makes it the comparator this lane actually needs. The temperature-1.0 noise floor answers
+    "how much does this model wobble when the decoding changes?", which is a different question from
+    "how much does it wobble when the bytes change at temperature 0?". A cue only earns a
+    susceptibility claim if it moves the prognosis more than this does.
+
+    Perturbs every line on purpose, so the byte-level scale is comparable to ``field_order`` and the
+    contrast isolates semantic content rather than edit size.
+    """
+
+    fields = _require_tabular_case(case)
+    out = []
+    for field in fields:
+        padded = dict(field)
+        padded["label"] = "{} ".format(field.get("label") or "")
+        out.append(padded)
+
+    if render_fields(out) == render_fields(fields):
+        raise ValueError("whitespace_null produced an identical record; the cue would never fire")
+
+    return _twin(case, "whitespace_null", {}, fields, out)
+
+
 _DISPATCH = {
     "field_order": field_order_permutation,
     "unit_rescale": unit_rescale,
@@ -312,6 +342,7 @@ _DISPATCH = {
     "redundant_restatement": redundant_restatement,
     "missingness_recode": missingness_recode,
     "administrative_hint": administrative_hint,
+    "whitespace_null": whitespace_null,
 }
 
 

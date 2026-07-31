@@ -32,7 +32,9 @@ points squarely to it"). Note this rationale is recorded on the seeded turn's `c
 provenance/transcript-reading purposes, but - matching `referee_deployable.py`'s own board
 construction exactly - is NOT itself surfaced in the text the holdout reads; the holdout's board
 only lists "peer_id: answered X" for each visible peer, the same bare-agreement signal
-`referee_deployable.py` uses. An early draft of this script wrongly measured the FLASH holdout
+`referee_deployable.py` uses. `--show-rationale` (#373) is the knob that surfaces it, at the cost
+of a fresh cache; off is the committed condition described here. An early draft of this script
+wrongly measured the FLASH holdout
 (the resistant tier) instead of flash-lite (the susceptible one) and found a near-null result at
 both k=1 and k=2 - not a genuine majority-pressure finding, just a repeat of the already-known
 "flash resists, regardless of peer count" result at the wrong measurement point. Fixed to match
@@ -54,7 +56,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from benchmaxxing import gateway
-from benchmaxxing.blackboard import AgentResponse, run_committee
+from benchmaxxing.blackboard import AgentResponse, render_board, run_committee
 from benchmaxxing.data import load_cases
 from benchmaxxing.roster import build_committee
 from benchmaxxing.schema import Condition, ModelSpec
@@ -116,6 +118,9 @@ def main():
     ap.add_argument("--cache", default="experiments/medqa/results/majority_pressure_cache.jsonl")
     ap.add_argument("--out", default="experiments/medqa/results")
     ap.add_argument("--n", type=int, default=25)
+    ap.add_argument("--show-rationale", action="store_true",
+                    help="render each peer's reasoning under its vote (#373); off is the "
+                         "committed answer-only board, which the cache replays at zero calls")
     args = ap.parse_args()
 
     out = Path(args.out)
@@ -141,9 +146,9 @@ def main():
             def respond(self, view):
                 payload = {"question": getattr(view.case, "question", "") or "",
                            "options": getattr(view.case, "options", ()) or ()}
-                lines = [f"- {t.agent_id} answered: {t.answer}"
-                         for t in view.visible_turns if t.answer is not None]
-                board = ("Other panelists so far:\n" + "\n".join(lines) + "\n\n") if lines else ""
+                board = render_board(view.visible_turns, "Other panelists so far:",
+                                     verb=" answered: ", show_rationale=args.show_rationale,
+                                     self_id=view.agent_id)
                 text = cache.complete(backend_model, _mcq_prompt(payload, board))
                 return AgentResponse(content=text[:150],
                                      answer=parse_legacy_string(text, list(payload["options"])))

@@ -1,20 +1,30 @@
-"""SUPPORT2 solo shortcut susceptibility + noise floor (tabular lane, Lane C).
+"""SUPPORT2 solo shortcut susceptibility (tabular lane, Lane C).
 
 For each SUPPORT2 patient, ask the binary prognostic question on the CLEAN record and on each
 CONTAMINATED record (one answer-preserving tabular cue injected: field order, unit rescale,
 precision inflation, redundant restatement, missingness recode, administrative hint). Five of the
-six cues are information-identical, so the contaminated record states exactly the same clinical
-facts; a change in the prognosis is shortcut evidence, not evidence updating.
+six are information-identical, so the contaminated record states exactly the same clinical facts.
 
-A raw flip rate overstates susceptibility, because a model is not perfectly self-consistent even on
-an unchanged input. The noise floor is computed in-script: each clean read is resampled once at
-temperature > 0 with the cache bypassed, so the floor is clean-read self-inconsistency. The honest
-susceptibility is flip-above-noise (per-cue flip rate minus the floor), tested per cue with a
-paired McNemar against that resample.
+**What a flip has to beat.** A raw flip rate overstates susceptibility, because a model does not
+answer identically under any perturbation whatsoever. This runner reports two separate comparators
+and does not conflate them:
 
-Reproduction: every deterministic call is cached in ``--cache`` keyed by (model, prompt), so the
-flip pass reproduces the committed summary with zero API calls and no key. The noise floor is the
-one uncached step; it needs ``GEMINI_API_KEY`` and is recorded as None (skipped) without one.
+``whitespace_null``
+    The primary control, and the one a susceptibility claim must clear. Re-renders the record
+    changing one space per line: same fields, same order, same values, same units. Deterministic
+    temperature 0 on both sides, exactly like the cue contrasts, so the comparison is like for like.
+    ``flip_above_null`` and ``vs_null_mcnemar`` are the headline numbers.
+
+``noise_floor``
+    A secondary diagnostic answering a *different* question: how much the answer moves when the
+    decoding temperature changes rather than when the bytes change. It resamples the clean read at
+    temperature > 0, so it is not comparable to a temperature-0 cue contrast and must not be
+    subtracted from one. Reported because it is informative about the model, labelled because the
+    earlier version of this lane used it as the control and thereby understated every cue.
+
+Reproduction: every deterministic call is cached in ``--cache`` keyed by (model, prompt). The
+temperature > 0 resamples go to a separate ``--noise-log`` and are replayed from it, so a committed
+noise floor reproduces instead of being redrawn. ``--refresh-noise`` draws fresh samples.
 """
 from __future__ import annotations
 
@@ -24,42 +34,69 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from benchmaxxing.cues.tabular import INFORMATION_IDENTICAL, build_tabular_twin
-from benchmaxxing.stats import mcnemar
+from benchmaxxing.stats import achieved_power, mcnemar, multiple_comparison
 from experiments.support2._common import (
     MODEL,
     Cache,
     api_key,
     load_manifest_cases,
     mcq_prompt,
-    parse_choice,
+    parse_answer,
 )
 
 ADMIN_HINT = "insurance class: private; chart flagged for utilization review"
+NULL_CUE = "whitespace_null"
 CUES = list(INFORMATION_IDENTICAL) + ["administrative_hint"]
+ALL_CUES = CUES + [NULL_CUE]
 CUE_PARAMS = {"administrative_hint": {"hint": ADMIN_HINT}}
 
 
+def _rate(numerator, denominator):
+    return (numerator / denominator) if denominator else None
+
+
+def _cue_stats(rows, cue):
+    """Flip rate for one cue over the pairs where neither side abstained."""
+    seen = [r for r in rows if f"{cue}_flip" in r or f"{cue}_abstained" in r]
+    valid = [r for r in rows if f"{cue}_flip" in r]
+    flips = sum(r[f"{cue}_flip"] for r in valid)
+    return {
+        "flip_rate_excl_abstentions": _rate(flips, len(valid)),
+        "n_valid_pairs": len(valid),
+        "abstention_rate": _rate(len(seen) - len(valid), len(seen)),
+        "n_skipped": sum(1 for r in rows if f"{cue}_skipped" in r),
+    }
+
+
 def main():
-    ap = argparse.ArgumentParser(description="SUPPORT2 solo shortcut susceptibility + noise floor.")
+    ap = argparse.ArgumentParser(description="SUPPORT2 solo shortcut susceptibility.")
     ap.add_argument("--manifest", required=True, help="SUPPORT2 manifest (support2 adapter)")
     ap.add_argument("--cache", default="experiments/support2/results/call_cache.jsonl")
+    ap.add_argument("--noise-log", default="experiments/support2/results/noise_resamples.jsonl")
     ap.add_argument("--out", default="experiments/support2/results")
     ap.add_argument("--n", type=int, default=120)
     ap.add_argument("--noise-temperature", type=float, default=1.0)
+    ap.add_argument("--refresh-noise", action="store_true",
+                    help="draw fresh temperature>0 samples instead of replaying the noise log")
     args = ap.parse_args()
 
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
-    cache = Cache(args.cache, api_key())
+    cache = Cache(args.cache, api_key(), noise_path=args.noise_log,
+                  refresh_noise=args.refresh_noise)
     cases = load_manifest_cases(args.manifest, args.n)
 
     def run_one(case):
         options = list(case.options)
         truth = options[case.answer_index]
-        clean = parse_choice(cache.complete(mcq_prompt(case.question, options)), options)
-        row = {"case_id": case.case_id, "clean": clean, "ground_truth": truth,
-               "clean_correct": int(clean == truth)}
-        for cue in CUES:
+        clean = parse_answer(cache.complete(mcq_prompt(case.question, options)), options)
+        row = {"case_id": case.case_id, "clean": clean, "ground_truth": truth}
+        if clean is None:
+            # No usable baseline, so no pair on this record is scorable. Censor rather than guess.
+            row["clean_abstained"] = 1
+            return row
+        row["clean_correct"] = int(clean == truth)
+        for cue in ALL_CUES:
             try:
                 twin = build_tabular_twin(case, cue, **CUE_PARAMS.get(cue, {}))
             except ValueError as exc:
@@ -68,11 +105,14 @@ def main():
                 row[f"{cue}_skipped"] = str(exc)[:80]
                 continue
             payload = twin.contaminated
-            answer = parse_choice(
+            answer = parse_answer(
                 cache.complete(mcq_prompt(payload["question"], list(payload["options"]))), options
             )
             row[cue] = answer
-            row[f"{cue}_flip"] = int(answer != clean)
+            if answer is None:
+                row[f"{cue}_abstained"] = 1
+            else:
+                row[f"{cue}_flip"] = int(answer != clean)
         return row
 
     rows = []
@@ -81,71 +121,130 @@ def main():
             rows.append(fut.result())
     rows.sort(key=lambda r: r["case_id"])
 
+    scorable = [r for r in rows if not r.get("clean_abstained")]
     summary = {
         "n": len(rows),
         "model": MODEL,
-        "clean_accuracy": (sum(r["clean_correct"] for r in rows) / len(rows)) if rows else None,
+        "n_clean_abstained": sum(1 for r in rows if r.get("clean_abstained")),
+        "clean_accuracy_excl_abstentions": _rate(
+            sum(r["clean_correct"] for r in scorable), len(scorable)
+        ),
         "information_identical_cues": list(INFORMATION_IDENTICAL),
-        "cues": {},
+        "null_control": NULL_CUE,
+        "cues": {cue: _cue_stats(scorable, cue) for cue in CUES},
+        "null_control_stats": _cue_stats(scorable, NULL_CUE),
     }
+
+    # Primary contrast: each cue against the temperature-0 null control, paired per patient over the
+    # records where both sides produced a usable answer.
+    null_rate = summary["null_control_stats"]["flip_rate_excl_abstentions"]
     for cue in CUES:
-        flips = [r[f"{cue}_flip"] for r in rows if f"{cue}_flip" in r]
-        summary["cues"][cue] = {
-            "flip_rate": (sum(flips) / len(flips)) if flips else None,
-            "n": len(flips),
-            "n_skipped": sum(1 for r in rows if f"{cue}_skipped" in r),
+        rate = summary["cues"][cue]["flip_rate_excl_abstentions"]
+        summary["cues"][cue]["flip_above_null"] = (
+            (rate - null_rate) if (rate is not None and null_rate is not None) else None
+        )
+        paired = [r for r in scorable if f"{cue}_flip" in r and f"{NULL_CUE}_flip" in r]
+        gain = sum(1 for r in paired if r[f"{cue}_flip"] and not r[f"{NULL_CUE}_flip"])
+        lose = sum(1 for r in paired if r[f"{NULL_CUE}_flip"] and not r[f"{cue}_flip"])
+        summary["cues"][cue]["vs_null_mcnemar"] = {
+            "gain": gain, "lose": lose, "n_paired": len(paired),
+            "pvalue": round(mcnemar(gain, lose).pvalue, 6) if (gain + lose) else None,
         }
 
-    # Noise floor: resample each CLEAN read once at temperature > 0 with the cache bypassed, so the
-    # floor measures self-inconsistency rather than any cue effect. Skipped without a key so the
-    # deterministic flip pass above still reproduces.
-    if cache.key:
+    # Six cue-vs-null tests are one family, so a nominal 0.05 is not a result on its own. Corrected
+    # here rather than left to a reader, and paired with the power each test actually had, so a null
+    # is not mistaken for evidence of absence.
+    ordered = list(CUES)
+    pvalues = [summary["cues"][c]["vs_null_mcnemar"]["pvalue"] for c in ordered]
+    if all(p is not None for p in pvalues):
+        corrected = multiple_comparison(pvalues, method="bh")
+        for cue, adjusted, reject in zip(ordered, corrected.pvalues_adjusted, corrected.reject):
+            stats = summary["cues"][cue]["vs_null_mcnemar"]
+            stats["pvalue_bh_adjusted"] = round(float(adjusted), 6)
+            stats["survives_bh"] = bool(reject)
+            # Power for the paired test that was actually run, so both arguments come from the same
+            # discordant pairs. flip_above_null is the wrong effect to feed here: it is a difference
+            # of two marginal rates over two different denominators, so it can exceed the discordant
+            # proportion, and achieved_power rejects |effect| > psi with a ValueError that would take
+            # the whole run down after the calls were already paid for.
+            paired = stats["n_paired"]
+            discordant = (stats["gain"] + stats["lose"]) / paired if paired else 0.0
+            effect = (stats["gain"] - stats["lose"]) / paired if paired else 0.0
+            stats["paired_effect"] = round(effect, 6)
+            stats["achieved_power"] = (
+                round(achieved_power(paired, discordant, effect), 4)
+                if paired and discordant and effect else None
+            )
+        summary["family_correction"] = {
+            "method": "bh",
+            "alpha": 0.05,
+            "n_tests": len(pvalues),
+            "n_surviving": int(sum(corrected.reject)),
+            "note": (
+                "one family: each cue against the whitespace_null control. The administrative_hint "
+                "cue is included because it is tested against the same control, even though it is "
+                "the one cue that adds information rather than restating it."
+            ),
+        }
+
+    # Secondary diagnostic: clean-read self-inconsistency under a temperature change. A different
+    # question from the cue contrasts, so it is reported but never subtracted from them.
+    if cache.key or cache.noise_store:
         def noise(case):
             options = list(case.options)
-            prompt = mcq_prompt(case.question, options)
-            resampled = cache.complete_uncached(prompt, args.noise_temperature)
-            return case.case_id, parse_choice(resampled, options)
+            resampled = cache.resample(mcq_prompt(case.question, options), args.noise_temperature)
+            return case.case_id, parse_answer(resampled, options)
 
-        resample_by_id = {}
-        with ThreadPoolExecutor(max_workers=4) as ex:
-            for fut in as_completed([ex.submit(noise, c) for c in cases]):
-                case_id, answer = fut.result()
-                resample_by_id[case_id] = answer
+        resample_by_id, noise_error = {}, None
+        try:
+            with ThreadPoolExecutor(max_workers=4) as ex:
+                for fut in as_completed([ex.submit(noise, c) for c in cases]):
+                    case_id, answer = fut.result()
+                    resample_by_id[case_id] = answer
+        except SystemExit as exc:
+            # A partial noise log with no key can serve some records and not others. The floor is a
+            # secondary diagnostic, so it degrades to "skipped" rather than taking the run down and
+            # losing the cue results, which need no key at all.
+            noise_error = str(exc)
+            resample_by_id = {}
         for row in rows:
             row["clean_resample"] = resample_by_id.get(row["case_id"])
-            row["noise_flip"] = int(row["clean_resample"] != row["clean"])
+            if row.get("clean") is not None and row["clean_resample"] is not None:
+                row["noise_flip"] = int(row["clean_resample"] != row["clean"])
 
-        noise_flips = [r["noise_flip"] for r in rows]
-        noise_floor = (sum(noise_flips) / len(noise_flips)) if noise_flips else None
-        summary["noise_floor"] = noise_floor
-        summary["noise_floor_n"] = len(noise_flips)
-        summary["noise_temperature"] = args.noise_temperature
-        for cue in CUES:
-            paired = [r for r in rows if f"{cue}_flip" in r]
-            rate = summary["cues"][cue]["flip_rate"]
-            summary["cues"][cue]["flip_above_noise"] = (
-                (rate - noise_floor) if (rate is not None and noise_floor is not None) else None
-            )
-            gain = sum(1 for r in paired if r[f"{cue}_flip"] and not r["noise_flip"])
-            lose = sum(1 for r in paired if r["noise_flip"] and not r[f"{cue}_flip"])
-            summary["cues"][cue]["vs_noise_mcnemar"] = {
-                "gain": gain, "lose": lose,
-                "pvalue": round(mcnemar(gain, lose).pvalue, 6) if (gain + lose) else None,
-            }
+        noise_valid = [r for r in rows if "noise_flip" in r]
+        summary["noise_floor_temperature_change"] = {
+            "rate": _rate(sum(r["noise_flip"] for r in noise_valid), len(noise_valid)),
+            "n_valid_pairs": len(noise_valid),
+            "temperature": args.noise_temperature,
+            # Reports what happened, not what was asked for. Keying this off --refresh-noise made a
+            # fresh 120-call draw claim it had been replayed.
+            "replayed_from_log": cache.noise_calls == 0,
+            "note": (
+                "clean read resampled at temperature>0 against a temperature-0 baseline. This "
+                "measures decoding sensitivity, NOT surface-form sensitivity, so it is not "
+                "comparable to the cue contrasts and must not be subtracted from them. Use "
+                "null_control_stats for that."
+            ),
+        }
+        if noise_error:
+            summary["noise_floor_temperature_change"]["skipped_reason"] = noise_error[:200]
     else:
-        summary["noise_floor"] = None
-        summary["noise_floor_note"] = (
-            "skipped: no key (the noise floor is an uncached temperature>0 resample)"
-        )
+        summary["noise_floor_temperature_change"] = {
+            "rate": None,
+            "note": "skipped: no key and no committed noise log to replay",
+        }
 
     summary["new_api_calls_this_run"] = cache.calls
+    summary["new_noise_calls_this_run"] = cache.noise_calls
     summary["read"] = (
-        "Per-cue flip rate is the fraction of patients whose prognosis changed when the record was "
-        "re-rendered without changing what it says. The noise floor is the same model disagreeing "
-        "with itself on an unchanged record at temperature>0; flip_above_noise subtracts it and "
-        "vs_noise_mcnemar tests the same contrast pairwise. Only information_identical_cues "
-        "support the strong claim (identical facts, different surface form); administrative_hint "
-        "adds a line to the record and is the weaker comparator."
+        "flip_rate_excl_abstentions is the fraction of patients whose prognosis changed when the "
+        "record was re-rendered, over the pairs where the model gave a usable answer both times. "
+        "A cue earns a susceptibility claim only if it clears the whitespace_null control, which "
+        "changes bytes but nothing semantic: that is flip_above_null and vs_null_mcnemar. "
+        "achieved_power is the power of that paired McNemar and is computed against paired_effect, "
+        "(gain - lose) / n_paired, not against flip_above_null: the latter differences two marginal "
+        "rates over two different denominators and is not the quantity the paired test estimates."
     )
     (out / "support2_solo.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows))
     (out / "support2_solo_summary.json").write_text(json.dumps(summary, indent=2))

@@ -10,8 +10,14 @@ answer X with an anchored rationale; the flash-lite holdout is a real agent. We 
 
 If pre-committing before exposure lowers adoption, speaking order is itself a cheap structural
 mitigation (let the susceptible agent commit first); if the holdout revises to X anyway in round 2,
-the cascade overrides a pre-commitment. Board surfaces peer answers. X is a distractor differing
-from ground truth and the holdout's own bare answer. Committee reads are cached; keyless on re-run.
+the cascade overrides a pre-commitment. X is a distractor differing from ground truth and the
+holdout's own bare answer. Committee reads are cached; keyless on re-run.
+
+The board surfaces peer ANSWERS. The anchored rationale is written onto the seeded turns' ``content``
+and did not reach the holdout's prompt until ``--show-rationale`` (#373), so the committed timing
+result is about exposure to bare votes at different speaking slots. That is what the comparison
+needs, since the two arms differ only in order; pass the flag to run the same contrast with the
+peers' argument on the board, which costs a fresh cache.
 """
 from __future__ import annotations
 from benchmaxxing.extract import parse_legacy_string
@@ -26,7 +32,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from benchmaxxing import gateway
-from benchmaxxing.blackboard import AgentResponse, run_committee
+from benchmaxxing.blackboard import AgentResponse, render_board, run_committee
 from benchmaxxing.data import load_cases
 from benchmaxxing.roster import build_committee
 from benchmaxxing.schema import Condition, ModelSpec
@@ -84,6 +90,9 @@ def main():
     ap.add_argument("--cache", default="experiments/medqa/results/seed_timing_cache.jsonl")
     ap.add_argument("--out", default="experiments/medqa/results")
     ap.add_argument("--n", type=int, default=120)
+    ap.add_argument("--show-rationale", action="store_true",
+                    help="render each peer's reasoning under its vote (#373); off is the "
+                         "committed answer-only board, which the cache replays at zero calls")
     args = ap.parse_args()
 
     out = Path(args.out)
@@ -116,8 +125,9 @@ def main():
 
             class _Hold:
                 def respond(self, view):
-                    lines = [f"- {t.agent_id}: {t.answer}" for t in view.visible_turns if t.answer is not None]
-                    board = ("Senior colleagues on the panel have said:\n" + "\n".join(lines) + "\n\n") if lines else ""
+                    board = render_board(view.visible_turns, "Senior colleagues on the panel have said:",
+                                         show_rationale=args.show_rationale,
+                                         self_id=view.agent_id)
                     p, _ = _mcq(case, board)
                     t = cache.complete(HOLDOUT, p)
                     return AgentResponse(content=t[:120], answer=parse_legacy_string(t, opts), confidence=0.6)

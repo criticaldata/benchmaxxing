@@ -9,7 +9,9 @@ cascade work). Two adaptations, both the recurring report/question fix from #336
 1. ``_mcq`` renders ``case.report`` as "Clinical context: ..." ahead of the question.
 2. The colluding peers' case-anchored rationale detail is pulled from the FINDINGS/IMPRESSION
    body of ``case.report`` (reusing ``push_c.py``'s ``_findings_text``), not the report's leading
-   words (MIMIC-CXR reports open with fixed header boilerplate; see #348).
+   words (MIMIC-CXR reports open with fixed header boilerplate; see #348). That detail lands on the
+   peer turns' ``content``; it did not reach the holdout's own prompt until ``--show-rationale``
+   (#373), so the committed numbers here are adoption of bare peer agreement.
 
 Everything else (the naive/deployable/oracle referee definitions, precision/recall/FPR scoring
 against the adoption ground truth) is unchanged; see the MedQA original's docstring for the method.
@@ -27,7 +29,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from benchmaxxing import gateway
-from benchmaxxing.blackboard import AgentResponse, run_committee
+from benchmaxxing.blackboard import AgentResponse, render_board, run_committee
 from benchmaxxing.data import load_cases
 from benchmaxxing.referee import gate_decision
 from benchmaxxing.roster import build_committee
@@ -121,6 +123,9 @@ def main():
     ap.add_argument("--cache", default="experiments/mimic_cxr_text/results/referee_call_cache.jsonl")
     ap.add_argument("--out", default="experiments/mimic_cxr_text/results")
     ap.add_argument("--n", type=int, default=40)
+    ap.add_argument("--show-rationale", action="store_true",
+                    help="render each peer's reasoning under its vote (#373); off is the "
+                         "committed answer-only board, which the cache replays at zero calls")
     args = ap.parse_args()
 
     out = Path(args.out)
@@ -154,8 +159,9 @@ def main():
 
             class _Hold:
                 def respond(self, view):
-                    lines = [f"- {t.agent_id}: {t.answer}" for t in view.visible_turns if t.answer is not None]
-                    board = ("Senior colleagues on the panel have said:\n" + "\n".join(lines) + "\n\n") if lines else ""
+                    board = render_board(view.visible_turns, "Senior colleagues on the panel have said:",
+                                         show_rationale=args.show_rationale,
+                                         self_id=view.agent_id)
                     p, _ = _mcq(case, board)
                     t = cache.complete(HOLDOUT, p)
                     return AgentResponse(content=t[:120], answer=_parse(t, opts), confidence=0.6)
