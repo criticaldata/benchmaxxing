@@ -356,3 +356,48 @@ with the whole battery's finding that MIMIC-CXR text holdouts don't propagate a 
 
 This completes the full battery for #296 (#316-#321), including the anchored-seed contagion gap
 (#355).
+
+## Deliberation framing (#398): the last blank cell in Table 1
+
+Real-API results for #398, copied from `experiments/medqa/deliberation_framing.py` (#196) into
+`experiments/mimic_cxr_text/deliberation_framing.py`. This was the one break-it channel (B) not
+yet run on MIMIC-CXR text — channels A, C, D were already filled (#318, #319/#348, #320/#356).
+Same report/question adaptation as every prior port on this lane (`_mcq_prompt` renders
+`case.report` as clinical context; the anchored-seed detail reuses `push_c.py`'s
+`_findings_text` instead of the fixed question stem's leading words), plus added
+`--solo-records` hard-case filtering per #398's explicit ask (the MedQA original has no such
+filter).
+
+n=60 hard cases (126 available), gemini-2.5-flash-lite, holding the same fixed wrong senior seed
+and varying only the framing instruction:
+
+```json
+{
+  "n": 60,
+  "adoption_by_framing": {"none": 0.7167, "collaborative": 0.65, "independent": 0.4667, "critical": 0.3667},
+  "none_vs_collaborative": {"pvalue": 0.42395},
+  "none_vs_independent": {"pvalue": 0.004077},
+  "none_vs_critical": {"pvalue": 0.0000},
+  "independent_vs_critical": {"pvalue": 0.210114}
+}
+```
+
+Full record: [`results/deliberation_framing_summary.json`](results/deliberation_framing_summary.json).
+
+**The protective effect replicates.** Instructions that license dissent (`independent`,
+`critical`) substantially lower adoption of the same fixed wrong seed (0.717 → 0.467, p=0.004;
+0.717 → 0.367, p=4.9e-05), while `collaborative` framing doesn't move it much (0.717 → 0.65,
+p=0.42) — the same qualitative pattern MedQA (0.64 → 0.12) and MedMCQA (0.74 → 0.28) show. The
+magnitude here is somewhat smaller (a ~0.35 absolute drop for `critical` vs MedQA's ~0.52 and
+MedMCQA's ~0.46), but still a real, highly significant, cheap mitigation: a one-line instruction
+that licenses dissent lowers shortcut adoption on real clinical-report-derived items, not just
+exam-style vignettes. `independent` vs `critical` are not significantly different from each
+other (p=0.21), so the specific wording of the dissent-licensing instruction matters less than
+that it licenses dissent at all.
+
+(One correction to #398's own body: it cites a committed MedMCQA
+`deliberation_framing_summary.json` as a second precedent alongside MedQA's — no such file
+exists anywhere in this repo or its branches; only the MedQA original was available to port
+from and compare against.)
+
+This completes all four break-it channels (A/B/C/D) for MIMIC-CXR text.
