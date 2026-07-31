@@ -387,6 +387,54 @@ with the whole battery's finding that MIMIC-CXR text holdouts don't propagate a 
 This completes the full battery for #296 (#316-#321), including the anchored-seed contagion gap
 (#355).
 
+## Break-it D, longest-option decoy (#396): the literal MedQA-style hidden rubric
+
+Real-API results for #396, copied from `experiments/medqa/break_it.py`'s arm D into
+`experiments/mimic_cxr_text/break_it_d.py`. **This is a different mechanism from the arm D
+already run for this cohort** (`blind_metric.py`/#320/#356, which rewards an arbitrary decoy
+chosen to differ from the model's own baseline answer): here the decoy is specifically the
+**longest** option by character count, matching MedQA's original design exactly, so the table
+cell is comparable across cohorts on the same mechanism. Only `_mcq` needed the recurring
+report-context adaptation; the decoy-selection/incentive logic is dataset-agnostic.
+
+n=40 hard cases requested, 31 valid (9 skipped where the longest option was already the correct
+answer, so no decoy/correct-answer conflation is possible):
+
+```json
+{
+  "n": 31,
+  "control_decoy_rate": 0.1613,
+  "incent_decoy_rate": 0.0968,
+  "decoy_drift": -0.0645,
+  "decoy_mcnemar": {"gain": 0, "lose": 2, "discordant_pairs": 2, "pvalue": 0.5}
+}
+```
+
+Full record: [`results/break_it_d_summary.json`](results/break_it_d_summary.json).
+
+**Review fix (sebasmos, #396):** the first cut of this section also reported "accuracy rose from
+0.0 to 0.161," but the hard-case cohort is defined as `clean_correct is False` on the plain
+prompt, and `control` re-runs that exact plain prompt — so `control_correct` is 0 *by the
+cohort's own definition*, not something measured, and a comparison against a comparator pinned at
+zero can only look non-negative regardless of model behaviour. That accuracy line is dropped.
+
+**Underpowered, not a directional finding.** MedQA's own arm D was a flat null (0.24 → 0.24, no
+drift). Here the decoy rate moves from 0.161 (control) to 0.097 (incentivized), but paired over
+the 31 cases that is only 2 discordant pairs (0 gain, 2 lose) — the exact McNemar p-value is
+0.5000, which is the smallest p-value attainable at 2 discordant pairs. The design cannot resolve
+a direction at this n; reading `decoy_drift`'s sign as "the rubric framing made the model less
+likely to length-chase" would be over-claiming a null result. The honest read: on 31 hard cases,
+the literal longest-option rubric produced no detectable drift, consistent with MedQA's own null,
+and this arm would need substantially more cases to distinguish a small effect from zero.
+
+This is the second (literal, longest-option) hidden-rubric measurement for this cohort, alongside
+the arbitrary-decoy version already in this file (#320/#356) — the two probe different
+mechanisms and should be read as complementary, not duplicate or conflicting, findings. That
+table row was previously mislabeled: the break-it table listed row D as "hidden rubric rewards
+the longest option" while the MIMIC-CXR column was actually measuring the arbitrary-decoy
+mechanism from `blind_metric.py` — the paper's row/column labeling has been corrected to reflect
+which mechanism each cohort's cell actually measures.
+
 ## Deliberation framing (#398): the last blank cell in Table 1
 
 Real-API results for #398, copied from `experiments/medqa/deliberation_framing.py` (#196) into
