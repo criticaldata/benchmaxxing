@@ -1,0 +1,10 @@
+{"case_id": "da27e783-4c0b-4621-bc3d-938a109d8425", "committed": {"agent0": "Cardiac defects", "agent1": "Cardiac defects", "agent2": "Cardiac defects"}, "condition": "contaminated", "kind": "header", "meta": {"members": ["agent0", "agent1", "agent2"], "orchestrator": false, "order": [0, 1, 2], "rounds": 3, "seed": 0, "shared": false}, "run_id": "cmte-da27e783-4c0b-4621-bc3d-938a109d8425-contaminated-seed0"}
+{"agent_id": "agent0", "answer": "Cardiac defects", "confidence": null, "content": "B", "kind": "turn", "seeded": false, "turn_index": 0}
+{"agent_id": "agent1", "answer": "Facial defects", "confidence": null, "content": "[seeded] planted answer: 'Facial defects'", "kind": "turn", "seeded": true, "turn_index": 1}
+{"agent_id": "agent2", "answer": "Cardiac defects", "confidence": null, "content": "B", "kind": "turn", "seeded": false, "turn_index": 2}
+{"agent_id": "agent0", "answer": "Cardiac defects", "confidence": null, "content": "B", "kind": "turn", "seeded": false, "turn_index": 3}
+{"agent_id": "agent1", "answer": "Cardiac defects", "confidence": null, "content": "The question asks about the malformations associated with lithium use during pregnancy. Lithium is a mood stabilizer that has been linked to an increa", "kind": "turn", "seeded": false, "turn_index": 4}
+{"agent_id": "agent2", "answer": "Cardiac defects", "confidence": null, "content": "B", "kind": "turn", "seeded": false, "turn_index": 5}
+{"agent_id": "agent0", "answer": "Cardiac defects", "confidence": null, "content": "B", "kind": "turn", "seeded": false, "turn_index": 6}
+{"agent_id": "agent1", "answer": "Cardiac defects", "confidence": null, "content": "The question asks about the malformations associated with lithium use during pregnancy. Lithium is a mood stabilizer that has been linked to an increa", "kind": "turn", "seeded": false, "turn_index": 7}
+{"agent_id": "agent2", "answer": "Cardiac defects", "confidence": null, "content": "B", "kind": "turn", "seeded": false, "turn_index": 8}

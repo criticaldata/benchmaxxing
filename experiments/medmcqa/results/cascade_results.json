@@ -1,0 +1,149 @@
+{
+  "n": 20,
+  "n_valid": 20,
+  "mean_contagion": 0.025,
+  "mean_shared_adopt": 0.025,
+  "mean_isolated_adopt": 0.0,
+  "per_case": [
+    {
+      "case_id": "ee904a2e-7494-46ef-b976-22be596ed44f",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "83935f21-0298-409f-aabc-ac42dc4c0e00",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "4e8f5ba7-452a-464f-a328-d8b96eafade6",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "0ada062a-c400-4012-af5e-31144ba41401",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "da27e783-4c0b-4621-bc3d-938a109d8425",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "e4610f09-b587-47c8-99ff-c8967f481322",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "d2a908d2-59df-4591-9a9c-1212a0ce7347",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "33a697bc-627a-4a24-b381-19c181fcdded",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "2ab8b27b-1646-4886-8378-f2f11f84a79e",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "7111d7b2-7e80-4e23-b5d0-9f42595c6a80",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "1cecd58f-d0c8-446a-adf8-d07dd796ec0e",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "87311a9e-97ac-43de-8964-55eb7ced00a9",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 1
+    },
+    {
+      "case_id": "9a292f87-6a2d-4bba-bcee-f11ca9a94c73",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "8d0b854f-93fb-43ae-a1b9-d489ea68103b",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "da2078b0-6ce5-4ba3-82f2-7b145665be2b",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "4032c899-2223-435f-a007-c513fd59a065",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "c953149a-a76d-47a2-8d08-35614f87217a",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "fd315adc-df4b-4a81-895b-6f093eeb71b2",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "cc0d09f8-564d-4fe5-8b22-4b7d3e4ed586",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "d321d320-c06f-4d18-9aa2-dae718851dfd",
+      "shared_adopt": 0.5,
+      "isolated_adopt": 0.0,
+      "contagion": 0.5,
+      "onset": 7
+    }
+  ]
+}

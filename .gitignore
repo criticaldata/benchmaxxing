@@ -17,3 +17,9 @@ experiments/mimic_cxr_text/*manifest*.csv
 experiments/mimic_cxr_text/results*/call_cache.jsonl
 experiments/mimic_cxr_text/results*/*call_cache.jsonl
 experiments/mimic_cxr_text/results*/transcripts/
+
+# model-call caches: local reproduction accelerators, not results (can be large)
+*_cache.jsonl
+# ...but MedMCQA is fully public (no DUA), so its call cache IS committed: break-it C's numbers
+# were salvaged from it, so it has to be reproducible.
+!experiments/medmcqa/results/call_cache.jsonl

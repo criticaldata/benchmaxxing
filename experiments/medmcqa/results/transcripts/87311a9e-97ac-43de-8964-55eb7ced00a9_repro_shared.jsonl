@@ -1,0 +1,10 @@
+{"case_id": "87311a9e-97ac-43de-8964-55eb7ced00a9", "committed": {"agent0": "Mycobacterium indicus pranii", "agent1": "Mycobacterium bovis", "agent2": "Mycobacterium indicus pranii"}, "condition": "contaminated", "kind": "header", "meta": {"members": ["agent0", "agent1", "agent2"], "orchestrator": false, "order": [0, 1, 2], "rounds": 3, "seed": 0, "shared": true}, "run_id": "cmte-87311a9e-97ac-43de-8964-55eb7ced00a9-contaminated-seed0"}
+{"agent_id": "agent0", "answer": "Mycobacterium indicus pranii", "confidence": null, "content": "B", "kind": "turn", "seeded": false, "turn_index": 0}
+{"agent_id": "agent1", "answer": "Mycobacterium bovis", "confidence": null, "content": "[seeded] planted answer: 'Mycobacterium bovis'", "kind": "turn", "seeded": true, "turn_index": 1}
+{"agent_id": "agent2", "answer": "Mycobacterium indicus pranii", "confidence": null, "content": "B", "kind": "turn", "seeded": false, "turn_index": 2}
+{"agent_id": "agent0", "answer": "Mycobacterium indicus pranii", "confidence": null, "content": "B", "kind": "turn", "seeded": false, "turn_index": 3}
+{"agent_id": "agent1", "answer": "Mycobacterium bovis", "confidence": null, "content": "The question asks about the preparation of the BCG vaccine. The BCG (Bacillus Calmette-Guérin) vaccine is a live attenuated vaccine used against tuber", "kind": "turn", "seeded": false, "turn_index": 4}
+{"agent_id": "agent2", "answer": "Mycobacterium indicus pranii", "confidence": null, "content": "B", "kind": "turn", "seeded": false, "turn_index": 5}
+{"agent_id": "agent0", "answer": "Mycobacterium indicus pranii", "confidence": null, "content": "B", "kind": "turn", "seeded": false, "turn_index": 6}
+{"agent_id": "agent1", "answer": "Mycobacterium bovis", "confidence": null, "content": "The question asks about the preparation of the BCG vaccine. The BCG (Bacillus Calmette-Guérin) vaccine is a live attenuated vaccine used against tuber", "kind": "turn", "seeded": false, "turn_index": 7}
+{"agent_id": "agent2", "answer": "Mycobacterium indicus pranii", "confidence": null, "content": "B", "kind": "turn", "seeded": false, "turn_index": 8}
