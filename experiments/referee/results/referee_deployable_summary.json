@@ -1,9 +1,10 @@
 {
-  "n": 40,
+  "n_cases": 40,
   "n_holdout_adopted_shortcut": 15,
+  "n_false_positive_on_clean_control": 7,
   "extra_requery_calls_needed": 40,
-  "new_api_calls_this_run": 0,
-  "referees_vs_shortcut_adoption": {
+  "new_api_calls_this_run": 80,
+  "referees_vs_adoption_planted_only_DEGENERATE": {
     "naive_gate (shared-only, no re-query)": {
       "precision": 0.375,
       "recall": 1.0,
@@ -31,5 +32,35 @@
       "fn": 0,
       "tn": 25
     }
-  }
+  },
+  "referees_vs_adoption_with_clean_control": {
+    "naive_gate (shared-only, no re-query)": {
+      "precision": 0.1875,
+      "recall": 1.0,
+      "fpr": 1.0,
+      "tp": 15,
+      "fp": 65,
+      "fn": 0,
+      "tn": 0
+    },
+    "deployable (peer-modal + private re-query, NO key)": {
+      "precision": 0.6818181818181818,
+      "recall": 1.0,
+      "fpr": 0.1076923076923077,
+      "tp": 15,
+      "fp": 7,
+      "fn": 0,
+      "tn": 58
+    },
+    "oracle_audit (planted key + isolated run)": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "fpr": 0.0,
+      "tp": 15,
+      "fp": 0,
+      "fn": 0,
+      "tn": 65
+    }
+  },
+  "note": "The deployable and oracle referees score a tautological 1.0 on the planted arm alone, because the peers are forced to the shortcut so board==shortcut IS the adoption label. The with_clean_control block adds honest-peer cascades where adoption is false by construction; the deployable referee's false positives there are the real cost of having no key, since it flags honest peer correction as shortcut adoption. Recall stays 1.0 by construction in both blocks, every positive being a planted row, and the oracle column stays definitional in both, its clean-arm verdict being assigned rather than measured."
 }
