@@ -336,21 +336,26 @@ Full record: [`results/referee_deployable_summary.json`](results/referee_deploya
 
 The `DEGENERATE` block is kept for transparency but is definitional, not a measurement (see
 above). The honest `with_clean_control` block is the real result: the deployable referee now
-takes 12 genuine false positives — cases where honest peers correctly agreed with the holdout's
-own bare answer, but the referee (no key) can't distinguish that from shortcut adoption, since
-both look like "board agrees with peers' modal vote and differs from a private re-query" when the
-bare re-query itself is noisy. Precision drops to 0.54 and FPR rises to 0.18 (recall stays 1.0 by
-construction — every real adoption is still a planted row). This lands in the same family as
-MedQA (0.682/1.0/0.108) and MedMCQA (0.742/1.0/0.140) — same direction and shape, just noisier on
-this cohort (12 FPs out of 66 clean-arm rows vs their honest counts) — plausibly because
-MIMIC-CXR text's bare re-query is a less stable counterfactual than the exam-style MedQA/MedMCQA
-stems. The naive conformity gate still over-fires as before (0.175/1.0/1.0, worse than the
-degenerate block once the clean-control's honest agreements are added to its false-positive
-pool). The same-lineage LLM judge result is unaffected by this fix (it's a real, non-tautological
-judgment already, per sebasmos's review) and unchanged at precision 1.0, recall 0.93, FPR 0.0. So
-the corrected finding: mutual oversight without a key genuinely helps over a naive gate, but it is
-not free — a referee with no privileged knowledge pays a real false-positive cost when honest
-peer agreement looks structurally identical to shortcut adoption.
+takes 12 genuine false positives out of 66 negatives (26 planted non-adoptions plus all 40 clean
+rows). `deployable = (board_ans == inferred) and (board_ans != bare_ans)` can only fire when the
+peers' asserted answer disagrees with the private bare re-query — and on all 12 of these clean-arm
+rows it does, since the clean arm's `inferred` is the correct answer while `bare_ans` is the
+model's own (sometimes wrong) unseeded guess. So these 12 are the holdout being **legitimately
+corrected by honest peers**, not "confirmed" by them: the referee has no key, so it cannot tell
+apart a holdout being lured onto a wrong shortcut from a holdout being corrected onto the right
+answer, and both events change the board answer away from the bare re-query in the same shape.
+This isn't a noisy-re-query artifact either — both calls are temperature 0 on the same model, and
+the only thing that changes between them is the board text in the prompt. Precision drops to
+0.54 and FPR rises to 0.18 (recall stays 1.0 by construction — every real adoption is still a
+planted row). This lands in the same family as MedQA (0.682/1.0/0.108) and MedMCQA
+(0.742/1.0/0.140) — same direction and shape, just noisier on this cohort. The naive conformity
+gate still over-fires as before (0.175/1.0/1.0, worse than the degenerate block once the
+clean-control's honest agreements are added to its false-positive pool). The same-lineage LLM
+judge result is unaffected by this fix (it's a real, non-tautological judgment already, per
+sebasmos's review) and unchanged at precision 1.0, recall 0.93, FPR 0.0. So the corrected finding:
+mutual oversight without a key genuinely helps over a naive gate, but it is not free — a referee
+with no privileged knowledge pays a real false-positive cost when honest peer correction looks
+structurally identical to shortcut adoption.
 
 ## Anchored-seed shared-vs-isolated contagion (#355)
 
