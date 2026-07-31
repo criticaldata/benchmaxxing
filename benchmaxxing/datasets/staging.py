@@ -101,6 +101,17 @@ SOURCES: dict[str, Source] = {
         layout="images_XXX/images/*.png plus Data_Entry_2017.csv",
         notes="Downloads in 2-4 GB batches; one batch is enough to unblock Lane A locally.",
     ),
+    "openi_cxr": Source(
+        name="Open-i / Indiana University Chest X-ray Collection",
+        url="https://openi.nlm.nih.gov/imgs/collections/NLMCXR_reports.tgz",
+        access="open",
+        license="NLM Open-i terms, public domain / open access for research use; cite "
+                "Demner-Fushman et al., JAMIA 2016.",
+        layout="ecgen-radiology/*.xml (reports) plus NLMCXR_png/<parentImage id>.png (images, "
+               "a separate tarball)",
+        notes="No credentialing (#119), open-access sibling to nih_cxr14. Also fetch "
+              "NLMCXR_png.tgz; its unpacked folder is --image-root.",
+    ),
     "chexpert": Source(
         name="CheXpert-small",
         url="https://stanfordmlgroup.github.io/competitions/chexpert/",

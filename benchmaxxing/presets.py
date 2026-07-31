@@ -31,7 +31,7 @@ How to edit a preset:
 * ``dataset``: a registered adapter name (see ``benchmaxxing datasets``). Every preset defaults
   to the text/MCQ lane (``medqa``) because that lane runs fully offline. To switch a preset to
   the imaging lane (Lane A), set ``dataset`` to an imaging adapter (``mimic_cxr``, ``chexpert``,
-  or ``nih_cxr14``) and ``cue_set`` to ``"image-v1"``.
+  ``nih_cxr14``, or ``openi_cxr``) and ``cue_set`` to ``"image-v1"``.
 * ``cue_set``: the cue-set version to inject. ``"text-v1"`` covers the text cues
   (``option_order``, ``longest_option``, ``lexical_overlap``, ``demographic_hint``);
   ``"image-v1"`` covers the image cues (``cable``, ``corner_tag``, ``watermark``, ``laterality``).

@@ -47,6 +47,16 @@ DATASET_STATUS: dict[str, DatasetStatus] = {
         plausibility="not applicable",
         referee="done",
     ),
+    "openi_cxr": DatasetStatus(
+        lane="imaging",
+        staged="not staged",
+        adapter="coded loader",
+        solo="pending",
+        cascade="pending",
+        plausibility="pending",
+        referee="pending",
+        blocker="real run tracked on #119",
+    ),
     "pubmedqa": DatasetStatus(
         lane="text",
         staged="not staged",
