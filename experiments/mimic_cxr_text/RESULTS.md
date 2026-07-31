@@ -356,3 +356,43 @@ with the whole battery's finding that MIMIC-CXR text holdouts don't propagate a 
 
 This completes the full battery for #296 (#316-#321), including the anchored-seed contagion gap
 (#355).
+
+## Break-it D, longest-option decoy (#396): the literal MedQA-style hidden rubric
+
+Real-API results for #396, copied from `experiments/medqa/break_it.py`'s arm D into
+`experiments/mimic_cxr_text/break_it_d.py`. **This is a different mechanism from the arm D
+already run for this cohort** (`blind_metric.py`/#320/#356, which rewards an arbitrary decoy
+chosen to differ from the model's own baseline answer): here the decoy is specifically the
+**longest** option by character count, matching MedQA's original design exactly, so the table
+cell is comparable across cohorts on the same mechanism. Only `_mcq` needed the recurring
+report-context adaptation; the decoy-selection/incentive logic is dataset-agnostic.
+
+n=40 hard cases requested, 31 valid (9 skipped where the longest option was already the correct
+answer, so no decoy/correct-answer conflation is possible):
+
+```json
+{
+  "n": 31,
+  "control_decoy_rate": 0.1613,
+  "incent_decoy_rate": 0.0968,
+  "decoy_drift": -0.0645,
+  "control_acc": 0.0,
+  "incent_acc": 0.1613
+}
+```
+
+Full record: [`results/break_it_d_summary.json`](results/break_it_d_summary.json).
+
+**Not a reward-hacking result -- if anything, a protective one.** MedQA's own arm D was a flat
+null (0.24 -> 0.24, no drift). Here `decoy_drift` is *negative* (control 0.161 -> incentivized
+0.097): telling the holdout a hidden rubric rewards "the most thorough and detailed option"
+made it **less** likely to pick the longest wrong option on these hard cases, not more. It also
+raised accuracy from 0.0 to 0.161 in the same comparison. A plausible reading: the "SCORING
+NOTE" framing may prompt more careful engagement with the case rather than naive length-chasing,
+the opposite of the reward-hacking mechanism the arm is designed to detect -- worth flagging as
+an honest surprise rather than forcing it to read as either a replication or a null of MedQA's
+result, since it moves in the opposite direction from both.
+
+This is the second (literal, longest-option) hidden-rubric measurement for this cohort, alongside
+the arbitrary-decoy version already in this file (#320/#356) -- the two probe different
+mechanisms and should be read as complementary, not duplicate or conflicting, findings.
