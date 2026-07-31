@@ -67,6 +67,18 @@ git diff tests/goldens/prompts/
 
 A new prompt template needs a matching fixed input added to `_FIXED_INPUTS` in that test file, or the suite fails loudly rather than silently skipping coverage for it.
 
+### Metrics that cannot fail (#374)
+
+`benchmaxxing/degeneracy.py` screens the whole repo for reported numbers whose predicate could not have come out otherwise, and `tests/test_degeneracy_guard.py` fails when it finds one that is not exempted. Three screens: binary per-case columns that are constant across every row, significance verdicts hardcoded as literals in the same interpolation that reports a p-value, and committed p-values of exactly 0.0 or 1.0. Run it standalone for a report:
+
+```bash
+python -m benchmaxxing.degeneracy
+```
+
+Exemptions live in `tests/degeneracy_exemptions.json`, in two maps with different meanings. `allowlist` is for findings verified legitimate, and the reason must say what was checked. `preexisting` records what was already in the tree when the guard landed and is not an endorsement of any of it. Both require a written reason, and an entry that no longer matches a finding fails the suite, so deleting the line is the last step of a fix.
+
+What it does not catch, so a green run is not an all-clear: a near-constant predicate that is true on 199 of 200 rows, an algebraic reduction between two columns that both vary, and anything in an artifact that is not committed. Add a real check rather than an exemption when you hit one of those.
+
 ## 4. Reproduce the pipeline (CLI)
 
 ```bash
