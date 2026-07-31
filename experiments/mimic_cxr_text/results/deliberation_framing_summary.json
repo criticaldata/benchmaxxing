@@ -1,0 +1,32 @@
+{
+  "n": 60,
+  "model": "gemini-2.5-flash-lite",
+  "new_api_calls_this_run": 300,
+  "adoption_by_framing": {
+    "none": 0.7167,
+    "collaborative": 0.65,
+    "independent": 0.4667,
+    "critical": 0.3667
+  },
+  "none_vs_collaborative": {
+    "gain": 5,
+    "lose": 9,
+    "pvalue": 0.42395
+  },
+  "none_vs_independent": {
+    "gain": 5,
+    "lose": 20,
+    "pvalue": 0.004077
+  },
+  "none_vs_critical": {
+    "gain": 3,
+    "lose": 24,
+    "pvalue": 4.9e-05
+  },
+  "independent_vs_critical": {
+    "gain": 5,
+    "lose": 11,
+    "pvalue": 0.210114
+  },
+  "read": "Adoption of the same fixed wrong senior seed under different deliberation instructions: none 0.7167, collaborative 0.65, independent 0.4667, critical 0.3667. Paired McNemar's test each frame against the unframed baseline (#398)."
+}

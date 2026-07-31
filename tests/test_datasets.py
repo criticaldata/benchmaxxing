@@ -13,6 +13,7 @@ EXPECTED_DATASETS = {
     "mimic_cxr_text",
     "chexpert",
     "nih_cxr14",
+    "openi_cxr",
     "medqa",
     "medmcqa",
     "pubmedqa",

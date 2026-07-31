@@ -376,23 +376,76 @@ answer, so no decoy/correct-answer conflation is possible):
   "control_decoy_rate": 0.1613,
   "incent_decoy_rate": 0.0968,
   "decoy_drift": -0.0645,
-  "control_acc": 0.0,
-  "incent_acc": 0.1613
+  "decoy_mcnemar": {"gain": 0, "lose": 2, "discordant_pairs": 2, "pvalue": 0.5}
 }
 ```
 
 Full record: [`results/break_it_d_summary.json`](results/break_it_d_summary.json).
 
-**Not a reward-hacking result -- if anything, a protective one.** MedQA's own arm D was a flat
-null (0.24 -> 0.24, no drift). Here `decoy_drift` is *negative* (control 0.161 -> incentivized
-0.097): telling the holdout a hidden rubric rewards "the most thorough and detailed option"
-made it **less** likely to pick the longest wrong option on these hard cases, not more. It also
-raised accuracy from 0.0 to 0.161 in the same comparison. A plausible reading: the "SCORING
-NOTE" framing may prompt more careful engagement with the case rather than naive length-chasing,
-the opposite of the reward-hacking mechanism the arm is designed to detect -- worth flagging as
-an honest surprise rather than forcing it to read as either a replication or a null of MedQA's
-result, since it moves in the opposite direction from both.
+**Review fix (sebasmos, #396):** the first cut of this section also reported "accuracy rose from
+0.0 to 0.161," but the hard-case cohort is defined as `clean_correct is False` on the plain
+prompt, and `control` re-runs that exact plain prompt — so `control_correct` is 0 *by the
+cohort's own definition*, not something measured, and a comparison against a comparator pinned at
+zero can only look non-negative regardless of model behaviour. That accuracy line is dropped.
+
+**Underpowered, not a directional finding.** MedQA's own arm D was a flat null (0.24 → 0.24, no
+drift). Here the decoy rate moves from 0.161 (control) to 0.097 (incentivized), but paired over
+the 31 cases that is only 2 discordant pairs (0 gain, 2 lose) — the exact McNemar p-value is
+0.5000, which is the smallest p-value attainable at 2 discordant pairs. The design cannot resolve
+a direction at this n; reading `decoy_drift`'s sign as "the rubric framing made the model less
+likely to length-chase" would be over-claiming a null result. The honest read: on 31 hard cases,
+the literal longest-option rubric produced no detectable drift, consistent with MedQA's own null,
+and this arm would need substantially more cases to distinguish a small effect from zero.
 
 This is the second (literal, longest-option) hidden-rubric measurement for this cohort, alongside
-the arbitrary-decoy version already in this file (#320/#356) -- the two probe different
-mechanisms and should be read as complementary, not duplicate or conflicting, findings.
+the arbitrary-decoy version already in this file (#320/#356) — the two probe different
+mechanisms and should be read as complementary, not duplicate or conflicting, findings. That
+table row was previously mislabeled: the break-it table listed row D as "hidden rubric rewards
+the longest option" while the MIMIC-CXR column was actually measuring the arbitrary-decoy
+mechanism from `blind_metric.py` — the paper's row/column labeling has been corrected to reflect
+which mechanism each cohort's cell actually measures.
+
+## Deliberation framing (#398): the last blank cell in Table 1
+
+Real-API results for #398, copied from `experiments/medqa/deliberation_framing.py` (#196) into
+`experiments/mimic_cxr_text/deliberation_framing.py`. This was the one break-it channel (B) not
+yet run on MIMIC-CXR text — channels A, C, D were already filled (#318, #319/#348, #320/#356).
+Same report/question adaptation as every prior port on this lane (`_mcq_prompt` renders
+`case.report` as clinical context; the anchored-seed detail reuses `push_c.py`'s
+`_findings_text` instead of the fixed question stem's leading words), plus added
+`--solo-records` hard-case filtering per #398's explicit ask (the MedQA original has no such
+filter).
+
+n=60 hard cases (126 available), gemini-2.5-flash-lite, holding the same fixed wrong senior seed
+and varying only the framing instruction:
+
+```json
+{
+  "n": 60,
+  "adoption_by_framing": {"none": 0.7167, "collaborative": 0.65, "independent": 0.4667, "critical": 0.3667},
+  "none_vs_collaborative": {"pvalue": 0.42395},
+  "none_vs_independent": {"pvalue": 0.004077},
+  "none_vs_critical": {"pvalue": 0.0000},
+  "independent_vs_critical": {"pvalue": 0.210114}
+}
+```
+
+Full record: [`results/deliberation_framing_summary.json`](results/deliberation_framing_summary.json).
+
+**The protective effect replicates.** Instructions that license dissent (`independent`,
+`critical`) substantially lower adoption of the same fixed wrong seed (0.717 → 0.467, p=0.004;
+0.717 → 0.367, p=4.9e-05), while `collaborative` framing doesn't move it much (0.717 → 0.65,
+p=0.42) — the same qualitative pattern MedQA (0.64 → 0.12) and MedMCQA (0.74 → 0.28) show. The
+magnitude here is somewhat smaller (a ~0.35 absolute drop for `critical` vs MedQA's ~0.52 and
+MedMCQA's ~0.46), but still a real, highly significant, cheap mitigation: a one-line instruction
+that licenses dissent lowers shortcut adoption on real clinical-report-derived items, not just
+exam-style vignettes. `independent` vs `critical` are not significantly different from each
+other (p=0.21), so the specific wording of the dissent-licensing instruction matters less than
+that it licenses dissent at all.
+
+(One correction to #398's own body: it cites a committed MedMCQA
+`deliberation_framing_summary.json` as a second precedent alongside MedQA's — no such file
+exists anywhere in this repo or its branches; only the MedQA original was available to port
+from and compare against.)
+
+This completes all four break-it channels (A/B/C/D) for MIMIC-CXR text.

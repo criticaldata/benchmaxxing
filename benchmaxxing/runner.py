@@ -83,7 +83,13 @@ CASCADE_SEED_SLOT = 1
 # The imaging lane asks one yes/no question per finding, the same shape the first real imaging
 # runs used (see experiments/imaging), so the numbers stay comparable.
 IMAGE_OPTIONS = ("yes", "no")
-_NEGATIVE_LABELS = {"", "no finding", "none", "normal"}
+# Non-findings dropped from the finding lane: "no finding"/"normal" are healthy studies; Open-i also
+# emits the MeSH admin terms below for studies that were never findings-indexed, so "Does this X-ray
+# show no indexing?" is not a reading question. None of these carry a finding to ask about.
+_NEGATIVE_LABELS = {
+    "", "no finding", "none", "normal",
+    "no indexing", "technical quality of image unsatisfactory",
+}
 
 def _cue_types(cue_set: str) -> tuple[str, ...]:
     """Resolve a cue-set version into the cue types to inject."""

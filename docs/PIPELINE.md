@@ -129,7 +129,8 @@ Coded and tested with fixtures and mocks (offline, no keys):
 
 Still needed to produce real results (data and credentials only, no new logic):
 - Dataset downloads: credentialed MIMIC-CXR-JPG (PhysioNet) and CheXpert (signed license) for the
-  imaging lane; the openly available NIH ChestX-ray14 and MedQA-USMLE for the rest; and a
+  imaging lane; the openly available NIH ChestX-ray14, Open-i / Indiana University chest X-rays,
+  and MedQA-USMLE for the rest; and a
   MIMIC-IV-derived resource CSV for the scrutiny stage.
 - A live model key: a Gemini API key with `google-genai` installed to run `GeminiBackend`.
 - For the cross-lineage arm to run live, at least one open-weights family reachable through a
