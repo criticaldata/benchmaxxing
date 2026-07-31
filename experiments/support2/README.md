@@ -216,15 +216,53 @@ whether a keyless monitor works. Measuring it needs peers whose asserted answer 
 one on some cases. Thanks @sebasmos for catching this and for confirming it with a randomised holdout
 at 4/6 adoption, where the arm still reported no false positives and no misses.
 
+### 5. Same-lineage judge: a transcript-only detector that is not forced
+
+```bash
+python -m experiments.support2.support2_referee_judge \
+    --manifest experiments/support2/results/support2_manifest.csv \
+    --cache experiments/support2/results/call_cache.jsonl \
+    --out experiments/support2/results --n 120
+```
+
+A judge agent of the same lineage as the committee (`gemini-2.5-flash`, one tier above the holdout)
+reads the whole deliberation and rules FLAG or OK. It gets no planted key, no counterfactual and no
+private re-query, so unlike `deployable` its verdict is not algebraically tied to the label it is
+scored against. One call per scored patient, 115 in total; the board and bare calls replay from the
+committed cache, so a re-run reproduces the summary keylessly at zero calls.
+
+| detector, same 115 rows | precision | recall | FPR |
+|---|---|---|---|
+| `naive_gate` (the floor) | 0.713 | 1.000 | 1.000 |
+| **same-lineage judge** | **0.752** | 0.963 | 0.788 |
+
+**Read the two rows together, never the judge alone.** Both detectors see the transcript and nothing
+else, so the gate is the floor and the gap is what the judgement adds. Here that gap is four points
+of precision: the judge flags 105 of the 115 patients, declining 7 of the gate's 33 false alarms
+(paired McNemar p=0.016) and paying 3 of 82 true detections for them. The summary carries the gate
+row as `naive_gate_same_rows`, recomputed on these rows rather than cited, which also checks the two
+arms are scoring the same patients: it reproduces the referee arm's planted-only naive row exactly.
+
+The arm is a measurement rather than a restatement, and that is recorded from the rows as
+`judge_is_not_a_restatement_of_the_label` rather than asserted here: the judge disagrees with the
+adoption label on 29 of 115 cases. A judge that flagged everything would report the adoption rate as
+its precision and 1.0 as its FPR, which is what the naive gate already does, so the block is what to
+check before quoting the row.
+
+This is a far weaker showing than the same detector on MedQA and MIMIC-CXR text, where it reached
+precision 1.000 at FPR 0.000. Why a transcript-only monitor does worse on the tabular lane is not
+established here.
+
 ## Results
 
-**The numbers live in `results/lane_findings.json`,** a structured digest of all four arms with the
+**The numbers live in `results/lane_findings.json`,** a structured digest of every arm with the
 verdict, caveat and reproduction notes for each. Per-runner detail is in the `*_summary.json` files
 next to it. This section is orientation only, so the numbers have one home and cannot drift.
 
-Run on the committed 120-case manifest, `gemini-2.5-flash-lite`, 2,531 API calls (2,411 deterministic
+Run on the committed 120-case manifest, `gemini-2.5-flash-lite`, 2,810 API calls (2,690 deterministic
 in `call_cache.jsonl` plus 120 temperature-1.0 draws in `noise_resamples.jsonl`), clean accuracy 0.713
-over the 115 records the model actually answered.
+over the 115 records the model actually answered. The deterministic count includes the 164 clean-control
+calls from #399 and the 115 `gemini-2.5-flash` judge calls from #395, the only non-holdout calls in the file.
 
 Four things a reader should know before quoting any of it:
 
@@ -239,7 +277,9 @@ lower adoption rate. `deployable` collapsing into `oracle_audit` is caused by th
 separates: the peers are scripted to assert `planted`, so its predicate reduces to the `adopted` label
 it is scored against and precision 1.000 with FPR 0.000 is forced whatever the model does. The
 `targeted` vs `naive_gate` contrast is the only thing this arm measures. Recorded from the rows as
-`deployable_reduces_to_ground_truth` in the summary, so it is checkable rather than asserted.
+`deployable_reduces_to_ground_truth` in the summary, so it is checkable rather than asserted. The
+same-lineage judge (arm 5) is the lane's other real measurement, and it clears the naive gate by four
+points of precision, so "a transcript-only monitor works here" is not a claim this lane supports either.
 
 **The solo null is underpowered, not flat.** Cues are compared against `whitespace_null`, a re-render
 that changes one space per line and nothing else, at temperature 0 on both sides. Two cues clear it
@@ -292,11 +332,12 @@ the `Cache` before starting any pool.
 
 - `build_manifest.py` - raw CSV to a provenance-checked, outcome-balanced manifest.
 - `_common.py` - the shared cache, prompt, parser, committee and board runner. One definition each,
-  so the three runners hash prompts identically and share a cache.
+  so every runner hashes prompts identically and shares a cache.
 - `support2_solo.py` - per-cue flip rate against the whitespace null control, BH-corrected, with
   achieved power and a separate temperature-sensitivity diagnostic.
 - `support2_cascade.py` - wrong-seed and flip-seed contagion, polarity split.
 - `support2_referee.py` - the four referees, precision/recall/FPR against adoption.
+- `support2_referee_judge.py` - the same-lineage judge, scored against the naive gate on the same rows.
 - `support2_cascade_strength.py` - the 2x3 manipulation-strength ladder (peer count x board style).
 - `results/lane_findings.json` - the structured digest of every arm's numbers, verdict and caveats.
   Start here.
@@ -304,5 +345,5 @@ the `Cache` before starting any pool.
   per experiment.
 
 Offline coverage lives in `tests/test_support2_adapter.py`, `tests/test_tabular_cues.py` and
-`tests/test_support2_experiments.py`; the last drives all three runners end to end with a stub
+`tests/test_support2_experiments.py`; the last drives all four runners end to end with a stub
 backend, no key and no network.
