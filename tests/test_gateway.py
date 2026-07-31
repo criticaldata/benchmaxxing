@@ -1,9 +1,9 @@
 """Tests for benchmaxxing.gateway.
 
 Everything here runs offline: MockBackend stands in for a real model, and GeminiBackend is
-exercised with an injected fake client (never a real API call). The one path that needs the
-google-genai library either asserts a clear ImportError when it is absent or skips when it is
-present.
+exercised with an injected fake client, or with the google-genai modules stubbed for the paths
+that build a real client. The missing-library test asserts a clear ImportError when the SDK is
+absent and skips when it is present. No path makes a real API call.
 """
 
 from __future__ import annotations
@@ -202,3 +202,65 @@ def test_gemini_backend_merges_default_decoding():
     be.complete("hi", decoding={"temperature": 0.1})
     _, _, kwargs = client.models.received[0]
     assert kwargs["config"] == {"temperature": 0.1, "top_p": 0.9}  # per-call overrides default
+
+
+def test_timeout_ms_converts_seconds_and_rejects_non_positive():
+    assert gateway._timeout_ms(60.0) == 60000
+    assert gateway._timeout_ms(0.5) == 500
+    assert gateway._timeout_ms(None) is None  # None is the explicit "no deadline"
+    for bad in (0, -1, -60):
+        with pytest.raises(ValueError):  # a non-positive typo must not silently disable the timeout
+            gateway._timeout_ms(bad)
+
+
+def test_gemini_backend_defaults_to_a_finite_timeout():
+    # The bug this guards: without a deadline a stuck socket hangs generate_content forever.
+    be = gateway.GeminiBackend(client=_FakeClient())
+    assert be.timeout == 60.0
+    assert gateway.GeminiBackend(client=_FakeClient(), timeout=5).timeout == 5
+
+
+def _stub_genai(monkeypatch):
+    """Stub the lazily-imported google-genai modules and return the dict genai.Client records into.
+
+    Lets the timeout-wiring tests run without the real SDK, which lives in the 'models' extra, not
+    'dev'; an importorskip would skip them on a stock dev install, exactly where dropping the
+    http_options= argument needs guarding.
+    """
+    import sys
+    from types import ModuleType, SimpleNamespace
+
+    captured = {}
+
+    def fake_client(*, api_key=None, http_options=None):
+        captured["api_key"] = api_key
+        captured["http_options"] = http_options
+        return SimpleNamespace()
+
+    google_mod = ModuleType("google")
+    genai_mod = ModuleType("google.genai")
+    types_mod = ModuleType("google.genai.types")
+    genai_mod.Client = fake_client
+    genai_mod.types = types_mod
+    types_mod.HttpOptions = lambda **kw: SimpleNamespace(**kw)
+    google_mod.genai = genai_mod
+    monkeypatch.setitem(sys.modules, "google", google_mod)
+    monkeypatch.setitem(sys.modules, "google.genai", genai_mod)
+    monkeypatch.setitem(sys.modules, "google.genai.types", types_mod)
+    return captured
+
+
+def test_gemini_backend_wires_the_timeout_into_the_client(monkeypatch):
+    captured = _stub_genai(monkeypatch)
+    be = gateway.GeminiBackend(api_key="test-key-not-real", timeout=45)
+    assert be.timeout == 45
+    assert captured["api_key"] == "test-key-not-real"
+    assert captured["http_options"].timeout == 45000  # 45s reached the client as ms
+
+
+def test_gemini_backend_leaves_http_options_unset_when_timeout_disabled(monkeypatch):
+    # timeout=None must pass http_options=None, not HttpOptions(timeout=None): the latter is what
+    # froze the run, since None disables httpx's deadline instead of falling back to a default.
+    captured = _stub_genai(monkeypatch)
+    gateway.GeminiBackend(api_key="k", timeout=None)
+    assert captured["http_options"] is None

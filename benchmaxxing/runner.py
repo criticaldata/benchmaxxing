@@ -200,7 +200,12 @@ def build_backend(model_id: str, kind: str = "gemini", decoding: dict | None = N
     if kind == "mock":
         return gateway.MockBackend(rule=_mock_rule)
     if kind == "gemini":
-        return gateway.GeminiBackend(model=model_id, default_decoding=decoding)
+        # wrap in RetryBackend so a timed-out (now bounded) request retries instead of failing the
+        # whole run; this is the only production GeminiBackend construction that wasn't wrapped
+        return gateway.RetryBackend(
+            gateway.GeminiBackend(model=model_id, default_decoding=decoding),
+            tries=5, backoff=3.0,
+        )
     raise ValueError(f"unknown backend kind {kind!r}; expected 'gemini' or 'mock'")
 
 

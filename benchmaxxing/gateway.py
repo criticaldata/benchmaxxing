@@ -99,6 +99,21 @@ class MockBackend(Backend):
         return self.rule(prompt, image, decoding)
 
 
+def _timeout_ms(timeout: float | None) -> int | None:
+    """Request timeout in milliseconds for a google-genai ``HttpOptions``, or None to leave it unset.
+
+    google-genai takes its timeout in ms; we expose it in seconds because that is how everyone
+    else in the codebase talks about deadlines. ``None`` disables the deadline explicitly; a
+    non-positive number raises rather than silently disabling it, so a ``timeout=-60`` typo can't
+    quietly reinstate the unbounded-hang behaviour this exists to prevent.
+    """
+    if timeout is None:
+        return None
+    if timeout <= 0:
+        raise ValueError(f"timeout must be positive seconds, or None to disable; got {timeout!r}")
+    return int(timeout * 1000)
+
+
 class GeminiBackend(Backend):
     """Thin adapter over Google's google-genai SDK. The default backend for now.
 
@@ -106,6 +121,12 @@ class GeminiBackend(Backend):
     without it. If the library is missing, construction raises a clear ``ImportError`` telling
     the user to install the ``models`` extra. A ``client`` can be injected for offline tests,
     which bypasses the import entirely.
+
+    ``timeout`` (seconds) is a per-request deadline: without it a stuck socket hangs a call
+    forever, which froze long batch runs at 0% CPU with no way to recover short of a kill. The
+    default is generous (flash-lite calls take a second or two), so hitting it means the request
+    is wedged; the raised error is transient, so wrapping this in :class:`RetryBackend` retries it.
+    Pass ``timeout=None`` to disable.
 
     Extending to another API is just another ``Backend`` subclass (see the module docstring);
     this class stays a thin, provider-specific adapter.
@@ -117,22 +138,30 @@ class GeminiBackend(Backend):
         api_key: str | None = None,
         client: object | None = None,
         default_decoding: dict | None = None,
+        timeout: float | None = 60.0,
     ):
         self.model = model
         self.default_decoding = dict(default_decoding or {})
+        self.timeout = timeout
         if client is not None:
             # Injected client (used by tests): no SDK import required.
             self._client = client
             return
         try:
             from google import genai
+            from google.genai import types
         except ImportError as exc:  # guarded import: keep the core dependency-free
             raise ImportError(
                 "GeminiBackend requires the 'google-genai' package, which is not installed. "
                 "Install the models extra: pip install 'benchmaxxing[models]' "
                 "(or: pip install google-genai)."
             ) from exc
-        self._client = genai.Client(api_key=api_key) if api_key else genai.Client()
+        ms = _timeout_ms(timeout)
+        http_options = types.HttpOptions(timeout=ms) if ms is not None else None
+        self._client = (
+            genai.Client(api_key=api_key, http_options=http_options) if api_key
+            else genai.Client(http_options=http_options)
+        )
 
     def complete(
         self,

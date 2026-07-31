@@ -22,7 +22,7 @@ dependencies = [
 stats = ["statsmodels>=0.14"]           # mixed-effects, Cochran-Mantel-Haenszel
 changepoint = ["ruptures>=1.1"]         # cascade-onset change-point detection
 image = ["pillow>=10", "opencv-python-headless>=4.8"]  # cue injection
-models = ["google-genai>=0.3", "litellm>=1.40", "transformers>=4.50", "torch>=2.1"]
+models = ["google-genai>=1.0", "litellm>=1.40", "transformers>=4.50", "torch>=2.1"]
 config = ["pyyaml>=6.0"]
 dev = ["pytest>=7.4", "ruff>=0.5"]
 

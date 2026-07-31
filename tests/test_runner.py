@@ -14,7 +14,7 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from benchmaxxing import cli, runner
+from benchmaxxing import cli, gateway, runner
 from benchmaxxing.analysis import FlipRecord
 from benchmaxxing.config import Config
 from benchmaxxing.data import write_manifest
@@ -68,6 +68,17 @@ def _run(manifest_path, out_dir, stage, extra=()):
 
 def _mock_backend_for(_model_id):
     return runner.build_backend("mock", kind="mock")
+
+
+def test_build_backend_wraps_the_gemini_path_in_retry(monkeypatch):
+    # The GeminiBackend timeout only self-heals if the construction is RetryBackend-wrapped; the
+    # CLI's gemini path (--backend gemini) is the one production construction that wasn't, so a
+    # timed-out request must retry, not hard-fail the run.
+    pytest.importorskip("google.genai")
+    monkeypatch.setenv("GEMINI_API_KEY", "fake-key-for-construction")
+    backend = runner.build_backend("gemini-2.5-flash-lite", kind="gemini")
+    assert isinstance(backend, gateway.RetryBackend)
+    assert isinstance(backend.backend, gateway.GeminiBackend)
 
 
 # --- the wiring pieces ---------------------------------------------------------------------
