@@ -99,6 +99,10 @@ benchmaxxing datasets stage nih_cxr14 --check-images
 # show the resolved default config
 benchmaxxing config-show
 
+# render a clean/contaminated cue twin to disk to eyeball it (defaults to a bundled
+# sample if --case is omitted; the image lane needs the `image` extra)
+benchmaxxing cues preview --lane {image,text} --cue NAME --out path/to/dir [--case path/to/manifest.csv]
+
 # run the offline end-to-end pipeline smoke on synthetic data:
 #   cue injection -> solo baselines -> shared vs isolated committee with a seeded shortcut
 #   -> cascade onset -> referee scoring + gate -> blind-metric probe

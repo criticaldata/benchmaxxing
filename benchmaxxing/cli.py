@@ -68,6 +68,36 @@ def build_parser() -> argparse.ArgumentParser:
         help="also confirm every image_ref resolves on disk (imaging datasets)",
     )
 
+    p_cues = sub.add_parser("cues", help="cue injection commands")
+    cues_sub = p_cues.add_subparsers(dest="cues_command", metavar="command", required=True)
+    p_preview = cues_sub.add_parser(
+        "preview", help="render a clean/contaminated cue twin to disk for eyeballing"
+    )
+    p_preview.add_argument(
+        "--lane", required=True, choices=("image", "text"), help="which cue lane to preview"
+    )
+    p_preview.add_argument("--cue", required=True, metavar="NAME", help="cue type to inject")
+    p_preview.add_argument(
+        "--case",
+        default=None,
+        metavar="PATH",
+        help="manifest to draw a case from (defaults to a bundled sample, no data needed)",
+    )
+    p_preview.add_argument(
+        "--case-id",
+        default=None,
+        metavar="ID",
+        help="pick a specific case_id from --case (defaults to the first matching row)",
+    )
+    p_preview.add_argument(
+        "--image-root",
+        default=None,
+        metavar="PATH",
+        help="root directory to resolve image_ref against (image lane only, defaults to "
+        "--case's directory)",
+    )
+    p_preview.add_argument("--out", required=True, metavar="DIR", help="output directory")
+
     sub.add_parser("smoke", help="run the offline end-to-end pipeline smoke on synthetic data")
 
     p_config = sub.add_parser("config-show", help="print the resolved default config")
@@ -554,6 +584,34 @@ def _cmd_report(args: argparse.Namespace) -> int:
               f"{'' if same else '  MISMATCH'}")
     return 0 if ok else 1
 
+
+def _cmd_cues_preview(args: argparse.Namespace) -> int:
+    from benchmaxxing.cues import preview
+
+    try:
+        if args.lane == "image":
+            result = preview.render_image_preview(
+                args.cue,
+                args.out,
+                manifest_path=args.case,
+                case_id=args.case_id,
+                image_root=args.image_root,
+            )
+            print(f"source: {result['source']}")
+            print(f"wrote {result['clean']}")
+            print(f"wrote {result['contaminated']}")
+        else:
+            result = preview.render_text_preview(
+                args.cue, args.out, manifest_path=args.case, case_id=args.case_id,
+            )
+            print(result["side_by_side"])
+            print(f"wrote {result['path']}")
+    except (FileNotFoundError, ValueError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+    return 0
+
+
 def _cmd_config_show(args: argparse.Namespace) -> int:
     from benchmaxxing.config import load_config
 
@@ -699,6 +757,7 @@ def _cmd_smoke(_args: argparse.Namespace) -> int:
 _HANDLERS = {
     "version": _cmd_version,
     "datasets": _cmd_datasets,
+    "cues": _cmd_cues_preview,
     "config-show": _cmd_config_show,
     "smoke": _cmd_smoke,
     "run": _cmd_run,
