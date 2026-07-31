@@ -38,6 +38,7 @@ All flag columns are `0`/`1`.
 | `system_flag.csv` | 834 | `case_index`, `clean_correct`, `iso_adopt`, `shared_adopt` |
 | `strength_cascade.csv` | 834 | `case_index`, `clean_correct`, `op{0.15,0.3,0.45}_{iso_adopt,shared_adopt,solo_flip}` |
 | `referee.csv` | 417 | `case_index`, `gt`, `ref_flag`, `naive_flag` |
+| `judge.csv` | 417 | `case_index`, `clean_correct`, `gt`, `judge_flag`, `naive_flag` — **not yet generated**, see below |
 | `blind_metric.csv` | 141 | `case_index`, `base_is_decoy`, `blind_is_decoy`, `aware_is_decoy`, `named_rubric_when_drifted` |
 | `provenance.csv` | 834 | `case_index` (matches `solo.csv`), `sha256`, `bytes` — per-image checksums of the superset, so a holder of the credentialed images can confirm identical pixels |
 
@@ -45,7 +46,21 @@ Field meanings: `iso_adopt` = the model alone adopts the planted `"no"` on the c
 `shared_adopt` = it adopts with the committee board asserting `"no"`; `*_flip` = the cued read
 differs from the clean read; `gt` = a peer-driven adoption (`shared_adopt==1 & iso_adopt==0`);
 `ref_flag`/`naive_flag` = the referee's private-requery gate vs flag-every-adoption gate;
+`judge_flag` = the same-lineage judge's FLAG on the transcript alone;
 `*_is_decoy` = the model took the decoy option under the baseline / blind / test-aware framing.
+
+## `judge.csv` is the one row-level file still missing (#393)
+
+The `judge` arm of `run_battery.py` was added after the #372 rerun, so the same-lineage judge cell
+has no per-case rows here yet and cannot be recomputed without credentialed access — the gap this
+file otherwise exists to close. Whoever runs that arm should export it from the runner's
+`referee_300/imaging_judge_referee.jsonl` the same way #372 did the rest: sort on `case_id`, number
+`0..n-1`, drop `case_id`, and keep `clean_correct`, `gt`, `judge_flag`, `naive_flag`.
+
+`clean_correct` is not optional here. The detector table reports this lane on the 91 cases with
+`clean_correct == 1`, so without that column the committed rows cannot reproduce the published
+cell. `case_index` is the same seed-deterministic ordering as `referee.csv`, so the two join
+directly and the judge can be checked against the referee and the gate case by case.
 
 ## A note on `plant_direction_summary.json`
 

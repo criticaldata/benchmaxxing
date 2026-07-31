@@ -6,16 +6,21 @@ itself is what these pin.
 
 from __future__ import annotations
 
+import csv
 from pathlib import Path
+
+import pytest
 
 from experiments.mimic_cxr_image.build_subset import DEFAULT_SIZES
 from experiments.mimic_cxr_image.run_battery import (
     ARMS,
     CACHE_NAME,
+    JUDGE_CACHE_NAME,
     WHOLE_MANIFEST,
     Arm,
     build_command,
     clean_read_planters,
+    writes,
 )
 
 MANIFESTS = Path("/m")
@@ -65,11 +70,17 @@ def test_cache_is_pinned_inside_the_mimic_results_dir():
     # Every runner but imaging_solo defaults --cache to the NIH lane's committed cache; an
     # unpinned MIMIC run would append credentialed-derived reads into it.
     for arm in ARMS:
-        assert _flag(_cmd(arm), "--cache") == str(RESULTS / CACHE_NAME)
+        assert Path(_flag(_cmd(arm), "--cache")).parent == RESULTS
 
 
-def test_one_shared_cache_so_nested_arms_reuse_calls():
-    assert len({_flag(_cmd(a), "--cache") for a in ARMS}) == 1
+def test_one_shared_cache_so_nested_image_arms_reuse_calls():
+    # The image arms nest (blind 100 < cascade 150 < referee 300 < solo 600), so one cache lets a
+    # later arm replay an earlier one's identical clean reads. The judge is excluded on purpose: it
+    # opens the film too since #408, but it asks a different question about it, so it shares no call
+    # with the diagnostic arms and folding it in would make their hit rate unreadable.
+    diagnostic_arms = [a for a in ARMS if a.takes_manifest and a.name != "judge"]
+    assert {_flag(_cmd(a), "--cache") for a in diagnostic_arms} == {str(RESULTS / CACHE_NAME)}
+    assert _flag(_cmd(_arm("judge")), "--cache") == str(RESULTS / JUDGE_CACHE_NAME)
 
 
 def test_n_is_pinned_above_every_arm_size():
@@ -95,6 +106,48 @@ def test_dependent_arms_run_after_the_arms_they_read():
     order = [a.name for a in ARMS]
     assert order.index("cascade") < order.index("system_flag")
     assert order.index("referee_cascade") < order.index("referee")
+    assert order.index("referee_cascade") < order.index("judge")
+
+
+def test_the_battery_covers_the_same_lineage_judge():
+    # #393: the judge cell was blank for MIMIC-CXR only because no arm here ever invoked the
+    # runner. A battery that cannot produce it is how that happened, so pin the coverage.
+    assert "imaging_judge_referee" in {a.module for a in ARMS}
+
+
+def test_judge_scores_the_same_transcript_and_dir_as_the_deployable_referee():
+    # The two detectors share a row in the cross-dataset table; scoring different transcripts, or
+    # writing outside referee_300/, would make the cells incomparable.
+    judge, referee = _cmd(_arm("judge")), _cmd(_arm("referee"))
+    assert _flag(judge, "--cascade-jsonl") == _flag(referee, "--cascade-jsonl")
+    assert _flag(judge, "--out") == _flag(referee, "--out") == str(RESULTS / "referee_300")
+
+
+def test_judge_is_passed_the_image_so_its_verdict_is_not_the_naive_gate():
+    """#408 changed the contract: the judge opens the film, so the arm must pass the image args.
+
+    This test previously asserted the opposite, that the judge took neither flag, which was true of
+    the text-only judge. Leaving it that way made the arm unrunnable: imaging_judge_referee exits
+    with a usage error unless it gets --manifest and --image-root or an explicit --text-only. The
+    reason the flags matter is not plumbing. Without the film the prompt carries only
+    (finding, shared), and the verdict equals the naive gate on every row (#393).
+    """
+    cmd = _cmd(_arm("judge"))
+    assert "--manifest" in cmd, "the judge needs the manifest to map case_id to image_ref"
+    assert "--image-root" in cmd, "the judge needs the image root to open the film"
+    assert "--text-only" not in cmd, (
+        "the battery must not run the legacy text-only judge: its verdict is pinned to the naive "
+        "gate by construction, so it is not a measurement")
+    assert "--n" not in cmd, "the judge scores whatever rows the transcript holds"
+
+
+def test_transcript_dependencies_name_an_arm_that_writes_them():
+    # The pre-flight error tells the operator which arm to rerun; an unresolvable `needs` would
+    # print an empty name instead.
+    for arm in ARMS:
+        if arm.needs:
+            assert writes(arm.needs), f"{arm.name} needs {arm.needs}, which no arm writes"
+    assert writes("referee_300/imaging_cascade.jsonl") == "referee_cascade"
 
 
 def test_system_flag_stages_the_cascade_transcript_it_contrasts_against():
@@ -110,6 +163,49 @@ def test_two_cascade_runs_do_not_overwrite_each_other():
     # would leave the 150-study and 300-study arms silently sharing one transcript.
     outs = [_flag(_cmd(a), "--out") for a in ARMS if a.module == "imaging_cascade"]
     assert len(set(outs)) == len(outs)
+
+
+def _deid(name):
+    rows = csv.DictReader((RESULTS_DIR / "deid" / name).read_text().splitlines())
+    return {int(r["case_index"]): r for r in rows}
+
+
+def _rate(rows, pred):
+    tp = sum(1 for r in rows if int(r[pred]) and int(r["gt"]))
+    fp = sum(1 for r in rows if int(r[pred]) and not int(r["gt"]))
+    fn = sum(1 for r in rows if not int(r[pred]) and int(r["gt"]))
+    tn = sum(1 for r in rows if not int(r[pred]) and not int(r["gt"]))
+    return tp / (tp + fp), tp / (tp + fn), fp / (fp + tn)
+
+
+def test_the_detector_table_cells_are_the_clean_correct_restriction():
+    """Which cohort the published MIMIC-CXR cells are counted on (#393).
+
+    The judge arm scores every row it is given, so a reader taking its top-level block would put a
+    417-case number beside 91-case referee and gate cells. Pinning both here means the distinction
+    cannot quietly rot back out of the docs.
+    """
+    ref, casc = _deid("referee.csv"), _deid("referee_cascade.csv")
+    assert ref.keys() == casc.keys()
+    rows = [{**ref[i], **casc[i]} for i in sorted(ref)]
+    assert len(rows) == 417
+
+    headroom = [r for r in rows if int(r["clean_correct"])]
+    assert len(headroom) == 91, "the published cells are the 91-case restriction"
+
+    for pred, cell in (("ref_flag", (0.77, 0.75, 0.21)), ("naive_flag", (0.54, 1.00, 0.81))):
+        assert _rate(headroom, pred) == pytest.approx(cell, abs=0.005), pred
+    # Unrestricted, the same two detectors read very differently, which is why it matters.
+    assert _rate(rows, "naive_flag") == pytest.approx((0.19, 1.00, 0.96), abs=0.005)
+
+
+def test_gt_is_the_peer_driven_adoption_the_judge_also_scores():
+    # imaging_judge_referee derives gt from shared_adopt/iso_adopt itself, so the judge and the
+    # referee only share a ground truth as long as these agree row for row.
+    ref, casc = _deid("referee.csv"), _deid("referee_cascade.csv")
+    for i, r in ref.items():
+        c = casc[i]
+        assert int(r["gt"]) == int(int(c["shared_adopt"]) == 1 and int(c["iso_adopt"]) == 0)
 
 
 def test_plant_guard_flags_the_pre_fix_pattern(tmp_path):

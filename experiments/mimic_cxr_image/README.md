@@ -118,6 +118,7 @@ python -m experiments.mimic_cxr_image.run_battery --image-root ~/mimic-cxr-raw -
 | `blind_metric` | `imaging_blind_metric` | `blind_metric_100.csv` | `results/` | #314 |
 | `referee_cascade` | `imaging_cascade` | `referee_300.csv` | `results/referee_300/` | #315 |
 | `referee` | `imaging_referee` | `referee_300.csv` | `results/referee_300/` | #315 |
+| `judge` | `imaging_judge_referee` | `referee_300.csv` (transcript only) | `results/referee_300/` | #393 |
 
 What the runner pins that the older hand-written commands did not:
 
@@ -139,6 +140,26 @@ What the runner pins that the older hand-written commands did not:
 - **Ground-truth plant.** The runner refuses to launch any cascade-family arm whose runner still
   plants `wrong = flip(clean_read)` instead of against ground truth (#332/#333/#338), so a stale
   checkout cannot quietly regenerate pre-fix numbers.
+- **The transcript the replay arms need.** `referee` and `judge` both score
+  `referee_300/imaging_cascade.jsonl`, which is gitignored and therefore never present in a fresh
+  checkout. Running either without it now fails immediately naming the arm that writes it, instead
+  of surfacing as a `FileNotFoundError` from inside the runner.
+
+### The judge arm and the detector table's cohort (#393)
+
+The same-lineage judge is the third detector in the cross-dataset table, beside the deployable
+referee and the naive conformity gate. It had no MIMIC-CXR number for one reason: no arm here
+invoked it. It is a text pass over the transcript `referee_cascade` already writes, so it adds no
+cascade re-execution, and ordering it into the battery closes the window where that gitignored
+transcript is produced, consumed once by `referee`, and cleaned up before the judge sees it.
+
+**The cell to read out of the summary is `clean_correct_only`, not the top-level block.** The
+MIMIC-CXR referee and gate cells in the table are counted on the 91 cases the model read correctly
+on the clean image, not on all 417 — that restriction is where `0.77/0.75/0.21` and
+`0.54/1.00/0.81` come from, and both reproduce from `results/deid/` (join `referee.csv` to
+`referee_cascade.csv` on `case_index`, keep `clean_correct == 1`). Scored on all 417 instead, the
+same two detectors read `0.48/0.64/0.16` and `0.19/1.00/0.96`. `imaging_judge_referee.py` scores
+every row it is given, so it now reports both and the comparable one is named.
 
 Results land under `experiments/mimic_cxr_image/results/`, same format as
 `experiments/imaging/results/`, and feed issue #295's cross-dataset table. Each run caches per

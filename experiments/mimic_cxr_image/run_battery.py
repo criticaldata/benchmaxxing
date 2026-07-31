@@ -25,6 +25,12 @@ Three things the README's prose commands got wrong, all fixed here:
   ``cascade_150/``, so without staging that transcript the ``vs_peer_assertion_cascade`` block
   drops out of the summary with no warning.
 
+The ``judge`` arm exists because it did not (#393): the same-lineage judge was the one detector in
+the cross-dataset table with no MIMIC-CXR number, purely because nothing here ever invoked it. It
+replays the ``referee_300`` transcript the ``referee`` arm already replays, so ordering it into the
+same battery run costs one text pass and closes the window where that gitignored transcript is
+produced, used once, and cleaned up before the judge ever sees it.
+
 Usage (see README section 4 for the full recipe):
 
     python -m experiments.mimic_cxr_image.run_battery --image-root ~/mimic-cxr-raw
@@ -59,6 +65,13 @@ WHOLE_MANIFEST = 1_000_000
 # arm reuse an earlier arm's identical clean reads instead of paying for them twice.
 CACHE_NAME = "img_cache.jsonl"
 
+# The judge keeps its own cache file. Since #408 it opens the film, so its keys are
+# sha256(image bytes + prompt) like the image arms rather than prompt-only, and the file is
+# DUA-sensitive on the same footing; results/**/*.jsonl already excludes it. Keeping it separate
+# still matters, because the judge's prompt set is tiny and mixing it into the shared cache would
+# make the image arms' hit rate unreadable.
+JUDGE_CACHE_NAME = "judge_cache.jsonl"
+
 # The cascade family used to plant `wrong = flip(clean_read)`, which coincides with ground truth
 # whenever the holdout's own read was already wrong (#332). MIMIC is the worst case: ~80% of its
 # finding-present cases planted the truth, because gemini-2.5-flash reads pneumothorax poorly.
@@ -77,6 +90,9 @@ class Arm:
     extra: tuple[str, ...] = ()  # appended verbatim; "{results}" expands to the results root
     stage: tuple[str, str] | None = None  # (src, dst) relative to --results, copied before the run
     takes_n: bool = True
+    takes_manifest: bool = True  # False for runners that replay a transcript and open no image
+    cache: str = CACHE_NAME
+    needs: str = ""  # transcript this arm reads, relative to --results; checked before launching
 
 
 # Order matters twice: system_flag stages the cascade transcript, and the referee consumes the
@@ -101,6 +117,22 @@ ARMS: tuple[Arm, ...] = (
         out="referee_300",
         extra=("--cascade-jsonl", "{results}/referee_300/imaging_cascade.jsonl"),
         takes_n=False,  # imaging_referee replays a transcript and has no --n
+        needs="referee_300/imaging_cascade.jsonl",
+    ),
+    Arm(
+        "judge",
+        "imaging_judge_referee",
+        "referee_300.csv",
+        out="referee_300",
+        extra=("--cascade-jsonl", "{results}/referee_300/imaging_cascade.jsonl"),
+        takes_n=False,
+        # #408 changed the contract under this arm: the judge now opens the film so its verdict is
+        # not pinned to the naive gate, which means it needs the manifest (to map case_id to
+        # image_ref) and --image-root. Without them imaging_judge_referee exits on a usage error,
+        # so this arm could not run as originally written.
+        takes_manifest=True,
+        cache=JUDGE_CACHE_NAME,
+        needs="referee_300/imaging_cascade.jsonl",
     ),
 )
 
@@ -122,15 +154,25 @@ def clean_read_planters(imaging_dir: Path = IMAGING_DIR) -> list[str]:
     return found
 
 
+def writes(transcript: str) -> str:
+    """Name of the arm that produces ``transcript`` (a path relative to --results).
+
+    Matched on output directory plus runner module, since every imaging runner names its per-case
+    file after itself; ``""`` when nothing in ARMS writes it.
+    """
+    out, _, name = transcript.rpartition("/")
+    return next((a.name for a in ARMS if a.out == out and a.module == name.removesuffix(".jsonl")), "")
+
+
 def build_command(arm: Arm, manifests: Path, image_root: Path, results: Path,
                   python: str = sys.executable) -> list[str]:
     """The exact argv for one arm. Pure: no filesystem writes, so tests can assert on it."""
-    cmd = [
-        python, "-m", f"experiments.imaging.{arm.module}",
-        "--manifest", str(manifests / arm.manifest),
-        "--image-root", str(image_root),
+    cmd = [python, "-m", f"experiments.imaging.{arm.module}"]
+    if arm.takes_manifest:
+        cmd += ["--manifest", str(manifests / arm.manifest), "--image-root", str(image_root)]
+    cmd += [
         "--out", str(results / arm.out if arm.out else results),
-        "--cache", str(results / CACHE_NAME),
+        "--cache", str(results / arm.cache),
     ]
     if arm.takes_n:
         cmd += ["--n", str(WHOLE_MANIFEST)]
@@ -164,7 +206,10 @@ def main() -> None:
             "regenerating these arms."
         )
 
-    missing = sorted({a.manifest for a in selected if not (manifests / a.manifest).is_file()})
+    # Only the arms that pass --manifest: a transcript-replay arm has no use for the file, and
+    # failing it here would point the operator at build_subset when its real input is missing.
+    missing = sorted({a.manifest for a in selected
+                      if a.takes_manifest and not (manifests / a.manifest).is_file()})
     if missing and not args.dry_run:
         raise SystemExit(
             f"missing manifest(s) under {manifests}: {', '.join(missing)}. "
@@ -178,6 +223,14 @@ def main() -> None:
         if args.dry_run:
             continue
         out.mkdir(parents=True, exist_ok=True)
+        if arm.needs and not (results / arm.needs).is_file():
+            # results/**/*.jsonl is gitignored, so a transcript-replay arm run against a fresh
+            # checkout, or after a cleanup, finds nothing. Say which arm rewrites it (#393).
+            raise SystemExit(
+                f"{arm.name} reads {results / arm.needs}, which does not exist. It is written by "
+                f"the '{writes(arm.needs)}' arm and is gitignored, so it never comes from a "
+                f"checkout: run that arm first (or the whole battery, which orders them)."
+            )
         if arm.stage:
             src, dst = (results / p for p in arm.stage)
             if not src.is_file():
