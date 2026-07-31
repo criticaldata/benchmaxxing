@@ -34,7 +34,9 @@ from benchmaxxing.degeneracy import (
     unexplained,
 )
 
-KINDS = {"constant_column", "hardcoded_verdict", "rounded_pvalue", "duplicate_column", "forced_direction"}
+KINDS = {"constant_column", "hardcoded_verdict", "rounded_pvalue", "duplicate_column", "forced_direction",
+    "identical_reads",
+}
 
 
 @pytest.fixture(scope="module")
@@ -180,7 +182,70 @@ def test_columns_that_genuinely_vary_are_not_flagged(keys, path, column):
 # line in a 122-entry JSON file, which a reviewer skimming a diff will not catch. I demonstrated
 # that hole before closing it, by planting a fresh constant column and hiding it behind one
 # boilerplate reason with the whole suite green.
-PREEXISTING_CEILING = 113
+# Raised 113 -> 116 deliberately, and the raise is a DETECTION improvement rather than three new
+# defects. The `identical_reads` screen reads yes/no columns, which `_binary` does not, so the pair
+# screens had been blind to the whole imaging lane; turning it on surfaced five pre-existing
+# instances at once (three no-cue arms, the CheXpert system-flag arm, and k1 vs k2 on the peer-size
+# curve). Two of the five nobody had found by review. Lowering this number is always fine; raising
+# it again needs the same kind of justification in the commit message.
+PREEXISTING_CEILING = 116
+
+
+def test_identical_reads_fires_on_two_reads_that_never_diverge():
+    """Anti-vacuity for screen 4b, on synthetic fixtures rather than on the backlog it exists to clear.
+
+    Anchoring this to a real committed file would make fixing that file turn this test red, which is
+    the trap that pushes a fixer toward the exemption list instead of the defect.
+    """
+    import json
+    import tempfile
+    from unittest import mock
+
+    from benchmaxxing import degeneracy
+
+    root = Path(tempfile.mkdtemp())
+    res = root / "experiments" / "x" / "results"
+    res.mkdir(parents=True)
+    (res / "degenerate.jsonl").write_text("".join(
+        json.dumps({"case_id": f"c{i}", "clean": "yes" if i % 3 else "no",
+                    "iso": "yes" if i % 3 else "no", "shared": "no"}) + "\n" for i in range(30)))
+    (res / "honest.jsonl").write_text("".join(
+        json.dumps({"case_id": f"c{i}", "clean": "yes" if i % 3 else "no",
+                    "iso": "yes" if i % 4 else "no", "shared": "no"}) + "\n" for i in range(30)))
+
+    with mock.patch.object(degeneracy, "_tracked", lambda r, pat: sorted(res.glob("*.jsonl"))):
+        found = degeneracy.identical_reads(root)
+
+    loci = {(Path(f.path).name, f.locus) for f in found}
+    assert ("degenerate.jsonl", "clean vs iso") in loci, (
+        "the screen did not fire on two reads that are identical on every row")
+    assert not any(name == "honest.jsonl" for name, _ in loci), (
+        "the screen fired on reads that genuinely diverge")
+
+
+def test_identical_reads_ignores_a_column_derived_from_another():
+    """`iso` vs `iso_adopt` is notation, not a second measurement, and must not be reported.
+
+    Without the prefix skip this screen produced 113 findings on the imaging lane, nearly all of them
+    definitional, which is how a useful screen becomes an ignored one.
+    """
+    import json
+    import tempfile
+    from unittest import mock
+
+    from benchmaxxing import degeneracy
+
+    root = Path(tempfile.mkdtemp())
+    res = root / "experiments" / "y" / "results"
+    res.mkdir(parents=True)
+    (res / "derived.jsonl").write_text("".join(
+        json.dumps({"case_id": f"c{i}", "iso": "yes" if i % 3 else "no",
+                    "iso_read": "yes" if i % 3 else "no"}) + "\n" for i in range(30)))
+
+    with mock.patch.object(degeneracy, "_tracked", lambda r, pat: sorted(res.glob("*.jsonl"))):
+        found = degeneracy.identical_reads(root)
+
+    assert not found, f"reported a derived column as a duplicate measurement: {found}"
 
 
 def test_the_preexisting_baseline_can_only_shrink():

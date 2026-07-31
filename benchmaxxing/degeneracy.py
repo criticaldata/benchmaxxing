@@ -432,6 +432,57 @@ def duplicate_columns(root: Path = REPO_ROOT) -> list[Finding]:
     return findings
 
 
+def identical_reads(root: Path = REPO_ROOT) -> list[Finding]:
+    """Two columns holding MODEL READS that are identical on every row.
+
+    Distinct from ``duplicate_columns`` in two ways, and both matter. It reads yes/no strings,
+    which ``_binary`` deliberately does not, because every imaging arm records its reads that way
+    and the pair screen was therefore blind to the whole imaging lane. And it compares only reads
+    to other reads, skipping any pair where one name is a prefix of the other, so the definitional
+    derivations (``iso`` vs ``iso_adopt``, ``clean`` vs ``clean_correct``) do not drown the signal.
+    Those are notation; two separate reads coming back identical is a measurement that never
+    happened.
+
+    This is the screen that would have caught #393. ``imaging_cascade.py`` hands the no-cue arm's
+    isolated re-read the unmodified image, so it hashes the clean read's cache key and returns the
+    same answer, making ``iso == clean`` on every row and isolated adoption a restatement of clean
+    accuracy. That reached the paper twice before anyone read the rows.
+    """
+    reads = {"yes", "no", "Yes", "No", "YES", "NO"}
+    findings: list[Finding] = []
+    for path in per_case_files(root):
+        rows = _read_rows(path)
+        if rows is None or len(rows) < MIN_ROWS:
+            continue
+        common = sorted(set(rows[0]).intersection(*(set(r) for r in rows[1:])))
+        cols: dict[str, list[str]] = {}
+        for col in common:
+            if col in CASE_KEYS:
+                continue
+            vals = [r[col] for r in rows]
+            if not all(isinstance(v, str) and v in reads for v in vals):
+                continue
+            if len(set(vals)) == 1:
+                continue  # a constant read is screen 1's business
+            cols[col] = vals
+        names = sorted(cols)
+        for i, a in enumerate(names):
+            for b in names[i + 1 :]:
+                if b.startswith(a) or a.startswith(b):
+                    continue  # a derivation of the other, not a second measurement
+                if cols[a] == cols[b]:
+                    findings.append(
+                        Finding(
+                            "identical_reads",
+                            str(path.relative_to(root)),
+                            f"{a} vs {b}",
+                            f"{a} and {b} are both model reads and are identical on all "
+                            f"{len(rows)} rows, so one of them was never independently measured",
+                        )
+                    )
+    return findings
+
+
 # ----------------------------------------------------------------------------- screen 5
 
 
@@ -513,6 +564,7 @@ def scan(root: Path = REPO_ROOT) -> list[Finding]:
         + hardcoded_verdicts(root)
         + rounded_pvalues(root)
         + duplicate_columns(root)
+        + identical_reads(root)
         + forced_direction(root),
         key=lambda f: f.key,
     )
