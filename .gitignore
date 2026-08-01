@@ -23,3 +23,6 @@ experiments/mimic_cxr_text/results*/transcripts/
 # ...but MedMCQA is fully public (no DUA), so its call cache IS committed: break-it C's numbers
 # were salvaged from it, so it has to be reproducible.
 !experiments/medmcqa/results/call_cache.jsonl
+
+# macOS finder metadata
+.DS_Store
