@@ -20,6 +20,7 @@ experiments/mimic_cxr_text/results*/transcripts/
 
 # model-call caches: local reproduction accelerators, not results (can be large)
 *_cache.jsonl
-# ...but MedMCQA is fully public (no DUA), so its call cache IS committed: break-it C's numbers
-# were salvaged from it, so it has to be reproducible.
-!experiments/medmcqa/results/call_cache.jsonl
+# ...but MedMCQA is fully public (no DUA), so its caches ARE committed: the committee arms replay
+# keylessly at zero API calls, which is the reproducibility bar for the battery (#291). call_cache
+# alone was not enough -- it does not cover the committee arms, so commit the per-arm caches too.
+!experiments/medmcqa/results/*_cache.jsonl
