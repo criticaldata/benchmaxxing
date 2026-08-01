@@ -11,14 +11,22 @@ Design notes:
 - Cues are composited by alpha blending toward a bright value, so a pixel only changes where the
   cue actually covers it, and higher opacity moves the pixel further from the original. That gives
   a clean, graded strength knob.
-- Rendering (text, lines) is done with PIL, which is deterministic for a fixed version, so repeated
-  calls with the same arguments produce byte-identical output.
+- Rendering (text, lines) is done with PIL. Text cues use a VENDORED TrueType face, not
+  ``ImageFont.load_default()``, whose typeface and size handling vary by Pillow version. That
+  variation used to change the cue pixels between environments, and since the imaging call caches
+  are keyed on those pixels it silently invalidated cached reads instead of reporting a mismatch
+  (#393). ``cue_checksum`` exposes that pixel identity so a run can assert it up front.
 
 This is a pure image-processing injector: it makes no claim about any model. The synthetic shapes
 used in the tests are a check of the injector's own behavior.
 """
 
 from __future__ import annotations
+
+import hashlib
+import io
+from functools import lru_cache
+from pathlib import Path
 
 import numpy as np
 
@@ -67,13 +75,72 @@ def _composite(work, alpha_map, brightness):
     work += color[None, None, :] * a
 
 
+# Vendored so the text cues render the same glyphs everywhere. ImageFont.load_default() is NOT a
+# fixed font: which typeface it returns, and whether it honours size= at all, depend on the Pillow
+# version. Pillow < 10.1 raises TypeError on size= and falls back to a tiny unscaled bitmap; 10.1+
+# returns a scaled Aileron. Since the imaging call cache is keyed on sha256 of the contaminated
+# pixels, a different font silently invalidated every cached read and re-queried the model instead
+# of reporting a mismatch. That is the #393 defect: an independent re-run of the MIMIC-CXR referee
+# cohort disagreed with the committed per-case outcomes on roughly half of 417 cases.
+_FONT_PATH = Path(__file__).with_name("assets") / "DejaVuSans.ttf"
+# The font file's own checksum. Verified on load, so a corrupted or swapped file fails loudly here
+# rather than showing up as unexplained model disagreement weeks later.
+_FONT_SHA256 = "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280"
+
+
+class CueRenderError(RuntimeError):
+    """Raised when a text cue cannot be rendered reproducibly.
+
+    Never caught and worked around inside this module: a cue that cannot be rendered identically
+    across environments invalidates the call cache silently, which is exactly the failure this
+    class exists to make loud.
+    """
+
+
+@lru_cache(maxsize=None)
+def _font_bytes():
+    if not _FONT_PATH.exists():
+        raise CueRenderError(
+            f"vendored font missing at {_FONT_PATH}. Text cues (watermark, corner_tag, laterality) "
+            "cannot be rendered reproducibly without it; reinstall the package rather than falling "
+            "back to a system font, which would change the cue pixels and invalidate the cache."
+        )
+    raw = _FONT_PATH.read_bytes()
+    got = hashlib.sha256(raw).hexdigest()
+    if got != _FONT_SHA256:
+        raise CueRenderError(
+            f"vendored font checksum mismatch at {_FONT_PATH}: expected {_FONT_SHA256}, got {got}. "
+            "A different font renders different cue pixels, which silently invalidates every cached "
+            "model read keyed on those pixels (see #393)."
+        )
+    return raw
+
+
 def _load_font(size):
+    """Return the vendored TrueType face at ``size``.
+
+    Deliberately no fallback to ``ImageFont.load_default()``: falling back would keep rendering,
+    with different glyphs, which is the silent-divergence mode this function was written to remove.
+    """
     from PIL import ImageFont
 
     try:
-        return ImageFont.load_default(size=size)
-    except TypeError:
-        return ImageFont.load_default()
+        return ImageFont.truetype(io.BytesIO(_font_bytes()), size=size)
+    except OSError as exc:  # Pillow built without FreeType cannot rasterise TrueType at all.
+        raise CueRenderError(
+            "Pillow cannot load a TrueType font, so text cues cannot be rendered reproducibly. "
+            "Install a Pillow build with FreeType support."
+        ) from exc
+
+
+def cue_checksum(img):
+    """sha256 of an image's pixels, the identity the imaging call caches are keyed on.
+
+    Exposed so a run can assert the cue it renders matches the cue a committed result was scored
+    against, instead of discovering a mismatch as unexplained model disagreement.
+    """
+    arr = np.asarray(img)
+    return hashlib.sha256(np.ascontiguousarray(arr).tobytes()).hexdigest()
 
 
 def _draw_line_coverage(h, w, p0, p1, thickness):

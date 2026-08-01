@@ -21,7 +21,8 @@ dependencies = [
 # extra is missing.
 stats = ["statsmodels>=0.14"]           # mixed-effects, Cochran-Mantel-Haenszel
 changepoint = ["ruptures>=1.1"]         # cascade-onset change-point detection
-image = ["pillow>=10", "opencv-python-headless>=4.8"]  # cue injection
+image = ["pillow>=10", "opencv-python-headless>=4.8"]  # cue injection; needs a FreeType build
+                                                       # for the vendored TrueType face (#393)
 models = ["google-genai>=1.0", "litellm>=1.40", "transformers>=4.50", "torch>=2.1"]
 config = ["pyyaml>=6.0"]
 dev = ["pytest>=7.4", "ruff>=0.5"]
@@ -31,6 +32,12 @@ benchmaxxing = "benchmaxxing.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["benchmaxxing*"]
+
+# The vendored font must ship with the package: text cues render through it rather than through
+# ImageFont.load_default(), whose glyphs move with the Pillow version and silently invalidate the
+# pixel-keyed imaging call caches (#393). Its licence travels with it, per Bitstream Vera terms.
+[tool.setuptools.package-data]
+"benchmaxxing.cues" = ["assets/DejaVuSans.ttf", "assets/DejaVuSans.LICENSE.txt"]
 
 [tool.pytest.ini_options]
 # The history scan walks every blob in the repo and is expected to fail until

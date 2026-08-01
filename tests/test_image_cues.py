@@ -181,3 +181,79 @@ def test_injectors_reject_non_uint8():
 def test_corner_tag_rejects_bad_corner():
     with pytest.raises(ValueError):
         ic.inject_corner_tag(_gray(), corner="middle")
+
+
+# ---------------------------------------------------------------------------
+# Cue determinism across environments (#393).
+#
+# The three text cues used to rasterise through ImageFont.load_default(), whose typeface and
+# size handling vary by Pillow version. The imaging call caches key on sha256 of the contaminated
+# pixels, so a font change silently invalidated cached reads and re-queried the model instead of
+# reporting a mismatch. These are golden-pixel tests: they fail loudly the moment the rendered cue
+# stops matching the pixels the committed results were scored against.
+# ---------------------------------------------------------------------------
+
+# sha256 of the contaminated pixels for each text cue at the default parameters on an 80x80 uint8
+# field of BASE_VALUE. Regenerate ONLY alongside a rerun of every imaging arm; changing a value
+# here without rerunning silently orphans the committed per-case rows.
+GOLDEN_CUE_PIXELS = {
+    "corner_tag": "428095b6c2663b0b5d9923541655122682d661eb356206facd799c0639fb2fc9",
+    "watermark": "b5a573c4e5f9762d76524ce80b7029c01d5b6716e8a066a449fadb71ef051290",
+    "laterality": "913797e9436731df3ac75b8848ab646f81f188692eb12dda2ee4e6034d0d8e68",
+}
+
+TEXT_CUES = [
+    ("corner_tag", ic.inject_corner_tag),
+    ("watermark", ic.inject_watermark),
+    ("laterality", ic.inject_laterality),
+]
+
+
+@pytest.mark.parametrize("name,fn", TEXT_CUES)
+def test_text_cue_pixels_match_the_golden_checksum(name, fn):
+    """The rendered cue is byte-identical to what the committed imaging results were scored on."""
+    assert ic.cue_checksum(fn(_gray())) == GOLDEN_CUE_PIXELS[name], (
+        f"{name} renders different pixels than the committed results were scored against. The "
+        "imaging call cache is keyed on these bytes, so this WILL silently invalidate it (#393). "
+        "Do not update the golden value without rerunning every imaging arm."
+    )
+
+
+def test_text_cues_use_the_vendored_font_not_the_pillow_default():
+    """A vendored face, so glyphs do not move with the Pillow version."""
+    assert ic._FONT_PATH.exists(), "the vendored font must ship with the package"
+    font = ic._load_font(20)
+    # A TrueType face exposes .path/.size; the old bitmap default did not.
+    assert hasattr(font, "size"), "text cues must render through a scalable TrueType face"
+    assert font.size == 20
+
+
+def test_font_checksum_mismatch_fails_loudly(monkeypatch, tmp_path):
+    """A swapped or corrupted font raises, rather than quietly rendering different glyphs."""
+    fake = tmp_path / "DejaVuSans.ttf"
+    fake.write_bytes(b"not a font")
+    monkeypatch.setattr(ic, "_FONT_PATH", fake)
+    ic._font_bytes.cache_clear()
+    try:
+        with pytest.raises(ic.CueRenderError, match="checksum mismatch"):
+            ic._load_font(20)
+    finally:
+        ic._font_bytes.cache_clear()
+
+
+def test_missing_font_fails_loudly(monkeypatch, tmp_path):
+    """No silent fallback to a system font: a missing vendored face is a hard error."""
+    monkeypatch.setattr(ic, "_FONT_PATH", tmp_path / "absent.ttf")
+    ic._font_bytes.cache_clear()
+    try:
+        with pytest.raises(ic.CueRenderError, match="vendored font missing"):
+            ic._load_font(20)
+    finally:
+        ic._font_bytes.cache_clear()
+
+
+def test_cue_checksum_is_the_cache_identity():
+    """cue_checksum distinguishes cued from clean, and is stable across repeated renders."""
+    base = _gray()
+    assert ic.cue_checksum(base) != ic.cue_checksum(ic.inject_watermark(base))
+    assert ic.cue_checksum(ic.inject_watermark(base)) == ic.cue_checksum(ic.inject_watermark(base))
