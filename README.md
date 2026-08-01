@@ -93,6 +93,10 @@ least once during the work:
 
 ## Licence
 
-**Not yet set.** Until a licence file is added the default is exclusive copyright, which means this
-code cannot be reused. See the release checklist before publishing.
+[**CC BY 4.0**](https://creativecommons.org/licenses/by/4.0/). Share and adapt for any purpose,
+including commercially, with attribution. Full text in [`LICENSE`](LICENSE).
+
+This covers the code, the derived per-case rows and the response caches. **It does not extend to any
+dataset**: MedQA-USMLE, MedMCQA, NIH ChestX-ray14, CheXpert, SUPPORT2 and MIMIC-CXR each carry their
+own terms and must be obtained from their providers. See Data access above.
 
