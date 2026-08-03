@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from benchmaxxing.schema import Turn
 from experiments.cascade.multi_round import (
+    _peer_board_line,
     adoption_curve,
     is_monotone_nondecreasing,
     per_round_holdout_answers,
@@ -58,3 +59,17 @@ def test_adoption_curve_averages_across_cases_and_skips_short_lists():
     assert adoption_curve(flags, k=3) == [0.0, 0.5, 0.5]
     # a case with a shorter list must not crash the later-round averages
     assert adoption_curve([[True], [True, True]], k=2) == [1.0, 1.0]
+
+
+def test_peer_board_line_single_line_is_byte_identical_to_the_old_render():
+    # #412: the single-line render must stay `- {answer}: {content.strip()}` to the byte, or every
+    # committed multi_round cache stops replaying.
+    t = Turn(turn_index=0, agent_id="peer1", content="  confident it is heparin  ", answer="heparin")
+    assert _peer_board_line(t) == "- heparin: confident it is heparin"
+
+
+def test_peer_board_line_indents_a_multiline_rationale():
+    # #412: a live multi-line reply's continuation lines must sit indented under the vote, not at the
+    # margin where they read as fresh board entries (the defect 7c165f4 fixed in render_board).
+    t = Turn(turn_index=0, agent_id="peer1", content="first line\n\nsecond line", answer="heparin")
+    assert _peer_board_line(t) == "- heparin: first line\n  second line"
