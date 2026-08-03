@@ -12,9 +12,15 @@ why the caches live in-tree — unlike the MIMIC lanes, whose transcripts stay g
 MedMCQA (Pal et al. 2022) ships as JSON/JSONL splits. Stage the raw `dev.json` into a validated
 manifest:
 
-    benchmaxxing datasets stage medmcqa --raw /path/to/medmcqa --out data/medmcqa_dev.csv
+    benchmaxxing datasets stage medmcqa --raw-root /path/to/medmcqa --out data/medmcqa_dev.csv --limit 500
 
-`data/` is gitignored: the manifest is rebuilt from the public release, not committed.
+`data/` is gitignored: the manifest is rebuilt from the public release, not committed. `--limit 500`
+matters, not just cosmetic: `results/RESULTS.md` records the manifest as 500 rows, and the solo arm's
+100-case cohort is a `random.Random(0).sample()` over the manifest, so its selection is sensitive to
+manifest length. Staging the full ~4183-row validation split instead of 500 picks a different sample
+(under 5% overlap, checked directly), so `solo_records.jsonl` and the `break_it_D` hard-case cohort
+built from it would not reproduce. The committee arms above are unaffected: they take a stable prefix
+slice of the manifest, not a seeded sample, so they stage clean at any `--limit`.
 
 ## 2. Run an arm
 
