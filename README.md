@@ -38,7 +38,10 @@ The build plan and the issue tracker for this repo mirror a six-stage program (s
 
 ## Licence
 
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Full text in [`LICENSE`](LICENSE).
+Dual-licensed. Code under [Apache 2.0](LICENSE-APACHE-2.0), other artifacts under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Per-case rows derived from a
+credentialed source are not licensed here and inherit the source's terms. Scope in
+[`LICENSE`](LICENSE).
 
 No dataset is redistributed here. MedQA-USMLE, MedMCQA, NIH ChestX-ray14, CheXpert, SUPPORT2 and
 MIMIC-CXR each carry their own terms and must be obtained from their providers. See

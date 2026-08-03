@@ -225,6 +225,45 @@ linkage to source records is removed.
 
 The runners still emit real identifiers when you run them locally. `tests/test_no_credentialed_identifiers.py`
 fails if any reach a tracked file, so de-identify before committing rather than relying on care.
+That guard is MIMIC-specific by design: it matches `mimic-cxr-text-<subject>-<study>` and MIMIC's
+`p1XXXXXXX`/`s5XXXXXXX` directory ids. It does not screen other datasets. The CheXpert results still
+commit `patientNNNNN/studyN/...` paths, which is a different dataset under a different agreement, and
+adding a lane under credentialed terms means extending the guard, not assuming it already covers you.
+
+### Before making this repository public
+
+**De-identifying the working tree does not de-identify the repository.** Every pre-migration blob
+stays fetchable from history, and because `case_index` is a deterministic rank over the sorted union
+of the 633 MIMIC ids, anyone with history access can rebuild the map and re-link every committed
+row. The tip being clean is not the property that matters.
+
+So the visibility flip has a hard prerequisite: `scripts/rewrite_history_before_public.sh`, which
+mirrors the repo, drops every historical version of the affected result files with `git-filter-repo`,
+restores only the de-identified versions, and verifies by scanning every blob reachable from every
+ref. Read it before running it; the manual steps it prints at the end (force-push, a GitHub Support
+ticket to garbage-collect unreachable objects, deleting forks) are not optional, because a
+force-push alone leaves old commits reachable by SHA.
+
+Two findings from validating that script, both worth knowing before anyone writes their own:
+
+- The affected set is **ten** files, not the nine tracked in `main`.
+  `referee_deployable_falsifiability_check.json` exists only on the unmerged branch
+  `docs/referee-tautology-correction` and carries 5 real ids. A mirror clone fetches every ref, so
+  a rewrite scoped to what `main` tracks silently misses it.
+- Verification must pass `grep -a`. The concatenated blob stream contains the response caches, so
+  plain `grep` classifies it as binary and reports a false clean. That false pass is the exact
+  failure this gate exists to catch.
+
+The property is pinned as a test rather than a checklist item:
+
+```bash
+python -m pytest tests/test_no_credentialed_identifiers.py -m history
+```
+
+It is marked `history` and deselected from the default suite, because it walks every object and is
+expected to fail until the rewrite has run. It fails on the current history with 633 ids and passes
+on a rewritten mirror. Treat a pass as the gate on flipping visibility, and note that flipping is a
+one-way door: assume every object is cloned and cached the moment it is public.
 
 ## 11. Reproducing the published results
 
@@ -255,7 +294,8 @@ Each of these pins a property that failed at least once during the work, which i
   scored against, two reads that never diverge, a significance verdict hardcoded as a string. New
   findings need an entry in `tests/degeneracy_exemptions.json` explaining why they are legitimate, and
   the pre-existing count is ratcheted so it can only shrink.
-- `tests/test_no_credentialed_identifiers.py`: no MIMIC identifier may be committed.
+- `tests/test_no_credentialed_identifiers.py`: no MIMIC identifier may be committed, in the working
+  tree or (under `-m history`) anywhere in git history. MIMIC-specific by design, see section 10.
 - `tests/test_board_render.py`: every committee runner renders the shared board through one function,
   so a seeded rationale cannot be dropped before it reaches the holdout.
 

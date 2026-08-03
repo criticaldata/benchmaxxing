@@ -8,6 +8,8 @@ version = "0.0.1"
 description = "Referee agents that catch benchmark gaming in clinical multi-agent systems: shortcut cascades, blind metrics, and mutual oversight, measured."
 readme = "README.md"
 requires-python = ">=3.10"
+# The package is the code, which is Apache-2.0. The repository is dual-licensed and
+# per-case rows derived from credentialed sources are excluded from both grants: see LICENSE.
 license = { text = "Apache-2.0" }
 dependencies = [
     "numpy>=1.24",
@@ -31,6 +33,13 @@ benchmaxxing = "benchmaxxing.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["benchmaxxing*"]
+
+[tool.pytest.ini_options]
+# The history scan walks every blob in the repo and is expected to fail until
+# scripts/rewrite_history_before_public.sh has run, so it is opt-in rather than part of the
+# default suite. Run it with `-m history`; it is the gate on flipping the repo public.
+addopts = "-m 'not history'"
+markers = ["history: scans all of git history, not just the working tree"]
 
 [tool.ruff]
 line-length = 100
