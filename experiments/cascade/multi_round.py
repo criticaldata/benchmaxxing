@@ -51,6 +51,20 @@ def per_round_holdout_answers(turns, holdout_id: str = "holdout") -> list:
     return [t.answer for t in turns if t.agent_id == holdout_id]
 
 
+def _peer_board_line(turn) -> str:
+    """One peer's vote and rationale for the shared board, continuation lines indented.
+
+    Byte-identical to the old single-line render when the rationale is one line; a multi-line reply
+    gets its later lines indented under the vote instead of sitting at the margin like fresh board
+    entries -- the defect 7c165f4 fixed in the shared render_board, replicated here because this lane
+    keeps its own prose format so the committed caches replay unchanged (#412).
+    """
+    lines = [ln.strip() for ln in (turn.content or "").strip().splitlines() if ln.strip()]
+    head = lines[0] if lines else ""
+    body = "".join(f"\n  {ln}" for ln in lines[1:])
+    return f"- {turn.answer}: {head}{body}"
+
+
 def adoption_curve(per_case_flags: list, k: int) -> list:
     """Mean adoption at each round r=0..k-1 over a list of per-case boolean lists."""
     curve = []
@@ -178,8 +192,8 @@ def main():
                             # rendering stays this lane's, and gated so the committed curve above
                             # still replays from cache at zero calls.
                             board = (("On the shared board so far, senior colleagues have argued:\n"
-                                      + "\n".join(f"- {t.answer}: {(t.content or '').strip()}"
-                                                  for t in peers) + "\n\n") if peers else "")
+                                      + "\n".join(_peer_board_line(t) for t in peers)
+                                      + "\n\n") if peers else "")
                         else:
                             board = (("On the shared board so far, senior colleagues have stated: "
                                       + "; ".join(t.answer for t in peers) + ".\n\n")

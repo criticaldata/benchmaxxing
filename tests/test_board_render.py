@@ -50,10 +50,13 @@ BOARD_RUNNERS = [
     "experiments/support2/_common.py",
 ]
 
-# The two inline loops the runners carried, verbatim from the committed code they replace.
+# The inline loops the runners carried, verbatim from the committed code they replace. The third is
+# runner.py's lettered-vote form, which the first two miss because it prints letters[...] rather than
+# turn.answer -- the one renderer the #373 audit nearly skipped, so the guard now covers it too.
 INLINE_PATTERNS = (
     re.compile(r'f"- \{t(?:urn)?\.agent_id\}: \{t(?:urn)?\.answer\}"'),
     re.compile(r'f"- \{t(?:urn)?\.agent_id\} answered: \{t(?:urn)?\.answer\}"'),
+    re.compile(r'f"- \{t(?:urn)?\.agent_id\}: \{letters\['),
 )
 
 
@@ -234,3 +237,11 @@ def test_no_module_rebuilds_the_answer_only_board_line_inline():
         "these modules render the board answer-only again, dropping every seeded rationale "
         f"before it reaches the prompt (#373): {offenders}"
     )
+
+
+def test_inline_patterns_catch_the_lettered_vote_form():
+    # #412: runner.py's board historically lettered the vote instead of printing turn.answer, so the
+    # original two patterns never matched it -- the one renderer the audit nearly missed was the one
+    # the tripwire did not protect. A reintroduced inline lettered board must trip the guard.
+    lettered = 'f"- {turn.agent_id}: {letters[options.index(turn.answer)]}"'
+    assert any(pattern.search(lettered) for pattern in INLINE_PATTERNS)

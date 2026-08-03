@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import copy
 
-from benchmaxxing.blackboard import AgentResponse, AgentView, run_committee
+from benchmaxxing.blackboard import AgentResponse, AgentView, render_board, run_committee
 from benchmaxxing.schema import Case, Committee, Condition, Modality, ModelSpec, Turn
 
 
@@ -467,14 +467,34 @@ def test_seed_turn_accepts_several_specs_and_custom_content():
     assert tr.turns[2].content == "C[member] saw 2 turns"
 
 
-def test_seed_turn_without_content_keeps_the_bare_assertion():
+def test_seed_turn_without_content_has_no_marker_on_content():
+    # #392: with no supplied utterance the planted turn carries no content. The seeded flag and the
+    # committed answer already record the plant; a synthetic "[seeded] planted answer" marker on
+    # content leaks onto the board under --show-rationale and is read as reasoning by the referee /
+    # latch consumers, so it must stay off Turn.content.
     committee = make_committee("A", "B")
     backends = {"A": MockBackend("A"), "B": MockBackend("B")}
 
     tr = run_committee(committee, make_case(), Condition.CLEAN, backend_factory(backends),
                        seed_turn=[(0, "PLANTED", "planter")])
 
-    assert tr.turns[0].content == "[seeded] planted answer: 'PLANTED'"
+    assert tr.turns[0].seeded is True
+    assert tr.turns[0].answer == "PLANTED"
+    assert tr.turns[0].content == ""
+
+
+def test_seed_marker_does_not_leak_onto_the_board_with_show_rationale():
+    # #392: rendering the board with rationale on must not surface the planted-turn marker; otherwise
+    # the holdout reads "[seeded] planted answer" and any whole-turn referee/judge cannot fail.
+    committee = make_committee("A", "B")
+    backends = {"A": MockBackend("A"), "B": MockBackend("B")}
+
+    tr = run_committee(committee, make_case(), Condition.CLEAN, backend_factory(backends),
+                       seed_turn=[(0, "PLANTED", "planter")])
+
+    board = render_board(tr.turns, "Board so far:", show_rationale=True)
+    assert "[seeded]" not in board
+    assert "planted answer" not in board
 
 
 def test_duplicate_seed_slot_raises():
