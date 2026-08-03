@@ -428,11 +428,11 @@ def run_committee(
                 turn = Turn(
                     turn_index=state.turn_index,
                     agent_id=planted_agent,
-                    content=(
-                        seed_content
-                        if seed_content is not None
-                        else f"[seeded] planted answer: {seed_answer!r}"
-                    ),
+                    # No supplied utterance -> no content. The seeded flag and the answer already
+                    # record the plant; a synthetic "[seeded] planted answer" marker here would leak
+                    # onto the board under show_rationale and be read as reasoning by the referee /
+                    # latch consumers (a cannot-fail-by-construction trap, #392/#374).
+                    content=seed_content if seed_content is not None else "",
                     answer=seed_answer,
                     confidence=None,
                     seeded=True,
