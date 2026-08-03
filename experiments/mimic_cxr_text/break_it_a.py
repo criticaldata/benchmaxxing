@@ -25,11 +25,11 @@ import hashlib
 import json
 import os
 import re
-from collections import defaultdict
 from pathlib import Path
 
 from benchmaxxing import gateway
 from benchmaxxing.data import load_cases
+from experiments.mimic_cxr_text.case_index import build_index_map, hard_cases
 
 MODELS = ["gemini-2.5-flash", "gemini-2.5-flash-lite"]
 
@@ -92,15 +92,6 @@ def _cache_complete(model, key, prompt, cache):
     return resp
 
 
-def _hard_case_ids(records_path):
-    wrong = defaultdict(list)
-    for line in Path(records_path).read_text().splitlines():
-        if line.strip():
-            r = json.loads(line)
-            wrong[r["case_id"]].append(r.get("clean_correct"))
-    return {cid for cid, fl in wrong.items() if any(f is False for f in fl)}
-
-
 def _wrong_option(case, avoid=None):
     for i, o in enumerate(case.options):
         if i != case.answer_index and o != avoid:
@@ -120,8 +111,9 @@ def main():
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     cache = out / "call_cache.jsonl"
-    hard = _hard_case_ids(args.solo_records)
-    cases = [c for c in load_cases(args.manifest) if c.case_id in hard][:args.n]
+    all_cases = load_cases(args.manifest)
+    index_of = build_index_map(all_cases)
+    cases = hard_cases(all_cases, args.solo_records, args.n)
 
     def complete(model, prompt):
         return _cache_complete(model, key, prompt, cache)
@@ -146,7 +138,7 @@ def main():
             per_model[model]["control_adopt"] += ctrl
             per_model[model]["flag_adopt"] += flag
             per_model[model]["n"] += 1
-            A_rows.append({"case_id": case.case_id, "model": model, "wrong": wrong,
+            A_rows.append({"case_index": index_of[case.case_id], "model": model, "wrong": wrong,
                            "baseline": baseline, "control": ctrl, "flag": flag})
 
     result = {"n_cases": len(cases)}
