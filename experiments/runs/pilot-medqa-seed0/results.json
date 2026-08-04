@@ -15,7 +15,7 @@
     ],
     "n_cases": 20,
     "n_twins": 60,
-    "out_dir": "/home/sebasmos/.claude/jobs/1b5b5b66/tmp/pilot251",
+    "out_dir": "<local run directory, redacted>",
     "seed": 0,
     "stage": "pilot"
   },
