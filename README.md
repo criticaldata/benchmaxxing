@@ -53,26 +53,7 @@ MIMIC-CXR each carry their own terms and must be obtained from their providers. 
 ## Citation
 
 Machine-readable metadata is in [`CITATION.cff`](CITATION.cff); GitHub renders it as a "Cite this
-repository" button. To cite the paper:
-
-```bibtex
-@inproceedings{benchmaxxing2026,
-  title     = {Agents Catching Agents: Shortcut Cascades and Benchmark Gaming
-               in Clinical Multi-Agent Systems},
-  author    = {Cajas Ord{\'o}{\~n}ez, Sebasti{\'a}n Andr{\'e}s and
-               Munnangi, Agastya and Marzullo, Aldo and
-               Ocampo Osorio, Felipe and Bui, Quang and Shahin, Mohammad and
-               Grewal, Armaan and Kwesiga, Emmanuel Paul and Li, Anqi Peter and
-               Nanyonjo, Josephine and Panchal, Aaditya and Bhutani, Arshnoor and
-               Jaiswal, Nikhil and Patel, Milit S. and Lange, Maximin and
-               Celi, Leo Anthony},
-  booktitle = {2nd Agentic AI for Medicine Workshop, MICCAI},
-  year      = {2026},
-  month     = jul
-}
-```
-
-To cite the software and its cached runs specifically:
+repository" button. To cite the software and its cached runs:
 
 ```bibtex
 @software{benchmaxxing_software,
