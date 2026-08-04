@@ -1,33 +1,15 @@
 benchmaxxing
 Copyright (c) 2026 The benchmaxxing authors
 
-This repository is dual-licensed, because code and research artifacts want
-different terms. Creative Commons advise against CC licences for software: they
-carry no patent grant and no code-oriented warranty disclaimer.
+Licensed under the Creative Commons Attribution 4.0 International License
+(CC BY 4.0). Full text in LICENSE-CC-BY-4.0, and at
+<https://creativecommons.org/licenses/by/4.0/>. You may share and adapt this
+material for any purpose, including commercially, provided you give appropriate
+credit, link to the licence, and indicate if changes were made.
 
-  Code: everything under `benchmaxxing/`, `experiments/**/*.py`, `tests/`
-    Apache License 2.0. Full text in LICENSE-APACHE-2.0.
-
-  Artifacts not derived from a credentialed source: model response caches,
-  figures, docs, and the non-credentialed lanes' per-case rows
-    Creative Commons Attribution 4.0 International (CC BY 4.0). Full text in
-    LICENSE-CC-BY-4.0, <https://creativecommons.org/licenses/by/4.0/>. Share
-    and adapt for any purpose including commercially, provided you give
-    appropriate credit, link to the licence, and indicate if changes were made.
-
-  Per-case result rows derived from a credentialed source
-    NOT licensed here. They inherit the terms of the source they were derived
-    from, and neither licence above grants any additional permission over them.
-    This is deliberate: CC BY 4.0 would grant commercial reuse and adaptation,
-    which the data use agreement governing the source may not permit for
-    derivatives, even where the derived row carries only outcome flags and no
-    source content. The current instances are
-    `experiments/mimic_cxr_text/results/` and
-    `experiments/mimic_cxr_image/results/`.
-
-NO DATASET IS REDISTRIBUTED HERE, AND NEITHER LICENCE EXTENDS TO ANY OF THEM.
-MedQA-USMLE, MedMCQA, NIH ChestX-ray14, CheXpert, SUPPORT2 and MIMIC-CXR each
-carry their own terms and must be obtained from their own providers. MIMIC-CXR
-in particular requires PhysioNet credentialing; this repository contains no
-MIMIC report text, images, caches or subject and study identifiers. See
-README.md and CONTRIBUTING.md sections 10 to 12.
+No dataset is redistributed here. MedQA-USMLE, MedMCQA, NIH ChestX-ray14,
+CheXpert, SUPPORT2 and MIMIC-CXR each carry their own terms and must be obtained
+from their own providers. MIMIC-CXR in particular requires PhysioNet
+credentialing; this repository contains no MIMIC report text, images, caches or
+subject and study identifiers. See README.md and CONTRIBUTING.md sections 10
+to 12.

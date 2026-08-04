@@ -8,9 +8,7 @@ version = "0.0.1"
 description = "Referee agents that catch benchmark gaming in clinical multi-agent systems: shortcut cascades, blind metrics, and mutual oversight, measured."
 readme = "README.md"
 requires-python = ">=3.10"
-# The package is the code, which is Apache-2.0. The repository is dual-licensed and
-# per-case rows derived from credentialed sources are excluded from both grants: see LICENSE.
-license = { text = "Apache-2.0" }
+license = { text = "CC-BY-4.0" }
 dependencies = [
     "numpy>=1.24",
     "scipy>=1.10",
