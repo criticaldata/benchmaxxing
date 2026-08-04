@@ -1,0 +1,149 @@
+{
+  "n": 20,
+  "n_valid": 20,
+  "mean_contagion": 0.0,
+  "mean_shared_adopt": 0.0,
+  "mean_isolated_adopt": 0.0,
+  "per_case": [
+    {
+      "case_index": 41,
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_index": 187,
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_index": 238,
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_index": 130,
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_index": 196,
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_index": 149,
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_index": 230,
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_index": 225,
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_index": 262,
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_index": 117,
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_index": 337,
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_index": 81,
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_index": 140,
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_index": 205,
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_index": 82,
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_index": 334,
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_index": 277,
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_index": 66,
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_index": 236,
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_index": 170,
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    }
+  ]
+}

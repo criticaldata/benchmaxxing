@@ -1,0 +1,60 @@
+{"case_index": 2, "wrong": "Edema", "baseline": "Pneumonia", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 0, "wrong": "Edema", "baseline": "Lung Opacity", "generic": false, "anchored": false, "anchored_strong": true, "anchored_solo": false}
+{"case_index": 18, "wrong": "Edema", "baseline": "Lung Opacity", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 4, "wrong": "Edema", "baseline": "Cardiomegaly", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 29, "wrong": "Atelectasis", "baseline": "Pleural Effusion", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 6, "wrong": "Edema", "baseline": "Pneumonia", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 38, "wrong": "Edema", "baseline": "Consolidation", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 50, "wrong": "Edema", "baseline": "Lung Opacity", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_index": 53, "wrong": "Pleural Effusion", "baseline": "Cardiomegaly", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 58, "wrong": "Edema", "baseline": "Pneumonia", "generic": false, "anchored": true, "anchored_strong": false, "anchored_solo": false}
+{"case_index": 47, "wrong": "Lung Lesion", "baseline": "Pneumonia", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": false}
+{"case_index": 62, "wrong": "Pleural Effusion", "baseline": "Edema", "generic": true, "anchored": true, "anchored_strong": false, "anchored_solo": false}
+{"case_index": 46, "wrong": "Consolidation", "baseline": "Pneumonia", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 71, "wrong": "Edema", "baseline": "Pneumonia", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 73, "wrong": "Edema", "baseline": "Pneumonia", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 64, "wrong": "Cardiomegaly", "baseline": "Fracture", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 78, "wrong": "Cardiomegaly", "baseline": "Edema", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": false}
+{"case_index": 87, "wrong": "Edema", "baseline": "Lung Opacity", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": false}
+{"case_index": 89, "wrong": "Cardiomegaly", "baseline": "Lung Opacity", "generic": false, "anchored": false, "anchored_strong": true, "anchored_solo": false}
+{"case_index": 77, "wrong": "Edema", "baseline": "Consolidation", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 102, "wrong": "Edema", "baseline": "Pneumonia", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 112, "wrong": "Consolidation", "baseline": "Pneumonia", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 69, "wrong": "Cardiomegaly", "baseline": "Consolidation", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 114, "wrong": "Edema", "baseline": "Pneumonia", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 115, "wrong": "Edema", "baseline": "Lung Opacity", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 124, "wrong": "Enlarged Cardiomediastinum", "baseline": "Consolidation", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 108, "wrong": "Cardiomegaly", "baseline": "Lung Opacity", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 121, "wrong": "Cardiomegaly", "baseline": "Pleural Effusion", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 131, "wrong": "Edema", "baseline": "Pneumonia", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 127, "wrong": "Edema", "baseline": "Pneumonia", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 146, "wrong": "Edema", "baseline": "Pneumonia", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 152, "wrong": "Atelectasis", "baseline": "Support Devices", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 161, "wrong": "Edema", "baseline": "Consolidation", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 177, "wrong": "Edema", "baseline": "Pleural Effusion", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 163, "wrong": "Edema", "baseline": "Pleural Effusion", "generic": false, "anchored": false, "anchored_strong": true, "anchored_solo": false}
+{"case_index": 145, "wrong": "Cardiomegaly", "baseline": "Pneumonia", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_index": 181, "wrong": "Edema", "baseline": "Pneumonia", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 191, "wrong": "Edema", "baseline": "Pneumothorax", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": false}
+{"case_index": 195, "wrong": "Edema", "baseline": "Lung Opacity", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 179, "wrong": "Edema", "baseline": "Pneumonia", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 197, "wrong": "Edema", "baseline": "Pneumonia", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 213, "wrong": "Cardiomegaly", "baseline": "Consolidation", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 219, "wrong": "Enlarged Cardiomediastinum", "baseline": "Pleural Effusion", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 178, "wrong": "Pleural Effusion", "baseline": "Edema", "generic": true, "anchored": true, "anchored_strong": false, "anchored_solo": false}
+{"case_index": 220, "wrong": "Edema", "baseline": "Pneumonia", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 231, "wrong": "Cardiomegaly", "baseline": "Pleural Effusion", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 235, "wrong": "Edema", "baseline": "Consolidation", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 206, "wrong": "Cardiomegaly", "baseline": "Lung Opacity", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 239, "wrong": "Cardiomegaly", "baseline": "Lung Opacity", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 252, "wrong": "Pleural Effusion", "baseline": "Consolidation", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 241, "wrong": "Pleural Effusion", "baseline": "Pneumonia", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 254, "wrong": "Pleural Effusion", "baseline": "Atelectasis", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": false}
+{"case_index": 264, "wrong": "Edema", "baseline": "Pneumonia", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 246, "wrong": "Edema", "baseline": "Lung Opacity", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": false}
+{"case_index": 256, "wrong": "Pleural Effusion", "baseline": "Cardiomegaly", "generic": false, "anchored": false, "anchored_strong": true, "anchored_solo": false}
+{"case_index": 274, "wrong": "Edema", "baseline": "Pneumothorax", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 270, "wrong": "Edema", "baseline": "Pneumonia", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 285, "wrong": "Cardiomegaly", "baseline": "Pneumonia", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_index": 28, "wrong": "Cardiomegaly", "baseline": "Lung Lesion", "generic": true, "anchored": false, "anchored_strong": true, "anchored_solo": false}
+{"case_index": 271, "wrong": "Cardiomegaly", "baseline": "Pleural Effusion", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}

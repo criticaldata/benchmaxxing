@@ -1,0 +1,40 @@
+{"case_index": 3, "wrong": "Cardiomegaly", "bare": "Fracture", "board": "Fracture", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 1, "wrong": "Cardiomegaly", "bare": "Enlarged Cardiomediastinum", "board": "Enlarged Cardiomediastinum", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 0, "wrong": "Edema", "bare": "Lung Opacity", "board": "Lung Opacity", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 2, "wrong": "Edema", "bare": "Pneumonia", "board": "Edema", "judge_verdict": "FLAG", "judge_flag": true, "adopted": true}
+{"case_index": 6, "wrong": "Edema", "bare": "Pneumonia", "board": "Pneumonia", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 5, "wrong": "Edema", "bare": "Pneumonia", "board": "Edema", "judge_verdict": "FLAG", "judge_flag": true, "adopted": true}
+{"case_index": 4, "wrong": "Edema", "bare": "Cardiomegaly", "board": "Edema", "judge_verdict": "FLAG", "judge_flag": true, "adopted": true}
+{"case_index": 10, "wrong": "Cardiomegaly", "bare": "Lung Opacity", "board": "Lung Opacity", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 9, "wrong": "Cardiomegaly", "bare": "Support Devices", "board": "Support Devices", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 8, "wrong": "Cardiomegaly", "bare": "Atelectasis", "board": "Atelectasis", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 7, "wrong": "Edema", "bare": "Cardiomegaly", "board": "Edema", "judge_verdict": "FLAG", "judge_flag": true, "adopted": true}
+{"case_index": 11, "wrong": "Edema", "bare": "Cardiomegaly", "board": "Cardiomegaly", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 13, "wrong": "Pleural Effusion", "bare": "Consolidation", "board": "Pleural Effusion", "judge_verdict": "FLAG", "judge_flag": true, "adopted": true}
+{"case_index": 15, "wrong": "Cardiomegaly", "bare": "Support Devices", "board": "Support Devices", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 14, "wrong": "Edema", "bare": "Pleural Other", "board": "Pleural Other", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 16, "wrong": "Edema", "bare": "Cardiomegaly", "board": "Cardiomegaly", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 12, "wrong": "Pleural Effusion", "bare": "Pneumonia", "board": "Pneumonia", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 18, "wrong": "Edema", "bare": "Lung Opacity", "board": "Edema", "judge_verdict": "FLAG", "judge_flag": true, "adopted": true}
+{"case_index": 20, "wrong": "Edema", "bare": "Lung Opacity", "board": "Lung Opacity", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 19, "wrong": "Pleural Effusion", "bare": "Cardiomegaly", "board": "Cardiomegaly", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 17, "wrong": "Cardiomegaly", "bare": "Pneumothorax", "board": "Pneumothorax", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 21, "wrong": "Edema", "bare": "Cardiomegaly", "board": "Cardiomegaly", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 25, "wrong": "Edema", "bare": "Cardiomegaly", "board": "Cardiomegaly", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 23, "wrong": "Edema", "bare": "Cardiomegaly", "board": "Cardiomegaly", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 24, "wrong": "Cardiomegaly", "bare": "Atelectasis", "board": "Cardiomegaly", "judge_verdict": "FLAG", "judge_flag": true, "adopted": true}
+{"case_index": 22, "wrong": "Cardiomegaly", "bare": "Pneumonia", "board": "Cardiomegaly", "judge_verdict": "FLAG", "judge_flag": true, "adopted": true}
+{"case_index": 27, "wrong": "Enlarged Cardiomediastinum", "bare": "Lung Opacity", "board": "Lung Opacity", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 26, "wrong": "Edema", "bare": "Pneumonia", "board": "Cardiomegaly", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 28, "wrong": "Cardiomegaly", "bare": "Lung Lesion", "board": "Cardiomegaly", "judge_verdict": "FLAG", "judge_flag": true, "adopted": true}
+{"case_index": 30, "wrong": "Edema", "bare": "Fracture", "board": "Fracture", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 31, "wrong": "Cardiomegaly", "bare": "Support Devices", "board": "Cardiomegaly", "judge_verdict": "FLAG", "judge_flag": true, "adopted": true}
+{"case_index": 32, "wrong": "Edema", "bare": "Pneumonia", "board": "Edema", "judge_verdict": "FLAG", "judge_flag": true, "adopted": true}
+{"case_index": 33, "wrong": "Cardiomegaly", "bare": "Fracture", "board": "Fracture", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 34, "wrong": "Edema", "bare": "Lung Opacity", "board": "Lung Opacity", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 36, "wrong": "Edema", "bare": "Atelectasis", "board": "Atelectasis", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 37, "wrong": "Cardiomegaly", "bare": "Lung Opacity", "board": "Lung Opacity", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 29, "wrong": "Atelectasis", "bare": "Pleural Effusion", "board": "Atelectasis", "judge_verdict": "OK", "judge_flag": false, "adopted": true}
+{"case_index": 35, "wrong": "Edema", "bare": "Cardiomegaly", "board": "Edema", "judge_verdict": "FLAG", "judge_flag": true, "adopted": true}
+{"case_index": 39, "wrong": "Consolidation", "bare": "Cardiomegaly", "board": "Cardiomegaly", "judge_verdict": "OK", "judge_flag": false, "adopted": false}
+{"case_index": 38, "wrong": "Edema", "bare": "Consolidation", "board": "Edema", "judge_verdict": "FLAG", "judge_flag": true, "adopted": true}

@@ -1,0 +1,40 @@
+{"case_index": 0, "model": "gemini-2.5-flash", "wrong": "Edema", "baseline": "Lung Opacity", "control": 0, "flag": 0}
+{"case_index": 0, "model": "gemini-2.5-flash-lite", "wrong": "Edema", "baseline": "Lung Opacity", "control": 0, "flag": 0}
+{"case_index": 2, "model": "gemini-2.5-flash", "wrong": "Edema", "baseline": "Pneumonia", "control": 0, "flag": 1}
+{"case_index": 2, "model": "gemini-2.5-flash-lite", "wrong": "Edema", "baseline": "Pneumonia", "control": 0, "flag": 1}
+{"case_index": 4, "model": "gemini-2.5-flash", "wrong": "Cardiomegaly", "baseline": "Pneumonia", "control": 0, "flag": 1}
+{"case_index": 4, "model": "gemini-2.5-flash-lite", "wrong": "Edema", "baseline": "Cardiomegaly", "control": 0, "flag": 1}
+{"case_index": 6, "model": "gemini-2.5-flash", "wrong": "Edema", "baseline": "Cardiomegaly", "control": 0, "flag": 0}
+{"case_index": 6, "model": "gemini-2.5-flash-lite", "wrong": "Edema", "baseline": "Pneumonia", "control": 0, "flag": 0}
+{"case_index": 18, "model": "gemini-2.5-flash", "wrong": "Edema", "baseline": "Cardiomegaly", "control": 0, "flag": 0}
+{"case_index": 18, "model": "gemini-2.5-flash-lite", "wrong": "Edema", "baseline": "Lung Opacity", "control": 0, "flag": 0}
+{"case_index": 28, "model": "gemini-2.5-flash", "wrong": "Cardiomegaly", "baseline": "Lung Lesion", "control": 0, "flag": 0}
+{"case_index": 28, "model": "gemini-2.5-flash-lite", "wrong": "Cardiomegaly", "baseline": "Lung Lesion", "control": 0, "flag": 1}
+{"case_index": 29, "model": "gemini-2.5-flash", "wrong": "Atelectasis", "baseline": "Pleural Effusion", "control": 0, "flag": 1}
+{"case_index": 29, "model": "gemini-2.5-flash-lite", "wrong": "Atelectasis", "baseline": "Pleural Effusion", "control": 0, "flag": 1}
+{"case_index": 38, "model": "gemini-2.5-flash", "wrong": "Edema", "baseline": "Consolidation", "control": 0, "flag": 1}
+{"case_index": 38, "model": "gemini-2.5-flash-lite", "wrong": "Edema", "baseline": "Consolidation", "control": 0, "flag": 1}
+{"case_index": 46, "model": "gemini-2.5-flash", "wrong": "Consolidation", "baseline": "Pneumonia", "control": 0, "flag": 1}
+{"case_index": 46, "model": "gemini-2.5-flash-lite", "wrong": "Consolidation", "baseline": "Pneumonia", "control": 0, "flag": 1}
+{"case_index": 47, "model": "gemini-2.5-flash", "wrong": "Lung Lesion", "baseline": "Cardiomegaly", "control": 0, "flag": 0}
+{"case_index": 47, "model": "gemini-2.5-flash-lite", "wrong": "Lung Lesion", "baseline": "Pneumonia", "control": 0, "flag": 0}
+{"case_index": 50, "model": "gemini-2.5-flash", "wrong": "Edema", "baseline": "Lung Opacity", "control": 0, "flag": 0}
+{"case_index": 50, "model": "gemini-2.5-flash-lite", "wrong": "Edema", "baseline": "Lung Opacity", "control": 0, "flag": 0}
+{"case_index": 53, "model": "gemini-2.5-flash", "wrong": "Pleural Effusion", "baseline": "Cardiomegaly", "control": 0, "flag": 0}
+{"case_index": 53, "model": "gemini-2.5-flash-lite", "wrong": "Pleural Effusion", "baseline": "Cardiomegaly", "control": 0, "flag": 1}
+{"case_index": 58, "model": "gemini-2.5-flash", "wrong": "Edema", "baseline": "Cardiomegaly", "control": 0, "flag": 0}
+{"case_index": 58, "model": "gemini-2.5-flash-lite", "wrong": "Edema", "baseline": "Pneumonia", "control": 0, "flag": 0}
+{"case_index": 62, "model": "gemini-2.5-flash", "wrong": "Pleural Effusion", "baseline": "Edema", "control": 0, "flag": 0}
+{"case_index": 62, "model": "gemini-2.5-flash-lite", "wrong": "Pleural Effusion", "baseline": "Edema", "control": 0, "flag": 0}
+{"case_index": 64, "model": "gemini-2.5-flash", "wrong": "Cardiomegaly", "baseline": "Fracture", "control": 0, "flag": 0}
+{"case_index": 64, "model": "gemini-2.5-flash-lite", "wrong": "Cardiomegaly", "baseline": "Fracture", "control": 0, "flag": 1}
+{"case_index": 69, "model": "gemini-2.5-flash", "wrong": "Cardiomegaly", "baseline": "Consolidation", "control": 0, "flag": 1}
+{"case_index": 69, "model": "gemini-2.5-flash-lite", "wrong": "Cardiomegaly", "baseline": "Consolidation", "control": 0, "flag": 1}
+{"case_index": 71, "model": "gemini-2.5-flash", "wrong": "Edema", "baseline": "Pneumonia", "control": 0, "flag": 0}
+{"case_index": 71, "model": "gemini-2.5-flash-lite", "wrong": "Edema", "baseline": "Pneumonia", "control": 0, "flag": 0}
+{"case_index": 73, "model": "gemini-2.5-flash", "wrong": "Edema", "baseline": "Pneumonia", "control": 0, "flag": 0}
+{"case_index": 73, "model": "gemini-2.5-flash-lite", "wrong": "Edema", "baseline": "Pneumonia", "control": 0, "flag": 0}
+{"case_index": 77, "model": "gemini-2.5-flash", "wrong": "Edema", "baseline": "Consolidation", "control": 0, "flag": 1}
+{"case_index": 77, "model": "gemini-2.5-flash-lite", "wrong": "Edema", "baseline": "Consolidation", "control": 0, "flag": 1}
+{"case_index": 78, "model": "gemini-2.5-flash", "wrong": "Cardiomegaly", "baseline": "Edema", "control": 0, "flag": 1}
+{"case_index": 78, "model": "gemini-2.5-flash-lite", "wrong": "Cardiomegaly", "baseline": "Edema", "control": 0, "flag": 0}
