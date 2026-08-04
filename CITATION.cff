@@ -1,0 +1,119 @@
+cff-version: 1.2.0
+message: "If you use this software or its cached runs, please cite the paper below."
+title: benchmaxxing
+abstract: >-
+  Referee agents that catch benchmark gaming in clinical multi-agent systems:
+  shortcut cascades, blind metrics, and mutual oversight, measured.
+type: software
+license: CC-BY-4.0
+repository-code: "https://github.com/criticaldata/benchmaxxing"
+authors:
+  - family-names: "Cajas Ordóñez"
+    given-names: "Sebastián Andrés"
+  - family-names: Munnangi
+    given-names: Agastya
+  - family-names: Marzullo
+    given-names: Aldo
+  - family-names: "Ocampo Osorio"
+    given-names: Felipe
+  - family-names: Bui
+    given-names: Quang
+  - family-names: Shahin
+    given-names: Mohammad
+  - family-names: Grewal
+    given-names: Armaan
+  - family-names: Kwesiga
+    given-names: "Emmanuel Paul"
+  - family-names: Li
+    given-names: "Anqi Peter"
+  - family-names: Nanyonjo
+    given-names: Josephine
+  - family-names: Panchal
+    given-names: Aaditya
+  - family-names: Bhutani
+    given-names: Arshnoor
+  - family-names: Jaiswal
+    given-names: Nikhil
+  - family-names: Patel
+    given-names: "Milit S."
+  - family-names: Lange
+    given-names: Maximin
+  - family-names: Celi
+    given-names: "Leo Anthony"
+preferred-citation:
+  type: conference-paper
+  title: >-
+    Agents Catching Agents: Shortcut Cascades and Benchmark Gaming in Clinical
+    Multi-Agent Systems
+  collection-title: "2nd Agentic AI for Medicine Workshop, MICCAI"
+  year: 2026
+  month: 7
+  authors:
+    - family-names: "Cajas Ordóñez"
+      given-names: "Sebastián Andrés"
+    - family-names: Munnangi
+      given-names: Agastya
+    - family-names: Marzullo
+      given-names: Aldo
+    - family-names: "Ocampo Osorio"
+      given-names: Felipe
+    - family-names: Bui
+      given-names: Quang
+    - family-names: Shahin
+      given-names: Mohammad
+    - family-names: Grewal
+      given-names: Armaan
+    - family-names: Kwesiga
+      given-names: "Emmanuel Paul"
+    - family-names: Li
+      given-names: "Anqi Peter"
+    - family-names: Nanyonjo
+      given-names: Josephine
+    - family-names: Panchal
+      given-names: Aaditya
+    - family-names: Bhutani
+      given-names: Arshnoor
+    - family-names: Jaiswal
+      given-names: Nikhil
+    - family-names: Patel
+      given-names: "Milit S."
+    - family-names: Lange
+      given-names: Maximin
+    - family-names: Celi
+      given-names: "Leo Anthony"
+references:
+  - type: article
+    title: >-
+      Distributed Open Justice Oversight (DOJO): A Community-Driven,
+      Modality-Agnostic Platform for Adversarial Evaluation of Health AI
+    year: 2026
+    month: 5
+    notes: "SSRN preprint 6676818, posted 11 May 2026"
+    url: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6676818"
+    authors:
+      - family-names: Xiang
+        given-names: "Alexa Q."
+      - family-names: Tohyama
+        given-names: Takeshi
+      - family-names: Bank
+        given-names: "Alexander Cole"
+      - family-names: Bui
+        given-names: Quang
+      - family-names: Gorijavolu
+        given-names: Rahul
+      - family-names: "Garcia Henao"
+        given-names: "John Anderson"
+      - family-names: Jaiswal
+        given-names: Nikhil
+      - family-names: Kelshiker
+        given-names: Akshay
+      - family-names: Madapati
+        given-names: Kaushik
+      - family-names: "Cajas Ordóñez"
+        given-names: "Sebastian A."
+      - family-names: Patel
+        given-names: Milit
+      - family-names: Prakash
+        given-names: Nina
+      - family-names: Celi
+        given-names: "Leo Anthony"

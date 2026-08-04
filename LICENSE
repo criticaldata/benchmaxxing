@@ -1,0 +1,15 @@
+benchmaxxing
+Copyright (c) 2026 The benchmaxxing authors
+
+Licensed under the Creative Commons Attribution 4.0 International License
+(CC BY 4.0). Full text in LICENSE-CC-BY-4.0, and at
+<https://creativecommons.org/licenses/by/4.0/>. You may share and adapt this
+material for any purpose, including commercially, provided you give appropriate
+credit, link to the licence, and indicate if changes were made.
+
+No dataset is redistributed here. MedQA-USMLE, MedMCQA, NIH ChestX-ray14,
+CheXpert, SUPPORT2 and MIMIC-CXR each carry their own terms and must be obtained
+from their own providers. MIMIC-CXR in particular requires PhysioNet
+credentialing; this repository contains no MIMIC report text, images, caches or
+subject and study identifiers. See README.md and CONTRIBUTING.md sections 10
+to 12.

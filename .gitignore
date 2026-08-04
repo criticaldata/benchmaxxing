@@ -24,3 +24,6 @@ experiments/mimic_cxr_text/results*/transcripts/
 # keylessly at zero API calls, which is the reproducibility bar for the battery (#291). call_cache
 # alone was not enough -- it does not cover the committee arms, so commit the per-arm caches too.
 !experiments/medmcqa/results/*_cache.jsonl
+
+# macOS finder metadata
+.DS_Store

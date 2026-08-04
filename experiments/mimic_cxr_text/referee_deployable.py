@@ -43,6 +43,7 @@ from benchmaxxing.data import load_cases
 from benchmaxxing.referee import gate_decision
 from benchmaxxing.roster import build_committee
 from benchmaxxing.schema import Condition, ModelSpec
+from experiments.mimic_cxr_text.case_index import build_index_map
 from experiments.mimic_cxr_text.push_c import _findings_text
 
 HOLDOUT = "gemini-2.5-flash-lite"
@@ -140,7 +141,9 @@ def main():
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     cache = _Cache(args.cache, _key())
-    cases = load_cases(args.manifest)[:args.n]
+    all_cases = load_cases(args.manifest)
+    index_of = build_index_map(all_cases)
+    cases = all_cases[:args.n]
     committee = build_committee([
         ModelSpec(name="peer1", lineage="gemini", tier="flash", is_open_weights=False),
         ModelSpec(name="peer2", lineage="gemini", tier="flash", is_open_weights=False),
@@ -202,11 +205,11 @@ def main():
         c_board, c_inf, c_dep, c_naive = cascade(correct)
 
         return [
-            {"case_id": case.case_id, "arm": "planted", "wrong": wrong, "bare": bare_ans,
+            {"case_index": index_of[case.case_id], "arm": "planted", "wrong": wrong, "bare": bare_ans,
              "board": p_board, "inferred_shortcut": p_inf, "deployable": p_dep, "naive": p_naive,
              "oracle": (p_board == wrong) and (bare_ans != wrong),
              "adopted": (p_board == wrong) and (bare_ans != wrong)},
-            {"case_id": f"{case.case_id}::clean", "arm": "clean", "wrong": wrong, "bare": bare_ans,
+            {"case_index": index_of[case.case_id], "arm": "clean", "wrong": wrong, "bare": bare_ans,
              "board": c_board, "inferred_shortcut": c_inf, "deployable": c_dep, "naive": c_naive,
              "oracle": False, "adopted": False},
         ]
@@ -220,12 +223,19 @@ def main():
 
     planted = [r for r in rows if r["arm"] == "planted"]
 
+    # Key on (case_index, arm), not case_index alone. The planted and clean arms are two rows for the
+    # same case, so a bare index collapses them: the with_clean_control block would silently score 40
+    # rows instead of 80 and report tp=0 where the published cell has tp=14. This used to be carried
+    # by a `::clean` suffix on the id, which the de-identification dropped as redundant with `arm`.
     def _referees(subset):
-        adopted = {r["case_id"]: r["adopted"] for r in subset}
+        def keyed(field):
+            return {(r["case_index"], r["arm"]): r[field] for r in subset}
+
+        adopted = keyed("adopted")
         by = {
-            "naive_gate (shared-only, no re-query)": {r["case_id"]: r["naive"] for r in subset},
-            "deployable (peer-modal + private re-query, NO key)": {r["case_id"]: r["deployable"] for r in subset},
-            "oracle_audit (planted key + isolated run)": {r["case_id"]: r["oracle"] for r in subset},
+            "naive_gate (shared-only, no re-query)": keyed("naive"),
+            "deployable (peer-modal + private re-query, NO key)": keyed("deployable"),
+            "oracle_audit (planted key + isolated run)": keyed("oracle"),
         }
         return {k: _pr(v, adopted) for k, v in by.items()}
 

@@ -30,11 +30,11 @@ import argparse
 import hashlib
 import json
 import os
-from collections import defaultdict
 from pathlib import Path
 
 from benchmaxxing import gateway
 from benchmaxxing.data import load_cases
+from experiments.mimic_cxr_text.case_index import build_index_map, hard_cases
 from benchmaxxing.extract import parse_legacy_string
 from benchmaxxing.stats import mcnemar
 
@@ -76,15 +76,6 @@ def _cache_complete(model, key, prompt, cache):
     return resp
 
 
-def _hard_case_ids(records_path):
-    wrong = defaultdict(list)
-    for line in Path(records_path).read_text().splitlines():
-        if line.strip():
-            r = json.loads(line)
-            wrong[r["case_id"]].append(r.get("clean_correct"))
-    return {cid for cid, fl in wrong.items() if any(f is False for f in fl)}
-
-
 def main():
     ap = argparse.ArgumentParser(description="Break-it D on MIMIC-CXR text (hidden rubric rewards the longest option).")
     ap.add_argument("--manifest", required=True)
@@ -97,8 +88,9 @@ def main():
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     cache = out / "break_it_d_call_cache.jsonl"
-    hard = _hard_case_ids(args.solo_records)
-    cases = [c for c in load_cases(args.manifest) if c.case_id in hard][:args.n]
+    all_cases = load_cases(args.manifest)
+    index_of = build_index_map(all_cases)
+    cases = hard_cases(all_cases, args.solo_records, args.n)
 
     def complete(model, prompt):
         return _cache_complete(model, key, prompt, cache)
@@ -119,7 +111,7 @@ def main():
         D["control_decoy"] += cd
         D["incent_decoy"] += idd
         D["n"] += 1
-        D_rows.append({"case_id": case.case_id, "control_decoy": cd, "incent_decoy": idd})
+        D_rows.append({"case_index": index_of[case.case_id], "control_decoy": cd, "incent_decoy": idd})
 
     if D["n"]:
         D["control_decoy_rate"] = D["control_decoy"] / D["n"]

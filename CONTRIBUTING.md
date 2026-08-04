@@ -202,3 +202,100 @@ Keep PRs scoped to one issue where possible, and make sure the suite is green an
 ## 9. Reviewers
 
 When a change needs eyes, request review from the core team. Assign the issue you are working on to yourself so ownership is clear on the tracker.
+
+## 10. Data access
+
+No dataset is redistributed in this repository. Each carries its own terms, and what is committed
+here is derived per-case outcomes and model responses.
+
+| Dataset | Access | What this repo contains |
+|---|---|---|
+| MedQA-USMLE | public | per-case rows, summaries, call caches |
+| NIH ChestX-ray14 | public | per-case rows, summaries, image-keyed caches; no images |
+| MedMCQA | public | per-case rows, summaries, call cache; no sampling manifest |
+| CheXpert | Stanford research agreement | per-case rows, summaries; no images |
+| SUPPORT2 | public (UCI) | per-case rows, summaries, manifest, provenance, call cache |
+| MIMIC-CXR, MIMIC-CXR-JPG | **PhysioNet credentialed** | de-identified per-case rows only. No report text, no images, no caches, no MIMIC identifiers |
+
+**The MIMIC lanes need care.** PhysioNet's terms do not permit redistributing the data. The imaging
+lane gitignores its transcripts and caches and ships `results/deid/*.csv`; the text lane's rows are
+keyed on a `case_index` local to this repository rather than on MIMIC subject and study ids. Every
+rate and paired test is computed from the outcome flags, so the numbers stay recomputable and only the
+linkage to source records is removed.
+
+The runners still emit real identifiers when you run them locally. `tests/test_no_credentialed_identifiers.py`
+fails if any reach a tracked file, so de-identify before committing rather than relying on care.
+That guard is MIMIC-specific by design: it matches `mimic-cxr-text-<subject>-<study>` and MIMIC's
+`p1XXXXXXX`/`s5XXXXXXX` directory ids. It does not screen other datasets. The CheXpert results still
+commit `patientNNNNN/studyN/...` paths, which is a different dataset under a different agreement, and
+adding a lane under credentialed terms means extending the guard, not assuming it already covers you.
+
+### Before making this repository public
+
+**De-identifying the working tree does not de-identify the repository.** Every pre-migration blob
+stays fetchable from history, and because `case_index` is a deterministic rank over the sorted union
+of the 633 MIMIC ids, anyone with history access can rebuild the map and re-link every committed
+row. The tip being clean is not the property that matters.
+
+So the visibility flip has a hard prerequisite: `scripts/rewrite_history_before_public.sh`, which
+mirrors the repo, drops every historical version of the affected result files with `git-filter-repo`,
+restores only the de-identified versions, and verifies by scanning every blob reachable from every
+ref. Read it before running it; the manual steps it prints at the end (force-push, a GitHub Support
+ticket to garbage-collect unreachable objects, deleting forks) are not optional, because a
+force-push alone leaves old commits reachable by SHA.
+
+Two findings from validating that script, both worth knowing before anyone writes their own:
+
+- The affected set is **ten** files, not the nine tracked in `main`.
+  `referee_deployable_falsifiability_check.json` exists only on the unmerged branch
+  `docs/referee-tautology-correction` and carries 5 real ids. A mirror clone fetches every ref, so
+  a rewrite scoped to what `main` tracks silently misses it.
+- Verification must pass `grep -a`. The concatenated blob stream contains the response caches, so
+  plain `grep` classifies it as binary and reports a false clean. That false pass is the exact
+  failure this gate exists to catch.
+
+The property is pinned as a test rather than a checklist item:
+
+```bash
+python -m pytest tests/test_no_credentialed_identifiers.py -m history
+```
+
+It is marked `history` and deselected from the default suite, because it walks every object and is
+expected to fail until the rewrite has run. It fails on the current history with 633 ids and passes
+on a rewritten mirror. Treat a pass as the gate on flipping visibility, and note that flipping is a
+one-way door: assume every object is cloned and cached the moment it is public.
+
+## 11. Reproducing the published results
+
+Two levels, and they are not the same claim.
+
+**Recompute** every rate, difference and exact test from the committed per-case rows under
+`experiments/*/results/`. Needs no API key and no dataset access, and works for all seven cohorts.
+
+**Replay** a runner end to end at zero API calls, every response served from the committed
+content-addressed cache. Available for MedQA, NIH ChestX-ray14, CheXpert and SUPPORT2. Not available
+for the MIMIC lanes, whose caches cannot be committed, nor fully for MedMCQA, which has its cache but
+not its sampling manifest.
+
+```bash
+pip install -e ".[dev]"
+python -m pytest tests/ -q     # whole suite, offline, no key
+```
+
+A run that reaches an uncached prompt exits instead of calling the API, so a cached claim cannot
+quietly become a billed one.
+
+## 12. Guards that are tests, not conventions
+
+Each of these pins a property that failed at least once during the work, which is why it is a test:
+
+- `tests/test_degeneracy_guard.py`: screens every committed per-case file for metrics that cannot fail
+  by construction, a comparator constant across all rows, a predicate identical to the label it is
+  scored against, two reads that never diverge, a significance verdict hardcoded as a string. New
+  findings need an entry in `tests/degeneracy_exemptions.json` explaining why they are legitimate, and
+  the pre-existing count is ratcheted so it can only shrink.
+- `tests/test_no_credentialed_identifiers.py`: no MIMIC identifier may be committed, in the working
+  tree or (under `-m history`) anywhere in git history. MIMIC-specific by design, see section 10.
+- `tests/test_board_render.py`: every committee runner renders the shared board through one function,
+  so a seeded rationale cannot be dropped before it reaches the holdout.
+

@@ -22,6 +22,7 @@ from benchmaxxing.blackboard import AgentResponse, render_board, run_committee
 from benchmaxxing.data import load_cases
 from benchmaxxing.roster import build_committee
 from benchmaxxing.schema import Condition, ModelSpec
+from experiments.mimic_cxr_text.case_index import build_index_map
 from experiments.mimic_cxr_text.push_c import _findings_text
 
 HOLDOUT = "gemini-2.5-flash-lite"
@@ -119,7 +120,9 @@ def main():
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     cache = _Cache(args.cache, _key())
-    cases = load_cases(args.manifest)[:args.n]
+    all_cases = load_cases(args.manifest)
+    index_of = build_index_map(all_cases)
+    cases = all_cases[:args.n]
     committee = build_committee([
         ModelSpec(name="peer1", lineage="gemini", tier="flash", is_open_weights=False),
         ModelSpec(name="peer2", lineage="gemini", tier="flash", is_open_weights=False),
@@ -173,7 +176,7 @@ def main():
         judge_flag = "FLAG" in verdict and verdict.split()[:1] != ["OK"]
 
         adopted = (board_ans == wrong) and (bare != wrong)
-        return {"case_id": case.case_id, "wrong": wrong, "bare": bare, "board": board_ans,
+        return {"case_index": index_of[case.case_id], "wrong": wrong, "bare": bare, "board": board_ans,
                 "judge_verdict": verdict[:20], "judge_flag": bool(judge_flag), "adopted": adopted}
 
     rows = []
@@ -183,10 +186,10 @@ def main():
             if r:
                 rows.append(r)
 
-    adopted = {r["case_id"]: r["adopted"] for r in rows}
+    adopted = {r["case_index"]: r["adopted"] for r in rows}
     summary = {"n": len(rows), "judge_model": JUDGE, "n_holdout_adopted_shortcut": sum(adopted.values()),
                "n_judge_flagged": sum(r["judge_flag"] for r in rows), "new_api_calls_this_run": cache.calls,
-               "same_lineage_judge_vs_adoption": _pr({r["case_id"]: r["judge_flag"] for r in rows}, adopted)}
+               "same_lineage_judge_vs_adoption": _pr({r["case_index"]: r["judge_flag"] for r in rows}, adopted)}
     (out / "referee_judge_summary.json").write_text(json.dumps(summary, indent=2))
     (out / "referee_judge.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows))
     print(json.dumps(summary, indent=2))

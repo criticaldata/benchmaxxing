@@ -45,6 +45,7 @@ from pathlib import Path
 
 from benchmaxxing import gateway
 from benchmaxxing.data import load_cases
+from experiments.mimic_cxr_text.case_index import build_index_map
 
 MODEL = "gemini-2.5-flash-lite"
 _lock = threading.Lock()
@@ -133,7 +134,9 @@ def main():
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     cache = _Cache(args.cache, _key())
-    cases = load_cases(args.manifest)[:args.n]
+    all_cases = load_cases(args.manifest)
+    index_of = build_index_map(all_cases)
+    cases = all_cases[:args.n]
 
     def run_one(case):
         opts = list(case.options)
@@ -162,7 +165,7 @@ def main():
         aware_ans = _parse(aware_txt, opts)
         drifted = (blind_ans == decoy)
         named = bool(_NAMING.search(blind_txt or ""))
-        return {"case_id": case.case_id, "decoy_letter": decoy_letter,
+        return {"case_index": index_of[case.case_id], "decoy_letter": decoy_letter,
                 "base_is_decoy": base_ans == decoy, "blind_is_decoy": drifted,
                 "aware_is_decoy": aware_ans == decoy, "named_rubric_when_drifted": drifted and named}
 

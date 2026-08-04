@@ -2,6 +2,11 @@
   <img src="assets/benchmaxxing.gif" alt="benchmaxxing: a committee shares context, one agent's shortcut cascades, a referee flags it" width="760">
 </p>
 
+<p align="center">
+  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6676818"><img src="https://img.shields.io/badge/SSRN-6676818-b31b1b.svg" alt="DOJO paper on SSRN"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/licence-CC%20BY%204.0-blue.svg" alt="Licensed CC BY 4.0"></a>
+</p>
+
 # benchmaxxing
 
 Referee agents that catch benchmark gaming in clinical multi-agent systems: shortcut cascades, blind metrics, and mutual oversight, measured.
@@ -35,3 +40,66 @@ pip install -e ".[dev,stats,changepoint,image,config]"   # add the reuse extras
 - `benchmaxxing/referee.py`, `blind_metric.py`: the referee duties and the blind-metric probe.
 
 The build plan and the issue tracker for this repo mirror a six-stage program (stages 0-5).
+
+## Licence
+
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), the same licence as the paper. Full
+text in [`LICENSE-CC-BY-4.0`](LICENSE-CC-BY-4.0), scope in [`LICENSE`](LICENSE).
+
+No dataset is redistributed here. MedQA-USMLE, MedMCQA, NIH ChestX-ray14, CheXpert, SUPPORT2 and
+MIMIC-CXR each carry their own terms and must be obtained from their providers. See
+[`CONTRIBUTING.md`](CONTRIBUTING.md) for access requirements and for how to reproduce the results.
+
+## Citation
+
+Machine-readable metadata is in [`CITATION.cff`](CITATION.cff); GitHub renders it as a "Cite this
+repository" button. To cite the paper:
+
+```bibtex
+@inproceedings{benchmaxxing2026,
+  title     = {Agents Catching Agents: Shortcut Cascades and Benchmark Gaming
+               in Clinical Multi-Agent Systems},
+  author    = {Cajas Ord{\'o}{\~n}ez, Sebasti{\'a}n Andr{\'e}s and
+               Munnangi, Agastya and Marzullo, Aldo and
+               Ocampo Osorio, Felipe and Bui, Quang and Shahin, Mohammad and
+               Grewal, Armaan and Kwesiga, Emmanuel Paul and Li, Anqi Peter and
+               Nanyonjo, Josephine and Panchal, Aaditya and Bhutani, Arshnoor and
+               Jaiswal, Nikhil and Patel, Milit S. and Lange, Maximin and
+               Celi, Leo Anthony},
+  booktitle = {2nd Agentic AI for Medicine Workshop, MICCAI},
+  year      = {2026},
+  month     = jul
+}
+```
+
+To cite the software and its cached runs specifically:
+
+```bibtex
+@software{benchmaxxing_software,
+  title     = {benchmaxxing: referee agents for benchmark gaming in clinical
+               multi-agent systems},
+  author    = {Cajas Ord{\'o}{\~n}ez, Sebasti{\'a}n Andr{\'e}s and others},
+  year      = {2026},
+  license   = {CC-BY-4.0},
+  url       = {https://github.com/criticaldata/benchmaxxing}
+}
+```
+
+This work sits under the DOJO programme, which sets out the community-driven adversarial
+evaluation platform these referee experiments instantiate:
+
+```bibtex
+@article{dojo2026,
+  title   = {Distributed Open Justice Oversight (DOJO): A Community-Driven,
+             Modality-Agnostic Platform for Adversarial Evaluation of Health AI},
+  author  = {Xiang, Alexa Q. and Tohyama, Takeshi and Bank, Alexander Cole and
+             Bui, Quang and Gorijavolu, Rahul and Garcia Henao, John Anderson and
+             Jaiswal, Nikhil and Kelshiker, Akshay and Madapati, Kaushik and
+             Caj{\'a}s Ord{\'o}{\~n}ez, Sebastian A. and Patel, Milit and
+             Prakash, Nina and Celi, Leo Anthony},
+  year    = {2026},
+  month   = may,
+  note    = {SSRN preprint 6676818, posted 11 May 2026},
+  url     = {https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6676818}
+}
+```

@@ -27,6 +27,7 @@ from benchmaxxing.cues.text import build_text_twin
 from benchmaxxing.data import load_cases
 from benchmaxxing.schema import Condition
 from experiments.medqa.reproduce import TEXT_CUES, _mcq_prompt, _parse_choice
+from experiments.mimic_cxr_text.case_index import build_index_map
 
 
 def _cache_key(model: str, prompt: str) -> str:
@@ -52,6 +53,7 @@ def main():
             cache[row["k"]] = row["resp"]
 
     all_cases = load_cases(args.manifest)
+    index_of = build_index_map(all_cases)
     cases = random.Random(args.seed).sample(all_cases, min(args.n, len(all_cases))) if args.n else all_cases
 
     rows = []
@@ -66,7 +68,7 @@ def main():
             continue
         answer = _parse_choice(cache[key], list(payload["options"]))
         gt = case.options[case.answer_index]
-        rows.append({"case_id": case.case_id, "clean_correct": answer == gt})
+        rows.append({"case_index": index_of[case.case_id], "clean_correct": answer == gt})
 
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
