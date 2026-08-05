@@ -3,6 +3,7 @@
 </p>
 
 <p align="center">
+  <a href="https://arxiv.org/abs/2608.03744"><img src="https://img.shields.io/badge/arXiv-2608.03744-b31b1b.svg" alt="Paper on arXiv"></a>
   <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6676818"><img src="https://img.shields.io/badge/SSRN-6676818-b31b1b.svg" alt="DOJO paper on SSRN"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/licence-CC%20BY%204.0-blue.svg" alt="Licensed CC BY 4.0"></a>
 </p>
@@ -10,6 +11,10 @@
 # benchmaxxing
 
 Referee agents that catch benchmark gaming in clinical multi-agent systems: shortcut cascades, blind metrics, and mutual oversight, measured.
+
+**Paper:** [Agents Catching Agents: Shortcut Cascades and Benchmark Gaming in Clinical Multi-Agent
+Systems](https://arxiv.org/abs/2608.03744) (arXiv:2608.03744). Every number in it is computed from the
+artifacts in this repository.
 
 A benchmark score tells you an agent hit the target, not whether the target was right or whether it got there honestly. When agents share context, one agent's shortcut can propagate through the whole group before any human notices. This repo builds **referee agents** (agents whose task is the assessment of other agents) and a reproducible sandbox to measure three failure patterns: shortcut reliance, conformity cascades, and emergent dominance.
 
@@ -53,16 +58,24 @@ MIMIC-CXR each carry their own terms and must be obtained from their providers. 
 ## Citation
 
 Machine-readable metadata is in [`CITATION.cff`](CITATION.cff); GitHub renders it as a "Cite this
-repository" button. To cite the software and its cached runs:
+repository" button. To cite this work, cite the paper:
 
 ```bibtex
-@software{benchmaxxing_software,
-  title     = {benchmaxxing: referee agents for benchmark gaming in clinical
-               multi-agent systems},
-  author    = {Cajas Ord{\'o}{\~n}ez, Sebasti{\'a}n Andr{\'e}s and others},
-  year      = {2026},
-  license   = {CC-BY-4.0},
-  url       = {https://github.com/criticaldata/benchmaxxing}
+@misc{cajasordonez2026agents,
+  title         = {Agents Catching Agents: Shortcut Cascades and Benchmark Gaming
+                   in Clinical Multi-Agent Systems},
+  author        = {Cajas Ord{\'o}{\~n}ez, Sebasti{\'a}n Andr{\'e}s and Munnangi, Agastya and
+                   Marzullo, Aldo and Ocampo Osorio, Felipe and Bui, Quang and
+                   Shahin, Mohammad and Grewal, Armaan and Kwesiga, Emmanuel Paul and
+                   Li, Anqi Peter and Nanyonjo, Josephine and Panchal, Aaditya and
+                   Bhutani, Arshnoor and Jaiswal, Nikhil and Patel, Milit S. and
+                   Lange, Maximin and Celi, Leo Anthony},
+  year          = {2026},
+  eprint        = {2608.03744},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  doi           = {10.48550/arXiv.2608.03744},
+  url           = {https://arxiv.org/abs/2608.03744}
 }
 ```
 

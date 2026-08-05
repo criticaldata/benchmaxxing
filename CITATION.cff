@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use this software or its cached runs, please cite it as below."
+message: "If you use this software or its cached runs, please cite the paper below."
 title: benchmaxxing
 abstract: >-
   Referee agents that catch benchmark gaming in clinical multi-agent systems:
@@ -40,6 +40,49 @@ authors:
     given-names: Maximin
   - family-names: Celi
     given-names: "Leo Anthony"
+preferred-citation:
+  type: article
+  title: >-
+    Agents Catching Agents: Shortcut Cascades and Benchmark Gaming in Clinical
+    Multi-Agent Systems
+  year: 2026
+  month: 8
+  doi: "10.48550/arXiv.2608.03744"
+  url: "https://arxiv.org/abs/2608.03744"
+  notes: "arXiv preprint arXiv:2608.03744 [cs.AI]"
+  authors:
+    - family-names: "Cajas Ordóñez"
+      given-names: "Sebastián Andrés"
+    - family-names: Munnangi
+      given-names: Agastya
+    - family-names: Marzullo
+      given-names: Aldo
+    - family-names: "Ocampo Osorio"
+      given-names: Felipe
+    - family-names: Bui
+      given-names: Quang
+    - family-names: Shahin
+      given-names: Mohammad
+    - family-names: Grewal
+      given-names: Armaan
+    - family-names: Kwesiga
+      given-names: "Emmanuel Paul"
+    - family-names: Li
+      given-names: "Anqi Peter"
+    - family-names: Nanyonjo
+      given-names: Josephine
+    - family-names: Panchal
+      given-names: Aaditya
+    - family-names: Bhutani
+      given-names: Arshnoor
+    - family-names: Jaiswal
+      given-names: Nikhil
+    - family-names: Patel
+      given-names: "Milit S."
+    - family-names: Lange
+      given-names: Maximin
+    - family-names: Celi
+      given-names: "Leo Anthony"
 references:
   - type: article
     title: >-
