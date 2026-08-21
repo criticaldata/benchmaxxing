@@ -16,113 +16,81 @@
 
 **Read the paper:** [Hugging Face](https://huggingface.co/papers/2608.03744) | [arXiv:2608.03744](https://arxiv.org/abs/2608.03744) | 2nd Agentic AI for Medicine Workshop @ MICCAI 2026
 
-Clinical AI is moving to **committees** of language-model agents that deliberate on a shared
-workspace. The safety story is redundancy: more agents, more chances someone catches the error. We
-tested that story across seven cohorts and six public datasets, and it does not hold.
+Clinical AI is moving to **committees** of language-model agents that talk to each other before
+answering. The safety story is redundancy: more agents, more chances someone catches the error. We
+tested that story across seven groups of cases and six public datasets, and it does not hold.
+
+<p align="center">
+  <img src="assets/figures/graphical_abstract.png" alt="Left panel: for each of seven cohorts, the effect of a shortcut cue on an agent working alone against the rate once two peers assert the same wrong answer. Right panel: false-alarm rates for three monitors, showing the naive gate and the transcript-only judge firing on almost everything while the referee does not." width="820">
+</p>
 
 ## What we found
 
-**Alone, agents mostly resist the shortcut. In committee, they adopt it.**
+**Alone, agents mostly shrug the shortcut off. In a committee, they take it.** Two peers asserting
+the same wrong answer pull the agent under test along with them, on medical exam questions, on
+chest X-rays, and on tabular intensive-care records. Cues that did nothing at all to an agent
+working by itself become effective once a committee is involved.
 
-| | Result |
-|---|---|
-| Two peers assert the same wrong answer | adopted on **15 of 40** medical exam cases |
-| Same manipulation on chest X-rays | **+0.54 or more**, including cues that did nothing alone |
-| Two scripted senior peers on ICU records | adoption hits **1.0**, zero resisters of 115 |
+**The strongest version of this adds nothing to the image.** Take chest films that already show a
+support device, change no pixels, and ask the model what it sees. On its own it is right almost
+every time. Introduce two peers described as senior radiologists giving the wrong read, and most of
+those correct answers flip. A bogus automated flag with no peer behind it barely moves anything.
+The peer is the whole manipulation.
 
-**The strongest version adds nothing to the image at all.** On 150 chest films that already carry a
-support device, no pixels altered, the model reads them correctly on 143 by itself. Two peers
-introduced as senior radiologists move it to the wrong read on **61%** of films. A wrong automated
-flag with no peer behind it moves it on **0.7%**. The peer is the whole manipulation.
+**What spreads is agreement and confidence, not argument.** Keep the claim and the source identical
+and change only how confident the peer sounds: a flat assertion is adopted roughly three times as
+often as a hedged one. A peer that brings a detailed, case-specific justification is no more
+persuasive than two peers who bring none. The second voice is doing the work, not the reasoning.
 
-**What travels is agreement and confidence, not argument.** Hold the claim and the source fixed and
-vary only how hedged the peer sounds: a categorical assertion is adopted on **0.42** of cases
-against **0.14** for a hedged one. One peer carrying a case-specific rationale is statistically
-indistinguishable from two carrying none.
+**No single monitor catches this everywhere.** We compared three overseers on the same runs:
 
-**No single monitor catches it everywhere.** We compared three overseers on the same runs:
+- a **gate** that flags any agreement. Useless by construction, because two colluding peers always agree.
+- a **judge** that reads the whole deliberation. Near-perfect on text, and no better than the gate on images.
+- a **referee** that ignores what was said, quietly asks the agent the same question again on its own, and flags it when the two answers disagree.
 
-| Detector | What it sees | Text | Imaging |
-|---|---|---|---|
-| **gate** | flags any agreement | useless by construction | useless by construction |
-| **judge** | reads the deliberation | precision 1.0, recall 0.93 | collapses onto the gate |
-| **referee** | privately re-asks the agent, transcript withheld | 0.68 precision | **0.66 to 0.88 precision, 0.13 to 0.36 false alarms** |
+Only the referee carries across both text and images, and even then it raises false alarms often
+enough that it belongs in a review queue rather than in front of a decision. Which monitor works
+turns out to be a property of the task, not of the monitor.
 
-The referee is the only one that transfers, and we quote its worse end on purpose, because quoting
-the better end is the behaviour this paper is about.
-
-**And we threw away five of our own results before publishing**, because their predicates could not
-have come out otherwise. Two referee flags reduced algebraically to the label they were scored
-against. That screen ships with the release, not just its output, so you can run the check that
-would have caught us.
+**We also threw away five of our own results before publishing**, because their outcomes could not
+have come out any other way. Two of them were monitor scores that quietly reduced to the very thing
+they were being scored against. The screen that caught them ships here too, not just its verdict,
+so you can run the check that caught us.
 
 ## Reproduce it without an API key
 
-Every model call is cached and content-addressed, so the committed runs replay offline.
+Every model call is cached, so the committed runs replay offline.
 
 ```bash
 pip install -e ".[dev]"
-pytest -q                                   # 1,190+ tests, no network
-python experiments/blind_metric/blind_metric.py --manifest <manifest> \
-    --cache experiments/blind_metric/results/call_cache.jsonl
-# -> new_api_calls_this_run: 0
+pytest -q          # the full suite, no network and no key
 ```
 
-MedQA, NIH ChestX-ray14, CheXpert and SUPPORT2 replay from cache at zero cost. The MIMIC-CXR lanes
-cannot, under PhysioNet terms, and ship de-identified per-case rows instead. Two imaging cue arms
-reproduce only under a pinned font version, a cache-invalidation defect we document rather than
-paper over; the per-case rows are the artefact of record there.
+Most lanes replay from the cache at zero cost. The MIMIC-CXR lanes cannot, under PhysioNet terms,
+and ship de-identified per-case rows instead. Two of the image-cue arms reproduce only under a
+pinned font version, a caching defect we document rather than paper over; for those, the per-case
+rows rather than the regenerated images are the record.
+
+No dataset is redistributed here. MedQA-USMLE, MedMCQA, NIH ChestX-ray14, CheXpert, SUPPORT2 and
+MIMIC-CXR each carry their own terms and must be obtained from their providers. See
+[`CONTRIBUTING.md`](CONTRIBUTING.md) for access requirements and a full walkthrough.
 
 ## Design principle: reuse the originals
 
-Every line we write ourselves is a line that can be wrong, and a line a reviewer can attribute the
-result to instead of the phenomenon. So the pipeline is thin wrappers over established,
-version-pinned libraries (numpy/scipy/scikit-learn for statistics, a change-point library for
-cascade onset, image libraries for cue injection, one gateway for models), and the bespoke core is
-kept small and tested hardest. The measure of progress is how little of the pipeline is ours.
+Every line we write ourselves is a line that can be wrong, and a line a reviewer can blame the
+result on instead of the phenomenon. So the pipeline is thin wrappers over established,
+version-pinned libraries, and the small bespoke core is tested hardest. The measure of progress is
+how little of the pipeline is ours.
 
-## Model backend
-
-Agents use the **Gemini API** (multimodal), behind one gateway wrapper so the roster extends to
-other model APIs without touching experiment code. No fine-tuning; models are off-the-shelf at
-temperature 0. Model lineage is a first-class variable: Gemini-only committees are the
-same-lineage control, Gemini-plus-open-weights the cross-lineage arm.
-
-## Install
-
-```bash
-pip install -e ".[dev]"                                  # pure-Python core + test tooling
-pip install -e ".[dev,stats,changepoint,image,config]"   # add the reuse extras
-```
-
-## Layout
-
-- `benchmaxxing/schema.py`: the shared data contract every module builds against.
-- `benchmaxxing/stats.py`: statistical tests (wrappers over scipy/sklearn/statsmodels).
-- `benchmaxxing/onset.py`: cascade-onset (change-point), contagion, deference.
-- `benchmaxxing/cues/`: image and text cue injection, twin-pair builder.
-- `benchmaxxing/blackboard.py`: the shared-context committee harness and referee hooks.
-- `benchmaxxing/gateway.py`, `roster.py`: model access and same/cross-lineage committees.
-- `benchmaxxing/datasets/`: dataset adapters into the shared case schema; staged/coded/blocked status lives in `benchmaxxing/datasets/status.py` and is surfaced by `benchmaxxing datasets`.
-- `benchmaxxing/referee.py`, `blind_metric.py`: the referee duties and the blind-metric probe.
-- `experiments/`: one directory per lane, each with the runner that regenerates its committed results.
+Agents run on the **Gemini API**, behind one gateway so other providers can be added without
+touching experiment code. No fine-tuning; models are off-the-shelf and deterministic.
 
 ## Licence
 
-Two licences, split by content type:
+[MIT](LICENSE), for everything in this repository: code, per-case result rows and figures.
 
-- **Code** (`benchmaxxing/`, `experiments/`, `scripts/`, `tests/`): [MIT](LICENSE). Creative
-  Commons [recommends against](https://creativecommons.org/faq/#can-i-apply-a-creative-commons-license-to-software)
-  applying a CC licence to software, so the code does not carry one.
-- **Data, figures and prose** (per-case rows under `experiments/*/results/`, `assets/figures/`, the
-  Markdown docs): [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), full text in
-  [`LICENSE-CC-BY-4.0`](LICENSE-CC-BY-4.0). Attribution is satisfied by citing the paper.
-
-The vendored DejaVu font under `benchmaxxing/cues/assets/` keeps its own licence.
-
-**No dataset is redistributed here.** MedQA-USMLE, MedMCQA, NIH ChestX-ray14, CheXpert, SUPPORT2
-and MIMIC-CXR each carry their own terms and must be obtained from their providers. See
-[`CONTRIBUTING.md`](CONTRIBUTING.md) for access requirements and for how to reproduce the results.
+The vendored DejaVu font under `benchmaxxing/cues/assets/` keeps its own licence. The datasets are
+not ours to license and are not redistributed here, as above.
 
 ## Citation
 
