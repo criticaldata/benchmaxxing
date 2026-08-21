@@ -8,7 +8,7 @@ version = "0.0.1"
 description = "Referee agents that catch benchmark gaming in clinical multi-agent systems: shortcut cascades, blind metrics, and mutual oversight, measured."
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "CC-BY-4.0" }
+license = { text = "MIT" }
 dependencies = [
     "numpy>=1.24",
     "scipy>=1.10",

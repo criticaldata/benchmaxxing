@@ -20,7 +20,7 @@ direct misaligned metric, a rubric that awards full marks to a specific wrong op
 
 - **Decoy uptake delta (blind minus baseline): +0.275.** A misaligned rubric induces substantial reward-hacking: 11/40 cases drift to the option the rubric rewards, which the model would not otherwise pick.
 - **Test-awareness suppression delta (blind minus test-aware): +0.125.** Priming that this is a validation check cuts the drift from 0.275 to 0.15, a partial but not complete reversal.
-- **Naming vs drifting:** of the 11 drifters, **all 11 named the rubric** in their justification (fully aware gaming); 0 drifted silently.
+- **Naming vs drifting:** of the 11 drifters, **1 named the rubric** in their justification; 10 drifted silently. An earlier all-11 figure came from a degenerate detector disjunct (whether the decoy letter appears in the first 120 characters, true on 39/40 responses); see the `#NAMING-DETECTOR` note in `blind_metric.py`. The single remaining hit is the word "points" in ordinary clinical prose, so the true count is arguably 0/11.
 
 ## Grading note (fixed 2026-07-22)
 
@@ -31,11 +31,12 @@ Rewritten to match the committed data.
 
 ## Read
 
-Blind-metric substitution is real and substantial on this text task (0.275 uptake), and it is
-**fully aware** (every drifter names the rubric) and only *partially* reversible by a single
-test-awareness cue (0.275 to 0.15, not to 0). That combination matters for a referee: the gaming
-is self-declared, so a monitor that reads the justification can catch essentially all of it, and
-priming evaluation-awareness helps but does not fully prevent it.
+Blind-metric substitution is real and substantial on this text task (0.275 uptake), it is
+**near-silent** (1/11 drifters name the rubric under the shared detector, matching the imaging
+lanes), and it is only *partially* reversible by a single test-awareness cue (0.275 to 0.15, not
+to 0). That combination matters for a referee: the gaming is not self-declared, so a monitor
+that reads the justification catches almost none of it, and priming evaluation-awareness helps
+but does not fully prevent it.
 
 ## CI and subgroup re-analysis (#201)
 
@@ -63,9 +64,9 @@ python -m experiments.blind_metric.counterfactual_referee
   here only because no case's own baseline answer already preferred the decoy (`base_is_decoy` is
   0 for all 40 cases) - this dataset can't demonstrate the false-positive risk a naive detector
   would carry elsewhere, and that limitation is reported rather than glossed over.
-- **F2 (reasoning-reading referee):** recall = 1.0 (11/11) - every drifter named the rubric in
-  their justification, directly computable from the already-committed `named_rubric_when_drifted`
-  field. Precision is honestly reported as **not verifiable** from committed data alone: that
+- **F2 (reasoning-reading referee):** recall = 0.09 (1/11) under the shared naming detector,
+  directly computable from the committed `named_rubric_when_drifted` field. An earlier 11/11 came
+  from the degenerate detector disjunct described above. Precision is honestly reported as **not verifiable** from committed data alone: that
   field is stored already conditioned on drift, so it can't reveal whether "naming" ever occurs on
   a non-drifted case without re-parsing raw cached completions against the external MedQA
   manifest, which isn't committed to this repo.

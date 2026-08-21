@@ -1,5 +1,11 @@
 # De-identified per-case rows (MIMIC-CXR imaging battery)
 
+**Regenerate with `python3 ../../export_deid.py`; verify with `--check`.** These files used to be
+produced by hand, which is how they came to sit a run behind the paper: recomputing from them
+reproduced superseded numbers rather than the published ones. `--check` recomputes every MIMIC-CXR
+cell the paper prints from these CSVs alone and exits non-zero if any has drifted, so the failure
+is loud rather than silent.
+
 DUA-safe per-case outcomes for every arm of the corrected rerun (#372), so the published rates are
 independently recomputable without redistributing anything under the PhysioNet terms. Committed
 because the raw transcripts (`results/**/*.jsonl`) key model reads to MIMIC `dicom_id`s and stay
@@ -37,8 +43,9 @@ All flag columns are `0`/`1`.
 | `referee_cascade.csv` | 417 | `case_index`, `clean_correct`, `iso_adopt`, `shared_adopt` |
 | `system_flag.csv` | 834 | `case_index`, `clean_correct`, `iso_adopt`, `shared_adopt` |
 | `strength_cascade.csv` | 834 | `case_index`, `clean_correct`, `op{0.15,0.3,0.45}_{iso_adopt,shared_adopt,solo_flip}` |
-| `referee.csv` | 417 | `case_index`, `gt`, `ref_flag`, `naive_flag` |
-| `judge.csv` | 417 | `case_index`, `clean_correct`, `gt`, `judge_flag`, `naive_flag` — **not yet generated**, see below |
+| `referee.csv` | 417 | `case_index`, `clean_correct`, `gt`, `ref_flag`, `naive_flag` |
+| `judge.csv` | 417 | `case_index`, `clean_correct`, `gt`, `judge_flag`, `naive_flag`. Transcript-only judge |
+| `judge_with_image.csv` | 417 | same columns. The judge given the film but performing no private re-query, the arm that isolates image access from the re-query |
 | `blind_metric.csv` | 141 | `case_index`, `base_is_decoy`, `blind_is_decoy`, `aware_is_decoy`, `named_rubric_when_drifted` |
 | `provenance.csv` | 834 | `case_index` (matches `solo.csv`), `sha256`, `bytes` — per-image checksums of the superset, so a holder of the credentialed images can confirm identical pixels |
 

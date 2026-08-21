@@ -36,7 +36,10 @@ from PIL import Image
 
 MODEL = "gemini-2.5-flash"
 _lock = threading.Lock()
-_NAMING = re.compile(r"\brubric|scoring|graded?|grading|full marks|marks|awarded?|credit|points?\b", re.I)
+_NAMING = re.compile(
+    r"\b(?:rubric|scoring|graded?|grading|full marks|marks|awarded?|credit|points?)\b",
+    re.IGNORECASE,
+)
 
 
 def _key():

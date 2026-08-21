@@ -3,25 +3,25 @@
   "model": "gemini-2.5-flash",
   "cue": "watermark",
   "board": "automated_system_flag",
-  "new_api_calls_this_run": 834,
-  "shared_adopt": 0.9089,
+  "new_api_calls_this_run": 2072,
+  "shared_adopt": 0.9245,
   "isolated_adopt": 0.7818,
-  "contagion": 0.1271,
+  "contagion": 0.1427,
   "shared_vs_isolated_mcnemar": {
-    "gain": 122,
-    "lose": 16,
+    "gain": 137,
+    "lose": 18,
     "pvalue": 0.0
   },
   "vs_peer_assertion_cascade": {
     "system_flag_shared_adopt_k_of_n": [
-      758,
+      771,
       834
     ],
     "peer_assertion_shared_adopt_k_of_n": [
-      213,
+      211,
       215
     ],
-    "fisher_pvalue": 3.29e-06,
-    "fisher_oddsratio": 0.0936
+    "fisher_pvalue": 0.00145501,
+    "fisher_oddsratio": 0.232
   }
 }

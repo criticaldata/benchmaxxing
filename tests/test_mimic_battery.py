@@ -16,6 +16,7 @@ from experiments.mimic_cxr_image.run_battery import (
     ARMS,
     CACHE_NAME,
     JUDGE_CACHE_NAME,
+    JUDGE_TEXTONLY_CACHE_NAME,
     WHOLE_MANIFEST,
     Arm,
     build_command,
@@ -75,12 +76,16 @@ def test_cache_is_pinned_inside_the_mimic_results_dir():
 
 def test_one_shared_cache_so_nested_image_arms_reuse_calls():
     # The image arms nest (blind 100 < cascade 150 < referee 300 < solo 600), so one cache lets a
-    # later arm replay an earlier one's identical clean reads. The judge is excluded on purpose: it
-    # opens the film too since #408, but it asks a different question about it, so it shares no call
-    # with the diagnostic arms and folding it in would make their hit rate unreadable.
-    diagnostic_arms = [a for a in ARMS if a.takes_manifest and a.name != "judge"]
+    # later arm replay an earlier one's identical clean reads. Both judge arms are excluded on
+    # purpose: they ask a different question of the image, so they share no call with the
+    # diagnostic arms and folding them in would make their hit rate unreadable. They also differ
+    # from each other (one sees the film, one does not), so they cannot share a cache either.
+    judges = {"judge", "judge_with_image"}
+    diagnostic_arms = [a for a in ARMS if a.takes_manifest and a.name not in judges]
     assert {_flag(_cmd(a), "--cache") for a in diagnostic_arms} == {str(RESULTS / CACHE_NAME)}
-    assert _flag(_cmd(_arm("judge")), "--cache") == str(RESULTS / JUDGE_CACHE_NAME)
+    assert _flag(_cmd(_arm("judge_with_image")), "--cache") == str(RESULTS / JUDGE_CACHE_NAME)
+    assert _flag(_cmd(_arm("judge")), "--cache") == str(RESULTS / JUDGE_TEXTONLY_CACHE_NAME)
+    assert _flag(_cmd(_arm("judge")), "--cache") != _flag(_cmd(_arm("judge_with_image")), "--cache")
 
 
 def test_n_is_pinned_above_every_arm_size():
@@ -123,22 +128,27 @@ def test_judge_scores_the_same_transcript_and_dir_as_the_deployable_referee():
     assert _flag(judge, "--out") == _flag(referee, "--out") == str(RESULTS / "referee_300")
 
 
-def test_judge_is_passed_the_image_so_its_verdict_is_not_the_naive_gate():
-    """#408 changed the contract: the judge opens the film, so the arm must pass the image args.
+def test_the_battery_can_run_a_judge_that_is_not_pinned_to_the_naive_gate():
+    """#408: a judge whose prompt never carries the film has a verdict equal to the naive gate.
 
-    This test previously asserted the opposite, that the judge took neither flag, which was true of
-    the text-only judge. Leaving it that way made the arm unrunnable: imaging_judge_referee exits
-    with a usage error unless it gets --manifest and --image-root or an explicit --text-only. The
-    reason the flags matter is not plumbing. Without the film the prompt carries only
-    (finding, shared), and the verdict equals the naive gate on every row (#393).
+    Without the film the prompt carries only (finding, shared), so the verdict equals the gate on
+    every row (#393). The battery must therefore be able to produce a judge that DOES open the
+    film, which is the judge_with_image arm. The plain `judge` arm deliberately stays text-only:
+    that cell is what the paper reports, and its collapse onto the gate is the finding, not a bug
+    to fix. Both are pinned here so neither can quietly become the other.
     """
-    cmd = _cmd(_arm("judge"))
+    cmd = _cmd(_arm("judge_with_image"))
     assert "--manifest" in cmd, "the judge needs the manifest to map case_id to image_ref"
     assert "--image-root" in cmd, "the judge needs the image root to open the film"
-    assert "--text-only" not in cmd, (
-        "the battery must not run the legacy text-only judge: its verdict is pinned to the naive "
-        "gate by construction, so it is not a measurement")
+    assert "--text-only" not in cmd, "this is the arm that must open the film"
     assert "--n" not in cmd, "the judge scores whatever rows the transcript holds"
+
+    published = _cmd(_arm("judge"))
+    assert "--text-only" in published, (
+        "the published judge cell is the transcript-only one; changing it would silently restate "
+        "a reported number")
+    assert _flag(cmd, "--out") != _flag(published, "--out"), (
+        "the two judge arms must not share --out, or one overwrites the other's transcript")
 
 
 def test_transcript_dependencies_name_an_arm_that_writes_them():
@@ -182,7 +192,7 @@ def test_the_detector_table_cells_are_the_clean_correct_restriction():
     """Which cohort the published MIMIC-CXR cells are counted on (#393).
 
     The judge arm scores every row it is given, so a reader taking its top-level block would put a
-    417-case number beside 91-case referee and gate cells. Pinning both here means the distinction
+    417-case number beside 88-case referee and gate cells. Pinning both here means the distinction
     cannot quietly rot back out of the docs.
     """
     ref, casc = _deid("referee.csv"), _deid("referee_cascade.csv")
@@ -191,12 +201,14 @@ def test_the_detector_table_cells_are_the_clean_correct_restriction():
     assert len(rows) == 417
 
     headroom = [r for r in rows if int(r["clean_correct"])]
-    assert len(headroom) == 91, "the published cells are the 91-case restriction"
+    assert len(headroom) == 88, "the published cells are the 88-case restriction (post-#393 rerun)"
 
-    for pred, cell in (("ref_flag", (0.77, 0.75, 0.21)), ("naive_flag", (0.54, 1.00, 0.81))):
+    # Post-#393 clean rerun: the referee cell moved from 0.77/0.75/0.21, nearly doubling its FPR.
+    for pred, cell in (("ref_flag", (0.66, 0.70, 0.36)), ("naive_flag", (0.56, 1.00, 0.77))):
         assert _rate(headroom, pred) == pytest.approx(cell, abs=0.005), pred
     # Unrestricted, the same two detectors read very differently, which is why it matters.
-    assert _rate(rows, "naive_flag") == pytest.approx((0.19, 1.00, 0.96), abs=0.005)
+    assert _rate(rows, "naive_flag") == pytest.approx((0.20, 1.00, 0.96), abs=0.005)
+    assert _rate(rows, "ref_flag") == pytest.approx((0.41, 0.59, 0.21), abs=0.005)
 
 
 def test_gt_is_the_peer_driven_adoption_the_judge_also_scores():

@@ -133,12 +133,31 @@ a(f'<circle cx="472" cy="117" r="5.5" fill="{MUT}" stroke="{SURF}" stroke-width=
 a('</g>')
 
 # ==================== PANEL C ====================
-a(title(660, "(c) Gaming: named vs. silent", "imaging drifts more, and names nothing"))
+# The earlier version of this panel contrasted "named" text drift (11/11) with silent imaging
+# drift. That 11/11 came from a degenerate naming-detector disjunct (see the runner's
+# #NAMING-DETECTOR note); under the shared detector the text lane reads 1/11, so both lanes are
+# near-silent and both bars now carry the silent hatch.
+a(title(660, "(c) Gaming is near-silent", "imaging drifts more; almost no drifter names the rubric"))
 a(y_axis_09(700, 900, "decoy uptake &#916; (rubric on&#8722;off)"))
-# text bar: uptake .275 solid (named)
-a(bar(728, 52, .275, BLUE, ".28", BLUE))
-a('<text x="754" y="266" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="middle">named</text>')
-a('<text x="754" y="280" font-size="9.5" fill="#ffffff" text-anchor="middle">11/11</text>')
+# text bar: uptake .275, silent hatch (1/11 named)
+tby0 = yv(.275)
+tbx0, tbx1, tbyB = 728, 780, 300.0
+a(f'<rect x="{tbx0}" y="{tby0:.1f}" width="{tbx1-tbx0}" height="{tbyB-tby0:.1f}" rx="3" '
+  f'fill="{BLUE_LT}" stroke="{BLUE}" stroke-width="1.4"/>')
+a(f'<g stroke="{BLUE}" stroke-width="1.8">')
+c = int(tbx0 + tby0)
+while c <= tbx1 + tbyB:
+    xA = max(tbx0, c - tbyB)
+    yA = c - xA
+    xB = min(tbx1, c - tby0)
+    yB = c - xB
+    if xA <= xB:
+        a(f'<line x1="{xA:.1f}" y1="{yA:.1f}" x2="{xB:.1f}" y2="{yB:.1f}"/>')
+    c += 8
+a('</g>')
+a(f'<text x="754" y="{tby0-6:.1f}" font-size="11" font-weight="700" fill="{BLUE}" text-anchor="middle">.28</text>')
+a(f'<text x="754" y="{tby0-32:.1f}" font-size="10.5" font-weight="700" fill="{INK}" text-anchor="middle">silent</text>')
+a(f'<text x="754" y="{tby0-19:.1f}" font-size="9.5" fill="{INK}" text-anchor="middle">named 1/11</text>')
 # imaging bar: uptake .83 light fill + diagonal hatch (silent).
 # Hatch lines are clipped ANALYTICALLY to the bar box (no clipPath: renderer-robust).
 by0 = yv(.83)
@@ -158,16 +177,17 @@ while c <= 1174:
 a('</g>')
 a(f'<text x="848" y="{by0-6:.1f}" font-size="11" font-weight="700" fill="{ORNG}" text-anchor="middle">.83</text>')
 a(f'<text x="848" y="188" font-size="10.5" font-weight="700" fill="{INK}" text-anchor="middle">silent</text>')
-a(f'<text x="848" y="202" font-size="9.5" fill="{INK}" text-anchor="middle">0/29</text>')
+a(f'<text x="848" y="202" font-size="9.5" fill="{INK}" text-anchor="middle">named 0/29</text>')
 a(f'<g font-size="11.5" fill="{SEC}" text-anchor="middle" font-weight="600">'
   f'<text x="754" y="316">Text</text><text x="848" y="316">Imaging</text></g>')
-# condition legend
+# condition legend: both lanes drift near-silently, confabulating a clinical rationale
 a(f'<g font-size="10" fill="{MUT}">'
-  f'<rect x="700" y="330" width="11" height="11" rx="2" fill="{BLUE}"/>'
-  f'<text x="715" y="339">names the rubric</text>'
+  f'<rect x="700" y="330" width="11" height="11" rx="2" fill="{BLUE_LT}" stroke="{BLUE}"/>'
+  f'<line x1="700" y1="341" x2="711" y2="330" stroke="{BLUE}" stroke-width="1.6"/>'
+  f'<text x="715" y="339">text</text>'
   f'<rect x="808" y="330" width="11" height="11" rx="2" fill="{ORNG_LT}" stroke="{ORNG}"/>'
   f'<line x1="808" y1="341" x2="819" y2="330" stroke="{ORNG}" stroke-width="1.6"/>'
-  f'<text x="823" y="339">silent (confabulates)</text></g>')
+  f'<text x="823" y="339">imaging; hatch = silent (confabulates)</text></g>')
 
 a('</svg>')
 

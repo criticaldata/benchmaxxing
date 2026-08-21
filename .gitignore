@@ -27,3 +27,16 @@ experiments/mimic_cxr_text/results*/transcripts/
 
 # macOS finder metadata
 .DS_Store
+
+# battery run logs. No credentialed identifiers, but they echo the full command lines, which carry
+# absolute cluster paths including the shared MIMIC-CXR-JPG image root. Nothing to publish, and
+# easy to sweep into a commit by accident since they land in the repo root.
+*.log
+
+# Per-case rows from the MIMIC-CXR imaging lane. These carry the real MIMIC-CXR dicom/study
+# identifiers in `case_id`, which are credentialed PhysioNet data and must not be redistributed.
+# Only the summaries (no identifiers) and the de-identified CSVs under results/deid/ (integer
+# case_index) are publishable. This was convention-only until a judge_with_image run came within
+# one `git add -A` of publishing 417 of them.
+experiments/mimic_cxr_image/results/**/*.jsonl
+experiments/mimic_cxr_image/results/*.jsonl

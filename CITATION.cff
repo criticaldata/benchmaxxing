@@ -5,11 +5,13 @@ abstract: >-
   Referee agents that catch benchmark gaming in clinical multi-agent systems:
   shortcut cascades, blind metrics, and mutual oversight, measured.
 type: software
-license: CC-BY-4.0
+license: MIT
 repository-code: "https://github.com/criticaldata/benchmaxxing"
 authors:
   - family-names: "Cajas Ordóñez"
     given-names: "Sebastián Andrés"
+  - family-names: "Rodríguez Moran"
+    given-names: "Yehudhah Kennedy"
   - family-names: Munnangi
     given-names: Agastya
   - family-names: Marzullo
@@ -38,6 +40,8 @@ authors:
     given-names: "Milit S."
   - family-names: Lange
     given-names: Maximin
+  - family-names: Umeton
+    given-names: Renato
   - family-names: Celi
     given-names: "Leo Anthony"
 preferred-citation:
@@ -53,6 +57,8 @@ preferred-citation:
   authors:
     - family-names: "Cajas Ordóñez"
       given-names: "Sebastián Andrés"
+    - family-names: "Rodríguez Moran"
+      given-names: "Yehudhah Kennedy"
     - family-names: Munnangi
       given-names: Agastya
     - family-names: Marzullo
@@ -81,6 +87,8 @@ preferred-citation:
       given-names: "Milit S."
     - family-names: Lange
       given-names: Maximin
+    - family-names: Umeton
+      given-names: Renato
     - family-names: Celi
       given-names: "Leo Anthony"
 references:

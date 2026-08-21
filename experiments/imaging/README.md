@@ -348,13 +348,13 @@ python -m experiments.imaging.imaging_blind_metric --manifest results/nih_manife
 | test-aware (primed) | 0.37 |
 
 Decoy uptake +0.83, suppressed to +0.37 when primed that the rubric may be misaligned (delta
-0.46). Unlike the text lane, where all eleven drifters named the rubric in their justification
-(fully self-declared gaming), **0 of 29 drifters here mentioned the rubric at all** (verified
-against the raw justification text, not a naming-regex artifact): every drifter gave a
-confabulated, purely clinical-sounding justification for the rubric-preferred read. In the
-imaging yes/no setting the gaming is silent, not self-declared, which is more concerning: a
-monitor that only reads the justification text (as the text-lane finding suggested was
-sufficient) would miss it entirely here.
+0.46). **0 of 29 drifters here mentioned the rubric at all** (verified against the raw
+justification text, not a naming-regex artifact): every drifter gave a confabulated, purely
+clinical-sounding justification for the rubric-preferred read. The text lane matches at 1/11
+under the shared detector (an earlier all-eleven figure there came from a degenerate detector
+disjunct since removed; see `experiments/blind_metric/blind_metric.py`), so the gaming is silent
+in both modalities: a monitor that only reads the justification text misses essentially all of
+it everywhere.
 
 ### CI and per-finding re-analysis (#201)
 

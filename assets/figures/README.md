@@ -11,8 +11,8 @@ Three panels across the text lane (MedQA-USMLE) and the imaging lane (NIH ChestX
   deliberates in a committee;
 - **(b)** a naive agreement gate over-fires while a targeted, deployable referee moves toward
   the low-false-positive, high-precision corner;
-- **(c)** reward-hacking toward a hidden rubric is larger and *silent* in imaging (0/29 name the
-  rubric) versus fully self-declared in text (11/11).
+- **(c)** reward-hacking toward a hidden rubric is larger in imaging and near-silent in both
+  lanes (1/11 name the rubric in text, 0/29 in imaging, shared detector).
 
 Rebuild:
 

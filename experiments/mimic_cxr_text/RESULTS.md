@@ -282,8 +282,9 @@ justifications directly confirms this isn't a detection bug — both cite the re
 language as the reason for the (wrong) answer, e.g. *"The report mentions 'mild fluid overload but
 no overt pulmonary edema,' indicating edema is a noted finding, even if not severe"* — a
 confabulated clinical rationale for the rubric-preferred option, not an admission. So **MIMIC-CXR
-text's blind-metric drift is silent** here, the opposite of MedQA's own text-lane finding (11/11
-self-declared there) and matching the imaging lane's pattern instead (0/29 silent). At n=2
+text's blind-metric drift is silent** here, matching MedQA's text-lane finding (1/11 named under
+the shared detector; an earlier 11/11 came from a degenerate detector disjunct since removed) and
+the imaging lanes (0/29, 0/30). At n=2
 drifters this is far too small to generalize from, but it's the honest number, not the artifact
 the first buggy run reported.
 

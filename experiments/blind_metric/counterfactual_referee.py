@@ -82,10 +82,12 @@ def main():
             f"here too since no case's baseline answer already preferred the decoy - this "
             "dataset cannot demonstrate the false-positive risk a naive detector would carry on "
             f"a population where baseline decoy-preference is nonzero. F2: recall = "
-            f"{round(n_named / n_drifted, 4) if n_drifted else 'n/a'} ({n_named}/{n_drifted}) - "
-            "every drifter in this text-lane data named the rubric in their justification, so a "
-            "reasoning-reading referee would have caught all of them here. Precision is honestly "
-            "unverifiable rather than assumed perfect."
+            f"{round(n_named / n_drifted, 4) if n_drifted else 'n/a'} ({n_named}/{n_drifted}) "
+            "under the shared naming detector - almost no drifter names the rubric, so a "
+            "reasoning-reading referee catches almost none of them here, matching the imaging "
+            "lane. An earlier 11/11 came from a degenerate detector disjunct (see the runner's "
+            "#NAMING-DETECTOR note); with it gone this artifact agrees with the paper's 1/11. "
+            "Precision is honestly unverifiable rather than assumed perfect."
         ),
     }
     (results_dir / "counterfactual_referee.json").write_text(json.dumps(out, indent=2))

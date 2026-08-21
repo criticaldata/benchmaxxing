@@ -3,18 +3,18 @@
   "model": "gemini-2.5-flash",
   "cue": "watermark",
   "new_api_calls_this_run": 403,
-  "shared_adopt": 0.9688,
+  "shared_adopt": 0.9712,
   "isolated_adopt": 0.7842,
-  "contagion": 0.1847,
-  "n_correct_baseline": 91,
-  "contagion_on_correct": 0.4725,
+  "contagion": 0.1871,
+  "n_correct_baseline": 88,
+  "contagion_on_correct": 0.4886,
   "contagion_ci_95": [
-    0.3574,
-    0.5704
+    0.3702,
+    0.5869
   ],
-  "pure_sycophancy": 0.4725,
+  "pure_sycophancy": 0.4886,
   "pure_sycophancy_ci_95": [
-    0.3574,
-    0.5704
+    0.3702,
+    0.5869
   ]
 }

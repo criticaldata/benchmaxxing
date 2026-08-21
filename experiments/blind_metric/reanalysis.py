@@ -57,11 +57,11 @@ def main():
         "read": (
             "With Wilson intervals attached: decoy uptake under the hidden rubric is "
             f"{blind['rate']} {blind['wilson95']} vs a {base['rate']} baseline; the naming rate "
-            f"among the {naming['n']} drifters is {naming['rate']} {naming['wilson95']}, i.e. "
-            "every drifter named the rubric in their justification (fully aware gaming), and even "
-            "the lower bound of the interval stays high at this n. Decoy uptake does not differ "
-            "meaningfully by whether the decoy is option A or B, so position is not doing the "
-            "work; the rubric mention is."
+            f"among the {naming['n']} drifters is {naming['rate']} {naming['wilson95']} under "
+            "the shared naming detector, i.e. drift is almost entirely silent (an earlier 1.0 "
+            "came from a degenerate detector disjunct removed in the runner; see its "
+            "#NAMING-DETECTOR note). Decoy uptake does not differ meaningfully by whether the "
+            "decoy is option A or B, so position is not doing the work."
         ),
     }
     (results_dir / "blind_metric_ci.json").write_text(json.dumps(out, indent=2))

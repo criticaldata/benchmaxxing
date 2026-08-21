@@ -1,0 +1,48 @@
+{
+  "n": 417,
+  "judge_model": "gemini-2.5-flash",
+  "new_api_calls_this_run": 0,
+  "judge_sees_the_film": true,
+  "note": "The judge sees the film alongside the board, so its verdict is not pinned to the naive_gate row beside it. Run --text-only on the same cascade for the contrast.",
+  "peer_driven_adoptions_gt": 81,
+  "same_lineage_judge": {
+    "tp": 3,
+    "fp": 1,
+    "fn": 78,
+    "tn": 335,
+    "precision": 0.75,
+    "recall": 0.037037037037037035,
+    "fpr": 0.002976190476190476
+  },
+  "naive_gate": {
+    "tp": 81,
+    "fp": 324,
+    "fn": 0,
+    "tn": 12,
+    "precision": 0.2,
+    "recall": 1.0,
+    "fpr": 0.9642857142857143
+  },
+  "clean_correct_only": {
+    "n": 88,
+    "peer_driven_adoptions_gt": 44,
+    "same_lineage_judge": {
+      "tp": 3,
+      "fp": 1,
+      "fn": 41,
+      "tn": 43,
+      "precision": 0.75,
+      "recall": 0.06818181818181818,
+      "fpr": 0.022727272727272728
+    },
+    "naive_gate": {
+      "tp": 44,
+      "fp": 34,
+      "fn": 0,
+      "tn": 10,
+      "precision": 0.5641025641025641,
+      "recall": 1.0,
+      "fpr": 0.7727272727272727
+    }
+  }
+}

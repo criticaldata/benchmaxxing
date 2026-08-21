@@ -10,7 +10,7 @@
   "test_awareness_suppression_delta_blind_minus_aware": 0.125,
   "naming_vs_drifting": {
     "n_drifted": 11,
-    "n_named_rubric": 11,
-    "n_drifted_silently": 0
+    "n_named_rubric": 1,
+    "n_drifted_silently": 10
   }
 }

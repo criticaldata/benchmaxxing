@@ -71,6 +71,7 @@ CACHE_NAME = "img_cache.jsonl"
 # still matters, because the judge's prompt set is tiny and mixing it into the shared cache would
 # make the image arms' hit rate unreadable.
 JUDGE_CACHE_NAME = "judge_cache.jsonl"
+JUDGE_TEXTONLY_CACHE_NAME = "judge_cache_textonly.jsonl"
 
 # The cascade family used to plant `wrong = flip(clean_read)`, which coincides with ground truth
 # whenever the holdout's own read was already wrong (#332). MIMIC is the worst case: ~80% of its
@@ -119,17 +120,36 @@ ARMS: tuple[Arm, ...] = (
         takes_n=False,  # imaging_referee replays a transcript and has no --n
         needs="referee_300/imaging_cascade.jsonl",
     ),
+    # Two judge arms, because the paper reports two judge cells and both must regenerate.
+    #
+    #   judge             the PUBLISHED cell. Transcript-only, so its prompt never carries the film
+    #                     and its verdict collapses onto the naive gate (0.56/1.00/0.77 on the 88
+    #                     clean-correct cases). That collapse IS the reported finding, so this arm
+    #                     keeps --text-only rather than being "fixed".
+    #   judge_with_image  the arm a reviewer asked for. Same judge, same cases, film attached, still
+    #                     no private re-query, isolating image access from the re-query. Reads
+    #                     0.75/0.07/0.02: it inverts the failure mode instead of repairing it.
+    #
+    # Separate --out so neither overwrites the transcript it is meant to be compared against, and
+    # separate caches because the two prompts differ.
     Arm(
         "judge",
         "imaging_judge_referee",
         "referee_300.csv",
         out="referee_300",
+        extra=("--cascade-jsonl", "{results}/referee_300/imaging_cascade.jsonl", "--text-only"),
+        takes_n=False,
+        takes_manifest=True,
+        cache=JUDGE_TEXTONLY_CACHE_NAME,
+        needs="referee_300/imaging_cascade.jsonl",
+    ),
+    Arm(
+        "judge_with_image",
+        "imaging_judge_referee",
+        "referee_300.csv",
+        out="judge_with_image",
         extra=("--cascade-jsonl", "{results}/referee_300/imaging_cascade.jsonl"),
         takes_n=False,
-        # #408 changed the contract under this arm: the judge now opens the film so its verdict is
-        # not pinned to the naive gate, which means it needs the manifest (to map case_id to
-        # image_ref) and --image-root. Without them imaging_judge_referee exits on a usage error,
-        # so this arm could not run as originally written.
         takes_manifest=True,
         cache=JUDGE_CACHE_NAME,
         needs="referee_300/imaging_cascade.jsonl",
