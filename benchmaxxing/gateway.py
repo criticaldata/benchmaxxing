@@ -511,4 +511,4 @@ class LocalOpenAICompatibleBackend(OpenAIBackend):
                 "installed. Install the models extra: pip install 'benchmaxxing[models]' "
                 "(or: pip install openai)."
             ) from exc
-        self._client = OpenAI(base_url=base_url, api_key=api_key)
+        self._client = OpenAI(base_url=base_url, api_key=api_key, timeout=60.0, max_retries=0)
