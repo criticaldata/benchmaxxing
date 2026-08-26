@@ -127,7 +127,6 @@ class _Cache:
                 base_url="https://integrate.api.nvidia.com/v1",
                 api_key=self.key
             )
-
         resp = self._gw.RetryBackend(backend, tries=5, backoff=3.0).complete(prompt, image=pil, decoding={"temperature": 0})
         with _lock:
             self.store[k] = resp
