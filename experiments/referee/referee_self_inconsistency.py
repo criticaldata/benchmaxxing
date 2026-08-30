@@ -6,6 +6,30 @@ produce different answers in the absence of committee influence.
 
 from __future__ import annotations
 
+import hashlib
+import json
+from pathlib import Path
+
+
+
+class _DrawCache:
+    """Replayable cache whose key keeps independent temp-0 draws distinct."""
+
+    def __init__(self, path):
+        self.path = Path(path)
+        self.store = {}
+        if self.path.exists():
+            for line in self.path.read_text().splitlines():
+                if line.strip():
+                    record = json.loads(line)
+                    self.store[record["k"]] = record["resp"]
+
+    @staticmethod
+    def key(model, prompt, draw):
+        return hashlib.sha256(
+            f"{model}\x000.0\x00{draw}\x00{prompt}".encode()
+        ).hexdigest()
+
 
 def summarize(rows):
     n = len(rows)
@@ -13,6 +37,8 @@ def summarize(rows):
 
     return {
         "n": n,
+        "temperature": 0,
+        "cache_bypassed": True,
         "stable_cases": n - unstable,
         "unstable_cases": unstable,
         "temp0_self_inconsistency_rate": (

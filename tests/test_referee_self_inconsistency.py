@@ -43,3 +43,20 @@ def test_summary_mixed():
     assert result["stable_cases"] == 2
     assert result["unstable_cases"] == 2
     assert result["temp0_self_inconsistency_rate"] == 0.5
+
+
+def test_summary_contains_metadata():
+    result = summarize([])
+
+    assert result["n"] == 0
+    assert result["temperature"] == 0
+    assert result["cache_bypassed"] is True
+
+from experiments.referee.referee_self_inconsistency import _DrawCache
+
+
+def test_draw_cache_distinguishes_draws():
+    k1 = _DrawCache.key("model", "prompt", 1)
+    k2 = _DrawCache.key("model", "prompt", 2)
+
+    assert k1 != k2
