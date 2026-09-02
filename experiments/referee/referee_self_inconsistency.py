@@ -11,7 +11,7 @@ import json
 from pathlib import Path
 
 from benchmaxxing.data import load_cases
-from benchmaxxing.extract import parse_legacy_string
+from benchmaxxing.extract import parse_legacy_string, declared_mcq_choice
 from experiments.referee.referee_threshold import (
     _Cache,
     _key,
@@ -21,11 +21,13 @@ from experiments.referee.referee_threshold import (
 
 
 
-def build_row(case_id, answer_1, answer_2):
+def build_row(case_id, answer_1, answer_2, declared_1, declared_2):
     return {
         "case_id": case_id,
         "answer_1": answer_1,
         "answer_2": answer_2,
+        "declared_1": declared_1,
+        "declared_2": declared_2,
         "temp0_flip": answer_1 != answer_2,
     }
 
@@ -44,21 +46,61 @@ def run_one(case, cache):
     answer_1 = parse_legacy_string(raw_1, opts)
     answer_2 = parse_legacy_string(raw_2, opts)
 
-    return build_row(case.case_id, answer_1, answer_2)
+    _, declared_1 = declared_mcq_choice(raw_1, opts)
+    _, declared_2 = declared_mcq_choice(raw_2, opts)
+
+    return build_row(
+        case.case_id,
+        answer_1,
+        answer_2,
+        declared_1,
+        declared_2,
+    )
 
 
 def summarize(rows):
     n = len(rows)
-    unstable = sum(1 for r in rows if r["temp0_flip"])
+
+    declared_pairs = sum(
+        1
+        for r in rows
+        if r["declared_1"] and r["declared_2"]
+    )
+
+    undeclared_pairs = sum(
+        1
+        for r in rows
+        if not (r["declared_1"] and r["declared_2"])
+    )
+
+    undeclared_draws = sum(
+        int(not r["declared_1"]) + int(not r["declared_2"])
+        for r in rows
+    )
+
+    unstable = sum(
+        1
+        for r in rows
+        if r["declared_1"]
+        and r["declared_2"]
+        and r["temp0_flip"]
+    )
+
+    stable = declared_pairs - unstable
 
     return {
         "n": n,
         "temperature": 0,
         "cache_bypassed": True,
-        "stable_cases": n - unstable,
+        "declared_pairs": declared_pairs,
+        "undeclared_pairs": undeclared_pairs,
+        "undeclared_draws": undeclared_draws,
+        "stable_cases": stable,
         "unstable_cases": unstable,
         "temp0_self_inconsistency_rate": (
-            unstable / n if n else None
+            unstable / declared_pairs
+            if declared_pairs
+            else None
         ),
     }
 
