@@ -103,3 +103,862 @@
 {"k": "gemini-2.5-flash:7ad8c399ef504089b30a06ebfadb9791e19e0c004f17f2e2e8e89f2e602ed2c7", "resp": "Yes"}
 {"k": "gemini-2.5-flash:aa49056b4c0ce8085185c3d8b5aa2b6b7b0233e4edf0a1d56443a362e019a823", "resp": "The diffuse haziness observed is likely due to suboptimal inspiration and technical factors inherent in a portable AP chest X-ray, rather than true parenchymal opacity.\nno"}
 {"k": "gemini-2.5-flash:d9a927d3d95fce46d7d5b33900f827a9e4404455638b7e416ef7c98326165e2a", "resp": "yes"}
+{"k": "meta/llama-3.2-90b-vision-instruct:e0d90f87b9877b602596d574fdc34cd4a959a98c070a3d8d745e5d82205fa14e", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:cd1124615d0fc935ed07d0d9abf336e37913d6403bbc9e1248cb035a418f331f", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:937aa555c47f6d08dac28d191b36fca8330efdc1cdd869511d4c5c0b0289faf5", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8578f73f9227d8237f1701d05906fbaea84c2f221d3c79bf33eddd17acbd1e77", "resp": "The X-ray shows a large area of opacity in the right lung, which is consistent with consolidation. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ad98a852f5f495908a10fa1b15af14ed012c87c5354812246a552e8b5c24827f", "resp": "The X-ray does not show pleural effusion because there is no visible fluid accumulation in the pleural space. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d76937acc9980061d97a37d17dcbee70d7be45bb71fddea98f85b1aecf90fdcd", "resp": "The X-ray shows a large area of opacity in the lower lung field, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:2ceb12d3949a112ef0d25aa1922730bad15f7fb942a31ef94468db8f6ece70b1", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:cc4c5c0ce0270bbb6da62c72d505753276a4f1dcf34cb06c4314ef0f43786e02", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ec7a3bbe787870daea89b1f33b6c833b28632e8f2e35c437b8aceb710ec7e515", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:317701d81b9996a927b29b1073af41d6e6a1f75d9a262d500dc2083412dd4896", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:bd67d93b307e5c702cb0cf6754a446be3ed0f818c88e7da870014965dfaf99c2", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:6bfcb081c036b89c19fc114e72e6dbf4caa11bc1f6b505730f07f28616848b53", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:5daeffc2c67af4227f7bbb713f202e6763d4c5687059f86d2b2ffc63d0f30730", "resp": "The X-ray shows a pneumothorax, as indicated by the presence of air in the pleural space. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c82bcb067fc7e23e4695a2e748e33eb38122685db93a841e9480694b18161df3", "resp": "The X-ray shows a large area of opacity in the right lung, which is consistent with lung opacity. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:43826f83cf0fbc3645358a4808c194a35437e4588e15426fa4d65f5234b2fc0c", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:45ae201189daff2c6f04b95f3bd9695463d5dda761bd61a90526e56a9aeff952", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e8633f4076cfdbbd0ec541fe2f7fea824d84d4afb0cb2bece0ec343d68973183", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0777eeee1597b9597516a50bb7496ea290e1399bfa716bf6018386cc372ee6a5", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b2910d19918b6e2b73036fc5315978b434dbe9f4aba0eee300626a2eb16462ad", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:2f3543d631a4a8928a9167f357b914194fbac36f242423d5c68a01ad4e20e048", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:55653079900c9ee9c506202b9edd1922256ff8c98a2261cec5b1b8cc436f6aaa", "resp": "The X-ray shows a pneumothorax, as indicated by the presence of air in the pleural space.\n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a532a6e037b8507d90a1c1ae375f639d7fdaa768075ad30d0e42aa1d81eb3d1d", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:44a457622e4b3fd9aafe2462c75826414f04879ca8573acb3a43f255ec896e06", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:5f813974a80036c4b149657f9715ba80a23c910bef508ae19fe9d3928c7e9894", "resp": "The X-ray shows a large area of opacity in the right lung, which is consistent with lung opacity. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:65738ff19989ea70811a52d8fda200caaac3bf2e70c8bedcfa4824f7ddd6d450", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8d6f807d3ad50dc3bdb5ca126dfb804b01568fa957bd3db03112439c69dba354", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a2b3afd850058b8b59e7ef2110d7731aa5fa8e33ba27a49d387c894eefe02acf", "resp": "The X-ray does not show lung opacity because it is a chest X-ray that appears to be normal, with no visible signs of lung disease or injury.\n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:71c93f10c1f6d51eef8eec357e9d9528165d5cf8b38daeede5e3c7eacc84d8f0", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b5fbd4270f0ab74142538c71340ae802af6c98929536fb1ff9733997c38718e7", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:3e8086e14e0341ecdc64af9547c7ea675ff81280b0e067befcd531b180ac54f8", "resp": "The X-ray does not show atelectasis because there is no visible collapse or consolidation of lung tissue. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:93fd81016966395c7ad6ace6ad72dabbdc7ee819e1de95501f53283e6de1e7eb", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:55a33cd795b28dc1af3d75f5b304576d98f93abd87c6cc8c2a66b5d46c8405c2", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:de8c376298206a8930de4ec827fe2eb958a7f02e1f46eafa7bb9649f038d2352", "resp": "The X-ray shows a normal lung field with no visible opacities. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0c2c10fcae01b334083fac4a2aabf1f2870fe13d48b6cf2dee8e5b7e7f71d6ee", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0498ac37dc67cdf889590335865646d101109a7821e109cabf5e169866e5d976", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:59aab04f68444cfaafeffcc2186ab1e7a5bc04cf4b348253f841e51f58699f84", "resp": "The X-ray shows a pneumothorax, as indicated by the presence of air in the pleural space. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:77d8d1134a12543fa72ac37d4ce16c170bea9b0559a22a0d7710a724dbc7f919", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c75ea3a783642e332d3520bb9b8843bf7102827bdc8ed5a3d92d3605704affd4", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:94f6d681c920dc788ad63f35520cc4a6bc8f47bf64a3121901607f91b00a70d7", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4f6573a7eff49699476c7827c61dfa5e8f88f61f43810596559b33c50c8312fa", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:eb17b29999c2aa5d79646ed6a7db12247b592f7f0419fc2ece44cf5097aed723", "resp": "The X-ray shows a diffuse increase in lung density, which is consistent with pulmonary edema. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:193687a49eabdb77d5a404da9df28d7795a1819ee73846ee164a704140507ae3", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:1f8c49960aef8df0c2487e4ace26a704acb7ec3e3a8c8f1e31a894dc979a5e10", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e40cf1b9b1307bee11b830e531019358bf516bafce097ab74b54aecb99b9551d", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a01b69815df5c4bf89deaae8ea88db9540878371c57ef5ec112c9a0c2c3eb818", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:bd9ad5063f5605f453a4b712d631bd422a507d84882f1a2ef1bafee244e9b3fd", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d60234838aa0bf3d26b4c9223bb9534c04afa14c512129011d9f471adf9e6ace", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:6b463d267c770fa1b593950aba3a00444cf3d9013f3edbeae98806d1d70696d5", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4a78faec46c600059cdea414d9e1d0a6f7d1d38ec58e805303aef0c107484d28", "resp": "The X-ray does not show any signs of edema, as there are no visible fluid accumulations or opacities in the lungs.\n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:14c28f4be1677b8895d5db4e32cadbe5a6ed0e8b555a52c38ea37bb70f533ac4", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ddbe149f3d49635ca72139a7e6d5990552ee47222f977dc3dff54a60f47aec7f", "resp": "The X-ray shows a large area of opacity in the right lower lung zone, which is consistent with atelectasis. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4264fd698a3e583edbae6880d45cab642e216d564afb6d7f91a2b49e116c3d6c", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:248026f16c7a884676d73153a6d0925bf4192f6ea438c481288ddd8acc1c60a4", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f7e4f60eda05af7e53c848fd7ba32f8d5d0c9efcf33d980a8d62fef0ad079633", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0e9db6b7fd28f558c780d03a2ddda0cb87c8b0fe0e68fbdbd16e2f2c889a6de6", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:03103967c20741d973958e506d02ac1223225b4cd289a15089a3ca51faf7e996", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b3fa9e43991ce734fcce38ee3ec235372371d6f08c58e35d6ff0d63969046715", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f7603c2f832d2f9717aaedac413be89c8799ab4fb3ba49455eafe827d1398102", "resp": "The X-ray does not show any visible signs of a fracture. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:32f4b4a16465fc0fca6e8f610e520cc34ee155defdedced254115fe2e72b3b2e", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b3e92d852561b29d59f3a9d984a13f47230a711435dff4bbf318162199a936bd", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:22163180a5194edb72d3e982aa7206f35a3fd0c1d1d7b65f2b49982f7e32a035", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b80dae5e2120e0db1d1cf5bf7d05b2f9da863f9b714781a61029190b51baa7a0", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ee4674b3427793e70deb4ff0e17c239ba5aabc4016a5c224f7b54d2d837feaf4", "resp": "The X-ray shows a large area of opacity in the right lung, which is consistent with lung opacity. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a87e4c54bdf148fc4f8075669fb343a60d6e94742d181f6c6e0c9bc117a23104", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:af1bed48930e1b47d145a08127dce4389e6b5b1043a34727decfc9aa6bdc70b4", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f549b48c1158dc9bd07a7cc38597f2e2196327fc291fd3646586e0c6532e4a31", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4681f5062d5201dd3b8bfcfbd5e8a122cd645b284c2f6805fce0d0d109e99ac3", "resp": "The X-ray does not show pneumothorax because there is no visible air in the pleural space.\n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:791e3f32c1a9fbc90557cb84bdb8699d47233bfbd59fc80e4b04c65c6c7a0f4a", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:601df2c30a42055702bc2d497ef8f2bb465a22d476d4f9173b5146adc0ec6a0b", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b3391f677f85ac01aa0ed00547de73ca658f1a9b4148579e312eab96dfe5448b", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:cb280d60dfc1378b72a44c3414c9cfab1f82d541568931f98a45abea5573e299", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:663afdb0fa6459cc075edb98d3701f7b4205a0710dc6f1b6fe5d6ae34412ca46", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e417189ecf377f6d57bd816deecc8630633259f20c965c0e7145452629c2b1b7", "resp": "The X-ray shows a diffuse increase in lung density, which is consistent with pulmonary edema. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a8f9725d385f5ef8a52abf09d02b06948a8d068c3c2b0c0f52a4bdb4835f6594", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:02dff72963a970da5ea9601ea838b4488bc825ced294262176bc35f60966c5d7", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8d9655b2dba9a585985877aadcc8d285ac1d5ddabed4921d29fd091f821578d0", "resp": "The X-ray does not show atelectasis because there is no visible collapse or consolidation of lung tissue. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:9bcc936da7a947c58dade9b5f9bbb2a4229c00295e5b73f0a0f7c3d510d211f8", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:7ba37e31a46c73d555eb603fee449eb6f2800f4ce3fd877c7b29a7a700205c30", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:31b391d7a46e3b58a5aeb5264a644f4e43b51029218c6d85ab67e91b0edbff28", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8ff081e539722b788bf006ebcb48e3b0c3fb04d8b8ef48105612be623dfff8f0", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:2e2f7a23df3452f655c3f57ac8bfc7468b4bb5a5948844f6a2eba749ac972f7a", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:36a38fc7cb3dfb9bfee4443822712578f5fab66ceacb605485b1827255ac92a8", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a63d2ed6663fde6d2b7d4de83bd74f85fd55e8c7fcf3c1306f78b95febf478ba", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:580b5b62a89c54587045eb1de53802bccbc14af6989d2cd5bc04d53fb61d04a2", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:7860c9c8770940ff88c1c255f659a2a6c7eee5aeb0d9d72eed795b6e9a147674", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:2b0011bf860a2404dd5c77669832f2f9348a76676bc05393f8afd384a4075d37", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:693f55c763042cf265a1373b3254a933479804d52b38f449feb0f2ff8ee38d99", "resp": "The X-ray shows a pneumothorax, as indicated by the presence of air in the pleural space.\n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:5cd3ca24b385758ce02bf8e9ef4a3cb4106d91f6e45c2257f54e3d33aeb386d8", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a1266b5d251faedfd4bfe377f086694854f38c9c74dab843f41aac20f7e9b8d0", "resp": "The X-ray shows a normal lung field with no visible opacities. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4ce1b9c29f0537ab802448cf2003f213369cee18d367af230b2a7c688bccab40", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:54ace5152a559ceb1eb2c52d4f06570cb0384123c919b4fd2af84c4ff7222706", "resp": "The X-ray shows a large area of opacity in the left lung field, which is consistent with pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:701879547f6edfa756e758ee097081a46f9a8c2d7fd6646689202e7d5beda9ae", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:970d05917c711d75343a95bcb0c7ad3fd661c710e5cd87149289d709f6dc974c", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a34e13e350e46489050db6a8d3f50b9bcc91819327067e9ec191a766b596edbc", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:982ba795768dbb984eb47e9cd1b8c7cccf339aa84df1ebd7be7baabf24ae7c5f", "resp": "The X-ray shows a dark area on the right side of the lung, which is indicative of air in the pleural space, suggesting pneumothorax. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:668d98b43431b6dddf18af0eca14cde4d0e07430bc5b015d5e78c7f02ba9a79a", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:1b13391dc2d4750ae4ca03d3da17f1801a504bed05da836705e73f37f2c1125f", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:33f14d23a05b60dbe43a09365b45e4acc69137e8e53eb5ff33727d712d814891", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:01205827e50d626c036a06fdb7a2af309fcc0856c2a972b9a64f07994b9169ea", "resp": "The X-ray does not show any visible signs of a fracture. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:db630c8d33e02d83eacc17078937daa9946b4e736ed96c1b92e15d05eb3fd7aa", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:70445396aab163e63beb2ca916494d429d7bfbf711ad7b78626798beb071d232", "resp": "The X-ray shows a large area of opacity in the right lung, which is consistent with lung opacity. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:12d6870ce8f0e3218b96e81bc43247b6a1cdb7bbb6b2d776a5f084474f5542cc", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:22909bb877a5885e5be680342cc76035fcdcf76954c9feb01b218019107f2363", "resp": "The X-ray does not show pleural effusion because there is no visible fluid accumulation in the pleural space. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:81d1378319d1197d6284d2fd32cf4598a9346b384fe0f9748c8c36bd789a730d", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:20d7f3f147d763640e0fdf782b41e40627d41c302e83f974f4ffa87c2695fb26", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a63d2ed6663fde6d2b7d4de83bd74f85fd55e8c7fcf3c1306f78b95febf478ba", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:580b5b62a89c54587045eb1de53802bccbc14af6989d2cd5bc04d53fb61d04a2", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:36a38fc7cb3dfb9bfee4443822712578f5fab66ceacb605485b1827255ac92a8", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:7860c9c8770940ff88c1c255f659a2a6c7eee5aeb0d9d72eed795b6e9a147674", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:54ace5152a559ceb1eb2c52d4f06570cb0384123c919b4fd2af84c4ff7222706", "resp": "The X-ray shows a large area of opacity in the left lung field, which is consistent with pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:970d05917c711d75343a95bcb0c7ad3fd661c710e5cd87149289d709f6dc974c", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:693f55c763042cf265a1373b3254a933479804d52b38f449feb0f2ff8ee38d99", "resp": "The X-ray does not show pneumothorax because there is no visible air in the pleural space.\n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:db630c8d33e02d83eacc17078937daa9946b4e736ed96c1b92e15d05eb3fd7aa", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:680dfdb7c966ea7eb3fd6e4435adae0d62961e7acbb5c365f7d9c6b0328729c5", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c5ff2ff1925e20ba30c4d2e53b29fed8b8ed92776b45ad345723ce00b31ef661", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a34e13e350e46489050db6a8d3f50b9bcc91819327067e9ec191a766b596edbc", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:982ba795768dbb984eb47e9cd1b8c7cccf339aa84df1ebd7be7baabf24ae7c5f", "resp": "The X-ray shows a dark area on the right side of the lung, indicating air in the pleural space. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:668d98b43431b6dddf18af0eca14cde4d0e07430bc5b015d5e78c7f02ba9a79a", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:1b13391dc2d4750ae4ca03d3da17f1801a504bed05da836705e73f37f2c1125f", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:01205827e50d626c036a06fdb7a2af309fcc0856c2a972b9a64f07994b9169ea", "resp": "The X-ray does not show any visible signs of a fracture. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:701879547f6edfa756e758ee097081a46f9a8c2d7fd6646689202e7d5beda9ae", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:33f14d23a05b60dbe43a09365b45e4acc69137e8e53eb5ff33727d712d814891", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:70445396aab163e63beb2ca916494d429d7bfbf711ad7b78626798beb071d232", "resp": "The X-ray shows a large area of opacity in the right lung, which is consistent with lung opacity. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:12d6870ce8f0e3218b96e81bc43247b6a1cdb7bbb6b2d776a5f084474f5542cc", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:81d1378319d1197d6284d2fd32cf4598a9346b384fe0f9748c8c36bd789a730d", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:2b0011bf860a2404dd5c77669832f2f9348a76676bc05393f8afd384a4075d37", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:5cd3ca24b385758ce02bf8e9ef4a3cb4106d91f6e45c2257f54e3d33aeb386d8", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a1266b5d251faedfd4bfe377f086694854f38c9c74dab843f41aac20f7e9b8d0", "resp": "The X-ray shows a normal lung field with no visible opacities. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4ce1b9c29f0537ab802448cf2003f213369cee18d367af230b2a7c688bccab40", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0840611148a1f51922d80ccc1840bdc18ad1d75efe392a710140a9678d7a613d", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:436a8f5458e9255049eb1c5fbd74fff514f9276bdf089bc934fc0e9487dd1d05", "resp": "The X-ray does not show any lung opacity. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a7d651e85538f86f3eec7e8701fe6615ab197f93d060f821813ed3abcc2b023f", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c862f2428d58972f2d541bce13cf4d052954f9d91b2869b57c47f63492908903", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:640e8b1d4329b390973df9068bd4c2a8d56f53978d8598b2eaff0cb5f3e69c96", "resp": "The X-ray does not show pleural effusion because there is no visible fluid accumulation in the pleural space. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0eb04d47854afcdf71ca68bef39d444bf88d5c0b9ca10794758f99f256c155a0", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:070d61fadb728b3f4a9f7a0baf320435c44ef42bd5eedbf9266f954669f0cf8a", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8a7a9fbbd86f6280fed76f950dbfba0ed16f330807678a5dbb4db1655c17c011", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:edb235afc4ab0104127257485faed2fac5fef6605cb8d91842516f096caa6ed1", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:3ec5930d3182c16dbc5a621a55a1164d5aa960ac0b7665076da901956d6cd0f5", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:32dd119f44792ce4f7de81da1a3e091261602f62a91af4ebfe6ea0625276eb34", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d0f7dfe79c35429584aee7a75e80f6ef219a224b481df694feb310eaf6afb6f9", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a9aa3b90e7a1b2a7072558c76b0bad694696711c58555f99e3606465aa65b710", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:cf0f6c8ac77efd7fef4a183c9d5fdca63147d87afec87505fd30d9afc76c397a", "resp": "The X-ray does not show pleural effusion, as there is no visible fluid accumulation in the pleural space. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f37cea79ad76148d3426640b2ce1ad343fceed780c4da2c9ee4713462988928e", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b26b9eeda2b9ead95047f2d8e8544a63f3d2ba91366f8692fb8d8c11842a4e5f", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:19b808b054205d0d2d7bda7a1007622ef99c585a2d2737f3cb8ac7e29c4afe31", "resp": "The X-ray shows a pneumothorax, as indicated by the presence of air in the pleural space.\n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a005050d5d320462eec58c3f7e6d6bbe87a5481351e2975aa3ed8e1ea8bc8f9b", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b0a61b56b6870d019bec398c1a46d389de8c24cc936fb255120a1fd1a4d60508", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d7530b85106d0e0d8532b5f54052f3204a7765fe1cb734281c4ae3ddb6ff58d3", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:125a105fa49b7359deb431ab8e6d402c003e9ac0b06c49b27343f99eeebe2c3d", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:3e0a8d47626c9d548605674b6f4738f5860cc0bab4a2df2f7599e2cfadc9f43f", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a58f56034d07267bc83f97fd06c634d65e66c29e37a17e7bddedfa2872b2e31e", "resp": "The X-ray shows a pneumothorax, as indicated by the presence of air in the pleural space.\n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c820d52541dc96f13c7fd9390990e3bca2b1ff90e66ba7b1fa64d58098375b83", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:412610d2ce703e02c4b8372d6608acd9efc65688356c1e4ef3c81cde4a097d21", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:08e264902dd8d1cb4891a154cfdac96b423881068feb969ce47ed9d36b9212f3", "resp": "The X-ray does not show pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:3a110b04be017a1e9da57a2f95264be343ed303ddf146bbc0e9a1162b49e4d99", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:9930a6237e782e88c4cd932e5cdf4b93cbd54fc862d1412ba3ac5f00185cb881", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a813292408d5d9c372a490940529814becbe770e67835d59bf78fc0ce3373037", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:3c4c095834dd7305cc5f202076958a3f1ba9563cb59ec4076c1c19aafa6a56b8", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4dbfdfe1eb5c7c7eced40e59a0f8c010022be1906e02991f5956824aea39b2e7", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:350c8ef978c40215a9f3422deffc3818160c9f6736d8f9fc1b24fdbad8a28681", "resp": "The X-ray does not show cardiomegaly because the cardiac silhouette is within normal limits. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:9bb80a5200568df70ae86ecd99dbe5573af5081f9e2d223075093854b0169e3c", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:39f07fb8d4c8a52ae7c7fa587dd74e320b6cbd678fe2c4e53a4cae375f96b798", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:97df75125c86615d1d6e5a3da77d83606c1cc7d155729c119ecb614652fe25a6", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:35c567c910f44d6e7c9eadb52f0dfbd09ab96ed7d84c4c96e00d34dc99759320", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a0957f73d2fbaa2745f98f3e33975d1969da5ad0afcb8627b900c4f41c1e14c2", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:13048e53a0c11d940ad1a5879425a3e24a6c1b19f43361004a2466cc07fc768a", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f623b06cb9b486a4387cde281e24cd7863e511ffd74a5b3f4bcc7b5c20252424", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:97167fd4a70edf77f7adbcb49dc2d783ab879aeec6fe9c9a6352f631242d4da6", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c2130aab3baffb12864c090521ddb518d845feb5b1acb871bc75170a52ebf96e", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:23b63d568a9423e5df688f86dc95babd34ddf3eabdd07f25750d75f9a17c1496", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:7dfdd3fe37476602536a2ad96a5cfeb3db496eeed0e69c76d2e9bcf347ca0eb6", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:208756af287f694327971773796d81f1c49a9e462298b604ebd0210afd2f4e9f", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:33604373dbdf68f4c7b93ca40541d6acc3011917d1205250f2c8081160ce1dcc", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:98560a4decc42f2e3f0e629d90901a5cb28a7acd3dcb6ccd94c8ae4a44905005", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:129351f34c223f804e8663fd31362dd3df3161cfe887520fe3f4e340f24efdd9", "resp": "The X-ray does not show lung opacity because the lungs appear clear and well-defined, with no visible signs of consolidation or opacification.\n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:bebd9e0ce806baf68bcb094c428677c4791d80c395eb3a363b115df43722219c", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c94be886cdcc88e8b0fd4777dc469dd6ddbf9082d9b0eee356576288663a301f", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8c787783b7584c4fb07bc6b5be3928757c4d7396edacf62d7271de6b7fbb72eb", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b50d6aa1a1478262a0923c214b8f08b019e0157cfcc4532bbd777f3d0c428086", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:bfdff1a0f1fc7053d2b58315388097279893fe721b837aa04bbde00b2b2b6cbf", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:18bbf71eaff590a9de07e8de390b6f9e0691f4c1af0f88208975fd0d516da8a5", "resp": "The X-ray shows a collapsed lung, which is consistent with atelectasis. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c9dfb381cfb8773abe77833f37fe486480bcb235c4767a7d1d8ebb3b201b15a7", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b9878801008ce244884dcdbbda5f15fa131eb69354fcfc747f4e673196232866", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:627f88f650c83d25c9e55c32ce8f36f2de6bbb86ce7ca1a096a97bb83054b517", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d9a72915680fb31da3b8650e05bd73cb72340c7c062126cafe77e78a031b724d", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:31761599a665049fdea364297f6ab4275b10cae075ab1c1fd8f1e687e3875982", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:65a75f1088c864c2531f3ad8f0fa60662b27d1f700a407ef94b3fb93ffcdbd1b", "resp": "The X-ray shows a pneumothorax, as indicated by the presence of air in the pleural space and the collapsed lung.\n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:fbaba3c0f7b1e1aefe6965b98fdbd53ef61bf468c038793799393138394b52cd", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:98cd62dec5e9b9511116f787f1a47135099e6b1bd01cdd2235a6c4566a06af16", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:aa39cc9cfb2dce37960ee860708147f051c130cd345534a721a939d8c394edae", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:13e03d6fea58b1eb6c29f3c928b1cdc2dbf725d29cda3406a195e79982c4340c", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:598dc6dd8505496bb49d02d47ef3728e472955a36264f0499921bd01e19ca737", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:fb1b51b249efd635c778f8b92a384646835c5dfb8adf29759482b5852257c028", "resp": "The X-ray shows a large area of opacity in the right lung, which is consistent with lung opacity. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:58973a1f9828beb88f2b1477c1526cd9cb9da3ec4df9c07b2b39fdbe65f7dc7d", "resp": "No, this is not an X-ray. It appears to be a chest CT scan with contrast, which is a different type of imaging modality that uses X-rays and computer technology to produce detailed cross-sectional images of the body. The image shows the lungs, heart, and other structures in the chest cavity, but it does not show lung opacity."}
+{"k": "meta/llama-3.2-90b-vision-instruct:177ec3730f972262cfa0130cc9641e4b5e3caa2d5289fc8194519d13f4ae5b65", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ce53a81bd0016654aa44214d9e10dbe3fa2e9f7b40dfdc2e52b18d5915415438", "resp": "The X-ray shows a large area of opacity in the right lung, which is consistent with lung opacity. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:5e666066f7fb61404decc3b2c6f9c8f7d00fbba1d0385c536579bcc17c231217", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:52e6dce07b07ee71b4c68ef95894010d6dcf0d427f776d93a81e6a3c63252db2", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:9bcc645927c57b6aac6cfe27c909ba7a5456feaa81a3713e4722db12eedd4b8f", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:06710d34eea877397c0fa0507ec5bd9531a7d81fb84a9478a48dd187992a67aa", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a34fae6730c6b724480225d25a3535914c66033a484ab29a32d06347572bb00d", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b57fafa7837e449e1e1f3031cc5eace8db2bfb679840b75fc489567219b65be4", "resp": "The X-ray shows a diffuse, bilateral increase in lung density, which is consistent with pulmonary edema. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:7eb5880d4821cded74c254405bbe0fadd798c732a8111da9de3259fe20248a8b", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a7eaacfd2886715e4a0bc07ae7cd7b8acef34f8dd59326ef01a0857d7c588d15", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f6ff8c29f14279437b43f872ca3d11b77c7ec84746f0263e3f17e251e9e1421a", "resp": "The X-ray shows a normal lung field with no signs of edema. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0596c08dcc1a30c113a9a8cb401b2ba5179c17e72218acc8ef753f77afa1b4f3", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:2b479e0f2ac8a53da17cb8a1518a00f7b9d3e2b75832c707efc2c0b542b91140", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4912c261d4006f51e1800e0a88a6acd1fca909b0c0e76010b1bd28b426756e4e", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:79f024ed38088f26cbdee03d6aadc5f7772ea11a2cf331c4b5cc6abdb6a23b86", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:102d530bb32ab02c2e9a06ace1e6e1f3336360446b88391c580b8a5f3c2b1977", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f043a1a426bbec142a220b9e7224d582e155fcf50c49e352b655e47c5d5c9e4d", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c8a55acf245bb30763b8ec2a2002d3833f5136d6ef06a6f6eafca46509060cf0", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:019884f7bd796b9c4a7d7afe9eb80ecd040dd3f1dfd083140196c1d9fa730549", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:238a6e91cc955fe950fb8855ad9eb424b48b53b35059c3a016ae64830fc66369", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4a15024dafbb7baea40ad0884e1b4c83baddd7a63fe23a9c14aeebf4249bb578", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a6772d67b0b2aa11d365ed95d9812898e300a671517078ab00babfc80b6f65c3", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e477d90a9f29776bd68c19149f4b6dfcff27b7b4780192ff957e64a97c3efc8f", "resp": "The X-ray shows a normal lung field with no visible opacities. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:930289812b512821fd60ba283ce89debb1c6ab0a2cdf246869702d42e815e464", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:658aa4b32366bc7dfc4311b9a7d14447b38bf589ca4b29ffcbe499bf91c018d0", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:249704429fc2d8dcd3702269d2f345d7b8e8574f37070db85b1b1f722464917c", "resp": "The X-ray shows a large area of opacity in the right lung, which is consistent with consolidation. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d0d316558d44c10a38536ee548a24e135031c4fac28631475c68377b1553d75e", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d7a6f04fc380c060da5bea84d1922477e7cb76b7490f99e407a66bfd1ec72611", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b80d1ebd0b8af713ece8cd9f37458f09564351d7c34927b2c641a26bf6a50ba3", "resp": "The cardiac silhouette is enlarged, indicating cardiomegaly. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c1e58d11369f07085a60dbdc48320dd3d228e9ea11e3da56818d68aeb9ef945d", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b46b18f608c3382df47aabf72f81dcd6199dcabdb4ea05a7a1e10f7af7f007c2", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:188e17c321bb1a1f7424688f0cc49383a34ff0c87d97398e0e4df7c2b8afb022", "resp": "The X-ray does not show edema. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b7b3f0800c5092111a1857b6b595e26ee2c7c4200bdb528298026a55ad9cceb8", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:22481393fa0cffc39d28b0c98852b8c9fe2c9401ccb427b150b7c51e062b42c5", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:bcf6a255e924f682d8b6a809749f5ccac32296a2213b8b9a86420a5e3f50eef0", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:476c12ba5e48840fcc712ed4f27f2622c087faf6997fed072ad7a453b51d4668", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:3f4e9532a265130b203324c8ac2e4be9fbdbf4614f14bde6cdd13ac828eae5bf", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:85f597aa52f22ceab8ab9921d80076c4f365b8de82eab70f7e3d3400df85f9ba", "resp": "The X-ray shows a pneumothorax, as indicated by the presence of air in the pleural space.\n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f184b66aa4b22687e4254579e590a30260fa362f4735af587a2a2f7cdf318360", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:fc14c25fcc88c5e80172e441764c3ec23986777973a9462dacc00e8aa5c76338", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a1f8ab6a883fe16db8bc762f1684f3584fac386ddeaf011fbbef4ce05441e3c2", "resp": "The X-ray shows a pneumothorax, as indicated by the presence of air in the pleural space. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:05ccdf0d0f8f09d32c6b831cd67288cfcfeb9a21c8334648532617dd708f26dc", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c2858f8d0995689a314bfec17eaf728f63b320ce5f0357237da56bf261481763", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0d40022b80796be5e6491b85660d0c22337a1d986c880b758b3930f350dc92a9", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:205e71fffb294be01ebafb085c946057875571819496bb94780a19aa68d4df32", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0bc7f471a09627b8babf4f3d8d96bcc68bb7b3c8e9e594e04e72cc3644ec2a83", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:5cf508ac49efac7980d2081e424df5b79367a5d3481dca3ffea8853f0290fe17", "resp": "The X-ray does not show pleural effusion because there is no visible fluid accumulation in the pleural space. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:6b237ed7c55c79a119e1ebb086fc0211f89eeeaa610b924307e3e3e1782e2383", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:16787fac5e633382c5abf66e97bd353966443b403dda2c3337383d24eb263815", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ecb2ffc52e959501dd72b197cb376c74d321ffd1deb288e451d13f566c177238", "resp": "The X-ray shows a pneumothorax, as indicated by the presence of air in the pleural space. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:bcb37b258ef66f739ec0d84c537069c17b4d9f8d9c7ba1f6c7b9ed6624cb7ef4", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c9e229d06493a0aec179a5db66ad1ec14d6d270b6c7befaf2a8dd2bbe84ac8cc", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f1756b4dac2ba5313d88bab141f700ac39d86ff2e7de8932014519914580496c", "resp": "The X-ray does not show atelectasis, as there is no visible collapse or consolidation of lung tissue.\n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d18cc002e0b0c5903c6a8f59efd1b6bf59c6a07f9f17eb1b7feffb12bddaba1c", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4733029bf12a878928d1e701135d132b11608af7f49f3d91b40e62092de67e39", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b3e2f8379e5a25cf6ba4a01f9e3ee1949c5a4788eb02c2cd122019bf1f4311f2", "resp": "The X-ray shows a large area of opacity in the right lung, which is consistent with consolidation. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:fb6a8b44a47fb1d5dda2be83a3e75f7356e84b44f2b12233a956ef81ab843ab3", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:194152a77da463ac386e8b7232f8cde2747a48e0cdb6a5549d41db325b770b17", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:435595085d4a1c9de7c7acf00329f6c9fb534d3afb7f2c291890c7ea78da716a", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c0ae8a4b8a431239e7f8f1308219f760f56cb8683393a60cf03c5ec13ba68aba", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:10051dcf5dc5c054fb25f2306bd3f68b9e71cfe1b2ed0f6c9842d9d8bf05e8dc", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:aa0711e30e7f20b798be3ec8219df388321c8f5a6da2b8e4ae31d0d1c259e29d", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:3e5f8eae7d6ea14a106f899f7a7321751d5467cb8ecee9078f93e5489ad6596e", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:56bfd5d92b99d755e534783e8f8fc5100ce357977fa1e7996b146a5a405c163f", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c4e45e3acb87463140e169df8aca28c8936c2ac222719560e0fe98191fade36c", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:3c9b0c327d2bf88b8c2a2c0f4f109ea5ac2485f382ebe8f8bd284bc7ce48b05f", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:990f4d13326c65c559fb312f8a344df153dfddd4dd8f4138a77523b08e61573b", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:bd2b5b95708696312dd374c4ca442cfa92a43924d6d74cb728ab40d7c23808c6", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:7f701b454375cbe149228b78ff7dc6e91677f7838dbfb7acd9d01a1c4d610e6f", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ce00130b914479c7455e79535485b85c0d7263798a037e72b28723cdd2df2476", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:16a232ce7e937c01c6a2ae17d88f0d7dd179a3b0f320994b67958cb9b3499c54", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f50f1245b630de13fd37e38c0f464b3a9ca675e27ea332095eba91d21aa086a9", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:dbd7e26f7e2f454061d392765c04cc879db62fd1d92cf9c456d3efbec9f48bc4", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c9339e618764857d2fbecce21ca0880aba4bc81e2806ad70b9bd5f7d9f9274aa", "resp": "The X-ray shows a large area of opacity in the right lung, which is consistent with lung opacity. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:91f3975aa1e92aee6bf3e278db25301952b47b4942a080913d38e276c909b292", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d22e712b31f99096339a552981582f347fb90c8bcc0f731b449998721ddf9b51", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:270d9d984fe29eabfd9501ce74a0e2121e31706fe2792a365abb79b428ca289e", "resp": "The X-ray does not show lung opacity because the lungs appear clear and free of any opaque areas. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e3b60169cf0259e45ee8b892eb7c07b320647290eb846f0b33d78aa3c05d4614", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:6c61271136b35a42db8feff81db559835dbb9e7ee4257a2ad74c407e905bd790", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:783062bb188946206c6f355670ff00edfc883a17b4ec27978722b7cdcc2e421e", "resp": "The X-ray shows a hazy, white appearance in the lungs, which is indicative of edema. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:706e3d4c2ccc72f08085e51b91d13203f38cf5dc5ec9106e26de2147b02b8b8b", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8fbd885fc152a7fd751ec1e638852d4a19a370bc908af507042836bd9be24618", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:db7373344db53c88a3e4978652dd70e474de039932461233d8c4518db97cb246", "resp": "The X-ray shows a large area of opacity in the lower left lung field, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8d340a89b3a16d51447774541f465b717dd05f6861151ef0aad2b0f57d372460", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4fa00d5e51972a9c617f53eb6b72286f5b9cbd1602661d2abb9b2cacf888d548", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c229911c88af954a9a859d5626989f17c5f350a4ca78a0ea5772378ff044a1b2", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:032d3d1f2354fe588593d63691fa5603dba631cbadd8021e5aba1bb16d0cb2dd", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:cd93290297e3a687218b2ebea8fede0b235bf5f1d19708b1cb3192a101674875", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8426b601c70b3fdc2278fc2712edd43e77cdb0abcc0fcdc23bbe5254dbe06191", "resp": "The X-ray shows a large area of opacity in the right lung, which is consistent with lung opacity. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a1ddf303462f3894202a49e8f8830c01e1a26edb8dcd59ae140a3e29fd3dd6bb", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:97b6e6ccb74d2699bac5370be2feaef8963989a1a351954a89b4978ba9113629", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e522c2e9cecc64ebc0dd6a76b6711cb9a6b5e16ef2bb24173b46b6d0b917ffe7", "resp": "The X-ray shows a diffuse increase in lung density, which is consistent with pulmonary edema. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:9401f7abb5f47fd73886dfb34f426e9cfd0e6a43a260011dce36bab041c0a64a", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:1fdcccfe21bb6499ca5c552827468b69c3fe17ef65233d5e91b6ad49343f3187", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:9a42fdb331b726524fdcbaf39ec47df6dce105f9dca9e2c635ce1be12acc592e", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d6de058fc015602247ea995576ba0738713c66221bb4924776838917f58cd14c", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:76382f6ff9bc2a6188309a794e56806c5ff45331c8c3c9e22b4f1c4972b11708", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d820afcdc9e0d08838b91a779d8b7d42066dee3febb1e43e94453686998ae00c", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:78a7347211975a233242f71931aae8de6f9badd18206abe37135e304463106dc", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f5178c011e04f4e3bcb624d2cfb6e5ace12abec10b08121ee7a38d19e24c08d8", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:327e6930ab6b3aa12c17cc2d296d5721304a73f1ac805ae21cae7e88ab59e888", "resp": "The X-ray shows a large area of opacity in the lower lung field, which is consistent with pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:39fe40c7688052cce793fce275f5b595ff7bb987281aa21486178f8908f71390", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:df01a7e960423af921b679189765f1fe2c10037330090dc49eceafd49f3a8103", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:6d55d422830703e7edf9c4dbe9cb5d0be820025bfb60528e5a0bd62cea49d3e7", "resp": "The X-ray does not show pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:72d3160fee200a2eec7946da52fecbb85120d0adce58f5bd6396d9295e49253c", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:6fecf11d3670859a520179fa1299be6d8f3e5b572785d2979e39753fe9927e3f", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:3e1b4aada2dc3444512a91fecb7846835ed4ab99bebd99bd285f01726fce674a", "resp": "The X-ray shows an enlarged cardiac silhouette, indicating cardiomegaly. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:92bcfb0523a54d4ec77f152e99fad082dac902a74b39ce3bef5afd0148c46f37", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a4bcd169354a8b5f1a60959ab2761e60bae3fcea6e6c02179764b2139d09df2a", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c4a28259f6ee178c91f3ac4099c8b99b9a55ad113cf9788f62c675bedd2ce0e4", "resp": "The X-ray shows a diffuse increase in lung density, which is consistent with pulmonary edema. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f6663d8af246b0f5b22d402cc5e37b977a50f318afc2de38210289197b26b634", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4159b8b3822a8034e6fdb2a0947c6aca545a47243293eab9e27367a144d7963c", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:15c778bac5c30acc2d2a1b35293fb8574e4638fa64a388d8e2a6fe10d39b9eb7", "resp": "The X-ray shows a large area of opacity in the right lung, which is consistent with lung opacity. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8b6e600da3ba7d5c125e8d153c12ce503b284c016ef758a8b4ecd4244792d8bd", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:bad7f1d36f6ba52a3d03a8af1556542306cb9f1ab8e25f1e59e923405d07501d", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:57b8d88436bba671340210a14748e7942b9fbcf48deadf3b2e5e4dd1a525fae9", "resp": "The X-ray shows a collapsed lung, which is a characteristic sign of atelectasis. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ee0a5acc7b2a07edf150210a3dbd205cb899e433eebf6c9a6384735afee22fe5", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a5bdd0c022f593db7438a5697c2f2d30880dfe67be71e7881ddd590361834ba0", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f690d1bdbf03fdc2c314e34024b50ce2129e09fa6b245418ed1480154d3eae2b", "resp": "The X-ray shows a large area of opacity in the lower lung field, which is consistent with pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c9f918029c92b89438a2399263190462dff92ea4959ada8858ee456b63e35b65", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:98d69583924ac33fd8c7b4f86ef99338c2ab219d12dd09730c36127fd0b74a4d", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:30d08b8c69a387cf6df53c33edbac5f10f21e7d61ea27c75e2565137d294cc8a", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:cd6b4360ceeda5bfc0a3559143313cca7bca713c35b8f3f8fc6f66f6e218ffc2", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b0eabe474af52cb8340dda5adbd66616d929b6874a27727defd8bfdbaf467944", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e392599fea2252fbe1a821f0ab12013fdd29cde0be8f7850fb83148baa8f57fa", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:95dfcf71ea8ff660d5588d96bb9a0f6e2697ebe15d5bfda69df87cd25113a0e3", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ba9bffdddbf490fb6f1b42542a0222be70b75c492fb6fd0130b206ada64cecd4", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a940ffc602181f5d0b67f1694f3bcd751a32d9ad5c2026dffac892e093785d48", "resp": "The X-ray does not show edema. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:902be26b934b201238e1c467076f0a1af03f827a54aed597d8ae1c0377a59d69", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:43be0061548bcac376e919ceeab6d6d78c6e369d7a57cc9f8b2c0e23c7821ef6", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:47d6cafcc7f0e4ba4dd8d365d5fc89dc5ac6ea24fec43864624c2de08cace8f8", "resp": "The X-ray shows a diffuse pattern of increased opacity in both lungs, which is consistent with pulmonary edema. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:5f565c6b4245a3e27f63df35248ec91b9dea92e0579c3bccfb30297fdedd6095", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ba4535d41c3ec23a820b69d46bd68c514f5c66729bc43d76b367078c01c7f802", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:5bca6d0c2656b0a58fe1c49019dc08047c25f136d14209d73f0a38851147c5d7", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f3ea48c56eb186366fc0e8b52ffffbe3137c6c892af9758be6ad79132267e3f2", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ae4ec395247927455481a59bf45420f1c76a2bb0bb950d2dfe71dd6704d3429e", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:99aab9651731a724755cad5324930dbd7a31057d9b228e510c94f4bf8738a316", "resp": "The X-ray shows an enlarged cardiomediastinum due to the presence of a widened mediastinal silhouette. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d2d1b49da95eeb5bfe641d363eed4a068d3967a5bf1df3121ca0b7590b9581bf", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:9023c315421d61338265aefe499bb1f01df91df8efbf149f9dad3db138498b28", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c4416781bc5c767d55e6c44d12883a39888a260d0f051e66e872690919152422", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b4d340ebfc288a28ff25239a82bbd9da4a3b7b8982d6f3994380e1f8a22551b6", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:274fc90fd852c4e232170518036dd8ed42d429b458944946b6caec201bb08848", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:bdb149c74ee157b91d5cfc22ed207dbbba9c00bcd0e9e4ccef616b48ec73c55b", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:674e6888760ed95c1a4d38d317a902d03730f789b8550d9638ebc7ec28cf6e25", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:2486a98920cb83d4dfd34aec7d55b0ddcd72252491e2fd5fbe4967e4e47b90eb", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ce3c362bc471d921d4bf4b5d8465aef7c4c4eed752c51ec41aae6a0fdb7b905e", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b42cfe4a2a34ca3ada52b0319c3c9cd0ede0d146324a76796b116bfd730dde6b", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8e69e7a8b4d40429c783ed73d5a60fb45171038223661bfd890b49f91b727efb", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ad4ba94c38aa5edb47b25ade210142f2def538eb29aee6b3acfae26d31bbef22", "resp": "The X-ray shows signs of edema, as indicated by the presence of fluid in the lungs. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:5c6b18d3b6836909185a15276d00f12eb5866cedaf16b7dc96d89e568a4dfb3c", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a06dd16078a1a0aaeb3e621a859186afee77e448fcedbe7434fea474df66ba94", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:bf2921eec6d7351f1e6d351ea0e1fd400b15522930461851a38dcfce02f49eff", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:092eec486461c3a0b86c397025ac4d4cb758a5b685d2e4e28ef8a82757f71ea0", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a94aabf5351a285cfd2c7474b46dffecc6bb6172ebac6aa1314e9ccc45fdd55e", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a2bd0bf3f44629cb81e219ce3fd4e471593f2d73c205ecbdbcca943572beebe7", "resp": "The X-ray does not show any visible signs of a fracture. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:461569fd7792b516525aff255d09719161c7d66d48fd6a057d16a6cd66b06f41", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d94d302434673e2ff799d268394fe4138038f47bb27bec286a22e5adf12a31d1", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:80de62ac680bb445b6a9e530a6afaceca7896ff2f6886b92db885b86ff104926", "resp": "The X-ray does not show pleural effusion because there is no visible fluid accumulation in the pleural space.\n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:dfd6adba80ceb127c578eb60966559736be78366555004019548ef8655d8972c", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:30767d3f628fa67117cd385cd92f2f0557191fd3a8b3ea41c83b4f09f3c20d1a", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d6b459dfdedfccf7a3bad5d7cd5df76ec4bac7d654936c27978b62d2f6dee251", "resp": "The X-ray does not show any signs of pneumonia, such as consolidation or pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:7238bfc7ce9d48141f9a00c92771277802991d57a94080587d4c5901feb59c5c", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:95f587d59267d3d94dc120a896abc76fa613f9642b035b04b58479999650f323", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c675a688574eef45c7b23163bb7d192007145e9c1f072fda65ded7122586a7cf", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:dbde11137dbe9bab341438df87d299f5e0fafa9dadb42d84a57a03bf4584fe81", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d285a953ae1a3dbb0b7c26ce7d7b20cf133c62f9cc3f709b613ed18eab59a71a", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:184881aaa9b57bc942e9a548197969b9e26361a2e36f37f5254849af850a3b22", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:6bd90cd02822de7eb8f68f874b19295ae5b419e42fd62017a1a20caa4bebfea1", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c164fb178bf32cc4e355e8683c0b18eb3d14a7733064445ec882297cc1d2f29c", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:1c1069f017014f99624d367a5520abbddbe2e9b286c517f27ceabe80fa1fefc8", "resp": "The X-ray shows an enlarged cardiac silhouette, indicating cardiomegaly. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b7807fdab5310f124c006925fed8a0a10c3a00982cb98d201892ac91937f1031", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:cf2fd67e30a07eb2a7be95df844674b3ab64331f2a8179bda2bf6549e55502e5", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c624408f928df8d42dc69c6e42091cb6b07408916c9cfaeeeed819b5ba240e01", "resp": "The X-ray does not show any signs of edema, as there are no visible fluid accumulations or abnormalities in the lungs.\n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:3ab59e6f539ff9b5362301a8020817e4be0045cb479f47b16313d561fc9a7069", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:9134d4f893c30b3859e6f430217a2659773140bef4b75afb715692997434336c", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e18790afbd95450c2a0f61dbdb9a65eac23b22eb6f68e3980563b7076e02ccfe", "resp": "The X-ray shows a pneumothorax, as indicated by the presence of air in the pleural space. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ede978bd946d8baecc6ef8d7b535571b5b033e8cd2acb35f571df4d00f015ac2", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d42cebdebd2d370212531bd88138a1b45a9cde58d9176d1fa2ed0a250bde24b0", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0caa7a2105d335c86dbf43d618fff58dc43ebe9f05668384ccabb7201b16fe16", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:10e64fea2b783daac95b6ece7a3d4bbd677152a8dd1ee1e3d2e2f7473863ce94", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:9328e7c0b4d23f0a392bc144e70c493b0ce891b83bb5cfcbb6cded253bceb722", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:3e1996b10c7dfc4f46fac08b625b481b751d2c9b48032fd7998d611ba3af9b14", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:942112a07b1a351356fc83588cbba608e4bc8509ed8380ba942f38e4eda94e89", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:34e3996902c9400bcaf098f4aa4064eb763c517a5f8092e76fa27195629cce9b", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:96097a4b851008d646386afc80f6a84950a49c6844ba63c105167610f5cfcde8", "resp": "The X-ray does not show any signs of pneumonia, such as consolidation or pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:991b264bb3c1676cedf4fce70f918d68bcc500088509b3c7eee76094dd18d5a5", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4cc99208c5381e6584aa3ba0c7e7389748f385540b69c61bccfc1bcaf01bbe67", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:2e8810062d5606a083c4d420715fc4a7b304e42423a6cd323d0012baac38ab6b", "resp": "The X-ray shows a large area of opacity in the right lung, which is consistent with pneumonia. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e0218e8923e25d6c50ed1d39f319a5dc315bbc28e2bbe7acac651916be314991", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8e3191d44012ce0e639ffee82e1b49cdbd4b5c917e084a2172606608de8920bf", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4a25badbdb4b21e5d5f4991d0d8eaa7a00a0142de680cdde0b73c5685b79e273", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:40e55e07b6431f98817434034d020cbe41c9cfd5ff9866fac2d4f14b4a9e6655", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ca77e55b97d614bb421c0366e78512e45dcc2db989220dc98c91c9bf36e91d03", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c154af37161d63fe53904c76774277db1be6438666eca1e4f821e00c5ed072e5", "resp": "The X-ray shows a pneumothorax, as indicated by the presence of air in the pleural space.\n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:323c4953f5c9206c7c0cd998c9fdf797e6dc1dc517cf8da3eda925ff1f543d3d", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:cdcf710a306dda3534b9757f5418658aa832107bfd773e0dc3a40e355d2ee59d", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:46d4e3d08bcb8cc5ab6462ed9de21bb9b6000000f4a10b9264f7dcc3a1a739b7", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:1405f263443da447c715ac2b8cc68a3ad66f62588b0bf8e5f5ad93d7dc1b60c8", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d12f6dc9877900baaca5b9dda8e2f4f18cc6c03896174be6ae2760ee94c44549", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:97a19a9870bd3218f990f9219cb6b8ea396caee715d4c4b75069c9cbd7c1f846", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:2f0ce785e64504f6e2648493248ad1a578ffcef719a0486b5ec387d9862df9fc", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d811923a9217ddff2cc9c0f2a41d63924eb435d426745fd11c23aa32d374bad5", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b7cd06c1b73c53c46e76ec8bde49f173bcfa019fb773fa7729209e374dacd315", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:50de5c6fd23656a7da80ba670b1eb40c9271901d1bda53249e097e62e12249d8", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0a027f6feaf40d912a995a8bb07aae1cfe22af23c490c407e0f7255890e8a4b6", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4823ae509fe61f8f869454206178a94edaa3ec309327d6cb2a27d42a92ce08be", "resp": "The X-ray shows a normal lung field with no signs of edema. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4fb5846a92a0832c276d54c8bb60d4c44418de66ed78b043d583aa790f59836c", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8df5040dd0ab80a1f2c9a2094a9b72a2d90472680be21bc5a5b3d362edb5b025", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8cb6cda3bc2c95b1e777360d3ecb0507ea32b0e301878e4d1d412c840c9ee0fe", "resp": "The X-ray shows a diffuse, bilateral increase in lung density, which is consistent with pulmonary edema. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d82d84c58963ddb611c79e152f08e43a61748a61b527ff0687036229c85e2125", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:176c83707b54316d2a26d03894a0566cbcafff700733699103d0898f873bf4e5", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4a64dfe813a0179ac40196ee3a78c5ee5bfe8396a66318538f2a49789a6709d8", "resp": "The X-ray shows a pneumothorax, as indicated by the presence of air in the pleural space. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:720535d139b57d328731938381f5677014bc9faff48782929bc015b160185db6", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:5959e1cac8e5b5c643f9638b428b653a4f9ed8a9f1d18003f6af4e0e19c06514", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f2205ebd2539b2a04cb572989c69f5cdecd5b24727249aa82dc158448d46e925", "resp": "The X-ray shows a collapsed lung, which is a characteristic sign of atelectasis. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:416e732805ceafa23f463c27a32b30cde95111776f284f684a520905d80749e7", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:edd079fa4122bd98be09d2eb30f48e4f6c3b030c60dfb97086f987cbcf03a17c", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:51091fd88a8030f6d591bc313ffe9fbba4d160a83f16469c64d29d9c5dd4e47e", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b080dd6a6bf72124edebbb9d09a31224ac1915f3ed5cdccaf15f51e670a37c69", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d6477bef39555162a5a2683a18f5254417bf4f912f50ab0289715b0c49f61519", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c178e89a93c152b689d35c7e45296ca81de7de163ef775eff6f97fed274b9ddd", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:288d2b9cd669b76d0c9065026c2b8a0864f00e0558cc8ecbbe6245a2ab3786dd", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b732682477d9c0572ac43bb19c70bf8bc25184663fb8bb57b9ed925f09eb67a2", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:5d1e3094406d19ac1ba2b4e018372af54e8f67be61f2d05e3aa13f8e579ae9e5", "resp": "This X-ray does not show pleural effusion because it is not an X-ray image. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b90d98dc0a6fa7d4d66485bcea175a3e1e1e1032bd6f63d6f098e8345ad490ea", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:df872ee21467e2ff74a16745b2d3ec62c2f338201610ffb1bb702bfdc89923c3", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c502cf352d2fe3e33e979b0641dd117e675972ffd8ac426fdc67fe6714c60c2b", "resp": "The X-ray does not show any signs of pneumonia, such as consolidation or infiltrates in the lungs. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:94ac92ea727a4fd08af00f222f05635d444667da445041da5bbd56b72079c0fb", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:248e722b803e603713fd84aa9ba4a8a96d7367479c04d4901838af0035e17e9d", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8b9a9e6a0d0e3324635e25aa2119d5f7c0e562e5fc263ad7752a1ac259f1ccc1", "resp": "The X-ray shows a large area of opacity in the right lung, which is consistent with consolidation. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:785dae085c07dca8f7637ee11b1d39d16774ba03c25ec37b3ddee6c0a0ea16b9", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:6c26c30549e14b5f84973bbc46ac640fefd23944626f5cc8a1d7db3137cbb6e8", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:76f21301fd5e226f8d7b70030152cde5b658106fc24e17245c0f0596179dc9e0", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:099ccc81645ab7101ceb45b168378370161ea8313996c3d58b3f44bbace78937", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e966df10cc6e637c6122ea295295e2ff330e344f8ac0a36989147501dfa5f187", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b617384771a9567e84386a9233ab5d7306eb2a0c6061d94c0dbf92b28309eb3a", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:14ca012788b621201aa5970b4b143124b50ed7a7424c61dca7c424fc77452e5f", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:edd13fc3ed106b6d9a1402e56e7fec1867e4b89bdf48a9e0e8a6370b2cf92fad", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:cf80a7f5b19851ef7a24dc688c5d2f680f31b6fa44f67be5a1071b940f6fc22b", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8050130b8aa0d55e125f6b814b2f7f71c4af83461c043e2aac7e2f91615c1674", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0869bf4df0904ce0ac908835a5bf16190efeb3db0c0c829583884da714b9fac9", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0b2cb0008cd5261458c9fa460ccb45a39c1201aca62e28c2da464daa20e4aab8", "resp": "The X-ray does not show pleural effusion because there is no visible fluid accumulation in the pleural space. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a2c71fe25d5ea23ccbb25a95c4de5de7863cedfc24da0545c0039f1c9fa03f2e", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:96dada1c2b9de0cb76dfb281565ad5dc25dfbedac2efceb9d905e4dbcc8ba7b3", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e7fb46e3f244c5343021e9f574fd8a9f5f184e1463b3b002e394805cb1396b8f", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:5aae8311a1e93f9dd0bf4ba12318bfa861007193c6cb25e14d24b61274a652f8", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:91c76da3d785df7803c5d4db397d190e4e09bd7eb78eb17c6d8abdf53b9de69d", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:1cd6247bb822830ebb9109c6a974a1a62fc3191773471d6d92c4016d9274d6cc", "resp": "The X-ray shows a diffuse, bilateral pattern of increased opacity in the lungs, which is consistent with pulmonary edema. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b64ad2e095ed8545a8eae3b6c3ba61390195c9942735c22bf56f3ea074b22bfd", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:67e9454a507c3b700b41974035610fe31f0163b914023c623198c3f89156f080", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:caa14b842373b9da5d91818e63241a3a8dbb5b52b7c2b0a386ba080d01aca3c6", "resp": "The X-ray does not show any lung opacity. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:971c46b45b796cc0ea06573b2069864bb250a3d1ae36e3545c96a65808eb5517", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:cfd6595ac8659830a86de02f8d5a27587d1f7ec850f86305ce0029dc7d2ac1e6", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0a26885eb31d4c950b64aab81b368f53bef3f100adf81bb9977eba677aed0e07", "resp": "The X-ray does not show edema. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b48686dd3381df80e5ba267023a42c7a11f7ab6c9ec111810d4153f6a60a8323", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e179fd88d864c453ca8db727a5d10ee44da1f938245cfac42f07dbce9d1422e9", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:fe923bbb2453e0e253449f3cefe3ca38ef920e5dd9e6cbf9a601fd9bd518c110", "resp": "The X-ray shows a normal lung field with no visible opacities. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:58ecdc22dfbd26766b3d8e1f1289aa744b18cfcdd35b669ecf0d6c280b9bf329", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:01616e12b1d219fb1df2adc0fb29c2e2c377318261c0d019d9c4183463dda37d", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:75a39aba9193a48a69179b0dfd92dcba478d0b0b8de36c155c97ca67eda33ead", "resp": "The X-ray does not show pleural effusion because there is no visible fluid accumulation in the pleural space.\n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e3991e0b5fc07d5d1195c16d04aed795e6288f45072d21ae07ba5b14bd8149a2", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:481cb69bae98ff30d30fd1c293ef080186d283ee136a487da4f62c66e3606a71", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ca210d2c5f444f0910dd2bcf8e12a566452ef381f0f78410e56b460753f18e3a", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:647efa39dba43b1694ca1fbd2fbb3c5a0bb48f3f3aaa5b4247e8099460e32d44", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:415a834916ed57ddaf6bc5ae9b15a511aaee844c585ebbd4eac8e46178f0ed9f", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:6f7683087788a0aa894f398a3d4f7c202a8138a9030f2bb1f7bc4769b86ed169", "resp": "The X-ray does not show pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a70aab712599504a5a1f4babb48db48cad37c736c49d1999564176d7209967fc", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d012f89a488b6f585603caff6f0822bd21a4c5f6bf974fd1f1da1e0d00d1def7", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:6f831875b425890e442b3f66e1fd8c1b0c1b274de3f85d30274d489e24570124", "resp": "The X-ray does not show cardiomegaly because the heart size appears normal in relation to the thoracic cavity.\n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c69b14c1953f017634c0b2e9d01c7f35c1c8e13dcdda20b30c87e19ab479dfa5", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:61ee107c0eda41d1171b1cd747144cfd5f3214cf21afe2b08c7de9c105107f05", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:dbd88dac0af367c21af950acb0a9aa2fbe40d5bee70e75079790360426d0363c", "resp": "The X-ray shows a pneumothorax, as indicated by the presence of air in the pleural space.\n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:2ba2c3dbb7f74ec406e9c1c4c129c5a06085e088f774659c38c038fe0571ac36", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e9df53d6e492a605ab9703de63f023dfc8a6ef7a5df2539ec65b2dbdfd0069ac", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a39c69ee84c4ab07f49aaa0a2d9a3847da4c5f831aeed785f18e8f5a76f11b55", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:7b9da3e3e35a52657bedb296909bb40169abba3e630578f7094038fd8bac8744", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:fcc4594d56cf6ce155e25a1383c29307c5dbea2f7548ece3ba7d85022123afb5", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:5ff53322f88df154d952e1fe0531f8065ec6ad90bb5e73572989f3165b08da1c", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d036247f590f909bff60d5e1218c91a4321fff983b4863085fd1761be11fd973", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:203f7fd6aa58955f68b277bfba667f0232c1ea7e9de0f4bd2ff4d8f6b3d70448", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:dcd2399f2a5de72c4ee48a9f87205a88c3b716596894c6c449171c2c16c51355", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:037768856271fc841d20a70ac7188b67e5d12bab64f916e088217e633e0926bc", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f6594065a6e2b1e1cdc9dc3b173563cb8594f563679a02e1893146319b750066", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b29fff55ade41cf916cb649d5a22ecc486e3efeef9123172e3ffbaf7aef96a48", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:1a2e5aa1b0da57085927ad9094d755d0aa06930ce7aff1614ada592f181f743b", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4bdadcf0a9ba2b1f92b9a41e08e7e4690b43ce5494773ca21a8374ff9dafc5c6", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:5a2052a62e53f1a34053b21c3c449acbec0d501a2834306acf509c96baf7774d", "resp": "The X-ray shows a normal lung field with no visible opacities. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e1589bed54e1f383c828ac3bbd402ee9d4c9de86ffdc4f929102eab9dec64051", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:2a0ca43588737369dc3da445f92c85ac13401829743db9c88e5beb4472e42b2a", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0d609f006533b5479625afa69ded1d685141fca91f8fdda6a71e5df7b8a8269b", "resp": "The X-ray does not show edema. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:fa10b362fae90a012b44328437d6f46db6e294f16a325768de418e1bd1e635d1", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:102f25a1612eda686fa8c2ee6230264bbb05779573b5c458561ed664dbc27d5d", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:43fb2807b48444dd1b89e4bb7384ce781582cd4561e33f9c47cd2460e6a67353", "resp": "The X-ray does not show cardiomegaly because the cardiac silhouette is within normal limits. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d2e7d18be7187917fc5be32312151a6deea9533595a395205f39ab65db24d18e", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0a018aaa9945b3dce759746ee583921c81286ba6772930630c9822b6e5951233", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:eababc0a78af165290694502728b146409109be3d263cf7f2d9131d6cf1fed3d", "resp": "The cardiothoracic ratio is greater than 50%, indicating cardiomegaly. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:11d21f36b7aa700483da922993ef153a40963d0aa5511195c1b5f292920cf4c1", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c4a9fb439e109fdbec2a452c31e5e5b617e6e1902abc9993ccc209101b5c1bcb", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:efe39356665cbaa8564305cefe09d10670ae7281862e0c7e150620baf28245c9", "resp": "The X-ray shows a normal lung field with no visible opacities. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:121a9c4e8b93f42c73a04a09c874012af0d30fe24e11e4ec79cd32af89a031c6", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:fd1fea7f1101ef736baaa5b33ba407d17c3320a22a71958d595fb16f4c824acb", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4d9bc02f3a4c96450d53f3f4564e58a3cf3a856004fd63cd9508902725336408", "resp": "The X-ray shows a significant accumulation of fluid in the pleural space, which is characteristic of pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:7e6e6aa1949d437cf1efd41e146926da050e9304e98844c1e90c050e823b2139", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:6354b80edbe60e47903b25617da5fbb8bdd5d1f40a642314b4f1a4d508b7725e", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ce36887641966e25c87ae8e356c46599f981deffa9317e65b5878813ebc865f5", "resp": "The X-ray shows a pneumothorax, as indicated by the presence of air in the pleural space. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:dcb40d491ec4b036c59060ea5442c2a020bf85123ffbb8d51eaa8f3e6242a25f", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4c11b1c9c20bfb0ae2f01f16e052e2a4b4c5f8df8e7ecc27f18bcadea63aa370", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4b8b79a505729999753ac78b9c6e272cae35322e4c9118581048fcb3678d83c7", "resp": "The X-ray shows an enlarged cardiomediastinum due to the presence of a large mediastinal mass. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ac1017a3d3935dc20c55272da27d93685204ef66c41c93cf7455a13530fdc142", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:bb54fb88c84b6961b5ac03e7f75a056cbdc5058460fcca1c511459a58e8bb238", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a2a08c67500c86cf51693fdecea40249533f0f433dc994785711a4657aeca715", "resp": "The X-ray shows a large area of opacity in the lower right lung field, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:79b9cdba91dd084964a23406976644f97fbbb1252531f4bc7ea3d70353b60fec", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:cf2cf8112543cd4e59d9a945d0197d9ae5b6541afc6824042a410ef51789d816", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c5ee47b7cd5b8ab2a5319fd1a0cff290afcb686ee7eed3bda061ed991c515766", "resp": "The X-ray does not show a fracture. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0a9af7315b3b540e85f4e3ec7a3cde84a5034d8445b1c8d888fa5b3ea7266fa0", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b02167888df756e989d59eae0c86c248463d0344f9bbc861ae215ee8d2357cd0", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ab052d1631a596d13da438623a963705cf818925f3d88bfe73643a152d69d351", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:797ce6986d41133bc2c6c6dc048bceb273008e18e1f478f43788860fd9bc631d", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:7e1dadd3f81aad29da13c109fddb13edff3dc4e2fc5a045effcd7a87cc099990", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e0bc0b489ad67cce227e3170da939c546550e490301f8309faa93d249117a39c", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d416ea3cd2afbf48539285bef4697bba7cf92564aaaa46806b43391873ce3f70", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:17fa6669fc32ead3cfcda071bdd3c13fa5f76a785d6d550bfbe2862c34bd9573", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:2b3e37047a13345bae426db3d57e9be44e1395560d2212091203e273505e7c88", "resp": "The X-ray shows a collapsed lung, which is a characteristic feature of atelectasis. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:6e132558e373b6ebe475c45529f59d97692407058af04884bccd7e51fdfabcce", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f1a10866dd6d18567610aa762ce8996c4ba35ed2cb8bcb2d967e9b36a1ec4ebe", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:90f69753d3e590e7df3004a2b7da9f12e5750f80d94817f4d4939077278f9956", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:825be6569c9df69a2113e0bebe9fba2d765b8fc3b09f2169933ec347629ca09b", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:af64321d7b5eaea9600647fee016ea5dc751febbb4e72ea92b4cfaa4120ac959", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a9538bd6c650f7d0d95342158aa7c0ae05d040d883caa1b43fe762aec51284d0", "resp": "The X-ray shows a normal lung field with no signs of edema. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:35d08f765c7daf79fb3d2fde62ed32bae2d0b501f4290c8b9520318935fb4a96", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:83c68b7d433795357e40dd9d6023ae44a03e906a7281a3080df863829ae3438d", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:08109b2eb5a772702d70aa197419fe23be571dbe195a42e4c1a3a1ab134db207", "resp": "The X-ray shows a pneumothorax, as indicated by the presence of air in the pleural space.\n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:516ee28e33d821eac5182845c77589592385a92234b9e4c61e8b43301c032dae", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:cb898846ec9e2b613ccfd4851ec595fb692143d27dafd2f6db29ebd6c6d2a6b6", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4885357da7f05c6701c8396ba344757c5f690a835d73269235a08f6e8fcdfc0d", "resp": "The X-ray shows a large area of opacity in the lower lung field, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8ce9b505f4110e2ebdf20143921e4a361238e63590fe0fd854a67b3cc82e07c8", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:337e3d28f58fae68c4ab5477dc3d85051467b0f300f4393e85dfb83817fe6f7d", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:5fef7b53cfb058a40b6e7b8de12aeb0d62c44d07a860f65456e072895a7c5728", "resp": "The X-ray shows a diffuse, bilateral pattern of increased opacity in the lungs, which is consistent with pulmonary edema. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d3874e495a336980ee162bfb6ea63b74a618eaa86110a2e37aa86d8f8d224ac7", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:3a03fad56bb6f1ac15cb4fb724853299492988848d361cedb9cb3db318567077", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d0de0111c2c2f3297d7b2366607d53da87f1ee9aa8a6dbcfde71e4beebdc887e", "resp": "The X-ray shows a diffuse, bilateral increase in lung density, which is consistent with pulmonary edema. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:5451f46e38797d581b843a72311bc0bd4b8d0dc47b8627c82163455cdb3750c2", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:7cf30fa1f8c3e642b67f6456f35b013d021e7fda6f508670d4133575728004da", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:039dacbb4c8b79d28756f6f2d4ab155bb02ca0375b1d30d85834e3d4b8c32e09", "resp": "The X-ray shows a large area of opacity in the right lung, which is consistent with lung opacity. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:93477ba1d31096219b651ca97f9c9b04749e3c1521c853bedda1d5cc6c165f79", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0aba44e360c59235b4428db61fd3765ff87b440cee0c750e32dd044306ba06e2", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4cc344f6306c0e0a71379c5c6458c9ba52eeb69d2f10c490cd8b73dfcc8da41f", "resp": "The X-ray does not show edema. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:73bed6c8a3011d9ab920611ba9a834e56e34e74a7c382b3e012e81147db96dce", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a229b631e1d526503bd56797074cc35d54e963c6e2fe47b13f1fe8eeb3f7f744", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:06a94dfbeb08043f9b44124b1b0dd517b06271419a0fb1979d397598446ff360", "resp": "The X-ray shows a collapsed lung, which is consistent with atelectasis. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:72d9152c9dc9c886940e32ce131b6bf3cc378aed7a0e66bcb8caf0952cfd59bc", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f47886e8317c564175cd8941268aec317c1d33ce2ed188359c19bd786c5977aa", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:6874ab96c830b2db9a4652b214610b1b132f98787720b7edff77d07bdde6b9b8", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:187461f224624a233639d38a5014ca22f87c6097b68cd80ab0ff965c8e46f787", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f4095a04a8ffd77fcfd7330fd428332ddc4ce6596e8c8e3a13c4cbb22085720d", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:78ee60d8675f0f2b8048d782c23dfd1b4c4eff205087a39435e7da97a95650d3", "resp": "The X-ray shows a hazy appearance in the lungs, which is consistent with edema. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8c9e16ca34e657067c13c577bb1440e8ccee387a110137f04b7d958fc993e67e", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:01b260b252f2f4e4e3e64469c0cdb59ffe573382d8a6d8984c7d675665577bb6", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e3dd557c7c3827ffe8ee126177c43946ad2dc6ac884123bedfcffe754c0028a9", "resp": "The X-ray shows a large, white area in the lower right lung, which is indicative of lung opacity. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0996dcd8870acc5acf673207d8e51e9f8f0a0139eece76e1395180e777ae30b3", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f7cb38d723db70e971edd16ce681881b3b9569e4dc111ddd5e41364632ba26f5", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:9722c0fc87422ef47b6ac594307f2ed7d34ffbe6683ed36e72a250f5459889ad", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:2e6d0e57dd7358aceaf7ab1d01936729937e6b0568fd10283756bdaa650c333d", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:9794e316ed92f2dac91f68eca8e7a2c64b8ca9467e8afd0e5a56bb5218e4258d", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:43e1171825d5c01391f521bd1915d7fa130d28bf3d3ba7b1424af6b8a0670a43", "resp": "The X-ray shows a normal lung field with no signs of edema. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:933403de822f79e2f00c9b2269c183fba1b20743b4cd3f7c8727006256cb6e3e", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b2ee829a075702d52ad38e2ef7e22d8773dfe385d4d97f5fb7c860791094bca7", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f533e6f9478e8551f2fa8882a634bfd59cf7c01bcad04a3bfd0492d7925d70a2", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:2ee6317c7795eabc614e3212e90592c128fba4970244fbd564a913a50d281cd4", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:dd8324115947364703b39b523f6f41eff07b0624b557feffa7b662a2de83970e", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:6626e33cdf21b8310fcf114d7050a2fda0ba92f3e27467fe2738b76223361db5", "resp": "The X-ray shows a hazy, white appearance in the lungs, which is indicative of edema. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:6420fe2192d7b99b83670696649a3a5f311fc90356f8f208fca605d87625a23b", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:143d0a7e3aef1eb15f9e2434ae44966bf0008eeff993f1a788cc3e29a8cd21f5", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:de05ee959afb39c698055301cd5642a6b2915ec074e88f1f7ede6ae476fbac5a", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:193431f5198e63b1cbae832f6ce74332a80c8dce4c330551f1f8631429d7b6fa", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:437ee2b00a113a00cf27ebfb2a1c2a75cf39478645ded2fb9bcf5bf993ec2c96", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0aca89411e14241f6199ca014c8f71e1384c2e1c61c5eb68b4014a1b69246f22", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0987d6b7697efc56fdb864a2689895f1d0767c0ab1ee97937fcd9e4b4a435057", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:60b5b394ddc46ac7b0046f12780229c4d15432766b05bfaf851e31144af4a45d", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f6efcc22eff8ff43e62845d6660bdf8a3c82845fbb07cfcbb56388874b741c97", "resp": "The X-ray shows a normal lung field with no signs of edema. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:40dab85cf2434d0e725c3ac7cca1d319e7f1cdadd33d67ead8dfaa95335e9e42", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:39497749a4e357e80cb7fa5705f2ac37ea1f17e8a3051ae1c69563e20f5fd232", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:7a4a409e9b111913056ac0891422305f360993d0677409706ce4c7d6cbc61430", "resp": "The X-ray shows a large area of opacity in the right lung, which is consistent with lung opacity. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a6dfc6b5e8ee788b09e690158d35688ffd4de3cd178e43d63062154778bb1c5b", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:afd17f81ce1ef016f702da2e032ff9d6aaa747ab0a338432d18e6d40599b7e9b", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a684295acfbc4528df2fdece2009410847927bfee3800877b6329dc2e9d10cb6", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:350619bf55c1b38ebb39b2dd8a0cd170b5c18e1329d741b6312c4deafa86ea05", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:bb0b5e0d17c8d1a47fb0258c66ca455b8047881478727ced2fcfbd8be6dd2cb3", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:9ab383c70c9334ade7adbf06210f0e5f8141cc046ec690221b7794cc58b2b0f0", "resp": "The X-ray shows a pneumothorax, as indicated by the presence of air in the pleural space. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b463f36fd73293c784bd0c12f2c37a16d8cf98e393a53c38e92b5299f2afe280", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c203306e23371ef60b54487d89e4a88cf3d59eb86e09b033a85f6f9a6521fe17", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:fd253ea4806edfdba079c078c006039277864e6b6b161e2717407d474de47ff7", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:00276edca4b05fb04f03d97dc0125d0ebb6c30794690a29d8677150315ee6a73", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:7a0265a0d0921be033a7942eb2e0f19e0a33f3bcfbcd27de89079fc9ce5eb6fb", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ac751df4316bb1c044d275b87779480c70898c2fdc6a09bed0fc6f237493bb5e", "resp": "The X-ray shows a pneumothorax, as indicated by the presence of air in the pleural space.\n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e82319730043634c9849e6634db2467b6e670df000115ea3c1522290ccb877d5", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:dca4a9ff8b1d640c60d5ba45ef1939aa0a5efe43c6ca4afd2d4ab3237ad00ee3", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:61687f68f1de9cb4595c48eb05072757244d19aa631b3803f282018c235d6075", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:21d6c0fb3b8fd10febe02f671c601176756482e6f80544305eedcda0224091c9", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a9fbe04f8290a558b53e9d7a7624e8ebe836bf14a5930757b60797a17447aee8", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:376c0b510fefb9e466a2a41bae88ee30dadea62d43cb64511cb9b4fb8c6a0f79", "resp": "The X-ray does not show pleural effusion because there is no visible fluid accumulation in the pleural space.\n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:bc3be36cadf233462a1230b2c9010b93249c04bf1d64f247a1d8613c12d53f91", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8026f0871910ca3634fd1547aa3ab1ff74a2e93c3b5517bbdb46a0c24913d038", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0d436caca68d46a3fee99888b2dfbe78ab219c6a7a022791bd8080d4cf6bddbb", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d555ebfc0e01ed6e8b252f9f24a14966cdccf789831b1df8e4b72ee02d73684b", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b941bc1d2b485024bbf5d6f38b036a21fe7a873543dd27b8683fb5cb1cdbbf98", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a4a1f36bc44e4eaa60fdaf5d14aff0f24b12245b7f79a7aef9cc9df200329ee1", "resp": "The X-ray shows a large area of opacity in the lower left lung field, which is consistent with pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f9c8110d07afe3349f5aa68570df5e00c1e69df07890955ad7a23e8d60033b8c", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0b366d177809b248c7ea7a675f9ce7a40efc33a7022826a1adb0d94d5e324597", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:580dd05662eb517eb3d7d4158adf3172eceff0500f339b268c29ac6efdfc3eba", "resp": "The X-ray does not show cardiomegaly because the cardiac silhouette is within normal limits.\n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b158ed84caafc6fcad1426ff3e11a99899e0bd49b39813f7c8988eddea4b9ee4", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:395d699088aa934d9892a1bb2bbdc72cf55b3e75c806a7afcdaeeb43ae2fa166", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f2f71b9f016bc878137c3eb27a6f3572381345ab494e49f658a73ba8aa713e9f", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c90655886ee88ed6c52d54974fcc54874e872627be4ae127c4935abef81e2901", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ce258eede0886e0395058d877e64e84d35cf1ffb67f92b7a5938b7efd243343f", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:2808f411f74f11e90d7e7adc252818de225d140de95b6e538fff5d509880343b", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:731041b3555c9d0e9817633b63b545e72ba0c32e79378263cf7417d09802e4dc", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:88999d4c822b0893df917e8d03f74406e7c8682bb86901f45f5e0eb0e10ae0a5", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b1db67b1b0c5c0d9c3486e595a351b516a2d679c43ea410b73d2fca9c1533cc6", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d219608748c1c31d777b7e635f11e3c339a7fe9198bc997b41823d612a60b672", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:66a5ad51f1f85358a90bf53029f754709d8851a3fb5cd6ad7cb320b09f2e2fe5", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:170fa995e07e5d5940db8e231e7c6b3200a15788f40f0f028a832b0fe95cdf1f", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:222611fe5b715c5b00138e7e7b3ab6c18ef5f67e53313bc42c094bdc2f9e5ae3", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f54ec01b025c2ce8e10862b25e8f9df1a2906bd55e30f55a54ebaf3e2896ffe5", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:14e127c120f3fe693cc32cdb63322a8ee7943ccea413e035bd8f0bdddcfd608e", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:95a46c1598ad8aa7dc1305952029140e6b7d69b7c837b6ebea3d206a3f5fd0d0", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:63f6f58dcb72477100a2fb05682ce369591a1f062f413c5f0dfe6d1b314a4fa2", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8f6be8f185b22e9956943100e1ff6be2f53c0d7fb95aa17094825eefe08640b2", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:fd2f0a314a4f0053c1bf0a6fcfed48f5a6d1c8975ea086e0f8bfbeaeb4e17bb5", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:78ff26820d7d241bef958c9a2cd1f4553cfe811c683aa7cbd2ece7cf82176998", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:31e3f2f77dd3e5c74fa7821c3e99a34a649fd141800e091670d81a02c63fa964", "resp": "The X-ray does not show pleural effusion because there is no visible fluid accumulation in the pleural space. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ab7add27764857f548e6f3a883975ec938874056d5d25f77c8a518c2a0f0aabe", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:84c2e5c227134d0d05496c4e9797dda496cdbdcde9c0611c34c015b36b4bc808", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:70ca13fc42ca77ca523a95458c10610bcf27adf86d3161e556a7e9b85c6059df", "resp": "The X-ray does not show pneumothorax because there is no visible air in the pleural space. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4401a07513fd987d60ab34126523aadc81e88e6e54650c20a68aaedcb0f42d68", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:007a0dde3d8e5d3470611032715b38f692a755264568fb613eee12af16be8d33", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:64eb45ca2ed41cb27f9b6f2da10d48d77ea13707b46acc429a19f7f63ee61615", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d24724fb2a080a8aff30581db913d5e3d41692661db0e086f44619b56bb5105a", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a37a5b7dccff0b2593e9634bbb79aadaab3b55d256399a9caaf55cb5411f9dd1", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e1b220b006832d9e96bc5e23be9c77209e35fb0cb3737191257c1ae58b5ccae7", "resp": "The X-ray shows a large area of opacity in the right lung, which is consistent with lung opacity. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:230ae94a85671cbc4c2521d3a33e86e5975f6b2ea00115ec60f9cd206e4386b7", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:2917fc8b739de14a3f385c97f6cb1a612de6254b7d26e62137fc0d65d770f97e", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d984afc4b06e6a0e1bb2ce2ea82ec98f23e6fd1c28fe7dcd4fb6df63b4e618cf", "resp": "The X-ray shows a collapsed lung, which is a characteristic sign of atelectasis. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:2c0a1b423c5a72c8a06f137598da241251871ef96371049eb25f5e75f7cd8f7b", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c7c4d0ceb8669bfdcd3f989339690b371fcfc43712aaec332bf775fba908b308", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:5d6743728a92f5cdff34d8ad861aff8a92294b64d3720e94c3b17bd605661739", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:bd2ea8f4dd08a31670e9ff1515937f8c4465b33a39514f213ef896aa6d5ff54d", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:681c0755db71091ae07d5f897dc5d13089b52d9be63ee20da5071f5f79b070ff", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:bae8fea72ef12019a77f1db0daa6a16f6b0d2cbc93e69d99e50eb75c59d80330", "resp": "The X-ray shows a pneumothorax, as indicated by the presence of air in the pleural space. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a14ab11bcea3e88901e1bfdb79ef43aa310663dcb77c197d4bc7538b01c5b049", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:3697634ec9e9cd3147d5a80f3ce9f63ee256544508dffb934b758f31588b6235", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:627ebab5305d9d922616bc37c0e28663b194774b6c4f83fddbb36dea096f68f3", "resp": "The X-ray shows a large area of opacity in the right lung, which is consistent with lung opacity. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:afe82590df7a0c027ea2ad03a27bf8966973e81f4b3552c8fae11c8f4d62f65d", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:54f610faabb3cf5246c437f2ef928144ce0ecdee87c7028915b9ffea1eb23618", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c5d81cc0af624e71a1e1c9115e105e3356858312146ddf1c3c7b7fbc1afdc05d", "resp": "The X-ray shows a large area of opacity in the right lung, which is consistent with lung opacity. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e7f166e183aa9ce25b1f7d9816941d54283f4ab0af21d23776f60a66cddde4b3", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4ef545889178579c9d3c5b336b372162f5dc3de410a3116bb1dfbbeadf2f7004", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:462c101d387aafdd687434b0cc495b037b59ca23318de488da10ca2a2b653fd7", "resp": "The X-ray shows a pneumothorax, as indicated by the presence of air in the pleural space.\n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:cab824ae56167d838219e654b30c86048ced278e9e7db9cc881f5dfdae51cb55", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4fc2768d8a9c07acd747ba202018d10281855f90999d33f473df336f2e2fc80d", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8694991666bc1a97c06af9c4af9679ced38147fa2ccf55524b4458c6103f2be9", "resp": "The X-ray shows a clear lung field with no signs of atelectasis. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:eede4a471fab2c55b2fbde5ddd7dcff5aae2fa4145cf8565d5dfc4ad0f3d5721", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a6047499db258bdf2a21517639e4f57778ec4e7aaf16375591877a47b47e0b20", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:6759459101aaf7698254caaac1321511b12dd75731104275eda5fd64b113e03a", "resp": "The X-ray shows a normal lung field with no signs of edema. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8336a314ebcef32a5217306ad1d2912bc712ecb0e7577a45e1ca6dcd866ab300", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:3cbd66da80832b79c156ebaa370baaa8b08bb9969e37f4a1621d31cfd82a5457", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b559bc2e7e8e1b6b4b3efedfd7c3e31603815ae1a4829a5351af5b3fe32ba4f9", "resp": "The X-ray shows a normal lung field with no visible opacities. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:aebafade2be079b37c8b0ec82ddeeaf3838df4d148861d807a9728dd3ba0647f", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:42a2258f9898c7f1b7c7e58eeaa4f41b7e4a856bbbc50d4a1b6f27d364ac5142", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a0606cd3b28ad9a7d76885bd94831266638aad2974e51464e7f1fce29ef118ee", "resp": "The X-ray shows a significant amount of white area in the lungs, indicating lung opacity. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a82f6f4f9b5379395592589677c1f7d44025432781babac47d7b2d3bef2c7d6a", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4ad2ad4d1edb4368524db5dfecc56316452787f36f7bdb43060c3cade0963e97", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c31d31447812e92ce8078f87ffaba1d88c1d08f7bbbaf654ef5ba48345b07041", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8531007cac88d890d10d53a16b25595cb487f458bbd7dd4eab29c0cc13e86c57", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ea9c568ce7c7b3733a842d7f2d37a4bd06c8d78f0bcf573993cc54e46b2d2870", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:2c8f0c108565be0ee80e78f15d36a98f18e37c280422b277cb1cf098219520f4", "resp": "The X-ray shows consolidation in the right lung, which is indicated by the presence of an opaque area that obscures the normal lung markings. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4e4645247ff3a31bea21d33a33d0656b92c5209715d2baf0bc90b2561a5b5f29", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ac8535c4967bae505f41e431a4baf2d6ca7d2d30f40a23fcf87c21ceec6487a0", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f6f07f06953557ec9d89c9c266400097e6745a78d4ac3a86f7fadc501eadbd8b", "resp": "The X-ray shows a diffuse, bilateral increase in lung density, which is consistent with pulmonary edema. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:60e390be61ae02ec7d66d496473a908fc60e3a2cf3c5f07d96ed4062816ed66c", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:1c2143a1262fbd51195f255d6290273388a6015a05f1666b66544f8ee27b427a", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:6a499f5b94b3d71e731e9dd0d5db4c49dc3150b18f4e18d3c8c47ff844709b81", "resp": "The X-ray shows a pneumothorax, as indicated by the presence of air in the pleural space.\n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4088a647f4e240a93ffcc8e44d1f48eda1beab07db373d9b87eba4f5207ef8c4", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:22332b57411d561844a58339727ea0d686cb803a93cbce6391bfd6f6b8796c6f", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:bf93e74dabf42e6883846dd109ebdc4c154358e895c6a5f4e41bfb21eb9b0409", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:3a378a0e25fda13b44d81bf69b71f422b7dff8d510d62674e919c88d19c48c1e", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:2ffa393d18899df7afa57022df87dd8feebfb7e91962b4ecc1e094d4e57a4475", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b692a2f4f2ef5b16a477cc11d042895b7784bf92312a75b4ec2ee7c2e6b907d9", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b4d77fb4a290015bcd9f2fa803bf7f2347d652a218aa8a0d4888defea7af8c6a", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c31bf7ba4a66054f6eb82d7e0d306cc181131c90b4fc0a4c5c251c28593d282b", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8753c6c445cfc026bd9e46086c2492cddbab5cf81fdb20b91953eae4377bcc2d", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b2ae7f274b2c51fd6d0c5b1592ae96a637f664d2aa5af174c1e8402f2bf2bdcc", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:9c74e04bdaa0fcc57502e0546d89d4f6ab7c0100fa0d24df13a2142a4a6d9a35", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a47d3b252fec860dc5d286ea13eea19499d98126957894ee82bf2a2e6cc77171", "resp": "The X-ray shows a normal lung field with no visible opacities. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:61c844e65b01d4b70d2a1eb29e108df5fcbd6570976c195a052fbadbf41bb499", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:3b23ce5a2167fa5a2df16cafa86a6aef3a3b5f1b4bafe609312ba6593908eb5a", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d2bb8c183b6238f33e8acc6788e24f96bc7c44474d36c50e5d5416072ead4df2", "resp": "The X-ray does not show edema. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:394f777251d54b7e42586288793d912309e923d1bb65b5f68f09346a036b365e", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d39914cd68386623ae036f6f011ec0bc8b6a7e24b66b7ae15fe6bf89967043a4", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:9dbfce29cd72936085b8ee27dbd22779263f70f9e9db76710c8e8caa90e74bd3", "resp": "The X-ray shows a large area of increased opacity in the right lung, which is consistent with consolidation. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4d072c11c8dfef3db30b25d9c73bfccc245a26e67ccb1b1909c623ba6fb8cc05", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:41bf8c629352e532921b942a21e508e7a86f352a472ba9d0b8f03c0768439c91", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:bf9482a31bdea0c3c91310cf46277ae55d223f40854ebb0d05dcf53a8feff923", "resp": "The X-ray does not show pleural effusion because there is no visible fluid accumulation in the pleural space. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f96ed35fe63c608e5fdb6bd4e7e7c05138573120287798c7f44509541d0e65dc", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:63b910877dbc0c76acbd9a4b92f70f272e6cfd411a774665e803ff912919e852", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8a8f4b325fc622f1d0349e66706c29c9c9737d93565e40e3fbcb3f39d9af14e3", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:db852ba3a2f62059be9f17ad4f218c19829b033151f70e509f7ecd97aa647214", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:bc3d45a00873c09caf330655ccea02bcd29d32684f5777e204c9edfcbbe1ba70", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a431f779d7235bce84be1becb0e170afa920a22584e19e85d17f98031417f370", "resp": "The X-ray does not show edema. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:70cba16be119eefed7a7c1fbca46125c60c23974b5beea3e6fc70214d6532a7a", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:05184c25764d4b54977ec46ed41b94ca37700f933a18100fa4ff3481f6ce4d94", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:66dafa225191a576b2a35a3d44f1c53eaf406cc119b6687ddcf5329986dc876a", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:46666859159d81f4fd5bceb6ce8922305454e4eda03c3714409853c8b8c20c2b", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d3e353eb80138453eee1a8495c2dd03509a53cd48a6121807cc4f563f07b508d", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:da71528d8620b20aff699f5da33d9a1b54fa57d28747082c169dd43852b929ec", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0b2af404bf9df7c0ced3ecc5f8552bdd6d25d1c24a47ea407a187c0c8e13ae16", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:dbec428ec1a3a4b4b043889afc96cd786d97363863af092358ac93a02d685e93", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:bb8c56ae9ed676a5a191ed1a086dd63ec58e6b065dd5a6f1ba4e9b4769a94a09", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:59a365ee60a70638e20dd4f5f579ac89fc3c9ccf175e6cfbc7237ec72d5aaf90", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8d85902ce85d81903d2fd5053e4b9ef89880d45932fa7dd8750f827de9f0d94c", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:20fa4a68a111f0e8861656c03e430c95743787280e94bbf6fa80d47da01288e5", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0312af9e4c18c71ba30c8143382e180deebdf0db9d62e1097a04644d18f213e4", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:2129c417134b7e40431e04bee45bd2fd1b8c3d2a28d544c235de02b7cfe07ae0", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e677f78e526ca0050e5cb7217bdbe5e009431fad6a7a93f92fe95806313b7af9", "resp": "The X-ray shows a large area of opacity in the right lung, which is consistent with lung opacity. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:bab0dccf2f4cf99a6c2765e4ef27d1a3bbfc86ba91bf8ae30aee3dfc80b15f3e", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:79660adcea4b5954189ecd1530ca050c336963dce9ef1597a3de6438b64386d2", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:9c12168d8dc16ed087405ef25dd7d8055fa87fd479da0d9f2898781536011569", "resp": "The X-ray shows a pneumothorax, as indicated by the presence of air in the pleural space. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f60def9081079d9a3902af47c332ade122e4fa403284b4213926077d6da5d4d1", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:48cb8ce8f7c702904589e08c482c6b8aa801abdf708e85163af09eb4fdd67ed0", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:69338f9d0268cb686f93c21a52745b522c731b6a31d98e180e3b28e33dc75c5a", "resp": "The X-ray shows a normal lung field with no visible opacities. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e45381063451e31556c8233a14b41fc4a2e82f3ee2e96742505280712baa0905", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:71519cd6cbd7fd29155b425d1cf927e98bc05acbda075baa1d9b386d70d23c6f", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:7dd0d91c7c7f9fffa86ac60d3c1caf1976b6b897df45a2a7009ce5dc4eff03a8", "resp": "The X-ray shows a large area of opacity in the lower right lung, which is consistent with lung opacity. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0e366d5c6d9732661aa444c85c2a4bf41b9bb0c006cf8d8aef43ae02fcee1e3a", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:1ce0ea4bc55b4db343d8de16d17575ded276ce66a91438db8fed60414b372200", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:1d7896770c13c26b4a3d4fa14b3cd2741b842ee61aa90b399781dc00a7bfa2f8", "resp": "The X-ray shows a pneumothorax, as indicated by the presence of air in the pleural space.\n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:5a7d2a5249e5fbf3a246f71b958106dfc8b0430e370bdfd367f0b74a316ab9f5", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:88be763c73dd62a478737aaaf421aaff0a79d9eccc8e12f54abac82e2140d5fc", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:939f96addb03750d84a37a175b6f44d56f09c020fb65339495532e7923b155cc", "resp": "The X-ray shows a normal lung field with no signs of edema. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:71af38421af710d5db54ebe3e43648dfe20378e88b75179f8ad1dc42580049f9", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:7a035d4d92304c8c0f0280b384c27624df84ecbff6d54d0091333132af9285f4", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a5ef466c0f93897e03d08be4456696cfd6f9f2017c8bab83e4c5f8e2d7755316", "resp": "The X-ray does not show any signs of edema, as there are no visible fluid accumulations in the lungs or surrounding tissues. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:7d25cac15e9e7ce0b005c2143d99cfbf0f0d476b0e2580873ae9a75109f17b0a", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e0dd47fb9fb1c794d269dfd9cf37efa3dda1eb4b23cd960c82b3259515de2a7a", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:04e7ed34489ff5d915ca8dec9e06ddbee917377ee5d3808ea30fc686529c1a2b", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4e22ca95fa97e86582fb848b85fd89ab6e717f4e9673c98737a3aa5ac52ff496", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:5862f56e1e47674d4953b3446a9509a49c8c1c0dab2e1bc5bfc52ac979b679b8", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:fbc13a282c598c26a1ae249b07b52cf27907b6ea498a20f4fe1d5c2381798d03", "resp": "The X-ray shows a large area of opacity in the lower lung field, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e3b705e37b667d4938f049b8cfdd75b52f03af0527041bfb5ff7552c2789da7f", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f796e860e1f970cd21828e6ca885a0eac195e2985d40ce00cba1cc0043a1e859", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b935c60dc450b0a8540283e0b03869f158f748c57eeb92d1b4ac49e81d26f102", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:04fdb86593b3671b585915a5f1f49ab9575a024ed83e8319825a71b3c6a83fc6", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:5e535bf24c307ab0ccfb057469104e568b3af4bfaa662b5dc2acd7975c53ff23", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8ccce9b4bde1ba1685879cdcfcf37330f6b659c41bc7bd77fa9cd2ec3cafd825", "resp": "The X-ray does not show an enlarged cardiomediastinum, as the cardiac silhouette appears normal in size and shape.\n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e199a8def794c2c22f92947c7d5a3a399eb438f84defbccdadc8b6d4e63af5e2", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f3ab7bb1863fa9a7b88f9bb8e49dd992d2896ecc7d8612e4aea21251d7e937bd", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:32e1be599d5664262272b6b083d2731f5c9ca0cc8b6b31b770ca588db2e4fc37", "resp": "The X-ray does not show pneumothorax because there is no visible air in the pleural space. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e01522d4d204da714b505d40789d0bd8f96da650ba210309abf0cd3b1d6dcd5d", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0fedbfcb02439c1a4e56a0ec9d7fd85569ae62f8bd80cc65cae2ed139cd0117a", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d9cbba9ceec30cf31fc8930d96dd9d0a329a82b0d969ba096765762bbb982912", "resp": "The X-ray shows an enlarged cardiomediastinum due to the presence of a widened mediastinal silhouette, which is a common indicator of this condition. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:9e1cfb398fad3bc84d50705b90b4b9a213319d84b1be8748f3ca5fec4a833060", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:29d6d4a2b7439ae417f7990742a79680e32429ccef2bdebd9bd13d4e435eec5f", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:369744ae683f381109854dd0759bb8edeb79e7215623ce6cf7bf9cce295a0397", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:9041ec2c1c98a424674ff52686649571d9f3b0b60b6f72a9a1f1473d4eb3b213", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:1c352ea96f58c17795d90dc53b66ea126d0b7fc055a7145090e3fc20b96bf29a", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:265f98c08b1f491b6fc051c434a2165a3122d800ad481d200ec1d25e34584f4b", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:42cdcea16e40dd580509b3cd02892c3b3a95e8d2d2111ad1b00692238472948e", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:52e0cc9b5706f3e728810ec8b290443e1baf87729095d29f7a668d7a16157539", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:af2e0747c034a575e4b4255f6180a153b3445c5327a0ef337933403528d9910b", "resp": "The X-ray shows a normal lung field with no visible opacities. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0ed609a107c1c373702acf6e305029c516d8e94791a6356825d58560c4a763b0", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:1750aa67c99e96f70a97c9fa9db428bacc2e3523a29eaf4a7a6ec13f4cd7949f", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:81af56f2904e07d45f2d4b2f9183c743d5db87d805e52524467444fd6492a576", "resp": "The X-ray shows a pneumothorax, as indicated by the presence of air in the pleural space. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:da623b969321adee53d302cdc04ba4b4f248114eed3c326c4742f4dcb4ca00d0", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4e01e6d50afa40e66b3dbf2127209f05ba2beed54c91cc43d59e8a2b19242f05", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:836c8f8c1285fd908ca31464fbb385520db5715ff190e7d4335d5d55203984b2", "resp": "The X-ray shows a significant amount of white opacity in the lungs, indicating the presence of lung opacity. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4af36453ddc599165107c6b49db1aeebcdb6ae20a19d470efcfcb0f7d6e62776", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8ef228a338bcd1919d1901812cc345d3dea8e71e778ef2fd3486e35284be3faf", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0c18c9625e3f9a1b92ca2517073d037a1865105cb259796cbc05528e7df201a2", "resp": "The X-ray does not show edema. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8a31ce0c5edd3ccfa9351e51acaee40340870964f67105abafc9d8c141c12039", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0e0e9f8a3ec07b8695a7f29ca06ee5637b3d8e07f72ffa65b6c8a506f20960d6", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ccbf971ef29f9379d7d3802d3b9ebedbc1bc778eb6d912e0ea730b90b55f31da", "resp": "The X-ray shows a collapsed lung, which is consistent with atelectasis. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0645715683330262a028585e0afdeaf2c9a919cfc8313b90834cd79c444068e6", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:7a6dfc12dae86f551bdb7f56ad25998064b57a1ce4e48252e5d6013de9421ce3", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8886b391a39773868adc75a6ff6a079b8d00307acc44b4c311b322ed33e3c79e", "resp": "The X-ray shows a large area of increased opacity in the right lung, which is consistent with consolidation. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:5c079bca58964b6ff57353be8f281141ddf34aacc2bfa2be598fe59d155c13b0", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:5608e210277cd42e597de0d689eb61040fc4030714b182fe7e691cfa9c8cd813", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:39067c5c1a7363d9627fad669569ad1ed655e7b1b09037c7b6d8065f7cdc17a5", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b165ed86d0f06f24e26c925abeb3b59ce2123efcc9799d7f66533d6a080c0722", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:23f6e22404dcee700642f61e73423b909a2f40274fb348c10fe119552df5e69a", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:9a227371ae813f15bad657c83bd5db065607a37eb88cd205861a07b4c7039956", "resp": "The X-ray shows a normal lung field with no signs of edema. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:6ce8e51e7049bfe7ee4810b040df94fd90d960822d4fa6d0006cd188fd44c197", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8456e108a1574a722de492ea8f32e36c4f08beb15064c82b8fd363a3f83771da", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c20e88fef9130153b07d2f680984b5c046c0261a53e0ba89282f00664a9283f4", "resp": "The X-ray does not show pleural effusion because there is no visible fluid accumulation in the pleural space. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:411a115defcc34d443bef279e23952c7925403efa256f9c5d82a7aa232a1b569", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:f6d3aa85baec5d7c063161fa3a483b988268e7f8eda193d6714e94fc02f98892", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e3317b764faa680a6a77a89d666deec9796ef820fa80e5ad208bab8c86aeb3f2", "resp": "The X-ray shows a collapsed lung, which is a characteristic sign of atelectasis. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:24187559c242bb764374e40f168169e8180e3938a9b2d3e5a381bde1e7add4c7", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4d40f9a16d62345b0452cc0a5eb73c64afa149c6a5394598d762ee17cdce2b0d", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:03984f2e41ca004c04b730108876a52f28ea5036c8c6a8b5d8f4071537572e43", "resp": "The X-ray does not show pneumothorax because there is no visible air in the pleural space. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:50b4591daf9a4e38a14f04d0d5bb6880bb3ee54fa0d205f6a8291d698610d5b3", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:2addb4e1042ee95605bb7c13b0914f3700e07fe9c971eaee187fcd3f5af40c8f", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ee3bcbab436779207e817cecc9c813e746d27c428f512ac9d9067c18fdab5273", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:695a1ef8f3d4307dfde7dfbd7316fea41cb0b00294d6aa05739ec97b70cd9b58", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:85d7d08344a0e052e47748c79734c4e3561ac5e76d7ebf3159d6f0f033d6b65e", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ce2085d5b4d8f449ca25b51ad1fb30308744efc7fa332a3438eb18066f34d7c2", "resp": "The X-ray does not show pleural effusion, as there is no visible fluid accumulation in the pleural space. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:736401bf0482de5fa8c476edc4d3126c5323ec215a6db65762d41955a688f24a", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:14ece68519185f632abcb2120728499b5c03faabd61da1c1601638ca97df0940", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:160a4fd062e3f9a961dd6451a74b86d84e887df4703f37103faaeca4ebeb0242", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d7d49af02a27624a8e2d90c6053ea9bcb87034984f87d9ceab3aa9653e9c2a01", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:55830fe0e2d6cdc27b886569fb08a47219d8b897cadc0da38816c1be8bd5726a", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e3b7ffe91132b0d1a26d2730ea64f19e26f92713d207ae0b25f267752b9b80a5", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:6490d76ea73b4fecd65e983559950c1d10b195ed1f62e9190485ece36973ec3f", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:6a7520c8ecaf68cf5838c0f5542ccbd0dd84be28458c374d1c3ebd2a545b10ec", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b33dc52e195184c4ecd8d5ac284a186276a919190de0f5557104abd4929054d7", "resp": "The X-ray shows a large area of increased opacity in the right lung, which is consistent with consolidation. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:b36e0c8a9505fee0665d2f554be6db8afd1d240f99fd4edb0304a36010f0f38f", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:9db7ddb1e498301379cfdf0b4f2b89d4cb802f97549e85b454d23ef380b0222e", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a281efcd440d13140cd53c79c79cdcc320f5f33c608ba4b9766cbf1b0030f2b4", "resp": "The X-ray shows a significant amount of white area in the lungs, indicating lung opacity. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:6d3c3a848efdddf6ee5d3ea8d6bf02287defdfb89aed8f9eedb1ca5d79a0ca5d", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:bac7cefc3f1b0705c9b53892a7399bf1dcfb42fb9b58b294621f0fc2bbefc18d", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:cc6c916af662e20cb940573a9be56b6a19d512794bc2fd272ccfc4eaa4a8b7dd", "resp": "The X-ray does not show a lung lesion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ce26fd188d729fb31a850b385b51ba4e7ae7673d5469acb6017ded4e0ca70be3", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:8d10add9ba2ef54cd9757688b4343407272f8eb9ee46220b266081bb6df60b20", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:92bdbfcb9bcea749ec949d888fbee65894ebaaf2b06a506a845d97b4afeb0255", "resp": "The X-ray does not show edema. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:aa1803513f5b26b95682cf2eeea0d90f43db0fb94384fca2e16a8ae6cd705f28", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:9c50820ab02eb92c7e1b0cfcb90a40fef1d48cdc412d6e1edf92381d689c9177", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:45e415f89c12f54a1ede0aa56df82568d311713407165e7e215a7736f0253b5c", "resp": "The X-ray shows a large area of opacity in the right lung, which is consistent with lung opacity. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:2162d3a4312ce3af2dec090c41f3bb7281f9bd1a3aad1e9289f8bc2ac1354944", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:1e0613b214ca0749e17c23b2b487b9a610152cbd379c2e02abbb6c32b41ea77d", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:96edb527b6e863b1b25e8c856e03237d7bfadfeb5e69266fdcfd3b504567fe56", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d206a0fc7aa46e929ff0e5e00cbfde9a6036499a66eae00ba3a37cad5ec9244e", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:124c6a3eb7460bf21b1e96ff1f3ec8a7dd0fad90dbee3b832a20910bb1e4ad81", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ae0d7058ce3d99eae9d6b3bb777a2d704e8cbd1fad37f3d5104230576f2fcb3b", "resp": "The X-ray does not show cardiomegaly because the cardiac silhouette is within normal limits. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:5593cf8e2b95d7d76f905e6a0003b8f7c05a9673fbe79268866033745a45be84", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:29e20ef63afb84f48e4396ad9a4fe829923cc99416d1ee2bb35dd9774eabece0", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:c45e2be0ec46b52f686fa987c6891f74c36abe96d1b7b86db9f89a2771688b6a", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:d229d052728433435e8a5e4778b3ad031c1706ff1eb57dce0e7daf76a150ebf6", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:35c2ee815960b45e1fc67f8cc29a830a630e2e436f8adfd9507c15e8b52e448b", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e47946808f2ea62ce56cc06e95cf259b1c4fafb12ab86f78dc3539f652612d74", "resp": "The X-ray shows a normal lung field with no visible opacities. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:7c0afc84fc22548af4a36d23bfdbf17ae7bcbb3b2b07245374128e739ecbd9ba", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:164f3c7475fa08c268ed0d568182f2346ce21348bc04d2806609f93e854ae608", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:75059e3cfb13844dacbfb41c3524a6574f369256efbc985e43da19304b10e9af", "resp": "The X-ray shows a collapsed lung, which is consistent with atelectasis. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:77dc387f8834327f76d6d37f0bf2de1c2de78196515fb321becaa01ad95bf27c", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:dc455aac6f6ad26c130ed3e0542e22b959f77702f287514afdc09d0f7ee65d3b", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:28b30b27e07cf27fbf3216f804545314c7484a40addd0125c473c1b79de13414", "resp": "The X-ray shows a diffuse increase in lung density, which is consistent with pulmonary edema. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ca5b5256987c955595b64131fd36297d119aae95246263ab523cd0300eba9fd0", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:dd3cdf9bce066464a5020d6f5a1352a09144c678a88d91a91ac86ea176e98d04", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:0660996ff6f688de8cc0d72f5541240808c6ad023c540ce85292751803fc95f1", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:e1f0273288ba5a0130cfdb960bb462f5966d784111f4107b0d8fa9c432e3cf30", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:86b463b73cf21cd2dfe5430aab388bba2e63d5e3ec5680dec1ad5a077563d3cd", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:6c5817e15bfe992f4e1bf35575d121b27ec46fdd031f5d894ec08ab25b00ed8e", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is consistent with pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ad459f930c5610b5c2f5a59acb62b99ada2fa19f075f0f79bd0585f0647fccec", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:283ca666f970a8aea1d4c446359ac42c0818dfa6b5a8d493a06a73d75613d605", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:999e645d9c8095179835d5b0eef2c81ff9b5a2817279ab8fa0d3dda3f7b3d65c", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:557533e9fee6c7e0423d3d4bfe28c89ed12e02561a5fa3e81415e479de4f9d20", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:fb22891463c0d30ffadf16df9a4e8056bd4d77cc9792c0a1a4febf17945a1f35", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:ed877b9cebc9f3b07e0d12f4c92accfd0616e7047b4efe16982f134de1ffa7fd", "resp": "The X-ray shows a large area of opacity in the right lung, which is consistent with lung opacity. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:1e15edc0f1c47a183755ae1b5d0acf942517d05bc2bfe1f97ed10b49f8ac1155", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:514caae26af6e628dc91e65f6605c99f0d1e0b2dddb178f5790b03994d2c5a5b", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:9eb239b34b9caaeea9791f5bf043afd63ce9e4a82c98baab235d9dfb6fe42f21", "resp": "The X-ray shows a large amount of fluid in the pleural space, which is indicative of pleural effusion. \n\nYes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:4152a8596a431549ad77962c12f21999a601d402882a1db46111d9ad1b6eed7e", "resp": "Yes."}
+{"k": "meta/llama-3.2-90b-vision-instruct:edc2bc6609d8f765a84a8a285bc80935812f9023376cf845c935c198c1c0403f", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:938f548e0fb51df67951f18556e529314cb2f1fe523cd6dca10ce7a0a2c5a6be", "resp": "The X-ray does not show pneumothorax because there is no visible air in the pleural space.\n\nNo."}
+{"k": "meta/llama-3.2-90b-vision-instruct:1994c16f865cfd09d0ee9eeacf59dfbaa66116c5c24a5c691faa8389557c233b", "resp": "No."}
+{"k": "meta/llama-3.2-90b-vision-instruct:a9b57c4df313e9ff6f6bca5411d2f131a10cddfe3eb7b91da59d865322e9f9c6", "resp": "No."}
