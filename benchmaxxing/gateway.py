@@ -141,7 +141,9 @@ class GeminiBackend(Backend):
         timeout: float | None = 60.0,
     ):
         self.model = model
-        self.default_decoding = dict(default_decoding or {})
+        self.default_decoding = {"max_output_tokens": 16384}
+        if default_decoding:
+            self.default_decoding.update(default_decoding)
         self.timeout = timeout
         if client is not None:
             # Injected client (used by tests): no SDK import required.
