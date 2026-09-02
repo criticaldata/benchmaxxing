@@ -46,14 +46,15 @@ _NAMING = re.compile(
 
 
 def _key(model: str):
-    """Resolve the API key based on the model name."""
+    """Resolve the API key strictly based on the model name."""
     m = model.lower()
     if "deepseek" in m:
         return os.environ.get("DEEPSEEK_API_KEY")
     if "gemini" in m:
         return os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
-    # NVIDIA NIM and other OpenAI-compatible endpoints
-    return os.environ.get("NVIDIA_API_KEY") or os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+    if "llama" in m or "nvidia" in m or "meta/" in m:
+        return os.environ.get("NVIDIA_API_KEY")
+    return os.environ.get("NVIDIA_API_KEY")
 
 
 def _img_bytes(pil):
@@ -80,7 +81,9 @@ class _Cache:
             if k in self.store:
                 return self.store[k]
         if not self.key:
-            raise SystemExit("Cache miss and no API KEY set (a fully cached run needs no key).")
+            m = self._model.lower()
+            key_name = "GEMINI_API_KEY" if "gemini" in m else ("DEEPSEEK_API_KEY" if "deepseek" in m else "NVIDIA_API_KEY")
+            raise SystemExit(f"Cache miss and no {key_name} set (a fully cached run needs no key).")
 
         m = self._model.lower()
         if "gemini" in m:
