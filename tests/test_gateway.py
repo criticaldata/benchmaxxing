@@ -277,3 +277,18 @@ def test_gemini_backend_applies_default_max_output_tokens():
     _, _, kwargs = client.models.received[0]
 
     assert kwargs["config"]["max_output_tokens"] == 16384
+
+
+def test_gemini_backend_allows_max_output_tokens_override():
+    client = _FakeClient()
+
+    be = gateway.GeminiBackend(
+        client=client,
+        default_decoding={"max_output_tokens": 100},
+    )
+
+    be.complete("hi", decoding={"max_output_tokens": 7})
+
+    _, _, kwargs = client.models.received[0]
+
+    assert kwargs["config"]["max_output_tokens"] == 7

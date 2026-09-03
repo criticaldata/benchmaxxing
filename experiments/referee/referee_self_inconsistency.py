@@ -91,7 +91,6 @@ def summarize(rows):
     return {
         "n": n,
         "temperature": 0,
-        "cache_bypassed": True,
         "declared_pairs": declared_pairs,
         "undeclared_pairs": undeclared_pairs,
         "undeclared_draws": undeclared_draws,

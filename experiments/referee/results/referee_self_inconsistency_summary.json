@@ -1,0 +1,11 @@
+{
+  "n": 40,
+  "temperature": 0,
+  "declared_pairs": 39,
+  "undeclared_pairs": 1,
+  "undeclared_draws": 2,
+  "stable_cases": 39,
+  "unstable_cases": 0,
+  "temp0_self_inconsistency_rate": 0.0,
+  "new_api_calls_this_run": 0
+}

@@ -1,0 +1,18 @@
+{
+  "benchmaxxing": "0.0.1",
+  "git_sha": "336f78d",
+  "libraries": {
+    "google-genai": "2.15.0",
+    "litellm": "1.98.0",
+    "numpy": "2.5.1",
+    "opencv-python-headless": "5.0.0.93",
+    "pillow": "12.3.0",
+    "pyyaml": "6.0.3",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+    "torch": "2.13.0",
+    "transformers": "5.16.1"
+  },
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.6"
+}

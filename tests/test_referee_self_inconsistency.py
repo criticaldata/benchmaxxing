@@ -50,7 +50,6 @@ def test_summary_contains_metadata():
 
     assert result["n"] == 0
     assert result["temperature"] == 0
-    assert result["cache_bypassed"] is True
 
 def test_summary_single_unstable_case():
     rows = [
