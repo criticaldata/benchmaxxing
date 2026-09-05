@@ -15,6 +15,7 @@ import json
 import os
 import re
 import threading
+import time
 from pathlib import Path
 
 from benchmaxxing import gateway
@@ -27,8 +28,58 @@ DEEPSEEK_BASE_URL = "https://api.deepseek.com"
 # thought in `content`, which the legacy parsers would then score as if it were an answer. Whatever
 # a cap still truncates is recorded as undeclared by `declared()` and excluded rather than scored.
 MAX_TOKENS = 8192
+# The NVIDIA endpoint allows about 40 requests per minute and penalises concurrent bursts, which
+# #416 measured and documented when it introduced this vendor; it returns HTTP 429 with no
+# Retry-After header, so the retry wrapper burns its five attempts against a closed door. Pace the
+# run instead of racing it: NIM_RPM is that documented ceiling, and BENCHMAXXING_MIN_CALL_INTERVAL
+# overrides the interval directly when a vendor needs something different. Pacing is measured
+# across threads, so it holds whatever max_workers a runner uses, and it is off for Gemini, which
+# has no such restriction.
+NIM_RPM = 40
+_NIM_INTERVAL = 60.0 / NIM_RPM * 1.05  # a 5% margin, since the window is not published exactly
+# 40 RPM is the documented ceiling, but a free-tier key sustains far less: the bucket is small and
+# refills slowly, so a long run settles nearer 3 calls a minute. Measured on this account, one call
+# every 20s completes 9 attempts in 10, and a single call succeeds again after 60s of idle.
+NIM_SUSTAINED_INTERVAL = 20.0
+# A 429 outlives RetryBackend's five quick attempts, which is what killed whole arms mid-run: the
+# backoff schedule expires while the bucket is still empty. Wait for a refill instead of failing.
+RATE_LIMIT_SLEEP = 90.0
+RATE_LIMIT_TRIES = 12
+MIN_CALL_INTERVAL = float(os.environ.get("BENCHMAXXING_MIN_CALL_INTERVAL", "0") or 0)
+
+
+def interval_for(model: str) -> float:
+    """Seconds to leave between outgoing calls for a model's endpoint."""
+    if MIN_CALL_INTERVAL > 0:
+        return MIN_CALL_INTERVAL
+    if "gemini" in model.lower():
+        return 0.0
+    return NIM_SUSTAINED_INTERVAL
+
+
+def _is_rate_limited(exc: Exception) -> bool:
+    """True for a 429 from any vendor, without importing the vendor SDKs."""
+    if type(exc).__name__ in ("RateLimitError", "ResourceExhausted"):
+        return True
+    if getattr(exc, "status_code", None) == 429 or getattr(exc, "code", None) == 429:
+        return True
+    return "429" in str(exc) or "too many requests" in str(exc).lower()
 
 _lock = threading.Lock()
+_pace_lock = threading.Lock()
+_last_call = [0.0]
+
+
+def _pace(model: str):
+    """Block until this model's minimum interval has passed since the previous outgoing call."""
+    gap = interval_for(model)
+    if gap <= 0:
+        return
+    with _pace_lock:
+        wait = gap - (time.monotonic() - _last_call[0])
+        if wait > 0:
+            time.sleep(wait)
+        _last_call[0] = time.monotonic()
 
 
 def key_name(model: str) -> str:
@@ -144,8 +195,20 @@ class Cache:
         if not self.key:
             raise SystemExit(f"Cache miss and no {key_name(model)} set for {model} "
                              "(a fully cached run needs no key).")
-        resp = gateway.RetryBackend(backend_for(model, self.key), tries=5, backoff=3.0).complete(
-            prompt, decoding={"temperature": 0})
+        backend = gateway.RetryBackend(backend_for(model, self.key), tries=5, backoff=3.0)
+        for attempt in range(RATE_LIMIT_TRIES):
+            _pace(model)
+            try:
+                resp = backend.complete(prompt, decoding={"temperature": 0})
+                break
+            except Exception as exc:  # noqa: BLE001  (re-raised below unless it is a 429)
+                root = exc
+                while root.__cause__ is not None:
+                    root = root.__cause__
+                if not _is_rate_limited(root) or attempt == RATE_LIMIT_TRIES - 1:
+                    raise
+                # The bucket is empty. Wait for a refill rather than losing the whole run.
+                time.sleep(RATE_LIMIT_SLEEP)
         if resp is None:
             raise SystemExit(f"{model} returned an empty completion (content=None). Reasoning-only "
                              "models are not usable here: the parsers read `content`.")

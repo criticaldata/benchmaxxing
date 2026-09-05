@@ -103,3 +103,74 @@ def test_declared_reads_a_committed_letter_and_refuses_prose():
     assert _lane.declared("Psoriatic arthritis is unlikely because the patient", opts) is None
     assert _lane.declared("", opts) is None
     assert _lane.declared("Z", opts) is None
+
+
+def test_pacing_follows_the_documented_nim_ceiling(monkeypatch):
+    """#416 measured the NVIDIA endpoint at about 40 RPM and found it punishes bursts."""
+    import time as _time
+    monkeypatch.setattr(_lane, "MIN_CALL_INTERVAL", 0)
+    # Gemini has no such restriction, so it is not paced at all.
+    assert _lane.interval_for("gemini-2.5-flash-lite") == 0.0
+    # The documented ceiling is 40 RPM, but a free-tier key sustains far less, so the default
+    # interval is the measured sustained rate and stays well inside the documented one.
+    gap = _lane.interval_for("nvidia/nemotron-3-super-120b-a12b")
+    assert gap == _lane.NIM_SUSTAINED_INTERVAL
+    assert 60.0 / gap <= _lane.NIM_RPM
+
+    monkeypatch.setattr(_lane, "MIN_CALL_INTERVAL", 0.2)
+    assert _lane.interval_for("nvidia/x") == 0.2
+    monkeypatch.setattr(_lane, "_last_call", [_time.monotonic()])
+    t0 = _time.monotonic()
+    _lane._pace("nvidia/x")
+    assert _time.monotonic() - t0 >= 0.15
+
+    monkeypatch.setattr(_lane, "MIN_CALL_INTERVAL", 0)
+    t0 = _time.monotonic()
+    _lane._pace("gemini-2.5-flash-lite")
+    assert _time.monotonic() - t0 < 0.05
+
+
+def test_rate_limit_detection_covers_the_vendor_shapes():
+    class _Vendor429(Exception):
+        pass
+    _Vendor429.__name__ = "RateLimitError"
+    assert _lane._is_rate_limited(_Vendor429("Error code: 429"))
+    assert _lane._is_rate_limited(RuntimeError("Error code: 429 - Too Many Requests"))
+
+    class _Coded(Exception):
+        status_code = 429
+    assert _lane._is_rate_limited(_Coded())
+    assert not _lane._is_rate_limited(RuntimeError("Error code: 500 - server error"))
+
+
+def test_a_429_waits_for_a_refill_instead_of_losing_the_run(tmp_path, monkeypatch):
+    """RetryBackend's five quick attempts expire while the bucket is still empty."""
+    calls = {"n": 0}
+
+    class _Flaky:
+        def complete(self, prompt, decoding=None):
+            calls["n"] += 1
+            if calls["n"] < 3:
+                raise RuntimeError("Error code: 429 - {'status': 429}")
+            return "B"
+
+    monkeypatch.setattr(_lane, "backend_for", lambda model, key, client=None: _Flaky())
+    monkeypatch.setattr(_lane.gateway, "RetryBackend", lambda b, tries=5, backoff=3.0: b)
+    monkeypatch.setattr(_lane, "RATE_LIMIT_SLEEP", 0.01)
+    monkeypatch.setattr(_lane, "MIN_CALL_INTERVAL", 0.001)
+    cache = _lane.Cache(tmp_path / "c.jsonl", "nvapi-test", "nvidia/x")
+    assert cache.complete("p") == "B"
+    assert calls["n"] == 3 and cache.calls == 1
+
+
+def test_a_non_rate_limit_error_still_fails_fast(tmp_path, monkeypatch):
+    class _Broken:
+        def complete(self, prompt, decoding=None):
+            raise RuntimeError("Error code: 500 - server error")
+
+    monkeypatch.setattr(_lane, "backend_for", lambda model, key, client=None: _Broken())
+    monkeypatch.setattr(_lane.gateway, "RetryBackend", lambda b, tries=5, backoff=3.0: b)
+    monkeypatch.setattr(_lane, "MIN_CALL_INTERVAL", 0.001)
+    cache = _lane.Cache(tmp_path / "c.jsonl", "nvapi-test", "nvidia/x")
+    with pytest.raises(RuntimeError, match="500"):
+        cache.complete("p")
