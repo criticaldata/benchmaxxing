@@ -1,0 +1,21 @@
+{
+  "run_id": "referee-self-inconsistency-medqa-n40",
+  "stage": "referee_self_inconsistency",
+  "canonical_artifacts": {
+    "rows": "experiments/referee/results/referee_self_inconsistency.jsonl",
+    "summary": "experiments/referee/results/referee_self_inconsistency_summary.json",
+    "cache": "experiments/referee/results/referee_self_inconsistency_cache.jsonl"
+  },
+  "results": {
+    "n": 40,
+    "temperature": 0,
+    "declared_pairs": 39,
+    "undeclared_pairs": 1,
+    "undeclared_draws": 2,
+    "stable_cases": 39,
+    "unstable_cases": 0,
+    "temp0_self_inconsistency_rate": 0.0,
+    "new_api_calls_this_run": 0
+  },
+  "provenance_note": "Results are recorded in the canonical referee artifacts listed above. This bundle provides run provenance and reproducibility metadata for the 40-case MedQA referee self-inconsistency run."
+}

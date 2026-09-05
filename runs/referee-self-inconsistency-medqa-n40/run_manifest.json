@@ -1,0 +1,33 @@
+{
+  "config": {
+    "canonical_artifacts": {
+      "cache": "experiments/referee/results/referee_self_inconsistency_cache.jsonl",
+      "rows": "experiments/referee/results/referee_self_inconsistency.jsonl",
+      "summary": "experiments/referee/results/referee_self_inconsistency_summary.json"
+    },
+    "dataset": "medqa",
+    "experiment": "referee_self_inconsistency",
+    "n": 40,
+    "temperature": 0
+  },
+  "cue_set_version": "",
+  "dataset_revision": "medqa_manifest.csv",
+  "library_versions": {
+    "google-genai": "2.15.0",
+    "litellm": "1.98.0",
+    "numpy": "2.5.1",
+    "opencv-python-headless": "5.0.0.93",
+    "pillow": "12.3.0",
+    "pyyaml": "6.0.3",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+    "torch": "2.13.0",
+    "transformers": "5.16.1"
+  },
+  "model_ids": [
+    "gemini-2.5-flash-lite"
+  ],
+  "prompt_versions": {},
+  "run_id": "referee-self-inconsistency-medqa-n40",
+  "seed": 0
+}

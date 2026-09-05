@@ -193,7 +193,7 @@ def test_gemini_backend_injected_client_multimodal_path():
     be.complete("describe", image=b"imgbytes")
     _, contents, kwargs = client.models.received[0]
     assert contents == ["describe", b"imgbytes"]
-    assert "config" not in kwargs  # no decoding overrides -> no config passed
+    assert kwargs["config"] == {"max_output_tokens": 16384}
 
 
 def test_gemini_backend_merges_default_decoding():
@@ -201,7 +201,7 @@ def test_gemini_backend_merges_default_decoding():
     be = gateway.GeminiBackend(client=client, default_decoding={"temperature": 0.7, "top_p": 0.9})
     be.complete("hi", decoding={"temperature": 0.1})
     _, _, kwargs = client.models.received[0]
-    assert kwargs["config"] == {"temperature": 0.1, "top_p": 0.9}  # per-call overrides default
+    assert kwargs["config"] == {"temperature": 0.1, "top_p": 0.9, "max_output_tokens": 16384}  # per-call overrides default
 
 
 def test_timeout_ms_converts_seconds_and_rejects_non_positive():
@@ -264,3 +264,31 @@ def test_gemini_backend_leaves_http_options_unset_when_timeout_disabled(monkeypa
     captured = _stub_genai(monkeypatch)
     gateway.GeminiBackend(api_key="k", timeout=None)
     assert captured["http_options"] is None
+
+
+
+def test_gemini_backend_applies_default_max_output_tokens():
+    client = _FakeClient()
+
+    be = gateway.GeminiBackend(client=client)
+
+    be.complete("hi")
+
+    _, _, kwargs = client.models.received[0]
+
+    assert kwargs["config"]["max_output_tokens"] == 16384
+
+
+def test_gemini_backend_allows_max_output_tokens_override():
+    client = _FakeClient()
+
+    be = gateway.GeminiBackend(
+        client=client,
+        default_decoding={"max_output_tokens": 100},
+    )
+
+    be.complete("hi", decoding={"max_output_tokens": 7})
+
+    _, _, kwargs = client.models.received[0]
+
+    assert kwargs["config"]["max_output_tokens"] == 7

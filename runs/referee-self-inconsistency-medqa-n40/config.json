@@ -1,0 +1,10 @@
+{
+  "dataset": "medqa",
+  "experiment": "referee_self_inconsistency",
+  "models": [
+    "gemini-2.5-flash-lite"
+  ],
+  "n": 40,
+  "temperature": 0,
+  "out_dir": "experiments/referee/results"
+}

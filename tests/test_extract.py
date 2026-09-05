@@ -169,3 +169,29 @@ class TestBoxedFinalAnswer:
         text = (r"A patient with these findings is best treated with option C. "
                 r"The final answer is $\boxed{C}$")
         assert parse_mcq_choice(text, self.OPTS) == 2  # C, never the article-A (0)
+
+
+
+# ── Declaration detection (Phase 4B) ───────────────────────────────────
+
+def test_declared_mcq_choice_explicit_declaration():
+    from benchmaxxing.extract import declared_mcq_choice
+
+    assert declared_mcq_choice("The answer is B.", OPTS_5) == ("B", True)
+
+
+def test_declared_mcq_choice_bare_letter():
+    from benchmaxxing.extract import declared_mcq_choice
+
+    assert declared_mcq_choice("C", OPTS_5) == ("C", True)
+
+
+def test_declared_mcq_choice_undeclared_reasoning():
+    from benchmaxxing.extract import declared_mcq_choice
+
+    text = (
+        "A is unlikely. B is possible. "
+        "C could fit. D is also plausible."
+    )
+
+    assert declared_mcq_choice(text, OPTS_5) == ("", False)
