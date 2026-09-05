@@ -19,18 +19,19 @@ from benchmaxxing.extract import parse_legacy_string
 
 
 import argparse
-import hashlib
 import json
-import os
+import sys
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
-from benchmaxxing import gateway
 from benchmaxxing.blackboard import AgentResponse, render_board, run_committee
 from benchmaxxing.data import load_cases
 from benchmaxxing.roster import build_committee
 from benchmaxxing.schema import Condition, ModelSpec
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
 
 HOLDOUT = "gemini-2.5-flash-lite"
 PEER_MODEL = "gemini-2.5-flash"
@@ -38,62 +39,30 @@ MEMBERS = [("peer1", PEER_MODEL), ("peer2", PEER_MODEL), ("holdout", HOLDOUT)]
 _lock = threading.Lock()
 
 
-def _key():
-    return os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
-
-
-def _letters(n):
-    return [chr(65 + i) for i in range(n)]
-
-
 def _mcq(case, prefix=""):
     opts = list(case.options)
-    body = "\n".join(f"{L}. {o}" for L, o in zip(_letters(len(opts)), opts))
+    body = "\n".join(f"{L}. {o}" for L, o in zip(_lane.letters(len(opts)), opts))
     return (f"{prefix}Question: {case.question}\n\nOptions:\n{body}\n\n"
             "Answer with only the single letter of the best option."), opts
-
-
-
-class _Cache:
-    def __init__(self, path, key):
-        self.path, self.key, self.store, self.calls = Path(path), key, {}, 0
-        if self.path.exists():
-            for line in self.path.read_text().splitlines():
-                if line.strip():
-                    r = json.loads(line)
-                    self.store[r["k"]] = r["resp"]
-
-    def complete(self, model, prompt):
-        k = hashlib.sha256(f"{model}\x00{prompt}".encode()).hexdigest()
-        with _lock:
-            if k in self.store:
-                return self.store[k]
-        if not self.key:
-            raise SystemExit("Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key).")
-        resp = gateway.RetryBackend(gateway.GeminiBackend(model=model, api_key=self.key),
-                                    tries=5, backoff=3.0).complete(prompt, decoding={"temperature": 0})
-        with _lock:
-            self.store[k] = resp
-            self.calls += 1
-            with open(self.path, "a") as f:
-                f.write(json.dumps({"k": k, "model": model, "resp": resp}) + "\n")
-        return resp
 
 
 def main():
     ap = argparse.ArgumentParser(description="Live-peer tier composition with organic errors (#209).")
     ap.add_argument("--manifest", required=True)
-    ap.add_argument("--cache", default="experiments/medqa/results/live_peer_organic_cache.jsonl")
+    _lane.add_model_arg(ap)
+    ap.add_argument("--cache", default=None,
+                    help="Defaults to the committed cache for the default model, and to a model-scoped sibling otherwise.")
     ap.add_argument("--out", default="experiments/medqa/results")
     ap.add_argument("--n", type=int, default=120)
     ap.add_argument("--show-rationale", action="store_true",
                     help="render each peer's reasoning under its vote (#373); off is the "
                          "committed answer-only board, which the cache replays at zero calls")
     args = ap.parse_args()
+    model = args.model
+    out_dir, cache_path = _lane.scoped(model, args.out, "experiments/medqa/results/live_peer_organic_cache.jsonl", args.cache)
 
-    out = Path(args.out)
-    out.mkdir(parents=True, exist_ok=True)
-    cache = _Cache(args.cache, _key())
+    out = out_dir
+    cache = _lane.Cache(cache_path, _lane.key_for(model), model)
     cases = load_cases(args.manifest)[:args.n]
     model_by_agent = dict(MEMBERS)
     committee = build_committee(
