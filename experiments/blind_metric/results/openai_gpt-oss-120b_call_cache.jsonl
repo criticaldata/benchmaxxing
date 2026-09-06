@@ -1,0 +1,300 @@
+{"k": "60849d48fcc27b2b011ac99400371f3c0918663dec1234d6a9d0ec05974acf32", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "df5cc5685b2ec6267bcec869f888fc525019394208631e25c55300556b803302", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "d232af107859636ef8fb747e188eca2088a9497d3801665aa01a1fb10cf6f0cb", "model": "openai/gpt-oss-120b", "resp": "The resident must be truthful to the patient and accurately document the complication.  \nB"}
+{"k": "48aa1fd2a175ecad57bba1d861901509ca7320a052a6f87a6707ec09540f4a23", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "f5752a94d9864f0b51cca9fdfbd6822dcdf16825efd43c9a00f25fb0860d6ad5", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "fbaf86cd31f8927e0f2b3577910a77b5cb51a0cc9fc1f0bcdbe64355b9bdada9", "model": "openai/gpt-oss-120b", "resp": "Cholesterol emboli from the recent catheterization cause acute renal failure, eosinophilia, fever, and livedo reticularis with intravascular cholesterol clefts on biopsy.  \nC"}
+{"k": "d8ea38c9aca5689575e5c37afa9237e61f0d96f286019c717cb43bc254e6a9b8", "model": "openai/gpt-oss-120b", "resp": "Cisplatin\u2019s antitumor activity comes from forming DNA cross\u2011links that inhibit replication.  \nE"}
+{"k": "48df174c505027a356912b90d55cacf762928e0af888292e397889642c41d791", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "0a96cd0e759476af3b2b25017af554a4b493e794e4483b965357fbca4ad49963", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "ef06402f33317227739d5a6191bd32c7a1684734c51a683d8b73b1c0f79b8dfd", "model": "openai/gpt-oss-120b", "resp": "Allergic conjunctivitis is best managed with topical antihistamine/mast\u2011cell stabilizer eye drops.  \nB"}
+{"k": "579bb53356a8c7dad2343ac4e6ca9c5af59289bc6a69304f9c9e68fc34b774cc", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "9ebeaf194325ce7bcd419982b669034a882bee8032813d7e61f75c8fa6f0262f", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "ae76f3484a0f1c21d1902bddb853fc5a39b2fcd33c08caa2993b6b31c0f3d1f6", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "703e30c5c0fb2f595737790af80862b91bc6a68eb3f90b8127a9e43ca7dd0d97", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "f8a8b269ee404e895977f23ae3cf573458b71c23d41518ef528863ca4bf81cdd", "model": "openai/gpt-oss-120b", "resp": "Nitroglycerin is the first\u2011line agent for cocaine\u2011induced chest pain, providing coronary vasodilation while avoiding the harmful effects of \u03b2\u2011blockade.  \nC"}
+{"k": "9d79de1c157d5048e45065acf595c8ef9ba704153611ba09be3aaa29884574d4", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "4e0130409d4ac0ff80773bae701eb540691e1e64d4a91047016a030b04583e01", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "3a2aeb071188b904f7f5154838e7ee7302f58cb24c74f4302597dee73640429e", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "b63380116d6c680450f2b6eeca3a7f1fcb73b37945d7849a9f068dc125e0f3c2", "model": "openai/gpt-oss-120b", "resp": "Extrinsic compression of the right ureter by a neighboring common iliac artery aneurysm can cause unilateral hydronephrosis in an older patient with atherosclerotic disease.  \nD"}
+{"k": "15f8f05b8137a04ab184e511bc4ce52dde6d7d4896a99d68fc262bd16f3b5375", "model": "openai/gpt-oss-120b", "resp": "Clopidogrel provides the required P2Y12 inhibition for dual antiplatelet therapy after PCI in ACS patients.  \nC"}
+{"k": "400f1681defd344ddaba99a29bf117282b90cc4fde4b92eaf2a3c21b1f313f5c", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "873709cd3c6c03ea0b51ff3d4534b487d1aaa328cefc3112c8791e631023a227", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "e02b2f8f16a424d8308e7cc6b2f64df214ab5f884f05d9a0462cfdc481240bc2", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "2197a6d97f8d63280b3651a52036123bafd0b83d646ef79cae8e52aced19ee36", "model": "openai/gpt-oss-120b", "resp": "Active or recurrent PID is a contraindication because an IUD can exacerbate pelvic infection.  \nC"}
+{"k": "28031e767523d42d0e7d62471632f21e7846c74bc18355a2d7ab932843c63010", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "80d38c735f77879e1ac912b3e923594e64ae00a03c4df61b5e411a4a32364e8e", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "5ce3cfbbdd7cd2d9f3bce87cf9de14f620687cacfc13de557eea8b7f28fab6b4", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "f78947a1cd1d212065544b863365f925ebdaea27481b05594f1369e4f91c5a3e", "model": "openai/gpt-oss-120b", "resp": "The CDC\u2011recommended confirmatory test after a reactive HIV screen is an HIV\u20111/HIV\u20112 antibody differentiation immunoassay, which distinguishes antibodies to the two virus types.  \nE"}
+{"k": "edf48b25e7856a0179ad1783fc8d7607a5df9e3095e5c7e2394684013f9d5b96", "model": "openai/gpt-oss-120b", "resp": "The phenol extraction identifies endotoxin, indicating a Gram\u2011negative organism; the severe PID with septic shock is most consistent with a lactose\u2011fermenting Gram\u2011negative rod such as\u202fE.\u202fcoli, which produces pink colonies on MacConkey agar.  \nD"}
+{"k": "70da54f758d24de4195032298bc151701391d3e539000364caea1cb5244861e2", "model": "openai/gpt-oss-120b", "resp": "Ruxolitinib is the JAK1/2 inhibitor indicated for symptomatic primary myelofibrosis with splenomegaly and constitutional symptoms.  \nD"}
+{"k": "1599d5997e483732708b96c2ead5ea7e36c60d92f56e10f43987b2a359d8678d", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "22e645d834df37f1df1e8d6231e9d41698cd7ed3ad3fd4ae39dc6c346d3eed59", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "2a699d2f70f1084cae7c137304392290983ba99c629991d7b6fcb696c15d0a40", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "3944de724252a74e2244ea4ec577fbc3eb25c7c87b98a8379e34aad648cac944", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "72f12c395b219324a97706eb9859c10d73645ad42011301bc747a8942b7c082e", "model": "openai/gpt-oss-120b", "resp": "NF2 (mutation of the merlin tumor\u2011suppressor gene) classically predisposes to meningiomas.  \nB"}
+{"k": "e5015d2afdc6a20f8b98ea7d26e3c90575e9e278026df11de4487b82d288e2e7", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "d37d67d424da5452fb44a63433a7d5cbb8abc3f4a8f9211883a1744dc454f659", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "d589449f001c4082088edcbe4c97a837beac7b94258e79d249f3f861a38a54b9", "model": "openai/gpt-oss-120b", "resp": "The nail image shows pitting, a classic manifestation of psoriasis, which is also associated with silvery, scaly plaques on extensor surfaces.  \nA"}
+{"k": "c85e6ba062578cc5b2f2dbeadc5325194721d12f8b641a1817bca6d0ee52b14b", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "9b0db12f86a9964b3996a72c4199210432d6fc8564804ff60a15fcc63e1d5097", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "dc8f3845692c570f08c4baa4464fb739b12f867e097bafdf9e5cceed25d836b7", "model": "openai/gpt-oss-120b", "resp": "Standing reduces venous return, triggering reflex tachycardia that shortens diastole and thus reduces diastolic filling time.  \nE"}
+{"k": "2ac7f52ab3bbee11d7dfa726b370cbf0e12a5bc9ffa5c98e5b9f87532c079b6b", "model": "openai/gpt-oss-120b", "resp": "Rotavirus has a segmented double\u2011stranded RNA genome that can reassort genome segments when a cell is co\u2011infected, producing novel viable strains.  \nD"}
+{"k": "5f41018e0b370ac24b40b012e652ca6c508de2982a14fa9baf5179c8967ef6ec", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "d6851b38258ab1ebf25aefcec2a5465063290d1e0f9bc84d475bf1628352e555", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "08353138506f5158303885e03d2ca124c24d5bcb986eafeccd833e9d26de38ff", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "86b72174a79d92795c8afb492deca84dab1b56a6f73ebb7e3c5f32222a862e4e", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "0a48398a43ca73b7b2007316b1ca9fe325d90a22d48e97dbf24fe87275132c5d", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "a24e5c24a02384bbc27210f6c82f594f782275e1fba14e471dfc1ee75abb9736", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "786e373e8b201316aaf54c42e1972f311b06a4cced525826720f84e82d294139", "model": "openai/gpt-oss-120b", "resp": "The researcher selected cases and controls that were alike on age, socioeconomic status, and family history, thereby using matching to control confounding.  \nE"}
+{"k": "5e7843e869692316b4742be88a3420e6c6089bc2c723bacbddab685b0ddc7b94", "model": "openai/gpt-oss-120b", "resp": "IL\u20114 drives B\u2011cell class switching to IgE, a key step in allergic asthma pathogenesis.  \nE"}
+{"k": "0c8ebb05374955bcf30c95cb783f3a8440fda907e36c803ec7b48ca38272d348", "model": "openai/gpt-oss-120b", "resp": "A calcified mass near the gallbladder most likely represents a gallstone causing acute cholecystitis, the most common and urgent complication to rule out first.  \nA"}
+{"k": "8e92ef7c8415cf602e28619e76cdb6f709029324b75670be24203253da84cf9f", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "a1b93158fd9ff1351adcf62d55608636fbf5871c8fb733490b13e40cd37a2ac4", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "9bd52eb35b55a4d2afaa352fcdca8629de572e088677db54509c70bfb829e04c", "model": "openai/gpt-oss-120b", "resp": "Acute idiopathic pericarditis is first\u2011line treated with an NSAID plus colchicine to relieve inflammation and prevent recurrence.  \nB"}
+{"k": "7e7ca54ef5c38e81a237e98e8807a8dc41fc8e00556ce9574ad5af3d4022751a", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "4c431be8ebbbbbe023bb44f09d60a4121456dab92ac8e1cfa877dacdd352ff2b", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "254f7135e70aedf839226af266f01a890a1aa32872def9115bce0b2221922ca8", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "fc93e0f5d72d0f429a49240b78e572693590eab0357605cb08cf27232f3e6b1e", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "fb76f7482033151775ba09edfbf5b1c588e70d6cdcaa82b0ee5a5ebd3e21a411", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "685cdbc62dc506a101e544ddbfa760f5a3881d18db7ef84a5039d02b352d851e", "model": "openai/gpt-oss-120b", "resp": "Prior radiation therapy for her breast cancer is a known risk factor for developing secondary diffuse large B\u2011cell lymphoma.  \nC"}
+{"k": "e291c526346b02c3edcf14744ed65669f72e3a0b1004abb56f03728c20409f04", "model": "openai/gpt-oss-120b", "resp": "Hypoglycemia can cause somnolence, slurred speech, ataxia, and diminished reflexes without abnormal vital signs or pupil changes.  \nA"}
+{"k": "6c944e8f36e8271cf7c4254e5c541e043b711160cc9435a898fafbaecbf44ebb", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "faa198ea4ee7834c140ca1e66308a8ae638dd737bf779eb202c588f16521b0a0", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "bf96524129a6daac383d8902743a296e3badc60fa04174cb9cc12b223ff3010d", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "2e2acfd7110738c835c8de5305ee41893b42095285738660e47ac544569a7d0e", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "e90530908a895f9008c98b01f1a7eb48fce27af3fc579d8b6ec78c09e3e0ed5c", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "32302f3ebf1690d71783ce80e0947945575af8efa2803acefbf7cfe1e57ac7a0", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "677cf672afaa71c1d4a08d556b35caa61230d8b14051636d891f7a0bbaa1d80d", "model": "openai/gpt-oss-120b", "resp": "Late\u2011onset hospital\u2011acquired pneumonia (\u22655\u202fdays after admission) is most commonly due to gram\u2011negative organisms like Pseudomonas aeruginosa.  \nA"}
+{"k": "14c6e581933b9e662e387787e49295f6c29254e6a667a76cd44cbe5629454308", "model": "openai/gpt-oss-120b", "resp": "Histoplasma capsulatum infection is indicated by the positive urine polysaccharide antigen test and the Mississippi River Valley exposure, which are classic for histoplasmosis.  \nD"}
+{"k": "facf487c518008de30d66b007fde3181b6604f7f3a3c258d3998f008e6e39467", "model": "openai/gpt-oss-120b", "resp": "The silent chest, altered mental status, and fatigue indicate impending respiratory failure, so the airway must be secured immediately with endotracheal intubation and mechanical ventilation.  \nA"}
+{"k": "781d524a95f032405e59f30055c973428450c140ce564e131f12cf508961a818", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "ab5fa04c40777ac16f7f379fa3d55f8e0513818d9283357481d719bd0d21bed5", "model": "openai/gpt-oss-120b", "resp": "Ventricular septal defects are a frequent cardiac manifestation of Williams syndrome, which results from a deletion of elastin\u2011related genes on chromosome\u202f7.  \nB"}
+{"k": "d85c2fdbc94cf782f6c3c84c08337d63aff8e8473516dec1dd111ca687ed6610", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "1663d434db6c6e8bbbfd51ce40bed9f2e8afb90bf5f60b4d7e24297d106f35ba", "model": "openai/gpt-oss-120b", "resp": "The negative nitroblue tetrazolium test shows a failure of the neutrophil respiratory burst (NADPH oxidase deficiency).  \nE"}
+{"k": "812d41d9066d5693e216c2bf3d09fa23582de9d95910a2093fb5bff5f3c6faa4", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "f42fd8cf2d6958073343762b621e35d34ef5f21d6c404f2856e1d73b07b5a0f1", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "9696fef94c412302744e0cea25e781a6e2d15388e4440f389da2449f17ba0bcc", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "bc4c1d2ba44d872e799f17cd1cc96505f8871517ef3b37c77f5c9f47a338b978", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "57d9c40e140e00e72be8b593b70e69a16d654316fd79ae36b704679bbebd808b", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "6b98476250849b3d0acbc30f0d7314662ef4370462495af199374e03c8c2d003", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "a14f34f0c621d444627efddcab2f75fcd54f06564e9f43a444798ae523d1f514", "model": "openai/gpt-oss-120b", "resp": "Rifampin strongly induces CYP3A4, increasing hepatic metabolism of ethinylestradiol and progestin and thus lowering their effective concentrations.  \nA"}
+{"k": "d1ba12c7f8d62fe02e6e5907898c0c5d631c1c7039e0165af83e4583ae3dd00e", "model": "openai/gpt-oss-120b", "resp": "The presentation is classic for viral croup, which characteristically produces subglottic narrowing seen as a \u201csteeple sign\u201d on an AP neck (or chest) X\u2011ray.  \nE"}
+{"k": "786a4d8fca9b6c9cc8e719019a3c39b6851c9a8b9ebe88577e73156394370cf6", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "8a843488e752f3aa0987de33af1dcb7462630aafff86cac51e370bd4d41ad055", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "21840b60923e7c3c6114519f5925a557b3dd5eda47d5b64ffd47decb48355d1b", "model": "openai/gpt-oss-120b", "resp": "Post\u2011infectious Guillain\u2011Barr\u00e9 syndrome from Campylobacter gastroenteritis classically shows albuminocytologic dissociation\u2014elevated CSF protein with a normal cell count.  \nD"}
+{"k": "f1fb73dd1d2ab3ad69915cd7323fe1a37124eba04634fd187d82aad3d9d26a4b", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "d90cb89cc50768481f45a9ddfe274aa459366c3708435b1c92917d6e93c80bfd", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "8d91b8ce14423016ab0b19a3f8a028e881d88a9d366247e9ecf2e06735133bbc", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "8e639c3b2a6f58f4a8f9a02dad76f66dc49e62d9849ba24119ba6f49ba6ae450", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "4770797d451f723e09e3c1ada93482c13233ec2d10bfe01a7bb494759af21a40", "model": "openai/gpt-oss-120b", "resp": "Flexible metatarsus adductus in a newborn is a benign, self\u2011limited deformity that resolves spontaneously and needs only observation.  \nD"}
+{"k": "364f46c51123d471214fb0bdefca78d7fd45660f7b7b10a10c9ad6fa48379f5e", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "b365197ef73e31d18d3480ffa6c3b7255098a8c54e20e717326eaab90a8a06c3", "model": "openai/gpt-oss-120b", "resp": "The HIDA scan shows bile flow into the duodenum but not into the gallbladder, indicating cystic duct blockage as seen in acute cholecystitis.  \nE"}
+{"k": "6de996be605e19823e269bfc1fbe3ce2d97bb5e6f7600a5658cf50da55519177", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "fd05c31f3681a377ac8bf00099989d17a46a5efd510a99497c72ae35286c043a", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "8e87ea604a3acb20e62ad071e66bc0f3d30f934f5cfa4436d9f354a21a60efd3", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "04a372c1d3d2dcb0724b2d917986bad1b0689e93edd3c4c8f78ae8d4541b051a", "model": "openai/gpt-oss-120b", "resp": "Chloramphenicol, often used for meningitis in resource\u2011limited settings, can cause aplastic anemia leading to pancytopenia as seen here.  \nE"}
+{"k": "5473ad80a7d13e24de0fcdeb85f9a771415d5a41818bf2f8b27ec2410f3462f3", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "f91b4d9b759a5fc6e12b7b03bf5b5ca7013fd24dac5c90e37f6c4d249049ea19", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "4980e6b0178e349c8660f6c42575c87b91fc811e48c5cb05c94949cea14f84fd", "model": "openai/gpt-oss-120b", "resp": "The findings describe Menetrier disease, which features hypertrophic rugae from mucus\u2011cell (foveolar) hyperplasia with secondary parietal cell atrophy and protein\u2011losing edema.  \nB"}
+{"k": "cd622365b84b9e2fdb2ba9a5da593bb8a72de0a909a00af8ddd411a59a34160f", "model": "openai/gpt-oss-120b", "resp": "He is now hemodynamically stable with normalized glucose and potassium, so no further aggressive therapy is needed\u2014just supportive care and observation.  \nE"}
+{"k": "6b71d630a7fc721ee03835bddf45c5dad3beefb38277d06f9f5391e378d1daf5", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "db83ab60fc14ddc6f33ed0679bfaccc22a4a98b0f7027bb768ea0f949d1fab9b", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "bf40a7e7cfb90d7d43929ed7ade8f94e0781cfe5ca7b2fab8fa8460e870dffe2", "model": "openai/gpt-oss-120b", "resp": "The loop is shifted rightward with a markedly increased end\u2011diastolic volume and wider width (greater stroke volume) but no rise in systolic pressure, typical of volume overload from mitral regurgitation.  \nA"}
+{"k": "15d93ce9f1fcee5f56d70c3edb9d87438c8d94cb898b04c8c8741050527020a7", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "ca3436c48c2db11d09ff09f28b8066feaae8e01c1f21d69e33f9da689451fd3f", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "39d4cd198432dee9740eb281a6d597d6a7c2b9dba176cb40d9fc0bdcaaf7bfbc", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "c67f94c6ed892a5be2230637203b534d683dce0ce694a12ae89ea5a05a2ac627", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "7b71c5c12173817a25edc5c14e0311476ee23c31634260fb817692208de27198", "model": "openai/gpt-oss-120b", "resp": "Severe, longstanding arthritis with nail pitting and deforming joint changes is characteristic of arthritis mutilans, the most destructive form of psoriatic arthritis.  \nB"}
+{"k": "cd9c3ac0df73607e2bac95d164b72dd11031b475938c212cdb9fb661d2f60270", "model": "openai/gpt-oss-120b", "resp": "The warm\u2011up improvement of proximal weakness with autonomic signs and lack of response to anticholinesterase is classic for Lambert\u2011Eaton syndrome, a paraneoplastic effect of small\u2011cell lung carcinoma.  \nE"}
+{"k": "4c70f117addffefb73312f518337ee07212572bb1ea8828d169b50e87cbf1273", "model": "openai/gpt-oss-120b", "resp": "Severe opportunistic infections in an infant with negative HIV most characteristically reflect SCID, which is caused by defective T\u2011cell development/function.  \nA"}
+{"k": "935345f4575c5632293792f5082d74110f9ade1e8c5e556b565fe38fb70566a1", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "968f7b4e4f9e3a7eb4400b73d1887e864e3b81757d854e3c8235154d0faa5d0c", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "4947ebed99505269402cc22713aa6806b7a8b385149d84fd486637f0fc544dd5", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "13a13b5c6e30bbd5984814f789c40833c9a38c3f83e53eb2c5b466c8d82c1664", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "0afe6afd92a7917fc1d3bd0292ee0815019e8fab95b62a583245a16af0695788", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "e5b3baeb21d36c8b827b9b14f1f8c05a696a573d3e1296bb2609efab21fad277", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "ad4414f1219563ec24e430330f97c31a527c46bb29a60eadbf4d9d4278e31154", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "6cea894ce45dd71d6dcfe85f4ed8c08c9366b06d585c7f00cc6a812accf49997", "model": "openai/gpt-oss-120b", "resp": "Lesion of the arcuate fasciculus disrupts the connection between Wernicke\u2019s and Broca\u2019s areas, producing fluent speech with good comprehension but impaired repetition.  \nA"}
+{"k": "78bd5d6a2ac6cc2b51d30aa31ab294601233308b46936936441d00188a5330d0", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "685e84d61c8d104de4e769a05dd20affe418cfbbfa4abe132e54e8b58674928b", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "e0e4f97e8c88908bf5a1937cb56777ce3ffd821c410383849997e2119fb439b4", "model": "openai/gpt-oss-120b", "resp": "Tight glycemic control is the most effective intervention to halt progression of diabetic peripheral neuropathy.  \nC"}
+{"k": "c2ff2c0af6689e1ec3edb633661f488df553170e79c2e40afb3e9fd03367cbb2", "model": "openai/gpt-oss-120b", "resp": "She presents with obesity, oligomenorrhea, hyperandrogenic signs (acne, hirsutism) and insulin resistance, which are classic features of polycystic ovarian syndrome.  \nD"}
+{"k": "4dd212106e460460f15150ae53c2706ce61c2dcdadbbb4c896f456b58bc8f200", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "fc9df9009e64ae115ef2aa447954c1e257db2ed296161926657ee097730f5b32", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "87c3001acdcd9ce06a4fc8975503643842a4ea829b7a2d44d43030bd478b4443", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "65f35d624cf586ff20ef29f08a1ef8057f9ddba7b9372ca63e9b424b935bf8f5", "model": "openai/gpt-oss-120b", "resp": "The 50\u202f% effective dose is \u224830\u202fmg while the 50\u202f% toxic dose is \u224880\u202fmg, giving a therapeutic index \u224880/30\u202f\u2248\u202f2.7.  \nE"}
+{"k": "bdcdd62919099b6daf20443e8e335b3722d9d51765c63162123a55b3c648c7c9", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "a2941ab250b6d8d6e29f4c786ddeafa050cded8520a9c8f02e21206deb9639a1", "model": "openai/gpt-oss-120b", "resp": "Because the coronary sinus carries blood that has been heavily oxygen\u2011extracted by the myocardium, its O\u2082 content is lower than systemic veins or the pulmonary artery both at rest and after exercise.  \nC"}
+{"k": "55b9816d36678365f8b5916465d2c605a232eabe120badd4c2a3d93705ee1777", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "e8a66b7ce5881c601fadd95ca149858eb5750903c10a6316f82efb8de34845da", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "be984096420821c3c807278faeb8c7e1487e793ee2b96f9ddcef8b319615fd3e", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "ad72895a2a5a7b46a8126fa88192763e81618a62ab2f481b8492898312d2c24b", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "06349236fe950f8e0f39c3a3efe18f9ad1bd3b91e6cb83d919dd79ad59c8bfb5", "model": "openai/gpt-oss-120b", "resp": "The absolute risk reduction is (210\u2011134)/1500\u202f\u2248\u202f0.051, giving NNT\u202f\u2248\u202f1/0.051\u202f\u2248\u202f20.  \nC"}
+{"k": "b9c8aad6514247c5db3825c5ebaa68a19a5857f20a96e55037bdd0d14487b420", "model": "openai/gpt-oss-120b", "resp": "Adenomyosis is common in multiparous women over 40 and causes uniformly enlarged, globular uterine enlargement of about a 10\u2011week size.  \nB"}
+{"k": "7395b22f04eb7016db579d510429760f04f88369630595d9fee6a6d5468f427f", "model": "openai/gpt-oss-120b", "resp": "Duodenal atresia is classically associated with Down syndrome and presents with early bilious vomiting and failure to pass meconium.  \nA"}
+{"k": "6b359be67f0618fc82fb4df10076cb258ec2427f5d3538b507d9f80ff77fd687", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "fb7e3fc033922a2544d8855fab586301af0f4615bb3eb322d736744012ffb196", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "c1d4d43e9102973a10831ea1935650f7406b06e78949ec08217efff6f59d81ce", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "7ad287e715c4e671a1e872d4cf2d8eb05d74de5eeb67e4f4cb4875897a1dd866", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "ca7a42e45f5360bea8518c33f8111419a080efd41fc8be6351a3fe173428d898", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "0965dfa7e1a5d3d7e342841bb41b0980ef5492398b9e7f1e7c287642da8134e7", "model": "openai/gpt-oss-120b", "resp": "Ischemic claudication with absent pedal pulses and normal femoral pulses points to a femoropopliteal arterial stenosis causing distal limb ischemia.  \nA"}
+{"k": "c7b1def8cbfa9136c05f0002a5ee1e2ae9ad11b5f012198e4d033c2b2f57e757", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "154c2f9439e9a30affa601e36e83322b2b1230f398bc730d93771b5d31a936e4", "model": "openai/gpt-oss-120b", "resp": "Type\u202fII pneumocytes proliferate after injury and differentiate into thin type\u202fI cells to re\u2011epithelialize the alveolar surface.  \nD"}
+{"k": "4076145e671601a4ee686b0809f9711a315d4b50dabc98de0f5b678f66267d27", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "14b6a9136e85b0aa33c3f5f40adb89af51edb7b701b9fb73b8dd298a67165167", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "bcff39c3a0970f4b12118550571793b08158a711b831698ef6b70a752a9f1261", "model": "openai/gpt-oss-120b", "resp": "Ethanol competitively inhibits alcohol dehydrogenase, preventing metabolism of the suspected toxic alcohol (ethylene glycol/methanol) causing the high\u2011anion\u2011gap metabolic acidosis.  \nA"}
+{"k": "082843f295d6c84961716e760acdfc1fa67a8b435e9d867f121f95d0c93bd374", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "c106895151197203d365d9ef1112315e8c04199771b2b9ab39338437f38690c3", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "0d947b4546e8f962e72376a5cbe78b8dd370976d2aa1e60e746cd02a842a3719", "model": "openai/gpt-oss-120b", "resp": "Radiation induces double\u2011strand breaks in DNA, which are lethal to cancer cells.  \nE"}
+{"k": "073e95389a3aadd468997540564baad8bab9c0eca882c6c5ff39e79963cc4fbc", "model": "openai/gpt-oss-120b", "resp": "Autopsy of the stillborn infant is the most valuable investigation to determine the cause of death when no obvious abnormalities are present.  \nB"}
+{"k": "8771a5d9ae1a7d5c9f2ca8fb789bb0089f1b2ea54ef834579c7a676efc7bce03", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "b98196c48486ae1c7751eb62143ae12648998a06ddde34c2c881480c5202b6e2", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "404c922bda590a7a945d304e5c6a449d05c4ed19ad894e5a8fe8f779699ab400", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "bf3fdc7f46d2087e9455caebd07f7f9c22eebbe41ac5d35585e2c493457cca14", "model": "openai/gpt-oss-120b", "resp": "Hypokalemia with metabolic alkalosis in a hypertensive patient suggests excess aldosterone driving sodium retention and potassium loss.  \nA"}
+{"k": "15474203194e8506faeab2daad60fb3d1d4adbadbfb9dcb93be17260ac7e1300", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "572869b12fb43d9ee2fd1bace1422d732b8761b38f04d6b55a806706366b3378", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "f149a9bb88ec425f010c87334a638012673baa9800fe867ed600e404a2a33fce", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "55e32146f52b566fbed039cbd99f8bcaf144bdcc08cad14672e1e3841a8f72cb", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "293118d4520b83cf294def89a13cd5fde8bda108510f99c5d65f272825aa0061", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "a33e5d5a0eaa6f471accfbfb383b8ef7bf10b9402dc6195d1a213afab38c27a0", "model": "openai/gpt-oss-120b", "resp": "Involuntary, repetitive oral\u2011facial movements (lip smacking, pursing, blinking) that develop after chronic antipsychotic use are characteristic of tardive dyskinesia.  \nB"}
+{"k": "5e1687e4f6e358bc11150da7d7363c8fa6f3120055d3d1f9c80b75f8f5db02d6", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "d718493d823d17a2c923a7d2ba77cd8739a358f293fe93a60fec0aa0076e809d", "model": "openai/gpt-oss-120b", "resp": "Atropine antagonizes the muscarinic effects of excess acetylcholine, relieving the cholinergic GI symptoms caused by galantamine.  \nD"}
+{"k": "9567b7f79e7d60965a9abe3e86ca23fb308496815b91a87c1ce548fc30585d06", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "269276a2c6bd78b2f27d6aee43430321f30968c7d858e3ae78417361822daf82", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "9606d42f724304ffc433691cb3348016703d89dbed039871d8ced69887d26b28", "model": "openai/gpt-oss-120b", "resp": "Obstructive cholestasis causes conjugated bilirubin to spill into urine while preventing bilirubin conversion to urobilinogen, matching the lab findings.  \nD"}
+{"k": "16060119d8e0772e05df5bb58353ce5931681c7c216b5e3c37e63fe2de7ecd78", "model": "openai/gpt-oss-120b", "resp": "KOH preparation of the skin scrapings will reveal the fungal hyphae characteristic of tinea (jock) itch.  \nB"}
+{"k": "72c6ea5704e261d49c15062517c11a59092e907902007a224fea04f9f93a44a5", "model": "openai/gpt-oss-120b", "resp": "Risperidone commonly raises prolactin levels, which can cause gynecomastia in males.  \nC"}
+{"k": "e2160f156c83120e3839f9283cf54b2e8fcfb787e49dd16c0c066f2b0bb43dd3", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "b3c80506721d3a0829380f4b87c430f23f9430b75bb8f868dc3f09a60206d9af", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "519732f72217f7e61de1a6af067a54df1893f9e36ec508ede83ab6c019f1e74c", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "e46e852435f5da46614aaf57a2ba1ba01f5b11564d7d411d19e0e7e87db618da", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "4b71f44690b286433a04c756a1cb3b331f559dbadef5f2c428623391181edc62", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "77990dd774f247c4e3b6cb7d638ed439be4a489fe24a6bfb39eefaf1a659b5ae", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "b40d5445e5a404e802d75df3fff9066da8aaaa02609d66e0d539256ec52c6d99", "model": "openai/gpt-oss-120b", "resp": "Superantigens such as TSST\u20111 bind directly to the variable \u03b2 region of the T\u2011cell receptor, triggering massive cytokine release and toxic\u2011shock syndrome.  \nB"}
+{"k": "4abbc515e2d731ed4eabae6805915db112b121afbf5de765b4e422cf89838f3b", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "cdd3fd4bb52d63ea2d38e7d441c124b473eb3ae22ae4616ea8c5147ba8e3a26e", "model": "openai/gpt-oss-120b", "resp": "Post\u2011diarrheal microangiopathic hemolytic anemia with thrombocytopenia and renal failure (normal PT/PTT) is classic HUS.  \nC"}
+{"k": "12375f810a6bd4bdcf1ca97d6c5d4d81bc83a3f88573cbe9a2331e5dc46bd6fe", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "2f8de786cc320a854132c1eb5c7a3ad8d2cfb34e77fc925ff96b7ce809eec3fe", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "9535087f65a96353c24f879af7264b0c927a1fed5436aca77089f233db388270", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "dacf942d3af1c77cf8f5b8b950da3655e72150c6b0edf25f3884c345dbc28fdf", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "d1ddf4919f88dcc4d970dc5df81cdd880c1ffe93c79fbb142a355a5db3d050db", "model": "openai/gpt-oss-120b", "resp": "Metronidazole inhibits aldehyde dehydrogenase, so ethanol is metabolized to acetaldehyde which then accumulates, causing the reaction.  \nA"}
+{"k": "f0f57d63795719967acc8900de4a528e1b26be7e339927dd636d9dd11d5e68f0", "model": "openai/gpt-oss-120b", "resp": "Typhoid fever classically presents with fever, rose\u2011colored maculopapular \u201crose spots,\u201d hepatosplenomegaly, and a shift from constipation to profuse diarrhea after travel to an endemic region, which is characteristic of Salmonella typhi.  \nD"}
+{"k": "a0d88c2812bedaf77d007d79d1f16274320cc2101dc952b9be8091c793294638", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "31203d017c16337a703b7a521a5085aa951898f9b0484a1fdf34eae077160a5a", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "04fd692b259272e3af2ffb1ff84e188d09765a17f981b1f7143303c624ee740e", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "5dacaacb00ac0eae5d6967d2bc492f8c204d5cbabf7464a766ae5798f329ca51", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "c52a74717f27b86dd91b2dbdae9138b1ccae20d07d596d1a0ed59d32f0f6741d", "model": "openai/gpt-oss-120b", "resp": "Bulimia nervosa patients are typically reluctant to seek help and often do not initiate treatment on their own.  \nB"}
+{"k": "cc11f30e02cd20fd4006d4784bcf8fa4c4f3e3b4ad81c770d7c0a781bf030d20", "model": "openai/gpt-oss-120b", "resp": "Acute postoperative urinary retention is likely; an in\u2011and\u2011out (straight) catheter will decompress the bladder and relieve symptoms.  \nA"}
+{"k": "eace5671666d2af13abc6f4ba2cba5d89fe75de5e33ef7eba34dee67264b7eff", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "f16a9c69484adb85fb7e8c67e9bd875373dbde13bccd41a3bc6daba55e7f5a5f", "model": "openai/gpt-oss-120b", "resp": "Physiologic dilutional anemia of pregnancy causes mild normocytic anemia with low reticulocytes, so no further work\u2011up is needed.  \nD"}
+{"k": "eaeebba12d954347ba3661563faec0a5d38bed1f2bf89e817ed0d3ca5394118f", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "4ebee24f411530d14af0bc68a32b97e62b5990aa9d6df012692a26f1555b3466", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "c6dae5d83be1bbfd6d27323669ef5bd7fa81d3114ade5a10de7fc05adf2020fe", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "8dee2900bbaa8f9db6834234978fc7dd0415c87e749108a1da9a7d74603a2bfb", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "5e6541942500c2d9e2cb8998186d5148bc1ae71fcbbaad48dec5bfe828bff9a6", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "47d21d8f5861615b7fb26072a79e40bba62356be4014a42a4fdcc6284afa1692", "model": "openai/gpt-oss-120b", "resp": "Metastatic spread from his prior non\u2011small cell lung cancer would most likely appear as osteolytic (lytic) vertebral lesions causing night pain.  \nC"}
+{"k": "875a6b826a76f15f168227561b55bdb3121a42d15116cfd25ed2438fe6379f3b", "model": "openai/gpt-oss-120b", "resp": "Oral thrush is treated with azole antifungals, which inhibit the fungal 14\u2011\u03b1\u2011demethylase needed for ergosterol synthesis.  \nC"}
+{"k": "34ba085d0d897fa07867b1d90a77a32a9630061e1bd4baf56b8cdbdb5ca3e3ab", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "5f52ecd8e152e7702a93df9abc011003c7dde333e6514dff709d10c4dcea9de8", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "f8721cc6d553f05d7ff001e9f5e149b8b95f7c2fc95878e13e788a1de3764cd0", "model": "openai/gpt-oss-120b", "resp": "In a life\u2011threatening emergency where delay would cause harm, implied consent allows the surgeon to proceed without parental or sibling permission.  \nD"}
+{"k": "f74a26a7c44fd5231a5f2ed5e819a689328faf635c71621a0fd11d05f25f0683", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "e9f4d5ca7332f3f8c7ee3a3645ea300df508a0dc1dc63ce8b39a61a053bece2f", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "b1eea09c933577cc2cd5746fb5bf6fa2267c474f6b078055a3df3ab2cfca9a11", "model": "openai/gpt-oss-120b", "resp": "Transplacental TSH\u2011receptor\u2013stimulating antibodies from the mother cause neonatal hyperthyroidism, leading to tachycardia, irritability, weight loss, sweating and a goiter.  \nC"}
+{"k": "a6d06596cbb7ba1f01e0b3248cfd0507e13353118dbc77ed3c1398374c5a747a", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "ee7f89b972e312ec9c2ea4a3835d8f959ae43cce159db6a138868f248dd7ebfa", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "4dab653ac747e7f3aacaa711bb3f576ffcfa3dcbe37c05a18bd8b71ce5f7ae3a", "model": "openai/gpt-oss-120b", "resp": "Non\u2011selective \u03b2\u2011blockers lower portal pressure and are used for secondary prophylaxis of esophageal variceal hemorrhage.  \nD"}
+{"k": "c07b3d15ade0b03bba97cda8e2d93e693b81ab9fe0e02a3881ae2f5274428f6a", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "9f54457b25dbf88c4f2bac4dc8c74ccd0c5b3787b1a0e572dc91e3c3da4db4f2", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "1240781525584ddae8fe5118fc99531abd7cde6b42c41435ab3a9c15dfb86195", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "2b550147420ea66b9ac4007a84d2df111ced00ceab07da9c4e83a176999ff993", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "efb2027f76c377b2513e1e3f02f387a0fc6d2aaf96fe5d6c96c8ae2b95168e25", "model": "openai/gpt-oss-120b", "resp": "SBP is a frequent trigger of hepatic encephalopathy in cirrhotic patients with ascites and low\u2011grade fever, matching this presentation.  \nA"}
+{"k": "b400b76841d5c3731183bc6ad8dcaf5b218a52fc50ac9a5e39868751e33a8070", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "837c9b52bca55378ba0a20efad0d9491f20319d7cda436ef91f826d7bbd3663c", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "d14dbd2ef0e2d542c9fb916d2e3452f2d93434ef10fb4ec992ada162ba316daa", "model": "openai/gpt-oss-120b", "resp": "The arterial\u2011phase hyperenhancing 2\u202fcm nodule in a cirrhotic patient meets criteria for early HCC and, given his preserved liver function, surgical resection is the definitive treatment.  \nB"}
+{"k": "28650572df274ba331f5e801e7f644f324f85b86de18bfb1047734bfb06869f1", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "b76db1f76d54f98f954f0de0edea66ba3fc722bd6f15260f3ecf7890aba8bb3b", "model": "openai/gpt-oss-120b", "resp": "The elevated pulmonary capillary wedge pressure and troponin elevation are most consistent with myocardial strain secondary to significant blood loss and hypovolemia from hemorrhage.  \nB"}
+{"k": "2a10d6c8f3a4b3f9325e638610226b5e84d0f1dc1d2a6a76c49a27aea5d3cdb2", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "9ea8528e77608ea3b9d47fa0db1061269896bab95a75cc12aa1bf16d732e40ce", "model": "openai/gpt-oss-120b", "resp": "Glucocorticoids rapidly inhibit peripheral conversion of T4 to T3 and provide prompt control of hyperthyroid symptoms.  \nA"}
+{"k": "255708b1ef13126f45a32a530a30663c343988a4402c27059545c9e231dad5f0", "model": "openai/gpt-oss-120b", "resp": "Dopamine can increase renal blood flow and improve urine output in hepatorenal syndrome, making it the most appropriate adjunct therapy here.  \nA"}
+{"k": "b79895850cc622087daaf9b19fbd071e1a56d9a7ffae75baf40732fcaa0ad63d", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "8d199a00230ab34afc40ba69bf2c6cc6aa6f35850791412dab603c331b2a471a", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "bfa3ff872fac44cb071cf079aba0d784edc4deb8236c5745a7bfe8ac19b803ca", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "a54f9342f29de1f84fa467c8d92857791e60eecd0f44e5918eb4ca0256a8af5e", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "6280d3390a7d57fd5fb82c728dfe8949bee6785bedd69bcda97673c5d1e2afcc", "model": "openai/gpt-oss-120b", "resp": "KOH preparation of skin scrapings will demonstrate the characteristic \u201cspaghetti\u2011and\u2011meatballs\u201d yeast and hyphae of Malassezia, confirming tinea versicolor.  \nC"}
+{"k": "213b5a52114c012b34c83fd903f297e114d648352e4059dbd58761041b6b2ee3", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "92c3ac86af51e3fde4505ce592ccfdbccdf1b63a8ef66799080596052d9d52ad", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "c10c7029cef4b6d3f5d7778ab7b6d728cb46f4031f3f01be266a316d7cf1e1d3", "model": "openai/gpt-oss-120b", "resp": "A firm, immobile vaginal lesion in a postmenopausal woman requires histologic diagnosis to rule out malignancy, so the next step is to obtain a biopsy.  \nB"}
+{"k": "cea7bc367c14bf4dcd3340e6085cb8e8a3f573ffcb8f775b7d881f211850bd2a", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "875b913f954ece4af24cd11fe14b216cdbd20f897b48fdc4828f12a7541232c7", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "2a7031a03492f95fe50ad2b8a6fcc92ccb55d1cc2208593260840f80a0d29fee", "model": "openai/gpt-oss-120b", "resp": "The patient\u2019s facial dysmorphism, cardiac defect, and marked speech delay are typical of Williams syndrome, which results from a deletion on chromosome\u202f7.  \nB"}
+{"k": "4bdd9a77478821bafa3dd7925f009a4feacfa2bf08f5fb250219daa0c867bc0a", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "7b23f1632a3a1ad21c6ff85079477184428a74f6f045663597e04ebc3ab92896", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "9ab2a8b7fd0a9eb2986936202dab2d989a90401a710a28d1f3ef8b241bc0b5cf", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "e8086a876bb24c6c7b11eb6482ca3d83a6d61d0112e88585f889dc3c988b40c5", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "d5098e6c5b1bdcad6bd2caf017034c95d0f942f1671c3d49e30f78a62f86adc9", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "73084206e8b476818183f3e0f9418e897d74b531c568ee77dde4ff22e180eb35", "model": "openai/gpt-oss-120b", "resp": "Repair the right\u2011ventricular free\u2011wall laceration with interrupted polypropylene sutures reinforced by pledgets to achieve rapid hemostasis and prevent suture tearing.  \nC"}
+{"k": "1974c1f028a7cb5152fb107ffd99ffc90932c73739a1d7b01f67a8b8f040dd3b", "model": "openai/gpt-oss-120b", "resp": "The cyanosis, single loud S2, \u201cegg\u2011on\u2011a\u2011string\u201d cardiac silhouette and need for an atrial septostomy are classic for transposition of the great vessels.  \nD"}
+{"k": "34f34a885926623c08a45cb55fd716702b60ee5559b46d8be798820bb2c6ecc9", "model": "openai/gpt-oss-120b", "resp": "Chronic bronchitis from long\u2011term smoking causes mucous gland hyperplasia, giving a Reid index >\u202f50%.  \nB"}
+{"k": "f8b04287d17ee5deaf438cae18bbbb7e962edb702295a4aed093610f23dd0baa", "model": "openai/gpt-oss-120b", "resp": "Hemochromatosis predisposes to calcium pyrophosphate crystal deposition, producing the MCP joint arthropathy seen on his radiograph.  \nB"}
+{"k": "36c5440144ff6982f38b8923765fd23705d9213c6ed0981dbbf91cc02f6ef4de", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "1e9109a7f87770b5ce6bff132aad3744085f4c4a326ca756ed6621a1a355a296", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "5aa194505c603256795e137a21a2801d71c9b61a27cc83edab433d906eae67a1", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "70a6a4c42c213755c2000f4d4441b51c03a60002a35f084be3c048d2517befe5", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "c2143bc3d49b9b42f7b2bfb66e10d7b129d5280d465fb554f46c3ea7a6cbe557", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "fb462fe05cdc4262d229db0b2f9df20fbd4c7562056237a4d491e38860339df5", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "36d9b37ee26504fcd5f9a3da524dcc4b702105ad2bfcb76ef8880720f78e730d", "model": "openai/gpt-oss-120b", "resp": "Acral lentiginous melanoma is the subtype most commonly seen in individuals with darker skin, such as African\u2011American patients.  \nC"}
+{"k": "fe62b814b2f76f94ba1b4561591219573a6d5f720b704baa2c7079bb553b17af", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "d641d5d3ddc7e61c6ba5ab49e104a4301acd8b993b0ff9af71e935a1705a3f73", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "c61ef85dc394521cc2ee678da9c836d314d26338b2a29e54f3d31709629305f8", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "11515fea706101277658200899efdf1013efc3b3a44186fc15651e50eb331590", "model": "openai/gpt-oss-120b", "resp": "The t(14;18) translocation overexpresses BCL2, which blocks the intrinsic (mitochondrial) apoptosis pathway that activates caspase\u20119.  \nB"}
+{"k": "1dfa1c29de91d5c4f9235596a914bdc0ddd1a639a9a362eb1c23a0bb4a28cff2", "model": "openai/gpt-oss-120b", "resp": "Endometriosis, with ectopic endometrial implants causing cyclic pelvic/back pain, dysmenorrhea, bowel symptoms, and infertility despite normal tubal patency.  \nD"}
+{"k": "c99afb870d75bd7a0815cc620ae04a68e2531c01bd40ff1aa1eca7c0845bcd84", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "ec351ca7e6521fb45b28aa33caaa478556855ca2ba91fc37199d40c8671d4137", "model": "openai/gpt-oss-120b", "resp": "Jaw claudication should be screened because polymyalgia rheumatica in older adults is frequently associated with giant cell arteritis, which presents with jaw claudication.  \nB"}
+{"k": "b0feac96dea850bbcbbe163e1c2178034bf3aaa41e46ddd87200b24ee4254d1e", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "ef1c31b253f00ed58eb063e3347a5a11e74562ffa97f0c2a62bafd9187f9a0ef", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "f9d9f9dd09ed796d89b867aa8bc8ed5e9fbac9644de30e5ce07c39f9c1c3018f", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "17672e466f7e4befedd0c1a8457e0f43e2971449e027aa9c67fd9e6293d2cdcf", "model": "openai/gpt-oss-120b", "resp": "Friable, irregular masses attached to the valve are the classic vegetations seen in infective endocarditis, confirming the diagnosis.  \nC"}
+{"k": "8d587769c2b74c148bf47cd6f368739466d635032b2203ca5f98190e22f722e8", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "8234ff91e7c3d0f262035240d70bba507d30a058ef0c3174a02bd6c91c265bf5", "model": "openai/gpt-oss-120b", "resp": "Laparoscopy is the definitive diagnostic and therapeutic tool for suspected endometriosis presenting with dysmenorrhea, dyspareunia, and normal imaging.  \nC"}
+{"k": "5402f0308d6fbb011cc2bb52f40f9cee7130cc635f9f312b5eb44574be5af0cf", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "3e25318586eb1bab35659a0b71af37517a15a3cb66962e0900a155c8dc4cc6c4", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "43914387444793d3c2064b7e3bf34fe1108608d64ebae8b099df31c8828860ab", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "c4806ff656917603c84d4154cb52145f3527532cea3b34107385a39051c9de0e", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "3df9a92a372f8504867cf17c99748f50d18ba25f4ec38e56ab160b53ea3370e5", "model": "openai/gpt-oss-120b", "resp": "Propylthiouracil is the first\u2011line antithyroid medication in early pregnancy because it effectively controls hyperthyroidism while posing less teratogenic risk than methimazole.  \nC"}
+{"k": "5c69a3245a09a2ea3ae3096fc502f52ec055a3cf854fd0fdc0c5f51fb39123ed", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "61f97a77874d49d054c8d396da5e66f53928b134fb2c8f3a371e16e428355be2", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "17e917b20154dfbe604ed6a7caf3169f775d57ce513e8f0a359dae9555717200", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "d525ea79676a1d1b59274743f69368dd4b1e3ffa1e94ef6f178554157d6424e6", "model": "openai/gpt-oss-120b", "resp": "The oval eggs with lateral spines indicate Schistosoma mansoni infection, which is acquired when cercariae released from freshwater snails penetrate the skin.  \nE"}
+{"k": "dc0cdc8aaa1b702e974ddd51656f1d44d0f2d39fd085d63822c700c04223b05a", "model": "openai/gpt-oss-120b", "resp": "His LDL\u2011cholesterol is markedly elevated (>160\u202fmg/dL) and meets guideline criteria for initiating lipid\u2011lowering therapy.  \nD"}
+{"k": "015146bd8176bf0d4cb0eb647f885ae06d86a88da31a80b360eaddf589d97a99", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "57bf3d84acaf91186f41919ac3800db460bc22a3f8762cc241d3fa2fdbb167de", "model": "openai/gpt-oss-120b", "resp": "The widened mediastinum with rightward NG\u2011tube deviation after a high\u2011speed deceleration injury is classic for thoracic aortic rupture.  \nC"}
+{"k": "ef8f4395646046d6734cf410feebdd632d4efe9ecf2f6d2acd4b1566e3ea042f", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "dea570978c43d9c2205b700c54673002a645261534fb19545216e79791824a83", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "26e4767fba369c6cd858f8ab4d82aacea8eeb15d8a6a873471681044e179e308", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "5daa480310ee7b378a1f54ec6a48c8ee6c79df0c7ebb13396116f477a5cb6ef2", "model": "openai/gpt-oss-120b", "resp": "Acute postoperative confusion with fluctuating consciousness and inattention is characteristic of delirium.  \nD"}
+{"k": "532d0d85764cf41df6f683b2f8021d546e5900fe6792caa59310a92ba883d206", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "0a88205f6d00cb8b60add1a8bdb8cbaef035d9d9b331382d43474427eff8b6d5", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "88c8b4140b41c4b9d1909b7d48b298f3eb463f8566da678e0cec9b4319e9fc6f", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "1fca08a1754dc0f1ae0661cdf5b13edaa90ce60bbbd137cc0f0fc2e58a907103", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "78c95347b4176b9f2adf1438cdb3f9fabb9d097cd4c89f0e4e3ddbe76a295408", "model": "openai/gpt-oss-120b", "resp": "Rheumatoid arthritis can cause atlantoaxial subluxation, leading to cervical spinal cord compression and the acute myelopathic signs seen.  \nE"}
+{"k": "2caef07db19f3f27113a9821ff245ade5f931b3995d51a3a4fd9ae001c1f469d", "model": "openai/gpt-oss-120b", "resp": "Because in uncorrected tetralogy of Fallot, turbulent flow most often damages the tricuspid valve, making it the valve most commonly affected by bacterial endocarditis.  \nA"}
+{"k": "77f52e98789d5ebea6cc5359c959741f43e0c1a4b8d67efbaf0a979a6fdd6d84", "model": "openai/gpt-oss-120b", "resp": "The presentation fits Beck\u2019s triad for cardiac tamponade, which characteristically causes pulsus paradoxus\u2014a >10\u202fmmHg inspiratory fall in systolic pressure.  \nC"}
+{"k": "c0b59fd6533a6489b2ab8be0d19026ec797b72b6eb06df6158b295efab1cf347", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "ec5c54273a65907eb10d2f27829d8da54b0def6c847870f826dc4a9a3e733f99", "model": "openai/gpt-oss-120b", "resp": "E"}
+{"k": "0ffe13d267fcd8a4a2a5099ffc1d964f823fdb73c9b302bc4646e11cbe383682", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "fa7fe69a59bb3ee054222a100f437fa1fdf16892515e669718f5da44cade919d", "model": "openai/gpt-oss-120b", "resp": "ADPKD is associated with intracranial saccular (berry) aneurysms, which are screened with MR angiography of the brain.  \nD"}
+{"k": "3f2975c364468e6e82f205a42fc313f826cb47f8175e2321e1e6a66b17bb4d3e", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "ca3a7c884a38301839f7e7663d7095c5215677fa0b1cc5eb39c584547fa4b146", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "c4150ce085d7cac90773fbc3b0e709a66a86bc1db7de805fec776422e8098bbb", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "0f8aeaf1d6a69f0178f2f6fc88072eb1643b5e7c2aee23f83da2f26960e1db61", "model": "openai/gpt-oss-120b", "resp": "D"}
+{"k": "433fdd1d7dea2eff1e993c2df5468778d2e77fe616bce882f8d619dbce6714df", "model": "openai/gpt-oss-120b", "resp": "N.\u202fgonorrhoeae evades immune memory by constantly altering its surface antigens (pilus, Opa proteins).  \nB"}
+{"k": "1a695cf9cdc7fbae71b7e505307e09dc7e6b44135972f4fcbd14fc84befeaca7", "model": "openai/gpt-oss-120b", "resp": "Immobilize the cervical spine immediately to prevent further injury until definitive clearance can be obtained.  \nC"}
+{"k": "fa8c2758d552635ca581bcdadc1f47c428ec72548899a37e95f4bc083da83771", "model": "openai/gpt-oss-120b", "resp": "A"}
+{"k": "d02fee1ff2cc57f42e5c80acc7aa4eec0a4c0d5cfe3f8c2345c08e39b7551e6d", "model": "openai/gpt-oss-120b", "resp": "B"}
+{"k": "0ed8f26e0488443e9fe59add4540e9e30088ccf178b56960324d1bb66593b60b", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "cae82950cff37882df148cadd83bfed7b6d945541549fd2ff1c5eba5bacc9456", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "c1f0b1aa112199a1ed130edfe2ffe0113311cf1c1bd886be9a2afed1189d9f0a", "model": "openai/gpt-oss-120b", "resp": "Antithrombin III deficiency (an autosomal\u2011recessive hypercoagulable state) explains a normal aPTT despite heparin therapy.  \nB"}
+{"k": "eead01947099fd296e8fd68a5c2fd791506ecb6b9a617d2829ee7489aee8d24b", "model": "openai/gpt-oss-120b", "resp": "Bromocridine is a dopamine agonist that lowers prolactin levels, so it would not cause galactorrhea or decreased libido.  \nC"}
+{"k": "4c8d74330df0a6bcdae3e62ad6af50d000091bb402b136ae2d45a43ea26b8219", "model": "openai/gpt-oss-120b", "resp": "C"}
+{"k": "3a14a508e99796480b5f365a426599e9b7be9e3d3f55105b7d0f5b936f695c41", "model": "openai/gpt-oss-120b", "resp": "A"}
