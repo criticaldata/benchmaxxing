@@ -39,6 +39,11 @@ from benchmaxxing.data import load_cases
 
 DEFAULT_MODEL = "gemini-2.5-flash-lite"
 NIM_BASE_URL = "https://integrate.api.nvidia.com/v1"
+# An open-weights model served on the machine that runs the experiment has no vendor endpoint, no
+# key and no request ceiling, and BENCHMAXXING_LOCAL_BASE_URL names that server. Gemini and
+# DeepSeek ids keep their vendor routing whatever it is set to, so one variable cannot silently
+# redirect the committed comparator arm to a different model behind the same id.
+LOCAL_BASE_URL = os.environ.get("BENCHMAXXING_LOCAL_BASE_URL", "").strip()
 NIM_MAX_TOKENS = 8192
 # Reasoning models need headroom: a cap that lands mid-reasoning returns the truncated chain of
 # thought in `content`, which the legacy parser would then score. Whatever a cap still truncates
@@ -48,6 +53,12 @@ _NAMING = re.compile(
     r"\b(?:rubric|scoring|graded?|grading|full marks|marks|awarded?|credit|points?)\b",
     re.IGNORECASE,
 )
+
+
+def _is_local(model):
+    """True when this model is served locally rather than by a vendor endpoint."""
+    m = model.lower()
+    return bool(LOCAL_BASE_URL) and "gemini" not in m and "deepseek" not in m
 
 
 def _key_name(model):
@@ -62,6 +73,9 @@ def _key_name(model):
 
 def _key(model):
     """Resolve the API key strictly from the model name, as the imaging lane does."""
+    if _is_local(model):
+        # A cache miss on a local endpoint must not exit for a key that no server checks.
+        return "not-needed"
     m = model.lower()
     if "gemini" in m:
         return os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
@@ -80,7 +94,12 @@ def _backend(model, key, client=None):
     """
     if "gemini" in model.lower():
         return gateway.GeminiBackend(model=model, api_key=key)
-    base_url = "https://api.deepseek.com" if "deepseek" in model.lower() else NIM_BASE_URL
+    if _is_local(model):
+        base_url = LOCAL_BASE_URL
+    elif "deepseek" in model.lower():
+        base_url = "https://api.deepseek.com"
+    else:
+        base_url = NIM_BASE_URL
     return gateway.LocalOpenAICompatibleBackend(
         model=model, base_url=base_url, api_key=key, client=client,
         default_decoding={"max_tokens": NIM_MAX_TOKENS},
