@@ -12,6 +12,8 @@ from pathlib import Path
 import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "experiments"))
+from benchmaxxing import gateway
+
 import _lane  # noqa: E402
 
 
@@ -174,3 +176,49 @@ def test_a_non_rate_limit_error_still_fails_fast(tmp_path, monkeypatch):
     cache = _lane.Cache(tmp_path / "c.jsonl", "nvapi-test", "nvidia/x")
     with pytest.raises(RuntimeError, match="500"):
         cache.complete("p")
+
+
+class APIConnectionError(Exception):
+    """Stands in for the vendor SDK's connection error, matched by class name not import."""
+
+
+def test_transient_connection_error_is_retried_not_fatal(tmp_path, monkeypatch):
+    """A dropped connection retries at the cache layer, above gateway.RetryBackend.
+
+    RetryBackend already retries five times and then raises RetryError, so a long arm that loses
+    its connection dies there unless this layer looks through the cause chain and waits. Observed
+    on three of thirteen ablation arms, each losing the run but not its cached calls.
+    """
+    monkeypatch.setattr(_lane.time, "sleep", lambda _s: None)
+    monkeypatch.setattr(gateway.time, "sleep", lambda _s: None)
+
+    class _Dropping:
+        def __init__(self):
+            self.calls = 0
+
+        def complete(self, prompt, image=None, decoding=None):
+            self.calls += 1
+            if self.calls <= 5:  # exhaust RetryBackend's own five attempts
+                raise APIConnectionError("Connection error.")
+            return "B"
+
+    backend = _Dropping()
+    monkeypatch.setattr(_lane, "backend_for", lambda model, key: backend)
+    cache = _lane.Cache(tmp_path / "c.jsonl", "k", "nvidia/nemotron-3-super-120b-a12b")
+    assert cache.complete("prompt") == "B"
+    assert backend.calls == 6
+
+
+def test_a_non_transient_error_still_raises(tmp_path, monkeypatch):
+    """Retrying everything would hide real failures, so only 429s and connection drops retry."""
+    monkeypatch.setattr(_lane.time, "sleep", lambda _s: None)
+    monkeypatch.setattr(gateway.time, "sleep", lambda _s: None)
+
+    class _Broken:
+        def complete(self, prompt, image=None, decoding=None):
+            raise ValueError("malformed request")
+
+    monkeypatch.setattr(_lane, "backend_for", lambda model, key: _Broken())
+    cache = _lane.Cache(tmp_path / "c.jsonl", "k", "nvidia/nemotron-3-super-120b-a12b")
+    with pytest.raises(gateway.RetryError):
+        cache.complete("prompt")

@@ -45,6 +45,7 @@ NIM_SUSTAINED_INTERVAL = 20.0
 # backoff schedule expires while the bucket is still empty. Wait for a refill instead of failing.
 RATE_LIMIT_SLEEP = 90.0
 RATE_LIMIT_TRIES = 12
+TRANSIENT_SLEEP = 15  # a dropped connection needs a pause, not the full rate-limit cooldown
 MIN_CALL_INTERVAL = float(os.environ.get("BENCHMAXXING_MIN_CALL_INTERVAL", "0") or 0)
 
 
@@ -65,6 +66,18 @@ def _is_rate_limited(exc: Exception) -> bool:
         return True
     return "429" in str(exc) or "too many requests" in str(exc).lower()
 
+
+def _is_transient(exc: Exception) -> bool:
+    """True for a dropped or timed-out connection, which is worth retrying like a 429.
+
+    A second-vendor endpoint under load holds the socket open and then drops it rather than
+    answering, so a long arm sees ``APIConnectionError`` or ``ReadTimeout`` even when paced well
+    inside the rate limit. Without this the retry wrapper gives up and the whole arm dies, losing
+    the run but not the calls already cached; observed on three of thirteen ablation arms.
+    """
+    name = type(exc).__name__.lower()
+    return "timeout" in name or "connect" in name
+
 _lock = threading.Lock()
 _pace_lock = threading.Lock()
 _last_call = [0.0]
@@ -80,6 +93,11 @@ def _pace(model: str):
         if wait > 0:
             time.sleep(wait)
         _last_call[0] = time.monotonic()
+
+
+def is_gemini(model: str) -> bool:
+    """The one lineage whose key, backend and pacing differ from every second-vendor model."""
+    return "gemini" in model.lower()
 
 
 def key_name(model: str) -> str:
@@ -205,10 +223,11 @@ class Cache:
                 root = exc
                 while root.__cause__ is not None:
                     root = root.__cause__
-                if not _is_rate_limited(root) or attempt == RATE_LIMIT_TRIES - 1:
+                limited = _is_rate_limited(root)
+                if attempt == RATE_LIMIT_TRIES - 1 or not (limited or _is_transient(root)):
                     raise
                 # The bucket is empty. Wait for a refill rather than losing the whole run.
-                time.sleep(RATE_LIMIT_SLEEP)
+                time.sleep(RATE_LIMIT_SLEEP if limited else TRANSIENT_SLEEP)
         if resp is None:
             raise SystemExit(f"{model} returned an empty completion (content=None). Reasoning-only "
                              "models are not usable here: the parsers read `content`.")
