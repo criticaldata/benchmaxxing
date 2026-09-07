@@ -7,76 +7,61 @@ produce different answers in the absence of committee influence.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import sys
+import threading
 from pathlib import Path
 
+from benchmaxxing import gateway
 from benchmaxxing.data import load_cases
 from benchmaxxing.extract import parse_legacy_string, declared_mcq_choice
 from experiments.referee.referee_threshold import (
-    _Cache,
-    _key,
     _mcq,
     HOLDOUT,
 )
 
-import sys as _sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
 
-_sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-import _lane  # noqa: E402  (shared second-vendor dispatch, experiments/_lane.py)
+_lock = threading.Lock()
 
 
-class _ModelCache(_Cache):
-    """The referee cache with the backend chosen by model id.
+class _Cache:
+    """Draw-aware cache on the shared text-lane dispatch.
 
-    Keys, file format and the Gemini path are unchanged, so the committed Gemini run replays
-    with no key. Any other model goes through the shared lane dispatch, which also paces calls
-    to the vendor's rate limit and waits out a 429 instead of failing the arm.
+    Same key as referee_threshold's cache, sha256(model NUL temperature NUL draw NUL prompt), so the
+    committed Gemini cache replays with no calls; the backend comes from the shared dispatch so any
+    model the text lane can address runs here too.
     """
 
-    def __init__(self, path, key, model):
-        super().__init__(path, key)
-        self.model = model
-        self._lane = None if _lane.is_gemini(model) else model
+    def __init__(self, path, key):
+        self.path, self.key, self.store, self.calls = Path(path), key, {}, 0
+        if self.path.exists():
+            for line in self.path.read_text().splitlines():
+                if line.strip():
+                    r = json.loads(line)
+                    self.store[r["k"]] = r["resp"]
 
     def complete(self, model, prompt, temperature=0.0, draw=0):
-        if self._lane is None:
-            return super().complete(model, prompt, temperature=temperature, draw=draw)
-        import hashlib as _h
-        import json as _j
-        from experiments.referee.referee_threshold import _lock
-
-        k = _h.sha256(f"{model}\x00{temperature}\x00{draw}\x00{prompt}".encode()).hexdigest()
+        k = hashlib.sha256(f"{model}\x00{temperature}\x00{draw}\x00{prompt}".encode()).hexdigest()
         with _lock:
             if k in self.store:
                 return self.store[k]
-        # a distinct draw must be a distinct request, so salt the shadow key with the draw
-        resp = self._lane_call(model, prompt, temperature, draw)
+        if not self.key:
+            raise SystemExit(f"Cache miss and no {_lane.key_name(model)} set for {model} "
+                             "(a fully cached run needs no key).")
+        _lane._pace(model)
+        resp = gateway.RetryBackend(_lane.backend_for(model, self.key),
+                                    tries=5, backoff=3.0).complete(prompt, decoding={"temperature": temperature})
+        if resp is None:
+            raise SystemExit(f"{model} returned an empty completion (content=None).")
         with _lock:
             self.store[k] = resp
             self.calls += 1
             with open(self.path, "a") as f:
-                f.write(_j.dumps({"k": k, "model": model, "temperature": temperature,
-                                  "draw": draw, "resp": resp}) + "\n")
+                f.write(json.dumps({"k": k, "model": model, "temperature": temperature, "resp": resp}) + "\n")
         return resp
-
-    def _lane_call(self, model, prompt, temperature, draw):
-        """One paced, retried call with no caching of its own: the draw is the bypass."""
-        import time as _t
-        from benchmaxxing import gateway as _gw
-
-        backend = _gw.RetryBackend(_lane.backend_for(model, self.key), tries=5, backoff=3.0)
-        for attempt in range(_lane.RATE_LIMIT_TRIES):
-            _lane._pace(model)
-            try:
-                return backend.complete(prompt, decoding={"temperature": temperature})
-            except Exception as exc:  # noqa: BLE001
-                root = exc
-                while root.__cause__ is not None:
-                    root = root.__cause__
-                limited = _lane._is_rate_limited(root)
-                if attempt == _lane.RATE_LIMIT_TRIES - 1 or not (limited or _lane._is_transient(root)):
-                    raise
-                _t.sleep(_lane.RATE_LIMIT_SLEEP if limited else _lane.TRANSIENT_SLEEP)
 
 
 
@@ -168,32 +153,25 @@ def main():
         description="Referee self-inconsistency floor (#417)."
     )
     ap.add_argument("--manifest", required=True)
+    _lane.add_model_arg(ap, default=HOLDOUT)
     ap.add_argument(
         "--cache",
-        default="experiments/referee/results/referee_self_inconsistency_cache.jsonl",
+        default=None,
+        help="Defaults to the committed cache for the default model, and to a model-scoped sibling otherwise.",
     )
     ap.add_argument(
         "--out",
         default="experiments/referee/results",
     )
     ap.add_argument("--n", type=int, default=40)
-    ap.add_argument("--model", default=HOLDOUT,
-                    help="model id; the default is the Gemini holdout the committed run used. Any other "
-                         "model writes under <out>/<model slug>/ and its own cache file")
 
     args = ap.parse_args()
-
     model = args.model
-    out = Path(args.out)
-    cache_path = Path(args.cache)
-    if model != HOLDOUT:
-        slug = model.replace("/", "_")
-        out = out / slug
-        cache_path = cache_path.with_name(f"{slug}_{cache_path.name}")
-    out.mkdir(parents=True, exist_ok=True)
+    out, cache_path = _lane.scoped(
+        model, args.out, "experiments/referee/results/referee_self_inconsistency_cache.jsonl", args.cache
+    )
 
-    key = _key() if _lane.is_gemini(model) else _lane.key_for(model)
-    cache = _ModelCache(cache_path, key, model)
+    cache = _Cache(cache_path, _lane.key_for(model))
 
     rows = [
         run_one(case, cache, model)
@@ -201,7 +179,9 @@ def main():
     ]
 
     summary = summarize(rows)
-    summary["model"] = model
+    if model != HOLDOUT:
+        # The default summary stays byte-identical to the committed one, which predates this flag.
+        summary["model"] = model
     summary["new_api_calls_this_run"] = cache.calls
 
     (out / "referee_self_inconsistency.jsonl").write_text(

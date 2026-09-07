@@ -121,7 +121,15 @@ def _call(model, key, prompt, condition):
                 return {"content": text, "reasoning_content": None, "finish_reason": None}
             kwargs = {"model": model, "messages": [{"role": "user", "content": prompt}],
                       "temperature": 0, "max_tokens": _lane.MAX_TOKENS}
-            if condition in ("none", "open"):
+            if "gpt-oss" in model.lower():
+                # gpt-oss has no thinking switch: enable_thinking is silently ignored, and reasoning
+                # cannot be turned off, only budgeted. "none" is therefore the smallest budget the
+                # model offers, and "open" is the reason-aloud instruction with the default budget;
+                # the rows record content length so a model that keeps reasoning in its hidden
+                # channel regardless of the instruction is visible as such.
+                if condition == "none":
+                    kwargs["extra_body"] = {"reasoning_effort": "low"}
+            elif condition in ("none", "open"):
                 kwargs["extra_body"] = {"chat_template_kwargs": {"enable_thinking": False}}
             resp = backend._client.chat.completions.create(**kwargs)
             msg = resp.choices[0].message

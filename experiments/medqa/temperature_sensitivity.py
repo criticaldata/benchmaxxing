@@ -16,6 +16,7 @@ from benchmaxxing.extract import parse_legacy_string
 
 
 import argparse
+import hashlib
 import json
 import sys
 import threading
@@ -26,6 +27,7 @@ from benchmaxxing.data import load_cases
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import _lane  # noqa: E402
+from benchmaxxing import gateway  # noqa: E402
 
 DEFAULT_MODEL = _lane.DEFAULT_MODEL
 _lock = threading.Lock()
@@ -38,6 +40,35 @@ def _mcq_prompt(payload, board=""):
     body = "\n".join(f"{L}. {o}" for L, o in zip(_lane.letters(len(opts)), opts))
     return (f"Question: {payload['question']}\n\nOptions:\n{body}\n\n{board}"
             "Answer with only the single letter of the best option.")
+
+
+class _DrawCache(_lane.Cache):
+    """Draw-aware cache: the key carries temperature and sample index so sampled draws never collide.
+
+    Same key the committed Gemini sweep was written with, sha256(model NUL temperature NUL sample NUL
+    prompt), so that cache replays with no calls; the backend comes from the shared dispatch.
+    """
+
+    def complete(self, prompt, temperature, sample):
+        k = hashlib.sha256(f"{self.model}\x00{temperature}\x00{sample}\x00{prompt}".encode()).hexdigest()
+        with _lane._lock:
+            if k in self.store:
+                return self.store[k]
+        if not self.key:
+            raise SystemExit(f"Cache miss and no {_lane.key_name(self.model)} set for {self.model} "
+                             "(a fully cached run needs no key).")
+        _lane._pace(self.model)
+        resp = gateway.RetryBackend(_lane.backend_for(self.model, self.key), tries=5,
+                                    backoff=3.0).complete(prompt, decoding={"temperature": temperature})
+        if resp is None:
+            raise SystemExit(f"{self.model} returned an empty completion (content=None).")
+        with _lane._lock:
+            self.store[k] = resp
+            self.calls += 1
+            with open(self.path, "a") as f:
+                f.write(json.dumps({"k": k, "model": self.model, "temperature": temperature,
+                                    "sample": sample, "resp": resp}) + "\n")
+        return resp
 
 
 def main():
@@ -53,7 +84,7 @@ def main():
     out_dir, cache_path = _lane.scoped(model, args.out, "experiments/medqa/results/temperature_sensitivity_cache.jsonl", args.cache)
 
     out = out_dir
-    cache = _lane.Cache(cache_path, _lane.key_for(model), model)
+    cache = _DrawCache(cache_path, _lane.key_for(model), model)
     cases = load_cases(args.manifest)[:args.n]
 
     def run_one(case):

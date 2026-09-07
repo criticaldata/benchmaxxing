@@ -24,6 +24,12 @@ from benchmaxxing.extract import declared_mcq_choice
 DEFAULT_MODEL = "gemini-2.5-flash-lite"
 NIM_BASE_URL = "https://integrate.api.nvidia.com/v1"
 DEEPSEEK_BASE_URL = "https://api.deepseek.com"
+# An open-weights model served on the machine that runs the experiment has no vendor endpoint, no
+# key and no request ceiling. BENCHMAXXING_LOCAL_BASE_URL names that server, and setting it is
+# enough to point the OpenAI-compatible backend at it, skip the key lookup and switch pacing off.
+# Gemini and DeepSeek ids keep their vendor routing whatever it is set to, so one variable cannot
+# silently redirect a committed comparator arm to a different model behind the same id.
+LOCAL_BASE_URL = os.environ.get("BENCHMAXXING_LOCAL_BASE_URL", "").strip()
 # Reasoning models need headroom. A cap that lands mid-reasoning returns the truncated chain of
 # thought in `content`, which the legacy parsers would then score as if it were an answer. Whatever
 # a cap still truncates is recorded as undeclared by `declared()` and excluded rather than scored.
@@ -49,10 +55,18 @@ TRANSIENT_SLEEP = 15  # a dropped connection needs a pause, not the full rate-li
 MIN_CALL_INTERVAL = float(os.environ.get("BENCHMAXXING_MIN_CALL_INTERVAL", "0") or 0)
 
 
+def is_local(model: str) -> bool:
+    """True when this model is served locally rather than by a vendor endpoint."""
+    m = model.lower()
+    return bool(LOCAL_BASE_URL) and "gemini" not in m and "deepseek" not in m
+
+
 def interval_for(model: str) -> float:
     """Seconds to leave between outgoing calls for a model's endpoint."""
     if MIN_CALL_INTERVAL > 0:
         return MIN_CALL_INTERVAL
+    if is_local(model):
+        return 0.0
     if "gemini" in model.lower():
         return 0.0
     return NIM_SUSTAINED_INTERVAL
@@ -112,6 +126,9 @@ def key_name(model: str) -> str:
 
 def key_for(model: str):
     """Resolve the API key strictly from the model id, as the imaging lane does."""
+    if is_local(model):
+        # A cache miss on a local endpoint must not exit for a key that no server checks.
+        return "not-needed"
     m = model.lower()
     if "gemini" in m:
         return os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
@@ -128,7 +145,12 @@ def backend_for(model: str, key, client=None):
     """
     if "gemini" in model.lower():
         return gateway.GeminiBackend(model=model, api_key=key)
-    base_url = DEEPSEEK_BASE_URL if "deepseek" in model.lower() else NIM_BASE_URL
+    if is_local(model):
+        base_url = LOCAL_BASE_URL
+    elif "deepseek" in model.lower():
+        base_url = DEEPSEEK_BASE_URL
+    else:
+        base_url = NIM_BASE_URL
     return gateway.LocalOpenAICompatibleBackend(
         model=model, base_url=base_url, api_key=key, client=client,
         default_decoding={"max_tokens": MAX_TOKENS},

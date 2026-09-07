@@ -63,12 +63,19 @@ def main():
 
     out = out_dir
     cache = _lane.Cache(cache_path, _lane.key_for(model), model)
+    members = [(a, model if a == "holdout" else m) for a, m in MEMBERS]
+    if model != _lane.DEFAULT_MODEL:
+        # The two flash peers answer before the holdout and never see it, so their board is the
+        # committed one whatever the holdout is. Read their answers from the committed cache
+        # rather than re-querying Gemini, so a new holdout faces exactly the paper's board.
+        committed = _lane.Cache("experiments/medqa/results/live_peer_organic_cache.jsonl", None, PEER_MODEL)
+        cache.store = {**committed.store, **cache.store}
     cases = load_cases(args.manifest)[:args.n]
-    model_by_agent = dict(MEMBERS)
+    model_by_agent = dict(members)
     committee = build_committee(
         [ModelSpec(name=a, lineage="gemini",
                    tier="flash" if m == PEER_MODEL else "lite", is_open_weights=False)
-         for a, m in MEMBERS])
+         for a, m in members])
 
     def backend_for(spec):
         backend_model = model_by_agent[spec.name]
@@ -79,7 +86,7 @@ def main():
                                      show_rationale=args.show_rationale,
                                      self_id=view.agent_id)
                 p, opts = _mcq(view.case, board)
-                text = cache.complete(backend_model, p)
+                text = cache.complete(p, backend_model)
                 return AgentResponse(content=text[:120], answer=parse_legacy_string(text, opts), confidence=0.7)
         return _C()
 
@@ -87,7 +94,7 @@ def main():
         opts = list(case.options)
         gt = opts[case.answer_index]
         base_p, _ = _mcq(case)
-        bare = parse_legacy_string(cache.complete(HOLDOUT, base_p), opts)
+        bare = parse_legacy_string(cache.complete(base_p, model), opts)
         shared = run_committee(committee, case, Condition.CLEAN, backend_for,
                                shared=True, rounds=1, order=[0, 1, 2])
         board_ans = shared.committed.get("holdout")
@@ -115,7 +122,7 @@ def main():
     def follow_rate(sub):
         return round(sum(1 for r in sub if r["follows_consensus"]) / len(sub), 4) if sub else None
     summary = {
-        "n": n, "models": {"peers": PEER_MODEL, "holdout": HOLDOUT},
+        "n": n, "models": {"peers": PEER_MODEL, "holdout": model},
         "new_api_calls_this_run": cache.calls,
         "n_organic_wrong_consensus": len(wrong_cons), "n_organic_right_consensus": len(right_cons),
         "follow_rate_on_wrong_consensus": follow_rate(wrong_cons),
