@@ -222,3 +222,19 @@ def test_a_non_transient_error_still_raises(tmp_path, monkeypatch):
     cache = _lane.Cache(tmp_path / "c.jsonl", "k", "nvidia/nemotron-3-super-120b-a12b")
     with pytest.raises(gateway.RetryError):
         cache.complete("prompt")
+
+
+def test_endpoint_5xx_and_intermittent_404_are_transient():
+    """The vendor endpoint under load returns 503, 502/504 and an intermittent 404 for a model it still
+    lists; all are retried like a dropped connection. A plain ValueError is not."""
+    class NotFoundError(Exception):
+        pass
+
+    class InternalServerError(Exception):
+        pass
+
+    assert _lane._is_transient(NotFoundError("Error code: 404 - Not found for account"))
+    assert _lane._is_transient(InternalServerError("Error code: 503 - Service temporarily overloaded"))
+    assert _lane._is_transient(Exception("Error code: 502 - Bad Gateway"))
+    assert not _lane._is_transient(ValueError("bad json"))
+    assert not _lane._is_rate_limited(NotFoundError("Error code: 404"))

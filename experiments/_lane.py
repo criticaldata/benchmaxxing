@@ -90,7 +90,19 @@ def _is_transient(exc: Exception) -> bool:
     the run but not the calls already cached; observed on three of thirteen ablation arms.
     """
     name = type(exc).__name__.lower()
-    return "timeout" in name or "connect" in name
+    if "timeout" in name or "connect" in name:
+        return True
+    # The NVIDIA endpoint under load also answers 503 "Service temporarily overloaded", 502/504, and an
+    # intermittent 404 for a model that /v1/models still lists and that answers 200 a minute later
+    # (observed 7 Sept 2026 on nemotron-3-super, 466 calls into an arm). Retrying is bounded by
+    # RATE_LIMIT_TRIES, so a model that has genuinely been withdrawn still fails, just not on the first 404.
+    text = str(exc).lower()
+    return (
+        "internalserver" in name or "serviceunavailable" in name or "notfound" in name
+        or any(code in text for code in ("error code: 502", "error code: 503", "error code: 504", "error code: 404"))
+        or "temporarily overloaded" in text
+    )
+
 
 _lock = threading.Lock()
 _pace_lock = threading.Lock()
