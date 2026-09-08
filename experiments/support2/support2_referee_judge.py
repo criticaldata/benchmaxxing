@@ -39,6 +39,7 @@ with no key.
 from __future__ import annotations
 
 import argparse
+import sys
 import json
 import re
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -46,6 +47,8 @@ from pathlib import Path
 
 from benchmaxxing.referee import gate_decision
 from benchmaxxing.stats import mcnemar
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
 from experiments.support2._common import (
     COMMITTEE,
     MODEL,
@@ -98,17 +101,23 @@ def _scores(predicted, truth):
 def main():
     ap = argparse.ArgumentParser(description="SUPPORT2 same-lineage judge referee (#395).")
     ap.add_argument("--manifest", required=True, help="SUPPORT2 manifest (support2 adapter)")
-    ap.add_argument("--cache", default="experiments/support2/results/call_cache.jsonl")
+    ap.add_argument("--cache", default=None, help="defaults to the model-scoped file")
     ap.add_argument("--out", default="experiments/support2/results")
+    _lane.add_model_arg(ap)
     ap.add_argument("--n", type=int, default=120)
     ap.add_argument("--show-rationale", action="store_true",
                     help="render each peer's reasoning under its vote (#373); off is the "
                          "committed answer-only board, which the cache replays at zero calls")
     args = ap.parse_args()
 
-    out = Path(args.out)
-    out.mkdir(parents=True, exist_ok=True)
-    cache = Cache(args.cache, api_key())
+    model = args.model
+    if model != _lane.DEFAULT_MODEL:
+        # Every Gemini seat becomes the requested model: this model's committee against Gemini's.
+        assert _lane.rebind_models(globals(), model) > 0
+    key = _lane.key_for(model) if model != _lane.DEFAULT_MODEL else api_key()
+
+    out, cache_path = _lane.scoped(model, args.out, "experiments/support2/results/call_cache.jsonl", args.cache)
+    cache = Cache(cache_path, key, model=model)
     cases = load_manifest_cases(args.manifest, args.n)
 
     def run_one(case):
@@ -176,7 +185,7 @@ def main():
     fewer_alarms = mcnemar(gate_only, judge_only)
     summary = {
         "n": len(rows),
-        "model": MODEL,
+        "model": model,
         "judge_model": JUDGE,
         "committee": [m.name for m in COMMITTEE.members],
         "n_valid_pairs": len(scored),

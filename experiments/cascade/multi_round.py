@@ -31,10 +31,14 @@ from benchmaxxing.extract import parse_legacy_string
 import argparse
 import hashlib
 import json
+import sys
 import os
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
 
 HOLDOUT = "gemini-2.5-flash-lite"
 _lock = threading.Lock()
@@ -115,7 +119,7 @@ class _Cache:
                 return self.store[k]
         if not self.key:
             raise SystemExit("Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key).")
-        resp = self._gw.RetryBackend(self._gw.GeminiBackend(model=model, api_key=self.key),
+        resp = self._gw.RetryBackend(_lane.backend_for(model, self.key),
                                      tries=5, backoff=3.0).complete(prompt, decoding={"temperature": 0})
         with _lock:
             self.store[k] = resp
@@ -128,8 +132,9 @@ class _Cache:
 def main():
     ap = argparse.ArgumentParser(description="Multi-round cascade dynamics (#130).")
     ap.add_argument("--manifest", required=True)
-    ap.add_argument("--cache", default="experiments/cascade/results/call_cache.jsonl")
+    ap.add_argument("--cache", default=None, help="defaults to the model-scoped file")
     ap.add_argument("--out", default="experiments/cascade/results")
+    _lane.add_model_arg(ap)
     ap.add_argument("--n", type=int, default=40)
     ap.add_argument("--rounds", type=int, default=5)
     ap.add_argument("--show-rationale", action="store_true",
@@ -137,16 +142,21 @@ def main():
                          "committed answer-only board, which the cache replays at zero calls")
     args = ap.parse_args()
 
+    model = args.model
+    if model != _lane.DEFAULT_MODEL:
+        # Every Gemini seat becomes the requested model: this model's committee against Gemini's.
+        assert _lane.rebind_models(globals(), model) > 0
+    key = _lane.key_for(model) if model != _lane.DEFAULT_MODEL else _key()
+
     from benchmaxxing.blackboard import AgentResponse, run_committee
     from benchmaxxing.data import load_cases
     from benchmaxxing.roster import build_committee
     from benchmaxxing.schema import Condition, ModelSpec
     from benchmaxxing.stats import mcnemar
 
-    out = Path(args.out)
-    out.mkdir(parents=True, exist_ok=True)
+    out, cache_path = _lane.scoped(model, args.out, "experiments/cascade/results/call_cache.jsonl", args.cache)
     k = args.rounds
-    cache = _Cache(args.cache, _key())
+    cache = _Cache(cache_path, key)
     cases = load_cases(args.manifest)[:args.n]
     committee = build_committee([
         ModelSpec(name="peer1", lineage="gemini", tier="flash", is_open_weights=False),
