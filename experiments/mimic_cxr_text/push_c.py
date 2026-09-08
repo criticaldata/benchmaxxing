@@ -159,7 +159,7 @@ def main():
         assert _lane.rebind_models(globals(), model) > 0
     key = _lane.key_for(model) if model != _lane.DEFAULT_MODEL else _key()
 
-    out, cache_path = _lane.scoped(model, args.out, "experiments/mimic_cxr_text/results/call_cache.jsonl")
+    out, cache_path = _lane.scoped(model, args.out, str(Path(args.out) / "call_cache.jsonl"))
     cache = _Cache(cache_path, key)
     all_cases = load_cases(args.manifest)
     index_of = build_index_map(all_cases)
