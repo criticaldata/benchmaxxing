@@ -7,17 +7,58 @@ produce different answers in the absence of committee influence.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import sys
+import threading
 from pathlib import Path
 
 from benchmaxxing.data import load_cases
 from benchmaxxing.extract import parse_legacy_string, declared_mcq_choice
 from experiments.referee.referee_threshold import (
-    _Cache,
-    _key,
     _mcq,
     HOLDOUT,
 )
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
+
+_lock = threading.Lock()
+
+
+class _Cache:
+    """Draw-aware cache on the shared text-lane dispatch.
+
+    Same key as referee_threshold's cache, sha256(model NUL temperature NUL draw NUL prompt), so the
+    committed Gemini cache replays with no calls; the backend comes from the shared dispatch so any
+    model the text lane can address runs here too.
+    """
+
+    def __init__(self, path, key):
+        self.path, self.key, self.store, self.calls = Path(path), key, {}, 0
+        if self.path.exists():
+            for line in self.path.read_text().splitlines():
+                if line.strip():
+                    r = json.loads(line)
+                    self.store[r["k"]] = r["resp"]
+
+    def complete(self, model, prompt, temperature=0.0, draw=0):
+        k = hashlib.sha256(f"{model}\x00{temperature}\x00{draw}\x00{prompt}".encode()).hexdigest()
+        with _lock:
+            if k in self.store:
+                return self.store[k]
+        if not self.key:
+            raise SystemExit(f"Cache miss and no {_lane.key_name(model)} set for {model} "
+                             "(a fully cached run needs no key).")
+        resp = _lane.paced_complete(model, self.key, prompt, decoding={"temperature": temperature})
+        if resp is None:
+            raise SystemExit(f"{model} returned an empty completion (content=None).")
+        with _lock:
+            self.store[k] = resp
+            self.calls += 1
+            with open(self.path, "a") as f:
+                f.write(json.dumps({"k": k, "model": model, "temperature": temperature, "resp": resp}) + "\n")
+        return resp
 
 
 
@@ -32,15 +73,15 @@ def build_row(case_id, answer_1, answer_2, declared_1, declared_2):
     }
 
 
-def run_one(case, cache):
+def run_one(case, cache, model=HOLDOUT):
     opts = list(case.options)
     prompt, _ = _mcq(case)
 
     raw_1 = cache.complete(
-        HOLDOUT, prompt, temperature=0.0, draw=1
+        model, prompt, temperature=0.0, draw=1
     )
     raw_2 = cache.complete(
-        HOLDOUT, prompt, temperature=0.0, draw=2
+        model, prompt, temperature=0.0, draw=2
     )
 
     answer_1 = parse_legacy_string(raw_1, opts)
@@ -109,9 +150,11 @@ def main():
         description="Referee self-inconsistency floor (#417)."
     )
     ap.add_argument("--manifest", required=True)
+    _lane.add_model_arg(ap, default=HOLDOUT)
     ap.add_argument(
         "--cache",
-        default="experiments/referee/results/referee_self_inconsistency_cache.jsonl",
+        default=None,
+        help="Defaults to the committed cache for the default model, and to a model-scoped sibling otherwise.",
     )
     ap.add_argument(
         "--out",
@@ -120,18 +163,22 @@ def main():
     ap.add_argument("--n", type=int, default=40)
 
     args = ap.parse_args()
+    model = args.model
+    out, cache_path = _lane.scoped(
+        model, args.out, "experiments/referee/results/referee_self_inconsistency_cache.jsonl", args.cache
+    )
 
-    out = Path(args.out)
-    out.mkdir(parents=True, exist_ok=True)
-
-    cache = _Cache(args.cache, _key())
+    cache = _Cache(cache_path, _lane.key_for(model))
 
     rows = [
-        run_one(case, cache)
+        run_one(case, cache, model)
         for case in load_cases(args.manifest)[:args.n]
     ]
 
     summary = summarize(rows)
+    if model != HOLDOUT:
+        # The default summary stays byte-identical to the committed one, which predates this flag.
+        summary["model"] = model
     summary["new_api_calls_this_run"] = cache.calls
 
     (out / "referee_self_inconsistency.jsonl").write_text(
