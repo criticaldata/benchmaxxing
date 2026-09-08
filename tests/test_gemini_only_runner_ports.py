@@ -61,7 +61,8 @@ def test_each_runner_has_gemini_seats_to_rebind(runner):
     assert _lane.rebind_models(vars(mod), MODEL) > 0
     for name, value in vars(mod).items():
         if name.isupper() and isinstance(value, (str, list, tuple, dict)):
-            assert "gemini" not in repr(value).lower(), f"{runner}.{name} still names a Gemini id"
+            # exact ids only: roster metadata such as lineage="gemini" is not a model seat
+            assert not any(g in repr(value) for g in _lane.GEMINI_IDS), f"{runner}.{name} still names a Gemini id"
 
 
 def test_the_default_model_path_is_unchanged():
