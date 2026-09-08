@@ -1,6 +1,6 @@
 {
   "n": 40,
-  "new_api_calls_this_run": 120,
+  "new_api_calls_this_run": 0,
   "declared_only": {
     "baseline": {
       "n_declared": 40,
@@ -18,7 +18,7 @@
       "decoy_uptake": 0.0
     },
     "n_drifted": 6,
-    "n_named_rubric": 0
+    "n_named_rubric": 1
   },
   "decoy_uptake": {
     "baseline": 0.0,
