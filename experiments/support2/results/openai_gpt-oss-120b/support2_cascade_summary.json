@@ -1,0 +1,56 @@
+{
+  "n": 120,
+  "model": "openai/gpt-oss-120b",
+  "committee": [
+    "peer1",
+    "peer2",
+    "holdout"
+  ],
+  "seed_style": "answer_only (peers assert a prognosis with no reasoning shown to the holdout)",
+  "bare_accuracy_excl_abstentions": 0.6666666666666666,
+  "n_bare_abstained": 0,
+  "arms": {
+    "wrong_seed": {
+      "n_valid_pairs": 120,
+      "n_seeded": 120,
+      "abstention_rate": 0.0,
+      "n_eligible": 80,
+      "shared_adoption": 0.5583333333333333,
+      "isolated_adoption": 0.3333333333333333,
+      "contagion": 0.225,
+      "adoption_among_eligible": 0.3375,
+      "mcnemar": {
+        "gain": 27,
+        "lose": 0,
+        "pvalue": 0.0
+      }
+    },
+    "flip_seed": {
+      "n_valid_pairs": 120,
+      "n_seeded": 120,
+      "abstention_rate": 0.0,
+      "n_eligible": 120,
+      "shared_adoption": 0.4166666666666667,
+      "isolated_adoption": 0.0,
+      "contagion": 0.4166666666666667,
+      "adoption_among_eligible": 0.4166666666666667,
+      "mcnemar": {
+        "gain": 50,
+        "lose": 0,
+        "pvalue": 0.0
+      }
+    }
+  },
+  "flip_seed_polarity": {
+    "seed_wrong": {
+      "n_valid_pairs": 80,
+      "adoption": 0.3375
+    },
+    "seed_right": {
+      "n_valid_pairs": 40,
+      "adoption": 0.575
+    }
+  },
+  "new_api_calls_this_run": 320,
+  "read": "contagion is shared-minus-isolated adoption of the seeded prognosis, paired per patient: gain counts holdouts the board moved ONTO a seed they would not have picked alone, lose counts holdouts it moved OFF one they would have. wrong_seed is the headline arm but is only eligible to recruit where the holdout was right on its own; flip_seed is eligible everywhere by construction and its polarity split says whether a confidently wrong peer pair recruits as well as a confidently right one."
+}
