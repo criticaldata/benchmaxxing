@@ -191,6 +191,15 @@ def run_solo(cases, out, api_key, cache):
                                         "matrix": sm["matrix"].tolist()},
               "overlap": overlap}
     (Path(out) / "solo_results.json").write_text(json.dumps(result, indent=2, default=str))
+    if records and records[0].model != _lane.DEFAULT_MODEL:
+        # The per-record file the hard-case runners (break_it, clean_a, push_c, contamination_audit)
+        # read, in the committed column layout. Written for a second model only: the committed
+        # Gemini solo_records.jsonl predates this writer and a replay must not rewrite it.
+        (Path(out) / "solo_records.jsonl").write_text("".join(json.dumps({
+            "case_id": r.case_id, "cue": r.cue_type, "model": r.model, "clean": r.clean_answer,
+            "contaminated": r.contaminated_answer, "flipped": r.flipped,
+            "clean_correct": r.clean_correct, "contaminated_correct": r.contaminated_correct,
+        }) + "\n" for r in records))
     return result
 
 
