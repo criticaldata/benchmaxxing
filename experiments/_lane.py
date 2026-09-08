@@ -163,9 +163,13 @@ def backend_for(model: str, key, client=None):
         base_url = DEEPSEEK_BASE_URL
     else:
         base_url = NIM_BASE_URL
+    # A locally served model has no rate limit but can legitimately take minutes on a long
+    # completion, so it gets a generous timeout; a hosted endpoint keeps the 60 s fast-fail, where a
+    # stall is the failure mode worth converting into a retryable error.
     return gateway.LocalOpenAICompatibleBackend(
         model=model, base_url=base_url, api_key=key, client=client,
         default_decoding={"max_tokens": MAX_TOKENS},
+        timeout=600.0 if is_local(model) else 60.0,
     )
 
 

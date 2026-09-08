@@ -488,6 +488,17 @@ class LocalOpenAICompatibleBackend(OpenAIBackend):
     API; this backend reuses the ``openai`` client (and ``OpenAIBackend.complete``) against a
     custom ``base_url``. Local servers usually ignore the key, so a placeholder ``api_key`` is
     sent by default. A ``client`` can be injected for offline tests.
+
+    ``max_retries`` defaults to 0 on purpose. The SDK retries internally by default, so leaving it
+    at the default puts a hidden retry loop underneath every caller's own retry wrapper: one logical
+    call can become many unpaced HTTP requests, which defeats rate pacing and spends a rate bucket
+    the caller thinks it is metering. Retries belong to the caller (``gateway.RetryBackend`` and
+    ``experiments/_lane.paced_complete``), not here.
+
+    ``timeout`` defaults to 60 s, which suits a hosted endpoint that answers a burst by holding the
+    socket open rather than refusing: failing fast there turns a stall into a retryable error. A
+    locally served model is the opposite case, where a long completion past 60 s is legitimate, so
+    raise it per call site rather than editing this default.
     """
 
     def __init__(
@@ -497,6 +508,8 @@ class LocalOpenAICompatibleBackend(OpenAIBackend):
         api_key: str = "not-needed",
         client: object | None = None,
         default_decoding: dict | None = None,
+        timeout: float = 60.0,
+        max_retries: int = 0,
     ):
         self.model = model
         self.base_url = base_url
@@ -513,4 +526,5 @@ class LocalOpenAICompatibleBackend(OpenAIBackend):
                 "installed. Install the models extra: pip install 'benchmaxxing[models]' "
                 "(or: pip install openai)."
             ) from exc
-        self._client = OpenAI(base_url=base_url, api_key=api_key)
+        self._client = OpenAI(base_url=base_url, api_key=api_key,
+                              timeout=timeout, max_retries=max_retries)
