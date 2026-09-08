@@ -288,7 +288,7 @@ def main():
     if model != _lane.DEFAULT_MODEL:
         # Every Gemini tier and committee seat becomes the requested model.
         assert _lane.rebind_models(globals(), model) > 0
-    out, cache = _lane.scoped(model, args.out, "experiments/medqa/results/call_cache.jsonl")
+    out, cache = _lane.scoped(model, args.out, str(Path(args.out) / "call_cache.jsonl"))
     api_key = _lane.key_for(model) if model != _lane.DEFAULT_MODEL else _get_key()
     all_cases = load_cases(args.manifest)
     cases = random.Random(args.seed).sample(all_cases, min(args.solo_n, len(all_cases)))

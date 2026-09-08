@@ -94,7 +94,7 @@ def main():
         # Every Gemini seat becomes the requested model: this model's committee against Gemini's.
         assert _lane.rebind_models(globals(), model) > 0
     key = _lane.key_for(model) if model != _lane.DEFAULT_MODEL else _key()
-    out, cache = _lane.scoped(model, args.out, "experiments/mimic_cxr_text/results/break_it_d_call_cache.jsonl")
+    out, cache = _lane.scoped(model, args.out, str(Path(args.out) / "break_it_d_call_cache.jsonl"))
     all_cases = load_cases(args.manifest)
     index_of = build_index_map(all_cases)
     cases = hard_cases(all_cases, args.solo_records, args.n)

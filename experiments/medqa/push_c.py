@@ -126,7 +126,7 @@ def main():
     if model != _lane.DEFAULT_MODEL:
         # Every Gemini seat becomes the requested model: this model's committee against Gemini's.
         assert _lane.rebind_models(globals(), model) > 0
-    out, cache_path = _lane.scoped(model, args.out, "experiments/medqa/results/call_cache.jsonl", None)
+    out, cache_path = _lane.scoped(model, args.out, str(Path(args.out) / "call_cache.jsonl"))
     key = _lane.key_for(model) if model != _lane.DEFAULT_MODEL else _key()
     out.mkdir(parents=True, exist_ok=True)
     cache = _Cache(cache_path, key)
