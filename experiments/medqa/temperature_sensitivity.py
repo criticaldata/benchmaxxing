@@ -16,75 +16,44 @@ from benchmaxxing.extract import parse_legacy_string
 
 
 import argparse
-import hashlib
 import json
-import os
+import sys
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
-from benchmaxxing import gateway
 from benchmaxxing.data import load_cases
 
-MODEL = "gemini-2.5-flash-lite"
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
+
+DEFAULT_MODEL = _lane.DEFAULT_MODEL
 _lock = threading.Lock()
 # (temperature, samples): temp 0 is deterministic so one draw; temp>0 sampled three times.
 TEMP_PLAN = [(0.0, 1), (0.3, 3), (0.7, 3), (1.0, 3)]
 
 
-def _key():
-    return os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
-
-
-def _letters(n):
-    return [chr(65 + i) for i in range(n)]
-
-
 def _mcq_prompt(payload, board=""):
     opts = payload["options"]
-    body = "\n".join(f"{L}. {o}" for L, o in zip(_letters(len(opts)), opts))
+    body = "\n".join(f"{L}. {o}" for L, o in zip(_lane.letters(len(opts)), opts))
     return (f"Question: {payload['question']}\n\nOptions:\n{body}\n\n{board}"
             "Answer with only the single letter of the best option.")
-
-
-
-class _Cache:
-    def __init__(self, path, key):
-        self.path, self.key, self.store, self.calls = Path(path), key, {}, 0
-        if self.path.exists():
-            for line in self.path.read_text().splitlines():
-                if line.strip():
-                    r = json.loads(line)
-                    self.store[r["k"]] = r["resp"]
-
-    def complete(self, prompt, temperature, sample):
-        k = hashlib.sha256(f"{MODEL}\x00{temperature}\x00{sample}\x00{prompt}".encode()).hexdigest()
-        with _lock:
-            if k in self.store:
-                return self.store[k]
-        if not self.key:
-            raise SystemExit("Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key).")
-        resp = gateway.RetryBackend(gateway.GeminiBackend(model=MODEL, api_key=self.key),
-                                    tries=5, backoff=3.0).complete(prompt, decoding={"temperature": temperature})
-        with _lock:
-            self.store[k] = resp
-            self.calls += 1
-            with open(self.path, "a") as f:
-                f.write(json.dumps({"k": k, "model": MODEL, "temperature": temperature, "resp": resp}) + "\n")
-        return resp
 
 
 def main():
     ap = argparse.ArgumentParser(description="Temperature sensitivity of the anchored cascade (#203/#204).")
     ap.add_argument("--manifest", required=True)
-    ap.add_argument("--cache", default="experiments/medqa/results/temperature_sensitivity_cache.jsonl")
+    _lane.add_model_arg(ap)
+    ap.add_argument("--cache", default=None,
+                    help="Defaults to the committed cache for the default model, and to a model-scoped sibling otherwise.")
     ap.add_argument("--out", default="experiments/medqa/results")
     ap.add_argument("--n", type=int, default=120)
     args = ap.parse_args()
+    model = args.model
+    out_dir, cache_path = _lane.scoped(model, args.out, "experiments/medqa/results/temperature_sensitivity_cache.jsonl", args.cache)
 
-    out = Path(args.out)
-    out.mkdir(parents=True, exist_ok=True)
-    cache = _Cache(args.cache, _key())
+    out = out_dir
+    cache = _lane.Cache(cache_path, _lane.key_for(model), model)
     cases = load_cases(args.manifest)[:args.n]
 
     def run_one(case):
@@ -125,7 +94,7 @@ def main():
     rates = {f"t{temp}": mean_rate(temp) for temp, _ in TEMP_PLAN}
     flips = {f"t{temp}": flip_fraction(temp) for temp, k in TEMP_PLAN if k > 1}
     summary = {
-        "n": n, "model": MODEL, "new_api_calls_this_run": cache.calls,
+        "n": n, "model": model, "new_api_calls_this_run": cache.calls,
         "adoption_rate_by_temperature": rates,
         "temp_gt0_within_case_flip_fraction": flips,
         "read": (
