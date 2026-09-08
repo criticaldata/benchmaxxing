@@ -13,7 +13,6 @@ import sys
 import threading
 from pathlib import Path
 
-from benchmaxxing import gateway
 from benchmaxxing.data import load_cases
 from benchmaxxing.extract import parse_legacy_string, declared_mcq_choice
 from experiments.referee.referee_threshold import (
@@ -51,9 +50,7 @@ class _Cache:
         if not self.key:
             raise SystemExit(f"Cache miss and no {_lane.key_name(model)} set for {model} "
                              "(a fully cached run needs no key).")
-        _lane._pace(model)
-        resp = gateway.RetryBackend(_lane.backend_for(model, self.key),
-                                    tries=5, backoff=3.0).complete(prompt, decoding={"temperature": temperature})
+        resp = _lane.paced_complete(model, self.key, prompt, decoding={"temperature": temperature})
         if resp is None:
             raise SystemExit(f"{model} returned an empty completion (content=None).")
         with _lock:

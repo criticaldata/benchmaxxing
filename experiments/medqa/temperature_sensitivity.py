@@ -27,7 +27,6 @@ from benchmaxxing.data import load_cases
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import _lane  # noqa: E402
-from benchmaxxing import gateway  # noqa: E402
 
 DEFAULT_MODEL = _lane.DEFAULT_MODEL
 _lock = threading.Lock()
@@ -57,9 +56,7 @@ class _DrawCache(_lane.Cache):
         if not self.key:
             raise SystemExit(f"Cache miss and no {_lane.key_name(self.model)} set for {self.model} "
                              "(a fully cached run needs no key).")
-        _lane._pace(self.model)
-        resp = gateway.RetryBackend(_lane.backend_for(self.model, self.key), tries=5,
-                                    backoff=3.0).complete(prompt, decoding={"temperature": temperature})
+        resp = _lane.paced_complete(self.model, self.key, prompt, decoding={"temperature": temperature})
         if resp is None:
             raise SystemExit(f"{self.model} returned an empty completion (content=None).")
         with _lane._lock:

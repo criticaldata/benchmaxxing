@@ -203,7 +203,7 @@ def test_transient_connection_error_is_retried_not_fatal(tmp_path, monkeypatch):
             return "B"
 
     backend = _Dropping()
-    monkeypatch.setattr(_lane, "backend_for", lambda model, key: backend)
+    monkeypatch.setattr(_lane, "backend_for", lambda model, key, client=None: backend)
     cache = _lane.Cache(tmp_path / "c.jsonl", "k", "nvidia/nemotron-3-super-120b-a12b")
     assert cache.complete("prompt") == "B"
     assert backend.calls == 6
@@ -218,7 +218,7 @@ def test_a_non_transient_error_still_raises(tmp_path, monkeypatch):
         def complete(self, prompt, image=None, decoding=None):
             raise ValueError("malformed request")
 
-    monkeypatch.setattr(_lane, "backend_for", lambda model, key: _Broken())
+    monkeypatch.setattr(_lane, "backend_for", lambda model, key, client=None: _Broken())
     cache = _lane.Cache(tmp_path / "c.jsonl", "k", "nvidia/nemotron-3-super-120b-a12b")
     with pytest.raises(gateway.RetryError):
         cache.complete("prompt")
@@ -238,3 +238,34 @@ def test_endpoint_5xx_and_intermittent_404_are_transient():
     assert _lane._is_transient(Exception("Error code: 502 - Bad Gateway"))
     assert not _lane._is_transient(ValueError("bad json"))
     assert not _lane._is_rate_limited(NotFoundError("Error code: 404"))
+
+
+def test_paced_complete_waits_through_429_and_503_then_succeeds(monkeypatch):
+    """The one call every runner cache uses: an empty bucket or an overloaded endpoint is waited out,
+    a genuine fault is not."""
+    monkeypatch.setattr(_lane.time, "sleep", lambda _s: None)
+    monkeypatch.setattr(_lane, "_pace", lambda _m: None)
+
+    class RateLimitError(Exception):
+        pass
+
+    class InternalServerError(Exception):
+        pass
+
+    script = [RateLimitError("Error code: 429"), InternalServerError("Error code: 503 - Service temporarily overloaded"), "B"]
+
+    class _Backend:
+        def complete(self, prompt, decoding=None):
+            item = script.pop(0)
+            if isinstance(item, Exception):
+                raise item
+            return item
+
+    monkeypatch.setattr(_lane, "backend_for", lambda model, key, client=None: _Backend())
+    monkeypatch.setattr(_lane.gateway, "RetryBackend", lambda b, tries, backoff: b)
+    assert _lane.paced_complete("nvidia/x", "k", "p") == "B"
+
+    script[:] = [ValueError("bad json")]
+    import pytest
+    with pytest.raises(ValueError):
+        _lane.paced_complete("nvidia/x", "k", "p")

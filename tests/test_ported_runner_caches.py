@@ -44,8 +44,8 @@ def test_the_sweep_cache_keys_on_temperature_and_sample_and_reads_the_committed_
 
 def test_the_sweep_passes_the_temperature_to_the_backend_and_records_the_draw(tmp_path, monkeypatch):
     backend = _Backend()
-    monkeypatch.setattr(_lane, "backend_for", lambda model, key: backend)
-    monkeypatch.setattr(ts.gateway, "RetryBackend", lambda b, tries, backoff: b)
+    monkeypatch.setattr(_lane, "backend_for", lambda model, key, client=None: backend)
+    monkeypatch.setattr(_lane.gateway, "RetryBackend", lambda b, tries, backoff: b)
     monkeypatch.setattr(_lane, "_pace", lambda model: None)
     cache = ts._DrawCache(tmp_path / "c.jsonl", "k", MODEL)
     assert cache.complete("Q", 1.0, 1) == "B"

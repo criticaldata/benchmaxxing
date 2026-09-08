@@ -227,6 +227,30 @@ def scoped(model: str, out: str, default_cache: str, cache: str | None = None):
     return out_dir, cache_path
 
 
+def paced_complete(model: str, key, prompt: str, decoding=None, client=None):
+    """One completion, paced to the model's rate and retried through a 429 or a transient fault.
+
+    This is the single call every runner cache goes through. The inner ``RetryBackend`` covers the
+    quick retries; this loop covers the slow ones: an empty rate bucket (wait RATE_LIMIT_SLEEP) or a
+    dropped connection, 5xx or intermittent 404 (wait TRANSIENT_SLEEP). Anything else, and the last
+    attempt of anything, is re-raised so a real fault still fails the run.
+    """
+    backend = gateway.RetryBackend(backend_for(model, key, client=client), tries=5, backoff=3.0)
+    for attempt in range(RATE_LIMIT_TRIES):
+        _pace(model)
+        try:
+            return backend.complete(prompt, decoding=decoding or {"temperature": 0})
+        except Exception as exc:  # noqa: BLE001  (re-raised below unless it is a 429 or transient)
+            root = exc
+            while root.__cause__ is not None:
+                root = root.__cause__
+            limited = _is_rate_limited(root)
+            if attempt == RATE_LIMIT_TRIES - 1 or not (limited or _is_transient(root)):
+                raise
+            time.sleep(RATE_LIMIT_SLEEP if limited else TRANSIENT_SLEEP)
+    return None
+
+
 class Cache:
     """Prompt cache keyed on (model, prompt); a fully cached run needs no API key."""
 
@@ -247,21 +271,7 @@ class Cache:
         if not self.key:
             raise SystemExit(f"Cache miss and no {key_name(model)} set for {model} "
                              "(a fully cached run needs no key).")
-        backend = gateway.RetryBackend(backend_for(model, self.key), tries=5, backoff=3.0)
-        for attempt in range(RATE_LIMIT_TRIES):
-            _pace(model)
-            try:
-                resp = backend.complete(prompt, decoding={"temperature": 0})
-                break
-            except Exception as exc:  # noqa: BLE001  (re-raised below unless it is a 429)
-                root = exc
-                while root.__cause__ is not None:
-                    root = root.__cause__
-                limited = _is_rate_limited(root)
-                if attempt == RATE_LIMIT_TRIES - 1 or not (limited or _is_transient(root)):
-                    raise
-                # The bucket is empty. Wait for a refill rather than losing the whole run.
-                time.sleep(RATE_LIMIT_SLEEP if limited else TRANSIENT_SLEEP)
+        resp = paced_complete(model, self.key, prompt, decoding={"temperature": 0})
         if resp is None:
             raise SystemExit(f"{model} returned an empty completion (content=None). Reasoning-only "
                              "models are not usable here: the parsers read `content`.")
