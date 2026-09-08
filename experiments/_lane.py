@@ -177,6 +177,47 @@ def add_model_arg(ap, default: str = DEFAULT_MODEL):
                          "the OpenAI-compatible endpoint (NVIDIA NIM by default).")
 
 
+GEMINI_IDS = ("gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.5-pro")
+
+
+def rebind_models(namespace: dict, model: str) -> int:
+    """Rebind every Gemini id in a runner's module constants to `model`, in place.
+
+    The Gemini-only runners name their seats with module constants such as HOLDOUT, MODELS, TIERS
+    or MEMBERS, as strings, lists of strings, lists of (name, id) pairs or dicts of ids. When a
+    second model is requested, every one of those seats becomes that model, so a committee runner
+    compares the requested model's committee against Gemini's rather than mixing lineages. Returns
+    the number of ids rebound; zero means the runner had nothing to rebind, which is a bug.
+    """
+    def swap(v):
+        if isinstance(v, str):
+            return (model, 1) if v in GEMINI_IDS else (v, 0)
+        if isinstance(v, tuple):
+            items = [swap(x) for x in v]
+            return tuple(x for x, _ in items), sum(n for _, n in items)
+        if isinstance(v, list):
+            items = [swap(x) for x in v]
+            out = [x for x, _ in items]
+            if all(isinstance(x, str) for x in out):
+                # A list of tiers collapses to one entry per distinct model, so a runner that loops
+                # over tiers does not run the same model twice.
+                out = list(dict.fromkeys(out))
+            return out, sum(n for _, n in items)
+        if isinstance(v, dict):
+            items = {k: swap(x) for k, x in v.items()}
+            return {k: x for k, (x, _) in items.items()}, sum(n for _, n in items.values())
+        return v, 0
+
+    total = 0
+    for name, value in list(namespace.items()):
+        if name.isupper() and not name.startswith("_") and isinstance(value, (str, list, tuple, dict)):
+            new, n = swap(value)
+            if n:
+                namespace[name] = new
+                total += n
+    return total
+
+
 def scoped(model: str, out: str, default_cache: str, cache: str | None = None):
     """Model-scoped output directory and cache path.
 
