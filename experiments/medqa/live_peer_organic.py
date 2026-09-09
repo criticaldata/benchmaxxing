@@ -73,8 +73,8 @@ def main():
     cases = load_cases(args.manifest)[:args.n]
     model_by_agent = dict(members)
     committee = build_committee(
-        [ModelSpec(name=a, lineage="gemini",
-                   tier="flash" if m == PEER_MODEL else "lite", is_open_weights=False)
+        [ModelSpec(name=a, lineage="gemini" if m in _lane.GEMINI_IDS else m.split("/")[0].lower(),
+                   tier="flash" if m == PEER_MODEL else "lite", is_open_weights=m not in _lane.GEMINI_IDS)
          for a, m in members])
 
     def backend_for(spec):

@@ -24,8 +24,8 @@ import argparse
 import hashlib
 import io
 import json
-import os
 import re
+import sys
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
@@ -45,29 +45,18 @@ _NAMING = re.compile(
 )
 
 
-# An open-weights vision model served on the machine that runs the experiment has no vendor endpoint
-# and no key. BENCHMAXXING_LOCAL_BASE_URL names that server; Gemini and DeepSeek ids keep their vendor
-# routing whatever it is set to, so the committed comparator arms cannot be redirected.
-LOCAL_BASE_URL = os.environ.get("BENCHMAXXING_LOCAL_BASE_URL", "").strip()
+# Local routing and key resolution are the shared text-lane rules (experiments/_lane.py): an
+# open-weights model served on this machine needs no key, Gemini and DeepSeek ids keep their vendor
+# routing, and a NIM house id is never redirected.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
 
-
-def _is_local(model: str) -> bool:
-    m = model.lower()
-    return bool(LOCAL_BASE_URL) and "gemini" not in m and "deepseek" not in m
+_is_local = _lane.is_local
 
 
 def _key(model: str):
-    """Resolve the API key strictly based on the model name."""
-    if _is_local(model):
-        return "not-needed"
-    m = model.lower()
-    if "deepseek" in m:
-        return os.environ.get("DEEPSEEK_API_KEY")
-    if "gemini" in m:
-        return os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
-    if "llama" in m or "nvidia" in m or "meta/" in m:
-        return os.environ.get("NVIDIA_API_KEY")
-    return os.environ.get("NVIDIA_API_KEY")
+    """Resolve the API key strictly from the model id, via the shared resolver."""
+    return _lane.key_for(model)
 
 
 def _img_bytes(pil):
@@ -102,7 +91,7 @@ class _Cache:
         if _is_local(self._model):
             backend = self._gw.LocalOpenAICompatibleBackend(
                 model=self._model,
-                base_url=LOCAL_BASE_URL,
+                base_url=_lane.LOCAL_BASE_URL,
                 api_key=self.key
             )
         elif "gemini" in m:

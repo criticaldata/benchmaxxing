@@ -142,10 +142,11 @@ def _call(model, key, prompt, condition):
             root = exc
             while root.__cause__ is not None:
                 root = root.__cause__
-            transient = "timeout" in type(root).__name__.lower() or "connect" in type(root).__name__.lower()
-            if attempt == _lane.RATE_LIMIT_TRIES - 1 or not (_lane._is_rate_limited(root) or transient):
+            # The same recovery the shared cache applies: a 429 waits for the bucket, a dropped
+            # connection, 5xx or intermittent 404 waits briefly; anything else fails the run.
+            if attempt == _lane.RATE_LIMIT_TRIES - 1 or not (_lane._is_rate_limited(root) or _lane._is_transient(root)):
                 raise
-            time.sleep(_lane.RATE_LIMIT_SLEEP if _lane._is_rate_limited(root) else 15)
+            time.sleep(_lane.RATE_LIMIT_SLEEP if _lane._is_rate_limited(root) else _lane.TRANSIENT_SLEEP)
 
 
 def _instruction(model, condition):
@@ -164,10 +165,8 @@ def main():
     args = ap.parse_args()
     model = args.model
     conditions = [c for c in args.conditions.split(",") if c]
-    out_dir, _ = _lane.scoped(model, args.out, "experiments/medqa/results/deliberation_channel_cache.jsonl")
-    slug = model.replace("/", "_")
-    store = _Store(Path(args.out) / ("deliberation_channel_cache.jsonl" if model == _lane.DEFAULT_MODEL
-                                     else f"{slug}_deliberation_channel_cache.jsonl"))
+    out_dir, cache_path = _lane.scoped(model, args.out, "experiments/medqa/results/deliberation_channel_cache.jsonl")
+    store = _Store(Path(cache_path))
     key = _lane.key_for(model)
     cases = load_cases(args.manifest)[:args.n]
 
