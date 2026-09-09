@@ -55,10 +55,23 @@ TRANSIENT_SLEEP = 15  # a dropped connection needs a pause, not the full rate-li
 MIN_CALL_INTERVAL = float(os.environ.get("BENCHMAXXING_MIN_CALL_INTERVAL", "0") or 0)
 
 
+# Ids under these prefixes are hosted by their vendor's own endpoint in this repo and are never
+# redirected to a local server. The nemotron arms are a committed comparator: a shell with a local
+# vLLM configured must not quietly answer a cache miss for them from a different model.
+HOSTED_PREFIXES = ("nvidia/",)
+
+
 def is_local(model: str) -> bool:
-    """True when this model is served locally rather than by a vendor endpoint."""
+    """True when this model is served locally rather than by a vendor endpoint.
+
+    Requires BENCHMAXXING_LOCAL_BASE_URL, and excludes every Gemini and DeepSeek id and every id
+    under HOSTED_PREFIXES, so setting the variable can only ever capture an open-weights id that
+    has no vendor endpoint here.
+    """
     m = model.lower()
-    return bool(LOCAL_BASE_URL) and "gemini" not in m and "deepseek" not in m
+    if not LOCAL_BASE_URL or "gemini" in m or "deepseek" in m:
+        return False
+    return not m.startswith(HOSTED_PREFIXES)
 
 
 def interval_for(model: str) -> float:

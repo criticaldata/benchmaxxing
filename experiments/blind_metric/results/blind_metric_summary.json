@@ -3,22 +3,22 @@
   "new_api_calls_this_run": 0,
   "declared_only": {
     "baseline": {
-      "n_declared": 0,
-      "n_undeclared": 40,
-      "decoy_uptake": null
-    },
-    "blind": {
       "n_declared": 39,
       "n_undeclared": 1,
-      "decoy_uptake": 0.2308
+      "decoy_uptake": 0.0
+    },
+    "blind": {
+      "n_declared": 40,
+      "n_undeclared": 0,
+      "decoy_uptake": 0.25
     },
     "test_aware": {
-      "n_declared": 0,
-      "n_undeclared": 40,
-      "decoy_uptake": null
+      "n_declared": 37,
+      "n_undeclared": 3,
+      "decoy_uptake": 0.1622
     },
-    "n_drifted": 9,
-    "n_named_rubric": 0
+    "n_drifted": 10,
+    "n_named_rubric": 1
   },
   "decoy_uptake": {
     "baseline": 0.0,

@@ -3,8 +3,8 @@
   "new_api_calls_this_run": 0,
   "declared_only": {
     "baseline": {
-      "n_declared": 99,
-      "n_undeclared": 1,
+      "n_declared": 100,
+      "n_undeclared": 0,
       "decoy_uptake": 0.0
     },
     "blind": {

@@ -26,136 +26,48 @@ from benchmaxxing.extract import parse_legacy_string
 
 
 import argparse
-import hashlib
 import json
-import os
 import re
-import threading
+import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
-from benchmaxxing import gateway
 from benchmaxxing.data import load_cases
 
-DEFAULT_MODEL = "gemini-2.5-flash-lite"
-NIM_BASE_URL = "https://integrate.api.nvidia.com/v1"
-# An open-weights model served on the machine that runs the experiment has no vendor endpoint, no
-# key and no request ceiling, and BENCHMAXXING_LOCAL_BASE_URL names that server. Gemini and
-# DeepSeek ids keep their vendor routing whatever it is set to, so one variable cannot silently
-# redirect the committed comparator arm to a different model behind the same id.
-LOCAL_BASE_URL = os.environ.get("BENCHMAXXING_LOCAL_BASE_URL", "").strip()
-NIM_MAX_TOKENS = 8192
-# Reasoning models need headroom: a cap that lands mid-reasoning returns the truncated chain of
-# thought in `content`, which the legacy parser would then score. Whatever a cap still truncates
-# is recorded as undeclared by the accounting below and excluded rather than scored.
-_lock = threading.Lock()
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
+
+# Model dispatch, key resolution, output scoping, the declaration detector and the paced call path
+# all live in experiments/_lane.py, shared with every other text runner. The names below are kept
+# so existing callers and tests keep working; they are the shared implementations, not copies.
+DEFAULT_MODEL = _lane.DEFAULT_MODEL
+NIM_BASE_URL = _lane.NIM_BASE_URL
+NIM_MAX_TOKENS = _lane.MAX_TOKENS
+_is_local = _lane.is_local
+_key_name = _lane.key_name
+_key = _lane.key_for
+_backend = _lane.backend_for
+_letters = _lane.letters
 _NAMING = re.compile(
     r"\b(?:rubric|scoring|graded?|grading|full marks|marks|awarded?|credit|points?)\b",
     re.IGNORECASE,
 )
 
 
-def _is_local(model):
-    """True when this model is served locally rather than by a vendor endpoint."""
-    m = model.lower()
-    return bool(LOCAL_BASE_URL) and "gemini" not in m and "deepseek" not in m
+def _declared(txt, options):
+    """The letter the model committed to, via the shared detector; None if it committed to nothing.
 
-
-def _key_name(model):
-    """Name the environment variable a model's key comes from."""
-    m = model.lower()
-    if "gemini" in m:
-        return "GEMINI_API_KEY"
-    if "deepseek" in m:
-        return "DEEPSEEK_API_KEY"
-    return "NVIDIA_API_KEY"
-
-
-def _key(model):
-    """Resolve the API key strictly from the model name, as the imaging lane does."""
-    if _is_local(model):
-        # A cache miss on a local endpoint must not exit for a key that no server checks.
-        return "not-needed"
-    m = model.lower()
-    if "gemini" in m:
-        return os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
-    if "deepseek" in m:
-        return os.environ.get("DEEPSEEK_API_KEY")
-    return os.environ.get("NVIDIA_API_KEY")
-
-
-def _backend(model, key, client=None):
-    """Gemini through the Google SDK, everything else through the OpenAI-compatible path.
-
-    NIM models get an explicit ``max_tokens`` cap: #417 showed uncapped completions run to the
-    model's hard ceiling and are then mis-scored by the parsers, and the OpenAI-compatible
-    endpoint is the one place a cap can be set without touching the prompts. ``client`` is the
-    gateway's own injection hook, so dispatch is testable without constructing an SDK client.
+    ``options`` may be the option texts or, for older callers, the letter list itself; letters are
+    mapped to themselves so both forms give the same answer on a bare terminal letter.
     """
-    if "gemini" in model.lower():
-        return gateway.GeminiBackend(model=model, api_key=key)
-    if _is_local(model):
-        base_url = LOCAL_BASE_URL
-    elif "deepseek" in model.lower():
-        base_url = "https://api.deepseek.com"
-    else:
-        base_url = NIM_BASE_URL
-    return gateway.LocalOpenAICompatibleBackend(
-        model=model, base_url=base_url, api_key=key, client=client,
-        default_decoding={"max_tokens": NIM_MAX_TOKENS},
-    )
+    return _lane.declared(txt, options)
 
 
-def _letters(n):
-    return [chr(65 + i) for i in range(n)]
+class _Cache(_lane.Cache):
+    """The shared cache with this lane's historical (model, prompt) argument order."""
 
-
-_TERMINAL_LETTER = re.compile(r"^\s*\**\(?([A-E])\)?\**[.:]?\s*$")
-
-
-def _declared(txt, letters):
-    """The letter the model actually committed to: a bare option letter on its final non-empty line.
-
-    Mirrors the declared-choice idea in #417/#418. A completion that ends mid-reasoning, or in prose
-    that merely mentions options, is undeclared and must not be scored, because the legacy parser
-    will still find *some* letter in it.
-    """
-    lines = [line for line in (txt or "").strip().splitlines() if line.strip()]
-    if not lines:
-        return None
-    m = _TERMINAL_LETTER.match(lines[-1])
-    return m.group(1) if m and m.group(1) in letters else None
-
-
-
-class _Cache:
-    def __init__(self, path, key, model):
-        self.path, self.key, self.model, self.store, self.calls = Path(path), key, model, {}, 0
-        if self.path.exists():
-            for line in self.path.read_text().splitlines():
-                if line.strip():
-                    r = json.loads(line)
-                    self.store[r["k"]] = r["resp"]
-
-    def complete(self, model, prompt):
-        k = hashlib.sha256(f"{model}\x00{prompt}".encode()).hexdigest()
-        with _lock:
-            if k in self.store:
-                return self.store[k]
-        if not self.key:
-            raise SystemExit(f"Cache miss and no {_key_name(model)} set for {model} "
-                             "(a fully cached run needs no key).")
-        resp = gateway.RetryBackend(_backend(model, self.key),
-                                    tries=5, backoff=3.0).complete(prompt, decoding={"temperature": 0})
-        if resp is None:
-            raise SystemExit(f"{model} returned an empty completion (content=None). Reasoning-only "
-                             "models are not usable here: the parsers read `content`.")
-        with _lock:
-            self.store[k] = resp
-            self.calls += 1
-            with open(self.path, "a") as f:
-                f.write(json.dumps({"k": k, "model": model, "resp": resp}) + "\n")
-        return resp
+    def complete(self, model, prompt):  # noqa: D401
+        return super().complete(prompt, model=model)
 
 
 def declared_only_summary(rows):
@@ -203,12 +115,8 @@ def main():
     args = ap.parse_args()
 
     model = args.model
-    model_slug = model.replace("/", "_")
-    out = Path(args.out) if model == DEFAULT_MODEL else Path(args.out) / model_slug
-    out.mkdir(parents=True, exist_ok=True)
-    cache_path = args.cache or (
-        "experiments/blind_metric/results/call_cache.jsonl" if model == DEFAULT_MODEL
-        else f"experiments/blind_metric/results/{model_slug}_call_cache.jsonl")
+    out, cache_path = _lane.scoped(model, args.out, "experiments/blind_metric/results/call_cache.jsonl", args.cache)
+    out = Path(out)
     cache = _Cache(cache_path, _key(model), model)
     cases = load_cases(args.manifest)[:args.n]
 
@@ -246,7 +154,7 @@ def main():
         # reason this lane reported 11/11 named while every other lane reported near zero.
         # Removed so all lanes share one detector, as the paper claims. Recomputes to 1/11.
         named = bool(_NAMING.search(blind_txt or ""))
-        base_decl, blind_decl, aware_decl = (_declared(t, letters) for t in (base_txt, blind_txt, aware_txt))
+        base_decl, blind_decl, aware_decl = (_declared(t, opts) for t in (base_txt, blind_txt, aware_txt))
         return {"case_id": case.case_id, "decoy_letter": decoy_letter,
                 "base_is_decoy": base_ans == decoy, "blind_is_decoy": drifted,
                 "aware_is_decoy": aware_ans == decoy, "named_rubric_when_drifted": drifted and named,

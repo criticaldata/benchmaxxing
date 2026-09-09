@@ -31,16 +31,15 @@ def served_locally(monkeypatch):
     monkeypatch.setattr(_lane, "LOCAL_BASE_URL", LOCAL)
 
 
-def test_a_local_server_captures_the_openai_compatible_ids_and_nothing_else(served_locally):
-    """Every id that would go to the OpenAI-compatible vendor endpoint is served locally instead.
+def test_a_local_server_captures_open_weights_ids_and_no_committed_comparator(served_locally):
+    """Only an open-weights id with no vendor endpoint here is served locally.
 
-    That includes the nemotron id, deliberately: an open-weights comparator can also be served on
-    the machine, and routing it anywhere else while a local server is configured would be
-    surprising. The two ids that reach a vendor through its own SDK path are the ones that must
-    not move, since their committed caches are what the cross-lineage comparison rests on.
+    The nemotron id is a committed comparator arm served by NIM; a shell with a local vLLM
+    configured must not quietly answer a cache miss for it from a different model behind the same
+    id. Gemini and DeepSeek reach their vendor through its own SDK path and never move either.
     """
     assert _lane.is_local(OPEN_WEIGHTS)
-    assert _lane.is_local(NIM)
+    assert not _lane.is_local(NIM)
     assert not _lane.is_local(GEMINI)
     assert not _lane.is_local(DEEPSEEK)
 
@@ -109,15 +108,17 @@ def test_a_miss_without_a_local_server_still_names_the_vendor_variable(tmp_path,
     assert "NVIDIA_API_KEY" in str(exc.value)
 
 
-# The blind-metric lane carries its own copy of the key and backend dispatch, so the same variable
-# has to reach that copy too, on the same terms.
+# The blind-metric lane goes through the shared dispatch; these tests pin that its public names are
+# the shared implementations and honour the same variable.
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "experiments" / "blind_metric"))
 import blind_metric  # noqa: E402
 
 
 def test_the_blind_metric_lane_honours_the_same_variable(monkeypatch):
-    monkeypatch.setattr(blind_metric, "LOCAL_BASE_URL", LOCAL)
+    monkeypatch.setattr(_lane, "LOCAL_BASE_URL", LOCAL)
     assert blind_metric._is_local(OPEN_WEIGHTS)
+    # A NIM house id is a committed comparator and is never redirected to the local server.
+    assert not blind_metric._is_local("nvidia/nemotron-3-super-120b-a12b")
     assert not blind_metric._is_local(GEMINI)
     assert blind_metric._key(OPEN_WEIGHTS) == "not-needed"
     backend = blind_metric._backend(OPEN_WEIGHTS, blind_metric._key(OPEN_WEIGHTS), client=_Stub())
@@ -127,7 +128,7 @@ def test_the_blind_metric_lane_honours_the_same_variable(monkeypatch):
 
 
 def test_the_blind_metric_lane_keeps_vendor_routing_without_the_variable(monkeypatch):
-    monkeypatch.setattr(blind_metric, "LOCAL_BASE_URL", "")
+    monkeypatch.setattr(_lane, "LOCAL_BASE_URL", "")
     assert not blind_metric._is_local(OPEN_WEIGHTS)
     assert blind_metric._backend(OPEN_WEIGHTS, "nvapi-test",
                                  client=_Stub()).base_url == blind_metric.NIM_BASE_URL
