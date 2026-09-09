@@ -48,7 +48,9 @@ def test_each_runner_goes_through_the_shared_dispatch(runner):
     assert "_lane.scoped(model, args.out," in src
     # No direct Gemini construction remains: a Gemini id reaches GeminiBackend via backend_for.
     assert "gateway.GeminiBackend(" not in src
-    assert re.search(r"_lane\.backend_for\((self\.)?model, (self\.)?(api_)?key\)", src)
+    # Every live call goes through the paced, rate-limit-aware path, never a bare RetryBackend.
+    assert "_lane.paced_complete(" in src
+    assert "RetryBackend(" not in src
 
 
 @pytest.mark.parametrize("runner", RUNNERS)

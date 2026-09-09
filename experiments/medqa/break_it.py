@@ -27,10 +27,13 @@ import hashlib
 import json
 import math
 import os
+import sys
 from collections import defaultdict
 from pathlib import Path
 
-from benchmaxxing import gateway
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
+
 from benchmaxxing.data import load_cases
 
 MODELS = ["gemini-2.5-flash", "gemini-2.5-flash-lite"]
@@ -65,9 +68,8 @@ def _cache_complete(model, key, prompt, cache):
     if k in store:
         return store[k]
     if not key:
-        raise SystemExit("Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key).")
-    backend = gateway.RetryBackend(gateway.GeminiBackend(model=model, api_key=key), tries=5, backoff=3.0)
-    resp = backend.complete(prompt, decoding={"temperature": 0})
+        raise SystemExit(f"Cache miss and no {_lane.key_name(model)} set for {model} (a fully cached run needs no key).")
+    resp = _lane.paced_complete(model, key, prompt, decoding={"temperature": 0})
     with open(cache, "a") as f:
         f.write(json.dumps({"k": k, "model": model, "resp": resp}) + "\n")
     return resp
@@ -119,13 +121,16 @@ def main():
     ap.add_argument("--manifest", required=True)
     ap.add_argument("--solo-records", required=True, help="solo_records.jsonl (to pick hard cases)")
     ap.add_argument("--out", default="experiments/medqa/results")
+    _lane.add_model_arg(ap)
     ap.add_argument("--n", type=int, default=20)
     args = ap.parse_args()
 
-    key = _key()
-    out = Path(args.out)
-    out.mkdir(parents=True, exist_ok=True)
-    cache = out / "call_cache.jsonl"
+    model = args.model
+    if model != _lane.DEFAULT_MODEL:
+        # Every Gemini seat becomes the requested model: this model's committee against Gemini's.
+        assert _lane.rebind_models(globals(), model) > 0
+    out, cache = _lane.scoped(model, args.out, "experiments/medqa/results/call_cache.jsonl")
+    key = _lane.key_for(model) if model != _lane.DEFAULT_MODEL else _key()
     hard = _hard_case_ids(args.solo_records)
     cases = [c for c in load_cases(args.manifest) if c.case_id in hard][:args.n]
 

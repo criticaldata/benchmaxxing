@@ -29,14 +29,17 @@ noise floor reproduces instead of being redrawn. ``--refresh-noise`` draws fresh
 from __future__ import annotations
 
 import argparse
+import sys
 import json
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from benchmaxxing.cues.tabular import INFORMATION_IDENTICAL, build_tabular_twin
 from benchmaxxing.stats import achieved_power, mcnemar, multiple_comparison
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
 from experiments.support2._common import (
-    MODEL,
+    MODEL,  # noqa: F401  (rebind_models needs it in this module namespace)
     Cache,
     api_key,
     load_manifest_cases,
@@ -71,18 +74,25 @@ def _cue_stats(rows, cue):
 def main():
     ap = argparse.ArgumentParser(description="SUPPORT2 solo shortcut susceptibility.")
     ap.add_argument("--manifest", required=True, help="SUPPORT2 manifest (support2 adapter)")
-    ap.add_argument("--cache", default="experiments/support2/results/call_cache.jsonl")
-    ap.add_argument("--noise-log", default="experiments/support2/results/noise_resamples.jsonl")
+    ap.add_argument("--cache", default=None, help="defaults to the model-scoped file")
+    ap.add_argument("--noise-log", default=None, help="defaults to the model-scoped file")
     ap.add_argument("--out", default="experiments/support2/results")
+    _lane.add_model_arg(ap)
     ap.add_argument("--n", type=int, default=120)
     ap.add_argument("--noise-temperature", type=float, default=1.0)
     ap.add_argument("--refresh-noise", action="store_true",
                     help="draw fresh temperature>0 samples instead of replaying the noise log")
     args = ap.parse_args()
 
-    out = Path(args.out)
-    out.mkdir(parents=True, exist_ok=True)
-    cache = Cache(args.cache, api_key(), noise_path=args.noise_log,
+    model = args.model
+    if model != _lane.DEFAULT_MODEL:
+        # Every Gemini seat becomes the requested model: this model's committee against Gemini's.
+        assert _lane.rebind_models(globals(), model) > 0
+    key = _lane.key_for(model) if model != _lane.DEFAULT_MODEL else api_key()
+
+    out, cache_path = _lane.scoped(model, args.out, "experiments/support2/results/call_cache.jsonl", args.cache)
+    _, noise_path = _lane.scoped(model, args.out, "experiments/support2/results/noise_resamples.jsonl", args.noise_log)
+    cache = Cache(cache_path, key, model=model, noise_path=noise_path,
                   refresh_noise=args.refresh_noise)
     cases = load_manifest_cases(args.manifest, args.n)
 
@@ -124,7 +134,7 @@ def main():
     scorable = [r for r in rows if not r.get("clean_abstained")]
     summary = {
         "n": len(rows),
-        "model": MODEL,
+        "model": model,
         "n_clean_abstained": sum(1 for r in rows if r.get("clean_abstained")),
         "clean_accuracy_excl_abstentions": _rate(
             sum(r["clean_correct"] for r in scorable), len(scorable)

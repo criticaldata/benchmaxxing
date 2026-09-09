@@ -22,14 +22,17 @@ reproduces the committed summary with zero API calls and no key.
 from __future__ import annotations
 
 import argparse
+import sys
 import json
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from benchmaxxing.stats import mcnemar
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
 from experiments.support2._common import (
     COMMITTEE,
-    MODEL,
+    MODEL,  # noqa: F401  (rebind_models needs it in this module namespace)
     Cache,
     api_key,
     load_manifest_cases,
@@ -75,14 +78,20 @@ def _arm_summary(rows, arm):
 def main():
     ap = argparse.ArgumentParser(description="SUPPORT2 confident-wrong-seed cascade contagion.")
     ap.add_argument("--manifest", required=True, help="SUPPORT2 manifest (support2 adapter)")
-    ap.add_argument("--cache", default="experiments/support2/results/call_cache.jsonl")
+    ap.add_argument("--cache", default=None, help="defaults to the model-scoped file")
     ap.add_argument("--out", default="experiments/support2/results")
+    _lane.add_model_arg(ap)
     ap.add_argument("--n", type=int, default=120)
     args = ap.parse_args()
 
-    out = Path(args.out)
-    out.mkdir(parents=True, exist_ok=True)
-    cache = Cache(args.cache, api_key())
+    model = args.model
+    if model != _lane.DEFAULT_MODEL:
+        # Every Gemini seat becomes the requested model: this model's committee against Gemini's.
+        assert _lane.rebind_models(globals(), model) > 0
+    key = _lane.key_for(model) if model != _lane.DEFAULT_MODEL else api_key()
+
+    out, cache_path = _lane.scoped(model, args.out, "experiments/support2/results/call_cache.jsonl", args.cache)
+    cache = Cache(cache_path, key, model=model)
     cases = load_manifest_cases(args.manifest, args.n)
 
     def run_one(case):
@@ -126,7 +135,7 @@ def main():
 
     summary = {
         "n": len(rows),
-        "model": MODEL,
+        "model": model,
         "committee": [m.name for m in COMMITTEE.members],
         # Says what the holdout actually saw. The earlier label claimed a case-anchored reasoned
         # seed, but run_board rendered only "- agent: answer" and dropped the rationale, so this arm

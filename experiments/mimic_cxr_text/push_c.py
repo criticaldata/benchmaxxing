@@ -25,13 +25,16 @@ import argparse
 import hashlib
 import json
 import math
+import sys
 import os
 import re
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
-from benchmaxxing import gateway
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
+
 from benchmaxxing.data import load_cases
 from benchmaxxing.stats import mcnemar
 from experiments.mimic_cxr_text.case_index import build_index_map, hard_cases
@@ -120,9 +123,9 @@ class _Cache:
             self._inner = {}
         b = self._inner.get(model)
         if b is None:
-            b = gateway.RetryBackend(gateway.GeminiBackend(model=model, api_key=self.key), tries=5, backoff=3.0)
+            b = model
             self._inner[model] = b
-        resp = b.complete(prompt, decoding={"temperature": 0})
+        resp = _lane.paced_complete(b, self.key, prompt, decoding={"temperature": 0})
         with _lock:
             self.store[k] = resp
             with open(self.path, "a") as f:
@@ -145,12 +148,18 @@ def main():
     ap.add_argument("--manifest", required=True)
     ap.add_argument("--solo-records", required=True)
     ap.add_argument("--out", default="experiments/mimic_cxr_text/results")
+    _lane.add_model_arg(ap)
     ap.add_argument("--n", type=int, default=60)
     args = ap.parse_args()
 
-    out = Path(args.out)
-    out.mkdir(parents=True, exist_ok=True)
-    cache = _Cache(out / "call_cache.jsonl", _key())
+    model = args.model
+    if model != _lane.DEFAULT_MODEL:
+        # Every Gemini seat becomes the requested model: this model's committee against Gemini's.
+        assert _lane.rebind_models(globals(), model) > 0
+    key = _lane.key_for(model) if model != _lane.DEFAULT_MODEL else _key()
+
+    out, cache_path = _lane.scoped(model, args.out, "experiments/mimic_cxr_text/results/call_cache.jsonl")
+    cache = _Cache(cache_path, key)
     all_cases = load_cases(args.manifest)
     index_of = build_index_map(all_cases)
     cases = hard_cases(all_cases, args.solo_records, args.n)

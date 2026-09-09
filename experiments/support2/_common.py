@@ -10,10 +10,13 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import sys
 import threading
 from pathlib import Path
 
-from benchmaxxing import gateway
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
+
 from benchmaxxing.blackboard import AgentResponse, render_board, run_committee
 from benchmaxxing.extract import Abstention, parse_mcq_choice
 from benchmaxxing.roster import build_committee
@@ -58,6 +61,16 @@ def parse_answer(text, options):
     return None if isinstance(value, Abstention) else options[value]
 
 
+
+class _PacedBackend:
+    """A backend-shaped handle whose every call goes through the shared paced path."""
+
+    def __init__(self, model, key):
+        self.model, self.key = model, key
+
+    def complete(self, prompt, decoding=None):
+        return _lane.paced_complete(self.model, self.key, prompt, decoding=decoding)
+
 class Cache:
     """A (model, prompt) -> response cache backed by an append-only JSONL file.
 
@@ -98,9 +111,12 @@ class Cache:
         # every thread on the import lock, with no call ever reaching the network.
         with _backend_lock:
             if model not in self._backend:
-                self._backend[model] = gateway.RetryBackend(
-                    gateway.GeminiBackend(model=model, api_key=self.key), tries=5, backoff=3.0
-                )
+                # Constructed once here so the vendor SDK import happens on the main thread. The
+                # object returned exposes .complete(prompt, decoding=...) like a backend, and the
+                # tests stub this method, but every live call goes through paced_complete so a 429
+                # waits for the rate bucket instead of ending the arm.
+                _lane.backend_for(model, self.key)
+                self._backend[model] = _PacedBackend(model, self.key)
             return self._backend[model]
 
     def complete(self, prompt, model=None):

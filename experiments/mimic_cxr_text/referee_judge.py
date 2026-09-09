@@ -11,13 +11,16 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 import os
 import re
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
-from benchmaxxing import gateway
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
+
 from benchmaxxing.blackboard import AgentResponse, render_board, run_committee
 from benchmaxxing.data import load_cases
 from benchmaxxing.roster import build_committee
@@ -86,8 +89,7 @@ class _Cache:
                 return self.store[k]
         if not self.key:
             raise SystemExit("Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key).")
-        resp = gateway.RetryBackend(gateway.GeminiBackend(model=model, api_key=self.key),
-                                    tries=5, backoff=3.0).complete(prompt, decoding={"temperature": 0})
+        resp = _lane.paced_complete(model, self.key, prompt, decoding={"temperature": 0})
         with _lock:
             self.store[k] = resp
             self.calls += 1
@@ -109,17 +111,23 @@ def _pr(pred, truth):
 def main():
     ap = argparse.ArgumentParser(description="Same-lineage judge referee on MIMIC-CXR text (#321 control).")
     ap.add_argument("--manifest", required=True)
-    ap.add_argument("--cache", default="experiments/mimic_cxr_text/results/referee_call_cache.jsonl")
+    ap.add_argument("--cache", default=None, help="defaults to the model-scoped file")
     ap.add_argument("--out", default="experiments/mimic_cxr_text/results")
+    _lane.add_model_arg(ap)
     ap.add_argument("--n", type=int, default=40)
     ap.add_argument("--show-rationale", action="store_true",
                     help="render each peer's reasoning under its vote (#373); off is the "
                          "committed answer-only board, which the cache replays at zero calls")
     args = ap.parse_args()
 
-    out = Path(args.out)
-    out.mkdir(parents=True, exist_ok=True)
-    cache = _Cache(args.cache, _key())
+    model = args.model
+    if model != _lane.DEFAULT_MODEL:
+        # Every Gemini seat becomes the requested model: this model's committee against Gemini's.
+        assert _lane.rebind_models(globals(), model) > 0
+    key = _lane.key_for(model) if model != _lane.DEFAULT_MODEL else _key()
+
+    out, cache_path = _lane.scoped(model, args.out, "experiments/mimic_cxr_text/results/referee_call_cache.jsonl", args.cache)
+    cache = _Cache(cache_path, key)
     all_cases = load_cases(args.manifest)
     index_of = build_index_map(all_cases)
     cases = all_cases[:args.n]
