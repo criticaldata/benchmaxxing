@@ -164,7 +164,7 @@ def main():
     args = ap.parse_args()
     model = args.model
     conditions = [c for c in args.conditions.split(",") if c]
-    out_dir, _ = _lane.scoped(model, args.out, "experiments/medqa/results/deliberation_channel_cache.jsonl")
+    out_dir, _ = _lane.scoped(model, args.out, str(Path(args.out) / "deliberation_channel_cache.jsonl"))
     slug = model.replace("/", "_")
     store = _Store(Path(args.out) / ("deliberation_channel_cache.jsonl" if model == _lane.DEFAULT_MODEL
                                      else f"{slug}_deliberation_channel_cache.jsonl"))

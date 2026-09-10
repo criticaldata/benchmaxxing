@@ -1,0 +1,27 @@
+{"case_id": "medqa-128", "wrong": "Inflammation of synovial space", "baseline": "Perifascicular and perivascula", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-194", "wrong": "Conversion of ferrous iron to ", "baseline": "Conversion of homocysteine to ", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-191", "wrong": "Intrauterine alcohol exposure", "baseline": "Maternal oligohydramnios", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-202", "wrong": "Trachea", "baseline": "Cervical lymph nodes", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-285", "wrong": "Administer intravenous hydroco", "baseline": "Order an ACTH stimulation test", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-300", "wrong": "Inferolateral quadrant of the ", "baseline": "Inferomedial quadrant of the r", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-376", "wrong": "Karyotyping of infant's chromo", "baseline": "T-cell receptor excision circl", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-416", "wrong": "Plays a role in angioedema", "baseline": "Acts as an important opsonin", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": true}
+{"case_id": "medqa-454", "wrong": "A", "baseline": "C", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-499", "wrong": "Microtubule monomeric protein", "baseline": "Anterograde cytoskeletal motor", "generic": false, "anchored": true, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-564", "wrong": "Switch to fluoxetine", "baseline": "Addition of bupropion", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-594", "wrong": "Choledocholithiasis", "baseline": "Duodenal peptic ulcer", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-596", "wrong": "Increase in concentration of s", "baseline": "Closure of the ductus arterios", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-621", "wrong": "Human bite", "baseline": "Cat bite", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-724", "wrong": "Acyclovir", "baseline": "Ceftriaxone and vancomycin", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-829", "wrong": "Azithromycin and admission to ", "baseline": "Ceftriaxone, azithromycin, and", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-861", "wrong": "Malaria", "baseline": "Splenic sequestration crisis", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-911", "wrong": "Decreased libido", "baseline": "QTc prolongation", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-906", "wrong": "Nonencapsulated groups of well", "baseline": "Clusters of bland cells withou", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-966", "wrong": "Alanine aminotransferase", "baseline": "Troponin T", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-1010", "wrong": "Gram-negative rods in school o", "baseline": "Donovan bodies on Wright-Giems", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-1040", "wrong": "Abnormal coagulation and fibri", "baseline": "Decreased cardiac output", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-1106", "wrong": "Bipolar I disorder", "baseline": "Bipolar II disorder", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-1107", "wrong": "Increased vital capacity", "baseline": "Decreased residual volume", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-1128", "wrong": "Positive Prussian-blue stainin", "baseline": "Areas with 'ghost cells' surro", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-1146", "wrong": "Administer a blood transfusion", "baseline": "Call the ethics board of the h", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-1266", "wrong": "Metoprolol", "baseline": "Hydrochlorthiazide", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}

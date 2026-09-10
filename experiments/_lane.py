@@ -126,6 +126,47 @@ def is_gemini(model: str) -> bool:
     return "gemini" in model.lower()
 
 
+GEMINI_IDS = ("gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.5-pro")
+
+
+def rebind_models(namespace: dict, model: str) -> int:
+    """Rebind every Gemini id in a runner's module constants to `model`, in place.
+
+    The Gemini-only runners name their seats with module constants such as HOLDOUT, MODELS, TIERS
+    or MEMBERS, as strings, lists of strings, lists of (name, id) pairs or dicts of ids. When a
+    second model is requested, every one of those seats becomes that model, so a committee runner
+    compares the requested model's committee against Gemini's rather than mixing lineages. Returns
+    the number of ids rebound; zero means the runner had nothing to rebind, which is a bug.
+    """
+    def swap(v):
+        if isinstance(v, str):
+            return (model, 1) if v in GEMINI_IDS else (v, 0)
+        if isinstance(v, tuple):
+            items = [swap(x) for x in v]
+            return tuple(x for x, _ in items), sum(n for _, n in items)
+        if isinstance(v, list):
+            items = [swap(x) for x in v]
+            out = [x for x, _ in items]
+            if all(isinstance(x, str) for x in out):
+                # A list of tiers collapses to one entry per distinct model, so a runner that loops
+                # over tiers does not run the same model twice.
+                out = list(dict.fromkeys(out))
+            return out, sum(n for _, n in items)
+        if isinstance(v, dict):
+            items = {k: swap(x) for k, x in v.items()}
+            return {k: x for k, (x, _) in items.items()}, sum(n for _, n in items.values())
+        return v, 0
+
+    total = 0
+    for name, value in list(namespace.items()):
+        if name.isupper() and not name.startswith("_") and isinstance(value, (str, list, tuple, dict)):
+            new, n = swap(value)
+            if n:
+                namespace[name] = new
+                total += n
+    return total
+
+
 def key_name(model: str) -> str:
     """Name the environment variable a model's key comes from."""
     m = model.lower()
@@ -211,7 +252,8 @@ def add_model_arg(ap, default: str = DEFAULT_MODEL):
                          "the OpenAI-compatible endpoint (NVIDIA NIM by default).")
 
 
-def scoped(model: str, out: str, default_cache: str, cache: str | None = None):
+def scoped(model: str, out: str, default_cache: str, cache: str | None = None,
+           default: str | None = None):
     """Model-scoped output directory and cache path.
 
     The default model keeps the committed paths untouched so its results and cache stay exactly
@@ -219,10 +261,14 @@ def scoped(model: str, out: str, default_cache: str, cache: str | None = None):
     own cache file, which also keeps a thirteen-way fan-out off one shared, conflict-prone file.
     """
     slug = model.replace("/", "_")
-    out_dir = Path(out) if model == DEFAULT_MODEL else Path(out) / slug
+    # ``default`` is the runner's own committed id. The imaging lane ran on gemini-2.5-flash, so
+    # comparing against DEFAULT_MODEL alone would push its committed Gemini results into a
+    # subdirectory the paper's numbers were never computed in.
+    base = default or DEFAULT_MODEL
+    out_dir = Path(out) if model == base else Path(out) / slug
     if cache:
         cache_path = Path(cache)
-    elif model == DEFAULT_MODEL:
+    elif model == base:
         cache_path = Path(default_cache)
     else:
         p = Path(default_cache)
@@ -231,8 +277,12 @@ def scoped(model: str, out: str, default_cache: str, cache: str | None = None):
     return out_dir, cache_path
 
 
-def paced_complete(model: str, key, prompt: str, decoding=None, client=None):
+def paced_complete(model: str, key, prompt: str, decoding=None, client=None, image=None):
     """One completion, paced to the model's rate and retried through a 429 or a transient fault.
+
+    ``image`` is passed straight through to the backend, so the vision runners reach the same
+    pacing and 429/transient recovery as the text lanes; every gateway backend's ``complete``
+    accepts it, and it is ``None`` for a text prompt.
 
     This is the single call every runner cache goes through. The inner ``RetryBackend`` covers the
     quick retries; this loop covers the slow ones: an empty rate bucket (wait RATE_LIMIT_SLEEP) or a
@@ -243,7 +293,12 @@ def paced_complete(model: str, key, prompt: str, decoding=None, client=None):
     for attempt in range(RATE_LIMIT_TRIES):
         _pace(model)
         try:
-            return backend.complete(prompt, decoding=decoding or {"temperature": 0})
+            decode = decoding or {"temperature": 0}
+            # The image is only passed when there is one: a text-lane backend (and every text
+            # test double) takes complete(prompt, decoding=...) and must keep seeing exactly that.
+            if image is None:
+                return backend.complete(prompt, decoding=decode)
+            return backend.complete(prompt, image=image, decoding=decode)
         except Exception as exc:  # noqa: BLE001  (re-raised below unless it is a 429 or transient)
             root = exc
             while root.__cause__ is not None:

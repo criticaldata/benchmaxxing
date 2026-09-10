@@ -1,0 +1,32 @@
+{
+  "n": 120,
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "new_api_calls_this_run": 600,
+  "adoption_by_framing": {
+    "none": 0.2667,
+    "collaborative": 0.15,
+    "independent": 0.05,
+    "critical": 0.0417
+  },
+  "none_vs_collaborative": {
+    "gain": 0,
+    "lose": 14,
+    "pvalue": 0.000122
+  },
+  "none_vs_independent": {
+    "gain": 0,
+    "lose": 26,
+    "pvalue": 0.0
+  },
+  "none_vs_critical": {
+    "gain": 0,
+    "lose": 27,
+    "pvalue": 0.0
+  },
+  "independent_vs_critical": {
+    "gain": 1,
+    "lose": 2,
+    "pvalue": 1.0
+  },
+  "read": "Adoption of the same fixed wrong senior seed under different deliberation instructions: none 0.2667, collaborative 0.15, independent 0.05, critical 0.0417. A one-line instruction that licenses dissent (independent / critical) lowering adoption below the collaborative or unframed baseline would mean the cascade is cheaply steerable at deployment time by prompt alone; a flat curve means the framing is ignored and only structural interventions (a dissenter, a referee) help. Paired McNemars test each frame against the unframed baseline."
+}
