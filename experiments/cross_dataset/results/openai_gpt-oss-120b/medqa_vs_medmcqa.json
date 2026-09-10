@@ -1,0 +1,120 @@
+{
+  "datasets": [
+    "medqa",
+    "medmcqa"
+  ],
+  "cue_types": [
+    "option_order",
+    "longest_option",
+    "lexical_overlap"
+  ],
+  "per_cue": {
+    "option_order": {
+      "rate": {
+        "medqa": 0.02,
+        "medmcqa": 0.16
+      },
+      "ci": {
+        "medqa": [
+          0.02,
+          0.0,
+          0.06
+        ],
+        "medmcqa": [
+          0.16,
+          0.06,
+          0.26
+        ]
+      },
+      "counts": {
+        "medqa": [
+          1,
+          50
+        ],
+        "medmcqa": [
+          8,
+          50
+        ]
+      },
+      "spread": 0.14,
+      "fisher": {
+        "oddsratio": 0.10714285714285714,
+        "pvalue": 0.030857822974463083
+      }
+    },
+    "longest_option": {
+      "rate": {
+        "medqa": 0.04,
+        "medmcqa": 0.18
+      },
+      "ci": {
+        "medqa": [
+          0.04,
+          0.0,
+          0.1
+        ],
+        "medmcqa": [
+          0.18,
+          0.08,
+          0.28
+        ]
+      },
+      "counts": {
+        "medqa": [
+          2,
+          50
+        ],
+        "medmcqa": [
+          9,
+          50
+        ]
+      },
+      "spread": 0.13999999999999999,
+      "fisher": {
+        "oddsratio": 0.18981481481481483,
+        "pvalue": 0.05112093374568651
+      }
+    },
+    "lexical_overlap": {
+      "rate": {
+        "medqa": 0.08,
+        "medmcqa": 0.24
+      },
+      "ci": {
+        "medqa": [
+          0.08,
+          0.02,
+          0.16
+        ],
+        "medmcqa": [
+          0.24,
+          0.12,
+          0.36
+        ]
+      },
+      "counts": {
+        "medqa": [
+          4,
+          50
+        ],
+        "medmcqa": [
+          12,
+          50
+        ]
+      },
+      "spread": 0.15999999999999998,
+      "fisher": {
+        "oddsratio": 0.2753623188405797,
+        "pvalue": 0.05376475264891724
+      }
+    }
+  },
+  "agreement": {
+    "mean_spread": 0.14666666666666667,
+    "n_cues_compared": 3
+  },
+  "n_twins": {
+    "medqa": 150,
+    "medmcqa": 150
+  }
+}
