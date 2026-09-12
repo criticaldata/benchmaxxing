@@ -1,7 +1,8 @@
 """Gemini vs a second lineage on the MIMIC-CXR text lane, one table from the committed files.
 
 Reads the committed Gemini summaries and the model-scoped copies for --model, and prints the
-Markdown table the PR body and the paper quote. No API calls, no report text touched.
+Markdown table the PR body and the paper quote, and writes the same rows as JSON beside the
+model-scoped results, which is the lane's committed format. No API calls, no report text touched.
 """
 from __future__ import annotations
 
@@ -19,6 +20,7 @@ def load(p):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", required=True)
+    ap.add_argument("--out", default=None, help="write the same rows as JSON here (default: <model results dir>/cross_lineage_summary.json)")
     a = ap.parse_args()
     slug = a.model.replace("/", "_")
     G, N = R / "results", R / "results" / slug
@@ -88,6 +90,11 @@ def main():
         fmt = lambda x: "< 1e-6" if x["pvalue"] == 0 else f"{x['pvalue']:.2g}"
         row("", f"  {k}, McNemar p", f"{fmt(g)} ({g['gain']}/{g['lose']})", f"{fmt(n)} ({n['gain']}/{n['lose']})")
 
+    out = Path(a.out) if a.out else N / "cross_lineage_summary.json"
+    with open(out, "w") as fh:
+        json.dump({"baseline": "gemini-2.5-flash-lite", "model": a.model, "cohort": "mimic_cxr_text 633-case index, per-arm Gemini cohorts",
+                   "rows": [dict(zip(("arm", "metric", "gemini", "model", "note"), r)) for r in rows]}, fh, indent=1)
+        fh.write("\n")
     print(f"| Arm | Metric | gemini-2.5-flash-lite | {a.model} | Note |")
     print("|---|---|---|---|---|")
     for r in rows:
