@@ -279,6 +279,9 @@ def main():
     ap.add_argument("--stage", choices=["solo", "cascade", "all"], default="all")
     ap.add_argument("--solo-n", type=int, default=100)
     ap.add_argument("--cascade-n", type=int, default=20)
+    ap.add_argument("--cache", default=None,
+                    help="cache path; defaults to the model-scoped MedQA lane file. Set it when "
+                         "running this runner on another dataset so its prompts stay out of that file.")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--show-rationale", action="store_true",
                     help="render each peer's reasoning under its vote (#373); off is the "
@@ -289,7 +292,10 @@ def main():
     if model != _lane.DEFAULT_MODEL:
         # Every Gemini tier and committee seat becomes the requested model.
         assert _lane.rebind_models(globals(), model) > 0
-    out, cache = _lane.scoped(model, args.out, "experiments/medqa/results/call_cache.jsonl")
+    # The default cache path is the MedQA lane's own file. --cache exists because this runner is
+    # reused as-is on other datasets (per #316): pointed at MIMIC-CXR, its prompt carries the
+    # report text, which must never be written into a tracked MedQA cache.
+    out, cache = _lane.scoped(model, args.out, "experiments/medqa/results/call_cache.jsonl", args.cache)
     api_key = _lane.key_for(model) if model != _lane.DEFAULT_MODEL else _get_key()
     all_cases = load_cases(args.manifest)
     cases = random.Random(args.seed).sample(all_cases, min(args.solo_n, len(all_cases)))
