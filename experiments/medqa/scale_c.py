@@ -20,11 +20,14 @@ import hashlib
 import json
 import math
 import os
+import sys
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
-from benchmaxxing import gateway
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
+
 from benchmaxxing.data import load_cases
 from benchmaxxing.stats import mcnemar
 
@@ -63,11 +66,8 @@ class _Cache:
             if k in self.store:
                 return self.store[k]
         if not self.key:
-            raise SystemExit("Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key).")
-        b = self._b.get(model) or gateway.RetryBackend(
-            gateway.GeminiBackend(model=model, api_key=self.key), tries=5, backoff=3.0)
-        self._b[model] = b
-        resp = b.complete(prompt, decoding={"temperature": 0})
+            raise SystemExit(f"Cache miss and no {_lane.key_name(model)} set for {model} (a fully cached run needs no key).")
+        resp = _lane.paced_complete(model, self.key, prompt, decoding={"temperature": 0})
         with _lock:
             self.store[k] = resp
             with open(self.path, "a") as f:
@@ -89,13 +89,19 @@ def main():
     ap = argparse.ArgumentParser(description="C plausibility dose-response at scale.")
     ap.add_argument("--manifest", required=True)
     ap.add_argument("--out", default="experiments/medqa/results")
+    _lane.add_model_arg(ap)
     ap.add_argument("--target", type=int, default=150)
     ap.add_argument("--probe-limit", type=int, default=400)
     args = ap.parse_args()
 
-    out = Path(args.out)
+    model = args.model
+    if model != _lane.DEFAULT_MODEL:
+        # Every Gemini seat becomes the requested model: this model's committee against Gemini's.
+        assert _lane.rebind_models(globals(), model) > 0
+    out, cache_path = _lane.scoped(model, args.out, "experiments/medqa/results/call_cache.jsonl", None)
+    key = _lane.key_for(model) if model != _lane.DEFAULT_MODEL else _key()
     out.mkdir(parents=True, exist_ok=True)
-    cache = _Cache(out / "call_cache.jsonl", _key())
+    cache = _Cache(cache_path, key)
     cases = load_cases(args.manifest)[:args.probe_limit]
 
     def two(w):

@@ -25,11 +25,15 @@ import hashlib
 import json
 import os
 import random
+import sys
 import threading
 import time
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
 
 from benchmaxxing import gateway
 from benchmaxxing.analysis import (
@@ -102,12 +106,14 @@ class CachedBackend(gateway.Backend):
         if self._inner is None:
             if not self.api_key:
                 raise SystemExit(
-                    "Cache miss with no GEMINI_API_KEY set: a live model call is needed to fill "
-                    "it, but no key is available. A fully cached run reproduces the committed "
-                    "numbers with no key; set GEMINI_API_KEY only to compute new results.")
-            self._inner = gateway.RetryBackend(
-                gateway.GeminiBackend(model=self.model, api_key=self.api_key), tries=5, backoff=3.0)
-        resp = self._inner.complete(prompt, image=image, decoding=decoding)
+                    f"Cache miss with no {_lane.key_name(self.model)} set for {self.model}: a live "
+                    "model call is needed to fill it, but no key is available. A fully cached run "
+                    "reproduces the committed numbers with no key; set the key only to compute new "
+                    "results.")
+            self._inner = True
+        if image is not None:
+            raise ValueError("the MedQA reproduce lane is text-only; no caller passes an image")
+        resp = _lane.paced_complete(self.model, self.api_key, prompt, decoding=decoding)
         with _cache_lock:
             CachedBackend._store[k] = resp
             with open(self.cache_path, "a") as f:
@@ -158,13 +164,14 @@ def run_solo(cases, out, api_key, cache):
         noise = {m: None for m in TIERS}
         print("noise floor skipped (no key): it is an uncached control; set GEMINI_API_KEY to run it.")
     for model in (TIERS if api_key else []):
-        raw = gateway.RetryBackend(gateway.GeminiBackend(model=model, api_key=api_key),
-                                   tries=5, backoff=3.0)
+        # The uncached noise-floor control: live calls through the shared dispatch.
+        def raw(prompt):
+            return _lane.paced_complete(model, api_key, prompt, decoding={"temperature": 0})
         ch = n = 0
         for case in cases[:15]:
             p = build_text_twin(case, TEXT_CUES[0]).payload(Condition.CLEAN)
-            a1 = parse_legacy_string(raw.complete(_mcq_prompt(p), decoding={"temperature": 0}), list(p["options"]))
-            a2 = parse_legacy_string(raw.complete(_mcq_prompt(p), decoding={"temperature": 0}), list(p["options"]))
+            a1 = parse_legacy_string(raw(_mcq_prompt(p)), list(p["options"]))
+            a2 = parse_legacy_string(raw(_mcq_prompt(p)), list(p["options"]))
             ch += (a1 != a2)
             n += 1
         noise[model] = ch / n if n else None
@@ -185,6 +192,15 @@ def run_solo(cases, out, api_key, cache):
                                         "matrix": sm["matrix"].tolist()},
               "overlap": overlap}
     (Path(out) / "solo_results.json").write_text(json.dumps(result, indent=2, default=str))
+    if records and records[0].model != _lane.DEFAULT_MODEL:
+        # The per-record file the hard-case runners (break_it, clean_a, push_c, contamination_audit)
+        # read, in the committed column layout. Written for a second model only: the committed
+        # Gemini solo_records.jsonl predates this writer and a replay must not rewrite it.
+        (Path(out) / "solo_records.jsonl").write_text("".join(json.dumps({
+            "case_id": r.case_id, "cue": r.cue_type, "model": r.model, "clean": r.clean_answer,
+            "contaminated": r.contaminated_answer, "flipped": r.flipped,
+            "clean_correct": r.clean_correct, "contaminated_correct": r.contaminated_correct,
+        }) + "\n" for r in records))
     return result
 
 
@@ -259,19 +275,28 @@ def main():
     ap = argparse.ArgumentParser(description="Reproduce the MedQA Lane B experiments.")
     ap.add_argument("--manifest", required=True, help="MedQA manifest CSV (built by the medqa adapter)")
     ap.add_argument("--out", default="experiments/medqa/results")
+    _lane.add_model_arg(ap)
     ap.add_argument("--stage", choices=["solo", "cascade", "all"], default="all")
     ap.add_argument("--solo-n", type=int, default=100)
     ap.add_argument("--cascade-n", type=int, default=20)
+    ap.add_argument("--cache", default=None,
+                    help="cache path; defaults to the model-scoped MedQA lane file. Set it when "
+                         "running this runner on another dataset so its prompts stay out of that file.")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--show-rationale", action="store_true",
                     help="render each peer's reasoning under its vote (#373); off is the "
                          "committed answer-only board, which the cache replays at zero calls")
     args = ap.parse_args()
 
-    api_key = _get_key()
-    out = Path(args.out)
-    out.mkdir(parents=True, exist_ok=True)
-    cache = out / "call_cache.jsonl"
+    model = args.model
+    if model != _lane.DEFAULT_MODEL:
+        # Every Gemini tier and committee seat becomes the requested model.
+        assert _lane.rebind_models(globals(), model) > 0
+    # The default cache path is the MedQA lane's own file. --cache exists because this runner is
+    # reused as-is on other datasets (per #316): pointed at MIMIC-CXR, its prompt carries the
+    # report text, which must never be written into a tracked MedQA cache.
+    out, cache = _lane.scoped(model, args.out, "experiments/medqa/results/call_cache.jsonl", args.cache)
+    api_key = _lane.key_for(model) if model != _lane.DEFAULT_MODEL else _get_key()
     all_cases = load_cases(args.manifest)
     cases = random.Random(args.seed).sample(all_cases, min(args.solo_n, len(all_cases)))
     print(f"[{time.strftime('%H:%M:%S')}] {len(all_cases)} cases; solo_n={len(cases)} seed={args.seed}")

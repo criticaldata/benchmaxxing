@@ -57,7 +57,16 @@ def main():
     ap.add_argument("--out", default=None, help="defaults to <cache dir>/solo_results_refusal_aware.json")
     ap.add_argument("--solo-n", type=int, required=True)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--model", default=None,
+                    help="score a second lineage's solo cache: every Gemini tier becomes this model, "
+                         "as reproduce.py --model does")
     args = ap.parse_args()
+    if args.model:
+        import sys
+        from pathlib import Path as _P
+        sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
+        import _lane
+        assert _lane.rebind_models(globals(), args.model) > 0
 
     cache = _load_cache(args.cache)
     all_cases = load_cases(args.manifest)
