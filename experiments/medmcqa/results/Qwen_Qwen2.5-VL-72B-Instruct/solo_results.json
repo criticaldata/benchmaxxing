@@ -1,0 +1,37 @@
+{
+  "n_records": 300,
+  "noise_floor_by_model": {
+    "Qwen/Qwen2.5-VL-72B-Instruct": 0.0
+  },
+  "flip_rate_by_model": {
+    "Qwen/Qwen2.5-VL-72B-Instruct": {
+      "overall": 0.18,
+      "per_cue": {
+        "lexical_overlap": 0.2,
+        "longest_option": 0.15,
+        "option_order": 0.19
+      },
+      "n": 300
+    }
+  },
+  "susceptibility_matrix": {
+    "models": [
+      "Qwen/Qwen2.5-VL-72B-Instruct"
+    ],
+    "cues": [
+      "lexical_overlap",
+      "longest_option",
+      "option_order"
+    ],
+    "matrix": [
+      [
+        0.2,
+        0.15,
+        0.19
+      ]
+    ]
+  },
+  "overlap": {
+    "error": "Need at least 2 models for an overlap test."
+  }
+}

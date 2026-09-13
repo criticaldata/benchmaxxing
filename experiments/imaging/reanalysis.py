@@ -21,6 +21,7 @@ key/network dependency.
 """
 from __future__ import annotations
 
+import argparse
 import json
 import math
 from collections import defaultdict
@@ -133,8 +134,14 @@ def run_finding_subgroup(results_dir):
     }
 
 
-def main():
-    results_dir = Path(__file__).parent / "results"
+def main(argv=None):
+    # Re-analysis of one model's result set. The default is the committed Gemini lane; a second
+    # model's arms live in the model-scoped subdirectory the runners write, and are re-analysed
+    # by pointing here, so the committed Gemini derivations are never overwritten.
+    ap = argparse.ArgumentParser(description="pure re-analysis of the imaging lane, no model calls")
+    ap.add_argument("--results-dir", default=str(Path(__file__).parent / "results"),
+                    help="an imaging results directory, e.g. the model-scoped one for a second model")
+    results_dir = Path(ap.parse_args(argv).results_dir)
     claim4 = run_claim4(results_dir)
     finding_sub = run_finding_subgroup(results_dir)
     (results_dir / "claim4_quantification.json").write_text(json.dumps(claim4, indent=2))

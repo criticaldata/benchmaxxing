@@ -1,0 +1,28 @@
+{
+  "n": 35,
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "cues": {
+    "rotation": {
+      "flip_rate": 0.14285714285714285,
+      "n": 35,
+      "flip_above_noise": 0.028571428571428567
+    },
+    "compression": {
+      "flip_rate": 0.08571428571428572,
+      "n": 35,
+      "flip_above_noise": -0.028571428571428567
+    },
+    "brightness": {
+      "flip_rate": 0.14285714285714285,
+      "n": 35,
+      "flip_above_noise": 0.028571428571428567
+    },
+    "soft_tissue": {
+      "flip_rate": 0.08571428571428572,
+      "n": 35,
+      "flip_above_noise": -0.028571428571428567
+    }
+  },
+  "noise_floor": 0.11428571428571428,
+  "noise_floor_n": 35
+}

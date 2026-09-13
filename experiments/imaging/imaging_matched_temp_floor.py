@@ -37,12 +37,17 @@ from PIL import Image
 from benchmaxxing.cues import image as ci
 from benchmaxxing.data import load_cases
 
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
+
 MODEL = "gemini-2.5-flash"
 _lock = threading.Lock()
 
 
 def _key():
-    return os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+    return _lane.key_for(MODEL)
 
 
 def _to_pil(x):
@@ -58,6 +63,7 @@ def main():
     ap.add_argument("--manifest", required=True)
     ap.add_argument("--image-root", required=True)
     ap.add_argument("--out", default="experiments/imaging/results")
+    _lane.add_model_arg(ap, MODEL)
     ap.add_argument("--cue", default="watermark", choices=["cable", "corner_tag", "watermark", "laterality"])
     ap.add_argument("--n", type=int, default=35,
                     help="cap the cohort. Kept for consistency with the other imaging runners, "
@@ -65,7 +71,14 @@ def main():
                          "this directory's README passes it.")
     args = ap.parse_args()
 
-    out = Path(args.out)
+    model = args.model
+    default_model = MODEL
+    if model != default_model:
+        # Every Gemini seat becomes the requested model, as the text lanes do, so MODEL itself is
+        # the requested id from here: the cache key prefix and the summary field follow it.
+        assert _lane.rebind_models(globals(), model) > 0, "no Gemini id to rebind"
+
+    out = Path(args.out) if model == default_model else Path(args.out) / model.replace("/", "_")
     root = Path(args.image_root)
     key = _key()
     cue = args.cue
@@ -103,8 +116,7 @@ def main():
             raise SystemExit("temp-1 cued read not cached and no GEMINI_API_KEY set; a first run "
                              "needs a key, then imaging_matched_temp.jsonl reproduces it keyless.")
         from benchmaxxing import gateway
-        resp = gateway.RetryBackend(gateway.GeminiBackend(model=MODEL, api_key=key),
-                                    tries=5, backoff=3.0).complete(q(finding), image=cont,
+        resp = _lane.paced_complete(MODEL, key, q(finding), image=cont,
                                                                    decoding={"temperature": 1.0})
         with _lock:
             calls["n"] += 1

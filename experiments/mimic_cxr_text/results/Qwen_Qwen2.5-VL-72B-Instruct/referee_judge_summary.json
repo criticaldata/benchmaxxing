@@ -1,0 +1,16 @@
+{
+  "n": 40,
+  "judge_model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "n_holdout_adopted_shortcut": 13,
+  "n_judge_flagged": 39,
+  "new_api_calls_this_run": 120,
+  "same_lineage_judge_vs_adoption": {
+    "precision": 0.3333333333333333,
+    "recall": 1.0,
+    "fpr": 0.9629629629629629,
+    "tp": 13,
+    "fp": 26,
+    "fn": 0,
+    "tn": 1
+  }
+}

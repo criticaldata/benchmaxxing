@@ -12,6 +12,7 @@ descriptive slope with that caveat, per the issue's own framing ("position-confo
 """
 from __future__ import annotations
 
+import argparse
 import json
 from pathlib import Path
 
@@ -38,6 +39,17 @@ def _pool(rows, field):
 
 def _fit(rows, field):
     y, round_index, groups = _pool(rows, field)
+    if len(set(y)) < 2:
+        # A saturated arm: every observation in every round is the same answer. The logistic fit
+        # has no information to estimate a slope from, so the empirical rate is the whole result.
+        # This is what a second model produced on the shared arm (adoption 1.0 at every round).
+        return {
+            "n_observations": len(y), "n_cases": len(set(groups)),
+            "intercept": None, "round_index_coef": None,
+            "fitted_predicted_probability_by_round": [float(y[0])] * 3,
+            "saturated": True,
+            "note": f"all {len(y)} observations are {y[0]}; the mixed-effects logit is undefined",
+        }
     fe = pd.DataFrame({"intercept": [1.0] * len(y), "round_index": round_index})
     result = mixed_effects_logit(y, fe, groups)
     intercept, slope = [float(v) for v in result.fe_mean]
@@ -50,8 +62,14 @@ def _fit(rows, field):
     }
 
 
-def main():
-    results_dir = Path(__file__).parent / "results"
+def main(argv=None):
+    # Re-analysis of one model's result set. The default is the committed Gemini lane; a second
+    # model's arms live in the model-scoped subdirectory the runners write, and are re-analysed
+    # by pointing here, so the committed Gemini derivations are never overwritten.
+    ap = argparse.ArgumentParser(description="pure re-analysis of the imaging lane, no model calls")
+    ap.add_argument("--results-dir", default=str(Path(__file__).parent / "results"),
+                    help="an imaging results directory, e.g. the model-scoped one for a second model")
+    results_dir = Path(ap.parse_args(argv).results_dir)
     rows = _load_jsonl(results_dir / "imaging_multi_round.jsonl")
 
     shared = _fit(rows, "shared_adopt")

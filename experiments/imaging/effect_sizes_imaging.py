@@ -7,6 +7,7 @@ groups and produced a CI that didn't bracket its point estimate).
 """
 from __future__ import annotations
 
+import argparse
 import json
 from pathlib import Path
 
@@ -96,8 +97,14 @@ def referee_vs_naive(results_dir):
     }
 
 
-def main():
-    results_dir = Path(__file__).parent / "results"
+def main(argv=None):
+    # Re-analysis of one model's result set. The default is the committed Gemini lane; a second
+    # model's arms live in the model-scoped subdirectory the runners write, and are re-analysed
+    # by pointing here, so the committed Gemini derivations are never overwritten.
+    ap = argparse.ArgumentParser(description="pure re-analysis of the imaging lane, no model calls")
+    ap.add_argument("--results-dir", default=str(Path(__file__).parent / "results"),
+                    help="an imaging results directory, e.g. the model-scoped one for a second model")
+    results_dir = Path(ap.parse_args(argv).results_dir)
 
     out = {
         "solo_flip_rates": solo_flip_rates(results_dir),
