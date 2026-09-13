@@ -27,6 +27,18 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 RES = os.path.join(HERE, "results")
 DEID = os.path.join(RES, "deid")
+# A second lineage's arms live in the model-scoped subdirectory the shared runners write, so the
+# source jsonl for every spec gains one path component. Set by --model; empty means the committed
+# Gemini lane, whose paths carry no model component.
+SLUG = ""
+
+
+def _src(src: str) -> str:
+    """Resolve a SPECS source path under RES, inserting the model slug the runners scope to."""
+    if not SLUG:
+        return os.path.join(RES, src)
+    head, tail = os.path.split(src)
+    return os.path.join(RES, head, SLUG, tail) if head else os.path.join(RES, SLUG, tail)
 
 # (output name, source jsonl, columns after case_index). Column ORDER is part of the published
 # contract in README.md; do not reorder without updating the dictionary there.
@@ -47,6 +59,22 @@ SPECS = [
      ["op0.15_iso_adopt", "op0.15_shared_adopt", "op0.15_solo_flip",
       "op0.3_iso_adopt", "op0.3_shared_adopt", "op0.3_solo_flip",
       "op0.45_iso_adopt", "op0.45_shared_adopt", "op0.45_solo_flip"]),
+]
+
+# The solo arm writes to the results root (out=""), not to a per-arm subdirectory, so its source has
+# no directory component; _src() scopes it to the model slug all the same.
+# A second lineage runs every arm in one pass, so it owns the three files the committed Gemini lane
+# inherited from an earlier run. These specs are used ONLY with --model; the Gemini defaults below
+# stay untouched, which is why NOT_OWNED still lists them for the default path.
+SPECS_SECOND_LINEAGE = [
+    ("solo.csv", "imaging_solo.jsonl",
+     ["clean_correct", "cable_flip", "corner_tag_flip", "watermark_flip", "laterality_flip",
+      "noise_flip"]),
+    ("nih_match_solo.csv", "nih_match_35/imaging_solo.jsonl",
+     ["solo_case_index", "clean_correct", "cable_flip", "corner_tag_flip", "watermark_flip",
+      "laterality_flip", "noise_flip"]),  # published order puts solo_case_index first
+    ("blind_metric.csv", "imaging_blind_metric.jsonl",
+     ["base_is_decoy", "blind_is_decoy", "aware_is_decoy", "named_rubric_when_drifted"], False),
 ]
 
 # Files in results/deid/ this script does NOT own, and why. They come from arms the #393 rerun did
@@ -75,7 +103,7 @@ FORBIDDEN = {"case_id", "dicom_id", "study_id", "subject_id", "patient_id",
 
 
 def load(rel):
-    with open(os.path.join(RES, rel)) as fh:
+    with open(_src(rel)) as fh:
         return [json.loads(line) for line in fh if line.strip()]
 
 
@@ -124,23 +152,62 @@ def assert_derivation_holds():
     return checked
 
 
-def write_one(name, src, cols):
+def _join_solo(rows, src):
+    """The shared imaging_solo runner writes no clean_correct and keeps noise_flip in a sibling
+    imaging_noise_floor.jsonl. On this all-finding-present cohort clean_correct is `clean == "yes"`
+    (the same identity derive_clean_correct asserts for the cascade arms, where the plant is the
+    constant "no"), and noise_flip joins on case_id. Only applied to the solo specs."""
+    if "clean_correct" not in rows[0] and "clean" in rows[0] and "wrong" not in rows[0]:
+        for r in rows:
+            r["clean_correct"] = int(r["clean"] == "yes")
+    if "noise_flip" not in rows[0]:
+        nf_path = _src(os.path.join(os.path.dirname(src), "imaging_noise_floor.jsonl"))
+        if os.path.exists(nf_path):
+            with open(nf_path) as fh:
+                nf = {json.loads(l)["case_id"]: json.loads(l)["noise_flip"] for l in fh if l.strip()}
+            for r in rows:
+                if r["case_id"] in nf:
+                    r["noise_flip"] = nf[r["case_id"]]
+    return rows
+
+
+def write_one(name, src, cols, emit_derived=True):
     rows = sorted(load(src), key=lambda r: r["case_id"])
+    if name in ("solo.csv", "nih_match_solo.csv"):
+        rows = _join_solo(rows, src)
+    if name == "nih_match_solo.csv" and "solo_case_index" not in rows[0]:
+        # The published column is the film's row in solo.csv, which is the rank of its case_id in
+        # the 834-film solo arm sorted the same way this writer sorts. Read the sibling solo source.
+        solo_ids = sorted(r["case_id"] for r in load("imaging_solo.jsonl"))
+        rank = {cid: i for i, cid in enumerate(solo_ids)}
+        for r in rows:
+            r["solo_case_index"] = rank[r["case_id"]]
     want = EXPECTED_ROWS.get(name)
     assert want is None or len(rows) == want, \
         f"{name}: source has {len(rows)} rows, the published contract says {want}"
     ids = [r["case_id"] for r in rows]
     assert len(set(ids)) == len(ids), f"{name}: duplicate case_id, case_index would be ambiguous"
     derived = derive_clean_correct(rows, src) if "clean_correct" not in rows[0] else None
-    header = ["case_index"] + (["clean_correct"] if derived is not None else []) + cols
+    if not emit_derived:
+        # The published file for this arm carries no clean_correct column: on the Gemini lane its
+        # source cannot derive one, and a second lineage whose source can must not add a column the
+        # contract does not have.
+        derived = None
+    # When the column is derived, it is emitted where the spec asks for it, and only prepended if
+    # the spec does not name it. A second lineage's specs name it in the published column order, so
+    # its files come out with the same header as the committed Gemini ones.
+    derived_in_cols = derived is not None and "clean_correct" in cols
+    header = ["case_index"] + ([] if derived_in_cols or derived is None else ["clean_correct"]) + cols
     leak = FORBIDDEN & set(header)
     assert not leak, f"{name} would emit {leak}"
     with open(os.path.join(DEID, name), "w", newline="") as fh:
         w = csv.writer(fh)
         w.writerow(header)
         for i, r in enumerate(rows):
-            rec = [i] + ([derived[i]] if derived is not None else [])
-            rec += [flag(r, c, f"{name} row {i}") for c in cols]
+            rec = [i] + ([] if derived_in_cols or derived is None else [derived[i]])
+            rec += [derived[i] if (derived_in_cols and c == "clean_correct")
+                    else (r[c] if c == "solo_case_index" else flag(r, c, f"{name} row {i}"))
+                    for c in cols]
             w.writerow(rec)
     return len(rows)
 
@@ -281,7 +348,30 @@ def verify():
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true", help="verify only, do not rewrite")
+    ap.add_argument("--results-dir", default=None,
+                    help="results root to read arms from; default is this lane's committed results/")
+    ap.add_argument("--model", default=None,
+                    help="second-lineage model id; its arms are read from the model-scoped "
+                         "subdirectory and written to deid/<slug>/")
     args = ap.parse_args()
+    if args.results_dir:
+        RES = os.path.abspath(os.path.expanduser(args.results_dir))
+        DEID = os.path.join(RES, "deid")
+    if args.model:
+        SLUG = args.model.replace("/", "_")
+        DEID = os.path.join(DEID, SLUG)
+    os.makedirs(DEID, exist_ok=True)
+    if args.model:
+        # verify() asserts the published Gemini claims. A second lineage is expected to differ from
+        # them, so the claim check is not meaningful here and is skipped rather than reported failed.
+        n = assert_derivation_holds()
+        print(f"clean_correct derivation reproduces the stored column on {n} rows")
+        for spec in SPECS + SPECS_SECOND_LINEAGE:
+            name, src, cols = spec[0], spec[1], spec[2]
+            emit = spec[3] if len(spec) > 3 else True
+            print(f"wrote deid/{SLUG}/{name} ({write_one(name, src, cols, emit)} rows)")
+        print("skipped verify(): its expected values are the published Gemini claims")
+        sys.exit(0)
     if not args.check:
         n = assert_derivation_holds()
         print(f"clean_correct derivation reproduces the stored column on {n} rows")

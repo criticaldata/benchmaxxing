@@ -46,6 +46,7 @@ from __future__ import annotations
 import argparse
 import re
 import shutil
+import os
 import subprocess
 import sys
 from dataclasses import dataclass
@@ -184,10 +185,39 @@ def writes(transcript: str) -> str:
     return next((a.name for a in ARMS if a.out == out and a.module == name.removesuffix(".jsonl")), "")
 
 
+def _slug(model: str | None) -> str:
+    """Directory component the shared runners scope their output to, or "" for the lane default."""
+    return model.replace("/", "_") if model else ""
+
+
+def _scope(rel: str, model: str | None) -> str:
+    """Insert the model slug before the filename of a transcript path relative to --results.
+
+    The runners write ``<out>/<slug>/<file>``, so an arm that replays another arm's transcript
+    (``extra``/``needs``/``stage``) must look under the slug too. Without this the judge arms fail
+    on a missing imaging_cascade.jsonl while the file sits one directory deeper.
+    """
+    slug = _slug(model)
+    if not slug:
+        return rel
+    head, tail = os.path.split(rel)
+    return os.path.join(head, slug, tail) if head else os.path.join(slug, tail)
+
+
+def _scope_arg(a: str, results: Path, model: str | None) -> str:
+    """Expand ``{results}`` in an extra arg, scoping transcript paths to the model subdirectory."""
+    if "{results}" not in a:
+        return a
+    rel = a.replace("{results}/", "").replace("{results}", "")
+    return str(results / _scope(rel, model))
+
+
 def build_command(arm: Arm, manifests: Path, image_root: Path, results: Path,
-                  python: str = sys.executable) -> list[str]:
+                  python: str = sys.executable, model: str | None = None) -> list[str]:
     """The exact argv for one arm. Pure: no filesystem writes, so tests can assert on it."""
     cmd = [python, "-m", f"experiments.imaging.{arm.module}"]
+    if model:
+        cmd += ["--model", model]
     if arm.takes_manifest:
         cmd += ["--manifest", str(manifests / arm.manifest), "--image-root", str(image_root)]
     cmd += [
@@ -196,7 +226,7 @@ def build_command(arm: Arm, manifests: Path, image_root: Path, results: Path,
     ]
     if arm.takes_n:
         cmd += ["--n", str(WHOLE_MANIFEST)]
-    return cmd + [a.format(results=results) for a in arm.extra]
+    return cmd + [_scope_arg(a, results, model) for a in arm.extra]
 
 
 def main() -> None:
@@ -205,6 +235,10 @@ def main() -> None:
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     ap.add_argument("--image-root", required=True, help="dir holding the downloaded MIMIC images")
+    ap.add_argument("--model", default=None,
+                    help="model id for the shared imaging runners; omit for the lane default. The "
+                         "runners scope their own output to results/<arm>/<slug>/, so the staged and "
+                         "replayed transcript paths below are scoped to match")
     ap.add_argument("--manifests", default=str(HERE / "manifests"),
                     help="dir of per-arm manifests written by build_subset.py select")
     ap.add_argument("--results", default=str(HERE / "results"), help="output dir for summaries and transcripts")
@@ -238,21 +272,22 @@ def main() -> None:
 
     for arm in selected:
         out = results / arm.out if arm.out else results
-        cmd = build_command(arm, manifests, image_root, results)
+        cmd = build_command(arm, manifests, image_root, results, model=args.model)
         print(f"# {arm.name}\n+ {' '.join(cmd)}", flush=True)
         if args.dry_run:
             continue
         out.mkdir(parents=True, exist_ok=True)
-        if arm.needs and not (results / arm.needs).is_file():
+        needs_rel = _scope(arm.needs, args.model) if arm.needs else ""
+        if needs_rel and not (results / needs_rel).is_file():
             # results/**/*.jsonl is gitignored, so a transcript-replay arm run against a fresh
             # checkout, or after a cleanup, finds nothing. Say which arm rewrites it (#393).
             raise SystemExit(
-                f"{arm.name} reads {results / arm.needs}, which does not exist. It is written by "
+                f"{arm.name} reads {results / needs_rel}, which does not exist. It is written by "
                 f"the '{writes(arm.needs)}' arm and is gitignored, so it never comes from a "
                 f"checkout: run that arm first (or the whole battery, which orders them)."
             )
         if arm.stage:
-            src, dst = (results / p for p in arm.stage)
+            src, dst = (results / _scope(pth, args.model) for pth in arm.stage)
             if not src.is_file():
                 raise SystemExit(f"{arm.name} needs {src}; run the arm that writes it first.")
             shutil.copyfile(src, dst)
