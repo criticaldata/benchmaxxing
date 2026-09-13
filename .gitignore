@@ -14,6 +14,9 @@ data/
 # text, which must not be redistributed outside credentialed access. Only aggregate results
 # (solo_results.json etc.) are committed.
 experiments/mimic_cxr_text/*manifest*.csv
+# the rebuilt cohort manifests are named mimic_cxr_text_<n>.csv and carry report text too
+experiments/mimic_cxr_text/**/mimic_cxr_text_*.csv
+mimic_cxr_text_*.csv
 experiments/mimic_cxr_text/results*/call_cache.jsonl
 experiments/mimic_cxr_text/results*/*call_cache.jsonl
 experiments/mimic_cxr_text/results*/transcripts/
