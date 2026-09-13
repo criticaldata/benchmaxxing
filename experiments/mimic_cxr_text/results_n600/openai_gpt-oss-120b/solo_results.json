@@ -1,0 +1,37 @@
+{
+  "n_records": 1800,
+  "noise_floor_by_model": {
+    "openai/gpt-oss-120b": 0.0
+  },
+  "flip_rate_by_model": {
+    "openai/gpt-oss-120b": {
+      "overall": 0.11333333333333333,
+      "per_cue": {
+        "lexical_overlap": 0.15833333333333333,
+        "longest_option": 0.11166666666666666,
+        "option_order": 0.07
+      },
+      "n": 1800
+    }
+  },
+  "susceptibility_matrix": {
+    "models": [
+      "openai/gpt-oss-120b"
+    ],
+    "cues": [
+      "lexical_overlap",
+      "longest_option",
+      "option_order"
+    ],
+    "matrix": [
+      [
+        0.15833333333333333,
+        0.11166666666666666,
+        0.07
+      ]
+    ]
+  },
+  "overlap": {
+    "error": "Need at least 2 models for an overlap test."
+  }
+}

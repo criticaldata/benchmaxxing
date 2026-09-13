@@ -38,6 +38,22 @@ def test_support2_common_uses_the_shared_dispatch():
     assert "_lane.backend_for(model, self.key)" in src and "GeminiBackend(" not in src
 
 
+def test_mimic_solo_records_uses_the_central_parser():
+    """build_solo_records lost its parser when #102 centralised extraction; it must use the survivor."""
+    src = (ROOT / "experiments/mimic_cxr_text/build_solo_records.py").read_text()
+    assert "_parse_choice" not in src, "the name #102 removed is back"
+    assert "from benchmaxxing.extract import parse_legacy_string" in src
+    assert 'parse_legacy_string(cache[key], list(payload["options"]))' in src
+
+
+def test_mimic_refusal_aware_takes_a_model():
+    """The re-analysis was pinned to the Gemini tiers, so no second lineage could be scored."""
+    src = (ROOT / "experiments/mimic_cxr_text/refusal_aware_reanalysis.py").read_text()
+    assert 'ap.add_argument("--model"' in src
+    assert "TIERS = [args.model]" in src
+    assert "if args.model:" in src, "the default must keep both committed Gemini tiers"
+
+
 def test_cross_dataset_pilot_uses_the_shared_dispatch():
     """The MedQA/MedMCQA cue pilot keeps its own --model, cache and skip path; only the backend and the
     key for a non-Gemini model come from the dispatch, so the default model still needs a Gemini key."""
