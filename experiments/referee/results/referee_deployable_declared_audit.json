@@ -1,0 +1,203 @@
+{
+  "arm": "referee_deployable",
+  "dataset": "medqa",
+  "issue": 419,
+  "new_api_calls_this_run": 0,
+  "cache": "experiments/referee/results/call_cache.jsonl",
+  "manifest": "data/medqa_manifest.csv",
+  "committed_summary_untouched": "experiments/referee/results/referee_deployable_summary.json",
+  "replay_matches_committed": {
+    "n_cases": true,
+    "n_holdout_adopted_shortcut": true,
+    "n_false_positive_on_clean_control": true
+  },
+  "n_cases": 40,
+  "n_declared": 39,
+  "n_undeclared": 1,
+  "undeclared_draws": 1,
+  "eligibility": "A case is declared-only eligible when the bare re-query and both board holdout draws (planted + clean) each match declared_mcq_choice; metrics use parse_legacy answers on that subset only.",
+  "current": {
+    "n_cases": 40,
+    "n_holdout_adopted_shortcut": 15,
+    "n_false_positive_on_clean_control": 7,
+    "referees_vs_adoption_planted_only_DEGENERATE": {
+      "naive_gate (shared-only, no re-query)": {
+        "precision": 0.375,
+        "recall": 1.0,
+        "fpr": 1.0,
+        "tp": 15,
+        "fp": 25,
+        "fn": 0,
+        "tn": 0
+      },
+      "deployable (peer-modal + private re-query, NO key)": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "fpr": 0.0,
+        "tp": 15,
+        "fp": 0,
+        "fn": 0,
+        "tn": 25
+      },
+      "oracle_audit (planted key + isolated run)": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "fpr": 0.0,
+        "tp": 15,
+        "fp": 0,
+        "fn": 0,
+        "tn": 25
+      }
+    },
+    "referees_vs_adoption_with_clean_control": {
+      "naive_gate (shared-only, no re-query)": {
+        "precision": 0.1875,
+        "recall": 1.0,
+        "fpr": 1.0,
+        "tp": 15,
+        "fp": 65,
+        "fn": 0,
+        "tn": 0
+      },
+      "deployable (peer-modal + private re-query, NO key)": {
+        "precision": 0.6818181818181818,
+        "recall": 1.0,
+        "fpr": 0.1076923076923077,
+        "tp": 15,
+        "fp": 7,
+        "fn": 0,
+        "tn": 58
+      },
+      "oracle_audit (planted key + isolated run)": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "fpr": 0.0,
+        "tp": 15,
+        "fp": 0,
+        "fn": 0,
+        "tn": 65
+      }
+    }
+  },
+  "declared_only": {
+    "n_cases": 39,
+    "n_holdout_adopted_shortcut": 15,
+    "n_false_positive_on_clean_control": 6,
+    "referees_vs_adoption_planted_only_DEGENERATE": {
+      "naive_gate (shared-only, no re-query)": {
+        "precision": 0.38461538461538464,
+        "recall": 1.0,
+        "fpr": 1.0,
+        "tp": 15,
+        "fp": 24,
+        "fn": 0,
+        "tn": 0
+      },
+      "deployable (peer-modal + private re-query, NO key)": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "fpr": 0.0,
+        "tp": 15,
+        "fp": 0,
+        "fn": 0,
+        "tn": 24
+      },
+      "oracle_audit (planted key + isolated run)": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "fpr": 0.0,
+        "tp": 15,
+        "fp": 0,
+        "fn": 0,
+        "tn": 24
+      }
+    },
+    "referees_vs_adoption_with_clean_control": {
+      "naive_gate (shared-only, no re-query)": {
+        "precision": 0.19230769230769232,
+        "recall": 1.0,
+        "fpr": 1.0,
+        "tp": 15,
+        "fp": 63,
+        "fn": 0,
+        "tn": 0
+      },
+      "deployable (peer-modal + private re-query, NO key)": {
+        "precision": 0.7142857142857143,
+        "recall": 1.0,
+        "fpr": 0.09523809523809523,
+        "tp": 15,
+        "fp": 6,
+        "fn": 0,
+        "tn": 57
+      },
+      "oracle_audit (planted key + isolated run)": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "fpr": 0.0,
+        "tp": 15,
+        "fp": 0,
+        "fn": 0,
+        "tn": 63
+      }
+    }
+  },
+  "comparisons": [
+    {
+      "metric": "referees_vs_adoption_with_clean_control.deployable (peer-modal + private re-query, NO key).precision",
+      "current_value": 0.6818181818181818,
+      "declared_only_value": 0.7142857142857143,
+      "abs_diff": 0.032467532467532534
+    },
+    {
+      "metric": "referees_vs_adoption_with_clean_control.deployable (peer-modal + private re-query, NO key).recall",
+      "current_value": 1.0,
+      "declared_only_value": 1.0,
+      "abs_diff": 0.0
+    },
+    {
+      "metric": "referees_vs_adoption_with_clean_control.deployable (peer-modal + private re-query, NO key).fpr",
+      "current_value": 0.1076923076923077,
+      "declared_only_value": 0.09523809523809523,
+      "abs_diff": 0.012454212454212465
+    },
+    {
+      "metric": "referees_vs_adoption_with_clean_control.deployable (peer-modal + private re-query, NO key).tp",
+      "current_value": 15,
+      "declared_only_value": 15,
+      "abs_diff": 0
+    },
+    {
+      "metric": "referees_vs_adoption_with_clean_control.deployable (peer-modal + private re-query, NO key).fp",
+      "current_value": 7,
+      "declared_only_value": 6,
+      "abs_diff": 1
+    },
+    {
+      "metric": "referees_vs_adoption_with_clean_control.deployable (peer-modal + private re-query, NO key).fn",
+      "current_value": 0,
+      "declared_only_value": 0,
+      "abs_diff": 0
+    },
+    {
+      "metric": "referees_vs_adoption_with_clean_control.deployable (peer-modal + private re-query, NO key).tn",
+      "current_value": 58,
+      "declared_only_value": 57,
+      "abs_diff": 1
+    },
+    {
+      "metric": "n_holdout_adopted_shortcut",
+      "current_value": 15,
+      "declared_only_value": 15,
+      "abs_diff": 0
+    },
+    {
+      "metric": "n_false_positive_on_clean_control",
+      "current_value": 7,
+      "declared_only_value": 6,
+      "abs_diff": 1
+    }
+  ],
+  "conclusion_changes": false,
+  "interpretation": "Declared-only accounting does not materially change the deployable referee headline (precision 0.6818181818181818 \u2192 0.7142857142857143; clean FP 7 \u2192 6; 1/40 cases excluded)."
+}

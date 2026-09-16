@@ -1,0 +1,78 @@
+{
+  "arm": "plausible_distractor",
+  "dataset": "medqa",
+  "issue": 419,
+  "new_api_calls_this_run": 0,
+  "cache": "experiments/medqa/results/plausible_distractor_cache.jsonl",
+  "manifest": "data/medqa_manifest.csv",
+  "results_jsonl": "experiments/medqa/results/plausible_distractor.jsonl",
+  "committed_summary_untouched": "experiments/medqa/results/plausible_distractor_summary.json",
+  "replay_matches_committed": {
+    "n": true,
+    "adoption": true,
+    "plausible_vs_implausible": true
+  },
+  "n_cases": 103,
+  "n_declared": 31,
+  "n_undeclared": 72,
+  "undeclared_draws": 87,
+  "eligibility": "A case is declared-only eligible when bare, second-most, least-likely, and both seeded board draws each match declared_mcq_choice; adoption metrics use the committed (legacy-parsed) answers on that subset.",
+  "current": {
+    "n": 103,
+    "adoption": {
+      "plausible": 0.7379,
+      "implausible": 0.5922
+    },
+    "plausible_vs_implausible": {
+      "gain": 21,
+      "lose": 6,
+      "pvalue": 0.005925
+    }
+  },
+  "declared_only": {
+    "n": 31,
+    "adoption": {
+      "plausible": 0.871,
+      "implausible": 0.6452
+    },
+    "plausible_vs_implausible": {
+      "gain": 8,
+      "lose": 1,
+      "pvalue": 0.039062
+    }
+  },
+  "comparisons": [
+    {
+      "metric": "adoption.plausible",
+      "current_value": 0.7379,
+      "declared_only_value": 0.871,
+      "abs_diff": 0.1331
+    },
+    {
+      "metric": "adoption.implausible",
+      "current_value": 0.5922,
+      "declared_only_value": 0.6452,
+      "abs_diff": 0.05300000000000005
+    },
+    {
+      "metric": "plausible_vs_implausible.pvalue",
+      "current_value": 0.005925,
+      "declared_only_value": 0.039062,
+      "abs_diff": 0.033137
+    },
+    {
+      "metric": "plausible_vs_implausible.gain",
+      "current_value": 21,
+      "declared_only_value": 8,
+      "abs_diff": 13
+    },
+    {
+      "metric": "plausible_vs_implausible.lose",
+      "current_value": 6,
+      "declared_only_value": 1,
+      "abs_diff": 5
+    }
+  ],
+  "conclusion_changes": true,
+  "interpretation": "Declared-only accounting keeps the same significance call at \u03b1=0.05 (p 0.005925 \u2192 0.039062) but widens/shifts the adoption gap by >5pp (0.1457 \u2192 0.2258); 72/103 cases excluded because at least one of the five draws lacked an explicit declaration."
+}
