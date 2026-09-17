@@ -495,10 +495,14 @@ class LocalOpenAICompatibleBackend(OpenAIBackend):
         api_key: str = "not-needed",
         client: object | None = None,
         default_decoding: dict | None = None,
+        timeout: float | None = 60.0,
+        max_retries: int = 0,
     ):
         self.model = model
         self.base_url = base_url
         self.default_decoding = dict(default_decoding or {})
+        self.timeout = timeout
+        self.max_retries = max_retries
         if client is not None:
             # Injected client (used by tests): no SDK import required.
             self._client = client
@@ -511,4 +515,9 @@ class LocalOpenAICompatibleBackend(OpenAIBackend):
                 "installed. Install the models extra: pip install 'benchmaxxing[models]' "
                 "(or: pip install openai)."
             ) from exc
-        self._client = OpenAI(base_url=base_url, api_key=api_key, timeout=60.0, max_retries=0)
+        self._client = OpenAI(
+            base_url=base_url,
+            api_key=api_key,
+            timeout=timeout,
+            max_retries=max_retries,
+        )
