@@ -8,6 +8,7 @@ cells are small).
 """
 from __future__ import annotations
 
+import argparse
 import json
 import math
 from collections import defaultdict
@@ -30,8 +31,14 @@ def _rate_with_ci(vals):
     return {"n": n, "rate": round(k / n, 4) if n else None, "wilson95": [lo, hi]}
 
 
-def main():
-    results_dir = Path(__file__).parent / "results"
+def main(argv=None):
+    # Re-analysis of one model's result set. The default is the committed Gemini lane; a second
+    # model's arms live in the model-scoped subdirectory the runners write, and are re-analysed
+    # by pointing here, so the committed Gemini derivations are never overwritten.
+    ap = argparse.ArgumentParser(description="pure re-analysis of the imaging lane, no model calls")
+    ap.add_argument("--results-dir", default=str(Path(__file__).parent / "results"),
+                    help="an imaging results directory, e.g. the model-scoped one for a second model")
+    results_dir = Path(ap.parse_args(argv).results_dir)
     rows = [json.loads(line) for line in (results_dir / "imaging_blind_metric.jsonl").read_text().splitlines() if line.strip()]
 
     base = _rate_with_ci([r["base_is_decoy"] for r in rows])

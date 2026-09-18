@@ -1,0 +1,25 @@
+{
+  "n": 35,
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "cue": "watermark",
+  "new_api_calls_this_run": 35,
+  "peer_driven_adoptions_gt": 18,
+  "referee": {
+    "tp": 17,
+    "fp": 0,
+    "fn": 1,
+    "tn": 17,
+    "precision": 1.0,
+    "recall": 0.9444444444444444,
+    "fpr": 0.0
+  },
+  "naive_gate": {
+    "tp": 18,
+    "fp": 17,
+    "fn": 0,
+    "tn": 0,
+    "precision": 0.5142857142857142,
+    "recall": 1.0,
+    "fpr": 1.0
+  }
+}

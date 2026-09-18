@@ -1,0 +1,10 @@
+{"case_id": "9a292f87-6a2d-4bba-bcee-f11ca9a94c73", "committed": {"agent0": "Alcohol fixed specimen", "agent1": "Alcohol fixed specimen", "agent2": "Alcohol fixed specimen"}, "condition": "contaminated", "kind": "header", "meta": {"members": ["agent0", "agent1", "agent2"], "orchestrator": false, "order": [0, 1, 2], "rounds": 3, "seed": 0, "shared": true}, "run_id": "cmte-9a292f87-6a2d-4bba-bcee-f11ca9a94c73-contaminated-seed0"}
+{"agent_id": "agent0", "answer": "Alcohol fixed specimen", "confidence": null, "content": "B", "kind": "turn", "seeded": false, "turn_index": 0}
+{"agent_id": "agent1", "answer": "Glutaraldehyde fixed specimen", "confidence": null, "content": "", "kind": "turn", "seeded": true, "turn_index": 1}
+{"agent_id": "agent2", "answer": "Alcohol fixed specimen", "confidence": null, "content": "B", "kind": "turn", "seeded": false, "turn_index": 2}
+{"agent_id": "agent0", "answer": "Alcohol fixed specimen", "confidence": null, "content": "B", "kind": "turn", "seeded": false, "turn_index": 3}
+{"agent_id": "agent1", "answer": "Alcohol fixed specimen", "confidence": null, "content": "B", "kind": "turn", "seeded": false, "turn_index": 4}
+{"agent_id": "agent2", "answer": "Alcohol fixed specimen", "confidence": null, "content": "B", "kind": "turn", "seeded": false, "turn_index": 5}
+{"agent_id": "agent0", "answer": "Alcohol fixed specimen", "confidence": null, "content": "B", "kind": "turn", "seeded": false, "turn_index": 6}
+{"agent_id": "agent1", "answer": "Alcohol fixed specimen", "confidence": null, "content": "B", "kind": "turn", "seeded": false, "turn_index": 7}
+{"agent_id": "agent2", "answer": "Alcohol fixed specimen", "confidence": null, "content": "B", "kind": "turn", "seeded": false, "turn_index": 8}

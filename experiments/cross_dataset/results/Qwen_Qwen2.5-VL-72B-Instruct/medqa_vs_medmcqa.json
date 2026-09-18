@@ -1,0 +1,120 @@
+{
+  "datasets": [
+    "medqa",
+    "medmcqa"
+  ],
+  "cue_types": [
+    "option_order",
+    "longest_option",
+    "lexical_overlap"
+  ],
+  "per_cue": {
+    "option_order": {
+      "rate": {
+        "medqa": 0.08,
+        "medmcqa": 0.12
+      },
+      "ci": {
+        "medqa": [
+          0.08,
+          0.02,
+          0.16
+        ],
+        "medmcqa": [
+          0.12,
+          0.04,
+          0.22
+        ]
+      },
+      "counts": {
+        "medqa": [
+          4,
+          50
+        ],
+        "medmcqa": [
+          6,
+          50
+        ]
+      },
+      "spread": 0.039999999999999994,
+      "fisher": {
+        "oddsratio": 0.6376811594202898,
+        "pvalue": 0.7406664537744647
+      }
+    },
+    "longest_option": {
+      "rate": {
+        "medqa": 0.06,
+        "medmcqa": 0.24
+      },
+      "ci": {
+        "medqa": [
+          0.06,
+          0.0,
+          0.14
+        ],
+        "medmcqa": [
+          0.24,
+          0.12,
+          0.36
+        ]
+      },
+      "counts": {
+        "medqa": [
+          3,
+          50
+        ],
+        "medmcqa": [
+          12,
+          50
+        ]
+      },
+      "spread": 0.18,
+      "fisher": {
+        "oddsratio": 0.20212765957446807,
+        "pvalue": 0.02260438688192351
+      }
+    },
+    "lexical_overlap": {
+      "rate": {
+        "medqa": 0.04,
+        "medmcqa": 0.3
+      },
+      "ci": {
+        "medqa": [
+          0.04,
+          0.0,
+          0.1
+        ],
+        "medmcqa": [
+          0.3,
+          0.18,
+          0.42
+        ]
+      },
+      "counts": {
+        "medqa": [
+          2,
+          50
+        ],
+        "medmcqa": [
+          15,
+          50
+        ]
+      },
+      "spread": 0.26,
+      "fisher": {
+        "oddsratio": 0.09722222222222222,
+        "pvalue": 0.0009062366858015316
+      }
+    }
+  },
+  "agreement": {
+    "mean_spread": 0.16,
+    "n_cues_compared": 3
+  },
+  "n_twins": {
+    "medqa": 150,
+    "medmcqa": 150
+  }
+}

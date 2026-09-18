@@ -19,6 +19,7 @@ lane; verified against the committed field before trusting it.
 """
 from __future__ import annotations
 
+import argparse
 import json
 from collections import Counter
 from pathlib import Path
@@ -78,8 +79,14 @@ def _make_judge_detector(judge_flag):
     return detector
 
 
-def main():
-    results_dir = Path(__file__).parent / "results"
+def main(argv=None):
+    # Re-analysis of one model's result set. The default is the committed Gemini lane; a second
+    # model's arms live in the model-scoped subdirectory the runners write, and are re-analysed
+    # by pointing here, so the committed Gemini derivations are never overwritten.
+    ap = argparse.ArgumentParser(description="pure re-analysis of the imaging lane, no model calls")
+    ap.add_argument("--results-dir", default=str(Path(__file__).parent / "results"),
+                    help="an imaging results directory, e.g. the model-scoped one for a second model")
+    results_dir = Path(ap.parse_args(argv).results_dir)
     ref_rows = {r["case_id"]: r for r in _load_jsonl(results_dir / "imaging_referee.jsonl")}
     judge_rows = {r["case_id"]: r for r in _load_jsonl(results_dir / "imaging_judge_referee.jsonl")}
     case_ids = sorted(set(ref_rows) & set(judge_rows))

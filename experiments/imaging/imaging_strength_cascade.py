@@ -32,13 +32,18 @@ from benchmaxxing import gateway
 from benchmaxxing.cues import image as ci
 from benchmaxxing.data import load_cases
 
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
+
 MODEL = "gemini-2.5-flash"
 OPACITIES = [0.15, 0.30, 0.45]
 _lock = threading.Lock()
 
 
 def _key():
-    return os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+    return _lane.key_for(MODEL)
 
 
 def _img_bytes(pil):
@@ -66,10 +71,9 @@ class _Cache:
             if k in self.store:
                 return parse_yesno(self.store[k])
         if not self.key:
-            raise SystemExit("Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key).")
-        if self._b is None:
-            self._b = gateway.RetryBackend(gateway.GeminiBackend(model=MODEL, api_key=self.key), tries=5, backoff=3.0)
-        resp = self._b.complete(prompt, image=pil, decoding={"temperature": 0})
+            raise SystemExit(f"Cache miss and no {_lane.key_name(MODEL)} set for {MODEL} "
+                          "(a fully cached run needs no key).")
+        resp = _lane.paced_complete(MODEL, self.key, prompt, image=pil, decoding={"temperature": 0})
         # The append is deliberately OUTSIDE the lock. Holding a global lock across a file write
         # serialises every worker behind it, and on synced or network storage (OneDrive) that write
         # can block for seconds, which collapses throughput to roughly one call per append. The
@@ -87,14 +91,23 @@ def main():
     ap.add_argument("--manifest", required=True)
     ap.add_argument("--image-root", required=True)
     ap.add_argument("--out", default="experiments/imaging/results")
-    ap.add_argument("--cache", default="experiments/imaging/results/img_strength_cache.jsonl")
+    _lane.add_model_arg(ap, MODEL)
+    ap.add_argument("--cache", default=None,
+                    help="defaults to <out>/img_strength_cache.jsonl, so a second model cannot append to the committed cache")
     ap.add_argument("--n", type=int, default=35)
     args = ap.parse_args()
 
-    out = Path(args.out)
+    model = args.model
+    default_model = MODEL
+    if model != default_model:
+        # Every Gemini seat becomes the requested model, as the text lanes do, so MODEL itself is
+        # the requested id from here: the cache key prefix and the summary field follow it.
+        assert _lane.rebind_models(globals(), model) > 0, "no Gemini id to rebind"
+
+    out = Path(args.out) if model == default_model else Path(args.out) / model.replace("/", "_")
     out.mkdir(parents=True, exist_ok=True)
     root = Path(args.image_root)
-    cache = _Cache(Path(args.cache), _key())
+    cache = _Cache(Path(args.cache) if args.cache else out / "img_strength_cache.jsonl", _key())
     cases = [c for c in load_cases(args.manifest)
              if c.label and c.label.lower() not in ("no finding", "", "none") and (root / c.image_ref).exists()][:args.n]
 

@@ -1,0 +1,23 @@
+{
+  "n": 35,
+  "K": 3,
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "cue": "watermark",
+  "new_api_calls_this_run": 210,
+  "shared_adoption_by_round": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "isolated_adoption_by_round": [
+    0.4857,
+    0.4857,
+    0.4857
+  ],
+  "round1_vs_roundK_shared": {
+    "gained": 0,
+    "lost": 0,
+    "mcnemar_p": 1.0
+  },
+  "monotone_nondecreasing_shared": true
+}

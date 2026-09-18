@@ -156,7 +156,7 @@ def rebuild(cues):
     if p.exists():
         before = p.read_text()
         try:
-            effect_sizes_imaging.main()          # writes the file from the transcripts
+            effect_sizes_imaging.main([])        # writes the file from the transcripts; no CLI args inherited
             updates[p.name] = json.loads(p.read_text())
         finally:
             p.write_text(before)                 # leave the tree untouched; --write re-applies
