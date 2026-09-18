@@ -31,16 +31,15 @@ def served_locally(monkeypatch):
     monkeypatch.setattr(_lane, "LOCAL_BASE_URL", LOCAL)
 
 
-def test_a_local_server_captures_the_openai_compatible_ids_and_nothing_else(served_locally):
-    """Every id that would go to the OpenAI-compatible vendor endpoint is served locally instead.
+def test_a_local_server_captures_open_weights_ids_and_no_committed_comparator(served_locally):
+    """Only an open-weights id with no vendor endpoint here is served locally.
 
-    That includes the nemotron id, deliberately: an open-weights comparator can also be served on
-    the machine, and routing it anywhere else while a local server is configured would be
-    surprising. The two ids that reach a vendor through its own SDK path are the ones that must
-    not move, since their committed caches are what the cross-lineage comparison rests on.
+    The nemotron id is a committed comparator arm served by NIM; a shell with a local vLLM
+    configured must not quietly answer a cache miss for it from a different model behind the same
+    id. Gemini and DeepSeek reach their vendor through its own SDK path and never move either.
     """
     assert _lane.is_local(OPEN_WEIGHTS)
-    assert _lane.is_local(NIM)
+    assert not _lane.is_local(NIM)
     assert not _lane.is_local(GEMINI)
     assert not _lane.is_local(DEEPSEEK)
 
