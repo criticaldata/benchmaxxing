@@ -37,3 +37,25 @@ def test_reproduce_takes_an_explicit_cache_path(tmp_path, monkeypatch):
 def test_refusal_aware_reanalysis_takes_model():
     src = (ROOT / "experiments/mimic_cxr_text/refusal_aware_reanalysis.py").read_text()
     assert '"--model"' in src and "rebind_models" in src
+
+def test_a_hosted_vendor_id_is_never_served_locally():
+    """Belt and braces for the local-serve guard, in a file the sibling lineage branches do not have.
+
+    `_lane.is_local` must stay False for a hosted vendor id even when BENCHMAXXING_LOCAL_BASE_URL is
+    set, or a cache miss for this lineage would be answered by whatever model a local server happens
+    to hold. tests/test_local_serve_dispatch.py asserts the same thing, but that file and _lane.py
+    both differ on the other lineage branches, so a merge that resolves them in the other direction
+    would drop the guard and its test together. This assertion is duplicated here on purpose.
+    """
+    sys.path.insert(0, str(ROOT / "experiments"))
+    import _lane
+
+    hosted = ("nvidia/nemotron-3-super-120b-a12b", "gemini-2.5-flash-lite", "deepseek-chat")
+    original = _lane.LOCAL_BASE_URL
+    try:
+        _lane.LOCAL_BASE_URL = "http://127.0.0.1:8000/v1"
+        for model in hosted:
+            assert not _lane.is_local(model), f"{model} would be answered by a local server"
+        assert _lane.is_local("openai/gpt-oss-120b")
+    finally:
+        _lane.LOCAL_BASE_URL = original
