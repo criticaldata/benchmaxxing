@@ -59,3 +59,21 @@ def test_a_hosted_vendor_id_is_never_served_locally():
         assert _lane.is_local("openai/gpt-oss-120b")
     finally:
         _lane.LOCAL_BASE_URL = original
+
+
+def test_cross_lane_table_reads_committed_files_only(tmp_path):
+    """The lane pairing script must replay from the tree with no key and write JSON, not Markdown."""
+    import json
+    import subprocess
+
+    out = tmp_path / "x.json"
+    r = subprocess.run(
+        [sys.executable, str(ROOT / "experiments" / "cross_lane_table.py"), "--lane", "support2",
+         "--model", "nvidia/nemotron-3-super-120b-a12b", "--out", str(out)],
+        cwd=ROOT, capture_output=True, text=True,
+        env={"PATH": "/usr/bin:/bin", "PYTHONPATH": str(ROOT), "PYTHONNOUSERSITE": "1"},
+    )
+    assert r.returncode == 0, r.stderr[-500:]
+    d = json.loads(out.read_text())
+    assert d["lane"] == "support2" and d["rows"], "no paired metrics"
+    assert r.stdout.startswith("| Arm | Metric |"), "table is print-only, JSON is the committed form"
