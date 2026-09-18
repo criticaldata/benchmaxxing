@@ -39,6 +39,9 @@ from benchmaxxing.data import load_cases
 
 DEFAULT_MODEL = "gemini-2.5-flash-lite"
 NIM_BASE_URL = "https://integrate.api.nvidia.com/v1"
+
+# Kept identical to experiments/_lane.HOSTED_PREFIXES; see the note there.
+HOSTED_PREFIXES = ("nvidia/",)
 # An open-weights model served on the machine that runs the experiment has no vendor endpoint, no
 # key and no request ceiling, and BENCHMAXXING_LOCAL_BASE_URL names that server. Gemini and
 # DeepSeek ids keep their vendor routing whatever it is set to, so one variable cannot silently
@@ -56,9 +59,16 @@ _NAMING = re.compile(
 
 
 def _is_local(model):
-    """True when this model is served locally rather than by a vendor endpoint."""
+    """True when this model is served locally rather than by a vendor endpoint.
+
+    Mirrors experiments/_lane.is_local, including HOSTED_PREFIXES: an id hosted by its vendor here
+    is never redirected to a local server, so a committed comparator cannot be answered by
+    whatever weights this machine happens to be serving.
+    """
     m = model.lower()
-    return bool(LOCAL_BASE_URL) and "gemini" not in m and "deepseek" not in m
+    if not LOCAL_BASE_URL or "gemini" in m or "deepseek" in m:
+        return False
+    return not m.startswith(HOSTED_PREFIXES)
 
 
 def _key_name(model):
