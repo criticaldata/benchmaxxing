@@ -27,9 +27,13 @@ import hashlib
 import itertools
 import json
 import os
+import sys
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
 
 from benchmaxxing import gateway
 from benchmaxxing.ablations import order_permutation_run
@@ -77,8 +81,8 @@ class _Cache:
             if k in self.store:
                 return self.store[k]
         if not self.key:
-            raise SystemExit("Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key).")
-        resp = gateway.RetryBackend(gateway.GeminiBackend(model=model, api_key=self.key),
+            raise SystemExit(f"Cache miss and no {_lane.key_name(model)} set for {model} (a fully cached run needs no key).")
+        resp = gateway.RetryBackend(_lane.backend_for(model, self.key),
                                     tries=5, backoff=3.0).complete(prompt, decoding={"temperature": TEMP})
         with _lock:
             self.store[k] = resp
@@ -91,17 +95,23 @@ class _Cache:
 def main():
     ap = argparse.ArgumentParser(description="Order-independent hierarchy dominance at temperature>0 (#235).")
     ap.add_argument("--manifest", required=True)
-    ap.add_argument("--cache", default="experiments/medqa/results/hierarchy_temp_cache.jsonl")
+    ap.add_argument("--cache", default=None, help="cache path; defaults to the model-scoped file")
     ap.add_argument("--out", default="experiments/medqa/results")
+    _lane.add_model_arg(ap)
     ap.add_argument("--n", type=int, default=40)
     ap.add_argument("--show-rationale", action="store_true",
                     help="render each peer's reasoning under its vote (#373); off is the "
                          "committed answer-only board, which the cache replays at zero calls")
     args = ap.parse_args()
 
-    out = Path(args.out)
+    model = args.model
+    if model != _lane.DEFAULT_MODEL:
+        # Every Gemini seat becomes the requested model: this model's committee against Gemini's.
+        assert _lane.rebind_models(globals(), model) > 0
+    out, cache_path = _lane.scoped(model, args.out, "experiments/medqa/results/hierarchy_temp_cache.jsonl", args.cache)
+    key = _lane.key_for(model) if model != _lane.DEFAULT_MODEL else _key()
     out.mkdir(parents=True, exist_ok=True)
-    cache = _Cache(args.cache, _key())
+    cache = _Cache(cache_path, key)
     model_by_agent = dict(MEMBERS)
     committee = build_committee(
         [ModelSpec(name=a, lineage="gemini", tier=m, is_open_weights=False) for a, m in MEMBERS])

@@ -25,80 +25,50 @@ is unchanged; see the MedQA original's docstring for the method.
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
-import os
+import sys
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
-from benchmaxxing import gateway
 from benchmaxxing.data import load_cases
 from benchmaxxing.extract import parse_legacy_string
 from benchmaxxing.stats import mcnemar
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
 from experiments.mimic_cxr_text.case_index import build_index_map, hard_cases
 from experiments.mimic_cxr_text.push_c import _findings_text
 
-MODEL = "gemini-2.5-flash-lite"
+DEFAULT_MODEL = _lane.DEFAULT_MODEL
 _lock = threading.Lock()
 FRAME_ORDER = ["none", "collaborative", "independent", "critical"]
 
 
-def _key():
-    return os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
-
-
-def _letters(n):
-    return [chr(65 + i) for i in range(n)]
-
-
 def _mcq_prompt(payload, board="", preamble=""):
     opts = payload["options"]
-    body = "\n".join(f"{L}. {o}" for L, o in zip(_letters(len(opts)), opts))
+    body = "\n".join(f"{L}. {o}" for L, o in zip(_lane.letters(len(opts)), opts))
     report = (payload.get("report") or "").strip()
     head = f"Clinical context: {report}\n\n" if report else ""
     return (f"{head}{preamble}Question: {payload['question']}\n\nOptions:\n{body}\n\n{board}"
             "Answer with only the single letter of the best option.")
 
 
-class _Cache:
-    def __init__(self, path, key):
-        self.path, self.key, self.store, self.calls = Path(path), key, {}, 0
-        if self.path.exists():
-            for line in self.path.read_text().splitlines():
-                if line.strip():
-                    r = json.loads(line)
-                    self.store[r["k"]] = r["resp"]
-
-    def complete(self, prompt):
-        k = hashlib.sha256(f"{MODEL}\x00{prompt}".encode()).hexdigest()
-        with _lock:
-            if k in self.store:
-                return self.store[k]
-        if not self.key:
-            raise SystemExit("Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key).")
-        resp = gateway.RetryBackend(gateway.GeminiBackend(model=MODEL, api_key=self.key),
-                                    tries=5, backoff=3.0).complete(prompt, decoding={"temperature": 0})
-        with _lock:
-            self.store[k] = resp
-            self.calls += 1
-            with open(self.path, "a") as f:
-                f.write(json.dumps({"k": k, "model": MODEL, "resp": resp}) + "\n")
-        return resp
-
-
 def main():
     ap = argparse.ArgumentParser(description="Deliberation framing crossed with the anchored seed on MIMIC-CXR text (#398).")
     ap.add_argument("--manifest", required=True)
+    _lane.add_model_arg(ap)
     ap.add_argument("--solo-records", required=True, help="solo_records.jsonl (to pick hard cases)")
-    ap.add_argument("--cache", default="experiments/mimic_cxr_text/results/deliberation_framing_cache.jsonl")
+    ap.add_argument("--cache", default=None,
+                    help="Defaults to the committed cache for the default model, and to a model-scoped sibling otherwise.")
     ap.add_argument("--out", default="experiments/mimic_cxr_text/results")
     ap.add_argument("--n", type=int, default=60)
     args = ap.parse_args()
+    model = args.model
+    out_dir, cache_path = _lane.scoped(model, args.out, "experiments/mimic_cxr_text/results/deliberation_framing_cache.jsonl", args.cache)
 
-    out = Path(args.out)
-    out.mkdir(parents=True, exist_ok=True)
-    cache = _Cache(args.cache, _key())
+    out = out_dir
+    cache = _lane.Cache(cache_path, _lane.key_for(model), model)
     all_cases = load_cases(args.manifest)
     index_of = build_index_map(all_cases)
     cases = hard_cases(all_cases, args.solo_records, args.n)
@@ -145,7 +115,7 @@ def main():
         return {"gain": gain, "lose": lose, "pvalue": round(mcnemar(gain, lose).pvalue, 6)}
 
     summary = {
-        "n": n, "model": MODEL, "new_api_calls_this_run": cache.calls,
+        "n": n, "model": model, "new_api_calls_this_run": cache.calls,
         "adoption_by_framing": rates,
         "none_vs_collaborative": paired("none", "collaborative"),
         "none_vs_independent": paired("none", "independent"),

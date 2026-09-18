@@ -10,8 +10,12 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import sys
 import threading
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
 
 from benchmaxxing import gateway
 from benchmaxxing.blackboard import AgentResponse, render_board, run_committee
@@ -99,7 +103,7 @@ class Cache:
         with _backend_lock:
             if model not in self._backend:
                 self._backend[model] = gateway.RetryBackend(
-                    gateway.GeminiBackend(model=model, api_key=self.key), tries=5, backoff=3.0
+                    _lane.backend_for(model, self.key), tries=5, backoff=3.0
                 )
             return self._backend[model]
 

@@ -29,8 +29,12 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 import os
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
 
 from benchmaxxing import gateway
 from benchmaxxing.data import load_cases
@@ -69,7 +73,7 @@ def _cache_complete(model, key, prompt, cache):
         return store[k]
     if not key:
         raise SystemExit("Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key).")
-    backend = gateway.RetryBackend(gateway.GeminiBackend(model=model, api_key=key), tries=5, backoff=3.0)
+    backend = gateway.RetryBackend(_lane.backend_for(model, key), tries=5, backoff=3.0)
     resp = backend.complete(prompt, decoding={"temperature": 0})
     with open(cache, "a") as f:
         f.write(json.dumps({"k": k, "model": model, "resp": resp}) + "\n")
@@ -81,13 +85,16 @@ def main():
     ap.add_argument("--manifest", required=True)
     ap.add_argument("--solo-records", required=True, help="solo_records.jsonl (to pick hard cases)")
     ap.add_argument("--out", default="experiments/mimic_cxr_text/results")
+    _lane.add_model_arg(ap)
     ap.add_argument("--n", type=int, default=40)
     args = ap.parse_args()
 
-    key = _key()
-    out = Path(args.out)
-    out.mkdir(parents=True, exist_ok=True)
-    cache = out / "break_it_d_call_cache.jsonl"
+    model = args.model
+    if model != _lane.DEFAULT_MODEL:
+        # Every Gemini seat becomes the requested model: this model's committee against Gemini's.
+        assert _lane.rebind_models(globals(), model) > 0
+    key = _lane.key_for(model) if model != _lane.DEFAULT_MODEL else _key()
+    out, cache = _lane.scoped(model, args.out, str(Path(args.out) / "break_it_d_call_cache.jsonl"))
     all_cases = load_cases(args.manifest)
     index_of = build_index_map(all_cases)
     cases = hard_cases(all_cases, args.solo_records, args.n)

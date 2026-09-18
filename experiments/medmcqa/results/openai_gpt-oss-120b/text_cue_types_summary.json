@@ -1,0 +1,27 @@
+{
+  "n": 120,
+  "model": "openai/gpt-oss-120b",
+  "new_api_calls_this_run": 600,
+  "adoption_by_cue": {
+    "baseline": 0.3167,
+    "primacy": 0.375,
+    "negation": 0.4417,
+    "qualifier": 0.2583
+  },
+  "baseline_vs_primacy": {
+    "gain": 13,
+    "lose": 6,
+    "pvalue": 0.167068
+  },
+  "baseline_vs_negation": {
+    "gain": 19,
+    "lose": 4,
+    "pvalue": 0.002599
+  },
+  "baseline_vs_qualifier": {
+    "gain": 3,
+    "lose": 10,
+    "pvalue": 0.092285
+  },
+  "read": "Adoption of the same fixed wrong answer under different text cue types: baseline 0.3167, moved to the front (primacy) 0.375, framed as ruling out the holdout's own pick (negation) 0.4417, padded with an exclusion qualifier 0.2583. Deviations from baseline isolate pure position/order sensitivity (primacy), the extra push from explicitly cancelling the holdout's prior (negation), and whether pseudo-justification padding adds anything (qualifier). Paired McNemars test each cue against the baseline assertion."
+}

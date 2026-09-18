@@ -1,0 +1,12 @@
+{
+  "n": 40,
+  "temperature": 0,
+  "declared_pairs": 40,
+  "undeclared_pairs": 0,
+  "undeclared_draws": 0,
+  "stable_cases": 39,
+  "unstable_cases": 1,
+  "temp0_self_inconsistency_rate": 0.025,
+  "model": "openai/gpt-oss-120b",
+  "new_api_calls_this_run": 80
+}

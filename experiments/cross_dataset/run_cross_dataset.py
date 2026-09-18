@@ -24,7 +24,12 @@ import json
 import math
 import os
 import re
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+import _lane
 
 from benchmaxxing import gateway
 from benchmaxxing.cross_dataset import run_cross_dataset_cue
@@ -123,7 +128,7 @@ def make_backend(model, api_key, *, raw=None, cache=None):
     """
     if raw is None:
         live = gateway.RetryBackend(
-            gateway.GeminiBackend(model=model, api_key=api_key), tries=5, backoff=3.0
+            _lane.backend_for(model, api_key), tries=5, backoff=3.0
         )
         raw = gateway.CachedBackend(live, cache=cache if cache is not None else {})
 
@@ -189,9 +194,14 @@ def main(argv=None) -> int:
     ap.add_argument("--cache", default=None, help="JSONL call cache to record/reuse for reproducibility")
     args = ap.parse_args(argv)
 
-    key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
-    if not key:
-        return _skip("no GEMINI_API_KEY/GOOGLE_API_KEY: this is a real-model run, nothing fabricated.")
+    if args.model == "gemini-2.5-flash" or args.model.startswith("gemini"):
+        key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+        if not key:
+            return _skip("no GEMINI_API_KEY/GOOGLE_API_KEY: this is a real-model run, nothing fabricated.")
+    else:
+        key = _lane.key_for(args.model)
+        if not key:
+            return _skip(f"no key for {args.model}: this is a real-model run, nothing fabricated.")
     for label, path in (("MedQA", args.medqa_manifest), ("MedMCQA", args.medmcqa_manifest)):
         if not Path(path).exists():
             return _skip(f"{label} manifest not found: {path}. Build it with the dataset adapter first.")
