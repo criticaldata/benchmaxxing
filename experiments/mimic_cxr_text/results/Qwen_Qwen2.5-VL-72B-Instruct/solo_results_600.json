@@ -1,0 +1,39 @@
+{
+  "n_records": 1800,
+  "n_cases": 600,
+  "cohort": "the 600 MIMIC-CXR report-text cases the committed Gemini solo records cover, the same case_index set; the 633-case run is solo_results.json beside this file",
+  "noise_floor_by_model": {
+    "Qwen/Qwen2.5-VL-72B-Instruct": 0.0
+  },
+  "flip_rate_by_model": {
+    "Qwen/Qwen2.5-VL-72B-Instruct": {
+      "overall": 0.105,
+      "per_cue": {
+        "lexical_overlap": 0.21166666666666667,
+        "longest_option": 0.07166666666666667,
+        "option_order": 0.03166666666666667
+      },
+      "n": 1800
+    }
+  },
+  "clean_accuracy_by_model": {
+    "Qwen/Qwen2.5-VL-72B-Instruct": 0.8283333333333334
+  },
+  "susceptibility_matrix": {
+    "models": [
+      "Qwen/Qwen2.5-VL-72B-Instruct"
+    ],
+    "cues": [
+      "lexical_overlap",
+      "longest_option",
+      "option_order"
+    ],
+    "matrix": [
+      [
+        0.21166666666666667,
+        0.07166666666666667,
+        0.03166666666666667
+      ]
+    ]
+  }
+}
