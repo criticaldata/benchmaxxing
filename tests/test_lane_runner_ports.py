@@ -38,6 +38,31 @@ def test_support2_common_uses_the_shared_dispatch():
     assert "_lane.backend_for(model, self.key)" in src and "GeminiBackend(" not in src
 
 
+def test_mimic_solo_records_uses_the_central_parser():
+    """build_solo_records lost its parser when #102 centralised extraction; it must use the survivor."""
+    src = (ROOT / "experiments/mimic_cxr_text/build_solo_records.py").read_text()
+    assert "_parse_choice" not in src, "the name #102 removed is back"
+    assert "from benchmaxxing.extract import parse_legacy_string" in src
+    assert 'parse_legacy_string(cache[key], list(payload["options"]))' in src
+
+
+def test_mimic_refusal_aware_takes_a_model():
+    """The re-analysis was pinned to the Gemini tiers, so no second lineage could be scored."""
+    src = (ROOT / "experiments/mimic_cxr_text/refusal_aware_reanalysis.py").read_text()
+    assert 'ap.add_argument("--model"' in src
+    assert "TIERS = [args.model]" in src
+    assert "if args.model:" in src, "the default must keep both committed Gemini tiers"
+
+
+def test_cross_dataset_pilot_uses_the_shared_dispatch():
+    """The MedQA/MedMCQA cue pilot keeps its own --model, cache and skip path; only the backend and the
+    key for a non-Gemini model come from the dispatch, so the default model still needs a Gemini key."""
+    src = (ROOT / "experiments/cross_dataset/run_cross_dataset.py").read_text()
+    assert "_lane.backend_for(model, api_key)" in src and "GeminiBackend(" not in src
+    assert "key = _lane.key_for(args.model)" in src
+    assert 'os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")' in src
+
+
 @pytest.mark.parametrize("runner", RUNNERS)
 def test_each_runner_has_gemini_seats_to_rebind(runner):
     spec = importlib.util.spec_from_file_location(f"r_{runner.replace('/', '_')}", ROOT / "experiments" / f"{runner}.py")
@@ -54,3 +79,21 @@ def test_each_runner_has_gemini_seats_to_rebind(runner):
 def test_the_default_model_path_is_unchanged(runner):
     src = (ROOT / "experiments" / f"{runner}.py").read_text()
     assert re.search(r"if model != _lane\.DEFAULT_MODEL else (_key|api_key)\(\)", src)
+
+
+def test_cross_lineage_report_reproduces_the_committed_report(tmp_path):
+    """The family and repeat-prompt integers in the PR body come from a committed script, not a hand count."""
+    import json
+    import subprocess
+    import sys
+
+    committed = ROOT / "experiments/medqa/results/openai_gpt-oss-120b/cross_lineage_report.json"
+    out = tmp_path / "report.json"
+    subprocess.run([sys.executable, str(ROOT / "experiments/medqa/cross_lineage_report.py"),
+                    "--model", "openai/gpt-oss-120b", "--out", str(out)],
+                   cwd=ROOT, check=True, capture_output=True)
+    fresh, kept = json.load(open(out)), json.load(open(committed))
+    assert fresh["family"] == kept["family"]
+    assert fresh["repeats"] == kept["repeats"]
+    fam = kept["family"]["openai/gpt-oss-120b"]
+    assert fam["n_contrasts"] == 43 and fam["n_survive_bh_0.05"] == 4

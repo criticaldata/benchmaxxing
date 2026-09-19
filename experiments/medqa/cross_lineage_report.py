@@ -15,7 +15,7 @@ the stored completions differ; it "changes the answer" when both completions are
 and the letters differ, which excludes prose rewordings of the same choice.
 
 Usage:
-    python experiments/medqa/cross_lineage_report.py --model nvidia/nemotron-3-super-120b-a12b
+    python experiments/medqa/cross_lineage_report.py --model openai/gpt-oss-120b
 """
 from __future__ import annotations
 

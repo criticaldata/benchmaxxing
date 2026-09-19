@@ -58,15 +58,13 @@ def main():
     ap.add_argument("--solo-n", type=int, required=True)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--model", default=None,
-                    help="score a second lineage's solo cache: every Gemini tier becomes this model, "
-                         "as reproduce.py --model does")
+                    help="Re-analyse this model's cached calls instead of the committed Gemini tiers. "
+                         "The default keeps both Gemini tiers, so the committed result is unchanged.")
     args = ap.parse_args()
     if args.model:
-        import sys
-        from pathlib import Path as _P
-        sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
-        import _lane
-        assert _lane.rebind_models(globals(), args.model) > 0
+        # One lineage, one tier: the cache holds only this model's calls.
+        global TIERS
+        TIERS = [args.model]
 
     cache = _load_cache(args.cache)
     all_cases = load_cases(args.manifest)

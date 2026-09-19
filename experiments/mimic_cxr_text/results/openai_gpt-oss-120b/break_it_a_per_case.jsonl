@@ -1,0 +1,20 @@
+{"case_index": 0, "model": "openai/gpt-oss-120b", "wrong": "Edema", "baseline": "Lung Opacity", "control": 0, "flag": 0}
+{"case_index": 2, "model": "openai/gpt-oss-120b", "wrong": "Pleural Effusion", "baseline": "Edema", "control": 0, "flag": 0}
+{"case_index": 4, "model": "openai/gpt-oss-120b", "wrong": "Cardiomegaly", "baseline": "Pneumonia", "control": 0, "flag": 1}
+{"case_index": 29, "model": "openai/gpt-oss-120b", "wrong": "Cardiomegaly", "baseline": "Atelectasis", "control": 0, "flag": 0}
+{"case_index": 38, "model": "openai/gpt-oss-120b", "wrong": "Edema", "baseline": "Consolidation", "control": 0, "flag": 1}
+{"case_index": 46, "model": "openai/gpt-oss-120b", "wrong": "Edema", "baseline": "Consolidation", "control": 0, "flag": 1}
+{"case_index": 50, "model": "openai/gpt-oss-120b", "wrong": "Edema", "baseline": "Lung Opacity", "control": 0, "flag": 0}
+{"case_index": 53, "model": "openai/gpt-oss-120b", "wrong": "Pleural Effusion", "baseline": "Cardiomegaly", "control": 0, "flag": 1}
+{"case_index": 61, "model": "openai/gpt-oss-120b", "wrong": "Edema", "baseline": "Pneumonia", "control": 0, "flag": 0}
+{"case_index": 62, "model": "openai/gpt-oss-120b", "wrong": "Pleural Effusion", "baseline": "Edema", "control": 0, "flag": 0}
+{"case_index": 69, "model": "openai/gpt-oss-120b", "wrong": "Consolidation", "baseline": "Cardiomegaly", "control": 0, "flag": 1}
+{"case_index": 73, "model": "openai/gpt-oss-120b", "wrong": "Edema", "baseline": "Pneumonia", "control": 0, "flag": 1}
+{"case_index": 78, "model": "openai/gpt-oss-120b", "wrong": "Cardiomegaly", "baseline": "Edema", "control": 0, "flag": 1}
+{"case_index": 86, "model": "openai/gpt-oss-120b", "wrong": "Pleural Effusion", "baseline": "Edema", "control": 0, "flag": 0}
+{"case_index": 87, "model": "openai/gpt-oss-120b", "wrong": "Edema", "baseline": "Lung Opacity", "control": 0, "flag": 0}
+{"case_index": 88, "model": "openai/gpt-oss-120b", "wrong": "Edema", "baseline": "Atelectasis", "control": 0, "flag": 1}
+{"case_index": 91, "model": "openai/gpt-oss-120b", "wrong": "Cardiomegaly", "baseline": "Pneumonia", "control": 0, "flag": 0}
+{"case_index": 112, "model": "openai/gpt-oss-120b", "wrong": "Pleural Effusion", "baseline": "Consolidation", "control": 0, "flag": 1}
+{"case_index": 113, "model": "openai/gpt-oss-120b", "wrong": "Edema", "baseline": "Pneumothorax", "control": 0, "flag": 1}
+{"case_index": 114, "model": "openai/gpt-oss-120b", "wrong": "Pleural Effusion", "baseline": "Edema", "control": 0, "flag": 1}

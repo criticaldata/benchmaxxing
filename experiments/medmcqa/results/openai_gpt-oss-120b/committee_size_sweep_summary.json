@@ -1,0 +1,27 @@
+{
+  "n": 120,
+  "model": "openai/gpt-oss-120b",
+  "new_api_calls_this_run": 600,
+  "adoption_by_committee_size": {
+    "s0": 0.3,
+    "s1": 0.125,
+    "s2": 0.1,
+    "s4": 0.1167
+  },
+  "s0_vs_s1": {
+    "gain": 1,
+    "lose": 22,
+    "pvalue": 6e-06
+  },
+  "s0_vs_s2": {
+    "gain": 0,
+    "lose": 24,
+    "pvalue": 0.0
+  },
+  "s0_vs_s4": {
+    "gain": 0,
+    "lose": 22,
+    "pvalue": 0.0
+  },
+  "read": "Adoption of the fixed wrong answer as honest peers accumulate around one wrong senior seed: alone 0.3, +1 honest 0.125, +2 honest 0.1, +4 honest 0.1167. A monotone fall means honest majority DILUTES a single wrong seed (safety in numbers); a flat curve means one anchored authority resists dilution even when outnumbered. Paired McNemars (s0 vs each larger committee) test whether adding honest peers significantly rescues the holdout from the wrong seed."
+}

@@ -36,7 +36,7 @@ def test_reproduce_takes_an_explicit_cache_path(tmp_path, monkeypatch):
 
 def test_refusal_aware_reanalysis_takes_model():
     src = (ROOT / "experiments/mimic_cxr_text/refusal_aware_reanalysis.py").read_text()
-    assert '"--model"' in src and "rebind_models" in src
+    assert '"--model"' in src and ("rebind_models" in src or "TIERS = [args.model]" in src)
 
 def test_a_hosted_vendor_id_is_never_served_locally():
     """Belt and braces for the local-serve guard, in a file the sibling lineage branches do not have.

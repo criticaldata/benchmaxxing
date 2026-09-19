@@ -27,8 +27,6 @@ from benchmaxxing.cues.text import build_text_twin
 from benchmaxxing.data import load_cases
 from benchmaxxing.schema import Condition
 from benchmaxxing.extract import parse_legacy_string
-# reproduce._parse_choice was removed by 72803a3 in favour of the shared parser; this module
-# still imported it, so it has been import-broken since. Same parser, one call site.
 from experiments.medqa.reproduce import TEXT_CUES, _mcq_prompt
 from experiments.mimic_cxr_text.case_index import build_index_map
 

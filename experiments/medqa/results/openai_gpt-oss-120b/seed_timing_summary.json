@@ -1,0 +1,15 @@
+{
+  "n": 120,
+  "model": "openai/gpt-oss-120b",
+  "new_api_calls_this_run": 0,
+  "adoption_by_timing": {
+    "holdout_last": 0.075,
+    "holdout_first": 0.0333
+  },
+  "last_vs_first": {
+    "gain": 1,
+    "lose": 6,
+    "pvalue": 0.125
+  },
+  "read": "Adoption of the fixed wrong peer seed by speaking slot: holdout LAST (max exposure, one round) 0.075, holdout FIRST then revising over two rounds 0.0333 (paired McNemar gain=1 lose=6, p=0.125). Lower adoption when the holdout speaks first means letting the susceptible agent pre-commit before exposure is a cheap structural mitigation; similar rates mean the second-round cascade overrides the pre-commitment and speaking order does not protect."
+}
