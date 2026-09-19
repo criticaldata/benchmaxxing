@@ -5,7 +5,8 @@ contract for the text lane, since every text runner previously hardcoded one Gem
 """
 import pytest
 
-from experiments.blind_metric import blind_metric as bm
+from experiments.blind_metric import blind_metric as bm  # noqa: E402
+import _lane  # noqa: E402
 
 
 def test_key_name_follows_the_model_id():
@@ -34,7 +35,7 @@ def test_key_does_not_hand_a_gemini_key_to_a_nim_model(monkeypatch):
 def test_backend_dispatch_and_the_nim_output_cap():
     stub = object()  # the gateway's injection hook: no SDK client, no network
     nim = bm._backend("nvidia/nemotron-3-super-120b-a12b", "nvapi-test", client=stub)
-    assert isinstance(nim, bm.gateway.LocalOpenAICompatibleBackend)
+    assert isinstance(nim, _lane.gateway.LocalOpenAICompatibleBackend)
     assert nim.base_url == bm.NIM_BASE_URL
     # #417: an uncapped completion runs to the model ceiling and is then mis-scored.
     assert nim.default_decoding["max_tokens"] == bm.NIM_MAX_TOKENS
@@ -51,7 +52,7 @@ def test_gemini_ids_still_route_to_the_google_sdk(monkeypatch):
         seen["model"], seen["api_key"] = model, api_key
         return "gemini-backend"
 
-    monkeypatch.setattr(bm.gateway, "GeminiBackend", _fake)
+    monkeypatch.setattr(_lane.gateway, "GeminiBackend", _fake)
     assert bm._backend("gemini-2.5-flash-lite", "g") == "gemini-backend"
     assert seen == {"model": "gemini-2.5-flash-lite", "api_key": "g"}
 
@@ -83,7 +84,8 @@ def test_reasoning_only_completion_is_refused(tmp_path, monkeypatch):
         def complete(self, prompt, image=None, decoding=None):
             return None
 
-    monkeypatch.setattr(bm, "_backend", lambda model, key: _Null())
+    monkeypatch.setattr(_lane, "backend_for", lambda model, key, client=None: _Null())
+    monkeypatch.setattr(_lane.time, "sleep", lambda _s: None)
     cache = bm._Cache(tmp_path / "c.jsonl", "nvapi-test", "nvidia/x")
     with pytest.raises(SystemExit) as exc:
         cache.complete("nvidia/x", "hello")

@@ -34,7 +34,6 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import _lane  # noqa: E402
 
-from benchmaxxing import gateway
 from benchmaxxing.data import load_cases
 
 MODELS = ["gemini-2.5-flash", "gemini-2.5-flash-lite"]
@@ -70,8 +69,7 @@ def _cache_complete(model, key, prompt, cache):
         return store[k]
     if not key:
         raise SystemExit(f"Cache miss and no {_lane.key_name(model)} set for {model} (a fully cached run needs no key).")
-    backend = gateway.RetryBackend(_lane.backend_for(model, key), tries=5, backoff=3.0)
-    resp = backend.complete(prompt, decoding={"temperature": 0})
+    resp = _lane.paced_complete(model, key, prompt, decoding={"temperature": 0})
     with open(cache, "a") as f:
         f.write(json.dumps({"k": k, "model": model, "resp": resp}) + "\n")
     return resp
@@ -131,7 +129,7 @@ def main():
     if model != _lane.DEFAULT_MODEL:
         # Every Gemini seat becomes the requested model: this model's committee against Gemini's.
         assert _lane.rebind_models(globals(), model) > 0
-    out, cache = _lane.scoped(model, args.out, str(Path(args.out) / "call_cache.jsonl"))
+    out, cache = _lane.scoped(model, args.out, "experiments/medqa/results/call_cache.jsonl")
     key = _lane.key_for(model) if model != _lane.DEFAULT_MODEL else _key()
     hard = _hard_case_ids(args.solo_records)
     cases = [c for c in load_cases(args.manifest) if c.case_id in hard][:args.n]

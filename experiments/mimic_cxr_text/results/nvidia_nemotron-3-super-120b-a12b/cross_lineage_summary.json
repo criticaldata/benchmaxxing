@@ -1,0 +1,252 @@
+{
+ "baseline": "gemini-2.5-flash-lite",
+ "model": "nvidia/nemotron-3-super-120b-a12b",
+ "cohort": "mimic_cxr_text 633-case index, per-arm Gemini cohorts",
+ "rows": [
+  {
+   "arm": "solo n=600",
+   "metric": "cue flip rate, overall",
+   "gemini": "0.133",
+   "model": "0.114",
+   "note": "flash-lite tier; 3 cues x 600"
+  },
+  {
+   "arm": "",
+   "metric": "  lexical_overlap",
+   "gemini": "0.175",
+   "model": "0.163",
+   "note": ""
+  },
+  {
+   "arm": "",
+   "metric": "  longest_option",
+   "gemini": "0.130",
+   "model": "0.105",
+   "note": ""
+  },
+  {
+   "arm": "",
+   "metric": "  option_order",
+   "gemini": "0.095",
+   "model": "0.075",
+   "note": ""
+  },
+  {
+   "arm": "",
+   "metric": "noise floor (repeat call, temp 0)",
+   "gemini": "0.000",
+   "model": "0.067",
+   "note": ""
+  },
+  {
+   "arm": "",
+   "metric": "abstention rate",
+   "gemini": "0.0000",
+   "model": "0.0056",
+   "note": ""
+  },
+  {
+   "arm": "",
+   "metric": "clean-prompt errors (hard cases)",
+   "gemini": "126/600",
+   "model": "87/600",
+   "note": "same 600 case indices"
+  },
+  {
+   "arm": "cascade n=20",
+   "metric": "shared_adopt",
+   "gemini": "0.000",
+   "model": "0.000",
+   "note": ""
+  },
+  {
+   "arm": "",
+   "metric": "isolated_adopt",
+   "gemini": "0.000",
+   "model": "0.000",
+   "note": ""
+  },
+  {
+   "arm": "",
+   "metric": "contagion",
+   "gemini": "0.000",
+   "model": "0.000",
+   "note": ""
+  },
+  {
+   "arm": "blind metric n=40",
+   "metric": "decoy uptake, baseline",
+   "gemini": "0.000",
+   "model": "0.000",
+   "note": ""
+  },
+  {
+   "arm": "",
+   "metric": "decoy uptake, blind",
+   "gemini": "0.050",
+   "model": "0.250",
+   "note": ""
+  },
+  {
+   "arm": "",
+   "metric": "decoy uptake, test_aware",
+   "gemini": "0.075",
+   "model": "0.150",
+   "note": ""
+  },
+  {
+   "arm": "",
+   "metric": "drifted / named the rubric",
+   "gemini": "2 / 0",
+   "model": "10 / 0",
+   "note": ""
+  },
+  {
+   "arm": "referee judge n=40",
+   "metric": "holdout adopted the shortcut",
+   "gemini": "14",
+   "model": "5",
+   "note": ""
+  },
+  {
+   "arm": "",
+   "metric": "  judge vs adoption, precision",
+   "gemini": "1.000",
+   "model": "0.833",
+   "note": ""
+  },
+  {
+   "arm": "",
+   "metric": "  judge vs adoption, recall",
+   "gemini": "0.929",
+   "model": "1.000",
+   "note": ""
+  },
+  {
+   "arm": "",
+   "metric": "  judge vs adoption, fpr",
+   "gemini": "0.000",
+   "model": "0.029",
+   "note": ""
+  },
+  {
+   "arm": "referee deployable n=40",
+   "metric": "false positives on clean control",
+   "gemini": "12",
+   "model": "5",
+   "note": ""
+  },
+  {
+   "arm": "",
+   "metric": "  deployable referee, precision",
+   "gemini": "0.538",
+   "model": "0.500",
+   "note": "with clean control"
+  },
+  {
+   "arm": "",
+   "metric": "  deployable referee, recall",
+   "gemini": "1.000",
+   "model": "1.000",
+   "note": "with clean control"
+  },
+  {
+   "arm": "",
+   "metric": "  deployable referee, fpr",
+   "gemini": "0.182",
+   "model": "0.067",
+   "note": "with clean control"
+  },
+  {
+   "arm": "break-it A n=20",
+   "metric": "flag adoption minus control",
+   "gemini": "0.450",
+   "model": "0.250",
+   "note": "Gemini row pools two tiers"
+  },
+  {
+   "arm": "break-it D",
+   "metric": "decoy drift (incentive minus control)",
+   "gemini": "-0.065 (n=31)",
+   "model": "+0.061 (n=33)",
+   "note": "McNemar p 0.50 / 0.50"
+  },
+  {
+   "arm": "push C n=60",
+   "metric": "conformity, generic",
+   "gemini": "0.850",
+   "model": "0.567",
+   "note": ""
+  },
+  {
+   "arm": "",
+   "metric": "conformity, anchored",
+   "gemini": "0.883",
+   "model": "0.633",
+   "note": ""
+  },
+  {
+   "arm": "",
+   "metric": "conformity, anchored_strong",
+   "gemini": "0.917",
+   "model": "0.783",
+   "note": ""
+  },
+  {
+   "arm": "",
+   "metric": "conformity, anchored_solo",
+   "gemini": "0.733",
+   "model": "0.683",
+   "note": ""
+  },
+  {
+   "arm": "",
+   "metric": "anchored_strong vs generic, McNemar p",
+   "gemini": "0.289",
+   "model": "0.0023",
+   "note": ""
+  },
+  {
+   "arm": "deliberation framing n=60",
+   "metric": "adoption, none",
+   "gemini": "0.717",
+   "model": "0.450",
+   "note": ""
+  },
+  {
+   "arm": "",
+   "metric": "adoption, collaborative",
+   "gemini": "0.650",
+   "model": "0.500",
+   "note": ""
+  },
+  {
+   "arm": "",
+   "metric": "adoption, independent",
+   "gemini": "0.467",
+   "model": "0.117",
+   "note": ""
+  },
+  {
+   "arm": "",
+   "metric": "adoption, critical",
+   "gemini": "0.367",
+   "model": "0.083",
+   "note": ""
+  },
+  {
+   "arm": "",
+   "metric": "  none_vs_independent, McNemar p",
+   "gemini": "0.0041 (5/20)",
+   "model": "1.1e-05 (1/21)",
+   "note": ""
+  },
+  {
+   "arm": "",
+   "metric": "  none_vs_critical, McNemar p",
+   "gemini": "4.9e-05 (3/24)",
+   "model": "< 1e-6 (0/22)",
+   "note": ""
+  }
+ ]
+}

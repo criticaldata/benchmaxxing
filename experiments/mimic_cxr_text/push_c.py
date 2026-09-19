@@ -35,7 +35,6 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import _lane  # noqa: E402
 
-from benchmaxxing import gateway
 from benchmaxxing.data import load_cases
 from benchmaxxing.stats import mcnemar
 from experiments.mimic_cxr_text.case_index import build_index_map, hard_cases
@@ -124,9 +123,9 @@ class _Cache:
             self._inner = {}
         b = self._inner.get(model)
         if b is None:
-            b = gateway.RetryBackend(_lane.backend_for(model, self.key), tries=5, backoff=3.0)
+            b = model
             self._inner[model] = b
-        resp = b.complete(prompt, decoding={"temperature": 0})
+        resp = _lane.paced_complete(b, self.key, prompt, decoding={"temperature": 0})
         with _lock:
             self.store[k] = resp
             with open(self.path, "a") as f:
@@ -159,7 +158,7 @@ def main():
         assert _lane.rebind_models(globals(), model) > 0
     key = _lane.key_for(model) if model != _lane.DEFAULT_MODEL else _key()
 
-    out, cache_path = _lane.scoped(model, args.out, str(Path(args.out) / "call_cache.jsonl"))
+    out, cache_path = _lane.scoped(model, args.out, "experiments/mimic_cxr_text/results/call_cache.jsonl")
     cache = _Cache(cache_path, key)
     all_cases = load_cases(args.manifest)
     index_of = build_index_map(all_cases)

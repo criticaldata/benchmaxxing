@@ -1,0 +1,34 @@
+{
+  "holdout": "nvidia/nemotron-3-super-120b-a12b",
+  "n_hard_cases": 28,
+  "new_api_calls_this_run": 157,
+  "generic": {
+    "conform": 9,
+    "rate": 0.3214,
+    "wilson95": [
+      0.179,
+      0.507
+    ]
+  },
+  "anchored": {
+    "conform": 12,
+    "rate": 0.4286,
+    "wilson95": [
+      0.265,
+      0.609
+    ]
+  },
+  "anchored_vs_generic_paired": {
+    "gain": 5,
+    "lose": 2,
+    "mcnemar_p": 0.453125,
+    "rate_diff": 0.1072
+  },
+  "flash_lite_reference": {
+    "generic": 0.7294117647058823,
+    "anchored": 0.8470588235294118,
+    "mcnemar_p": 0.04138946533203125,
+    "n": 85,
+    "source": "experiments/medqa/results/scale_c_summary.json"
+  }
+}

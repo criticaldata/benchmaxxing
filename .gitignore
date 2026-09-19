@@ -14,9 +14,18 @@ data/
 # text, which must not be redistributed outside credentialed access. Only aggregate results
 # (solo_results.json etc.) are committed.
 experiments/mimic_cxr_text/*manifest*.csv
+# the rebuilt cohort manifests are named mimic_cxr_text_<n>.csv and carry report text too
+experiments/mimic_cxr_text/**/mimic_cxr_text_*.csv
+mimic_cxr_text_*.csv
 experiments/mimic_cxr_text/results*/call_cache.jsonl
 experiments/mimic_cxr_text/results*/*call_cache.jsonl
 experiments/mimic_cxr_text/results*/transcripts/
+# the same three under any model-scoped results subdirectory (second lineages), plus the raw
+# per-record file reproduce.py --stage solo writes, which is keyed on subject/study ids
+experiments/mimic_cxr_text/results*/**/transcripts/
+experiments/mimic_cxr_text/results*/**/*call_cache.jsonl
+experiments/mimic_cxr_text/results*/**/solo_records_raw*
+experiments/mimic_cxr_text/results*/solo_records_raw*
 
 # model-call caches: local reproduction accelerators, not results (can be large)
 *_cache.jsonl
