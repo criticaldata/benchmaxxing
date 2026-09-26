@@ -1,0 +1,25 @@
+{
+  "n": 120,
+  "K": 5,
+  "new_api_calls_this_run": 844,
+  "shared_adoption_by_round": [
+    0.1583,
+    0.1833,
+    0.1917,
+    0.1833,
+    0.1917
+  ],
+  "isolated_adoption_by_round": [
+    0.0,
+    0.0083,
+    0.0083,
+    0.0083,
+    0.0083
+  ],
+  "round1_vs_roundK_shared": {
+    "gained": 4,
+    "lost": 0,
+    "mcnemar_p": 0.125
+  },
+  "monotone_nondecreasing_shared": false
+}

@@ -1,0 +1,19 @@
+{
+  "new_api_calls_this_run": 200,
+  "by_model": {
+    "Qwen/Qwen2.5-VL-72B-Instruct": {
+      "n": 100,
+      "full_accuracy": 0.73,
+      "q_only_accuracy": 0.21,
+      "options_only_accuracy": 0.24,
+      "options_only_chance": 0.2,
+      "options_only_above_chance": 0.04,
+      "per_record_flip_rate": 0.1067,
+      "ever_flipped_rate": 0.21,
+      "flip_rate_when_baseline_correct": 0.1233,
+      "flip_rate_when_baseline_wrong": 0.4444,
+      "flip_correct_vs_wrong_fisher_p": 0.0015074015748483154,
+      "flip_correct_vs_wrong_or": 0.17578125
+    }
+  }
+}
