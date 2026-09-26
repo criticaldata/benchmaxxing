@@ -1,0 +1,22 @@
+{
+  "n": 120,
+  "model": "openai/gpt-oss-120b",
+  "new_api_calls_this_run": 480,
+  "adoption_by_template": {
+    "t0_canonical": 0.05,
+    "t1_consultant": 0.1417,
+    "t2_attending": 0.1083
+  },
+  "per_case_unanimous_fraction": 0.8583,
+  "t0_vs_t1": {
+    "gain": 11,
+    "lose": 0,
+    "pvalue": 0.000977
+  },
+  "t0_vs_t2": {
+    "gain": 8,
+    "lose": 1,
+    "pvalue": 0.039062
+  },
+  "read": "Adoption of the same fixed wrong seed under three independently paraphrased instruction and assertion templates: {'t0_canonical': 0.05, 't1_consultant': 0.1417, 't2_attending': 0.1083}. Per-case verdicts are unanimous across all three templates on 0.8583 of cases. Tightly clustered rates and high agreement mean the cascade is a property of the manipulation rather than one brittle prompt string; large swings would flag prompt-sensitivity. Paired McNemars test the canonical template against each paraphrase."
+}

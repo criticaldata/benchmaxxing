@@ -32,16 +32,21 @@ def served_locally(monkeypatch):
 
 
 def test_a_local_server_captures_open_weights_ids_and_no_committed_comparator(served_locally):
-    """Only an open-weights id with no vendor endpoint here is served locally.
+    """A local server captures this lane's open-weights id and never a vendor-hosted comparator.
 
-    The nemotron id is a committed comparator arm served by NIM; a shell with a local vLLM
-    configured must not quietly answer a cache miss for it from a different model behind the same
-    id. Gemini and DeepSeek reach their vendor through its own SDK path and never move either.
+    An earlier version of this test asserted the opposite for the nemotron id, on the reasoning
+    that an open-weights comparator could also be served on the machine and routing it elsewhere
+    would be surprising. That is superseded: the id reaches a vendor endpoint in this repo and its
+    committed cache is what a cross-lineage comparison rests on, so a shell serving these weights
+    locally must not answer a cache miss for it from the wrong model. HOSTED_PREFIXES is kept
+    identical to the other text lane's copy of the module, so consolidating them is a no-op.
     """
+    assert _lane.HOSTED_PREFIXES == ("nvidia/",)
     assert _lane.is_local(OPEN_WEIGHTS)
     assert not _lane.is_local(NIM)
     assert not _lane.is_local(GEMINI)
     assert not _lane.is_local(DEEPSEEK)
+    assert _lane.interval_for(NIM) > 0
 
 
 def test_unset_variable_leaves_every_model_on_its_vendor_endpoint(monkeypatch):
@@ -118,6 +123,8 @@ def test_the_blind_metric_lane_honours_the_same_variable(monkeypatch):
     monkeypatch.setattr(blind_metric, "LOCAL_BASE_URL", LOCAL)
     assert blind_metric._is_local(OPEN_WEIGHTS)
     assert not blind_metric._is_local(GEMINI)
+    # This copy must not disagree with _lane on a vendor-hosted id (HOSTED_PREFIXES).
+    assert not blind_metric._is_local(NIM)
     assert blind_metric._key(OPEN_WEIGHTS) == "not-needed"
     backend = blind_metric._backend(OPEN_WEIGHTS, blind_metric._key(OPEN_WEIGHTS), client=_Stub())
     assert backend.base_url == LOCAL

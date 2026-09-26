@@ -56,9 +56,10 @@ MIN_CALL_INTERVAL = float(os.environ.get("BENCHMAXXING_MIN_CALL_INTERVAL", "0") 
 
 
 # Ids under these prefixes are hosted by their vendor's own endpoint in this repo and are never
-# redirected to a local server: a shell with a local vLLM configured must not quietly answer a cache
-# miss for them from a different model. Kept in sync with the text-lane branch that introduced it so
-# the two dispatch modules can merge in either order without losing the exclusion or the vision hooks.
+# redirected to a local server. A committed comparator must not be answered by a different model: a
+# shell with a local vLLM configured would otherwise serve this lane's weights for a cache miss on
+# someone else's id. Kept identical to the definition on the other text lane so consolidating the
+# two copies of this module is a no-op rather than a behaviour change.
 HOSTED_PREFIXES = ("nvidia/",)
 
 
