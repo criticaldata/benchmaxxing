@@ -63,10 +63,18 @@ robustness to the synthetic decoy/rubric prompt, not clinical diagnostic accurac
 
 ## Gemini comparison
 
-The existing Gemini CheXpert result covers only 35 cases. On the same 35 case IDs,
-Llama 11B had 65.7% blind uptake and 42.9% test-aware uptake, while Gemini 2.5 Flash
-had 85.7% and 17.1%, respectively. Gemini showed stronger suppression on this small
-matched subset (68.6 vs. 22.9 percentage points). This is context only; a definitive
+The existing Gemini CheXpert result covers only 35 cases. The first two rows below
+are matched on the same 35 case IDs; the final row is the completed Llama 11B
+600-case run and is not a matched 600-vs-600 comparison.
+
+| Model/cohort | n | Blind decoy uptake | Test-aware uptake | Suppression | Silent drift |
+|---|---:|---:|---:|---:|---:|
+| Gemini 2.5 Flash, matched subset | 35 | 85.7% (30/35) | 17.1% (6/35) | 68.6 pp | 30/30 (100%) |
+| Llama 3.2 11B, same 35 cases | 35 | 65.7% (23/35) | 42.9% (15/35) | 22.9 pp | 23/23 (100%) |
+| Llama 3.2 11B, final run | 600 | 80.5% (483/600) | 52.5% (315/600) | 28.0 pp | 483/483 (100%) |
+
+On the small matched subset, Llama 11B was less susceptible in the blind condition,
+while Gemini responded more strongly to the test-awareness warning. A definitive
 model comparison requires running Gemini on the same 600-case protocol.
 
 ## Reproducibility artifacts
