@@ -297,6 +297,38 @@ def test_a_synthetic_constant_scored_column_turns_the_screen_red(tmp_path):
     assert "constant at False" in found["control_adopt"].detail
 
 
+def test_untracked_results_in_a_git_repo_are_still_screened(tmp_path):
+    """#422: ``git ls-files`` alone misses unstaged results; the guard must still see them.
+
+    Non-repo ``tmp_path`` roots already fell back to a glob via exit 128. The live hole is a real
+    git tree where ``ls-files`` succeeds with an empty (or incomplete) list for the pathspec.
+    """
+    import subprocess
+
+    subprocess.run(["git", "init"], cwd=tmp_path, check=True, capture_output=True)
+    subprocess.run(["git", "config", "user.email", "t@t"], cwd=tmp_path, check=True, capture_output=True)
+    subprocess.run(["git", "config", "user.name", "t"], cwd=tmp_path, check=True, capture_output=True)
+    (tmp_path / "README").write_text("init\n")
+    subprocess.run(["git", "add", "README"], cwd=tmp_path, check=True, capture_output=True)
+    subprocess.run(["git", "commit", "-m", "init"], cwd=tmp_path, check=True, capture_output=True)
+
+    rows = [{"case_id": f"c{i}", "control_adopt": 0} for i in range(MIN_ROWS + 4)]
+    planted = _write_cases(tmp_path, "untracked.jsonl", rows)
+    # Deliberately not ``git add``ed — this is the #422 failure mode.
+    status = subprocess.run(
+        ["git", "-C", str(tmp_path), "ls-files", "-z", "experiments/*/results/**.jsonl"],
+        capture_output=True,
+        text=True,
+        check=True,
+    ).stdout
+    assert not status.strip("\0"), "precondition: planted file must be untracked"
+
+    found = {f.locus: f for f in constant_columns(tmp_path)}
+    assert "control_adopt" in found, (
+        f"untracked {planted.name} was invisible to the guard, got {list(found)}"
+    )
+
+
 def test_a_synthetic_constant_column_in_a_deid_csv_turns_the_screen_red(tmp_path):
     out = tmp_path / "experiments" / "synth" / "results" / "deid"
     out.mkdir(parents=True)
