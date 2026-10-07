@@ -1,0 +1,666 @@
+{
+ "model": "nvidia/nemotron-3-super-120b-a12b",
+ "arms": [
+  "attributed_tier",
+  "authority_ladder",
+  "break_it",
+  "clean_a",
+  "committee_size_sweep",
+  "contamination_cascade",
+  "deliberation_channel",
+  "deliberation_framing",
+  "dose_response",
+  "hierarchy_dominance",
+  "hierarchy_temp",
+  "leader_as_auditor",
+  "live_peer_organic",
+  "majority_pressure",
+  "orchestrator_failure",
+  "paraphrase_robustness",
+  "plausible_distractor",
+  "pre_emptive_referee",
+  "push_c",
+  "rationale_validity",
+  "scale_c",
+  "seed_confidence",
+  "seed_timing",
+  "super_additivity",
+  "temperature_sensitivity",
+  "test_awareness",
+  "text_cue_types",
+  "true_peer_control",
+  "unanimity_break"
+ ],
+ "family": {
+  "gemini": {
+   "n_contrasts": 43,
+   "n_survive_bh_0.05": 33,
+   "smallest_dropped_q": 0.05948038235294118,
+   "contrasts": [
+    {
+     "arm": "attributed_tier",
+     "contrast": "unlabeled_vs_junior_model",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "attributed_tier",
+     "contrast": "unlabeled_vs_senior_model",
+     "p_raw": 0.003719,
+     "q_bh": 0.0053305666666666664,
+     "survives": true
+    },
+    {
+     "arm": "attributed_tier",
+     "contrast": "unlabeled_vs_human_senior",
+     "p_raw": 0.424356,
+     "q_bh": 0.46787969230769233,
+     "survives": false
+    },
+    {
+     "arm": "attributed_tier",
+     "contrast": "junior_model_vs_senior_model",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "authority_ladder",
+     "contrast": "adjacent_rung_mcnemar.colleague_vs_senior_attending",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "authority_ladder",
+     "contrast": "adjacent_rung_mcnemar.senior_attending_vs_automated_system",
+     "p_raw": 0.133801,
+     "q_bh": 0.1598178611111111,
+     "survives": false
+    },
+    {
+     "arm": "authority_ladder",
+     "contrast": "adjacent_rung_mcnemar.automated_system_vs_clinical_guideline",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "committee_size_sweep",
+     "contrast": "s0_vs_s1",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "committee_size_sweep",
+     "contrast": "s0_vs_s2",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "committee_size_sweep",
+     "contrast": "s0_vs_s4",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "contamination_cascade",
+     "contrast": "fisher_recall_vs_adopt",
+     "p_raw": 0.002121,
+     "q_bh": 0.0031449310344827588,
+     "survives": true
+    },
+    {
+     "arm": "deliberation_channel",
+     "contrast": "none_vs_hidden",
+     "p_raw": 0.000116,
+     "q_bh": 0.00018474074074074074,
+     "survives": true
+    },
+    {
+     "arm": "deliberation_channel",
+     "contrast": "hidden_vs_open",
+     "p_raw": 0.052239,
+     "q_bh": 0.06417934285714286,
+     "survives": false
+    },
+    {
+     "arm": "deliberation_channel",
+     "contrast": "none_vs_open",
+     "p_raw": 0.047031,
+     "q_bh": 0.05948038235294118,
+     "survives": false
+    },
+    {
+     "arm": "deliberation_framing",
+     "contrast": "none_vs_collaborative",
+     "p_raw": 2e-06,
+     "q_bh": 3.583333333333333e-06,
+     "survives": true
+    },
+    {
+     "arm": "deliberation_framing",
+     "contrast": "none_vs_independent",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "deliberation_framing",
+     "contrast": "none_vs_critical",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "deliberation_framing",
+     "contrast": "independent_vs_critical",
+     "p_raw": 0.004344,
+     "q_bh": 0.006025548387096774,
+     "survives": true
+    },
+    {
+     "arm": "dose_response",
+     "contrast": "faint_vs_emphatic",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "dose_response",
+     "contrast": "faint_vs_assert",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "dose_response",
+     "contrast": "lean_vs_emphatic",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "leader_as_auditor",
+     "contrast": "peer_vs_auditor",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "leader_as_auditor",
+     "contrast": "peer_vs_signoff",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "leader_as_auditor",
+     "contrast": "auditor_vs_signoff",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "majority_pressure",
+     "contrast": "one_vs_two_peer_mcnemar",
+     "p_raw": 1.0,
+     "q_bh": 1.0,
+     "survives": false
+    },
+    {
+     "arm": "paraphrase_robustness",
+     "contrast": "t0_vs_t1",
+     "p_raw": 0.006611,
+     "q_bh": 0.008614333333333333,
+     "survives": true
+    },
+    {
+     "arm": "paraphrase_robustness",
+     "contrast": "t0_vs_t2",
+     "p_raw": 1e-06,
+     "q_bh": 1.8695652173913044e-06,
+     "survives": true
+    },
+    {
+     "arm": "plausible_distractor",
+     "contrast": "plausible_vs_implausible",
+     "p_raw": 0.005925,
+     "q_bh": 0.00796171875,
+     "survives": true
+    },
+    {
+     "arm": "pre_emptive_referee",
+     "contrast": "no_vs_soft",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "pre_emptive_referee",
+     "contrast": "no_vs_hard",
+     "p_raw": 5e-06,
+     "q_bh": 8.6e-06,
+     "survives": true
+    },
+    {
+     "arm": "rationale_validity",
+     "contrast": "bare_vs_valid_wrong",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "rationale_validity",
+     "contrast": "bare_vs_named_fallacy",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "rationale_validity",
+     "contrast": "valid_wrong_vs_named_fallacy",
+     "p_raw": 1.0,
+     "q_bh": 1.0,
+     "survives": false
+    },
+    {
+     "arm": "seed_confidence",
+     "contrast": "confident_vs_hedged_mcnemar",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "seed_timing",
+     "contrast": "last_vs_first",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "super_additivity",
+     "contrast": "both_vs_stronger_single",
+     "p_raw": 1.0,
+     "q_bh": 1.0,
+     "survives": false
+    },
+    {
+     "arm": "test_awareness",
+     "contrast": "neutral_vs_accuracy_eval",
+     "p_raw": 0.000311,
+     "q_bh": 0.00047760714285714285,
+     "survives": true
+    },
+    {
+     "arm": "test_awareness",
+     "contrast": "neutral_vs_agreement_eval",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "test_awareness",
+     "contrast": "accuracy_eval_vs_agreement_eval",
+     "p_raw": 0.307456,
+     "q_bh": 0.3479107368421053,
+     "survives": false
+    },
+    {
+     "arm": "text_cue_types",
+     "contrast": "baseline_vs_primacy",
+     "p_raw": 4.1e-05,
+     "q_bh": 6.780769230769232e-05,
+     "survives": true
+    },
+    {
+     "arm": "text_cue_types",
+     "contrast": "baseline_vs_negation",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "text_cue_types",
+     "contrast": "baseline_vs_qualifier",
+     "p_raw": 0.607239,
+     "q_bh": 0.652781925,
+     "survives": false
+    },
+    {
+     "arm": "unanimity_break",
+     "contrast": "unanimous_vs_dissenter_mcnemar",
+     "p_raw": 0.25,
+     "q_bh": 0.29054054054054057,
+     "survives": false
+    }
+   ]
+  },
+  "nvidia/nemotron-3-super-120b-a12b": {
+   "n_contrasts": 43,
+   "n_survive_bh_0.05": 18,
+   "smallest_dropped_q": 0.07072368421052631,
+   "contrasts": [
+    {
+     "arm": "attributed_tier",
+     "contrast": "unlabeled_vs_junior_model",
+     "p_raw": 0.001953,
+     "q_bh": 0.0083979,
+     "survives": true
+    },
+    {
+     "arm": "attributed_tier",
+     "contrast": "unlabeled_vs_senior_model",
+     "p_raw": 0.790527,
+     "q_bh": 0.9187205675675676,
+     "survives": false
+    },
+    {
+     "arm": "attributed_tier",
+     "contrast": "unlabeled_vs_human_senior",
+     "p_raw": 0.581055,
+     "q_bh": 0.7138675714285714,
+     "survives": false
+    },
+    {
+     "arm": "attributed_tier",
+     "contrast": "junior_model_vs_senior_model",
+     "p_raw": 0.007812,
+     "q_bh": 0.018662,
+     "survives": true
+    },
+    {
+     "arm": "authority_ladder",
+     "contrast": "adjacent_rung_mcnemar.colleague_vs_senior_attending",
+     "p_raw": 0.000122,
+     "q_bh": 0.0007494285714285714,
+     "survives": true
+    },
+    {
+     "arm": "authority_ladder",
+     "contrast": "adjacent_rung_mcnemar.senior_attending_vs_automated_system",
+     "p_raw": 0.006348,
+     "q_bh": 0.017060250000000002,
+     "survives": true
+    },
+    {
+     "arm": "authority_ladder",
+     "contrast": "adjacent_rung_mcnemar.automated_system_vs_clinical_guideline",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "committee_size_sweep",
+     "contrast": "s0_vs_s1",
+     "p_raw": 0.003906,
+     "q_bh": 0.011687399999999999,
+     "survives": true
+    },
+    {
+     "arm": "committee_size_sweep",
+     "contrast": "s0_vs_s2",
+     "p_raw": 0.007812,
+     "q_bh": 0.018662,
+     "survives": true
+    },
+    {
+     "arm": "committee_size_sweep",
+     "contrast": "s0_vs_s4",
+     "p_raw": 0.039062,
+     "q_bh": 0.07998409523809524,
+     "survives": false
+    },
+    {
+     "arm": "contamination_cascade",
+     "contrast": "fisher_recall_vs_adopt",
+     "p_raw": 0.163097,
+     "q_bh": 0.25974707407407405,
+     "survives": false
+    },
+    {
+     "arm": "deliberation_channel",
+     "contrast": "none_vs_hidden",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "deliberation_channel",
+     "contrast": "hidden_vs_open",
+     "p_raw": 0.454498,
+     "q_bh": 0.5922246666666666,
+     "survives": false
+    },
+    {
+     "arm": "deliberation_channel",
+     "contrast": "none_vs_open",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "deliberation_framing",
+     "contrast": "none_vs_collaborative",
+     "p_raw": 1.0,
+     "q_bh": 1.0,
+     "survives": false
+    },
+    {
+     "arm": "deliberation_framing",
+     "contrast": "none_vs_independent",
+     "p_raw": 0.070312,
+     "q_bh": 0.12597566666666668,
+     "survives": false
+    },
+    {
+     "arm": "deliberation_framing",
+     "contrast": "none_vs_critical",
+     "p_raw": 0.003906,
+     "q_bh": 0.011687399999999999,
+     "survives": true
+    },
+    {
+     "arm": "deliberation_framing",
+     "contrast": "independent_vs_critical",
+     "p_raw": 0.375,
+     "q_bh": 0.50390625,
+     "survives": false
+    },
+    {
+     "arm": "dose_response",
+     "contrast": "faint_vs_emphatic",
+     "p_raw": 0.003906,
+     "q_bh": 0.011687399999999999,
+     "survives": true
+    },
+    {
+     "arm": "dose_response",
+     "contrast": "faint_vs_assert",
+     "p_raw": 2e-06,
+     "q_bh": 1.4333333333333332e-05,
+     "survives": true
+    },
+    {
+     "arm": "dose_response",
+     "contrast": "lean_vs_emphatic",
+     "p_raw": 0.03125,
+     "q_bh": 0.07072368421052631,
+     "survives": false
+    },
+    {
+     "arm": "leader_as_auditor",
+     "contrast": "peer_vs_auditor",
+     "p_raw": 0.003418,
+     "q_bh": 0.011687399999999999,
+     "survives": true
+    },
+    {
+     "arm": "leader_as_auditor",
+     "contrast": "peer_vs_signoff",
+     "p_raw": 0.092285,
+     "q_bh": 0.1587302,
+     "survives": false
+    },
+    {
+     "arm": "leader_as_auditor",
+     "contrast": "auditor_vs_signoff",
+     "p_raw": 0.21875,
+     "q_bh": 0.3243534482758621,
+     "survives": false
+    },
+    {
+     "arm": "majority_pressure",
+     "contrast": "one_vs_two_peer_mcnemar",
+     "p_raw": 1.0,
+     "q_bh": 1.0,
+     "survives": false
+    },
+    {
+     "arm": "paraphrase_robustness",
+     "contrast": "t0_vs_t1",
+     "p_raw": 0.507812,
+     "q_bh": 0.6422328235294118,
+     "survives": false
+    },
+    {
+     "arm": "paraphrase_robustness",
+     "contrast": "t0_vs_t2",
+     "p_raw": 0.00149,
+     "q_bh": 0.007118888888888888,
+     "survives": true
+    },
+    {
+     "arm": "plausible_distractor",
+     "contrast": "plausible_vs_implausible",
+     "p_raw": 0.000157,
+     "q_bh": 0.000843875,
+     "survives": true
+    },
+    {
+     "arm": "pre_emptive_referee",
+     "contrast": "no_vs_soft",
+     "p_raw": 0.039062,
+     "q_bh": 0.07998409523809524,
+     "survives": false
+    },
+    {
+     "arm": "pre_emptive_referee",
+     "contrast": "no_vs_hard",
+     "p_raw": 0.179688,
+     "q_bh": 0.2759494285714285,
+     "survives": false
+    },
+    {
+     "arm": "rationale_validity",
+     "contrast": "bare_vs_valid_wrong",
+     "p_raw": 0.070312,
+     "q_bh": 0.12597566666666668,
+     "survives": false
+    },
+    {
+     "arm": "rationale_validity",
+     "contrast": "bare_vs_named_fallacy",
+     "p_raw": 0.125,
+     "q_bh": 0.20673076923076925,
+     "survives": false
+    },
+    {
+     "arm": "rationale_validity",
+     "contrast": "valid_wrong_vs_named_fallacy",
+     "p_raw": 0.625,
+     "q_bh": 0.7465277777777778,
+     "survives": false
+    },
+    {
+     "arm": "seed_confidence",
+     "contrast": "confident_vs_hedged_mcnemar",
+     "p_raw": 0.0625,
+     "q_bh": 0.1221590909090909,
+     "survives": false
+    },
+    {
+     "arm": "seed_timing",
+     "contrast": "last_vs_first",
+     "p_raw": 0.25,
+     "q_bh": 0.35833333333333334,
+     "survives": false
+    },
+    {
+     "arm": "super_additivity",
+     "contrast": "both_vs_stronger_single",
+     "p_raw": 1.0,
+     "q_bh": 1.0,
+     "survives": false
+    },
+    {
+     "arm": "test_awareness",
+     "contrast": "neutral_vs_accuracy_eval",
+     "p_raw": 0.266846,
+     "q_bh": 0.3701412258064517,
+     "survives": false
+    },
+    {
+     "arm": "test_awareness",
+     "contrast": "neutral_vs_agreement_eval",
+     "p_raw": 0.004077,
+     "q_bh": 0.011687399999999999,
+     "survives": true
+    },
+    {
+     "arm": "test_awareness",
+     "contrast": "accuracy_eval_vs_agreement_eval",
+     "p_raw": 2e-06,
+     "q_bh": 1.4333333333333332e-05,
+     "survives": true
+    },
+    {
+     "arm": "text_cue_types",
+     "contrast": "baseline_vs_primacy",
+     "p_raw": 1.0,
+     "q_bh": 1.0,
+     "survives": false
+    },
+    {
+     "arm": "text_cue_types",
+     "contrast": "baseline_vs_negation",
+     "p_raw": 0.0,
+     "q_bh": 0.0,
+     "survives": true
+    },
+    {
+     "arm": "text_cue_types",
+     "contrast": "baseline_vs_qualifier",
+     "p_raw": 1.0,
+     "q_bh": 1.0,
+     "survives": false
+    },
+    {
+     "arm": "unanimity_break",
+     "contrast": "unanimous_vs_dissenter_mcnemar",
+     "p_raw": 1.0,
+     "q_bh": 1.0,
+     "survives": false
+    }
+   ]
+  }
+ },
+ "repeats": {
+  "gemini": {
+   "repeated_prompts": 559,
+   "disagree_any_text": 70,
+   "repeated_prompts_letter_only": 25,
+   "answer_changed": 0
+  },
+  "nvidia/nemotron-3-super-120b-a12b": {
+   "repeated_prompts": 242,
+   "disagree_any_text": 58,
+   "repeated_prompts_letter_only": 215,
+   "answer_changed": 31
+  }
+ }
+}
