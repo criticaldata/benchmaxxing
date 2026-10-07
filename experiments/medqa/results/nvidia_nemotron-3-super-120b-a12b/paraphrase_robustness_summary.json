@@ -1,0 +1,22 @@
+{
+  "n": 120,
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "new_api_calls_this_run": 480,
+  "adoption_by_template": {
+    "t0_canonical": 0.1083,
+    "t1_consultant": 0.1333,
+    "t2_attending": 0.2333
+  },
+  "per_case_unanimous_fraction": 0.8083,
+  "t0_vs_t1": {
+    "gain": 6,
+    "lose": 3,
+    "pvalue": 0.507812
+  },
+  "t0_vs_t2": {
+    "gain": 18,
+    "lose": 3,
+    "pvalue": 0.00149
+  },
+  "read": "Adoption of the same fixed wrong seed under three independently paraphrased instruction and assertion templates: {'t0_canonical': 0.1083, 't1_consultant': 0.1333, 't2_attending': 0.2333}. Per-case verdicts are unanimous across all three templates on 0.8083 of cases. Tightly clustered rates and high agreement mean the cascade is a property of the manipulation rather than one brittle prompt string; large swings would flag prompt-sensitivity. Paired McNemars test the canonical template against each paraphrase."
+}

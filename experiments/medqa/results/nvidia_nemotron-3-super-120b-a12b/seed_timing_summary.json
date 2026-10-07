@@ -1,0 +1,15 @@
+{
+  "n": 120,
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "new_api_calls_this_run": 236,
+  "adoption_by_timing": {
+    "holdout_last": 0.0417,
+    "holdout_first": 0.0167
+  },
+  "last_vs_first": {
+    "gain": 0,
+    "lose": 3,
+    "pvalue": 0.25
+  },
+  "read": "Adoption of the fixed wrong peer seed by speaking slot: holdout LAST (max exposure, one round) 0.0417, holdout FIRST then revising over two rounds 0.0167 (paired McNemar gain=0 lose=3, p=0.25). Lower adoption when the holdout speaks first means letting the susceptible agent pre-commit before exposure is a cheap structural mitigation; similar rates mean the second-round cascade overrides the pre-commitment and speaking order does not protect."
+}

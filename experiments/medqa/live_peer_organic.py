@@ -15,8 +15,6 @@ plus the net harm (holdout was correct alone but adopts the peers' wrong consens
 susceptibility to organic rather than adversarial errors. All reads cached; keyless on re-run.
 """
 from __future__ import annotations
-from benchmaxxing.extract import parse_legacy_string
-
 
 import argparse
 import json
@@ -27,11 +25,12 @@ from pathlib import Path
 
 from benchmaxxing.blackboard import AgentResponse, render_board, run_committee
 from benchmaxxing.data import load_cases
+from benchmaxxing.extract import parse_legacy_string
 from benchmaxxing.roster import build_committee
 from benchmaxxing.schema import Condition, ModelSpec
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-import _lane  # noqa: E402
+import _lane
 
 HOLDOUT = "gemini-2.5-flash-lite"
 PEER_MODEL = "gemini-2.5-flash"
@@ -73,8 +72,10 @@ def main():
     cases = load_cases(args.manifest)[:args.n]
     model_by_agent = dict(members)
     committee = build_committee(
-        [ModelSpec(name=a, lineage="gemini",
-                   tier="flash" if m == PEER_MODEL else "lite", is_open_weights=False)
+        [ModelSpec(name=a,
+                   lineage="gemini" if _lane.is_gemini(m) else m.split("/")[0],
+                   tier=("flash" if m == PEER_MODEL else "lite") if _lane.is_gemini(m) else "hosted",
+                   is_open_weights=False)
          for a, m in members])
 
     def backend_for(spec):

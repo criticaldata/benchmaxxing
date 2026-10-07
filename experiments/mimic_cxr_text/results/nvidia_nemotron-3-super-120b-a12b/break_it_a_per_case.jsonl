@@ -1,0 +1,20 @@
+{"case_index": 0, "model": "nvidia/nemotron-3-super-120b-a12b", "wrong": "Edema", "baseline": "Lung Opacity", "control": 0, "flag": 0}
+{"case_index": 2, "model": "nvidia/nemotron-3-super-120b-a12b", "wrong": "Edema", "baseline": "Pneumonia", "control": 0, "flag": 1}
+{"case_index": 4, "model": "nvidia/nemotron-3-super-120b-a12b", "wrong": "Cardiomegaly", "baseline": "Pneumonia", "control": 0, "flag": 1}
+{"case_index": 6, "model": "nvidia/nemotron-3-super-120b-a12b", "wrong": "Edema", "baseline": "Cardiomegaly", "control": 0, "flag": 0}
+{"case_index": 29, "model": "nvidia/nemotron-3-super-120b-a12b", "wrong": "Cardiomegaly", "baseline": "Atelectasis", "control": 0, "flag": 0}
+{"case_index": 46, "model": "nvidia/nemotron-3-super-120b-a12b", "wrong": "Consolidation", "baseline": "Pneumonia", "control": 0, "flag": 1}
+{"case_index": 50, "model": "nvidia/nemotron-3-super-120b-a12b", "wrong": "Edema", "baseline": "Lung Opacity", "control": 0, "flag": 0}
+{"case_index": 53, "model": "nvidia/nemotron-3-super-120b-a12b", "wrong": "Pleural Effusion", "baseline": "Cardiomegaly", "control": 0, "flag": 0}
+{"case_index": 62, "model": "nvidia/nemotron-3-super-120b-a12b", "wrong": "Pleural Effusion", "baseline": "Edema", "control": 0, "flag": 0}
+{"case_index": 64, "model": "nvidia/nemotron-3-super-120b-a12b", "wrong": "Cardiomegaly", "baseline": "Fracture", "control": 0, "flag": 0}
+{"case_index": 69, "model": "nvidia/nemotron-3-super-120b-a12b", "wrong": "Cardiomegaly", "baseline": "Consolidation", "control": 0, "flag": 0}
+{"case_index": 71, "model": "nvidia/nemotron-3-super-120b-a12b", "wrong": "Edema", "baseline": "Pneumonia", "control": 0, "flag": 0}
+{"case_index": 73, "model": "nvidia/nemotron-3-super-120b-a12b", "wrong": "Edema", "baseline": "Pneumonia", "control": 0, "flag": 0}
+{"case_index": 78, "model": "nvidia/nemotron-3-super-120b-a12b", "wrong": "Cardiomegaly", "baseline": "Edema", "control": 0, "flag": 0}
+{"case_index": 79, "model": "nvidia/nemotron-3-super-120b-a12b", "wrong": "Edema", "baseline": "Lung Opacity", "control": 0, "flag": 0}
+{"case_index": 87, "model": "nvidia/nemotron-3-super-120b-a12b", "wrong": "Edema", "baseline": "Lung Opacity", "control": 0, "flag": 0}
+{"case_index": 88, "model": "nvidia/nemotron-3-super-120b-a12b", "wrong": "Edema", "baseline": "Atelectasis", "control": 0, "flag": 1}
+{"case_index": 89, "model": "nvidia/nemotron-3-super-120b-a12b", "wrong": "Cardiomegaly", "baseline": "Lung Opacity", "control": 0, "flag": 0}
+{"case_index": 91, "model": "nvidia/nemotron-3-super-120b-a12b", "wrong": "Cardiomegaly", "baseline": "Consolidation", "control": 0, "flag": 0}
+{"case_index": 102, "model": "nvidia/nemotron-3-super-120b-a12b", "wrong": "Edema", "baseline": "Support Devices", "control": 0, "flag": 1}

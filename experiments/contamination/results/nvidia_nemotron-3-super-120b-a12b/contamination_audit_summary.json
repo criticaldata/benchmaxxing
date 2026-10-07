@@ -1,0 +1,19 @@
+{
+  "new_api_calls_this_run": 200,
+  "by_model": {
+    "nvidia/nemotron-3-super-120b-a12b": {
+      "n": 100,
+      "full_accuracy": 0.9,
+      "q_only_accuracy": 0.3,
+      "options_only_accuracy": 0.31,
+      "options_only_chance": 0.2,
+      "options_only_above_chance": 0.11,
+      "per_record_flip_rate": 0.05,
+      "ever_flipped_rate": 0.08,
+      "flip_rate_when_baseline_correct": 0.0556,
+      "flip_rate_when_baseline_wrong": 0.3,
+      "flip_correct_vs_wrong_fisher_p": 0.031388172438469045,
+      "flip_correct_vs_wrong_or": 0.13725490196078433
+    }
+  }
+}

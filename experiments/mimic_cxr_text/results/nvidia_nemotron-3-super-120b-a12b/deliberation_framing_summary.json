@@ -1,0 +1,32 @@
+{
+  "n": 60,
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "new_api_calls_this_run": 300,
+  "adoption_by_framing": {
+    "none": 0.45,
+    "collaborative": 0.5,
+    "independent": 0.1167,
+    "critical": 0.0833
+  },
+  "none_vs_collaborative": {
+    "gain": 7,
+    "lose": 4,
+    "pvalue": 0.548828
+  },
+  "none_vs_independent": {
+    "gain": 1,
+    "lose": 21,
+    "pvalue": 1.1e-05
+  },
+  "none_vs_critical": {
+    "gain": 0,
+    "lose": 22,
+    "pvalue": 0.0
+  },
+  "independent_vs_critical": {
+    "gain": 3,
+    "lose": 5,
+    "pvalue": 0.726562
+  },
+  "read": "Adoption of the same fixed wrong senior seed under different deliberation instructions: none 0.45, collaborative 0.5, independent 0.1167, critical 0.0833. Paired McNemar's test each frame against the unframed baseline (#398)."
+}

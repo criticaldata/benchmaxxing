@@ -31,10 +31,10 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from dotenv import load_dotenv
+from PIL import Image
 
 from benchmaxxing.data import load_cases
 from benchmaxxing.extract import parse_yesno
-from PIL import Image
 
 load_dotenv()
 
@@ -65,8 +65,8 @@ def _key(model: str):
         return os.environ.get("DEEPSEEK_API_KEY")
     if "gemini" in m:
         return os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
-    if "llama" in m or "nvidia" in m or "meta/" in m:
-        return os.environ.get("NVIDIA_API_KEY")
+    # Everything else on this lane is served through NIM; the former llama/nvidia/meta branch
+    # returned the same key and was dead (review on #421).
     return os.environ.get("NVIDIA_API_KEY")
 
 

@@ -39,7 +39,7 @@ from benchmaxxing.stats import achieved_power, mcnemar, multiple_comparison
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import _lane  # noqa: E402
 from experiments.support2._common import (
-    MODEL,
+    MODEL,  # noqa: F401  (rebind_models needs it in this module namespace)
     Cache,
     api_key,
     load_manifest_cases,

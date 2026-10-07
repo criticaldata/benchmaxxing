@@ -38,7 +38,7 @@ from benchmaxxing.data import load_cases
 from benchmaxxing.extract import parse_legacy_string
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-import _lane  # noqa: E402
+import _lane
 
 LETTER_INSTRUCTION = "Answer with only the single letter of the best option."
 REASON_INSTRUCTION = ("Reason step by step about the options, then on the final line give only the "
@@ -138,14 +138,13 @@ def _call(model, key, prompt, condition):
                     or (msg.model_extra or {}).get("reasoning_content"),
                     "finish_reason": resp.choices[0].finish_reason,
                     "completion_tokens": getattr(resp.usage, "completion_tokens", None)}
-        except Exception as exc:  # noqa: BLE001
+        except Exception as exc:
             root = exc
             while root.__cause__ is not None:
                 root = root.__cause__
-            transient = "timeout" in type(root).__name__.lower() or "connect" in type(root).__name__.lower()
-            if attempt == _lane.RATE_LIMIT_TRIES - 1 or not (_lane._is_rate_limited(root) or transient):
+            if attempt == _lane.RATE_LIMIT_TRIES - 1 or not (_lane._is_rate_limited(root) or _lane._is_transient(root)):
                 raise
-            time.sleep(_lane.RATE_LIMIT_SLEEP if _lane._is_rate_limited(root) else 15)
+            time.sleep(_lane.RATE_LIMIT_SLEEP if _lane._is_rate_limited(root) else _lane.TRANSIENT_SLEEP)
 
 
 def _instruction(model, condition):
