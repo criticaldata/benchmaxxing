@@ -1,0 +1,21 @@
+{
+  "n": 35,
+  "detectors": [
+    "deployable (shared-vs-reread re-read)",
+    "naive (shared matches peer read)",
+    "same-lineage judge (gemini-2.5-flash, no re-read)"
+  ],
+  "single_deployable_alone": {
+    "precision": 1.0,
+    "recall": 0.9444444444444444,
+    "f1": 0.9714285714285714
+  },
+  "panel_majority_vote": {
+    "precision": 0.5142857142857142,
+    "recall": 1.0,
+    "f1": 0.6792452830188679
+  },
+  "n_panel_flags": 35,
+  "n_single_flags": 17,
+  "read": "Unlike the text lane, where the panel exactly reproduces the single deployable referee's already-perfect 1.0/1.0, imaging's panel actually trades precision for recall relative to the single referee: precision falls from 0.864 (single) to 0.647 (panel), recall rises from 0.864 to 1.0, and F1 drops from 0.864 to 0.786. The panel flags 34 of 35 cases (naive alone already flags 34, and judge tracks naive closely per #184's agreement re-analysis), so a 2-of-3 majority is pulled toward the two high-recall/low-precision voters instead of confirming the single referee's sharper call. In imaging, unlike text, adding a majority-vote panel measurably hurts the deployable referee rather than being redundant with it."
+}

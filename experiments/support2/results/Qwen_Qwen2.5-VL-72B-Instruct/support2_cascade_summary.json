@@ -1,0 +1,56 @@
+{
+  "n": 120,
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "committee": [
+    "peer1",
+    "peer2",
+    "holdout"
+  ],
+  "seed_style": "answer_only (peers assert a prognosis with no reasoning shown to the holdout)",
+  "bare_accuracy_excl_abstentions": 0.7166666666666667,
+  "n_bare_abstained": 0,
+  "arms": {
+    "wrong_seed": {
+      "n_valid_pairs": 120,
+      "n_seeded": 120,
+      "abstention_rate": 0.0,
+      "n_eligible": 86,
+      "shared_adoption": 0.775,
+      "isolated_adoption": 0.2833333333333333,
+      "contagion": 0.49166666666666664,
+      "adoption_among_eligible": 0.686046511627907,
+      "mcnemar": {
+        "gain": 59,
+        "lose": 0,
+        "pvalue": 0.0
+      }
+    },
+    "flip_seed": {
+      "n_valid_pairs": 120,
+      "n_seeded": 120,
+      "abstention_rate": 0.0,
+      "n_eligible": 120,
+      "shared_adoption": 0.725,
+      "isolated_adoption": 0.0,
+      "contagion": 0.725,
+      "adoption_among_eligible": 0.725,
+      "mcnemar": {
+        "gain": 87,
+        "lose": 0,
+        "pvalue": 0.0
+      }
+    }
+  },
+  "flip_seed_polarity": {
+    "seed_wrong": {
+      "n_valid_pairs": 86,
+      "adoption": 0.686046511627907
+    },
+    "seed_right": {
+      "n_valid_pairs": 34,
+      "adoption": 0.8235294117647058
+    }
+  },
+  "new_api_calls_this_run": 308,
+  "read": "contagion is shared-minus-isolated adoption of the seeded prognosis, paired per patient: gain counts holdouts the board moved ONTO a seed they would not have picked alone, lose counts holdouts it moved OFF one they would have. wrong_seed is the headline arm but is only eligible to recruit where the holdout was right on its own; flip_seed is eligible everywhere by construction and its polarity split says whether a confidently wrong peer pair recruits as well as a confidently right one."
+}

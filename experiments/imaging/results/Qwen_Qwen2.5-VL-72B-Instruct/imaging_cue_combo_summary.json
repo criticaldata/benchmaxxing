@@ -1,0 +1,17 @@
+{
+  "n_eligible": 15,
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "flip_rates": {
+    "watermark": 0.0,
+    "corner_tag": 0.1333,
+    "both": 0.0
+  },
+  "interaction_both_minus_sum_of_singles": -0.1333,
+  "both_vs_stronger_single": {
+    "stronger": "corner_tag",
+    "gain": 0,
+    "lose": 2,
+    "pvalue": 0.5
+  },
+  "read": "Flip rate of the true-finding read under two chained image cues: watermark alone 0.0, corner-tag alone 0.1333, both 0.0. Interaction (both minus the sum of the singles) = -0.1333: a large positive value would mean the two printed cues reinforce super-additively, near zero means they combine additively or one already saturates, negative means they partly cancel. Both vs the stronger single (corner_tag): McNemar gain=0 lose=2, p=0.5, i.e. whether stacking a second cue buys any extra flip over the strongest one alone."
+}

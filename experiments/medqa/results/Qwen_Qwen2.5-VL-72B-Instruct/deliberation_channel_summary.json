@@ -1,0 +1,68 @@
+{
+  "n": 120,
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "skipped_no_committed_bare": 0,
+  "new_api_calls_this_run": 720,
+  "adoption_by_condition": {
+    "none": 0.2667,
+    "hidden": 0.2667,
+    "open": 0.0917
+  },
+  "declared_adoption_by_condition": {
+    "none": 0.2667,
+    "hidden": 0.2667,
+    "open": 0.1417
+  },
+  "undeclared_by_condition": {
+    "none": 0,
+    "hidden": 0,
+    "open": 0
+  },
+  "median_len_by_condition": {
+    "none": 1,
+    "hidden": 1,
+    "open": 1979
+  },
+  "finish_reason_counts": {
+    "none": {
+      "stop": 120
+    },
+    "hidden": {
+      "stop": 120
+    },
+    "open": {
+      "stop": 120
+    }
+  },
+  "reasoning_content_present": {
+    "none": 0,
+    "hidden": 0,
+    "open": 0
+  },
+  "unseeded_accuracy_by_condition": {
+    "none": 0.75,
+    "hidden": 0.75,
+    "open": 0.3833
+  },
+  "median_unseeded_len_by_condition": {
+    "none": 1,
+    "hidden": 1,
+    "open": 1883
+  },
+  "none_vs_hidden": {
+    "gain": 0,
+    "lose": 0,
+    "pvalue": 1.0
+  },
+  "hidden_vs_open": {
+    "gain": 1,
+    "lose": 22,
+    "pvalue": 6e-06
+  },
+  "none_vs_open": {
+    "gain": 1,
+    "lose": 22,
+    "pvalue": 6e-06
+  },
+  "read": "Adoption of the same planted wrong answer with reasoning in no channel, a hidden channel, or the answer channel, within each model. Read adoption against unseeded accuracy in the same cell: a cell whose accuracy collapses is a model that cannot answer without reasoning, not one that resists the seed. If adoption tracks the channel within a model, the cross-lineage cascade gap is a response-policy difference rather than a susceptibility one."
+}

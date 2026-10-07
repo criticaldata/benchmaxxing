@@ -42,6 +42,15 @@ def _arm(name: str) -> Arm:
     return next(a for a in ARMS if a.name == name)
 
 
+def _strip_model_slug(rel: Path, outs: set[str]) -> Path:
+    """The shared runners scope a non-default model's output one level deeper than the arm's
+    ``out`` (``results/<out>/<Model_slug>/``). If the parent is a known arm ``out`` (or the root) and
+    the leaf is not, the leaf is a model slug and the producing arm is the parent's."""
+    if rel != Path() and str(rel) not in outs and str(rel.parent) in outs | {"."}:
+        return rel.parent
+    return rel
+
+
 def test_every_committed_summary_has_an_arm_that_regenerates_it():
     # The gap #343 opened on: results/ held summaries no committed code could reproduce. Read the
     # real committed files rather than a hand-copied list, so a new summary with no producing arm
@@ -52,6 +61,9 @@ def test_every_committed_summary_has_an_arm_that_regenerates_it():
         if path.name == "plant_direction_summary.json":
             continue  # written by plant_direction_check.py, an offline reanalysis of transcripts
         rel = path.parent.relative_to(RESULTS_DIR)
+        # A second lineage's summaries sit one level deeper, in the model-scoped subdirectory the
+        # shared runners write (results/<out>/<Model_slug>/); the producing arm is the same.
+        rel = _strip_model_slug(rel, {a.out for a in ARMS if a.out})
         out = "" if rel == Path() else str(rel)
         checked += 1
         if (out, path.name.removesuffix("_summary.json")) not in produced:
