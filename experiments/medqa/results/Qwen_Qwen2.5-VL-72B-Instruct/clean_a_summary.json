@@ -1,0 +1,11 @@
+{
+  "Qwen/Qwen2.5-VL-72B-Instruct": {
+    "n": 27,
+    "flag_rate": 0.37037037037037035,
+    "n_misdirected": 27,
+    "misdirected_control_rate": 0.037037037037037035,
+    "effect_vs_misdirected": 0.3333333333333333,
+    "reread_control_rate_DEGENERATE": 0.0,
+    "note": "effect_vs_misdirected is the honest contrast: the control flags a DIFFERENT wrong option and still scores whether the model picked the target one, which is satisfiable and not confounded with the model's own baseline. reread_control_rate_DEGENERATE re-reads the unflagged prompt, which the cache returns as the baseline, and the target is chosen to differ from the baseline, so it is 0 by construction and cannot be used as a comparator (#394)."
+  }
+}

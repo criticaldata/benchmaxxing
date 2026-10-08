@@ -1,0 +1,23 @@
+{"case_id": "medqa-285", "wrong": "Administer intravenous hydroco", "baseline": "Order an ACTH stimulation test", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-202", "wrong": "Trachea", "baseline": "Cervical lymph nodes", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-183", "wrong": "Elevated serum homocysteine", "baseline": "Resistance to clotting factor ", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-128", "wrong": "Inflammation of synovial space", "baseline": "Intrafascicular infiltration o", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-376", "wrong": "Karyotyping of infant's chromo", "baseline": "Polymerase chain reaction for ", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-495", "wrong": "Eruption of seborrheic keratos", "baseline": "Endometrial cancer", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-416", "wrong": "Acts as an important opsonin", "baseline": "Creates pores in the cell memb", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-454", "wrong": "A", "baseline": "E", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": true}
+{"case_id": "medqa-564", "wrong": "Switch to fluoxetine", "baseline": "Addition of bupropion", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-596", "wrong": "Increase in concentration of s", "baseline": "Oxidization of Fe2+ to Fe3+", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-594", "wrong": "Choledocholithiasis", "baseline": "Duodenal peptic ulcer", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-300", "wrong": "Inferolateral quadrant of the ", "baseline": "Superomedial quadrant of the r", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": true}
+{"case_id": "medqa-577", "wrong": "Hypokinetic wall of the left v", "baseline": "Left ventricular ejection frac", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-724", "wrong": "Acyclovir", "baseline": "IV fluids and monitoring", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-966", "wrong": "Alanine aminotransferase", "baseline": "Creatine kinase (CK-MB)", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-861", "wrong": "Malaria", "baseline": "Cholecystitis", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-829", "wrong": "Azithromycin and admission to ", "baseline": "Ceftriaxone, azithromycin, and", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-1047", "wrong": "Inferior vena cava thrombosis", "baseline": "Cutaneous xanthomas", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-906", "wrong": "Nonencapsulated groups of well", "baseline": "Clusters of bland cells withou", "generic": false, "anchored": false, "anchored_strong": true, "anchored_solo": false}
+{"case_id": "medqa-1106", "wrong": "Bipolar I disorder", "baseline": "Bipolar II disorder", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-1194", "wrong": "Can form an endospore", "baseline": "Is transmitted by air conditio", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-1128", "wrong": "Areas with 'ghost cells' surro", "baseline": "Brownish inclusions in the pul", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": false}
+{"case_id": "medqa-1131", "wrong": "Left internal capsule", "baseline": "Left temporal lobe", "generic": false, "anchored": false, "anchored_strong": true, "anchored_solo": false}

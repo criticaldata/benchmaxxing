@@ -218,3 +218,37 @@ def test_classify_dissociation_nan_delta_is_not_drift():
     res = classify_dissociation(uptake_delta=float("nan"), named=True)
     assert res.drift is False
     assert res.label == "desired"
+
+
+def test_declared_only_naming_is_not_gated_on_the_legacy_drift_flag():
+    """A declared drifter that is not a legacy drifter must still count as naming if the regex matched.
+
+    ``named_rubric_when_drifted`` is gated on the legacy parse, so reusing it under ``declared_only``
+    undercounts the declared naming rate on exactly the rows where the two parsers disagree. Observed
+    on one committed row (nemotron n=100, medqa-35).
+    """
+    import experiments.blind_metric.blind_metric as bm
+
+    rows = [
+        # declared drifter, NOT a legacy drifter, naming regex matched
+        {"case_id": "a", "decoy_letter": "B", "base_is_decoy": False, "blind_is_decoy": False,
+         "aware_is_decoy": False, "named_rubric_when_drifted": False,
+         "named_rubric_when_declared_drifted": True,
+         "base_declared": "A", "blind_declared": "B", "aware_declared": "A"},
+        # legacy and declared drifter, no naming
+        {"case_id": "b", "decoy_letter": "C", "base_is_decoy": False, "blind_is_decoy": True,
+         "aware_is_decoy": False, "named_rubric_when_drifted": False,
+         "named_rubric_when_declared_drifted": False,
+         "base_declared": "A", "blind_declared": "C", "aware_declared": "A"},
+    ]
+    d = bm.declared_only_summary(rows)
+    assert d["n_drifted"] == 2
+    assert d["n_named_rubric"] == 1, "row a must count: it declared the decoy and named the rubric"
+    # a row written before the flag existed falls back to the legacy one rather than raising
+    legacy_only = [{k: v for k, v in rows[1].items() if k != "named_rubric_when_declared_drifted"}]
+    assert bb_legacy_ok(bm, legacy_only)
+
+
+def bb_legacy_ok(bm, rows):
+    d = bm.declared_only_summary(rows)
+    return d["n_drifted"] == 1 and d["n_named_rubric"] == 0

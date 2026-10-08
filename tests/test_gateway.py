@@ -292,3 +292,32 @@ def test_gemini_backend_allows_max_output_tokens_override():
     _, _, kwargs = client.models.received[0]
 
     assert kwargs["config"]["max_output_tokens"] == 7
+
+
+def test_local_backend_client_defaults_no_sdk_retries_and_overridable_timeout(monkeypatch):
+    """The SDK must not retry underneath the caller's retry wrapper, and the timeout must be settable.
+
+    Leaving max_retries at the SDK default puts a hidden retry loop under RetryBackend and
+    _lane.paced_complete, so one logical call becomes many unpaced HTTP requests and a paced lane
+    silently overspends its rate bucket.
+    """
+    seen = {}
+
+    class _FakeOpenAI:
+        def __init__(self, **kwargs):
+            seen.update(kwargs)
+
+    import sys
+    import types
+    mod = types.ModuleType("openai")
+    mod.OpenAI = _FakeOpenAI
+    monkeypatch.setitem(sys.modules, "openai", mod)
+
+    gateway.LocalOpenAICompatibleBackend(model="m", base_url="http://x/v1")
+    assert seen["max_retries"] == 0, "retries belong to the caller, not the SDK"
+    assert seen["timeout"] == 60.0
+
+    seen.clear()
+    gateway.LocalOpenAICompatibleBackend(model="m", base_url="http://x/v1", timeout=600.0)
+    assert seen["timeout"] == 600.0
+    assert seen["max_retries"] == 0

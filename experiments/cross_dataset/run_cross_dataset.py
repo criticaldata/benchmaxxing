@@ -24,7 +24,12 @@ import json
 import math
 import os
 import re
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+import _lane
 
 from benchmaxxing import gateway
 from benchmaxxing.cross_dataset import run_cross_dataset_cue
@@ -123,7 +128,7 @@ def make_backend(model, api_key, *, raw=None, cache=None):
     """
     if raw is None:
         live = gateway.RetryBackend(
-            gateway.GeminiBackend(model=model, api_key=api_key), tries=5, backoff=3.0
+            _lane.backend_for(model, api_key), tries=5, backoff=3.0
         )
         raw = gateway.CachedBackend(live, cache=cache if cache is not None else {})
 
@@ -185,13 +190,28 @@ def main(argv=None) -> int:
     ap.add_argument("--medmcqa-manifest", required=True, help="path to the MedMCQA manifest")
     ap.add_argument("--model", default="gemini-2.5-flash")
     ap.add_argument("--limit", type=int, default=None, help="cap cases per dataset")
-    ap.add_argument("--out", default=None, help="write the result JSON here")
-    ap.add_argument("--cache", default=None, help="JSONL call cache to record/reuse for reproducibility")
+    ap.add_argument("--out", default=None, help="write the result JSON here; defaults to the model-scoped file")
+    ap.add_argument("--cache", default=None,
+                    help="JSONL call cache to record/reuse for reproducibility; defaults to the model-scoped file. "
+                         "The cache key omits the model id, so a second model must never read the committed one.")
     args = ap.parse_args(argv)
+    if args.model != "gemini-2.5-flash":
+        slug = args.model.replace("/", "_")
+        results = Path(__file__).resolve().parent / "results"
+        args.out = args.out or str(results / slug / "medqa_vs_medmcqa.json")
+        args.cache = args.cache or str(results / f"{slug}_cache_medqa_vs_medmcqa.jsonl")
 
-    key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
-    if not key:
-        return _skip("no GEMINI_API_KEY/GOOGLE_API_KEY: this is a real-model run, nothing fabricated.")
+    if args.model == "gemini-2.5-flash" or args.model.startswith("gemini"):
+        key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+        if not key:
+            return _skip("no GEMINI_API_KEY/GOOGLE_API_KEY: this is a real-model run, nothing fabricated.")
+    else:
+        try:
+            key = _lane.key_for(args.model)
+        except Exception as exc:  # a missing key for the requested model is a skip, not a traceback
+            return _skip(f"no key for {args.model}: {exc}")
+        if not key:
+            return _skip(f"no {_lane.key_name(args.model)} for {args.model}: this is a real-model run, nothing fabricated.")
     for label, path in (("MedQA", args.medqa_manifest), ("MedMCQA", args.medmcqa_manifest)):
         if not Path(path).exists():
             return _skip(f"{label} manifest not found: {path}. Build it with the dataset adapter first.")

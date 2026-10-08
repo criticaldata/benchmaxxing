@@ -26,7 +26,8 @@ from pathlib import Path
 from benchmaxxing.cues.text import build_text_twin
 from benchmaxxing.data import load_cases
 from benchmaxxing.schema import Condition
-from experiments.medqa.reproduce import TEXT_CUES, _mcq_prompt, _parse_choice
+from benchmaxxing.extract import parse_legacy_string
+from experiments.medqa.reproduce import TEXT_CUES, _mcq_prompt
 from experiments.mimic_cxr_text.case_index import build_index_map
 
 
@@ -66,7 +67,7 @@ def main():
         if key not in cache:
             misses += 1
             continue
-        answer = _parse_choice(cache[key], list(payload["options"]))
+        answer = parse_legacy_string(cache[key], list(payload["options"]))
         gt = case.options[case.answer_index]
         rows.append({"case_index": index_of[case.case_id], "clean_correct": answer == gt})
 

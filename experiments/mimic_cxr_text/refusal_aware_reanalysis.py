@@ -57,7 +57,14 @@ def main():
     ap.add_argument("--out", default=None, help="defaults to <cache dir>/solo_results_refusal_aware.json")
     ap.add_argument("--solo-n", type=int, required=True)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--model", default=None,
+                    help="Re-analyse this model's cached calls instead of the committed Gemini tiers. "
+                         "The default keeps both Gemini tiers, so the committed result is unchanged.")
     args = ap.parse_args()
+    if args.model:
+        # One lineage, one tier: the cache holds only this model's calls.
+        global TIERS
+        TIERS = [args.model]
 
     cache = _load_cache(args.cache)
     all_cases = load_cases(args.manifest)

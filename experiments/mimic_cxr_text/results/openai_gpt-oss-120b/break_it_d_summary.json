@@ -1,0 +1,14 @@
+{
+  "incent_decoy": 4,
+  "control_decoy": 3,
+  "n": 32,
+  "control_decoy_rate": 0.09375,
+  "incent_decoy_rate": 0.125,
+  "decoy_drift": 0.03125,
+  "decoy_mcnemar": {
+    "gain": 2,
+    "lose": 1,
+    "discordant_pairs": 3,
+    "pvalue": 1.0
+  }
+}
