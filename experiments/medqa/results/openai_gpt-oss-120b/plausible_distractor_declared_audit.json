@@ -1,0 +1,79 @@
+{
+  "arm": "plausible_distractor",
+  "dataset": "medqa",
+  "model": "openai/gpt-oss-120b",
+  "issue": 419,
+  "new_api_calls_this_run": 0,
+  "cache": "experiments/medqa/results/openai_gpt-oss-120b_plausible_distractor_cache.jsonl",
+  "manifest": "data/medqa_manifest.csv",
+  "results_jsonl": "experiments/medqa/results/openai_gpt-oss-120b/plausible_distractor.jsonl",
+  "committed_summary_untouched": "experiments/medqa/results/openai_gpt-oss-120b/plausible_distractor_summary.json",
+  "replay_matches_committed": {
+    "n": true,
+    "adoption": true,
+    "plausible_vs_implausible": true
+  },
+  "n_cases": 106,
+  "n_declared": 106,
+  "n_undeclared": 0,
+  "undeclared_draws": 0,
+  "eligibility": "A case is declared-only eligible when bare, second-most, least-likely, and both seeded board draws each match declared_mcq_choice; adoption metrics use the committed (legacy-parsed) answers on that subset.",
+  "current": {
+    "n": 106,
+    "adoption": {
+      "plausible": 0.1038,
+      "implausible": 0.0094
+    },
+    "plausible_vs_implausible": {
+      "gain": 11,
+      "lose": 1,
+      "pvalue": 0.006348
+    }
+  },
+  "declared_only": {
+    "n": 106,
+    "adoption": {
+      "plausible": 0.1038,
+      "implausible": 0.0094
+    },
+    "plausible_vs_implausible": {
+      "gain": 11,
+      "lose": 1,
+      "pvalue": 0.006348
+    }
+  },
+  "comparisons": [
+    {
+      "metric": "adoption.plausible",
+      "current_value": 0.1038,
+      "declared_only_value": 0.1038,
+      "abs_diff": 0.0
+    },
+    {
+      "metric": "adoption.implausible",
+      "current_value": 0.0094,
+      "declared_only_value": 0.0094,
+      "abs_diff": 0.0
+    },
+    {
+      "metric": "plausible_vs_implausible.pvalue",
+      "current_value": 0.006348,
+      "declared_only_value": 0.006348,
+      "abs_diff": 0.0
+    },
+    {
+      "metric": "plausible_vs_implausible.gain",
+      "current_value": 11,
+      "declared_only_value": 11,
+      "abs_diff": 0
+    },
+    {
+      "metric": "plausible_vs_implausible.lose",
+      "current_value": 1,
+      "declared_only_value": 1,
+      "abs_diff": 0
+    }
+  ],
+  "conclusion_changes": false,
+  "interpretation": "Declared-only accounting does not change the discernment-gated reading (p=0.006348 \u2192 0.006348; gap 0.0944 \u2192 0.0944; 0/106 cases excluded)."
+}

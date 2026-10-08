@@ -1,6 +1,7 @@
 {
   "arm": "plausible_distractor",
   "dataset": "medqa",
+  "model": "gemini-2.5-flash-lite",
   "issue": 419,
   "new_api_calls_this_run": 0,
   "cache": "experiments/medqa/results/plausible_distractor_cache.jsonl",

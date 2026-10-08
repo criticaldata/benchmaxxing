@@ -5,6 +5,9 @@ the committed headline metrics beside the same metrics restricted to cases where
 holdout draw was an explicit answer declaration (``declared_mcq_choice``), matching the
 accounting introduced for the self-inconsistency floor in #417/#418.
 
+``--model`` selects the holdout lineage; cache and committed results resolve through
+``_lane.scoped`` exactly as ``referee_deployable.py`` writes them.
+
 Does not overwrite ``referee_deployable_summary.json`` / ``.jsonl``.
 """
 from __future__ import annotations
@@ -12,6 +15,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 from collections import Counter
 from pathlib import Path
 
@@ -22,7 +26,10 @@ from benchmaxxing.referee import gate_decision
 from benchmaxxing.roster import build_committee
 from benchmaxxing.schema import Condition, ModelSpec
 
-HOLDOUT = "gemini-2.5-flash-lite"
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
+
+DEFAULT_CACHE = "experiments/referee/results/call_cache.jsonl"
 
 
 class _CacheReader:
@@ -128,18 +135,23 @@ def main() -> None:
         description="Declared-only rescore of referee_deployable from committed cache (#419)."
     )
     ap.add_argument("--manifest", required=True)
-    ap.add_argument("--cache", default="experiments/referee/results/call_cache.jsonl")
+    _lane.add_model_arg(ap)
     ap.add_argument(
-        "--committed-summary",
-        default="experiments/referee/results/referee_deployable_summary.json",
-        help="sanity-check target; left untouched",
+        "--results",
+        default="experiments/referee/results",
+        help="the runner's --out; the model-scoped subdirectory is derived from it",
     )
-    ap.add_argument("--out", default="experiments/referee/results/referee_deployable_declared_audit.json")
+    ap.add_argument("--cache", default=None, help="defaults to the model-scoped cache")
     ap.add_argument("--n", type=int, default=40)
     ap.add_argument("--dataset", default="medqa")
     args = ap.parse_args()
 
-    cache = _CacheReader(Path(args.cache))
+    holdout = args.model
+    results_dir, cache_path = _lane.scoped(holdout, args.results, DEFAULT_CACHE, args.cache)
+    committed_summary_path = results_dir / "referee_deployable_summary.json"
+    out_path = results_dir / "referee_deployable_declared_audit.json"
+
+    cache = _CacheReader(cache_path)
     cases = load_cases(args.manifest)[: args.n]
     committee = build_committee(
         [
@@ -155,7 +167,7 @@ def main() -> None:
     for case in cases:
         opts = list(case.options)
         base_p, _ = _mcq(case)
-        bare_raw = cache.complete(HOLDOUT, base_p)
+        bare_raw = cache.complete(holdout, base_p)
         bare_ans = parse_legacy_string(bare_raw, opts)
         _, bare_declared = declared_mcq_choice(bare_raw, opts)
         if not bare_declared:
@@ -197,7 +209,7 @@ def main() -> None:
                             self_id=view.agent_id,
                         )
                         p, _ = _mcq(case, board)
-                        t = cache.complete(HOLDOUT, p)
+                        t = cache.complete(holdout, p)
                         hold_raw["resp"] = t
                         return AgentResponse(
                             content=t[:120],
@@ -279,7 +291,7 @@ def main() -> None:
     n_declared = sum(1 for r in planted if r["fully_declared"])
     n_undeclared = len(planted) - n_declared
 
-    committed = json.loads(Path(args.committed_summary).read_text())
+    committed = json.loads(committed_summary_path.read_text())
     sanity = {
         "n_cases": current["n_cases"] == committed["n_cases"],
         "n_holdout_adopted_shortcut": current["n_holdout_adopted_shortcut"]
@@ -327,11 +339,12 @@ def main() -> None:
     audit = {
         "arm": "referee_deployable",
         "dataset": args.dataset,
+        "model": holdout,
         "issue": 419,
         "new_api_calls_this_run": 0,
-        "cache": str(args.cache),
+        "cache": str(cache_path),
         "manifest": str(args.manifest),
-        "committed_summary_untouched": str(args.committed_summary),
+        "committed_summary_untouched": str(committed_summary_path),
         "replay_matches_committed": sanity,
         "n_cases": current["n_cases"],
         "n_declared": n_declared,
@@ -359,9 +372,7 @@ def main() -> None:
         ),
     }
 
-    out = Path(args.out)
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(audit, indent=2) + "\n")
+    out_path.write_text(json.dumps(audit, indent=2) + "\n")
     print(json.dumps(audit, indent=2))
 
 

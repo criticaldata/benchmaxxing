@@ -7,24 +7,32 @@ subset (every draw matches ``declared_mcq_choice``).
 
 Does not overwrite ``plausible_distractor_summary.json`` / ``.jsonl``. Uses committed wrongs
 rather than re-deriving them, so parser drift cannot invent new seed prompts.
+
+``--model`` selects the lineage; cache and committed results resolve through ``_lane.scoped``
+exactly as ``plausible_distractor.py`` writes them.
 """
 from __future__ import annotations
 
 import argparse
 import hashlib
 import json
+import sys
 from pathlib import Path
 
 from benchmaxxing.data import load_cases
 from benchmaxxing.extract import declared_mcq_choice
 from benchmaxxing.stats import mcnemar
 
-MODEL = "gemini-2.5-flash-lite"
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
+
+DEFAULT_CACHE = "experiments/medqa/results/plausible_distractor_cache.jsonl"
 
 
 class _CacheReader:
-    def __init__(self, path: Path):
+    def __init__(self, path: Path, model: str):
         self.path = path
+        self.model = model
         self.store: dict[str, str] = {}
         for line in path.read_text().splitlines():
             if line.strip():
@@ -32,9 +40,9 @@ class _CacheReader:
                 self.store[row["k"]] = row["resp"]
 
     def complete(self, prompt: str) -> str:
-        k = hashlib.sha256(f"{MODEL}\x00{prompt}".encode()).hexdigest()
+        k = hashlib.sha256(f"{self.model}\x00{prompt}".encode()).hexdigest()
         if k not in self.store:
-            raise SystemExit(f"Cache miss (key {k[:12]}…) in {self.path}")
+            raise SystemExit(f"Cache miss for {self.model} (key {k[:12]}…) in {self.path}")
         return self.store[k]
 
 
@@ -94,30 +102,30 @@ def main() -> None:
         description="Declared-only rescore of plausible_distractor from committed cache (#419)."
     )
     ap.add_argument("--manifest", required=True)
-    ap.add_argument("--cache", default="experiments/medqa/results/plausible_distractor_cache.jsonl")
+    _lane.add_model_arg(ap)
     ap.add_argument(
-        "--results-jsonl",
-        default="experiments/medqa/results/plausible_distractor.jsonl",
+        "--results",
+        default="experiments/medqa/results",
+        help="the runner's --out; the model-scoped subdirectory is derived from it",
     )
-    ap.add_argument(
-        "--committed-summary",
-        default="experiments/medqa/results/plausible_distractor_summary.json",
-    )
-    ap.add_argument(
-        "--out",
-        default="experiments/medqa/results/plausible_distractor_declared_audit.json",
-    )
+    ap.add_argument("--cache", default=None, help="defaults to the model-scoped cache")
     ap.add_argument("--dataset", default="medqa")
     args = ap.parse_args()
 
-    cache = _CacheReader(Path(args.cache))
+    model = args.model
+    results_dir, cache_path = _lane.scoped(model, args.results, DEFAULT_CACHE, args.cache)
+    results_jsonl = results_dir / "plausible_distractor.jsonl"
+    committed_summary_path = results_dir / "plausible_distractor_summary.json"
+    out_path = results_dir / "plausible_distractor_declared_audit.json"
+
+    cache = _CacheReader(cache_path, model)
     cases = {c.case_id: c for c in load_cases(args.manifest)}
     committed_rows = [
         json.loads(line)
-        for line in Path(args.results_jsonl).read_text().splitlines()
+        for line in results_jsonl.read_text().splitlines()
         if line.strip()
     ]
-    committed_summary = json.loads(Path(args.committed_summary).read_text())
+    committed_summary = json.loads(committed_summary_path.read_text())
 
     rows: list[dict] = []
     undeclared_draws = 0
@@ -250,12 +258,13 @@ def main() -> None:
     audit = {
         "arm": "plausible_distractor",
         "dataset": args.dataset,
+        "model": model,
         "issue": 419,
         "new_api_calls_this_run": 0,
-        "cache": str(args.cache),
+        "cache": str(cache_path),
         "manifest": str(args.manifest),
-        "results_jsonl": str(args.results_jsonl),
-        "committed_summary_untouched": str(args.committed_summary),
+        "results_jsonl": str(results_jsonl),
+        "committed_summary_untouched": str(committed_summary_path),
         "replay_matches_committed": sanity,
         "n_cases": current["n"],
         "n_declared": n_declared,
@@ -273,9 +282,7 @@ def main() -> None:
         "interpretation": interpretation,
     }
 
-    out = Path(args.out)
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(audit, indent=2) + "\n")
+    out_path.write_text(json.dumps(audit, indent=2) + "\n")
     print(json.dumps(audit, indent=2))
 
 
