@@ -44,8 +44,8 @@ html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Neue Haas Grotesk Text","Helvetica Neue",Helvetica,Arial,-apple-system,BlinkMacSystemFont,sans-serif}
 .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:3px solid var(--mit);flex-wrap:wrap}
 .topbar .brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
-.topbar .brand svg{display:block;height:28px;width:auto}
-.topbar .wordmark{font-weight:700;font-size:18px;letter-spacing:.01em}
+.topbar .brand svg{display:block;height:40px;width:auto}
+.topbar .wordmark{font-weight:700;font-size:21px;letter-spacing:.01em}
 .topbar .wordmark small{display:block;font-weight:400;font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
 .topbar .links{display:flex;gap:8px;flex-wrap:wrap}
 .topbar .links a{font-size:13px;font-weight:600;padding:6px 12px;border:1.5px solid var(--mit);border-radius:4px;color:var(--mit);text-decoration:none}
@@ -146,20 +146,20 @@ svg .hatch{fill:url(#hatchpat)}
 
 <main>
 <header class="topbar">
-  <a class="brand" href="https://criticaldata.mit.edu/" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" height="28" width="42" aria-hidden="true" focusable="false" viewBox="-48.15 -41.5 417.3 249">
+  <a class="brand" href="https://criticaldata.mit.edu/" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" height="40" width="60" aria-hidden="true" focusable="false" viewBox="-48.15 -41.5 417.3 249">
     <g stroke="#A31F34" stroke-width="35">
         <path d="M17.5 0v166m57-166v113m57-113v166m57-166v33m58 20v113"/>
         <path stroke="#8A8B8C" d="M188.5 53v113"/>
         <path stroke-width="33" d="M229 16.5h92"/>
     </g>
-</svg><span class="wordmark">Critical Data<small>criticaldata.mit.edu</small></span></a>
-  <nav class="links"><a href="https://github.com/criticaldata/benchmaxxing" target="_blank" rel="noopener">GitHub</a><a class="soon" role="link" aria-disabled="true" title="Preprint coming soon">Preprint (soon)</a></nav>
+</svg><span class="wordmark">MIT Critical Data<small>criticaldata.mit.edu</small></span></a>
+  <nav class="links"><a href="https://github.com/criticaldata/benchmaxxing" target="_blank" rel="noopener">GitHub</a><a href="https://arxiv.org/abs/2608.03744" target="_blank" rel="noopener" title="Agents catching agents, the earlier study this builds on">Earlier study</a><a class="soon" role="link" aria-disabled="true" title="Preprint coming soon">Preprint (soon)</a></nav>
 </header>
 <header class="hero">
   <h1>Honest, or just careful?</h1>
   <p class="sub">AI agents followed a planted scoring rule, left it out of their explanations, and behaved better once told they were watched.</p>
   <p>Across 291 clinical cases, half took the answer a hidden scoring note rewarded, and all but two justified it with a clinical reason that never mentioned the note. Told the task was a check, far fewer took it. That leaves an open problem for every system graded by a rubric: when an agent behaves well under watch, is it honest, or just careful?</p>
-  <p class="credit">By <a href="https://criticaldata.mit.edu/" target="_blank" rel="noopener">MIT Critical Data</a>. Code and data on <a href="https://github.com/criticaldata/benchmaxxing" target="_blank" rel="noopener">GitHub</a>; preprint to follow.</p>
+  <p class="credit">By <a href="https://criticaldata.mit.edu/" target="_blank" rel="noopener">MIT Critical Data</a>. Builds on our earlier study, <a href="https://arxiv.org/abs/2608.03744" target="_blank" rel="noopener">Agents catching agents</a> (preprint). Code and data on <a href="https://github.com/criticaldata/benchmaxxing" target="_blank" rel="noopener">GitHub</a>; the preprint of this piece will follow.</p>
   <nav class="toc" id="toc"></nav>
   <div class="stats">
     <div class="stat"><b>147 / 291</b><span>took the rewarded answer with the note hidden</span></div>
@@ -750,6 +750,7 @@ svg .hatch{fill:url(#hatchpat)}
    Scenes play as soon as they scroll into view and loop with a pause while visible. Pause stops
    the loop; Replay starts over. The first step is held for less time so the figure starts moving. */
 (function(){
+  anime.speed = 2;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const HOLD_BASE = 700, HOLD_PER_CHAR = 26, FIRST_HOLD = 0.5, LOOP_PAUSE = 1500;
   const scenes = [];
