@@ -23,52 +23,63 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 <style>
 :root{
-  --bg:#f3efe7; --panel:#fffdf9; --fig:#faf7f1; --ink:#1e2433; --muted:#6b7080; --line:#e0d9cc;
+  --bg:#f2f3f4; --panel:#ffffff; --fig:#fafafa; --ink:#111111; --muted:#5f6368; --line:#dcdfe3; --mit:#A31F34; --mitgrey:#8A8B8C;
   --agent:#7d95b5; --agent-dark:#44597a; --note:#f0b400; --own:#1b6ca8; --reason:#1f8f82; --eye:#1d3461;
-  --flag:#d1495b; --hatch:#d8d1c4; --accent:#1d3461;
+  --flag:#d1495b; --hatch:#d8d1c4; --accent:#111111;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#141821; --panel:#1d2330; --fig:#181d28; --ink:#e9ecf2; --muted:#a2abb9; --line:#2f3847;
-    --agent:#8aa0bd; --agent-dark:#c9d5e6; --eye:#e9ecf2; --hatch:#3a4455; --accent:#cdd9f2;
+    --bg:#121212; --panel:#1c1c1e; --fig:#171719; --ink:#f0f0f0; --muted:#a5a9b0; --line:#30323a; --mit:#d04a5e;
+    --agent:#8aa0bd; --agent-dark:#c9d5e6; --eye:#f0f0f0; --hatch:#3a4455; --accent:#f0f0f0;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#141821; --panel:#1d2330; --fig:#181d28; --ink:#e9ecf2; --muted:#a2abb9; --line:#2f3847;
-  --agent:#8aa0bd; --agent-dark:#c9d5e6; --eye:#e9ecf2; --hatch:#3a4455; --accent:#cdd9f2;
+  --bg:#121212; --panel:#1c1c1e; --fig:#171719; --ink:#f0f0f0; --muted:#a5a9b0; --line:#30323a; --mit:#d04a5e;
+  --agent:#8aa0bd; --agent-dark:#c9d5e6; --eye:#f0f0f0; --hatch:#3a4455; --accent:#f0f0f0;
 }
 *{box-sizing:border-box}
-main a{color:var(--own)}
+main a{color:var(--mit)}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Neue Haas Grotesk Text","Helvetica Neue",Helvetica,Arial,-apple-system,BlinkMacSystemFont,sans-serif}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:3px solid var(--mit);flex-wrap:wrap}
+.topbar .brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+.topbar .brand svg{display:block;height:28px;width:auto}
+.topbar .wordmark{font-weight:700;font-size:18px;letter-spacing:.01em}
+.topbar .wordmark small{display:block;font-weight:400;font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.topbar .links{display:flex;gap:8px;flex-wrap:wrap}
+.topbar .links a{font-size:13px;font-weight:600;padding:6px 12px;border:1.5px solid var(--mit);border-radius:4px;color:var(--mit);text-decoration:none}
+.topbar .links a:hover{background:var(--mit);color:#fff}
+.topbar .links a.soon{border-color:var(--line);color:var(--muted);cursor:default}
+.topbar .links a.soon:hover{background:transparent;color:var(--muted)}
 main{max-width:980px;margin:0 auto;padding:32px 16px 80px}
 header.hero{padding:40px 0 24px;border-bottom:1px solid var(--line);margin-bottom:24px}
-header.hero h1{margin:0 0 8px;font-size:clamp(28px,5vw,44px);line-height:1.1;color:var(--accent)}
+header.hero h1{margin:0 0 8px;font-size:clamp(28px,5vw,44px);line-height:1.1;color:var(--accent);letter-spacing:-.01em}
+header.hero h1::before{content:"";display:block;width:56px;height:5px;background:var(--mit);margin:0 0 14px}
 header.hero p.sub{margin:0 0 16px;font-size:clamp(17px,2.4vw,21px);color:var(--muted)}
 header.hero p{max-width:70ch}
 header.hero p.credit{margin:0;font-size:14px;color:var(--muted)}
 nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
 nav.toc a{font-size:13px;padding:5px 10px;border:1px solid var(--line);border-radius:999px;color:var(--ink);text-decoration:none;background:var(--panel)}
-nav.toc a:hover{border-color:var(--own)}
+nav.toc a:hover{border-color:var(--mit);color:var(--mit)}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0 0}
-.stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;border-top:4px solid var(--note)}
-.stat:nth-child(2){border-top-color:var(--reason)}
-.stat:nth-child(3){border-top-color:var(--own)}
-.stat:nth-child(4){border-top-color:var(--flag)}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:12px 14px;border-top:4px solid var(--mit)}
+.stat:nth-child(2){border-top-color:var(--mitgrey)}
+.stat:nth-child(3){border-top-color:var(--mit)}
+.stat:nth-child(4){border-top-color:var(--mitgrey)}
 .stat b{display:block;font-size:26px;line-height:1.1;color:var(--accent)}
 .stat span{font-size:13px;color:var(--muted)}
-section.scene{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 20px 16px;margin:0 0 28px;box-shadow:0 1px 2px rgba(30,36,51,.04)}
+section.scene{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 20px 16px;margin:0 0 28px;box-shadow:0 1px 2px rgba(30,36,51,.04)}
 section.scene h2{margin:0 0 4px;font-size:22px;color:var(--accent)}
 section.scene h2 small{font-weight:500;color:var(--muted);font-size:14px;margin-left:8px}
 section.scene p.lead{margin:0 0 14px;color:var(--muted);max-width:75ch}
-.fig{position:relative;border:1px solid var(--line);border-radius:12px;background:var(--fig);overflow:hidden}
+.fig{position:relative;border:1px solid var(--line);border-radius:6px;background:var(--fig);overflow:hidden}
 .fig svg{display:block;width:100%;height:auto}
 .caption{display:flex;align-items:flex-start;gap:12px;margin:12px 0 0;min-height:48px}
 .caption .text{flex:1;font-size:16px;line-height:1.45}
 .caption .step{font-size:12px;color:var(--muted);white-space:nowrap;padding-top:3px}
 .caption .btns{display:flex;gap:6px;flex:none;flex-wrap:wrap}
 .replay,.pause,.nav{font:600 13px inherit;padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
-.replay:hover,.pause:hover,.nav:hover{border-color:var(--own);color:var(--own)}
+.replay:hover,.pause:hover,.nav:hover{border-color:var(--mit);color:var(--mit)}
 .notes{margin:14px 0 0;padding:0 0 0 18px;color:var(--ink);font-size:15px}
 .notes li{margin:4px 0}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:14px 0 0}
@@ -132,11 +143,21 @@ svg .hatch{fill:url(#hatchpat)}
 </svg>
 
 <main>
+<header class="topbar">
+  <a class="brand" href="https://criticaldata.mit.edu/" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" height="28" width="42" aria-hidden="true" focusable="false" viewBox="-48.15 -41.5 417.3 249">
+    <g stroke="#A31F34" stroke-width="35">
+        <path d="M17.5 0v166m57-166v113m57-113v166m57-166v33m58 20v113"/>
+        <path stroke="#8A8B8C" d="M188.5 53v113"/>
+        <path stroke-width="33" d="M229 16.5h92"/>
+    </g>
+</svg><span class="wordmark">Critical Data<small>criticaldata.mit.edu</small></span></a>
+  <nav class="links"><a href="https://github.com/criticaldata/benchmaxxing" target="_blank" rel="noopener">GitHub</a><a class="soon" role="link" aria-disabled="true" title="Preprint coming soon">Preprint (soon)</a></nav>
+</header>
 <header class="hero">
   <h1>Honest, or just careful?</h1>
   <p class="sub">AI agents followed a planted scoring rule, left it out of their explanations, and behaved better once told they were watched.</p>
   <p>Across 291 clinical cases, half took the answer a hidden scoring note rewarded, and all but two justified it with a clinical reason that never mentioned the note. Told the task was a check, far fewer took it. That leaves an open problem for every system graded by a rubric: when an agent behaves well under watch, is it honest, or just careful?</p>
-  <p class="credit">By <a href="https://github.com/criticaldata/benchmaxxing">MIT Critical Data</a>.</p>
+  <p class="credit">By <a href="https://criticaldata.mit.edu/" target="_blank" rel="noopener">MIT Critical Data</a>. Code and data on <a href="https://github.com/criticaldata/benchmaxxing" target="_blank" rel="noopener">GitHub</a>; preprint to follow.</p>
   <nav class="toc" id="toc"></nav>
   <div class="stats">
     <div class="stat"><b>147 / 291</b><span>took the rewarded answer with the note hidden</span></div>
@@ -715,7 +736,7 @@ svg .hatch{fill:url(#hatchpat)}
 
 
 <footer>
-  Palette: agent steel blue, hidden scoring note yellow with a white star, agent's own answer blue, clinical reason teal, watcher an eye, referee flag red. Counts come from the per-case hidden-rubric records in the repository (five cohorts, 291 cases, baseline uptake 0 by construction). MIT Critical Data. Animations use anime.js 3.2.1.
+  Palette: agent steel blue, hidden scoring note yellow with a white star, agent's own answer blue, clinical reason teal, watcher an eye, referee flag red. Counts come from the per-case hidden-rubric records in the repository (five cohorts, 291 cases, baseline uptake 0 by construction). <a href="https://criticaldata.mit.edu/" target="_blank" rel="noopener">MIT Critical Data</a>, <a href="https://github.com/criticaldata/benchmaxxing" target="_blank" rel="noopener">GitHub</a>. Animations use anime.js 3.2.1.
 </footer>
 </main>
 
