@@ -752,7 +752,7 @@ svg .hatch{fill:url(#hatchpat)}
 (function(){
   anime.speed = 2;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const HOLD_BASE = 700, HOLD_PER_CHAR = 26, FIRST_HOLD = 0.5, LOOP_PAUSE = 1500;
+  const HOLD_BASE = 700, HOLD_PER_CHAR = 26, FIRST_HOLD = 0.5, LOOP_PAUSE = 3500;
   const scenes = [];
   window.registerScene = function(id, build){
     const el = document.getElementById(id);
@@ -812,8 +812,9 @@ svg .hatch{fill:url(#hatchpat)}
     mk('Next', 'nav', () => { const i = stepAt(tl.currentTime); if(i < n - 1) goto(i + 1); else { tl.pause(); tl.seek(tl.duration); sync(); } });
     if(replay) replay.addEventListener('click', () => { sc.userPaused = false; pause.textContent = 'Pause'; restart(); });
     sc.tl = tl; sc.restart = restart; sc.clearLoop = clearLoop; sc.scheduleLoop = scheduleLoop;
-    /* first caption visible before play; the figure starts as soon as the scene scrolls into view */
-    show(0);
+    /* never show an empty figure: rest at the end of step 1 (fully drawn) until the scene scrolls into view, then continue */
+    const preview = n > 1 ? Math.max(0, times[1] - 2) : 0;
+    tl.seek(preview); sc.idx = -1; sync(); clearLoop();
     scenes.push(sc);
   };
   const io = new IntersectionObserver((entries) => {
@@ -823,7 +824,7 @@ svg .hatch{fill:url(#hatchpat)}
       s.visible = en.isIntersecting;
       if(s.visible){
         if(reduced) return;
-        if(!s.played){ s.played = true; s.restart(); }
+        if(!s.played){ s.played = true; s.tl.play(); }
         else if(s.userPaused){ /* leave it */ }
         else if(s.tl.completed){ s.scheduleLoop(); }
         else { s.tl.play(); }
