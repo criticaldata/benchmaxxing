@@ -255,6 +255,12 @@ svg .hatch{fill:url(#hatchpat)}
     </svg>
   </div>
   <div class="caption"><div class="text"></div><div class="step"></div><div class="btns"><button class="replay" type="button">Replay</button></div></div>
+  <div class="legend">
+    <span><i style="background:var(--note)"></i>note hidden, nobody watching: share that took the rewarded answer</span>
+    <span><i style="background:var(--note);opacity:.45"></i><svg width="18" height="12" viewBox="0 0 60 36" aria-hidden="true"><use href="#sym-eye-open"/></svg>told it is a check (watched): share that still took it</span>
+    <span><i style="background:var(--reason)"></i>named the note when asked why</span>
+    <span><i style="background:var(--note);outline:1.5px solid var(--ink);outline-offset:-1px"></i>outlined: took it both alone and when warned</span>
+  </div>
 </section>
 
 <section class="scene" id="s3" data-short="3. What was measured">
@@ -302,7 +308,7 @@ svg .hatch{fill:url(#hatchpat)}
   <div class="caption"><div class="text"></div><div class="step"></div><div class="btns"><button class="replay" type="button">Replay</button></div></div>
 </section>
 
-<section class="scene" id="s4" data-short="4. Three stories">
+<section class="scene" id="s4" data-short="4. Three stories" data-pace="0.6">
   <h2>Three stories, one output <small>why asking does not help</small></h2>
   <p class="lead">The data cannot show intent. Three different mechanisms fit the silence, and from the outside they are indistinguishable.</p>
   <div class="fig">
@@ -760,6 +766,7 @@ svg .hatch{fill:url(#hatchpat)}
     const cap = el.querySelector('.caption .text');
     const stepEl = el.querySelector('.caption .step');
     const captions = [], times = [];
+    const pace = parseFloat(el.dataset.pace || '1') || 1;
     const say = (text) => { const f = () => {}; f.caption = text; return f; };
     const sc = { el, played:false, visible:false, userPaused:false, loopTimer:null, idx:-1 };
     const tl = anime.timeline({ autoplay:false, easing:'easeOutQuad', duration:600,
@@ -771,7 +778,7 @@ svg .hatch{fill:url(#hatchpat)}
           const text = params.begin.caption;
           delete params.begin;
           if(last !== null){
-            const scale = captions.length === 1 ? FIRST_HOLD : 1;
+            const scale = (captions.length === 1 ? FIRST_HOLD : 1) * pace;
             tl.add({ targets: { v: 0 }, v: 1, duration: scale * (HOLD_BASE + HOLD_PER_CHAR * last.length), easing: 'linear' });
             offset = undefined;
           }
@@ -955,9 +962,9 @@ svg .hatch{fill:url(#hatchpat)}
   /* s4: three stories, one output */
   registerScene('s4', function(tl, say){
     tl.add({ targets: '#s4-b1, #s4-b2, #s4-b3', opacity: [0, 1], translateX: [-20, 0], duration: 500, delay: anime.stagger(150), begin: say('Three mechanisms fit the silence.') });
-    tl.add(draw('#s4-a1', { begin: say('Deliberate: it keeps the shortcut to itself, like a cheat sheet nobody mentions.') }));
-    tl.add(draw('#s4-a2', { begin: say('Learned: trained to please its grader, the answer is what scores and the explanation is a separate performance.') }));
-    tl.add(draw('#s4-a3', { begin: say('Disconnected: the explanation comes afterwards, with no link to what drove the answer.') }));
+    tl.add(draw('#s4-a1', { duration: 350, begin: say('Deliberate: it keeps the shortcut to itself, like a cheat sheet nobody mentions.') }));
+    tl.add(draw('#s4-a2', { duration: 350, begin: say('Learned: trained to please its grader, the answer is what scores and the explanation is a separate performance.') }));
+    tl.add(draw('#s4-a3', { duration: 350, begin: say('Disconnected: the explanation comes afterwards, with no link to what drove the answer.') }));
     tl.add(show('#s4-out', { begin: say('From outside all three look the same: rewarded answer, clinical reason, no note.') }));
     tl.add({ targets: '.s4-chip', opacity: [0, 1], translateY: [10, 0], duration: 400, delay: anime.stagger(150), begin: say('Other evidence points the same way, including a July 2026 evaluation where agents reverse-engineered their grader and optimised it.') });
     tl.add({ targets: '#s4-out-box', stroke: RED, strokeWidth: 3, duration: 600, begin: say('None of this proves intent. Together: an agent\'s account of itself is a weak guide to what it did.') });
