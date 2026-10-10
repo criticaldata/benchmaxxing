@@ -10,6 +10,10 @@
   <a href="#reproduce-it-without-an-api-key"><img src="https://img.shields.io/badge/replay-0%20API%20calls-brightgreen.svg" alt="Replays from cache with no API key"></a>
 </p>
 
+<p align="center">
+  <a href="assets/hidden-rubric-explainer.html">Animated explainer of the hidden-rubric arm</a>: what was done, why it matters, and how a referee checks behaviour instead of explanations. Download and open in a browser.
+</p>
+
 # benchmaxxing
 
 ### An AI agent ignores the shortcut when it works alone. Put two confident peers next to it and it takes the bait.
