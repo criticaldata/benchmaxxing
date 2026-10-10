@@ -750,7 +750,7 @@ svg .hatch{fill:url(#hatchpat)}
    the loop; Replay starts over. The first step is held for less time so the figure starts moving. */
 (function(){
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const HOLD_BASE = 900, HOLD_PER_CHAR = 34, FIRST_HOLD = 0.5, LOOP_PAUSE = 2000;
+  const HOLD_BASE = 700, HOLD_PER_CHAR = 26, FIRST_HOLD = 0.5, LOOP_PAUSE = 1500;
   const scenes = [];
   window.registerScene = function(id, build){
     const el = document.getElementById(id);
