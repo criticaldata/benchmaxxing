@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a href="https://criticaldata.github.io/benchmaxxing/">Animated explainer of the hidden-rubric arm</a>: what was done, why it matters, and how a referee checks behaviour instead of explanations. Source in <a href="docs/index.html">docs/index.html</a>.
+  <a href="https://criticaldata.github.io/benchmaxxing/">Animated explainer of the hidden-rubric arm</a>: what was done, why it matters, and how a referee checks behaviour instead of explanations. Source in <a href="index.html">index.html</a>.
 </p>
 
 # benchmaxxing
