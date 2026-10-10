@@ -40,8 +40,8 @@
 }
 *{box-sizing:border-box}
 main a{color:var(--mit)}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Neue Haas Grotesk Text","Helvetica Neue",Helvetica,Arial,-apple-system,BlinkMacSystemFont,sans-serif}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;overflow-x:hidden;background:var(--bg);color:var(--ink);font:16px/1.55 "Neue Haas Grotesk Text","Helvetica Neue",Helvetica,Arial,-apple-system,BlinkMacSystemFont,sans-serif}
 .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:3px solid var(--mit);flex-wrap:wrap}
 .topbar .brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
 .topbar .brand svg{display:block;height:40px;width:auto}
@@ -74,7 +74,7 @@ section.scene h2{margin:0 0 4px;font-size:22px;color:var(--accent)}
 section.scene h2 small{font-weight:500;color:var(--muted);font-size:14px;margin-left:8px}
 section.scene p.lead{margin:0 0 14px;color:var(--muted);max-width:75ch}
 .fig{position:relative;border:1px solid var(--line);border-radius:6px;background:var(--fig);overflow:hidden}
-.fig svg{display:block;width:100%;height:auto}
+.fig svg{display:block;width:100%;max-width:100%;height:auto}
 .fig .progress{position:absolute;left:0;top:0;height:3px;width:0;background:var(--mit);pointer-events:none}
 .caption{display:flex;align-items:flex-start;gap:12px;margin:12px 0 0;min-height:48px}
 .caption .text{flex:1;font-size:16px;line-height:1.45}
@@ -103,7 +103,7 @@ svg .bubble{fill:var(--panel);stroke:var(--line);stroke-width:1.5}
 svg .bubble.dashed{stroke-dasharray:5 4}
 svg .plus{stroke:var(--reason);stroke-width:4;stroke-linecap:round}
 svg .hatch{fill:url(#hatchpat)}
-@media (max-width:640px){section.scene{padding:14px 12px 12px}.caption{flex-wrap:wrap}.caption .text{flex-basis:100%}.fig{overflow-x:auto;-webkit-overflow-scrolling:touch}.fig svg{min-width:640px}.fig::after{content:"swipe sideways to see the whole figure";display:block;font-size:11px;color:var(--muted);padding:4px 8px;position:sticky;left:0}section.scene h2 small{display:block;margin:2px 0 0}.stats{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){section.scene{padding:14px 12px 12px}.caption{flex-wrap:wrap}.caption .text{flex-basis:100%}section.scene h2 small{display:block;margin:2px 0 0}.stats{grid-template-columns:1fr 1fr}header.hero h1{font-size:30px}.topbar .wordmark{font-size:18px}.topbar .links a{padding:5px 9px;font-size:12px}}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 </style>
 </head>
