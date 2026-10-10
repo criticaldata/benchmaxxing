@@ -104,6 +104,10 @@ svg .bubble.dashed{stroke-dasharray:5 4}
 svg .plus{stroke:var(--reason);stroke-width:4;stroke-linecap:round}
 svg .hatch{fill:url(#hatchpat)}
 @media (max-width:640px){section.scene{padding:14px 12px 12px}.caption{flex-wrap:wrap}.caption .text{flex-basis:100%}section.scene h2 small{display:block;margin:2px 0 0}.stats{grid-template-columns:1fr 1fr}header.hero h1{font-size:30px}.topbar .wordmark{font-size:18px}.topbar .links a{padding:5px 9px;font-size:12px}}
+#bgfx{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+main{position:relative;z-index:1;background:rgba(242,243,244,.62);border-radius:12px}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) main{background:rgba(18,18,18,.62)}}
+:root[data-theme="dark"] main{background:rgba(18,18,18,.62)}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 </style>
 </head>
@@ -144,6 +148,7 @@ svg .hatch{fill:url(#hatchpat)}
 </defs>
 </svg>
 
+<canvas id="bgfx" aria-hidden="true"></canvas>
 <main>
 <header class="topbar">
   <a class="brand" href="https://criticaldata.mit.edu/" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" height="40" width="60" aria-hidden="true" focusable="false" viewBox="-48.15 -41.5 417.3 249">
@@ -345,7 +350,7 @@ svg .hatch{fill:url(#hatchpat)}
         <g class="s4-chip" opacity="0"><rect x="176" y="300" width="148" height="44" rx="22" fill="var(--panel)" stroke="var(--line)"/><text x="250" y="318" text-anchor="middle" font-size="11">models often know</text><text x="250" y="333" text-anchor="middle" font-size="11">when evaluated</text></g>
         <g class="s4-chip" opacity="0"><rect x="332" y="300" width="148" height="44" rx="22" fill="var(--panel)" stroke="var(--line)"/><text x="406" y="318" text-anchor="middle" font-size="11">alignment faking</text><text x="406" y="333" text-anchor="middle" font-size="11">under training</text></g>
         <g class="s4-chip" opacity="0"><rect x="488" y="300" width="148" height="44" rx="22" fill="var(--panel)" stroke="var(--line)"/><text x="562" y="318" text-anchor="middle" font-size="11">covert actions,</text><text x="562" y="333" text-anchor="middle" font-size="11">denied when asked</text></g>
-        <g class="s4-chip" opacity="0"><rect x="644" y="300" width="148" height="44" rx="22" fill="var(--panel)" stroke="var(--line)"/><text x="718" y="318" text-anchor="middle" font-size="11">2026 incident: agents</text><text x="718" y="333" text-anchor="middle" font-size="11">optimised the grader</text></g>
+        <g class="s4-chip" opacity="0"><rect x="644" y="300" width="148" height="44" rx="22" fill="var(--panel)" stroke="var(--line)"/><text x="718" y="318" text-anchor="middle" font-size="11">Hugging Face incident:</text><text x="718" y="333" text-anchor="middle" font-size="11">agents optimised the grader</text></g>
       </g>
     </svg>
   </div>
@@ -855,6 +860,66 @@ svg .hatch{fill:url(#hatchpat)}
 </script>
 
 <script>
+/* Background: a constellation of dots and red links, after the MIT Critical Data site's particle field,
+   that drifts, leans toward the pointer and links to it.
+   Purely decorative: fixed behind the content, no pointer events, static under reduced motion,
+   paused when the tab is hidden. */
+(function(){
+  const c = document.getElementById('bgfx'); if(!c) return;
+  const ctx = c.getContext('2d');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const dark = () => window.matchMedia('(prefers-color-scheme: dark)').matches && document.documentElement.getAttribute('data-theme') !== 'light';
+  let W = 0, H = 0, dpr = 1, pts = [], mouse = { x: -1e4, y: -1e4 }, raf = null, hidden = false;
+  function size(){
+    dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    W = window.innerWidth; H = window.innerHeight;
+    c.width = Math.floor(W * dpr); c.height = Math.floor(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const n = Math.max(28, Math.min(80, Math.round(W * H / 22000)));
+    while(pts.length < n) pts.push(mk());
+    pts.length = n;
+  }
+  function mk(){ return { x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .7, vy: (Math.random() - .5) * .7, r: 1.6 + Math.random() * 2.2 }; }
+  function step(){
+    const d = dark();
+    const dot = d ? 'rgba(200,205,220,' : 'rgba(138,139,140,';
+    const link = d ? 'rgba(208,74,94,' : 'rgba(127,29,29,';
+    ctx.clearRect(0, 0, W, H);
+    for(const p of pts){
+      if(!reduced){
+        const dx = mouse.x - p.x, dy = mouse.y - p.y, dist = Math.hypot(dx, dy);
+        if(dist < 220 && dist > 1){ const f = (220 - dist) / 220 * .02; p.vx += dx / dist * f; p.vy += dy / dist * f; }
+        const sp = Math.hypot(p.vx, p.vy); if(sp > 1.4){ p.vx *= 1.4 / sp; p.vy *= 1.4 / sp; }
+        p.vx *= .992; p.vy *= .992;
+        p.x += p.vx; p.y += p.vy;
+        if(p.x < -20) p.x = W + 20; if(p.x > W + 20) p.x = -20;
+        if(p.y < -20) p.y = H + 20; if(p.y > H + 20) p.y = -20;
+      }
+    }
+    for(let i = 0; i < pts.length; i++){
+      for(let j = i + 1; j < pts.length; j++){
+        const a = pts[i], b = pts[j], dx = a.x - b.x, dy = a.y - b.y, dd = dx * dx + dy * dy;
+        if(dd < 150 * 150){ const al = (1 - Math.sqrt(dd) / 150) * .35; ctx.strokeStyle = link + al + ')'; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
+      }
+    }
+    for(const p of pts){
+      const md = Math.hypot(mouse.x - p.x, mouse.y - p.y);
+      if(md < 200){ ctx.strokeStyle = link + ((1 - md / 200) * .5) + ')'; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(mouse.x, mouse.y); ctx.lineTo(p.x, p.y); ctx.stroke(); }
+      const near = md < 200;
+      ctx.fillStyle = dot + (near ? .75 : .45) + ')';
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
+    }
+    if(!reduced && !hidden) raf = requestAnimationFrame(step);
+  }
+  window.addEventListener('resize', size);
+  window.addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+  window.addEventListener('pointerleave', () => { mouse.x = -1e4; mouse.y = -1e4; });
+  document.addEventListener('visibilitychange', () => { hidden = document.hidden; if(!hidden && !reduced && !raf){ raf = requestAnimationFrame(step); } if(hidden && raf){ cancelAnimationFrame(raf); raf = null; } });
+  size(); step();
+})();
+</script>
+
+<script>
 /* Scenes 1 to 5: the setup, the numbers, what was measured, three stories, honest or careful. */
 (function(){
   const NS = 'http://www.w3.org/2000/svg';
@@ -966,7 +1031,7 @@ svg .hatch{fill:url(#hatchpat)}
     tl.add(draw('#s4-a2', { duration: 350, begin: say('Learned: trained to please its grader, the answer is what scores and the explanation is a separate performance.') }));
     tl.add(draw('#s4-a3', { duration: 350, begin: say('Disconnected: the explanation comes afterwards, with no link to what drove the answer.') }));
     tl.add(show('#s4-out', { begin: say('From outside all three look the same: rewarded answer, clinical reason, no note.') }));
-    tl.add({ targets: '.s4-chip', opacity: [0, 1], translateY: [10, 0], duration: 400, delay: anime.stagger(150), begin: say('Other evidence points the same way, including a 2026 cybersecurity evaluation where agents reverse-engineered their grader and optimised it.') });
+    tl.add({ targets: '.s4-chip', opacity: [0, 1], translateY: [10, 0], duration: 400, delay: anime.stagger(150), begin: say('Other evidence points the same way, including the July 2026 Hugging Face incident, where agents reverse-engineered their grader and optimised it.') });
     tl.add({ targets: '#s4-out-box', stroke: RED, strokeWidth: 3, duration: 600, begin: say('None of this proves intent. Together: an agent\'s account of itself is a weak guide to what it did.') });
   });
 
