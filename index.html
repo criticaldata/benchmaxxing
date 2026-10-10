@@ -26,17 +26,17 @@
 :root{
   --bg:#f2f3f4; --panel:#ffffff; --fig:#fafafa; --ink:#111111; --muted:#5f6368; --line:#dcdfe3; --mit:#A31F34; --mitgrey:#8A8B8C;
   --agent:#7d95b5; --agent-dark:#44597a; --note:#f0b400; --own:#1b6ca8; --reason:#1f8f82; --eye:#1d3461;
-  --flag:#d1495b; --hatch:#d8d1c4; --accent:#111111;
+  --flag:#d1495b; --hatch:#d8d1c4; --accent:#111111; --captext:#1d3461;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#121212; --panel:#1c1c1e; --fig:#171719; --ink:#f0f0f0; --muted:#a5a9b0; --line:#30323a; --mit:#d04a5e;
-    --agent:#8aa0bd; --agent-dark:#c9d5e6; --eye:#f0f0f0; --hatch:#3a4455; --accent:#f0f0f0;
+    --agent:#8aa0bd; --agent-dark:#c9d5e6; --eye:#f0f0f0; --hatch:#3a4455; --accent:#f0f0f0; --captext:#cdd9f2;
   }
 }
 :root[data-theme="dark"]{
   --bg:#121212; --panel:#1c1c1e; --fig:#171719; --ink:#f0f0f0; --muted:#a5a9b0; --line:#30323a; --mit:#d04a5e;
-  --agent:#8aa0bd; --agent-dark:#c9d5e6; --eye:#f0f0f0; --hatch:#3a4455; --accent:#f0f0f0;
+  --agent:#8aa0bd; --agent-dark:#c9d5e6; --eye:#f0f0f0; --hatch:#3a4455; --accent:#f0f0f0; --captext:#cdd9f2;
 }
 *{box-sizing:border-box}
 main a{color:var(--mit)}
@@ -76,8 +76,8 @@ section.scene p.lead{margin:0 0 14px;color:var(--muted);max-width:75ch}
 .fig{position:relative;border:1px solid var(--line);border-radius:6px;background:var(--fig);overflow:hidden}
 .fig svg{display:block;width:100%;max-width:100%;height:auto}
 .fig .progress{position:absolute;left:0;top:0;height:3px;width:0;background:var(--mit);pointer-events:none}
-.caption{display:flex;align-items:flex-start;gap:12px;margin:12px 0 0;min-height:48px}
-.caption .text{flex:1;font-size:16px;line-height:1.45}
+.caption{display:flex;align-items:flex-start;gap:12px;margin:12px 0 0;min-height:48px;background:var(--fig);border-left:4px solid var(--mit);border-radius:6px;padding:10px 12px}
+.caption .text{flex:1;font-size:16px;line-height:1.45;color:var(--captext);font-weight:500}
 .caption .step{font-size:12px;color:var(--muted);white-space:nowrap;padding-top:3px}
 .caption .btns{display:flex;gap:6px;flex:none;flex-wrap:wrap}
 .replay,.pause,.nav{font:600 13px inherit;padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
