@@ -6,8 +6,8 @@ scored against, controls that are unsatisfiable, recalls forced to 1.0, comparat
 structurally zero, hardcoded significance verdicts. Every one of them reached the paper because
 nothing looked for them.
 
-This module is what looks for them. It reads the committed artifacts, not the prose about them, so
-a comment cannot satisfy it. Three screens:
+This module is what looks for them. It reads the on-disk artifacts under the screened paths, not the
+prose about them, so a comment cannot satisfy it. Three screens:
 
 `constant_columns`
     Every committed per-case file under `experiments/*/results/**` (`.jsonl`, and the de-identified
@@ -42,8 +42,9 @@ WHAT THIS CANNOT CATCH, stated plainly so nobody reads a green suite as an all-c
   `referee_deployable.py`, is character-for-character equal to `adopted` on all 40 rows, and both
   vary. Column-wise constancy cannot see that. Neither can it see a predicate that reduces to the
   label through an intermediate variable.
-- **Uncommitted artifacts.** The screen reads what is in git. The eight SUPPORT2 summary p-values
-  named in #374 are not in the tree, so nothing here reports them.
+- **Artifacts that are not on disk under the screened paths.** The eight SUPPORT2 summary p-values
+  named in #374 were never written under `experiments/*/results/`, so nothing here reports them.
+  Untracked files that *are* on disk are screened (#422); only absence from the filesystem hides them.
 - **Non-Python report generators**, and verdicts assembled by concatenating variables rather than
   by literal text.
 
@@ -120,8 +121,20 @@ class Finding:
 # ----------------------------------------------------------------------------- file discovery
 
 
+def _glob(root: Path, pattern: str) -> list[Path]:
+    """Filesystem match for a git-style ``**.ext`` pathspec under ``root``."""
+    return sorted(root.glob(pattern.replace("**.", "**/*.")))
+
+
 def _tracked(root: Path, pattern: str) -> list[Path]:
-    """Committed files matching a git pathspec, or a glob when `root` is not a repo (tests)."""
+    """Files matching ``pattern``: git-tracked when available, unioned with a filesystem glob.
+
+    ``git ls-files`` alone is blind to untracked results (#422): a new arm can pass the guard while
+    unstaged and fail the moment it is added. The glob covers those files and non-repo roots
+    (pytest ``tmp_path``). Union, not replace-on-empty, so a repo that already has tracked matches
+    still sees newly written siblings beside them.
+    """
+    globbed = _glob(root, pattern)
     try:
         out = subprocess.run(
             ["git", "-C", str(root), "ls-files", "-z", pattern],
@@ -129,16 +142,18 @@ def _tracked(root: Path, pattern: str) -> list[Path]:
             text=True,
             check=True,
         ).stdout
-        return [root / p for p in out.split("\0") if p]
+        tracked = [root / p for p in out.split("\0") if p]
     except (subprocess.CalledProcessError, FileNotFoundError):
-        return sorted(root.glob(pattern.replace("**.", "**/*.")))
+        return globbed
+    return sorted(set(tracked) | set(globbed))
 
 
 def per_case_files(root: Path) -> list[Path]:
-    """Committed per-case artifacts: every results jsonl, plus the de-identified csv exports.
+    """Per-case artifacts on disk: every results jsonl, plus the de-identified csv exports.
 
     Only `deid/` csv is included. The other committed csv under results/ are cohort manifests, where
-    a constant label column is the point rather than a defect.
+    a constant label column is the point rather than a defect. Untracked files under the same
+    paths are included so an unstaged arm cannot sneak past the guard (#422).
     """
     files = list(_tracked(root, "experiments/*/results/**.jsonl"))
     files += [p for p in _tracked(root, "experiments/*/results/**.csv") if "deid" in p.parts]

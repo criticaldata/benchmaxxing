@@ -1,0 +1,12 @@
+{
+  "n": 40,
+  "temperature": 0,
+  "declared_pairs": 40,
+  "undeclared_pairs": 0,
+  "undeclared_draws": 0,
+  "stable_cases": 40,
+  "unstable_cases": 0,
+  "temp0_self_inconsistency_rate": 0.0,
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "new_api_calls_this_run": 80
+}

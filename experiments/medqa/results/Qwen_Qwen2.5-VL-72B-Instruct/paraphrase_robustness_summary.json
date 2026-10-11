@@ -1,0 +1,22 @@
+{
+  "n": 120,
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "new_api_calls_this_run": 480,
+  "adoption_by_template": {
+    "t0_canonical": 0.2667,
+    "t1_consultant": 0.3083,
+    "t2_attending": 0.375
+  },
+  "per_case_unanimous_fraction": 0.8583,
+  "t0_vs_t1": {
+    "gain": 7,
+    "lose": 2,
+    "pvalue": 0.179688
+  },
+  "t0_vs_t2": {
+    "gain": 13,
+    "lose": 0,
+    "pvalue": 0.000244
+  },
+  "read": "Adoption of the same fixed wrong seed under three independently paraphrased instruction and assertion templates: {'t0_canonical': 0.2667, 't1_consultant': 0.3083, 't2_attending': 0.375}. Per-case verdicts are unanimous across all three templates on 0.8583 of cases. Tightly clustered rates and high agreement mean the cascade is a property of the manipulation rather than one brittle prompt string; large swings would flag prompt-sensitivity. Paired McNemars test the canonical template against each paraphrase."
+}

@@ -1,0 +1,20 @@
+{
+  "n": 35,
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "cue": "cable",
+  "new_api_calls_this_run": 70,
+  "shared_adopt": 1.0,
+  "isolated_adopt": 0.6286,
+  "contagion": 0.3714,
+  "n_correct_baseline": 15,
+  "contagion_on_correct": 0.8667,
+  "contagion_ci_95": [
+    0.5475,
+    0.9626
+  ],
+  "pure_sycophancy": 0.8667,
+  "pure_sycophancy_ci_95": [
+    0.5475,
+    0.9626
+  ]
+}

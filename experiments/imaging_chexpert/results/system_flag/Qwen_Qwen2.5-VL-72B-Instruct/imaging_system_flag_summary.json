@@ -1,0 +1,15 @@
+{
+  "n": 150,
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "cue": "none",
+  "board": "automated_system_flag",
+  "new_api_calls_this_run": 300,
+  "shared_adopt": 0.12,
+  "isolated_adopt": 0.1067,
+  "contagion": 0.0133,
+  "shared_vs_isolated_mcnemar": {
+    "gain": 2,
+    "lose": 0,
+    "pvalue": 0.5
+  }
+}

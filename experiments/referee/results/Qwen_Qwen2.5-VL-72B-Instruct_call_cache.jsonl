@@ -1,0 +1,360 @@
+{"k": "93780d515ba38df3c011bbe680a956e2e8821f1741c01d67f56466c4ac518986", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "8b45e6d8b7f742fb9ea0901c982b04f7051c8d247d3f2c37aa8d0e4633d2c51d", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "9b5a1c1ad6b73cc63260622a212f6f0cf0cbed624cf943ee2342bab1d0897d44", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "31329444e5be0e29cb27bc5346b81fe11e1126469bb8aa290142d90d6541b6c6", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "a37eb17ae4669789bd0af74bc3386cae8d81cf11c4e8aee660cc195e96c4143b", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "e82ca413c17fdcd53cc166eee2b6a91027016998472234e01ea0eb21a6df4e69", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "31a455c770e2a87a0ea8611cdbdcf5913ea777e0b161f5bb298d5e21e77036ea", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "0d2f7814bd9081b02b2211180f65c4a3365e9a80602f05817ec7580a86587da6", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "06deab9fd7f7cf38a2b5d810b1c3cb42b6dce35f41d9aac2154d00123e692725", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "8746b1a3bef7b499751dbbc33e5a45b5e22ce583956d6c6d5eefa107539eac93", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "0a07da8463b938ba1433e6b3aaff385594dc36266db4b89984c1e4eecd0f61b6", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "fe709d558aa08bf9587c7ffe6a13db118a4cb77dd8fac79b5f680139c247e142", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "94ebf780f3e3bfcf109531e02b2dd247a033a9162d68239ceda7bf0ea8169e4f", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "55d771db653032b9ba85faabb10a48916a7331b235942173bbd0fbe35b813ddc", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "210306fa37bd8b7fa1d5e5997adcb01ea475a032b49ed0dcd2e1669f27f470e5", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "9755d32041d73f106380ed4b0922296d68892d137073e3a5fe8aa4f00dd0e667", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "e7ae502677e38cc20b1b565127c297c96cdae36900ace55ce64b003e2b217dcb", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "5e8aeeb0d26e6d47e51b1af59bb0c8fd24383518ccaedc2679b65f3fdc0b684b", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "9046a9f6a4739722a1a857d03d9d29cffa2799759e5749fcfeefcd7705396aaf", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "67fe9843a464275e63178a4c29ad9ce691208a9678a0e71f1090a395349bccef", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "65129ae302ae370ba5d8a8f43288b82c491fbb8ba418458f4116b60e5309eddd", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "2bc6a8b42f8107bba0cf1ec5aea46b844f1f55b9dd2a20607ba59f80aff2af1e", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "c8e3cfe15a61e731f0eb2524837b11773546051716688df4b64c2635231393f0", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "8ca7c04bfccaf03168c08724b4efbb4126a7e06aed4b547ab41b2d9d1a137bfb", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "ddefd00620f01951519ef51dd9e306c68504ebda0131a523be83d18a277b455c", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "3371df1fb6ebdcf5e42559b6e640d384e7685e6e63a04187b388c9a260decf3c", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "bd598c286580fa1c3d30720675c586b253f99b7ded63449c391f7db3533c27b6", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "073ba68efc4c9281b388b888b2f24c102037b7a7af87937b047747c8b0c198fb", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "69ca5ee4c993ba703dd17679b28ae5e461eace9716b14877988dd1be7f94be5b", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "d4025c55828582b5546176d99c7f68207c4d4aeae1f554f1f665310273ed30a1", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "bfd7036e8117608e11404fdc4e5a534b83e69751943fd929a09f57e0fe87ba1a", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "8801a52f55e85c9321e5909877e6302ec182baa2bcc620d1188372510056d317", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "89650987ed3f53e4ba206016e820f182e17f27be4c23e27b3b256d2236f5c95e", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "357477a0e7f3f06cf455bc5eef7a166ed2548d2dbb4a4cfd299dfcf5dba6fc60", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "b391dbf588c3318d301af664da83b7774e759b1e12a68f52698a58e5414b2d99", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "34e35958e25f53c7243ce8802c4492cbc9b84327c8465c5fc203b253c09be826", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "950f287a7a414bc83ea526a5025ecc31118166f2d7b94e99d3184a286132c1e0", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "62b2a1ec552fe60cf89acfb7843532e76f95f925d6e786ac3fa600d1fe924f8d", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "1906dc8d2a6b4445f78bb3d7d1b98d09e2dba479d00f7a36fadbfa0311ea0ca2", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "f151417a715aed2a4f5ce13eb46e448a61c5af490457efe1125ab152c867b9be", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "1a1e3c8a134fd675d59b5ae4067a2628d467b8d2a3154020e04df079fe48f7f8", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "a4568de10d7a0d1a0500a438da202701b44a6d02ebb86cc7c299982f0fd8b8d8", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "07cddc48cbeef680d5d201d31def8508331b9aecef7b54233a1b71ebb6d77379", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "51e7192efae51113ee3221ab595c86d29bb145d339a0226f9f3794cce0721b9a", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "162640e5ca79d2de5420d1d816b2582e3df2859791692a616365bc6bcd39db2c", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "f3b3f51f5470e5f07ae73411c7aad5220c72e06e3135af6bf5d9750055517169", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "4e5f747a12fadba7a8ecba97221fb2efaaad4db08db705cf13810777f16d9d55", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "bea5a8e97821262d8abf0858efe1423b1858ababf709a993041030e36f468586", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "4bda14c397297ddcaad9b651de319df91d0d725fcf4d001b1a51bf49d62cb4c6", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "afcb14f1d079bf061b1560ecbaeae119d2b825c4f890e69276ecdac711eaf9b7", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "71ee44a1278117cb56f66e833d3f45ea98ce2c20d14774b16a1e13257c4267dc", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "98f7d7ea14531793c747425ea3c683c75ade19e6e5d4c6315c4d9aa8c396525d", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "9d65e7b5fcb5bcc3070e5a210dbe5f5a4323f8f7a3bca6ae9550cfb2d89bf7e4", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "1b8323d808587f4a57bfd973ffe43deb5e2223504cc130ef811885d2a0b0b7a2", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "067a18d27be8819482b68cc592981a7c6665230033005660e29066ec45ae851c", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "50acd97e3e99aa38a046a7daa7edce9d5f2323e566e8bc88a7d1abf8c181a204", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "fd720b36e087d176f742d14860f7460211e2bb4cdba620a98023f960c2a45d6b", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "6da906c4938e2b30874233dd45af1f4bf263f4acd173f8e352f383871ad96191", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "9bc52fea4cf542705a34603db6ceac0e7ab91f817bf7a15b498979fb53be893a", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "f7c830cbb68dc543b6502d27b7a593e25b78b1a2b350bfaf9d3ee59fc1b71b88", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "e69c18583596b944d3c1eff1bf0979c50df63009dc3a276cc31f1b4f9e263188", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "586b441fae63f6fd94f7d9fef15b191a0fbd6ce71faa0b94a9b38e8ec6f1ac31", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "99f274c9c0c96194a061e317fc543ba360de3d837e2c7d1999ad14040f28f318", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "b0b617de543889f25ccffa3c2f77cfbe3b84852ea16baf456f384b4fe87a4a56", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "d9c12328fe0fef997b376c5d82a534d091b2d075ebe2d961d0bb08b0b804950e", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "bf6a4ec9392732f4be040b4b8eda967849072b15bcd61c6fd11046f8276a396e", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "cd7069b5139ec3716cdb0e99d34345ed6b37db57a6f19ac6fe34f9e67394e378", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "b11684d42d8c88763109762cf93a6639fd1b72f52a5d3026df220bb993434372", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "438c4b09d54d8903451239f02bc871b46cd1496198d659ebbe61ff4dc56a137c", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "01bef34ae7e15737d9333ba185304988d6f51738b42e06e76b427dd0802e50a3", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "79fd6ec93f29552f62554f615c8d576816c017897152847218aaa168fcaf5aff", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "96f51a6251a9d21f3bcbe96ee4ac2f0b7ad221248f13915c2549fcc5500fe662", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "5595332aa8d36b9f2275ec88cb7cd7c902a54c93cce5a0f5509b3b69a84f19a8", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "9dae0d21826f2424cc59542d276d3c5df18026c991428bc425924c4ac2502b51", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "4e7111915bfe07bd5ca11b9a08071802725d397727f8476ec15bf13744783808", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "c96675de1d2d87616c224b1e6204db736e02ab3b0d996e5ec6423ece19a034a1", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "244c61dbc291733ea60654bfad6060bed9f538333ca8c27922190adecd59d9f9", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "d69f751396782d7907067e48d521cdbe10a38ec9925be8b84feaf0ac740ae529", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "9b62c9c07c39a0c254848a8834600871593135bb87e8d59d6ab7b20f378d22b7", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "0f71fd2c9546374edbcdbaedcdfa6d68f5771ff6ccada71d3a5c4c83337856b8", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "f438887fe4f165f28011a2de942b528c2edc837851b3d988dcbd69e545a51aa2", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "51c993ccfeabaa3a7506559d241d04d205da9bb559ff456f4f442f4c171397bc", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "4c53eea1be724ddd5047f71e53c215fa97c06c74344bdb58bbe954fc75cf31d2", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "c32489e1c3083528f9ca7fc724f8ec9dada629bfdf53186bdb8f7ccf57ae3bbc", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "bfc650837b450116890003bfe481548f9633d8a7c41a8f0ee76ead233a8e4b6d", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "ddc8c1256c3e081db37da4fc34d54e81aef64e5120e638950ebde6227a1b7cd0", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "92a9b3e085f02b3a26e22269ec72c642ab154f63e4a64d4e483663e1b7175147", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "a8c3fb87eac62eea66e01108f6730c909cd86421ce6848c47a938a0288b1c294", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "73e5493ac0afce4376abb83e60c693c58f8bf49a9ca48e9e31f01778fe6a5689", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "026b5f8380ecd48aee27c0ca6904eb9e954a2c9b1fbca59e2c3d40dae876df4e", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "0b7f0cf3429e8685743f8a487e29a5b8221fd66543f082fedc00df15fba93d4b", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "973d92f29b37f0ef453c38cb3c194912baa63efc9ac4ec15c9f04821a0ae7188", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "eab372e168622a8fd37ffe8d017de930855eaf96a8ef378ab180efd6248a77ff", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "952620123ee791f81cc913094ac27b8c6659862314fe0e910cd35926bc950031", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "a71d0e8f3ad6ba462532199e9926fe1d58a30013c18a43e46e9398fc3c5b43f6", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "7701be8d663afa8bbfc0ef335c310fc9de726e4dcefba50ecbc5e0ece54549a3", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "9b6737cd1a2367bc143a09e041765f0a2f8570a46c340f010d891bd82e87bd37", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "94b1282cbd3646fa640275bf741d51e3aff296de1191b4f2756fd580e6619860", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "d0b1d527d8b42a45b28d69aa7887c17b7a8130c2675fd8d7c6a048b911a40d4d", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "690ba8ffb45cd49fecb28aad8f6bb527cf69073aeba499a033fbcf948c9245f6", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "e056d27271781ae385703acd7986dfe8d4c113ba1ce051fbeb646d04c755bdee", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "0f7ab3a8dce8016c5780bfffec10908e06781ea5bcc4e3d07b871629e9dcda64", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "57ee08f4a80a79182ada925287b2dea7362cdc26ff5a38010dda138e31788b93", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "44be08321a8e42c8a21ce902a3f6474e52e8303fe752cd110739057526e3100e", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "b1905a9225e1d51f1f910a35ae6c3cd6a3932e2506f726408a9548d1c5b884af", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "f386cfc243198eb6117e33be34e6f1b4d7c51feb8ad99fb32815703a7c91b207", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "3142243b394f94d9658e62c868eadd18dbc07f581411d7339210fbd1bcb03500", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "9c6b14ad2fd5e46d6d41e6ff964380445bf53fac11d507c88e60138fe984d255", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "e8624f2d4da3310f48279d230a3add4a5c06e522911900703aafc73e9882b6fd", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "24ebb11eb2787666fc92d7ab281f374f787671585569309ee4dd236884ccd4c3", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "2d0f24d044d3e8582e96cc640c90a4eae930c26c74c5e5130652d930e6c572b4", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "e539aacb01ded701a19ff3fadc8a093b927b29a96d570322afb2b26592c90b34", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "a55798f6912074bf31873f9f71df49b205b96dcab530403c68d0351f68c33591", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "75befc61d862e8c8a57664a81e7c217242a85b4c182c074f71abe7976b9e2ebe", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "5fb949444d91cd6782afe7575f535fb14ea296f4fa3f565f0fca0823d004e33a", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "2d12b41bd100eb0e70b05172cd8e51b47ed36e69d80fedcdb8195dc19bea295d", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "038fd86c5f48c0f54721b76c34258d5fc283a1b16ff6ce262b077e2e71710897", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "8d828de5cbab81e1c17d5b787636cff6248cf11021976f004f97e78a142ce4ac", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "e9b8870227cfad72a1d2bd31ae4fc3871f9572b35a1f39f76b4337472af270f7", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "e44b41a07f1c35757735dea4019e5f21e67463ce6245c6d104786cab3b9f3907", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "2a5503ec21446323d721241926bb2b143ad0f626ba4b85d25dce4eb9e45495ab", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "652f0877e61837fb5ad7719c653464d97012693bb07991b50f76d7766b35a040", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "42cf6672c03078d24dda23f2505a5e590362bf74995fbe2f7715297059b2d282", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "b8e37463390d94cbca37779634f28e176231d6f4cd6411fe882cb25d6b4b54ad", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "6826d93fd8f51a130dfe3544d7da2a1849523e084194ce5b23c545c80dbf96be", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "4ccec8cefdcc8eaa6c8efe6f90e00710487adc4b23fc40a1d3c7da43b8c7815b", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "f841f9a841daad5a0922bfe85ddbdcf5f747d834a4968c571ddd248e1e74d234", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "51052db9ba4686de2acb4125cd6899eb6aaf8bcca87744c76d9be0a78d2a077c", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "d21da968bf77eb1d9d73a3648c92e1450ac74522805b5f67ea0a86fed4354d84", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "ebc77b5d85c7c3451269f3671a84a7bfba1b9d90e9ce4d1b7ba7c569bff42d90", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "b6fbd9ce85d610e981812e1e91eca5b9f487f2ed92e320f025ca90cae8a5ef66", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "6a0d34d33d46e22dd57e47232e5720c31f881cd0743a76fb0178244a661ac0f2", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "f0e56afdb9de4bce6188c7f507ec4d235e3f34a100e782c06912a38aa1f64266", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "81927976f8b117ed3d1e0066fa1225f6e694338fd68c4ebd7d041a18dfc45181", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "691e679299bc9093f2131531a686c573afa78dc8dc9e6f7ac0d2dcc214c14387", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "eb4a4b53c572061077fd07e41e057b63c58761a8693a92fc4d0b5a7b3cf10a15", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "23a0655cd5da2d3f79140e2d09a7eb81740871c196c73a303f110ebf0b992cc5", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "c392007db98faa1b6cebc9b44cd982d5c7078e58814cb46bd9063a25449e8e92", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "3f77daea79a8b724497ef5de20619d532e36e832b8f8021c1e2be3b7d19c55a4", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "b6fdd9bd0840b018a4beaeeeed8206e0f08fae5952457c8b42f325a16b7ed91e", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "58bcd13fa2e0ad0372759dbcbf932b42bae62df20cc83a9344e3a0fc6719ac1e", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "f74cf294b8e3070468632c99a06d8e7da71e84e3e21ec546278103171384ba35", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "6b22454c269838c419be2a2d4c2c183fe871ee99ce01c8bd863a24ea0d29436d", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "a34dbcda5287864bbafd929a95d7c7c1609e74dd44d2268f9fa13d9315e5c199", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "cde567b3dbc52a9da25722176c08cbbd1ac0d69b5ff2dc81dd0d592874dea703", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "dfa29147b238027c54d717ce3016251fa0db03a39720a579696c2c5b0483ded1", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "1cd31b1d860b568041a57f6f918dfb59acb5bb0f1f5aba92fb32348683aafa93", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "9d8559a0c3e2aa7e8eba6cb7818454dbfe7e9205c96b1cb8620b89c3c552e9e6", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "3f4ef8b1d4c4ea25b805fcbdf35b90ac4227cb04da589fca0df7c25d146af715", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "918f5401d890ec19f12d9b0fef8de4c6d795c02f33c94954a4865216023d9ae8", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "906e4d654ab7c4a6c8c1c4c8401ee6f7aa0e1b6bea3bb7e84f52c3f5c9131aeb", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "6327f120ec441d72a32621d475d027f73c5cd78effd0b26e1e5fb1f664e23d56", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "a9c45815b17caaa5774912525785b574be89d4701332fee3d8fb7e87a4b16a8f", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "27ff30c8f9a595e59dbaf67523260b9eb17569e090cec460c8d8fd45e1109625", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "ec02cb5b55e09155b0ccc5633cbcc3261e2dcdfd21c2ee627bd1bfa33d17e9d2", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "c720cc44f38ba7e4da6be5ea8f3e5ce9ed0c5995298826c20d68fc2700254c18", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "5077d89a8adc6f6366d23e128f6bbdc30046adb2702828b382019d4ad488258f", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "4802d37acbc571abec5b97f7feff9fed156050c42bce96d821bd2cb30e30a771", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "9b2f8d7ed9f9d49a45001b417a655e828954806f740229038ffac04ec5dd6aeb", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "9717fb6be12fee9c8f82274c6cf84cf2dfec8c1cdc2fd1ddaf083d3d8e2fdf46", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "f9238be20386e0ba2f9bf33504d0d34ed4ec2bc7151765d76cd41b1ea9ad796b", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "13c619fd68a8c156cbbdd14781efafde5d4bf000649fa0f6f557c5d1fe998c46", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "78dde7e7e199bbaa9669cf3b052df6a0190fd55c339a9de08f6217747ed3bb5c", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "04fda613676883ae4c2fc3f043f3287c8675422d0022f48b7c17a7b452b106b0", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "70e20b52c2afaf75616c8c44c4cffd0054d5cd035b18c569e57e7a16388a1c80", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "2b948d20c16a1c440de8c8f5f327519706ac02e6bcad653a2196d769ec29946d", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "adbf64a0373ffc380b57a16421e1aeadd13968459e74b047d95f983b827a23d5", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "3bdc39d725c822395273ce3dada9a84d3b1b2c4b7510c327f3b41a94e4a02428", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "fe843e03911849bba89414f15cf4a53b83c0ac9bfb0bbd984221d667694860e2", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "C"}
+{"k": "2c7553bf266bf5b9c9bae3d651afd7e4b520fb819b248283f0c0a22b712b6848", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "09f4acdbfe344ce87858a02779b4786a970862fb0ddec62df698201f0a639a20", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "8a6db0f4301af2f29e959398701d3f04ee51aa5748a46d6c45f33a82a5af8e51", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "f4c62952de6b721dcdf6d11f0ed7e86cc0e09a07a6a420386f8f5559a1c7bcf1", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "5c962bb8555d2241ecdfa06561b5e28c265ae1db9519536f120f03b0a75b9215", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "99e19dbd50e24e185ca88b6fdc1bd9c933ee214d734d94b27e26d54fd3977d09", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "c3743f57cc825028ba2fafabd78d86dc9c55e7c1bb74810c17d52a2acb1d3ff6", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "122f145a6b8d7cf86340a0a99e660714f7fe3ed078ed2abd95e352c7214491d5", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "eae6e37397fb1b930b6e8018d6f1cf500223649f2744e002852f46343e3564e5", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "40265645870343cbd19bb8594e079d0341cd1ceff2e2f308f9913bec8c79a62b", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "35c757c034cb683696769bcd365ad364f6da254567859955edbed265350467bf", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "d28f57ee26f550ef26c1cc28629fe4a3ba6b0eb31065cdcb3108131b3834eedc", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "7d6d6f9be986c3c597aebb0d508122249c844392e6dcc5332bce86820a3f0cf4", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "65c7cd24ff1fab230b4f536bcdcb5028b70623c324f6b8a3c60877103dd82187", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "ba4de0cd297a266fd14067c8f7adf675706572ae6133e977746eedc40c5e9c85", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "312ace028991968dda45028103ed0b7b04b2ec4a19e4a99e90271cce96547fa8", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "7b532cf473c8fd1b91be42f07fcf9c1c55225762ecb24b1a1965b182186a94db", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "c834aba96f3ab82cc849421668d06e3d1d994900ff53d4f7b62bfa21e75f29a7", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "cfe2bb60b81ed0c88d2335fcde4bcaefaf52c7de3f743b033e808afb76e90f5e", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "0d768cf4ee3312fb60a7dc24582d8da7806435ec052f1b3c91d8f975912ef550", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "D"}
+{"k": "55df86745b3a85c26225f3296f515991ba5f4905432e980c41040c38e3f85c8f", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "B"}
+{"k": "984a31267353bfddc39b5fde3c2a206e72ad5a8cd4b003e3e1969ed75d33f5a6", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "8b019d8d88f90c2806e3863e114fbff0b75eaf4f9bbfa356726b539520f68ed5", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "6e31b5e0c99ce65e9a6f327b1bc49f8515cef6a14a240b2cdb3bc072f296c0dd", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "25e5fb9f425c2c17e7d85093b9afa75c1987db3c93cb5c2680a3413a7eeaf348", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "1e4313b948aa65daad1e555de31c0d0af80d9e252b50d6734a951498893c5351", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "b38db2bc101d0a0746bf68c6c017031166064e2bf97eb7e200d8fde1bc321b54", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "f83310ef8ddca637efa1a7f21cc3f9cd6ede38eb505825e9fbd87447457910e1", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "5fa904aa979dcbcbdad14faef27dadb5ccbe92763027c06949cbd9b544f26065", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "b91df65f0f3892070af165effa729103ef583d9b596b8e536a80078368bdbd02", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "E"}
+{"k": "bf473324684538ce245b7441728533da977f661a31eba30ba6c2610c9fedb6e8", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "A"}
+{"k": "15525a2ba2022dd369d8e835d7e7dc6c714cb34bf9bc17a2c8dc192d5862e541", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "af184c9a29ab7debb85743c07fc2bc1600e9da9b41f8db5ac63d3a062783c10f", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "616af4ce6ae0f5be5e365e1fe2f68d9e425319b2e9aba2fc48bef96f6cb77a89", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "0438ae50b4decdf2b78405aaf0df1875a0b146b4b4821361a94c8f3620db3fa9", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "f2b5c3d71cfbbe5cf142903387cfec2df49321095d870710f727aa909031f7e1", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "b1bedd39a8d9d6aed283cc0de26f87431a29fe897549dd03db6cdf5f272caac5", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "74ec7c3a90af6c90abd3ee86e63e5de661a26c1827fe1fb14703c6344db2faf7", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "0a8016133ae7deaeab44df6ac3d20347128a99c794432d3ea7cf262d0eae2d5f", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "4738cc3f77aaaecd97c478caed29a2ea18d0074922901f79c96faa1ad84d7c0c", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "83796dc460b27bd19725b01738ae583dd0a4d9ba6b404d9820e1bd4d470e1d3b", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "9c3ad182140a99eb5fe1bd91a9cbfe339d76aef8917fc89d2230c7f696ef6ee9", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "b3b5aced700ebcf449e8c0415aa6aee380aa331c531159fd2ab9d03a2cdabe2a", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "1828eafe6b9bde85a4357fc3ee3e16404a5bedde81382b2782827798c8f416d4", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "c0f4e82248412c98b517c5bde1245937f5f43049b9583b7b1bb80ba22c4c49d9", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "76b2efae3d346add605fbca68fa3f3b4c0aa938d03b00eef5fff8f42739e517d", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "ff935bf8bbf9e705e56ebd2a56ff160a1ceabbb1c99b95d02d381d68c1a92dd9", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "25485b15466c8a7f87bc016e73ab8bec0c6ef9e87aef315eca5cc9fe1e642611", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "8cd61d6ca8fa79d281908bdc0333889293fe9425ea5f9882162f0f2f0adbbafc", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "e6f615039c0946208b1de8a635f0c1e28b468f9b7d1f00d826915e7fd44225a7", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "c68da2f4def3ff75273c8e5db0b802afadfd2dce70966a310417a178a4844878", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "6ab5eb1fac3e90e913d3ffaf51abb99d4f66dcb4cc7647183d5fc689d0e42599", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "b48e6cdc2a161deebf2702397645aca6766b68ffb22beab0b384ef3765981d91", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "7059480506dba91a58616978b4b43f3038f48c18e3553427fc63245c25b2f8cc", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "8d2316154b2593262acdee7ae611ca9d8b518aa9f6f715dbd7098e821753f504", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "26cbce71ef080655af5d0cf6918d46174d9f201f13049d2c84826b4ce91055c1", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "27c60e838415241754ab2ffcea17cd6c29528243a825c6610466cac4e6d42a53", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "944bc604c27dc0257d385a05cbbbe96fb7388a1169ba13b22af356798635146d", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "760de4c5f1f278931e9df05d8e46f76285cfa3f8494b1dda978b35b2d1afd524", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "b4bb105abbf736a3780bcec11e000b21cf44959158a55699592a217afe82a93a", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "82e034346767b04f568fcc92803cf22cd32155685c124b2f5f141427eb7373d2", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "53589d2e97cd3d87caec89b0e9c73e782e801f6fc6aa0c05abf74acbeba410dd", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "8ca8c78efd1e6051bc82e45fc373380b918e58be3729348977c20ca68e275b39", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "bdc98532196c6827d605f5f7cf8b93dfb6e35478e8add03a9a273b18189ed4e4", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "a8646fa9b19f6f3912978e950ed2e24778f5db1b196ed47d5331c5819899864f", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "fd91729a1f8b6f385d3ae0b9bdc8153c66a12fb3b7c112636ab897755d1d01e2", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "0f4942c7d250466677c72a3e5e67bcc40b90606c209245d50c15da0f916bb334", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "86c63edcfb4bb722d794fee7e0128c2ff547d541b5e68793ea50ec19c9a1b529", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "6fa8cff3b9091cd6639e7357164160aaf2ed1d4be474b4d4ea63d123cd09ad2e", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "7a08c5571999deea1909b5320e2029116c0720ae234233bae14540e75ddefe1d", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "5b8f717dcc685dd61695d62d407720eb79ec9d6055a31449ea5ac95a6228aeb7", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "resp": "FLAG"}
+{"k": "d41bb85e99c7c25f0cec21c15b8e770d60de3f0bff3f385b9283b7a0395e0df4", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "C"}
+{"k": "c194e19a7e08366b1209bc29ae9c1e9000f4b13f9977569213c4d00e233060d4", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "C"}
+{"k": "43746a008d9b78a43742dac8c9f7c165a3ba7fe3239e23e868a08cedb929da10", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "B"}
+{"k": "efc39804fb6bc8392d588dd4b575a03bfb983819970a9bf5ade7546362e49696", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "B"}
+{"k": "5312e4a6a8fb6847cd4b3de4e417ad556ae11f7f8eb0b80a013694c760ad68cc", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "35b104759c6683ad4335e887bac5c9016ff6dfc1063c7ee2ee67a7bea4c5ff55", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "B"}
+{"k": "fa50255f93c666d822a7278cbc166ff8e764c503c8a6f0b47b233eaf3721f572", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "C"}
+{"k": "89220babfd0a1076fb7526240229dd6f79e75e9473c6f797bd3f733f897821bc", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "d6083766748f3760b13401c3f8470b551d116f62a21624d498f633cb16af0852", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "21ddca72c888d5dedf77edbf598fdcf64da29b620ec99d86adba4197963fe267", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "B"}
+{"k": "d729a73990cabeb6f9364bdd2318726b33763f7e731fedb47d612f3c2baeb53e", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "C"}
+{"k": "a49b9fc937b3cdf2aa9071338b5eb32dce4c810b904acbf9c8fa5f0cf9237256", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "f1781317242f7909358d976e5da76d1746f2dfd37c5d2484e85de98159b32855", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "C"}
+{"k": "83b493bdf9c59a0fdc2d3eee4cf3eb5c26dbabf353e8b1619a8a75d9772ffcb8", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "B"}
+{"k": "5a20a14f6a0c543d74be65ae614c66961982bd81126033802496f887e85c4599", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "D"}
+{"k": "d570c9056a4bb60525bd832ac4f6de56121a6a1d2ae7b245c94ddf6c9c764cef", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "C"}
+{"k": "7731e46ce6de90760b539dec8a631d5b644b0019d810b2c31142a99d0ad9bd4a", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "B"}
+{"k": "8ec322e15a7ca0388e1d704d83e6e2e4890c761f508a3eb1c9fdc197daa2462b", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "9d1ebb19fc5044c75a70bfc2d4f4fdff5041a065015d1515d927e58b78661275", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "C"}
+{"k": "af9f1e8a28d5e2d4271858607eeb2797aa49b891f2fd8446df459463f7aaabfa", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "C"}
+{"k": "367a5260f180eec73146bab186494ed881266ef23b01ee918a2e983d1e348f59", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "B"}
+{"k": "e3bf2c1247ccec6e91f9fecb5a3fde0faa3d6eb8fb82765e0b25d4014a3a824f", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "9db6d6e072e9b7bfd86c178a3b97954c3b654ae54cb1b8a3769a5e2a46028c8c", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "C"}
+{"k": "715c1f6d145a89b9d717d469e2e24ec99affcb8386aa357f8dc79309034e0917", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "C"}
+{"k": "22c523f02c39b7ea4355edc3157e6d895931a32619c1871f6f44ab9e05829062", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "C"}
+{"k": "bc7f560a2c75545ba756b90fce7cace7a8b08e4c401452a4b288fa587d257236", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "2e7926297dc01f5e291433b822ea105c4d6144607c892355e326b1882de2edd3", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "1fb3cb57c2a09cd53cb24b1859ac89bee0676a804dbb896aee0c05bcf84c9b1b", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "D"}
+{"k": "681643de2797c1dea348ed4a1b1de378a3357e4bdc2e482eda4660b9f186180c", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "C"}
+{"k": "c8890eac7ee5ed3a658c3e1de585716047a4cbf3083062c925e2d561ac712397", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "B"}
+{"k": "a51bc044f7abf4db9a894ed751f47e32ebe6f1f97326ac54cd4fa5531ad8765e", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "a1f7f37b424536d159b23f20df8c6ea22523d446b6e86bf380ae9c65da0ffc64", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "D"}
+{"k": "59670c73a18c4b9a9a2d58f978b34797168b146f0dc7ac360fdd4b9a61a3e2ad", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "C"}
+{"k": "644d241b27d5b653a653614e562c4f6b98c4337c7a397fb639260192233b6ab5", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "a370cad1fb5c98f0291fbec93e287b146dd2fab68f81bc4dbbb404732adc7dc6", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "B"}
+{"k": "d053f59687a7bcec5217b5a22ac9e1da730efbdaa45c943e3a6b2c4e3859bfe7", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "D"}
+{"k": "ca467d9c493a74f47368280de7670f723799e2669b4c427883e5a96b6b926d07", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "B"}
+{"k": "887fcc71c914d685007df757c541a2557d2f89b56590632548366b128a412be6", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "d0790f995cd419acf761a26a7eceea45e0e00a26be6293b538dc6bbc930b673a", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "D"}
+{"k": "42429a3716747842b22342b7e06cbe366c781a57573db95095ea346db2f11dc1", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "5e0ac1d60c985d2ed7f6394d4959c21755c72905b2fed7cfd376ae3fd47f1ad2", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "B"}
+{"k": "2fcd509bd4809c2efd354290d6b5a5d334de3bde1a7013c054b71a1d7ea874d5", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "f83cea8432220d61a910e16dfd354e142269271012b2a541b12a5edb6209078b", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "C"}
+{"k": "f520f15c762a0bfce070d7f3d1450c66f87a25d180403b6f5c273e7a5808a3f6", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "B"}
+{"k": "e21499064e5dcee0c57fce50ac89ad060570599937875eb16f0c93647ba42585", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "B"}
+{"k": "5b97c5678071a8e61e94ac73ce520baa154754285d7a0a13745ee3b60d56a8c2", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "cb60748ca1b2cdb82393543597ae6d543467db341c50afc52cff451632d3bc06", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "C"}
+{"k": "c590309e74d4d6ff551be4ceebeed99de8c4d55037ea3aecf503be74b280247b", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "B"}
+{"k": "42aba2b20a6d897946f27b30656ea7bb0a747e2e3dd7ec57e127f32a09e25487", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "0f46bc2e18109fd7d7730dc8426db5384131cdb67fd932023ca4e25afc15248c", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "B"}
+{"k": "4cd94075727833e77d1071125f6aae2c40cd64226aaf4e8fbb0ed11d8637aa47", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "1454dfc512ada93ec277de95e4572ebe3800ecbf46c5d75fa640a240bbd9843d", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "28711546fafc7e2b22c16180647af39cbabdc998dba35a08a44bd310129f02e2", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "67dbf5bcb6a2dfafd3b9546afb72339b5cbd6a08674fa7660ef31c921ebee89f", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "124df3f23a8a66d459bcf1077cf1a77672825c75fe25189bb9504c30d513bcc9", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "9a612562729d2fe738ca67fe8772415ec842bc2684f6b203d81a2af1606b5054", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "e39728d892e395fa28b258fba7ead0b8286363211c32f38e86523d094767a47a", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "7003b1c6285ecf5dfd57cdddeffe75dffc939c55001317b840088b43a8880b03", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "55904f180970f8a3a6d93941d7bdd67c76cc39c65a3acd3623c782b28f9191b7", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "5a5f77291671660d89c8ea47ae4aa704c2ea55b2dd1ac093773333f72899f2dd", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "e8792b87ba7e3e7f6eef53893390d6e38143cf5a83824491b59ea0b0eb3e4630", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "D"}
+{"k": "70f271e1818130005c80569e50de9e2abfa0f63a358a38d846b8bddcdd3c7572", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "C"}
+{"k": "0e92e0ca781b14e63426118265101d71523e0a46e2e8f5f4dfee1d6bc9906052", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "a490f4341f8f85ccf45f9c434ccb2c93cada4943ac10e13c95ae32ca05cb85a3", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "d1c4ffb7ca71d417773364d51b58a574a7b5f75726917fc5853a1d2a3df8c25e", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "D"}
+{"k": "97d1be44adb0590f2f8fd27845cf7f46ad7cbc1b75770ecc01121412af8aa031", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "C"}
+{"k": "f0b5f048f7a88b8dc1082d2bcd158c4cc1612ddb20cc72727de32e4cb34d99e3", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "2c6d2f476be6281d387b5b267b1d3a52f79bba51e9482fabcaba1c1964de18e8", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "B"}
+{"k": "782791b0d0c628546bb02cd2347b08ffa0eb15cc19271cf5ed8f3bf68935a666", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "43254aee336e7a793a1671e4651e1da50c0d8fb8dfbb5b01e42508bf23e4830e", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "D"}
+{"k": "d76f309cb623b8cd9b73b77def6972c1ecff03b4058157ffd8b6e902b3acb220", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "C"}
+{"k": "d24a69258a9661f9505ca8feacfa1116d5fcbd4acca458c3d7b1ff091933227c", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "B"}
+{"k": "69ee06129c7aa585999c05a4241783fb001e3c03f74bd07e2d5f59cbd80ea9a4", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "f46564aa683725d01dfc0a184cb506a085a63508758999bbaaefdce36124c5db", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "2244f2136ffb3a3aa2c924dfdcef2a3926d5cda42160fe2c59b1b1a42eff9f37", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "f46ef66e953d0cefca27b3802fb0ed6e3e2794eb90a0c09fac6bcedc343f87e9", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "d00721bded52e2fe04517b38ed1fd5a0c00c5628b02ab95a287ba24935b6dc68", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "1c3ca3af3b3c19a418d2525957c7d6111a9752f41be4b87db331df59f42d6e00", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "c6ed8157e0f6506ce36792134c1b73956dd4769154e105a3f66839c13cf3153f", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "369a172738aa7478c6143d9fc6e0403a9a1ddc3f4a2c4a76662019d7878ccce0", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "1aa41a2f78958c1c013478bb38484520281a96a84ddf6722fc9211e9be61ed5e", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "b8dae017cb9eee695cc163a6b71f00bc1fe2cbdcced961c4e175fb85a195cb69", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "6b04c6b1c5ab06a107851b9cbe4b867f8d5f4bfeb7e3ffea6419431687e8f5ff", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "07d46a1780392d87f45796e2071a5bacf4728112d0d47556599c9a4632c3d0b3", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "c9bdb4b14bb817d6322d0c2b3f0c14103360a0de94360702ee629d71d6cbf32f", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "19448260af1175e08a53b2610c7405d2064afcdb74e3a7327461ed777fb4ad99", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "cf7623bb476635f71e1a6a1bbe7c553cef0b98fe1fd2bfd341730a4aaedbd826", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "D"}
+{"k": "cf933355e1609e4932d27ff3d4e3c5d2f561196c2d05e8ea9208ede6f63f284a", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "C"}
+{"k": "aba52bfa31fcd72c610259f9a39a6b7d314a2c3713bcdaa09600d07e3e5b432e", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "D"}
+{"k": "4b353eb5f56c3e9a225fc5ecac139a1f77f24f8ce13fc58e272ea8ce79a522d0", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "cb500e97eec778ad01132934ec48afd300ef62e114a79ca3d25ab2577db5e005", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "60e3842057d54dd5c07e5c83e32c705cdea7403c4d9bfa73a9585fea60cfdfd0", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "68ad0b0854497b4b38af9416794181d52ff14fdb617a3449b38540cfdc65667d", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "dbfea4cc4e5476c788430d2d561a9fb361087d3936bc292a8bf3d725fc5dedbb", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "D"}
+{"k": "33fd961485571cec573fc2bda8db55abc65730ee4e267b0484b5f1b8984673a9", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "bc0dc25bf2ce3e6c7e117affab37fe5cc364760327a4485f158e775cb170f3d5", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "ff0156cd29924017d6e58f79195ab8bb7d21765e52108ae864d29e0f2a7c0ffb", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "c7fb49bfab39d26d25a82f01d8adf6851f4a6cfa5611f3cdee1abaa75c5feccc", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "C"}
+{"k": "785bc3d3265d818e518a3e0c21c72799cb10316764157ed141fecb7cc418b2b0", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "e174f45878e5d3ce42ae95f4d9363bb6bfcf613b450d8dea56a09afc52f99385", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "edf5477c911e2816f6a46f89c4a400d7b7b013e7d1d27fd170f5f513a076aae6", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "cdb8d69e4c3c61e0c7d1d3ead07e67aa09fefa8ba55465b5fc8fb483cf03db87", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "9b8ad51b078b0c871b62c960584951973c451b2ad74557df4be408ea96b4ac26", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "C"}
+{"k": "c029dfd6eeff906c1ea680cf5ccd86cf62e21345e5ea2156587ccc54c8b1bcf5", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "d4591017526d186d80011c55f9a2f4a0de84b130dd02159c10d3ed4ff7f534ad", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "C"}
+{"k": "477bc57c78ecc09fdb6e8f97668739364203a44dd552b15df512616cf2321f76", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "8bacf82eca5544d97d13ea55ad0e51e969a2179372c93fdb85a2b0597c8956c6", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "f7c561478faa8026af320f8f6eced09523ed279978b4d90d8b671e2875130d46", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "641c5d25e61d667aab9501000bd2453173060c1b306c6a523f92a80bda74ab0c", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "7b29064b3f2e9607075b366001bf65030766c12aa6b808a0b0de1fd634fe8a11", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "a3e888b0c3d1fb4d85941962c84b7813bcaefb82aa91060e0daa99a3d4ec5386", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "D"}
+{"k": "6ae778c8d605421c3b2bff36064a0d31a7f3de88d65181ec3e55ec0753bbeee1", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "51bb6c9d5a7956c93e845f25ca33530ae645dc3b6c457309f79262db1a12a562", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "D"}
+{"k": "b48a590e1796d60da75386985a5a42ec89478b71d591ce941f1216f9fd404efd", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "B"}
+{"k": "1613b3e32c74df31ac7592562605362b727a6a90cc77e895cea2b69616374b1e", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "375fd150f2545698c79dfc6da2dbaae74d59caeeb3c1c2944bc300a178a5c3c7", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}
+{"k": "12f2ce488113eab2414ecfb2584631bd89423a5ba538500324da6fbfc43b71d7", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "E"}
+{"k": "83cac314df56899206ed44698d7da190a27514f3bdd32547f54199d92d750ea3", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "D"}
+{"k": "6bf7591bca630cec721c1aada3af74c94e5962806a1bfb94813c0ea608fbd790", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "B"}
+{"k": "c7a1033ac83165db0384536ab6bc533b799c617f9e637042930c8026cd51e85b", "model": "Qwen/Qwen2.5-VL-72B-Instruct", "temperature": 0.0, "resp": "A"}

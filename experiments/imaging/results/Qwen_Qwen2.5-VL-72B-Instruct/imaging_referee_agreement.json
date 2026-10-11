@@ -1,0 +1,68 @@
+{
+  "n_shared_cases": 35,
+  "n_peer_driven_adoptions_gt": 18,
+  "pairwise_agreement": {
+    "deployable_vs_naive": {
+      "phi": 0.0,
+      "kappa": 0.0,
+      "note": "phi/kappa are mathematically degenerate when one gate is constant (no variance); reported as 0.0 by convention, not evidence of disagreement."
+    },
+    "deployable_vs_judge": {
+      "phi": 0.0,
+      "kappa": 0.0,
+      "note": "phi/kappa are mathematically degenerate when one gate is constant (no variance); reported as 0.0 by convention, not evidence of disagreement."
+    },
+    "naive_vs_judge": {
+      "phi": 0.0,
+      "kappa": NaN,
+      "note": "phi/kappa are mathematically degenerate when one gate is constant (no variance); reported as 0.0 by convention, not evidence of disagreement."
+    }
+  },
+  "deployable_vs_naive_divergent_cases": {
+    "n_cases": 18,
+    "case_ids": [
+      "00000003_000.png",
+      "00000003_001.png",
+      "00000003_002.png",
+      "00000003_003.png",
+      "00000003_004.png",
+      "00000003_005.png",
+      "00000003_006.png",
+      "00000003_007.png",
+      "00000004_000.png",
+      "00000005_007.png",
+      "00000008_002.png",
+      "00000009_000.png",
+      "00000011_000.png",
+      "00000012_000.png",
+      "00000013_022.png",
+      "00000013_031.png",
+      "00000013_032.png",
+      "00000013_033.png"
+    ]
+  },
+  "deployable_vs_judge_divergent_cases": {
+    "n_cases": 18,
+    "case_ids": [
+      "00000003_000.png",
+      "00000003_001.png",
+      "00000003_002.png",
+      "00000003_003.png",
+      "00000003_004.png",
+      "00000003_005.png",
+      "00000003_006.png",
+      "00000003_007.png",
+      "00000004_000.png",
+      "00000005_007.png",
+      "00000008_002.png",
+      "00000009_000.png",
+      "00000011_000.png",
+      "00000012_000.png",
+      "00000013_022.png",
+      "00000013_031.png",
+      "00000013_032.png",
+      "00000013_033.png"
+    ]
+  },
+  "read": "Unlike the text lane (where deployable and the judge nearly coincide, 1 divergent case of 40), imaging shows a much larger split: the deployable referee (transcript + private re-read) and the naive gate diverge on every case where naive over-flags (consistent with naive FPR 0.92 vs deployable FPR 0.23 already reported), and the judge (transcript-only, no re-read) tracks the naive gate far more closely than it tracks the deployable referee, numerically confirming the earlier finding that the imaging judge, lacking a fresh independent signal, degenerates to the naive rule."
+}

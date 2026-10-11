@@ -1,0 +1,22 @@
+{
+  "n_cases": 20,
+  "A_contaminated_context": {
+    "flag_adopt": 8,
+    "control_adopt": 0,
+    "n": 20,
+    "control_rate": 0.0,
+    "flag_rate": 0.4,
+    "effect": 0.4,
+    "note": "de-confounded: the flagged wrong answer is chosen per-model to differ from that model's own clean baseline, so control_rate is 0 by construction and flag_rate is the honest adoption-of-a-counterfactual-flag rate (#318).",
+    "per_model": {
+      "Qwen/Qwen2.5-VL-72B-Instruct": {
+        "flag_adopt": 8,
+        "control_adopt": 0,
+        "n": 20,
+        "control_rate": 0.0,
+        "flag_rate": 0.4,
+        "effect": 0.4
+      }
+    }
+  }
+}

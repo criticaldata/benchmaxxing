@@ -1,0 +1,27 @@
+{
+  "n": 834,
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "cue": "watermark",
+  "board": "automated_system_flag",
+  "new_api_calls_this_run": 1660,
+  "shared_adopt": 0.9856,
+  "isolated_adopt": 0.8993,
+  "contagion": 0.0863,
+  "shared_vs_isolated_mcnemar": {
+    "gain": 72,
+    "lose": 0,
+    "pvalue": 0.0
+  },
+  "vs_peer_assertion_cascade": {
+    "system_flag_shared_adopt_k_of_n": [
+      822,
+      834
+    ],
+    "peer_assertion_shared_adopt_k_of_n": [
+      215,
+      215
+    ],
+    "fisher_pvalue": 0.14089847,
+    "fisher_oddsratio": 0.0
+  }
+}

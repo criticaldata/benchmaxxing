@@ -49,6 +49,11 @@ import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
+
 JUDGE = "gemini-2.5-flash"
 _lock = threading.Lock()
 
@@ -62,7 +67,7 @@ def _img_bytes(pil):
 
 
 def _key():
-    return os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+    return _lane.key_for(JUDGE)
 
 
 class _Cache:
@@ -82,9 +87,9 @@ class _Cache:
             if k in self.store:
                 return self.store[k]
         if not self.key:
-            raise SystemExit("Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key).")
-        resp = self._gw.RetryBackend(self._gw.GeminiBackend(model=model, api_key=self.key),
-                                      tries=5, backoff=3.0).complete(prompt, decoding={"temperature": 0})
+            raise SystemExit(f"Cache miss and no {_lane.key_name(JUDGE)} set for {JUDGE} "
+                          "(a fully cached run needs no key).")
+        resp = _lane.paced_complete(model, self.key, prompt, decoding={"temperature": 0})
         # The append is deliberately OUTSIDE the lock. Holding a global lock across a file write
         # serialises every worker behind it, and on synced or network storage (OneDrive) that write
         # can block for seconds, which collapses throughput to roughly one call per append. The
@@ -105,9 +110,9 @@ class _Cache:
             if k in self.store:
                 return self.store[k]
         if not self.key:
-            raise SystemExit("Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key).")
-        resp = self._gw.RetryBackend(self._gw.GeminiBackend(model=model, api_key=self.key),
-                                     tries=5, backoff=3.0).complete(prompt, image=pil,
+            raise SystemExit(f"Cache miss and no {_lane.key_name(JUDGE)} set for {JUDGE} "
+                          "(a fully cached run needs no key).")
+        resp = _lane.paced_complete(model, self.key, prompt, image=pil,
                                                                     decoding={"temperature": 0})
         with _lock:
             self.store[k] = resp
@@ -133,8 +138,10 @@ def _rate(rows, pred_key, truth_key):
 def main() -> None:
     ap = argparse.ArgumentParser(description="Imaging same-lineage judge referee (#168).")
     ap.add_argument("--cascade-jsonl", required=True, help="output of imaging_cascade.py")
-    ap.add_argument("--cache", default="experiments/imaging/results/judge_cache.jsonl")
+    ap.add_argument("--cache", default=None,
+                    help="defaults to <out>/judge_cache.jsonl, so a second model cannot append to the committed cache")
     ap.add_argument("--out", default="experiments/imaging/results")
+    _lane.add_model_arg(ap, JUDGE)
     ap.add_argument("--manifest", help="the cascade's manifest, to resolve case_id to image_ref "
                                        "(required unless --text-only)")
     ap.add_argument("--image-root", help="root that the manifest's image_ref paths are relative to "
@@ -146,12 +153,19 @@ def main() -> None:
                          "measurement.")
     args = ap.parse_args()
 
+    model = args.model
+    default_model = JUDGE
+    if model != default_model:
+        # Every Gemini seat becomes the requested model, as the text lanes do, so JUDGE itself is
+        # the requested id from here: the cache key prefix and the summary field follow it.
+        assert _lane.rebind_models(globals(), model) > 0, "no Gemini id to rebind"
+
     if not args.text_only and not (args.manifest and args.image_root):
         ap.error("--manifest and --image-root are required unless --text-only is passed")
 
-    out = Path(args.out)
+    out = Path(args.out) if model == default_model else Path(args.out) / model.replace("/", "_")
     out.mkdir(parents=True, exist_ok=True)
-    cache = _Cache(args.cache, _key())
+    cache = _Cache(Path(args.cache) if args.cache else out / "judge_cache.jsonl", _key())
     cascade_rows = [json.loads(line) for line in Path(args.cascade_jsonl).read_text().splitlines() if line.strip()]
 
     images = {}

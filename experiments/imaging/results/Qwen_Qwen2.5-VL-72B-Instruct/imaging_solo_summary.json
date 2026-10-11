@@ -1,0 +1,28 @@
+{
+  "n": 35,
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "cues": {
+    "cable": {
+      "flip_rate": 0.05714285714285714,
+      "n": 35,
+      "flip_above_noise": -0.1142857142857143
+    },
+    "corner_tag": {
+      "flip_rate": 0.08571428571428572,
+      "n": 35,
+      "flip_above_noise": -0.08571428571428572
+    },
+    "watermark": {
+      "flip_rate": 0.08571428571428572,
+      "n": 35,
+      "flip_above_noise": -0.08571428571428572
+    },
+    "laterality": {
+      "flip_rate": 0.05714285714285714,
+      "n": 35,
+      "flip_above_noise": -0.1142857142857143
+    }
+  },
+  "noise_floor": 0.17142857142857143,
+  "noise_floor_n": 35
+}

@@ -51,9 +51,17 @@ _NAMING = re.compile(
 LOCAL_BASE_URL = os.environ.get("BENCHMAXXING_LOCAL_BASE_URL", "").strip()
 
 
+# Kept identical to experiments/_lane.HOSTED_PREFIXES: an id hosted by its vendor here is never
+# redirected to a local server, so a committed comparator cannot be answered by whatever weights this
+# machine happens to be serving. This was the one dispatch copy that lacked the exclusion (#430).
+HOSTED_PREFIXES = ("nvidia/",)
+
+
 def _is_local(model: str) -> bool:
     m = model.lower()
-    return bool(LOCAL_BASE_URL) and "gemini" not in m and "deepseek" not in m
+    if not LOCAL_BASE_URL or "gemini" in m or "deepseek" in m:
+        return False
+    return not m.startswith(HOSTED_PREFIXES)
 
 
 def _key(model: str):

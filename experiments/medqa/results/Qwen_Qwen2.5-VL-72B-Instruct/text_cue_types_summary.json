@@ -1,0 +1,27 @@
+{
+  "n": 120,
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "new_api_calls_this_run": 600,
+  "adoption_by_cue": {
+    "baseline": 0.2583,
+    "primacy": 0.2417,
+    "negation": 0.725,
+    "qualifier": 0.3
+  },
+  "baseline_vs_primacy": {
+    "gain": 9,
+    "lose": 11,
+    "pvalue": 0.823803
+  },
+  "baseline_vs_negation": {
+    "gain": 56,
+    "lose": 0,
+    "pvalue": 0.0
+  },
+  "baseline_vs_qualifier": {
+    "gain": 5,
+    "lose": 0,
+    "pvalue": 0.0625
+  },
+  "read": "Adoption of the same fixed wrong answer under different text cue types: baseline 0.2583, moved to the front (primacy) 0.2417, framed as ruling out the holdout's own pick (negation) 0.725, padded with an exclusion qualifier 0.3. Deviations from baseline isolate pure position/order sensitivity (primacy), the extra push from explicitly cancelling the holdout's prior (negation), and whether pseudo-justification padding adds anything (qualifier). Paired McNemars test each cue against the baseline assertion."
+}

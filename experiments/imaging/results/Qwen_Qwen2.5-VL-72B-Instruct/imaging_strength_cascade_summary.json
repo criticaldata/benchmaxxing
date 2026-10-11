@@ -1,0 +1,27 @@
+{
+  "n": 35,
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "cue": "watermark",
+  "new_api_calls_this_run": 245,
+  "strength_x_cascade": {
+    "opacity_0.15": {
+      "solo_flip": 0.0857,
+      "iso_adopt": 0.5429,
+      "shared_adopt": 1.0,
+      "contagion": 0.4571
+    },
+    "opacity_0.3": {
+      "solo_flip": 0.1143,
+      "iso_adopt": 0.4571,
+      "shared_adopt": 1.0,
+      "contagion": 0.5429
+    },
+    "opacity_0.45": {
+      "solo_flip": 0.0571,
+      "iso_adopt": 0.5143,
+      "shared_adopt": 1.0,
+      "contagion": 0.4857
+    }
+  },
+  "read": "Watermark cue swept across opacity 0.15 / 0.30 / 0.45, each crossed with solo vs committee: {'opacity_0.15': {'solo_flip': 0.0857, 'iso_adopt': 0.5429, 'shared_adopt': 1.0, 'contagion': 0.4571}, 'opacity_0.3': {'solo_flip': 0.1143, 'iso_adopt': 0.4571, 'shared_adopt': 1.0, 'contagion': 0.5429}, 'opacity_0.45': {'solo_flip': 0.0571, 'iso_adopt': 0.5143, 'shared_adopt': 1.0, 'contagion': 0.4857}}. If solo_flip rises with opacity the stimulus strength knob works; if contagion (shared minus isolated) ALSO rises with opacity a stronger solo cue cascades more, whereas a flat, large contagion across opacities means the confident wrong peer dominates and stimulus strength barely matters once a peer is on the board."
+}
