@@ -33,12 +33,25 @@ OTHER_LINEAGE_PREFIXES = ("nvidia_", "openai_", "Qwen_", "meta_", "deepseek")
 _LETTER = re.compile(r"^\s*\**\(?([A-E])\)?\**[.:]?\s*$")
 
 
+def _exact_mcnemar(gain, lose):
+    """Two-sided exact McNemar on the discordant cells, uncapped by the six-place rounding the
+    arm summaries apply when they write ``pvalue``: 92/0 is 4e-28 there, not 0.0."""
+    from math import comb
+    n = gain + lose
+    if n == 0:
+        return 1.0
+    k = min(gain, lose)
+    return min(1.0, 2 * sum(comb(n, i) for i in range(k + 1)) / 2 ** n)
+
+
 def _pvalues(node, path=""):
     out = []
     if isinstance(node, dict):
         for k, v in node.items():
             if k == "pvalue" and isinstance(v, (int, float)):
-                out.append((path, float(v)))
+                g, l = node.get("gain"), node.get("lose")
+                exact = isinstance(g, int) and isinstance(l, int) and not isinstance(g, bool)
+                out.append((path, _exact_mcnemar(g, l) if exact else float(v), (g, l) if exact else None))
             else:
                 out += _pvalues(v, f"{path}.{k}" if path else k)
     elif isinstance(node, list):
@@ -53,8 +66,11 @@ def family(summary_dir: str, arms):
         p = os.path.join(summary_dir, f"{arm}_summary.json")
         if not os.path.exists(p):
             continue
-        for path, pv in _pvalues(json.load(open(p))):
-            rows.append({"arm": arm, "contrast": path, "p_raw": pv})
+        for path, pv, cells in _pvalues(json.load(open(p))):
+            row = {"arm": arm, "contrast": path, "p_raw": pv}
+            if cells is not None:
+                row["gain"], row["lose"] = cells
+            rows.append(row)
     if rows:
         rej, padj, _, _ = multipletests([r["p_raw"] for r in rows], alpha=0.05, method="fdr_bh")
         for r, q, ok in zip(rows, padj, rej):
