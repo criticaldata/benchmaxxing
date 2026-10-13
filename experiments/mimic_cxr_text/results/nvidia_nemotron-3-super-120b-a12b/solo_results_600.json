@@ -1,0 +1,37 @@
+{
+  "n_records": 1800,
+  "noise_floor_by_model": {
+    "nvidia/nemotron-3-super-120b-a12b": 0.06666666666666667
+  },
+  "flip_rate_by_model": {
+    "nvidia/nemotron-3-super-120b-a12b": {
+      "overall": 0.11444444444444445,
+      "per_cue": {
+        "lexical_overlap": 0.16333333333333333,
+        "longest_option": 0.105,
+        "option_order": 0.075
+      },
+      "n": 1800
+    }
+  },
+  "susceptibility_matrix": {
+    "models": [
+      "nvidia/nemotron-3-super-120b-a12b"
+    ],
+    "cues": [
+      "lexical_overlap",
+      "longest_option",
+      "option_order"
+    ],
+    "matrix": [
+      [
+        0.16333333333333333,
+        0.105,
+        0.075
+      ]
+    ]
+  },
+  "overlap": {
+    "error": "Need at least 2 models for an overlap test."
+  }
+}

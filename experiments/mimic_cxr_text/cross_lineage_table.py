@@ -30,7 +30,9 @@ def main():
     def row(arm, metric, g, n, note=""):
         rows.append((arm, metric, g, n, note))
 
-    gs, ns = load(G600 / "solo_results.json"), load(N / "solo_results.json")
+    # The model-scoped solo_results.json is the full 633-case run (as the sibling lineages name it);
+    # the Gemini comparison is on the 600-case solo sample, solo_results_600.json.
+    gs, ns = load(G600 / "solo_results.json"), load(N / "solo_results_600.json")
     gf = gs["flip_rate_by_model"]["gemini-2.5-flash-lite"]
     nf = ns["flip_rate_by_model"][a.model]
     row("solo n=600", "cue flip rate, overall", f"{gf['overall']:.3f}", f"{nf['overall']:.3f}", "flash-lite tier; 3 cues x 600")
