@@ -39,6 +39,24 @@ def test_rate_excludes_unparseable_answers_from_denominator():
     assert metric._rate(rows, "blind_is_decoy") == (0.5, 2)
 
 
+def test_conditioned_drift_uses_only_correct_baselines():
+    rows = [
+        {"base_ans": "yes", "blind_is_decoy": True, "aware_is_decoy": False},
+        {"base_ans": "yes", "blind_is_decoy": True, "aware_is_decoy": True},
+        {"base_ans": "no", "blind_is_decoy": True, "aware_is_decoy": False},
+        {"base_ans": "yes", "blind_is_decoy": False, "aware_is_decoy": True},
+    ]
+
+    stats = metric._conditioned_drift(rows)
+
+    assert stats["n_baseline_correct"] == 3
+    assert stats["n_blind_drift"] == 2
+    assert stats["n_test_aware_drift"] == 2
+    assert stats["blind"] == pytest.approx(2 / 3)
+    assert stats["test_aware"] == pytest.approx(2 / 3)
+    assert stats["blind_minus_aware"] == pytest.approx(0.0)
+
+
 def test_unparseable_baseline_cannot_define_a_decoy():
     with pytest.raises(ValueError, match="baseline answer is unparseable"):
         metric._decoy_for("?")

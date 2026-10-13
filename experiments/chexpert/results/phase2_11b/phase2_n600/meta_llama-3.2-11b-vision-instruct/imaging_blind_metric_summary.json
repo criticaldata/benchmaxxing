@@ -1,7 +1,20 @@
 {
   "n": 600,
   "model": "meta/llama-3.2-11b-vision-instruct",
-  "new_api_calls_this_run": 900,
+  "new_api_calls_this_run": 0,
+  "baseline_stratum": {
+    "correct_n": 371,
+    "incorrect_n": 229,
+    "unparseable_n": 0
+  },
+  "headline_drift_given_correct_baseline": {
+    "n": 371,
+    "blind": 0.7466,
+    "test_aware": 0.7925,
+    "blind_minus_aware": -0.0458,
+    "n_blind_drift": 277,
+    "n_test_aware_drift": 294
+  },
   "decoy_uptake": {
     "baseline": 0.0,
     "blind": 0.805,
