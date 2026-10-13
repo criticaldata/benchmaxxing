@@ -1,0 +1,45 @@
+{"case_id": "medqa-183", "wrong": "Elevated serum homocysteine", "baseline": "Deficiency in protein C", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-128", "wrong": "Inflammation of synovial space", "baseline": "Perifascicular and perivascula", "generic": false, "anchored": false, "anchored_strong": true, "anchored_solo": false}
+{"case_id": "medqa-141", "wrong": "MRI of the chest", "baseline": "MRI of the pituitary gland", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-191", "wrong": "Maternal oligohydramnios", "baseline": "Chromosome 18 trisomy", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-194", "wrong": "Conversion of ferrous iron to ", "baseline": "Conversion of homocysteine to ", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-202", "wrong": "Trachea", "baseline": "Cervical lymph nodes", "generic": false, "anchored": true, "anchored_strong": false, "anchored_solo": true}
+{"case_id": "medqa-285", "wrong": "Administer intravenous hydroco", "baseline": "Order an ACTH stimulation test", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-300", "wrong": "Inferomedial quadrant of the r", "baseline": "Inferolateral quadrant of the ", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-306", "wrong": "Autosomal recessive polycystic", "baseline": "Alpha-1-antitrypsin deficiency", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-376", "wrong": "Karyotyping of infant's chromo", "baseline": "DNA test for CFTR mutation", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-387", "wrong": "Staphylococcus", "baseline": "Burkholderia", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-416", "wrong": "Plays a role in angioedema", "baseline": "Acts as an important opsonin", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-447", "wrong": "Fractional tissue oxygen extra", "baseline": "Systemic vascular resistance", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-454", "wrong": "B", "baseline": "A", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-495", "wrong": "Eruption of seborrheic keratos", "baseline": "Endometrial cancer", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-499", "wrong": "Microtubule monomeric protein", "baseline": "Lysosomal trafficking regulato", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-530", "wrong": "Atrial myxoma", "baseline": "Carotid artery dissection", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-564", "wrong": "Switch to fluoxetine", "baseline": "Addition of bupropion", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-577", "wrong": "Hypokinetic wall of the left v", "baseline": "Left ventricular ejection frac", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-594", "wrong": "Choledocholithiasis", "baseline": "Duodenal peptic ulcer", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-596", "wrong": "Increase in concentration of s", "baseline": "Closure of the ductus arterios", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-647", "wrong": "Defect in WASP gene", "baseline": "Defect in BTK gene", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-724", "wrong": "Amphotericin and 5-flucytosine", "baseline": "Acyclovir", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-816", "wrong": "Cellulitis", "baseline": "Breast cancer", "generic": false, "anchored": true, "anchored_strong": false, "anchored_solo": true}
+{"case_id": "medqa-829", "wrong": "Azithromycin and admission to ", "baseline": "Ceftriaxone, azithromycin, and", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-861", "wrong": "Malaria", "baseline": "Splenic sequestration crisis", "generic": true, "anchored": false, "anchored_strong": true, "anchored_solo": false}
+{"case_id": "medqa-906", "wrong": "Clusters of bland cells withou", "baseline": "Nonencapsulated groups of well", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-911", "wrong": "Hypotension", "baseline": "Decreased libido", "generic": true, "anchored": true, "anchored_strong": false, "anchored_solo": true}
+{"case_id": "medqa-917", "wrong": "Malingering", "baseline": "Primary adrenal insufficiency", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-966", "wrong": "Alanine aminotransferase", "baseline": "Troponin T", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "medqa-1010", "wrong": "Donovan bodies on Wright-Giems", "baseline": "Positive RPR, VDRL, and FTA-AB", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-1033", "wrong": "Pralidoxime", "baseline": "Atropine", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-1040", "wrong": "Abnormal coagulation and fibri", "baseline": "Decreased cardiac output", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-1067", "wrong": "Urge incontinence", "baseline": "Vesicovaginal fistula", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-1074", "wrong": "Naltrexone", "baseline": "Lorazepam", "generic": false, "anchored": false, "anchored_strong": true, "anchored_solo": false}
+{"case_id": "medqa-1106", "wrong": "Bipolar I disorder", "baseline": "Bipolar II disorder", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-1107", "wrong": "Increased vital capacity", "baseline": "Decreased A-a gradient", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-1123", "wrong": "Pulmonary hypertension", "baseline": "Posterior uveitis", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-1128", "wrong": "Positive Prussian-blue stainin", "baseline": "Areas with 'ghost cells' surro", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-1146", "wrong": "Call the ethics board of the h", "baseline": "Administer a blood transfusion", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-1178", "wrong": "Yeast with pseudohyphae", "baseline": "Gram-positive cocci with hyalu", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-1194", "wrong": "Can form an endospore", "baseline": "Has a rabbit reservoir", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-1203", "wrong": "Omeprazole interferes with bup", "baseline": "This patient has no contraindi", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-1235", "wrong": "18/100", "baseline": "1/10", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-1266", "wrong": "Metoprolol", "baseline": "Hydrochlorthiazide", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": true}

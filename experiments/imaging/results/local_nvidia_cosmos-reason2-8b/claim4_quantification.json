@@ -1,0 +1,62 @@
+{
+  "n_cues": 4,
+  "cues": [
+    "cable",
+    "corner_tag",
+    "watermark",
+    "laterality"
+  ],
+  "solo_flip_above_noise": [
+    -0.11428571428571428,
+    -0.08571428571428572,
+    0.0,
+    -0.11428571428571428
+  ],
+  "cascade_contagion": [
+    0.3429,
+    0.2857,
+    0.3429,
+    0.3429
+  ],
+  "spearman_solo_vs_contagion": {
+    "rho": -0.2722,
+    "pvalue": 0.7278
+  },
+  "n_shared_cases": 35,
+  "cross_cue_cochran_q": {
+    "statistic": 4.7143,
+    "pvalue": 0.194
+  },
+  "pairwise_agreement": {
+    "cable_vs_corner_tag": {
+      "phi": 0.0,
+      "jaccard": 0.9714,
+      "note": "phi is mathematically undefined when one cue's adoption is constant across all cases (no variance); reported as 0.0 by convention, not evidence of no relationship. Jaccard remains meaningful (overlap of the adopted cases)."
+    },
+    "cable_vs_watermark": {
+      "phi": 0.0,
+      "jaccard": 0.9429,
+      "note": "phi is mathematically undefined when one cue's adoption is constant across all cases (no variance); reported as 0.0 by convention, not evidence of no relationship. Jaccard remains meaningful (overlap of the adopted cases)."
+    },
+    "cable_vs_laterality": {
+      "phi": 0.0,
+      "jaccard": 1.0,
+      "note": "phi is mathematically undefined when one cue's adoption is constant across all cases (no variance); reported as 0.0 by convention, not evidence of no relationship. Jaccard remains meaningful (overlap of the adopted cases)."
+    },
+    "corner_tag_vs_watermark": {
+      "phi": 0.6966,
+      "jaccard": 0.9706
+    },
+    "corner_tag_vs_laterality": {
+      "phi": 0.0,
+      "jaccard": 0.9714,
+      "note": "phi is mathematically undefined when one cue's adoption is constant across all cases (no variance); reported as 0.0 by convention, not evidence of no relationship. Jaccard remains meaningful (overlap of the adopted cases)."
+    },
+    "watermark_vs_laterality": {
+      "phi": 0.0,
+      "jaccard": 0.9429,
+      "note": "phi is mathematically undefined when one cue's adoption is constant across all cases (no variance); reported as 0.0 by convention, not evidence of no relationship. Jaccard remains meaningful (overlap of the adopted cases)."
+    }
+  },
+  "read": "The Spearman correlation between a cue's own solo potency and its cascade contagion is the descriptive test of whether contagion tracks artifact strength (n=4, so indicative only, not a hypothesis test with real power). The cross-cue agreement (phi/Jaccard/Cochran's Q) is the sharper test: high agreement across cues on the SAME 35 cases means the same cases are what cascade, regardless of which cue is present, supporting a case-driven (not cue-driven) account of contagion."
+}

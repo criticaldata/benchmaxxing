@@ -1,0 +1,22 @@
+{
+  "n": 120,
+  "model": "local/nvidia/cosmos-reason2-8b",
+  "new_api_calls_this_run": 480,
+  "adoption_by_template": {
+    "t0_canonical": 0.5667,
+    "t1_consultant": 0.85,
+    "t2_attending": 0.6417
+  },
+  "per_case_unanimous_fraction": 0.6917,
+  "t0_vs_t1": {
+    "gain": 34,
+    "lose": 0,
+    "pvalue": 0.0
+  },
+  "t0_vs_t2": {
+    "gain": 11,
+    "lose": 2,
+    "pvalue": 0.022461
+  },
+  "read": "Adoption of the same fixed wrong seed under three independently paraphrased instruction and assertion templates: {'t0_canonical': 0.5667, 't1_consultant': 0.85, 't2_attending': 0.6417}. Per-case verdicts are unanimous across all three templates on 0.6917 of cases. Tightly clustered rates and high agreement mean the cascade is a property of the manipulation rather than one brittle prompt string; large swings would flag prompt-sensitivity. Paired McNemars test the canonical template against each paraphrase."
+}

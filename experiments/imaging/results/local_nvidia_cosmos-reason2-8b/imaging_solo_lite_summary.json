@@ -1,0 +1,28 @@
+{
+  "n": 35,
+  "model": "local/nvidia/cosmos-reason2-8b",
+  "cues": {
+    "cable": {
+      "flip_rate": 0.02857142857142857,
+      "n": 35,
+      "flip_above_noise": -0.05714285714285715
+    },
+    "corner_tag": {
+      "flip_rate": 0.05714285714285714,
+      "n": 35,
+      "flip_above_noise": -0.028571428571428574
+    },
+    "watermark": {
+      "flip_rate": 0.14285714285714285,
+      "n": 35,
+      "flip_above_noise": 0.057142857142857134
+    },
+    "laterality": {
+      "flip_rate": 0.02857142857142857,
+      "n": 35,
+      "flip_above_noise": -0.05714285714285715
+    }
+  },
+  "noise_floor": 0.08571428571428572,
+  "noise_floor_n": 35
+}

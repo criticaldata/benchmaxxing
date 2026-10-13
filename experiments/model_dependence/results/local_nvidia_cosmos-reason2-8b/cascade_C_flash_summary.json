@@ -1,0 +1,34 @@
+{
+  "holdout": "local/nvidia/cosmos-reason2-8b",
+  "n_hard_cases": 60,
+  "new_api_calls_this_run": 298,
+  "generic": {
+    "conform": 48,
+    "rate": 0.8,
+    "wilson95": [
+      0.682,
+      0.882
+    ]
+  },
+  "anchored": {
+    "conform": 54,
+    "rate": 0.9,
+    "wilson95": [
+      0.799,
+      0.953
+    ]
+  },
+  "anchored_vs_generic_paired": {
+    "gain": 7,
+    "lose": 1,
+    "mcnemar_p": 0.0703125,
+    "rate_diff": 0.1
+  },
+  "flash_lite_reference": {
+    "generic": 0.7294117647058823,
+    "anchored": 0.8470588235294118,
+    "mcnemar_p": 0.04138946533203125,
+    "n": 85,
+    "source": "experiments/medqa/results/scale_c_summary.json"
+  }
+}

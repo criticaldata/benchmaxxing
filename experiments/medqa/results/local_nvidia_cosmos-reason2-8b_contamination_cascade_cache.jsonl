@@ -1,0 +1,360 @@
+{"k": "624deb5b54c02a9e31f4ebc3941f52d7babad725e7f815e3426545c9fa343194", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "df1919e3e764f272f6deb82e4fc70909c4e597bdd3223a6efa89bd4bc890a4de", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "325a32f04e423c0213124680eca13af35f1a6232076fe77a10a82ceb01a8d336", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "9b12ea2d867dff4da8899935dd7f4a04580e3aaafbee6f18e2275f8dbd798406", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "5786668e4f9638810dadc471ff90da0532f4958f2f98d78ca84e6a339ce87893", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Document the complication in the operative report."}
+{"k": "82bf852638f274bc736abe34efdf1d3b0a7fd2ee506de470f0dc6ddf14f199a0", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Streptococcus agalactiae"}
+{"k": "2b321d2b084dfa99c58931e8aba8da51d0ca536700d9a4d8f6ce8e63c639dcd4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Inhibition of cell division"}
+{"k": "ef3dfd65edcd207d6909101f688fd4e277daa2dee63086ba28eae0c7eeee8d65", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Hypersensitivity reaction to clopidogrel"}
+{"k": "9e89140610e5fc305d2a22aba0ec0a77b3eed21d31ed44b16a8b24987c56e53a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "78107ca227339ef07c16e43f432360355aaf6be76190c23d078b7dfe1cbdb186", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "6133a1d31f3b3399acc412c1a962853eeba92840ea6509927a5e344350c8c1a7", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "4d1df0432f824e1ca3d538bf46b50059a557cc89925aa6cc5259770eba4ef8e1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "e6e3c65058e9f7c4e44f6b1c9181d107f98554837033629f0748546457707f19", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "dbb5add506bb2036616c309004785740fb036346f8daba5738c1c2cccc064269", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "55d63b533705b04c7423a750dd77fa854aa9cdd59ec090bf687462b4c1bd56d9", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "8f9c0e97da3520739fad34a708c203a0de5f4dfd5f01bf8a2a326daa7931c3ea", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "35e3c131172391dd06c1bd775a99927f106175a978d2bbed8fbf780381b56e78", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Antihistamines and mast cell stabilizers"}
+{"k": "255ba8b64852e74323a0d190018a6439d665b918f145c72e981926957d322b73", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Administer aspirin and nitroglycerin, then call for advanced cardiac life support."}
+{"k": "4df2c508b3fe87f3dba4096cba6b08b9a7bb414af900fd8833e5f36e372372f3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Ureteral obstruction due to renal calculi"}
+{"k": "6111392f30e3947210433d037eaef62bc1e525d4f9c69a3f1bca2ff73c71b204", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Clopidogrel"}
+{"k": "3082cf9a18ffff80474d9b534c8b237c32ae6cfaa4e4980d04165d9d25a6fd2a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "5ed08ad769ba2bb46ac7a2ac4088b0ce9097f38c3c735ca42e6094f4c67aa35c", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "d0916a8409c8ff0a0390358b6f239b3c41c6859b1ce76202eb52aeffe3c058a8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "4994f83c6882345a5856a4408b18abd46b8b2ccf253a0ac9dd7b78dede3a17a1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "204f3a51baa2dd1bc7a3460813d6cf2f28615e3fd7224a2bdc1f118a012f8d1e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "4870da73ba3a26b99898c8db6b9fd00775ba91d221c133a131acc9a2345188b8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "46c29a0ab4c4887797f3052ba7453c285319108e2db46ef9055b5a3d1522a6c2", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "4aeabbabb5bb2da2220214cd5a5d8e885aa541e49472c9ef08ef4420350b10e5", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "5abb1e07ce36d780d96884fb5970bfea8182ae6c8ec2f040dcadc659cf106560", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Active pelvic inflammatory disease"}
+{"k": "cdc2bf75e381a6304bab25bb963126c59ad3ca19c35c8abce4b27bf747bc64b3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "No additional findings expected"}
+{"k": "56e12f875712f5a8d848d7ce2ea7f34232b8f7a3f3ee90ebd4e26977dc3e7439", "model": "local/nvidia/cosmos-reason2-8b", "resp": "HIV RNA polymerase chain reaction (PCR) test"}
+{"k": "83579bbd75f31273713a5e8b61229ec3cd6d2e7b0340ab2dc8d72b26eb38cf94", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Start phlebotomy and hydroxyurea therapy"}
+{"k": "724134a69e8417837ac22fbe46871d3d77a7d3ede8623c08f78a188b5e954956", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "622e4709bb0769bfd63f7f444d26f339ad45076a6ce491c35ae95a55e016e165", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "64f9460c4732fa36f9d93a5798f03a7ac756e8a6f7013d62d4e1ba82020a03b1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "1fba86217df7d22f36491b853a2793930ceae7f6664a3dd2a1df5e3c75296849", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "0bbdb58955ce99a83673ccbb3642c94549c77da11a12490aedb82677bcd6cecd", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "bd3661710f2366d1d71bcbe7886727f5da51fec3a4d9252991782860ed0e5405", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "2b11a7622b84911463bd3ea418c7f3ddeec0f0c6b4eb85daced21f885c3a4388", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "4fe7b99c951a9068b7f21a8ac86ae397a3409fcc1f779249d4f695bc6d94a953", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "9cc76b02e2b018dafba475cbfaf5f370dea3d0015c884647a1df4d70af79a584", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Meningioma"}
+{"k": "f97c2d6a7e03bb1fa90715684207c2b19f7d4df75b69374fb29f0d4d9f5b26b4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "The murmur would increase in intensity."}
+{"k": "f5bcb6a25047cce064cae0c8bf059974357a0803d3f6325288ffc5cbc116ae21", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Influenza virus"}
+{"k": "52016cad033fd2bc384d31d1b36063af8b6d7f37df24f614abb235aa34b1d003", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Cholecystitis"}
+{"k": "a0d12e2592a05f9c251e1573d755f2349e960bea29148dc61c83480ca57cd4dc", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "77d5870f6c8a9954493383efa1d50342597a0e8d3837b044be2392eeaa2baf83", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "886b35e4198a5c366bfb7f69856d604068c68b7a077708ba454f6e12571222e6", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "d7369587608ac9722b233f00c27a532df54bbc24bdae764ce9dc25e56a5851c4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "9b3f51bcb8ccd3ad4c6cc23f3cbe55c016d51ba7b9cc491205fbea5d2e5b7724", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "d399571aad6479265fbca1f92d487db497f9e010a408648ee9bcc7dd43e7bb7f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "6dc0b1e7c8109d92b242aceba94432352ed895bbc924b5865e8f9dfc3637b85b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "85967196ebd06fc5521d9a25fe666e537fe757e4ae050df605484c587c9679a0", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "bce0c09a9d3bd1d7733d461247e3fb01f7799c2f261f15c2d6347e1e6febcfdf", "model": "local/nvidia/cosmos-reason2-8b", "resp": "IL-4"}
+{"k": "e67155a3934c4fd9cd4088ecf82eae36b0b27dc4e4abad04ef5927b3d28e9cac", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Matching"}
+{"k": "6eff6f10dbe75a079ca99c0b84871232466c371f0d3b148cdf83b67f2b617e02", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Aspirin, beta-blocker, and anticoagulation"}
+{"k": "aa9ef499cfcb600378c8a93f25e96e9d24406ebd8965c084d9ec88791ab8eb36", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Alcohol withdrawal"}
+{"k": "acbeea25e44a79601733dece345ca8de0560a52afcfd888ff3cce599efdd81a5", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "0db92153dc8dfd8fd31bafbc0f852db3e7a3eb125eddebf9b96a8bb5a32a12df", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "2092a9b10bfaaf60e2da5e487301afe3ee14e4f8bb6640fc73d57682400ee9b8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "fdc43fdca8f53662d63af90064761bd84792461f66d69e985abe331e2d7d6fb1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "4947dec4d031825ae99692d5311c4904bcc4b27dcc2043fde5832c5689bd00ab", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "d5b3f8a0380606e397d025a8a4961df355720770da07d196eb14bd7f4b89d588", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "d4dcc08fac14efbbc06e55a60efe889143ca7fac1f9e66eef94121d09819d399", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "6c3fbaa94bee459802c378a0ff82222e21ed9a72a86aceb9c570fabd81a6140b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "cd88c5ed5259e2fe8fd8b62db27e123bbda62fd9672c454acec11bba2956e1f4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Human immunodeficiency virus (HIV)"}
+{"k": "4451665a6b43043e924f6e2f38a69cca0696fd937e96ce196dbaa01d97a5b946", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Ventricular septal defect"}
+{"k": "84f35fad8a6a7953070e7b6509249041bf3c1d2895def71a71a08e8990963b0d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Histoplasmosis"}
+{"k": "38c33c8505085b6296d0ef4d1d8dc05138f17ace732a32d28a6840abadf43c74", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Staphylococcus aureus"}
+{"k": "3d67d9ae3edda073efdfd403e7ee42e2131bf75dc205d6456fe463247087ad5e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "706d48a4d87055d8de10eae15f2cf53c05573091f3e4b427bbee4bc789918f37", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "6e7dc87c7b05e1d4c1fb699b9c7ec4af611235416fa5da7f321b8d4547dbe0c6", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "d3325bfa1d682f32a6b1472306931b57dd16849815fec3d923e7769cd1da4abe", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "7e3b5c1bd5c3894e6d98964a7825267cb37758c0409b23712640ac4c6832808e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "c1cc37040ea04105af7cb509effcddd619ebbf7e8591902a3dcef43908ca5a0b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "5fe9dc6a2f682fd0857d1509358b19f8474ed33831315a4134a6245b533304be", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "5bd7df0944dfbb29b8f362adce93dd183450a7f70bef83960e9370ae38061c09", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "4045794100a810021b1b97ea9357e9b9d69445da22e787904173bd5732a5e3c9", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Intubate the patient"}
+{"k": "54ad981babc1c82123f963a2b62f07d3ba4724e2499634de02bc8d50121e01f3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Neutrophil oxidative burst"}
+{"k": "1d0b76812cde4821725bc6b2c4f4b9f1ff30b6879d3e6d225d1b739a47c7ff3f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Laryngotracheobronchitis with subglottic narrowing"}
+{"k": "74f70e9886feb6a3796e741839ded5e3ddccf874afe0f7ab9fc9e36785713cb5", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Rifampin increases metabolism of oral contraceptives, reducing their effectiveness."}
+{"k": "8aa4ad2c5ab8dc4747abce6c7a47264ef397e7b6cbfb72d2fbeb0a35d7259448", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "b8db471ee78e3dcd82119ddb6f52e801b88fd1c713a2e32a6c01758f4e3c1cd5", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "73008bad3a6e2ef03bfa3f83fc7e6e276edc0a001dcbf42ae72ec972bc6bb427", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "49e14729921dfe36a5b8f99aec8071339eab72849e8ba0e537244286f13b0eef", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "ba7ebb91cfa94933e0d45820afb2b56f41e1aa865f387f67d2d425c9a5091c1d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "cab741490f2f20af08ada3f2e7e423b4ba433ed9ebab62ef365c48d91622d1cb", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "7244442586a49fb45d1e98ae9c4de838faa7126906a14c9d5d56a890927c407e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "9d6154b77653f191c223e4dbf380d40b4f840886cd09db5c33eb12cdb606fbc8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "699d0a33884a7a8c8a81969cfe0c897c23f99fc0c851cc14e10dca650d240782", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Hypokalemia"}
+{"k": "64a00e23c8f4a6d4ec06338bfa8a77eb228d4e733adbeb9ad0108020cfe45d2d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Observation and serial monitoring"}
+{"k": "5d1c551fff5dacef3563d1a198163d91b4c84ad0c92c3e3cd1a75c99fb958823", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Cholecystitis"}
+{"k": "3d5a907cac4e8127b994eb92573995febd6c3a362c1411833a2dfe95e6e4af77", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Mitral regurgitation"}
+{"k": "a875c2939719d8ad17c7e35c213eb1f2c62fcd2d301aded0aa2f96960c9464dc", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "c8c2ed47463f722130be5f8e0db4490030154de9c88231e21028901021c253bc", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "d3223174729143c027d49981222b9219d53b3705c50e3eb6422ac0de0e7547d1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "31d94eeaed4f5e5aecab1836a934741b462e92d68ade9b7b0e7293171d05bec6", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "a14c8c97ece52f9c181f49816e664ca3306facd35869662ab088e244b83775a1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "110e998f67bdad25cd563af5fd22a00146490aadb01b545830df863f6596fb77", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "cc794b8314756d5827db65cb8a17ade0133796ef4ef412db78022cf3d6b7d50f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "c7addfc6a2fb16583207102f84e9bba695ac55155040611c7476d5bdcf3a8911", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "a12c59248a512e6976a3bb80f23dc828430ebe58ded9516bb0dbf3e77251b240", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Vancomycin"}
+{"k": "a523017e0c2c8cee77c059f4e1078fd8b894f94e6979d7593e1ea8359b5ace64", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Autoimmune gastritis"}
+{"k": "81107460162585552227dc2605205ae4c87e6e2ac979b40daef0ec144b9c2780", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Continue methadone maintenance therapy and monitor vital signs and electrolytes."}
+{"k": "bc5daa62b9819b8130ca215aabbdf9f0f6ae095fdc4ac1dfd9f7facd9b876bb7", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Psoriatic arthritis"}
+{"k": "1af75b832e453b7c7a550b1c61d5aa7b49eca11bf30975abe95c69ab28d3ad66", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "bdaf922d82d452f3e79ab15c2201d11a945c21da3783296ead0771c5eeec562c", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "dfac5d75930c5d5053724e0e5f75d940890689d919181fa81136ba1cb39804c3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "2eb1bbee6af2a96c2c4f588ebab61db76d20660896f1911522617e3ee115f5d1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "3e3de8fc4c5d49fb7e5fea534fd7b447f934d85e4355667ad37b9eae5e10191a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "5b017c3cee1a7dfc3ea09c5cab66155cd52745abb6d92a36ba005b5853d49837", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "73d1d7da9d59d39d77b0b717f3e517232c4e88b49dee7de834cf44f187be318c", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "9381fa5a7800c239078dbbb3f097a1067cf8cb1659c399dff97cfa0ca186a8cf", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "c832f3799416025677f0193100dbe42409e2e80e26067f2af9832a6860984e2e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Myasthenia gravis"}
+{"k": "3e047124d00fc8b0f5bb0a4de70a41df6788587941cb8080fc7ea18b12991246", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Severe combined immunodeficiency (SCID)"}
+{"k": "f1f3efa169e45106b7f7c23c7551db5b5f83674a9644ebc95b01be8c3ec3a38d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "40 mg"}
+{"k": "d6d16035e5e12739853c8ff836bdd6299f1dfc3945dfee0786a79a26d97230db", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Arcuate fasciculus"}
+{"k": "62b5710163987dd38313e09e1796fa2bd7c90e11b35ad4a9916d710140c9b00b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "9cfe1c0611916e3f6014c00279181a5ef8f65da3749841b2060cf36f96c6b3a6", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "209cbe2dcb5560430ff473ad0928f40a66059dabc404756a4984b8f38738a361", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "90871299d1da36fac29990ec9526a59ba6d8a8afb0f1e454046e4c4fbcf9c230", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "27e65f68a6cfa31edeecee2a7006e00627002aae2129a905523f1dc0c3a69eaa", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "9f784f7fc0047e4e6b6bf0ada51d2c0388a80939f0f3a3fe7bac7fad2a3ec9c1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "8d68a26b3ee89bd847893493dbfbe58f2b0cd5550a49d4073a3aa07c643c0c1d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "504c13496f2f86916afbbf9d423a85b120610662a5bfbd14892928d45ad43f7b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "1c20111d0cec7c16e9154a215f34a70b1c0cf6a3b436225c937dc404cf73ec90", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Polycystic ovary syndrome"}
+{"k": "53eb2432bbb883ba1233c0a92df85e3bbd76c79e7b1125cd9886af1cb86db4c1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Intensive glycemic control"}
+{"k": "57ff6a84cd8e16813b1883989d64172ff07ce16396b7a5111a8ce8e595770bcf", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Trisomy 18"}
+{"k": "f1bb7d40ea085634582f82a1401de369cce07260d4e92fc2fb53fa6c82831441", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Veins, specifically the vena cava or pulmonary veins, would have the lowest oxygen content."}
+{"k": "0b6c12de79d18ff11f6e143d700ab4632086882b91fdf6167839f3058cfc49e8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "b7177b5ce4af1608c80302e386b05290d3d2695e23bdfd20a29c726d47002f33", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "2b5389e127f39f1b633a4e922e51a0411bf1f876658d190a694ac2ac79854f0e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "6618b2069ba57f57e7a68eaa939ca4bf5f9ce9f4ede71fa95dcb138759684e55", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "3fb14ad3069b4211c36afb6d33ea34b175ab60a857fc1132007cea8616271ffe", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "97453bee63ba22d77bc67eb17bf76e37732ba39366713f0886832f9597fdffce", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "397a3aaad5f93730bd08959553bfe29dcb6cf096de9c61b98e703e1b640cdd4a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "e8ced75db5367f3a05b4f17c698e967c23d4f870b7333b4632610f681f6f9c05", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "10eabf5c914ee88785e8df310fe42b8b162e1e2cb12d43ec71b9a5529f742c7f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Uterine tenderness on bimanual exam"}
+{"k": "f3dca289daceb1473e074193bd7b0e436f62133eb743e9f62292a5cfef458857", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Thiamine and glucose"}
+{"k": "97685c8b4125367e13d955a20b1549594013cd42912839b5ef47bf2f109e340d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "10"}
+{"k": "de8fd4fc744feec10bdd92367fb4e6f6883d66a4ae2b4c4716eaf0ba9a3acbac", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Peripheral arterial disease"}
+{"k": "5dcdcd59e8b91971902a6714210a540d2c5ff389c0a643b1ea6cd2d2cd1393e6", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "d238ac2255a96e8876b79a03956a3b8046cec9bf49c3b3d85cf529bc7b47e616", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "baa67197c8e99967d152d05d6d3508a8817fbda40c1e9c7677badfea343abb48", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "a85ca8fcf5729aaa5aa9ae49789f6f749f6d51d939ca035c130164fdf42b970c", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "20364a432fc32f2e472b89e6c6efcbf6233a4d5f2d703e8b6ea45d5464e83365", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "dfb6ad5487d9cc32928359e4be030c72e062940efd263a755d3bf2b108679932", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "87236f77557d1659455116a1298bf0c296c11ed28ca73692b950f91286ea4d16", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "005a9da341a0fa41615bf3ea2e0bfdb1fc719cc16e8b480a0e2810183416a4d4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "f953684be2526147149526fe5199d369070424024281d249e1d816102d80e1e3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Cordocentesis to assess fetal blood gases and acid-base status"}
+{"k": "4a681ae43da180a2d0b6cc6acb3e2fd8340c5109f04b4ff6488da0e8cccaccd4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Proliferation of alveolar epithelial cells and fibroblasts, leading to repair of alveolar structure and restoration of lung function."}
+{"k": "2443a910d8ee8f03f7a8e231dadc01fe86f47424c3b66dd51efe9dcda88d8e29", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Radiation damages DNA in cancer cells, leading to cell death or impaired replication."}
+{"k": "7fb29301fd83ba7782a72c7f1f585b2531c2225a55a95f6648c06da922a55d28", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Primary hyperaldosteronism"}
+{"k": "db5cdd6b5b0758afba790cc4fa840b8a3b802d363a499f49145677a31d0689e8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "9b2f0b8634a9c9e5a21c6ad3afc7a00faea5d704d4ef6a3bb91b45f5373f6585", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "17f8a7e80307a933aeebe5e3d1061a551d7fdc427030dd91f7a80aadc0650c3e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "0780a91cdda1a936f8693ba5d511f4ff2e6f35053d0d5391465900a9780830ba", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "607981f0c629945ae25cbf9d775760b666009b399b5f7a3179561234c2607975", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "9e656e27833201ef9df7b01e69da262de4b3a2d367d4eddae5a1ebd79cb04c56", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "e42744ede2caa6032539c0ef34a165022e22d6ae5796a71bea64ad4f8a5fbace", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "9ff082fce2069b2a188f441f133e77d47fe84acac483fefd3046b44260a13783", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "520549f4fcfd8a03deccef073af30487aad6576cb94199ee13e1a9db57f215f1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Obstructive jaundice due to biliary obstruction"}
+{"k": "f034fa42806f41e1ad7c124ef5eb79c10d3a4844b5f09a1033bc635cbf2392b5", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Discontinue galantamine and treat with supportive care"}
+{"k": "b8d78b038ddf2267ae62ec83a911e3f72bb1c07c23cc725216a3a5a94d4293af", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Tardive dyskinesia"}
+{"k": "c3f81f289421f6e37f9df6c4a70dd48778757fec770fe7a95c00f73aec317e45", "model": "local/nvidia/cosmos-reason2-8b", "resp": "KOH preparation of skin scrapings to identify fungal hyphae"}
+{"k": "a9cd2c7fbc8ced07486710fe18fc0e827d26dae5bcc5af6460577df6fb6b2b2c", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "72c4a427c8fb8d26a75fa100de63fcbb6f3dfa1a1d74c943bde9a855ceda33bd", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "93f1d94ecc46a026e2e7ae558707f7fbdb1ace9454a672461ae306c0c3b2eb26", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "c6aef3991b5a9032335cfd57fa96098eec67204cb639f78f7672089c0ac190ca", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "c385984da3008f1ecdc0c026230c0eac80dc99825dcc522eb559337389ba6e08", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "e54eaf4d6cda278f0b34a860ce0bc877d1b282cd976a5ba2140b5cffffb236b4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "fa3bc4bdc9dcae35e1527c33ada801a4dcbcdf14173e4a8ffb94add74c8e7612", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "05a886e0a63443feabfffcfa8209b97176540fc5c66744fdd96659589df028f3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "8a6f1e8f427277681147b446b8e5facd2ed9545d53b724adce9a249bd75c0bf7", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Weight gain"}
+{"k": "d2126d9a1a50bb201f6bcdc3cbf49494578e2b3ddc627b10fbc3c2c126bec3e8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "CD40L"}
+{"k": "74516d42e017e6751f65fbfc8187625ece34cdc5efbec5ec6b5811c8bee27c62", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Thrombotic thrombocytopenic purpura (TTP)"}
+{"k": "850a444b141c6b0fdf0ebbad67c9252a3e89cb6d47a1b69f2504a3ea97860fbb", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Bulimia nervosa"}
+{"k": "91b1848732cba478edad4be0b4993873acd7ed45c578fe50785853ed8e9b0836", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "a8e8add94bed3e9210ea2fc8ae51dc3269ec1a8e8e87c64812d6d8c412d418e9", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "2c552b207b67f01dacb2939b6f038073c4f61c11fcc4ad6e5fc2714a08cf6932", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "d5235a8a076ac450ccb83a59ff1b072300b8a64cf3ecac6b027b778214211496", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "a06b86d270ce17a235f20e2fa2ea52837afe95df4f3f6b4d2bbe085b481f7f1f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "186dd04ace29f3d8b5b91898cb302be7640d01ac8ea7b0976bb93f3ba08a7ee6", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "8f25709810e1ab062305f9b3ef7bc8942e7dfbc846935a1b839f4666a65d8200", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "3e3b8a02c555e9cad0155f646d6900cb117afcfc75d1a71dd1b3b1329398a743", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "0488333295bf13043aefaf19402883131ee9d800ca269957e260014384842629", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Salmonella enteritidis"}
+{"k": "62695e6fb75b8b7712f79c4029fffc56c643e047caeec7af3a0eb128e931a50a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Acetaldehyde"}
+{"k": "63643edbbcd94112e0854df7f9cc4f2973a3897c7745185754106d65bf4cc9c6", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Iron studies"}
+{"k": "ab3434604e5ac6843eac54e9c570761533be875a0219f1236f209e1cdb1a6bc4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Catheterize the patient."}
+{"k": "31c7750d3ec240aaf030cf7243584e21276fe8d2c0b9d6fdb6d17d6d1e17bd7c", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "267c02998bf869daf211d1a58da9d950931a0383c4b217b935c36865ea0f7d26", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "49ea80fc85319ad2113ac0ecdb0360a4bbb5600d0258b4134f6602afd17d2b91", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "73539b87b15b9de17a7462f9fac1b839f67d98390a2ee9f0d97ebc395e28d159", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "3cff82628dad567ba3342f7edd9ea22864b8f8b291c0e4878a74918de331b7be", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "6200a723a06e9d94a1df411086e515baafe5b025a0a6724287415e238e810eed", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "ad7c852e5c51f04a232e148e74f11b1c5dafdac4699d17c335ce0d31096adf87", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "6294b75b5930794dfa752e389ba4c8de334679a8a3d6a82245de56f132e77a0a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "c88a043f9d01b27ec871a1255aebcdce025954379e3b6348cf4aaf2f5d51f421", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Antifungal agent"}
+{"k": "4ca21eb5838861aa3979aeb4abd2d4fa72405fb9b7799b425b0e8879f74cca67", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Lytic bone lesion in the lumbar spine"}
+{"k": "2aa721aaa935e5277484fce739a897eaa5dac18c54fcd034cf353adeb77e6428", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Proceed with emergency laparotomy as recommended by the surgeon."}
+{"k": "60fdb8834785057b578dd18031d9b7ce94ac25284f8f39bedc083e497dad71e1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Thyroid hormone excess due to maternal Graves' disease"}
+{"k": "8b6c8250b64b773d92146cbc357ea5b38deda5aa61aaefb08d196d88da2b87a1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "627c75b2b4b9864ffeca82b3bb497c040017e91771107ca24ba7aa875f2970cb", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "c22ad14e0aa0596514f0100f4d34e104d858969a3d9f8366f3131f3506d1c17f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "b6ade194ba5b7b48398b2f780d9e90683d42752700184efe33ffc7340baf6c1d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "1ba8fd1bd8c18981a372e30fdffe51cc2167a1634cfbb1e32feb4df019f1a374", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "57e47a8b48f973b3b34ff7eaf4b64157d69c8a578ca9da50b184bb1131b523b7", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "775128b48c7ddf3fb82c03c70064fcfd3ccef64cd8dedc58ae9aafea098f2452", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "e28dccb830d8087f8f4fb22408401645025842210760acd96df54d82aa8a8b3d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "0a4a8fd3b10ec98b116b3d01eb8849925b1a5c4d1cb3681feb90e897a9b5561f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Proton pump inhibitor"}
+{"k": "6c4fd85a8ced1f2f22e4d0eb3c341a45852e24bb07135fa738afa8fac42badc1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Liver biopsy to confirm diagnosis of hepatocellular carcinoma"}
+{"k": "f461ff43c4015718f994ee2cab6e2aec15a722dd207f446fc854414d1d867c36", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Spontaneous bacterial peritonitis"}
+{"k": "5803fb817a9e7e6cceb69c1d84ff0698fe399c6891d939ea54a0d752ba5b4baf", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Cardiac contusion"}
+{"k": "cb26f54f70309a3f475b27f918bf8e6bed69777549386ddaadcc73311c853bf1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "a37ad48a961e3125848a5316f078fa99371f3ed9fd5f4a291ffbd4ed02f7f13b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "742a018180b70fbfadeb8898229b2fb5f35a3c3facaf14c06a9a905a04c2060d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "04931ef4d087354d1f71e4a5fb4c55b5f30273f756eb0583e277af2913a099c3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "4ec0e08ab544a3cf82d94ce51136c714e8f013a813af13a4c8b1f2a757d47373", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "5dfc6f3ac6d00269d8dad9d1cf6fd23a161e7bc6c837515c4cf5049f2357b8f8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "5c4c359cf32c7ff89b4b8b0540788916a02d875aaaf4df1f79e07867482969c6", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "5a04fed3a87cd2d64ba02fe06adaa0efac484a1bfde58a9476cccd7c592f87c7", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "af28022e1314d3e2a1eaad85f603eda989bf5e1bc60cb3220320a2b908110d64", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Intravenous albumin and diuretics"}
+{"k": "8c2dad1747e98883df1e3927832788f6f7d63c3d26b33abda278ba180df69348", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Thyroid hormone replacement therapy"}
+{"k": "120333571f85a40d04773770da236dc167286346aa457096186d16b0e64fc4b4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Wood's lamp examination"}
+{"k": "9fbc35af7bb7ab81d3e864ac8ff83245a367bdf96d30a9199622d09a702e6ccb", "model": "local/nvidia/cosmos-reason2-8b", "resp": "22"}
+{"k": "f65b509f56b450e54dab2381db065d55d3acfc30817507032ece4eb3fbbd05d1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "b9225b15b046dc26c903334bd374ed87ade837352ac060b2ae877298da029163", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "98e7ae3388bccd5f03b306903459b5cca22abcc728a538f81053e492ed42e77a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "df009ce9b973f7bada2bd919f7dde81a5c164a7a91c57a3b27692697aba54478", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "efdba1e20cf49a96647f57c118118e24c358a457a8eec384925b35fb928a773b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "7b5647d137bcfff43d7b9bfcf98f593b06f6e5c146300bdd38b9aeda461f378c", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "94809d542e66b4255d108ef1767cdc1a55cf022a7310e570bb2a3a165f9c51cc", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "cacf95109c5a39298dc38f3e637f43c80fbc8de52e1b28b1677d9bc2466981d3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "e39993556bfd6db7a2654c7a671f1c84db7daf8e0857113c05ff90f25245a6e6", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Biopsy of the vaginal mass"}
+{"k": "4c14ff404b9d49620c2f792d77630078bf08e4c6f7ad63be40a2d2abcc54e113", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Hemochromatosis"}
+{"k": "eccc208f27922ab3b46f356cba3655a401fdeac06b95f5d26729a749a7e99440", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Tetralogy of Fallot"}
+{"k": "aa5bf01e3acb6ee072ad9575c94e5fe52beb8986163b1d946b508dc9a51988b0", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Immediate open-heart surgery to repair the right ventricular injury"}
+{"k": "74bb03333b52ba848f8cedd18da4758cfbc29679adf76b05667dab5f3ada7497", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "79020efec7969b3dd657f817a831c94b6a1ccd45a62e8287aad3f8f1cf17a1e4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "6f8866174ca7b9f4567bd103b3a32f63d516c4e1863a06fe1d3b4229c6c537b8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "5781f07f4306ecd866d3623a532ef256faa8ac7e2969a67fe8db66f18dbe5cd1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "e2fb51c36fc3dca3908465902f94125a37efbd29243d0a3d80ce7b525188d7a1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "5510839c29a0b84e2990c161742cc4791655e664b6a055cd8843b341943aa8b0", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "18d2813325b8625f7afb168761a726627657b82bdf07e7cbdee15d619f1a4968", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "78d0666615ddedd2061ebe76dd2d251b6a60bd45a4ddc480cf3c5f3d650eeba7", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "1367703d13d726f90ce47873664a87bf720268806ce4f638015c669e4fe29e2c", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Emphysema and chronic bronchitis"}
+{"k": "41afe0f66b1203962efbacd0eb28a02a2aeb0f0c356aef93abfc08a7f8097477", "model": "local/nvidia/cosmos-reason2-8b", "resp": "p53"}
+{"k": "3b2026bfe6fafcc7906bab075f3bf84fbf705c41f7a5e7571dd77e993a972379", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Mucosal melanoma"}
+{"k": "124b96ca6f5f409fd142730d3c4ce55f2864e511bd03f0004437554b2f03e955", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Neck stiffness and shoulder tenderness"}
+{"k": "47a05881fee35305a3979f141c0b6553d7db1d0790ea266b610fd436bd59e8b4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "a1f4ed8df334c25852c7ff106088f51395b22ae1dcdf77d7dd74615f3840ff5f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "0deeb5bfce4d3ab43d29778004c00ba6cd6953081f1ef7c38fced45bf2d0b2ce", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "15919ad6f06bcefda8827330e3263d2840a766a6916f748c7023a03a00e40bf1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "5e7deefde81b92df1254338f08c135b6bda20995bab9535cf3e16dd8ea8c1943", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "27231b2c41bb614c29a8e2fd971ce0b337d8d6c581862fda3d433804b633ddf2", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "939ffbd4e7621969b60ceaf7fdd3eadfb56c02828efaaf13b48c2756ff4a03db", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "c59988f28c18b37089aed1ae2ccd351dd2650693b08b1ee964a98ff8bbe99559", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "c64b6c4424a63c681e54adb35477a92ef6d8b2639a611174fd11a4124ed558eb", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Endometriosis"}
+{"k": "fe08d1aeb654127731212a5e5c87970ee6d8375b2066c127df5446bc6e38e2d4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Positive blood cultures"}
+{"k": "0fd38d4ea3c5841bb00b6c27cd4177b6744ef0f0f835c57e5d86bc8354729ad2", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Start NSAIDs at the first sign of menses"}
+{"k": "c5fe060203080ad6a4c938d35f082b89da2b702f1a5a5d39743f801192a2f173", "model": "local/nvidia/cosmos-reason2-8b", "resp": "LDL-cholesterol 186 mg/dL"}
+{"k": "285abf21c40f2ac12ae749b636e609e09fd41cbb1ab151ac4e7b9ab250593bbb", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "3ce6170b56fabca20dfaecdf1e5cfe0de5a420d3a78a0d37ac2f61c1143974ff", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "1a46a0ac1b97edd1f030859a41bd23c3ce42a25e538910ef1e946342f5ec58d9", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "16bee7e9ae7e7da290c7fdcf623de930b2e99bf0be9ede0190bf5e39099691d4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "51edf6e9c27e5c9ab60b82f09a56e00a04f9b769b5491475a0798349768f178d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "57726f261affe10c1bfca7da7780c4a5b5aad71449193b282a8ba911fdf4461a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "7e0c9269fa3cecc65e7dbdc0b8837823f5650df9c441261ca8c2b2230a6afeb2", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "8510d9b219d6ab247d977bf95053f56315185cb55577d4dea4f7e0408840d340", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "00d0560229c31a9f46f571dd2e0dafb8401dae9b8cc79f0dc4e625f8ae8bec80", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Left mainstem bronchus injury"}
+{"k": "ff7c94e3c7efba0c573d7281a84b4ad76d433fac4c954502192eb475f257972a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Propylthiouracil"}
+{"k": "f5d3dbf87924903d0dc23f96a44e6d9716b218e5d3fe20891b0db5dc383424fd", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Soil or contaminated food/water"}
+{"k": "0724caca48539f91b0f09944c53470f77c7b9a05257c027fa860a87836110f0f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "The girl has tetralogy of Fallot, a congenital heart defect characterized by four specific anatomical abnormalities: ventricular septal defect, pulmonary stenosis, overriding aorta, and right ventricular hypertrophy. The presence of central cyanosis, right ventricular hypertrophy, ventricular septal defect, and an overriding aorta on echocardiogram are classic findings of tetralogy of Fallot. The planned surgical repair at 4 months of age is consistent with the standard approach to correct this condition."}
+{"k": "592af8aa4e5ab75c2c9f70e84e2331287fab5ca68323e4023a112f4c6a3d3a07", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "497bd795acc4c5be7c3cecc45b2e463766fe52159b6421be1f844fe39c1424d5", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "14124260a07ed06a01dbb50bc9d6c63f7f148b928acb9284657d40a9116c4b49", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "6260dde84532843ec6d79ffe6e6f5adf9d44064780a844f674405b3069be86d7", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "4fff623d5ae2dacf0857fab4512bc66177f504a596476b50e3d75eddbbe664e5", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "a27c4928829ceec0e64f10b2ea426decade540c193758829c890e06cf0a9b566", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "496ae672b812bd8cc955d773bef0d669a823bb3f122f3769b7fd013df53d7200", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "67c56ad0243e4286e0ad132126b7bd8089d11ba74b67889863ef396a604afa88", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "f06bd6a7c8159b89c7cc9c1346ef250f3355ade83c4b91ddbc06cea80271e8d5", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Delirium due to opioid toxicity"}
+{"k": "4eee7cf27335e29147e09e1bf277356ecceeedb0b96a016911f8a65c7513be7b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Mental retardation"}
+{"k": "115d852ac1deea1fb42eb5cefcfd9eaabe8ee3fb7acd095936260a4d7b120b10", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Cardiac tamponade"}
+{"k": "7932a813a23388b4a248bb2979c538d4f7c20af6faee857b3a1c84016899d03f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "24-hour urine protein"}
+{"k": "a94ce2bb9796b88741bf87494e9aa2e4d862a176482befa29bbad5fa02c4f45e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "efa2404e90773f3283c639415daef28a211311e4116fb6cd4c0b145f032ebba6", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "fa9201242de61b22c8f5dace93cb83b5af6356b4708e2738411c5ca12335b2cc", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "d0e26488c08014009fc23428ac7928d94ab8e52cd16f993cfbccf672ce0a903f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "907ae02aeea62ee9d26c252510ae0ba7c0961c1a5b4c38cca5aca2d298df3f10", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "14f2fa98a1d18a2c020f929ba36007133d124c8acef60904602d96a6116aa3d2", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "2f93025ab5ca0effb844e442c25b1db494fb9ebcd02d8870eb9dfd5033cbc140", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "2cfafc62cbef3b6ddea0ab04cec4554b994d5a5aa22998eddf17b77f5283ee92", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "a462e7ec0e5fa4bf634df5598ebd02d7770cc07bd435447bdf69d975cfea31c7", "model": "local/nvidia/cosmos-reason2-8b", "resp": " Autosomal dominant"}
+{"k": "578656a3ce816f2b25d1d4af69402871093d5a740d0116e42c97529e2856a7a1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Neisseria gonorrhoeae is an obligate intracellular pathogen that can evade the host immune system by antigenic variation and hiding within host cells."}
+{"k": "d971f3eea6d7cc00151140eee91498255484fe474d1e5efff40509f0955fd256", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Cervical spine immobilization and imaging."}
+{"k": "33b159b328b362b61b9b5fd953f6c1160b3a68f46ca837f123184bd0a27f0e24", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Lithium"}
+{"k": "d2fd1b43288104daf81fe75a73178d969ddddec0d4212b6e755bf60d3ef7b65b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "61923fdbe3294edb377177c4c119b18524038a05417a1c5c030bbaa106c50685", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "258076cd5c319a1a8db51cc957cf198d955a577d6fe57de923efc0d7a54891b2", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "753ecddd976a06f510e268fc4f82cf5272251276a43e42a6fe3e6a7b28b9bb42", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "bfb6f51373575cc3fe8e4ad59f654ec6246239155f8525cbd2ef1cdd37254bb3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "297723b6ba6db95dea4937787f1375045f18da3f13c4c5d112cde786dba895fa", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "38ec3e99d0aa60910111d5866bafc6784936525a1d28b94356b85d6b695a0936", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "f090deeac779147f506fc3d44ae4bb76c8bec29fa0d342a7846f188074672bd7", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "615cd5ce1b11c18cd8d81e994e669d01db18057ce5c1ced2224cd62a50a1f49d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Hemolytic disease of the newborn"}
+{"k": "7e01a78dc07721d8e7260060f2da92abfd7c4a0bb1fd4128ef5bbc5d5029754f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Amantadine"}
+{"k": "f3bf211b73097d153fa9c2e2e505199d960f0c5767dd2236b0c5e7c7a83e56f7", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Administer calcium gluconate"}
+{"k": "f43d9471314a61ff5d091df0756a011ac1cfb2943f54d1d888e875a015e381a7", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Hypothyroidism with myxedema coma"}
+{"k": "b4f0f45f775af57ffb6127c33ec07f54c7f358378251752e9f3d171804c107bf", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "0ffd1b8c5cae5d851c73a58a7b10d9a8dd33e47f87d89c40a15fc0ebf5acdc14", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "40edce9f6a169e1a636414a116e430d425cb067d711d815d597531cb0c804176", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "6e4912eb2bc0b6b783e1f9db2ba48b8cf164410a583269e9607d0c4f65ab614d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "4a2c10096a821b6a6be2371bdbdad3b464c23e72a18f6d88d88d01d5aa7c0f69", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "7a2e47b52c54d59bf5ddb74e47beb846f42d83ae421447dd5556c4b58b099348", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "bfc8072b76debd966d72a0f4007f93ed6db7ba2a070b9ea24e9901fe3dd50761", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "0ec3e1a1067810e1d70b05e035d0686292ac07c40745550658adb41ad4efd7c7", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "be4e442521eb2b099bf3be41031b756cf22c8d8ecf6ed6944289ed559137bba0", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Aortic regurgitation with mitral regurgitation and left ventricular hypertrophy"}
+{"k": "b474d9e74b484c3f441aa83e1b709e4cfef86af1ff6ec16ba9f8be0b40977745", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Borderline personality disorder"}
+{"k": "09cce918146029b3c4040640b306c139f978b1e625863069fe581a664ca2a121", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Repeat CT scan in 6-12 months"}
+{"k": "ed613c0bdc479a62bc3929046ea4b11e7577d74007b1e69d78462cd8a9161b8b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Meiosis I"}
+{"k": "7a5503306cf308bbbaf136ebca95c64d405d2c096205f8efcfd3551d1bba353f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "9fe62882408ba3e14893c1584ba7dc6f751cd32a72b4f4f1108fba47948f0b70", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "f98581863c4517e97aa7fb9f5a0f5b63066d78d31ef7bdb5c58254bd5b8149a3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "6261c7bf9c1ebe04f4f1464e0d86f221f2a355f976f3d6af9f4f979307b4ece0", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "349b2a75b5052f720c1790a18223e156ac23f08caca06dd6949f5ad3d9f45408", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "b256480468972687d8c17f5d357a389180a7459a7f50620a8aac4b92796999c9", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "582c488687ecc8aee036ca52265942da2fff3011ce0181ebb07a70a294f69c88", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "73607810b2757eaf0179e9852d62a44e83a6a029917476215234e4fd971fb97d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "24539a5f769432496310036fb06033d74f1bcb8eb4e39916f4beee0e162d1851", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Immediate radiographs of the left hip and femur"}
+{"k": "22823b9aa47c107a9fe5b2ac234bc4e9dc87a0481293019e42a379af341c1587", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Positive stool culture for Salmonella enteritidis"}
+{"k": "24f321106c8a2c91d0e26c970143de1b9aca801901930085298d5c7aab52a22b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Spontaneous bacterial peritonitis"}
+{"k": "f114342abb07fc8c77efd33c0ab225b4af8d28f31e0d8b5e22ba9b41db3cf995", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Admit for observation and possible corticosteroid therapy"}
+{"k": "bc7c59da9f1e3631bf4c6e6be2a547334719cf5548d5004cbbee9befee3fd2e7", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "1a0899c141adc95f85f6ea267f4d59653d3f3d67de334c365601cd9c2a275927", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "8485688b9726bd4eb421d464be9a87a93e58e15416f4e9649b9b77f58aa06a3c", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "5eb055482e60318cf42b583904527b8e884c79559cb62ab1997dc122c05400f0", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "0d0172b06a33421c58d2e0d4bb4cfc02c590431089af9fb5744bf3cfe78bc4ad", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "ad366eba1e758f6729a0b1b76385908b9e5ce01fb0a01e89b40e14f7ba3a15b9", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "849ea4a927edf4979015a759dbebc7401a85fe57a0f48cb2ba86b9885e2c5b2c", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "24c511cbe285fc8ccfe8048504377fa918199f56da40482b6540a6cc15d20a96", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "70ce5f91e740010de6d95506840293260979bb71efad93f47115290cd299e814", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Increased acid reflux due to decreased LES tone"}
+{"k": "df9b6b2e2bcaffacfebfa9269c01f39a647ed319effe344ebeb4c46a9a2e560d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Inhibition of the renin-angiotensin-aldosterone system"}
+{"k": "2923745c2b24871bf077204b6aa190dacaecbb4721c73dd1ba7f46abb74215ba", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Metformin-associated lactic acidosis"}
+{"k": "899d2691ef9fbcfba9b41eddf64959927d16acf0a914830b4f7bcb59c9fb4206", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Power stroke"}
+{"k": "98e652d6f1bca2e68e619af5e87105a4e3229589032023d70c41ba900e6302ab", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "d38406b3df3c1b655d00f64066ec20aab46b3d3bee2faf65881b4700fdbac6d0", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "43333f772ac4dd08fba3bf8347ee581a7183574c28ff18ecb20f5da527b95b2a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "9fad1de61a210e7c70fc690c4c0afc77088e39d6af873efd1b0a2fbd282688a2", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "bb8a78c77bc582580d7904d271c56f35fc7ecb8b8bc05ffc14bc07dc6f40dbb9", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "4fa05e4595cf5d6b75329f1e21517ef78aaa2d5aed5e019c504eb5672d599556", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "1e35ec192fe6b0abc0d83b4d7bda03321bad8b413b866b3b3699f4e9ab40ec22", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "c60a26e2d76b0d3692a4826d18b5bd7056a27b98e14c3c9acc2c40b6bc32cc96", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "9bed18ff4938ed017e7e5c9a3d1d6320e236eafc807fce89fe66ab8df4ea95d6", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Tuberous sclerosis complex (TSC)"}
+{"k": "ff6030510d8a4a120f0f608ad49ca80e2cc3ee04670a4f864c0626c3c8dab4ed", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Metabolic acidosis due to diabetic ketoacidosis"}
+{"k": "a837e676f4cf0c669656dc29c2c56340d3f7f762c7abcc0c54c74576db61ff4a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Chronic obstructive pulmonary disease"}
+{"k": "8dd8da59aa0f41b84981f38378a161e0df941efc108da359f683c49481ae000c", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Antibiotics for Mycobacterium avium complex (MAC)"}
+{"k": "f8d1cee4faa93d26efb8d8fc55d70c9d112a9d1e610c54879dcf1d441ca3d33d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "775ea45f4bafc0e941f1a7be281252c0897f0616c80d2ec308237eba40de12e5", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "070ae182f501f2534621c5537593caf6cd1eacc151c11df37514b417dd9e4100", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "b6279700102ebfc25ea2bd36756ce2da706c12645f6e7307d8398dd54f895672", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}

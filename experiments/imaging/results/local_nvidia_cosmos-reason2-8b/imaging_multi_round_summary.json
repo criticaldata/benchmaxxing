@@ -1,0 +1,23 @@
+{
+  "n": 35,
+  "K": 3,
+  "model": "local/nvidia/cosmos-reason2-8b",
+  "cue": "watermark",
+  "new_api_calls_this_run": 210,
+  "shared_adoption_by_round": [
+    1.0,
+    0.9429,
+    0.9429
+  ],
+  "isolated_adoption_by_round": [
+    0.5429,
+    0.5429,
+    0.5429
+  ],
+  "round1_vs_roundK_shared": {
+    "gained": 0,
+    "lost": 2,
+    "mcnemar_p": 0.5
+  },
+  "monotone_nondecreasing_shared": false
+}

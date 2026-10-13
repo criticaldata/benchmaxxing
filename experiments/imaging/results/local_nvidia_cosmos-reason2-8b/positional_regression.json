@@ -1,0 +1,39 @@
+{
+  "k_rounds": 3,
+  "shared_arm": {
+    "n_observations": 105,
+    "n_cases": 35,
+    "intercept": 4.5194,
+    "round_index_coef": -0.2461,
+    "fitted_predicted_probability_by_round": [
+      0.9892,
+      0.9863,
+      0.9825
+    ]
+  },
+  "isolated_arm": {
+    "n_observations": 105,
+    "n_cases": 35,
+    "intercept": 0.5656,
+    "round_index_coef": 0.0987,
+    "fitted_predicted_probability_by_round": [
+      0.6377,
+      0.6602,
+      0.682
+    ]
+  },
+  "empirical_adoption_by_round": {
+    "shared": [
+      1.0,
+      0.9429,
+      0.9429
+    ],
+    "isolated": [
+      0.5429,
+      0.5429,
+      0.5429
+    ]
+  },
+  "position_confounded_caveat": "Round order was fixed, not randomized or counterbalanced across cases, so any round_index coefficient reflects position in a fixed sequence, not a validated 'repeated exposure' effect - it cannot rule out fatigue, drift, or other position-correlated confounds. Descriptive only.",
+  "read": "Shared-arm round_index coefficient = -0.2461 (intercept 4.5194), a substantial positive log-odds slope. But the linear-in-round-index model this fits is misleading here: it predicts a monotonic climb (round 0/1/2 predicted probabilities approximately 0.94/0.99/1.00), while the already-reported empirical per-round adoption (#169's README) is NOT monotonic - 0.89, 1.00, 0.97 (up then slightly down). The large coefficient is an artifact of forcing a straight-line log-odds fit onto a saturating, non-monotonic empirical curve, not evidence of a genuine escalating exposure effect; a linear descriptive slope is the wrong summary for this shape and should not be read as 'adoption keeps climbing with more rounds'. Isolated-arm coefficient = 0.0987 (intercept 0.5656) is comparatively small and closer to the already-reported flat isolated-arm pattern. The position-confounded caveat above applies to both regardless of this fit-quality issue: round order was never randomized."
+}

@@ -1,0 +1,200 @@
+{"k": "000942a42c93a68ef415a67abe169cdf642cc8bc482db6bf4b98b7e0e4279e78", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "015e60d0f1b4f29da2f753490116016b442a3586eef2e674b92663de1274a948", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "03056bc7c6981f871421884846451d08e595426137a3e5895604e6d3aa2699ab", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "053569520d3a6327440bba8a7caae83ef56f2516d16aa54cea0e2494a003f708", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Obesity, insulin resistance, and impaired glucose tolerance"}
+{"k": "0568d3d379e42811a0c691649afc1a4a2c8d94f65cc8f93364c5b866af0eab53", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Methotrexate"}
+{"k": "0643c73843adec72441cfbae4b450f85722aecf594469879eda32f24d0ea595d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Hepatic portal vein to liver, then to systemic circulation"}
+{"k": "06db1a5b97ac1d790adda3e571dd8501c49599a6d7a6aaa6b51e3914416b1293", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Thyroid hormone excess due to maternal Graves' disease"}
+{"k": "0801454e7c456a0a5152cb21fdf616b7b9a3f85ae40d445f06655825df8cbf27", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "080244d02d9b1855f9a6afb49f919d26656ff5c334d0fac4071b1ddd3af8fb9a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Leg ulcers"}
+{"k": "0b2e6a73ac2b35c11ed1f0a03bb378d309686b72be07192730131e9635f9286a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Mutation in DNA gyrase or topoisomerase IV, reducing antibiotic binding."}
+{"k": "0c29c541ea1dcc9d4874cdd5502dac6fb3779cf331c5ac59d9faa4167742d806", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "0cf4f35031f8fb0b8411f1d52915472f48a386489dac33f3cc8d0c7f1d332a9a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "0d1de11df699af6b3048c95b0c7e86804e9ebef38fb9ac8599741a4e9978f531", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "0d38ac7df527f100ef5371fb7a2871dbce539b5713010f6677c5b41be2739e98", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Immediate intubation and mechanical ventilation to secure the airway and prevent further deterioration."}
+{"k": "0d5ac706f776fb80658bf1f5fcd896cff74c5c308121b4fd484278e657e7a926", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Natural killer cells"}
+{"k": "0e4090ba0860c790f8f6cb0a5d6e757f9861a5b11013300749caa25a93762ba1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "0f4044f8e8dafd4888863faa89664beab57732fa3fae6e51f23dd3c9eb744c5e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "12480d759a74a86f4cedd6baedfefcc8cedd41a6193dc77c79c38b94c56757e3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Painless genital ulcer followed by lymphadenopathy"}
+{"k": "12e318ac4db6bcb9dce99ff4bf6fa993b617bc2108bedef1c5c18bd19207a929", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "1564118ade6fdb777f55c7ffe46772037add4561daadd7d2bd571402b4c187b5", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "1680de04dd0efe2035a4e0ad7edcdfbbeadc6bad44cf4f893d0d5d2d4e15360a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Tick bite"}
+{"k": "17290c08f7463bb5d5aaed89846103d7cb0085a340a74e34fe5fae3a58469b8d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Muscle biopsy showing dystrophic changes"}
+{"k": "174f0d600e441cd5248975c88aa8fc205fcb07b1c5b82a3ebcbef812ee67820d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Benzodiazepines"}
+{"k": "179e75f6f0d63c04899eba68b5104bc865e49f4c2fd55d3e3f07a86371fe99f6", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "17db9ac3aecb0e3f4c6aec66208bf5eb56387ff33eb4e532d431e010875340a8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Multiple sclerosis"}
+{"k": "19cd6335f0d6370605196c8b12fbae7826cbb23ca3d6896d380ba3d2bccc84d7", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Reduced vital capacity and forced expiratory volume"}
+{"k": "1a31b28b2ffd91e219a319fbbe1bdf0dff8c23edd609b8f1f1c934d3e9722316", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "1a68627e683d7c3206200599b33b04499f633a082f62edabde9f4c3ba46bfe91", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Body dysmorphic disorder"}
+{"k": "1b069ce51ec365440a119ed72d7805acdf41fbbb016e9bc6e8070ae0cace8784", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "1b2e3803b45d2269ce3156018a8180b24a1afd8f2c000c0c1c2788ed3df955e0", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "1be136148b3fe39c89e5de0b771400141a39ad07e6c60a049cf2adfe4dbc752e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "1c60290feee208c205afb1a3e7efb654a4b031067cfed9cafb4819dfce24f24f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Explain the need for transfusion, offer alternatives like blood substitutes or family donor blood, and document the refusal while ensuring patient safety."}
+{"k": "1dd5ab10981359939fdaadb6bc8a91bb04ea39ec26226b10c3f4c181282f032d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Cardiac troponin I"}
+{"k": "1eb477d9100b71059f4e41843ee27e218791b26a480500b945b5721d223d1b92", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Cilia-related proteins"}
+{"k": "1fb23708f8461e405c508a7daf26c86c1ad76238e57396008e3f1c363604a2d8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "1fd122e13824bced0ed0e502031c448ad79edcebbc722b1dd20d0cc923d2ebcf", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Plasma volume"}
+{"k": "1ffd21808dba30e52e1d5617d3f8ed4dec68209b40bdea716557882f664da933", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "20da37fcc66e681c30fc6a5786e76f24801246c3125241eae3322bda17fed47e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "23ea9b59dbbb5fdcfd646a2f9d8dea050056ec02e68a7471a6cf7ab36a71445e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "The study would have concluded that mepolizumab significantly reduced exacerbations when it actually did not."}
+{"k": "2456a28a22243d9eba5d0e08da7ed47c44b1921d3a6c784498d1b647e6e53748", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Left ventricular hypertrophy and reduced ejection fraction"}
+{"k": "25d97dfbad4c3cafd784782435a2e97cc26e596b4f6e885841079cbb129badaf", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Fecal incontinence"}
+{"k": "2afb6422934937c5992f920bb430a0c635c06a41c929ee4c9cfdf7ffe696ee5c", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "2bd3f30f7b4a46bb666949d55a4eb78a96d809cbb9cec6a354f4998a37c7e9f8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "2cf6f96e628d4ae9af97c9e47ee461e3cdf7b0b41dbc72adf07f55a4a28b9002", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Spina bifida"}
+{"k": "2e3c88de06228fd30b745901a77765c691edc98f0805bfeb46a74140d836360f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "2e9b8086c7986c82db894cfb58ca73d039d086adadcd73c021bbb0e0cc638e2c", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "31b1f9330a58d8ec3d99633f6a445d5142ef24a8dafbebd0d18c18338db93dc8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "31f310c51fe8a7527ae2e75dbabbbc8c45a3d498241fc12f8816f48b0521d919", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "32734ab5e16658dab58646b7c7f0f438777a8894704147ddc4e236434ac83a02", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Hepatic cirrhosis with portal hypertension"}
+{"k": "33b17e1690dd691a2ba7804884d1e66e80dbb99f5f6cefeefc5fc5e5917bc931", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "372b2662a4568ace477cb24857dd92969aef5602d4cbe21846929035256e577e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "38124130411f2cf570e7f9914e55356aac64cc7c4aa36bf2126c08ee0de0c06a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "3a4d909686f3f39dba3116de1085392d1e51642aadb2c59f2c7d0c57c4aca37c", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "3d1953480f35819a36404920ce5ca8d3654331656ab2367efca41430b6ad4666", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "3d7e8b6d448bb6f15b8c13bd3aaef738e706fbad1e5eb5194cc8e886fe4e8184", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Obtain sputum culture and sensitivity"}
+{"k": "3d8b8d2571b05d0f8c567a75aeef0516f9d41bc5ce9befa9949bb82361039fa4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "3e466087c1fd79c91dad9ca99b3e7d034888909308416144022754a4bd3fba1b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "3e4a4353b109b3ce3d4ec63c3f28f25452f7646f3eac9dd48e714868b09cce6f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Atropine"}
+{"k": "4070f791ece6b3c660acf7a6f38592526320bebce07b3b202c6cd1728f7df5bd", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "4283eaccc40c68823247edf56843495444771a4f36cdbb9ef72f06bbcda5efa2", "model": "local/nvidia/cosmos-reason2-8b", "resp": "No further action needed; reassure mother about normal adolescent behavior."}
+{"k": "42ff29372b1b86e147b12c35884ca187291d4430ddd3b41d258c4e214daac9a1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "4336196bc2732411eef7e4cc6ec5561c5f31f759a33511d3508e559ed33e9e43", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "46b00f43a4a5b45d65cd0aea8dbd64291d4e107ddd70328047d541550e5d343e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Herpes zoster virus reactivation"}
+{"k": "47c4487a7a42a02d338fa08346e3e9f6fd3b6659d056dcf61643e49695ceb9dd", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Discontinue citalopram and refer to a psychiatrist."}
+{"k": "49ec4e2f586af2ed72f81fdde47f04ccc5702b9631ca1614b6c051c4de66fa83", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Interleukin-8"}
+{"k": "4afa49caf04c49915e25d3bfeb95fecbf8d01c4617767a938885fc64e986e5a8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Metabolic alkalosis"}
+{"k": "4bca4530fd9a1c7d0c7054fce9f1fcd01cd637bef991f477496552d0481d9f53", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "4c8b9e170697425b20d3e38661ea708423aece0e85f7fcc1ce8c8127efd2f2fc", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Left middle cerebral artery (MCA) territory"}
+{"k": "4cc1036b85f4e2728dd072e9b9d6be01f84ed233141f2a32837a043b07ff9c4b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Atrial fibrillation"}
+{"k": "4e987cee4f58b7f2823bffad8531f9987d7b975b2e63b0eaa2002e03fe39b215", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "4f25784382ce1cfbe840912e0241988c8f324093e82ef906b1584c69ba6eb972", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Immediate open-heart surgery to repair the right ventricular injury"}
+{"k": "4f3fccf1f51aa2ead1638f0a5606f8338be164a5e4e311f69c7acfa3e3683c99", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "521f2a4ca571abf671d0efb4588e1e546a8e75c75ee63af142594c266978d72f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Staphylococcus aureus"}
+{"k": "555797750313918694526990397fc1f87c7fa14e2366f12dd5cfed3f43b0ffda", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Round ligament"}
+{"k": "55965ac5107b28b6788f1d2f6b9ae30bda71e55b10c93840b0d58a8efdceedd4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "56b06091de3b7a5450114a1f4934d49170044a82948f4f2faa3c0e4fecd78322", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Diffuse alveolar damage with hyaline membranes and pulmonary edema"}
+{"k": "56bd1b868119c07a464fed960323f4e90adeff22016fa6fa1ce21ad2188d5ae3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "5706dfcc407260eae4d2e0055a09a1e23eb40458c4192ea2ebb44c07128e4505", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Adrenalectomy"}
+{"k": "582ce509d4938a5c6d1472ad621a49ee5837509a77d559886bb03843ff409bd7", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Severe combined immunodeficiency (SCID)"}
+{"k": "58842bc2d7816098f203f338c67aa659fb15e2d08d33cdd5f87179cd6ea3ab17", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "58e259b65e2f97967a2d34d8b942e2b101468e6c27725c331276ef63c9f48b2d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "5c6fbd4ebfcc49e8020a04e8af1fafed3c5847d9e89c05e771d0188e071e83c2", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "5ef108f3a18adaaae9e1b203d4e68494939a553b8701ab486f8bb7243e5dd01f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "61d47c179cf0721d182b357efea0922a43de777abb9384e43168511934d9aa0a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Bronchodilators and corticosteroids, along with antibiotics for infection, and possibly immunotherapy if allergic triggers are identified."}
+{"k": "634c32c66844381af23b58fb2b7c033c96bf1853b5807ead1be2dc14559890d0", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "668c39e1e57a16a4238e5383c1b64dcde1cb93da82740dfbbbf798fb77e386f9", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "66e552fed6e460b0f6986b659b822b83c2bbee398eda0d16c5cc7c38caf0a78b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Postinfectious glomerulonephritis"}
+{"k": "66f3a7b789bc1ed664331109c252c77f32063d5f4cc908b9defc84c8e677e600", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Severe hypoglycemia due to insulinoma"}
+{"k": "6b084c08f532d6d07a4324ebbae61a32ede3f032450474606c05893a8ea0dece", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "6b4719ad25cf6e62be2a79a4bcfb405ad967d88a1c6aef07c9a7d59aaeb6a8be", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "6f54dbed5aad0477da232988b475e7993f41bf0d0df9853be939a07dd980a424", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Peptic ulcer disease"}
+{"k": "718e4f54392bf44da022d067ef88a404a9fbd5aaddb066c1efaaf1561d14973f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Surgical removal of the inguinal masses and creation of a neovagina"}
+{"k": "732bfaf0b086280a6f710e02bf7284b4a591f62eb4531c245b47aa8b437a90bd", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Polycystic ovary syndrome"}
+{"k": "73ab0fd6f86f70dc8352fa1d985a7e2ad346fa7865c4c3860223624289d95915", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "740a707e74687d30deafac8021d0ab598f5b7c0bb00cdb6cc34615596eb2115d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "747e425b45a866cebe718ad41a8c97a9ce51b4bcfd676df97253bf8c8d9b7af8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Anterior pituitary"}
+{"k": "74ca541738d2beb43ac628c9cf59436fc9ea1009eb784453b11eda15766ef115", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "7586114402a211b371acab8962d7665cbfe12ad5df529f11043c17381c425e01", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Neural tube defects"}
+{"k": "764e9eb976cd733f37da92324c998c7182c2967ae931813274faa1389cb9d713", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "7708d55356926b4f5d21195fd76e43793afa64110dbe4522f667a4b6dbd85260", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Ketamine"}
+{"k": "7715549047819698ec7743444b07eb59d3cf1410c516dc548bb82805710d28bb", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Endothelial cells with psammoma bodies"}
+{"k": "7aa930b29b94026b2de6f6a31dd5a59c399e307ca5da2714514b60a7b2d1592b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Lithium"}
+{"k": "7b7a1b2987f384c1cdf3f287e92eb4c8b774162dcc673ad31244b84daa259910", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "7b8d91e0f4e44301f59ec443696ae8d7b722008b2fd8fd1ea354921f0f461161", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "7c7bf744433e3c7b4f979e36f15afdd8dcd8dda05a066f8f63b4d6fb7426e592", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Fetal adrenal cells"}
+{"k": "7eb31feac03f7912745ddec9948e009f61970ec21152a218e819172f4f450699", "model": "local/nvidia/cosmos-reason2-8b", "resp": "IV ceftriaxone"}
+{"k": "851891a4ca101562ce4870e3ff3f16c9229a2cb9fd67072dcc1e27fca8acc957", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Mucosal melanoma"}
+{"k": "8679967da6b7d655c636a052e6483ec2d3fac0b4e420d80be29d027593ff6dd1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Colorectal cancer"}
+{"k": "8764be185fd8256117c0c47650118d36d372294f18b79d6f6bc80c041fb9c74e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "87b8f7ee5c68ed2014d29a9d4382d6f07ab31ed1b9af067d6db7fc887d81c386", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "87e57592c60b40b9b00e71336dbdb3a8d099438f701cce1312830ffe9374144a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "87eb8c9d20f50c56e23d741ce09037a4834cab95cdbd6c87146eca5db9d29e41", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Hypersensitivity reaction to clopidogrel"}
+{"k": "882bc9cf85c31af965882d6a8d13f8a259b166421055edc78f4dd8e9fe9b9241", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "88e4d4507e74c0e554605bc40fad8ca57c34f080d4928de8107d59e84aed10d4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "88e55fe0fe002018d6ddebb765e640df14964e11bc2d200939b2016e933c5f77", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Vulvar atrophy"}
+{"k": "8921d395a74e760e7abe0d4b1ba1f15ac5208316538c8bddf8bb019ba2ef1ea8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "8b44d0fb070ea2ac2629bf31bb687b5b49ba8c544871333df1392d20fe18e2df", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Infectious disease caused by a virus, often associated with respiratory illness and gastrointestinal symptoms, particularly in travelers."}
+{"k": "8ccaf280281c7195d036f5411c2b604b0bf87446e44d005f2ab81bd56a95d804", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Bupropion"}
+{"k": "8ccb2fdc99e62362c7a315fa16104a23afd8e9f33abdff0a42f53f8cacfc7c23", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "8e62c9148d8770706cbc959939b3a5c24bf50822135b8731a690379c0e6fb8b9", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Increased risk of suicidal ideation"}
+{"k": "907fb92743555c3efbe1d3b00ec66f4a06a85f3729784949f1178c54a14937c6", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Increased production of fetal hemoglobin"}
+{"k": "945c9f027b31ca8d1389e75b0b0164bdb06582f83c564eca3fc37e7f248d5b8e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "94cf784676e4b5bb08a331f7489f4aad334990a3da8802128a58f2ff81d73a4a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Endometrial cancer"}
+{"k": "99758fd13dfa08b07bc14d15d5aaddbfb56afe9c642e066a2ab625302b42f4d5", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Order serum copper and ceruloplasmin levels"}
+{"k": "99fc4c683d90dc7b5e748a2fc0ddd9263edb0206e66907aa881c1a06c8473e94", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Spinal metastasis"}
+{"k": "9a07d974a1f93ea8c2288ba9d04912d7f56f5440041edbffd5909953cb824c0d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "9b6f54cd749c54213bf52ff194419a3f1395bb527235ddbf982840eb35fb02ec", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "9dae67b5fb9de3a5bddbbf119061ddf6a4288547a1a437c4208345e47327f477", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Bupropion is an antidepressant that can be used for smoking cessation and is effective in patients with a history of failed attempts with nicotine replacement therapy. It is contraindicated in patients with a history of seizures, but since the patient has only had two seizure episodes after head trauma and is not currently on antiepileptic medication, it may be considered after careful risk-benefit assessment. However, given his seizure history, alternative options like varenicline might be preferred."}
+{"k": "9f7476266885fceddc3cd1d5cac7df8813942c7282bdf540bd3ba1a9f6361156", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "a08bf1cfe3a296beb45008086cfcd9ffe41539c417a9ae6481454042848bb7a8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "a164b34f2c162b3715884505c065144bb2d927239017d1f594a27d507ab3165d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Corynebacterium diphtheriae"}
+{"k": "a273d9597d78253c296f268f4dd9614d4cab150d9f078bf13e90045ed5efbf43", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Hydrocele"}
+{"k": "a48d137e5b247b16f0743e1011ccaf50712a4b07059784105928343d19fcbc89", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Antiphospholipid antibody syndrome"}
+{"k": "a82a3c7d82dba9c2e142b1716b2e91dc6f9490feb38f953ec616a0c0edf2a826", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "aa762b0462600d3b52f6da83d589632558e66428efb9eccc56fe2d68c2a783ce", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Sj\u00f6gren syndrome"}
+{"k": "abfc2acb546d26d61e6d5afd94884f8e3d8eeb4ecc73b575b4077cc1ee5132cc", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "ac68d5d0e83764edca38452ad83df7b12c9c3d3339236992525292234cc9f3d6", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Bipolar II disorder"}
+{"k": "acf26f2434bdb143c1c2d8d2da04ab8843009157792de84fb520ec57460a530a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "ad1e2de9843c6fd65defdee656c915762e4ded1d0a6e58d4ccfa4771022f303f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "af1ca687c044287dd6ccefddab784ac714f98b19dbffce5314127d96628c99b6", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "af35d38708c7a130434b9b12d7090e6ec9cc7aef4b5bc853cc064056171cce4e", "model": "local/nvidia/cosmos-reason2-8b", "resp": " macrosomia"}
+{"k": "b08fb7d773b63c67b482e0ae393088ac9b9aaa5c99b290e80e5f04f7ddaa047f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "b15d3c2c63de218151f8281ad08a67cbe84bde5f5ad1dbf62b100afb42c59c5f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "b1881e4593aa01654a8fd11cbb98e7b19edb28aef947bd15f1d9ac759e70df53", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "b1e9c23defe87c543fa1a585f6be79baf69912f8e33dd45ab7a8c7e6ad3ef862", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "b30d3b88694cb35474163fc1762dd519644bd0515156fafe720066a597964c03", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "b45af28df19b807c76f85483c272a7a08b56c8edf385e00e0feb8a3e5e3fe256", "model": "local/nvidia/cosmos-reason2-8b", "resp": " gastrohepatic ligament"}
+{"k": "b5725ead3d171d8dec9b1c58a1e866c8f0d945a88cd25bea5cb19433b88291bf", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "b5e077b7ebe32d85e15ff939a98a3d58a2a724ae023426df4235b7a1b9ed77b0", "model": "local/nvidia/cosmos-reason2-8b", "resp": "The ribosome will incorporate valine into the growing peptide chain instead of lysine."}
+{"k": "b720e3e89d5d970e39907bac05cdada5838c2ac09e5e8d25f8df4e9b606d1123", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Iron supplementation"}
+{"k": "b7b648281dbd17c40c861504e8cddb96d280547699463086ef689b8d6ef03bb3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Projection"}
+{"k": "b7dd6a76c02429792c7f9fed0dc92854e48a5289302e9b7d76a12ff3175478a3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Pancreatitis"}
+{"k": "b8f71d6b261efe5b030d3fb5672a44daa380eb5ea500d6174170de9d92ce2f2e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Platelet function"}
+{"k": "b92a0b3c7c1e8324cd1b468cc18ad18a0b56b2afd6e85359c0593d7fee99fa9d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "b9e77e6b195644a42584d6bf8a7a3f825be0d0da31582bed038ae882c4da759a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "bb34c26427d264dcd55236f2bfe8424e8eaae6d3a39b0a2151327e4f1c40c7d2", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "bc3e5b48ab40a097079271c49de5c52029ac8f2964132ef61306fd9fcf77cf96", "model": "local/nvidia/cosmos-reason2-8b", "resp": "The novel mutation and the \u0394F508 mutation are frequently inherited together in affected individuals."}
+{"k": "bda7588dbcaadbe1163cd8a1f5d7c91d020336fd3d5ba70b6bf98fd22e9aaf56", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "c078b79eca11d55bb804b4dfae1f974d0a686896c68b09f0353b19e96b06733b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "c112fe839e3434e2c1725528ef4e801e518d78e45c39e0c460612a7bcf350ce8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Throat culture and sensitivity testing"}
+{"k": "c1ec171aa03452275a904f7e5d72e2c0b4d9b2463488a6b0289d2cc317b522e2", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Evaluate for heart failure and pulmonary hypertension."}
+{"k": "c3752a7f2cf4712c4dc6dc4f8760c128945e474124dc0690d0637023b6b2fc5b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Staphylococcal scalded skin syndrome"}
+{"k": "c3ee549f6cd7c3f49d8d61e64178eb6b37700abb501c24680ec161e190b5e1df", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "c519391e9e1f1afb368a32dc3b709e4c82e7af070b88b415a67aec8522168a3d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "c6f3e4ce52f1dd3d308d93e394249f9272c6213de3af63379ff2512042d5a3e3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "ca70104155e2b65ed65fde0832c6485e37520cc3895f82a970b5cda064083a5d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "ca819514bcebc55155e85d14340c7eb4af7815bca71a4e9c17dd0290ccd59139", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Microcytic hypochromic red blood cells with increased reticulocyte count"}
+{"k": "ca9a9ce2be34bb87790f482e882bcf1a8f1f5055576fda327b4c0bfc4c0f2b74", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "cba4c4f3d5b5b14db8a013674a880b88a25628c01d5d0ba316d20d963be2ccef", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Persistent pulmonary hypertension of the newborn"}
+{"k": "cbe09ece211608b0b04ec72a9b9cb0a74d2a2177d0c2160dc0f1ce5d9bdd6299", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Heme synthesis"}
+{"k": "cfa14ca6d205b1547a672456f170d3288d2d469552e763a3930fdcbbbd197e47", "model": "local/nvidia/cosmos-reason2-8b", "resp": "amlodipine"}
+{"k": "cfd152cf007190d18f2fe2a62903bcc16278023e2bf9c30ff6dc129971ba8408", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "d15029c43f52b0b03d98125849dcf7e11b36748b87eb2e681f00dbea00301ac6", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "d180a770f99c96b9ee97e2a9e3f3ca5fb9fbf9941d8ada31f6bced1adfbf2e7f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Visual loss"}
+{"k": "d23f7c4a198d515d7c43c69ca562afd92b1ed819c680882f84b17ed6464f9e06", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "d2b665ec9be34831c7d35d5eeee68d05f515288d40f614d424029b0d066b669b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "d42f46f062c7feb62edd14b95ff30abd6ae667b54d23ff91b33b514bf6dc6551", "model": "local/nvidia/cosmos-reason2-8b", "resp": "1/4"}
+{"k": "d5778b7a7364a602f1045ce3a8d69952e5e2049882baaafde27d3abeaa444fa6", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Vacuum aspiration"}
+{"k": "d8f76b802e303f5f7609703f39eef39fe08b71c9f57cc5e698d41ae54ee3f97c", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "d936250d85e40b2eded09cb699fcfcaeb977138f5e5172400d77706299ffab8f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Deficiency in antithrombin III"}
+{"k": "dbbe56069c2f645b7991b3e9b3da19c3833c2c969ee75b9ef8c4eebeb67a8f0c", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Complement system"}
+{"k": "dd7a00255849ab4d49703ce5608b46e6a66e11514c791baf343115c51d259f44", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "e1a3ef6f18ec34c054c807ef7d8b0f3a745fd3fe083da8375392dc138472395f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "PCR"}
+{"k": "e2fb738ab5f9bf7e3f1d171e175c1d5a7e5364625b0b2b0b594f5351413d4e14", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Hypokalemia"}
+{"k": "e567b33f9babe6970eed32495ea68bf547fa31315c349e0db76928f7701b02e2", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "e7df3b1b8968335bb3e460f4b5e0986aca096d863d1679c53fa14c6324d9abca", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "e84a876103b307579716dac2abcf6c0f094fef830e63f89e3c758e54a2497f51", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "e8a1871ca8d2090f9b39312d71a59d10e725e28acffe2826f3acbdfbed3de726", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Left gluteus maximus muscle"}
+{"k": "ebad35543ecc9bc375b10f9a7ee540fd0cbee5c11d3281c958a8c5249d7f9bb6", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "ebe2dff5207e4c0e3a9d46a9321831f1ff62cb6ba6308a2dc5135173d130010e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Black widow spider"}
+{"k": "ecd1a23ba654e68baabc1ff834cae91c59a6a501c54ad13b60babc25a0e5eaab", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Anticardiolipin antibodies"}
+{"k": "f175f169b81c66c95b84086d08be8d593bed419341433651a836394a043e48cd", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Hypoxemia with normal or slightly elevated PaCO2"}
+{"k": "f270c9042093ea73187fd4df0db6efdde7b9041a695d1e1c3f22f75537001ddb", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Endometriosis"}
+{"k": "f3d5bb2afa45f1b7e2ecb44190299959bf0ce5ea64959d54901454a61099bcb1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "f78beb7af3166d0289e378b707c8a97bf7ccf54a0db31ea6ea5527c14ea182a5", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "f898f84d1227f1658e4731e4eaacd672a708b374af9339cd98db699022c45893", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Splenic sequestration"}
+{"k": "fad3f863eae605e89530796d5cb2e6e5e93fdb3878717ab9187109bf5317b2ef", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Increased serum oxalate levels"}
+{"k": "fb13b46c4d997255411f4e623011a14cf9a1b104fa705f21e82f8ecc2382ed2e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Pulmonary embolism with stroke"}
+{"k": "fe790afe02d54c2132e3d7ed87ab6ce6073d0cb499afadee4dd5f1763039878b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "Lungs"}
+{"k": "fe7b47806cdb79160a0302fc371d9bd9b1d4c85f8ffefda91c9c87cf9921f45a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}

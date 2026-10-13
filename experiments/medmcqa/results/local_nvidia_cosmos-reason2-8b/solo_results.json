@@ -1,0 +1,37 @@
+{
+  "n_records": 300,
+  "noise_floor_by_model": {
+    "local/nvidia/cosmos-reason2-8b": 0.0
+  },
+  "flip_rate_by_model": {
+    "local/nvidia/cosmos-reason2-8b": {
+      "overall": 0.3233333333333333,
+      "per_cue": {
+        "lexical_overlap": 0.37,
+        "longest_option": 0.26,
+        "option_order": 0.34
+      },
+      "n": 300
+    }
+  },
+  "susceptibility_matrix": {
+    "models": [
+      "local/nvidia/cosmos-reason2-8b"
+    ],
+    "cues": [
+      "lexical_overlap",
+      "longest_option",
+      "option_order"
+    ],
+    "matrix": [
+      [
+        0.37,
+        0.26,
+        0.34
+      ]
+    ]
+  },
+  "overlap": {
+    "error": "Need at least 2 models for an overlap test."
+  }
+}
