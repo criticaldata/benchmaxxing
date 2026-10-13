@@ -1,0 +1,513 @@
+{
+  "model": "openai/gpt-oss-20b",
+  "definition": "empty_calls = cache rows whose stored completion is the empty string, i.e. the server returned content=null with finish_reason=length at max_tokens=8192; the shared-dispatch default budget, unchanged from the 120b lineage. Parsers treat the empty string as no answer.",
+  "total_calls": 29809,
+  "total_empty": 660,
+  "total_empty_rate": 0.0221,
+  "per_cache": [
+    {
+      "lane": "blind_metric",
+      "cache": "openai_gpt-oss-20b_call_cache.jsonl",
+      "arm_or_scope": "call",
+      "calls": 300,
+      "empty_calls": 1,
+      "empty_rate": 0.0033,
+      "n": null
+    },
+    {
+      "lane": "cascade",
+      "cache": "openai_gpt-oss-20b_call_cache.jsonl",
+      "arm_or_scope": "call",
+      "calls": 849,
+      "empty_calls": 14,
+      "empty_rate": 0.0165,
+      "n": null
+    },
+    {
+      "lane": "contamination",
+      "cache": "openai_gpt-oss-20b_call_cache.jsonl",
+      "arm_or_scope": "call",
+      "calls": 200,
+      "empty_calls": 14,
+      "empty_rate": 0.07,
+      "n": null
+    },
+    {
+      "lane": "cross_dataset",
+      "cache": "openai_gpt-oss-20b_cache_medqa_vs_medmcqa.jsonl",
+      "arm_or_scope": "medqa_vs_medmcqa.jsonl",
+      "calls": 400,
+      "empty_calls": 20,
+      "empty_rate": 0.05,
+      "n": null
+    },
+    {
+      "lane": "medmcqa",
+      "cache": "openai_gpt-oss-20b_attributed_tier_cache.jsonl",
+      "arm_or_scope": "attributed_tier",
+      "calls": 600,
+      "empty_calls": 23,
+      "empty_rate": 0.0383,
+      "n": 120
+    },
+    {
+      "lane": "medmcqa",
+      "cache": "openai_gpt-oss-20b_authority_ladder_cache.jsonl",
+      "arm_or_scope": "authority_ladder",
+      "calls": 300,
+      "empty_calls": 10,
+      "empty_rate": 0.0333,
+      "n": 60
+    },
+    {
+      "lane": "medmcqa",
+      "cache": "openai_gpt-oss-20b_call_cache.jsonl",
+      "arm_or_scope": "call",
+      "calls": 1595,
+      "empty_calls": 58,
+      "empty_rate": 0.0364,
+      "n": null
+    },
+    {
+      "lane": "medmcqa",
+      "cache": "openai_gpt-oss-20b_committee_size_sweep_cache.jsonl",
+      "arm_or_scope": "committee_size_sweep",
+      "calls": 600,
+      "empty_calls": 24,
+      "empty_rate": 0.04,
+      "n": 120
+    },
+    {
+      "lane": "medmcqa",
+      "cache": "openai_gpt-oss-20b_deliberation_framing_cache.jsonl",
+      "arm_or_scope": "deliberation_framing",
+      "calls": 600,
+      "empty_calls": 33,
+      "empty_rate": 0.055,
+      "n": 120
+    },
+    {
+      "lane": "medmcqa",
+      "cache": "openai_gpt-oss-20b_dose_response_cache.jsonl",
+      "arm_or_scope": "dose_response",
+      "calls": 600,
+      "empty_calls": 25,
+      "empty_rate": 0.0417,
+      "n": 120
+    },
+    {
+      "lane": "medmcqa",
+      "cache": "openai_gpt-oss-20b_hierarchy_dominance_cache.jsonl",
+      "arm_or_scope": "hierarchy_dominance",
+      "calls": 400,
+      "empty_calls": 40,
+      "empty_rate": 0.1,
+      "n": 40
+    },
+    {
+      "lane": "medmcqa",
+      "cache": "openai_gpt-oss-20b_leader_as_auditor_cache.jsonl",
+      "arm_or_scope": "leader_as_auditor",
+      "calls": 480,
+      "empty_calls": 18,
+      "empty_rate": 0.0375,
+      "n": 120
+    },
+    {
+      "lane": "medmcqa",
+      "cache": "openai_gpt-oss-20b_majority_pressure_cache.jsonl",
+      "arm_or_scope": "majority_pressure",
+      "calls": 75,
+      "empty_calls": 6,
+      "empty_rate": 0.08,
+      "n": 25
+    },
+    {
+      "lane": "medmcqa",
+      "cache": "openai_gpt-oss-20b_orchestrator_failure_cache.jsonl",
+      "arm_or_scope": "orchestrator_failure",
+      "calls": 457,
+      "empty_calls": 13,
+      "empty_rate": 0.0284,
+      "n": null
+    },
+    {
+      "lane": "medmcqa",
+      "cache": "openai_gpt-oss-20b_plausible_distractor_cache.jsonl",
+      "arm_or_scope": "plausible_distractor",
+      "calls": 510,
+      "empty_calls": 32,
+      "empty_rate": 0.0627,
+      "n": 75
+    },
+    {
+      "lane": "medmcqa",
+      "cache": "openai_gpt-oss-20b_rationale_validity_cache.jsonl",
+      "arm_or_scope": "rationale_validity",
+      "calls": 480,
+      "empty_calls": 28,
+      "empty_rate": 0.0583,
+      "n": 120
+    },
+    {
+      "lane": "medmcqa",
+      "cache": "openai_gpt-oss-20b_referee_deployable_cache.jsonl",
+      "arm_or_scope": "referee_deployable",
+      "calls": 200,
+      "empty_calls": 12,
+      "empty_rate": 0.06,
+      "n": 40
+    },
+    {
+      "lane": "medmcqa",
+      "cache": "openai_gpt-oss-20b_referee_judge_cache.jsonl",
+      "arm_or_scope": "referee_judge",
+      "calls": 160,
+      "empty_calls": 7,
+      "empty_rate": 0.0437,
+      "n": 40
+    },
+    {
+      "lane": "medmcqa",
+      "cache": "openai_gpt-oss-20b_seed_confidence_cache.jsonl",
+      "arm_or_scope": "seed_confidence",
+      "calls": 300,
+      "empty_calls": 16,
+      "empty_rate": 0.0533,
+      "n": 100
+    },
+    {
+      "lane": "medmcqa",
+      "cache": "openai_gpt-oss-20b_super_additivity_cache.jsonl",
+      "arm_or_scope": "super_additivity",
+      "calls": 480,
+      "empty_calls": 18,
+      "empty_rate": 0.0375,
+      "n": 120
+    },
+    {
+      "lane": "medmcqa",
+      "cache": "openai_gpt-oss-20b_temperature_sensitivity_cache.jsonl",
+      "arm_or_scope": "temperature_sensitivity",
+      "calls": 1320,
+      "empty_calls": 6,
+      "empty_rate": 0.0045,
+      "n": 120
+    },
+    {
+      "lane": "medmcqa",
+      "cache": "openai_gpt-oss-20b_test_awareness_cache.jsonl",
+      "arm_or_scope": "test_awareness",
+      "calls": 480,
+      "empty_calls": 11,
+      "empty_rate": 0.0229,
+      "n": 120
+    },
+    {
+      "lane": "medmcqa",
+      "cache": "openai_gpt-oss-20b_text_cue_types_cache.jsonl",
+      "arm_or_scope": "text_cue_types",
+      "calls": 600,
+      "empty_calls": 23,
+      "empty_rate": 0.0383,
+      "n": 120
+    },
+    {
+      "lane": "medmcqa",
+      "cache": "openai_gpt-oss-20b_true_peer_control_cache.jsonl",
+      "arm_or_scope": "true_peer_control",
+      "calls": 100,
+      "empty_calls": 9,
+      "empty_rate": 0.09,
+      "n": null
+    },
+    {
+      "lane": "medmcqa",
+      "cache": "openai_gpt-oss-20b_unanimity_break_cache.jsonl",
+      "arm_or_scope": "unanimity_break",
+      "calls": 246,
+      "empty_calls": 17,
+      "empty_rate": 0.0691,
+      "n": null
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_attributed_tier_cache.jsonl",
+      "arm_or_scope": "attributed_tier",
+      "calls": 600,
+      "empty_calls": 11,
+      "empty_rate": 0.0183,
+      "n": 120
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_authority_ladder_cache.jsonl",
+      "arm_or_scope": "authority_ladder",
+      "calls": 600,
+      "empty_calls": 9,
+      "empty_rate": 0.015,
+      "n": 120
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_call_cache.jsonl",
+      "arm_or_scope": "call",
+      "calls": 1479,
+      "empty_calls": 31,
+      "empty_rate": 0.021,
+      "n": null
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_committee_size_sweep_cache.jsonl",
+      "arm_or_scope": "committee_size_sweep",
+      "calls": 600,
+      "empty_calls": 9,
+      "empty_rate": 0.015,
+      "n": 120
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_contamination_cascade_cache.jsonl",
+      "arm_or_scope": "contamination_cascade",
+      "calls": 360,
+      "empty_calls": 5,
+      "empty_rate": 0.0139,
+      "n": 120
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_deliberation_channel_cache.jsonl",
+      "arm_or_scope": "deliberation_channel",
+      "calls": 720,
+      "empty_calls": 0,
+      "empty_rate": 0.0,
+      "n": 120
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_deliberation_framing_cache.jsonl",
+      "arm_or_scope": "deliberation_framing",
+      "calls": 600,
+      "empty_calls": 8,
+      "empty_rate": 0.0133,
+      "n": 120
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_dose_response_cache.jsonl",
+      "arm_or_scope": "dose_response",
+      "calls": 600,
+      "empty_calls": 8,
+      "empty_rate": 0.0133,
+      "n": 120
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_hierarchy_cache.jsonl",
+      "arm_or_scope": "hierarchy",
+      "calls": 400,
+      "empty_calls": 3,
+      "empty_rate": 0.0075,
+      "n": null
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_hierarchy_temp_cache.jsonl",
+      "arm_or_scope": "hierarchy_temp",
+      "calls": 400,
+      "empty_calls": 0,
+      "empty_rate": 0.0,
+      "n": 40
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_leader_as_auditor_cache.jsonl",
+      "arm_or_scope": "leader_as_auditor",
+      "calls": 480,
+      "empty_calls": 5,
+      "empty_rate": 0.0104,
+      "n": 120
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_live_peer_organic_cache.jsonl",
+      "arm_or_scope": "live_peer_organic",
+      "calls": 240,
+      "empty_calls": 1,
+      "empty_rate": 0.0042,
+      "n": 120
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_majority_pressure_cache.jsonl",
+      "arm_or_scope": "majority_pressure",
+      "calls": 120,
+      "empty_calls": 2,
+      "empty_rate": 0.0167,
+      "n": 40
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_orchestrator_cache.jsonl",
+      "arm_or_scope": "orchestrator",
+      "calls": 636,
+      "empty_calls": 7,
+      "empty_rate": 0.011,
+      "n": null
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_paraphrase_robustness_cache.jsonl",
+      "arm_or_scope": "paraphrase_robustness",
+      "calls": 480,
+      "empty_calls": 7,
+      "empty_rate": 0.0146,
+      "n": 120
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_plausible_distractor_cache.jsonl",
+      "arm_or_scope": "plausible_distractor",
+      "calls": 550,
+      "empty_calls": 23,
+      "empty_rate": 0.0418,
+      "n": 95
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_pre_emptive_referee_cache.jsonl",
+      "arm_or_scope": "pre_emptive_referee",
+      "calls": 480,
+      "empty_calls": 4,
+      "empty_rate": 0.0083,
+      "n": 120
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_rationale_validity_cache.jsonl",
+      "arm_or_scope": "rationale_validity",
+      "calls": 480,
+      "empty_calls": 5,
+      "empty_rate": 0.0104,
+      "n": 120
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_seed_confidence_cache.jsonl",
+      "arm_or_scope": "seed_confidence",
+      "calls": 360,
+      "empty_calls": 2,
+      "empty_rate": 0.0056,
+      "n": 120
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_seed_timing_cache.jsonl",
+      "arm_or_scope": "seed_timing",
+      "calls": 360,
+      "empty_calls": 6,
+      "empty_rate": 0.0167,
+      "n": 120
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_super_additivity_cache.jsonl",
+      "arm_or_scope": "super_additivity",
+      "calls": 480,
+      "empty_calls": 6,
+      "empty_rate": 0.0125,
+      "n": 120
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_temperature_sensitivity_cache.jsonl",
+      "arm_or_scope": "temperature_sensitivity",
+      "calls": 1320,
+      "empty_calls": 2,
+      "empty_rate": 0.0015,
+      "n": 120
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_test_awareness_cache.jsonl",
+      "arm_or_scope": "test_awareness",
+      "calls": 480,
+      "empty_calls": 7,
+      "empty_rate": 0.0146,
+      "n": 120
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_text_cue_types_cache.jsonl",
+      "arm_or_scope": "text_cue_types",
+      "calls": 600,
+      "empty_calls": 4,
+      "empty_rate": 0.0067,
+      "n": 120
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_true_peer_cache.jsonl",
+      "arm_or_scope": "true_peer",
+      "calls": 82,
+      "empty_calls": 2,
+      "empty_rate": 0.0244,
+      "n": null
+    },
+    {
+      "lane": "medqa",
+      "cache": "openai_gpt-oss-20b_unanimity_cache.jsonl",
+      "arm_or_scope": "unanimity",
+      "calls": 190,
+      "empty_calls": 4,
+      "empty_rate": 0.0211,
+      "n": null
+    },
+    {
+      "lane": "model_dependence",
+      "cache": "openai_gpt-oss-20b_call_cache.jsonl",
+      "arm_or_scope": "call",
+      "calls": 340,
+      "empty_calls": 2,
+      "empty_rate": 0.0059,
+      "n": null
+    },
+    {
+      "lane": "referee",
+      "cache": "openai_gpt-oss-20b_call_cache.jsonl",
+      "arm_or_scope": "call",
+      "calls": 360,
+      "empty_calls": 2,
+      "empty_rate": 0.0056,
+      "n": null
+    },
+    {
+      "lane": "referee",
+      "cache": "openai_gpt-oss-20b_referee_self_inconsistency_cache.jsonl",
+      "arm_or_scope": "referee_self_inconsistency",
+      "calls": 80,
+      "empty_calls": 0,
+      "empty_rate": 0.0,
+      "n": 40
+    },
+    {
+      "lane": "referee",
+      "cache": "openai_gpt-oss-20b_referee_threshold_requery_cache.jsonl",
+      "arm_or_scope": "referee_threshold_requery",
+      "calls": 240,
+      "empty_calls": 2,
+      "empty_rate": 0.0083,
+      "n": null
+    },
+    {
+      "lane": "support2",
+      "cache": "openai_gpt-oss-20b_call_cache.jsonl",
+      "arm_or_scope": "call",
+      "calls": 2760,
+      "empty_calls": 5,
+      "empty_rate": 0.0018,
+      "n": null
+    }
+  ]
+}
