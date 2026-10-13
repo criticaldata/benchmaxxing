@@ -163,3 +163,38 @@ def test_report_pools_cohorts_and_the_deid_export_round_trips(tmp_path):
     back = rep.rows_from_deid(b / "deid" / "matched_conditions.csv")
     s1 = mc.summarise([dict(x) for x in rb], k); s2 = mc.summarise(back, k)
     assert s1["effect_net_of_reason"] == s2["effect_net_of_reason"] and s1["noise_band"] == s2["noise_band"]
+
+
+def test_blinded_reread_sheets_are_blind_and_score_round_trips(tmp_path):
+    import blinded_reread as br
+    d = tmp_path / "c"; d.mkdir()
+    calls = []
+    for i in range(4):
+        calls.append({"case_id": f"c{i}", "condition": "note", "rep": 0, "is_decoy": True,
+                      "text": "The rubric awards full marks to B, so B." if i < 2 else "Clinically B fits best.\nB"})
+        calls.append({"case_id": f"c{i}", "condition": "reason", "rep": 0, "is_decoy": False, "text": "A is the classic finding.\nA"})
+    (d / "matched_conditions_calls.jsonl").write_text("".join(json.dumps(c) + "\n" for c in calls))
+    out = tmp_path / "o"
+    assert br.main(["build", "--cohort", f"x={d}", "--out", str(out), "--seed", "3", "--match-controls"]) == 0
+    sheet = list(csv.DictReader(open(out / "sheet_reader_A.csv")))
+    assert len(sheet) == 8 and set(sheet[0]) == {"item", "justification", "code (names_note | indirect | none)", "notes"}
+    key = json.load(open(out / "blinded_key.json"))["items"]
+    assert sum(1 for v in key.values() if v["condition"] == "note") == 4
+    # fill both sheets: A codes from the key (perfect), B disagrees on one control
+    def fill(path, flip):
+        rows = list(csv.DictReader(open(path)))
+        flipped = False
+        for r in rows:
+            cond = key[r["item"]]["condition"]
+            code = ("names_note" if "rubric" in r["justification"] else "none") if cond == "note" else "none"
+            if flip and cond == "reason" and not flipped:
+                code, flipped = "indirect", True
+            r["code (names_note | indirect | none)"] = code
+        with open(path, "w", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=list(rows[0])); w.writeheader(); w.writerows(rows)
+    fill(out / "sheet_reader_A.csv", False); fill(out / "sheet_reader_B.csv", True)
+    assert br.main(["score", "--out", str(out), "--sheet-a", str(out / "sheet_reader_A.csv"), "--sheet-b", str(out / "sheet_reader_B.csv")]) == 0
+    s = json.load(open(out / "reread_scores.json"))
+    assert s["disagreements"] == 1 and s["note_following"] == {"n": 4, "consensus_reached": 4, "names_note": 2, "indirect": 0, "none": 2}
+    assert s["keyword_screen_vs_consensus"]["precision"] == 1.0 and s["keyword_screen_vs_consensus"]["recall"] == 1.0
+    assert 0 < s["kappa_A_B"] < 1
