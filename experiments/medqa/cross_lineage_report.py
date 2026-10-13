@@ -29,7 +29,8 @@ import re
 from statsmodels.stats.multitest import multipletests
 
 GEMINI_DIR = "experiments/medqa/results"
-OTHER_LINEAGE_PREFIXES = ("nvidia_", "openai_", "Qwen_", "meta_", "deepseek")
+# Cache files of every lineage other than Gemini; "local_" is a locally served vendor id (local/<id>).
+OTHER_LINEAGE_PREFIXES = ("nvidia_", "openai_", "Qwen_", "meta_", "deepseek", "local_")
 _LETTER = re.compile(r"^\s*\**\(?([A-E])\)?\**[.:]?\s*$")
 
 
