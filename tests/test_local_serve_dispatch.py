@@ -144,12 +144,9 @@ def test_the_blind_metric_lane_keeps_vendor_routing_without_the_variable(monkeyp
     assert blind_metric._key_name(OPEN_WEIGHTS) == "NVIDIA_API_KEY"
 
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "experiments" / "imaging_chexpert"))
-import imaging_blind_metric  # noqa: E402
-
-
 def test_the_imaging_lane_copy_agrees_with_the_lane_on_hosted_prefixes(monkeypatch):
     """The third dispatch copy must not route a vendor-hosted id to a local server (#430)."""
+    imaging_blind_metric = _load_chexpert_copy()
     monkeypatch.setattr(imaging_blind_metric, "LOCAL_BASE_URL", LOCAL)
     assert imaging_blind_metric.HOSTED_PREFIXES == _lane.HOSTED_PREFIXES
     assert imaging_blind_metric._is_local(OPEN_WEIGHTS)
