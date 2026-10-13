@@ -132,10 +132,12 @@ class _Cache:
 
         m = self._model.lower()
         if _is_local(self._model):
+            # the same generous timeout as _lane.backend_for gives a local server
             backend = self._gw.LocalOpenAICompatibleBackend(
                 model=_served_name(self._model),
                 base_url=LOCAL_BASE_URL,
-                api_key=self.key
+                api_key=self.key,
+                timeout=600.0,
             )
         elif "gemini" in m:
             backend = self._gw.GeminiBackend(model=self._model, api_key=self.key)

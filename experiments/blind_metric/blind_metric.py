@@ -138,9 +138,12 @@ def _backend(model, key, client=None):
         base_url = "https://api.deepseek.com"
     else:
         base_url = NIM_BASE_URL
+    # A local server answers requests in turn and a long completion can take minutes, so it gets the
+    # same generous timeout as _lane.backend_for; a hosted endpoint keeps the gateway's 60 s fast-fail.
     return gateway.LocalOpenAICompatibleBackend(
         model=_served_name(model), base_url=base_url, api_key=key, client=client,
         default_decoding={"max_tokens": NIM_MAX_TOKENS},
+        timeout=600.0 if _is_local(model) else 60.0,
     )
 
 

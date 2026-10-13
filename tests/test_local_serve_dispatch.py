@@ -361,3 +361,28 @@ def test_the_direct_client_call_in_deliberation_channel_sends_the_served_id(monk
     result = channel._call(model, "not-needed", "prompt", "none")
     assert result["content"] == "B"
     assert [k["model"] for k in sent_kwargs] == [sent]
+
+
+def test_every_dispatch_copy_gives_a_local_server_the_long_timeout(tmp_path, monkeypatch):
+    """A local server is answered in turn, so a request can wait behind long generations; the three
+    copies give it the same generous timeout, while a hosted endpoint keeps the 60 s fast-fail."""
+    built = []
+
+    class _Capture:
+        def __init__(self, model, base_url, api_key=None, client=None, **kwargs):
+            built.append((base_url, kwargs.get("timeout", 60.0)))
+
+        def complete(self, prompt, image=None, decoding=None):
+            return "yes" if image is not None else "B"
+
+    monkeypatch.setattr(_lane.gateway, "LocalOpenAICompatibleBackend", _Capture)
+    for module in (_lane, blind_metric, chexpert):
+        monkeypatch.setattr(module, "LOCAL_BASE_URL", LOCAL)
+    _lane.backend_for(LOCAL_ID, "k")
+    blind_metric._backend(LOCAL_ID, "k")
+    chexpert._Cache(tmp_path / "cx.jsonl", chexpert._key(LOCAL_ID), LOCAL_ID).ask("p", _gray())
+    assert built == [(LOCAL, 600.0)] * 3
+    built.clear()
+    _lane.backend_for("nvidia/hosted-model", "nvapi-test")
+    blind_metric._backend("nvidia/hosted-model", "nvapi-test")
+    assert [t for _, t in built] == [60.0, 60.0]
