@@ -1,9 +1,9 @@
 {
   "model": "openai/gpt-oss-20b",
   "definition": "empty_calls = cache rows whose stored completion is the empty string, i.e. the server returned content=null with finish_reason=length at max_tokens=8192; the shared-dispatch default budget, unchanged from the 120b lineage. Parsers treat the empty string as no answer.",
-  "total_calls": 29809,
-  "total_empty": 660,
-  "total_empty_rate": 0.0221,
+  "total_calls": 33585,
+  "total_empty": 806,
+  "total_empty_rate": 0.024,
   "per_cache": [
     {
       "lane": "blind_metric",
@@ -508,6 +508,66 @@
       "empty_calls": 5,
       "empty_rate": 0.0018,
       "n": null
+    },
+    {
+      "lane": "mimic_cxr_text",
+      "cache": "blind_metric_call_cache.jsonl",
+      "arm_or_scope": "blind_metric",
+      "calls": 120,
+      "empty_calls": 4,
+      "empty_rate": 0.0333,
+      "n": null,
+      "note": "cache stays on ORCD (credentialed report text); counts only"
+    },
+    {
+      "lane": "mimic_cxr_text",
+      "cache": "referee_deployable_call_cache.jsonl",
+      "arm_or_scope": "referee_deployable",
+      "calls": 200,
+      "empty_calls": 11,
+      "empty_rate": 0.055,
+      "n": null,
+      "note": "cache stays on ORCD (credentialed report text); counts only"
+    },
+    {
+      "lane": "mimic_cxr_text",
+      "cache": "referee_judge_call_cache.jsonl",
+      "arm_or_scope": "referee_judge",
+      "calls": 160,
+      "empty_calls": 8,
+      "empty_rate": 0.05,
+      "n": null,
+      "note": "cache stays on ORCD (credentialed report text); counts only"
+    },
+    {
+      "lane": "mimic_cxr_text",
+      "cache": "openai_gpt-oss-20b_break_it_d_call_cache.jsonl",
+      "arm_or_scope": "break_it_d",
+      "calls": 64,
+      "empty_calls": 4,
+      "empty_rate": 0.0625,
+      "n": null,
+      "note": "cache stays on ORCD (credentialed report text); counts only"
+    },
+    {
+      "lane": "mimic_cxr_text",
+      "cache": "openai_gpt-oss-20b_call_cache.jsonl",
+      "arm_or_scope": "call",
+      "calls": 2932,
+      "empty_calls": 90,
+      "empty_rate": 0.0307,
+      "n": null,
+      "note": "cache stays on ORCD (credentialed report text); counts only"
+    },
+    {
+      "lane": "mimic_cxr_text",
+      "cache": "openai_gpt-oss-20b_deliberation_framing_cache.jsonl",
+      "arm_or_scope": "deliberation_framing",
+      "calls": 300,
+      "empty_calls": 29,
+      "empty_rate": 0.0967,
+      "n": null,
+      "note": "cache stays on ORCD (credentialed report text); counts only"
     }
   ]
 }
