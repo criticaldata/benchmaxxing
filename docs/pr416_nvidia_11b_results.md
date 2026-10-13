@@ -35,7 +35,8 @@ initial transient runner failure was recovered without counting a partial checkp
 The final 600-case checkpoint contains 600 rows for each of the three phases and has
 zero unparseable responses. The final expansion from the existing 300-case state
 added 900 new API calls; the complete cache contains 1,800 responses (600 cases x 3
-phases).
+phases). The corrected summary was regenerated from that complete cache with zero
+additional API calls.
 
 ### Microsoft Phi-3 Vision
 
@@ -47,35 +48,43 @@ about the model's image quality.
 
 ## Llama 3.2 11B results (`n=600`)
 
-| Metric | Result | Count |
+The primary estimate is conditioned on a correct baseline read. Because this manifest
+contains finding-present cases, `base_ans == yes` defines the baseline-correct stratum.
+The model answered `no` on 229/600 cases, leaving 371 cases for the causal drift
+comparison.
+
+| Headline metric | Result | Count |
 |---|---:|---:|
-| Baseline decoy uptake | 0.0% | 0 / 600 |
-| Blind decoy uptake | 80.5% | 483 / 600 |
-| Test-aware decoy uptake | 52.5% | 315 / 600 |
-| Test-awareness suppression | 28.0 percentage points | 168 / 600 |
-| Silent drift among drifted cases | 100.0% | 483 / 483 |
+| Blind drift given correct baseline | 74.7% | 277 / 371 |
+| Test-aware drift given correct baseline | 79.2% | 294 / 371 |
+| Blind minus test-aware drift | -4.6 percentage points | (277 - 294) / 371 |
+| Silent drift among correct-baseline blind drifters | 100.0% | 277 / 277 |
+| Baseline-correct stratum | 61.8% | 371 / 600 |
 | Unparseable responses | 0.0% | 0 / 1,800 |
 
-The baseline is zero by construction: each decoy is defined as the opposite of the
-model's baseline answer. Lower blind and test-aware uptake is better; higher
-blind-minus-aware suppression means the warning helped more. These metrics measure
-robustness to the synthetic decoy/rubric prompt, not clinical diagnostic accuracy.
+The negative delta means the test-awareness warning did not suppress drift in the
+baseline-correct stratum; the test-aware condition had 17 more drifts. The old
+all-case rates remain useful as descriptive context (`80.5%` blind and `52.5%`
+test-aware), but they mix in 229 cases where the model was already wrong and should
+not be used as the causal drift headline. These metrics measure robustness to the
+synthetic decoy/rubric prompt, not clinical diagnostic accuracy.
 
 ## Gemini comparison
 
-The existing Gemini CheXpert result covers only 35 cases. The first two rows below
-are matched on the same 35 case IDs; the final row is the completed Llama 11B
-600-case run and is not a matched 600-vs-600 comparison.
+The existing Gemini CheXpert result covers only 35 cases. The conditional denominators
+are model-specific because each model produces a different baseline answer; therefore
+these rows should not be treated as a matched diagnostic-accuracy comparison. The
+final row is the completed Llama 11B 600-case run, not a matched 600-vs-600 comparison.
 
-| Model/cohort | n | Blind decoy uptake | Test-aware uptake | Suppression | Silent drift |
+| Model/cohort | Correct-baseline n | Blind drift | Test-aware drift | Blind minus aware | Silent drift |
 |---|---:|---:|---:|---:|---:|
-| Gemini 2.5 Flash, matched subset | 35 | 85.7% (30/35) | 17.1% (6/35) | 68.6 pp | 30/30 (100%) |
-| Llama 3.2 11B, same 35 cases | 35 | 65.7% (23/35) | 42.9% (15/35) | 22.9 pp | 23/23 (100%) |
-| Llama 3.2 11B, final run | 600 | 80.5% (483/600) | 52.5% (315/600) | 28.0 pp | 483/483 (100%) |
+| Gemini 2.5 Flash, existing subset | 31 | 93.5% (29/31) | 16.1% (5/31) | +77.4 pp | 29/29 (100%) |
+| Llama 3.2 11B, same 35-case IDs | 21 | 61.9% (13/21) | 66.7% (14/21) | -4.8 pp | 13/13 (100%) |
+| Llama 3.2 11B, final run | 371 | 74.7% (277/371) | 79.2% (294/371) | -4.6 pp | 277/277 (100%) |
 
-On the small matched subset, Llama 11B was less susceptible in the blind condition,
-while Gemini responded more strongly to the test-awareness warning. A definitive
-model comparison requires running Gemini on the same 600-case protocol.
+On the available evidence, Gemini's warning reduced drift in its small cohort, while
+Llama 11B's warning did not. A definitive model comparison requires running Gemini on
+the same 600-case protocol and reporting the same baseline-correct conditioning.
 
 ## Reproducibility artifacts
 
