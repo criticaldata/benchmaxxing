@@ -33,5 +33,10 @@
   },
   "overlap": {
     "error": "Need at least 2 models for an overlap test."
-  }
+  },
+  "n_cases": 600,
+  "clean_accuracy_by_model": {
+    "nvidia/nemotron-3-super-120b-a12b": 0.855
+  },
+  "cohort": "the 600-case MIMIC-CXR report-text solo sample the committed Gemini records cover (Random(0).sample of the 1500-case prefix), the same case_index set; the full 633-case run is results/<model>/solo_results.json"
 }

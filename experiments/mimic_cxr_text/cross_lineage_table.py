@@ -25,14 +25,15 @@ def main():
     slug = a.model.replace("/", "_")
     G, N = R / "results", R / "results" / slug
     G600 = R / "results_n600"
+    N600 = G600 / slug
     rows = []
 
     def row(arm, metric, g, n, note=""):
         rows.append((arm, metric, g, n, note))
 
-    # The model-scoped solo_results.json is the full 633-case run (as the sibling lineages name it);
-    # the Gemini comparison is on the 600-case solo sample, solo_results_600.json.
-    gs, ns = load(G600 / "solo_results.json"), load(N / "solo_results_600.json")
+    # results/<model>/solo_results.json is the full 633-case run; the 600-case solo sample the Gemini
+    # comparison uses lives under results_n600/<model>/, the lane's own layout for that cohort.
+    gs, ns = load(G600 / "solo_results.json"), load(N600 / "solo_results.json")
     gf = gs["flip_rate_by_model"]["gemini-2.5-flash-lite"]
     nf = ns["flip_rate_by_model"][a.model]
     row("solo n=600", "cue flip rate, overall", f"{gf['overall']:.3f}", f"{nf['overall']:.3f}", "flash-lite tier; 3 cues x 600")
@@ -40,7 +41,7 @@ def main():
         row("", f"  {c}", f"{gf['per_cue'][c]:.3f}", f"{nf['per_cue'][c]:.3f}")
     row("", "noise floor (repeat call, temp 0)", f"{gs['noise_floor_by_model']['gemini-2.5-flash-lite']:.3f}",
         f"{ns['noise_floor_by_model'][a.model]:.3f}")
-    gr, nr = load(G600 / "solo_results_refusal_aware.json"), load(N / "solo_results_refusal_aware.json")
+    gr, nr = load(G600 / "solo_results_refusal_aware.json"), load(N600 / "solo_results_refusal_aware.json")
     gk = gr.get("gemini-2.5-flash-lite", {}); nk = nr.get(a.model, {})
     if gk and nk:
         row("", "abstention rate", f"{gk['abstention_rate']:.4f}", f"{nk['abstention_rate']:.4f}")
