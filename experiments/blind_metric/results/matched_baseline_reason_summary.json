@@ -43,5 +43,9 @@
     "n_flagged": 2,
     "rate": 0.05
   },
+  "blind_source": {
+    "cache": 40,
+    "fresh": 0
+  },
   "new_api_calls_this_run": 0
 }

@@ -203,7 +203,29 @@ def summarise(rows, model):
         "paired_reason_only_vs_blind": {"both_decoy": both, "note_only": b, "request_only": c,
                                         "neither": neither, "mcnemar_exact_p": mcnemar_exact(b, c)},
         "keyword_screen_without_a_note": {"n_flagged": named, "rate": round(named / n, 4)},
+        "blind_source": {src: sum(1 for r in rows if r.get("blind_source", "cache") == src)
+                         for src in ("cache", "fresh")},
     }
+
+
+def committed_agreement(rows, flags_csv):
+    """Agreement between this run's blind flags and a committed de-identified blind_metric.csv.
+
+    The committed file keys rows by case_index, the rank of each case_id in sorted order, with no
+    identifiers (experiments/mimic_cxr_image/results/deid/README.md). This run sorts its rows the
+    same way, so row i here is case_index i there. Used when the note condition had to be re-asked
+    because its committed responses are not in the cache on this machine.
+    """
+    import csv
+    committed = list(csv.DictReader(open(flags_csv)))
+    if len(committed) != len(rows):
+        return {"n_committed": len(committed), "n_here": len(rows), "comparable": False}
+    agree = sum(1 for r, c in zip(rows, committed) if int(r["blind_is_decoy"]) == int(c["blind_is_decoy"]))
+    here = sum(r["blind_is_decoy"] for r in rows)
+    there = sum(int(c["blind_is_decoy"]) for c in committed)
+    return {"n": len(rows), "comparable": True, "blind_is_decoy_agree": agree,
+            "blind_is_decoy_disagree": len(rows) - agree,
+            "n_decoy_here": here, "n_decoy_committed": there}
 
 
 # ----------------------------------------------------------------------------- lanes
@@ -233,11 +255,12 @@ def run_text(cases, cache, model):
                 "reason_declared": _lane.declared(reason_txt, opts),
                 "base_is_decoy": base_ans == decoy, "reason_is_decoy": reason_ans == decoy,
                 "blind_is_decoy": blind_ans == decoy, "reason_flip": reason_ans != base_ans,
-                "named_rubric_reason_only": bool(_NAMING.search(reason_txt or ""))}
+                "named_rubric_reason_only": bool(_NAMING.search(reason_txt or "")),
+                "blind_source": "cache"}
     return _collect(cases, one)
 
 
-def run_imaging(cases, cache, root):
+def run_imaging(cases, cache, root, allow_blind_calls=False):
     def one(case):
         finding = case.label.split("|")[0].strip()
         img = Image.open(root / case.image_ref).convert("L")
@@ -248,8 +271,13 @@ def run_imaging(cases, cache, root):
         base_ans = parse_yesno(base_txt)
         decoy = "no" if base_ans == "yes" else "yes"
         blind_txt = cache.peek(blind_p(decoy), img)
+        blind_source = "cache"
         if blind_txt is None:
-            raise SystemExit(f"{case.case_id}: committed blind response missing from the cache")
+            if not allow_blind_calls:
+                raise SystemExit(f"{case.case_id}: committed blind response missing from the cache "
+                                 "(pass --allow-blind-calls to re-ask the note condition)")
+            blind_txt = cache.ask(blind_p(decoy), img)
+            blind_source = "fresh"
         reason_txt = cache.ask(reason_p, img)
         reason_ans = parse_yesno(reason_txt)
         blind_ans = parse_yesno(blind_txt)
@@ -257,7 +285,8 @@ def run_imaging(cases, cache, root):
                 "base_answer": base_ans, "reason_answer": reason_ans, "blind_answer": blind_ans,
                 "base_is_decoy": base_ans == decoy, "reason_is_decoy": reason_ans == decoy,
                 "blind_is_decoy": blind_ans == decoy, "reason_flip": reason_ans != base_ans,
-                "named_rubric_reason_only": bool(_NAMING.search(reason_txt or ""))}
+                "named_rubric_reason_only": bool(_NAMING.search(reason_txt or "")),
+                "blind_source": blind_source}
     return _collect(cases, one)
 
 
@@ -284,6 +313,12 @@ def main() -> None:
                     help="defaults to the lane's committed model: "
                          f"{TEXT_MODEL} (text), {IMAGING_MODEL} (imaging)")
     ap.add_argument("--n", type=int, default=None, help="defaults to 40 (text) or 35 (imaging)")
+    ap.add_argument("--allow-blind-calls", action="store_true",
+                    help="imaging lane: re-ask the note condition when its committed response is "
+                         "not in this cache (the MIMIC-CXR note arm was cached on another machine)")
+    ap.add_argument("--committed-flags", default=None,
+                    help="a committed de-identified blind_metric.csv to compare re-asked note "
+                         "answers against, row for row")
     args = ap.parse_args()
 
     model = args.model or (TEXT_MODEL if args.lane == "text" else IMAGING_MODEL)
@@ -302,9 +337,11 @@ def main() -> None:
         cases = [c for c in load_cases(args.manifest)
                  if c.label and c.label.lower() not in ("no finding", "", "none")
                  and (root / c.image_ref).exists()][:n]
-        rows = run_imaging(cases, cache, root)
+        rows = run_imaging(cases, cache, root, allow_blind_calls=args.allow_blind_calls)
 
     summary = summarise(rows, model)
+    if args.committed_flags:
+        summary["committed_arm_agreement"] = committed_agreement(rows, args.committed_flags)
     summary["new_api_calls_this_run"] = cache.calls
     (out / "matched_baseline_reason.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows))
     (out / "matched_baseline_reason_summary.json").write_text(json.dumps(summary, indent=2))

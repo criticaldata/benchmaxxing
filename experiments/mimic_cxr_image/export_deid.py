@@ -59,6 +59,12 @@ SPECS = [
      ["op0.15_iso_adopt", "op0.15_shared_adopt", "op0.15_solo_flip",
       "op0.3_iso_adopt", "op0.3_shared_adopt", "op0.3_solo_flip",
       "op0.45_iso_adopt", "op0.45_shared_adopt", "op0.45_solo_flip"]),
+    # The hidden-rubric arm's matched control (experiments/matched_baseline): the blind prompt with
+    # the scoring note removed. Same 141 films, same ordering as blind_metric.csv, so the two join
+    # on case_index. No clean_correct: the blind-metric source never carried one.
+    ("matched_baseline_reason.csv", "matched_baseline_reason.jsonl",
+     ["base_is_decoy", "reason_is_decoy", "blind_is_decoy", "reason_flip",
+      "named_rubric_reason_only"], False),
 ]
 
 # The solo arm writes to the results root (out=""), not to a per-arm subdirectory, so its source has
@@ -94,6 +100,7 @@ EXPECTED_ROWS = {
     "solo.csv": 834, "nih_match_solo.csv": 35, "cascade.csv": 215, "referee_cascade.csv": 417,
     "system_flag.csv": 834, "strength_cascade.csv": 834, "referee.csv": 417, "judge.csv": 417,
     "judge_with_image.csv": 417, "blind_metric.csv": 141, "provenance.csv": 834,
+    "matched_baseline_reason.csv": 141,
 }
 
 # Never emit any of these, asserted rather than assumed.
@@ -313,7 +320,7 @@ UNOWNED_CHECKS = [
 
 
 def verify():
-    needed = [n for n, _, _ in SPECS] + ["solo.csv", "blind_metric.csv"]
+    needed = [sp[0] for sp in SPECS] + ["solo.csv", "blind_metric.csv"]
     missing = [n for n in needed if not os.path.exists(os.path.join(DEID, n))]
     if missing:
         print("cannot verify, these files do not exist yet:", ", ".join(missing))
@@ -375,8 +382,10 @@ if __name__ == "__main__":
     if not args.check:
         n = assert_derivation_holds()
         print(f"clean_correct derivation reproduces the stored column on {n} rows")
-        for name, src, cols in SPECS:
-            print(f"wrote deid/{name} ({write_one(name, src, cols)} rows)")
-        untouched = sorted(set(os.listdir(DEID)) - {n for n, _, _ in SPECS})
+        for spec in SPECS:
+            name, src, cols = spec[0], spec[1], spec[2]
+            emit = spec[3] if len(spec) > 3 else True
+            print(f"wrote deid/{name} ({write_one(name, src, cols, emit)} rows)")
+        untouched = sorted(set(os.listdir(DEID)) - {sp[0] for sp in SPECS})
         print("left untouched:", ", ".join(f"{f} ({NOT_OWNED.get(f, 'unknown')})" for f in untouched))
     sys.exit(0 if verify() else 1)
