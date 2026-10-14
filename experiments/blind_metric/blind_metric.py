@@ -40,8 +40,9 @@ from benchmaxxing.data import load_cases
 DEFAULT_MODEL = "gemini-2.5-flash-lite"
 NIM_BASE_URL = "https://integrate.api.nvidia.com/v1"
 
-# Kept identical to experiments/_lane.HOSTED_PREFIXES; see the note there.
+# Kept identical to experiments/_lane.HOSTED_PREFIXES and LOCAL_PREFIX; see the notes there.
 HOSTED_PREFIXES = ("nvidia/",)
+LOCAL_PREFIX = "local/"
 # An open-weights model served on the machine that runs the experiment has no vendor endpoint, no
 # key and no request ceiling, and BENCHMAXXING_LOCAL_BASE_URL names that server. Gemini and
 # DeepSeek ids keep their vendor routing whatever it is set to, so one variable cannot silently
@@ -58,13 +59,31 @@ _NAMING = re.compile(
 )
 
 
+def _has_local_prefix(model):
+    return model.lower().startswith(LOCAL_PREFIX)
+
+
+def _served_name(model):
+    """The id the server is asked for: the model id without the ``local/`` prefix."""
+    return model[len(LOCAL_PREFIX):] if _has_local_prefix(model) else model
+
+
+def _require_server(model):
+    """Exit when a ``local/`` id has no local server, rather than falling back to a vendor."""
+    if _has_local_prefix(model) and not LOCAL_BASE_URL:
+        raise SystemExit(f"{model} is served locally ('{LOCAL_PREFIX}' prefix) but "
+                         "BENCHMAXXING_LOCAL_BASE_URL is not set.")
+
+
 def _is_local(model):
     """True when this model is served locally rather than by a vendor endpoint.
 
     Mirrors experiments/_lane.is_local, including HOSTED_PREFIXES: an id hosted by its vendor here
     is never redirected to a local server, so a committed comparator cannot be answered by
-    whatever weights this machine happens to be serving.
+    whatever weights this machine happens to be serving. A ``local/`` id is always local.
     """
+    if _has_local_prefix(model):
+        return bool(LOCAL_BASE_URL)
     m = model.lower()
     if not LOCAL_BASE_URL or "gemini" in m or "deepseek" in m:
         return False
@@ -73,6 +92,9 @@ def _is_local(model):
 
 def _key_name(model):
     """Name the environment variable a model's key comes from."""
+    if _has_local_prefix(model):
+        # No key: what a cache miss on a local/ id lacks is the server.
+        return "BENCHMAXXING_LOCAL_BASE_URL"
     m = model.lower()
     if "gemini" in m:
         return "GEMINI_API_KEY"
@@ -86,6 +108,9 @@ def _key(model):
     if _is_local(model):
         # A cache miss on a local endpoint must not exit for a key that no server checks.
         return "not-needed"
+    if _has_local_prefix(model):
+        # No server: a fully cached run still replays, and the first miss exits naming the variable.
+        return None
     m = model.lower()
     if "gemini" in m:
         return os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
@@ -102,16 +127,19 @@ def _backend(model, key, client=None):
     endpoint is the one place a cap can be set without touching the prompts. ``client`` is the
     gateway's own injection hook, so dispatch is testable without constructing an SDK client.
     """
-    if "gemini" in model.lower():
-        return gateway.GeminiBackend(model=model, api_key=key)
+    _require_server(model)
     if _is_local(model):
+        # Checked before Gemini so a local/ id is never sent to a vendor; for an unprefixed id
+        # _is_local already excludes Gemini, so the order changes nothing there.
         base_url = LOCAL_BASE_URL
+    elif "gemini" in model.lower():
+        return gateway.GeminiBackend(model=model, api_key=key)
     elif "deepseek" in model.lower():
         base_url = "https://api.deepseek.com"
     else:
         base_url = NIM_BASE_URL
     return gateway.LocalOpenAICompatibleBackend(
-        model=model, base_url=base_url, api_key=key, client=client,
+        model=_served_name(model), base_url=base_url, api_key=key, client=client,
         default_decoding={"max_tokens": NIM_MAX_TOKENS},
     )
 

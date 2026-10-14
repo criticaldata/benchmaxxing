@@ -7,7 +7,11 @@ one, and the pacing that exists only to respect a vendor request ceiling goes to
 pin what must not change, which is the routing of the Gemini and DeepSeek ids whose committed
 caches the cross-lineage comparison depends on.
 """
+import hashlib
+import importlib.util
+import json
 import sys
+import types
 from pathlib import Path
 
 import pytest
@@ -153,3 +157,210 @@ def test_the_imaging_lane_copy_agrees_with_the_lane_on_hosted_prefixes(monkeypat
     assert not imaging_blind_metric._is_local(GEMINI)
     monkeypatch.setattr(imaging_blind_metric, "LOCAL_BASE_URL", "")
     assert not imaging_blind_metric._is_local(OPEN_WEIGHTS)
+
+
+# ---------------------------------------------------------------------------
+# The ``local/`` prefix: serving a vendor-hosted id's open weights locally.
+#
+# An id under HOSTED_PREFIXES is never captured by a local server, so its committed caches cannot be
+# answered by the wrong model. To serve the same weights locally a run names them
+# ``local/<vendor id>``: the request carries the vendor id, while the cache key, output directory
+# and result rows carry the prefixed id, so a hosted run and a local run never share a cache entry.
+# The third dispatch copy (CheXpert imaging blind metric) is held to the same contract for prefixed
+# ids; since #431 it also applies the HOSTED_PREFIXES exclusion, so all three copies agree.
+# ---------------------------------------------------------------------------
+
+LOCAL_ID = "local/nvidia/cosmos-reason2-8b"
+SERVED_ID = "nvidia/cosmos-reason2-8b"
+
+
+def _load_chexpert_copy():
+    """Import the CheXpert copy under its own name.
+
+    ``experiments/imaging/imaging_blind_metric.py`` has the same module name, so it is loaded from
+    its path. The module calls ``dotenv.load_dotenv()`` at import time and no extra declares
+    python-dotenv, so when the package is absent a no-op stands in for the duration of the import.
+    """
+    pytest.importorskip("PIL")
+    experiments = Path(__file__).resolve().parents[1] / "experiments"
+    path = experiments / "imaging_chexpert" / "imaging_blind_metric.py"
+    spec = importlib.util.spec_from_file_location("chexpert_imaging_blind_metric", path)
+    module = importlib.util.module_from_spec(spec)
+    stand_in = "dotenv" not in sys.modules and importlib.util.find_spec("dotenv") is None
+    if stand_in:
+        sys.modules["dotenv"] = types.SimpleNamespace(load_dotenv=lambda *a, **k: None)
+    try:
+        spec.loader.exec_module(module)
+    finally:
+        if stand_in:
+            del sys.modules["dotenv"]
+    return module
+
+
+chexpert = _load_chexpert_copy()
+
+_COPIES = {
+    "_lane": (_lane, _lane.is_local),
+    "blind_metric": (blind_metric, blind_metric._is_local),
+    "chexpert": (chexpert, chexpert._is_local),
+}
+
+# (id, server configured, expected per copy).
+_ROUTING_TABLE = [
+    (LOCAL_ID, True, {"_lane": True, "blind_metric": True, "chexpert": True}),
+    (LOCAL_ID, False, {"_lane": False, "blind_metric": False, "chexpert": False}),
+    # The prefix wins over the vendor-name rules: these open weights must not go to DeepSeek's API.
+    ("local/" + DEEPSEEK, True, {"_lane": True, "blind_metric": True, "chexpert": True}),
+    (NIM, True, {"_lane": False, "blind_metric": False, "chexpert": False}),
+    (GEMINI, True, {"_lane": False, "blind_metric": False, "chexpert": False}),
+    (OPEN_WEIGHTS, True, {"_lane": True, "blind_metric": True, "chexpert": True}),
+    (OPEN_WEIGHTS, False, {"_lane": False, "blind_metric": False, "chexpert": False}),
+]
+
+
+@pytest.mark.parametrize("model,server,expected", _ROUTING_TABLE)
+def test_the_three_dispatch_copies_route_the_same_ids_the_same_way(monkeypatch, model, server,
+                                                                    expected):
+    got = {}
+    for name, (module, is_local) in _COPIES.items():
+        monkeypatch.setattr(module, "LOCAL_BASE_URL", LOCAL if server else "")
+        got[name] = is_local(model)
+    assert got == expected
+
+
+@pytest.fixture
+def recorded(monkeypatch):
+    """Replace LocalOpenAICompatibleBackend; the returned list holds (model, base_url) per request.
+
+    All three copies reach the same ``benchmaxxing.gateway`` module, so one patch covers them.
+    """
+    requests = []
+
+    class _RecordingBackend:
+        def __init__(self, model, base_url, api_key=None, client=None, **kwargs):
+            self.model, self.base_url = model, base_url
+
+        def complete(self, prompt, image=None, decoding=None):
+            requests.append((self.model, self.base_url))
+            return "yes" if image is not None else "B"
+
+    monkeypatch.setattr(_lane.gateway, "LocalOpenAICompatibleBackend", _RecordingBackend)
+    return requests
+
+
+def _gray():
+    from PIL import Image
+    return Image.new("L", (8, 8), 128)
+
+
+def test_a_prefixed_id_reaches_the_local_server_without_its_prefix(tmp_path, recorded, monkeypatch):
+    for module in (_lane, blind_metric, chexpert):
+        monkeypatch.setattr(module, "LOCAL_BASE_URL", LOCAL)
+
+    lane_cache = _lane.Cache(tmp_path / "lane.jsonl", _lane.key_for(LOCAL_ID), LOCAL_ID)
+    assert lane_cache.complete("p") == "B"
+    bm_cache = blind_metric._Cache(tmp_path / "bm.jsonl", blind_metric._key(LOCAL_ID), LOCAL_ID)
+    assert bm_cache.complete(LOCAL_ID, "p") == "B"
+    cx_cache = chexpert._Cache(tmp_path / "cx.jsonl", chexpert._key(LOCAL_ID), LOCAL_ID)
+    assert cx_cache.ask("p", _gray()) == "yes"
+
+    assert recorded == [(SERVED_ID, LOCAL)] * 3
+
+
+def test_a_prefixed_id_keeps_its_prefix_in_cache_keys_and_output_paths(tmp_path, recorded,
+                                                                        monkeypatch):
+    for module in (_lane, blind_metric, chexpert):
+        monkeypatch.setattr(module, "LOCAL_BASE_URL", LOCAL)
+    expected_key = hashlib.sha256(f"{LOCAL_ID}\x00p".encode()).hexdigest()
+
+    _lane.Cache(tmp_path / "lane.jsonl", _lane.key_for(LOCAL_ID), LOCAL_ID).complete("p")
+    row = json.loads((tmp_path / "lane.jsonl").read_text().splitlines()[0])
+    assert row == {"k": expected_key, "model": LOCAL_ID, "resp": "B"}
+
+    bm_cache = blind_metric._Cache(tmp_path / "bm.jsonl", blind_metric._key(LOCAL_ID), LOCAL_ID)
+    bm_cache.complete(LOCAL_ID, "p")
+    row = json.loads((tmp_path / "bm.jsonl").read_text().splitlines()[0])
+    assert row["k"] == expected_key and row["model"] == LOCAL_ID
+
+    chexpert._Cache(tmp_path / "cx.jsonl", chexpert._key(LOCAL_ID), LOCAL_ID).ask("p", _gray())
+    row = json.loads((tmp_path / "cx.jsonl").read_text().splitlines()[0])
+    assert row["k"].startswith(f"{LOCAL_ID}:")
+
+    out_dir, cache_path = _lane.scoped(LOCAL_ID, str(tmp_path / "results"),
+                                       str(tmp_path / "results" / "call_cache.jsonl"))
+    assert out_dir.name == "local_nvidia_cosmos-reason2-8b"
+    assert cache_path.name == "local_nvidia_cosmos-reason2-8b_call_cache.jsonl"
+
+
+def test_a_prefixed_id_with_no_local_server_exits_and_never_reaches_the_vendor(tmp_path, recorded,
+                                                                               monkeypatch):
+    """Even with an NVIDIA key in the environment, a ``local/`` id never falls back to the vendor.
+
+    Before the prefix existed, ``local/nvidia/...`` was an unrecognised id that resolved to the
+    NVIDIA key and endpoint, so this request went to the hosted service under an invalid name.
+    """
+    monkeypatch.setenv("NVIDIA_API_KEY", "nvapi-test")
+    for module in (_lane, blind_metric, chexpert):
+        monkeypatch.setattr(module, "LOCAL_BASE_URL", "")
+    # A local/ id never resolves a vendor key, whatever the environment holds.
+    assert _lane.key_for(LOCAL_ID) is None
+    assert blind_metric._key(LOCAL_ID) is None
+    assert chexpert._key(LOCAL_ID) is None
+
+    with pytest.raises(SystemExit) as exc:
+        _lane.Cache(tmp_path / "lane.jsonl", _lane.key_for(LOCAL_ID), LOCAL_ID).complete("p")
+    assert "BENCHMAXXING_LOCAL_BASE_URL" in str(exc.value)
+    bm_cache = blind_metric._Cache(tmp_path / "bm.jsonl", blind_metric._key(LOCAL_ID), LOCAL_ID)
+    with pytest.raises(SystemExit) as exc:
+        bm_cache.complete(LOCAL_ID, "p")
+    assert "BENCHMAXXING_LOCAL_BASE_URL" in str(exc.value)
+    with pytest.raises(SystemExit) as exc:
+        chexpert._Cache(tmp_path / "cx.jsonl", chexpert._key(LOCAL_ID), LOCAL_ID).ask("p", _gray())
+    assert "BENCHMAXXING_LOCAL_BASE_URL" in str(exc.value)
+    # The backend builders refuse too, so no caller can reach the vendor by passing a key directly.
+    with pytest.raises(SystemExit):
+        _lane.backend_for(LOCAL_ID, "nvapi-test")
+    with pytest.raises(SystemExit):
+        blind_metric._backend(LOCAL_ID, "nvapi-test")
+    assert recorded == []
+
+
+def test_a_fully_cached_prefixed_run_needs_no_server(tmp_path, recorded, monkeypatch):
+    """Replaying committed local answers from a fresh clone must not require the server."""
+    monkeypatch.setattr(_lane, "LOCAL_BASE_URL", "")
+    key = hashlib.sha256(f"{LOCAL_ID}\x00p".encode()).hexdigest()
+    path = tmp_path / "lane.jsonl"
+    path.write_text(json.dumps({"k": key, "model": LOCAL_ID, "resp": "C"}) + "\n")
+    assert _lane.Cache(path, _lane.key_for(LOCAL_ID), LOCAL_ID).complete("p") == "C"
+    assert recorded == []
+
+
+def _load_deliberation_channel():
+    """experiments/medqa/deliberation_channel.py calls the OpenAI client itself, not backend.complete."""
+    path = Path(__file__).resolve().parents[1] / "experiments" / "medqa" / "deliberation_channel.py"
+    spec = importlib.util.spec_from_file_location("medqa_deliberation_channel", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+@pytest.mark.parametrize("model, sent", [(LOCAL_ID, SERVED_ID),
+                                         ("Qwen/Qwen2.5-VL-72B-Instruct", "Qwen/Qwen2.5-VL-72B-Instruct")])
+def test_the_direct_client_call_in_deliberation_channel_sends_the_served_id(monkeypatch, model, sent):
+    """The channel arm builds its own request; a prefixed id must reach the server without its prefix."""
+    channel = _load_deliberation_channel()
+    monkeypatch.setattr(_lane, "LOCAL_BASE_URL", LOCAL)
+    sent_kwargs = []
+
+    class _Completions:
+        def create(self, **kwargs):
+            sent_kwargs.append(kwargs)
+            message = types.SimpleNamespace(content="B", reasoning_content=None, model_extra={})
+            return types.SimpleNamespace(choices=[types.SimpleNamespace(message=message, finish_reason="stop")],
+                                         usage=types.SimpleNamespace(completion_tokens=1))
+
+    backend = types.SimpleNamespace(_client=types.SimpleNamespace(chat=types.SimpleNamespace(completions=_Completions())))
+    monkeypatch.setattr(channel._lane, "backend_for", lambda m, key, client=None: backend)
+    result = channel._call(model, "not-needed", "prompt", "none")
+    assert result["content"] == "B"
+    assert [k["model"] for k in sent_kwargs] == [sent]

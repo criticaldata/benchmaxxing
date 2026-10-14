@@ -119,7 +119,8 @@ def _call(model, key, prompt, condition):
                     decoding["thinking_config"] = {"thinking_budget": THINKING_BUDGET}
                 text = backend.complete(prompt, decoding=decoding)
                 return {"content": text, "reasoning_content": None, "finish_reason": None}
-            kwargs = {"model": model, "messages": [{"role": "user", "content": prompt}],
+            # The served name, as backend.complete sends it: a local/ id reaches the server without its prefix.
+            kwargs = {"model": _lane.served_name(model), "messages": [{"role": "user", "content": prompt}],
                       "temperature": 0, "max_tokens": _lane.MAX_TOKENS}
             if "gpt-oss" in model.lower():
                 # gpt-oss has no thinking switch: enable_thinking is silently ignored, and reasoning

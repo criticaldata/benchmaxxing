@@ -49,6 +49,24 @@ _NAMING = re.compile(
 # and no key. BENCHMAXXING_LOCAL_BASE_URL names that server; Gemini and DeepSeek ids keep their vendor
 # routing whatever it is set to, so the committed comparator arms cannot be redirected.
 LOCAL_BASE_URL = os.environ.get("BENCHMAXXING_LOCAL_BASE_URL", "").strip()
+# Kept identical to experiments/_lane.LOCAL_PREFIX; see the note there.
+LOCAL_PREFIX = "local/"
+
+
+def _has_local_prefix(model: str) -> bool:
+    return model.lower().startswith(LOCAL_PREFIX)
+
+
+def _served_name(model: str) -> str:
+    """The id the server is asked for: the model id without the ``local/`` prefix."""
+    return model[len(LOCAL_PREFIX):] if _has_local_prefix(model) else model
+
+
+def _require_server(model: str) -> None:
+    """Exit when a ``local/`` id has no local server, rather than falling back to a vendor."""
+    if _has_local_prefix(model) and not LOCAL_BASE_URL:
+        raise SystemExit(f"{model} is served locally ('{LOCAL_PREFIX}' prefix) but "
+                         "BENCHMAXXING_LOCAL_BASE_URL is not set.")
 
 
 # Kept identical to experiments/_lane.HOSTED_PREFIXES: an id hosted by its vendor here is never
@@ -58,6 +76,8 @@ HOSTED_PREFIXES = ("nvidia/",)
 
 
 def _is_local(model: str) -> bool:
+    if _has_local_prefix(model):
+        return bool(LOCAL_BASE_URL)
     m = model.lower()
     if not LOCAL_BASE_URL or "gemini" in m or "deepseek" in m:
         return False
@@ -68,6 +88,9 @@ def _key(model: str):
     """Resolve the API key strictly based on the model name."""
     if _is_local(model):
         return "not-needed"
+    if _has_local_prefix(model):
+        # No server: a fully cached run still replays, and the first miss exits naming the variable.
+        return None
     m = model.lower()
     if "deepseek" in m:
         return os.environ.get("DEEPSEEK_API_KEY")
@@ -101,6 +124,7 @@ class _Cache:
         with _lock:
             if k in self.store:
                 return self.store[k]
+        _require_server(self._model)
         if not self.key:
             m = self._model.lower()
             key_name = "GEMINI_API_KEY" if "gemini" in m else ("DEEPSEEK_API_KEY" if "deepseek" in m else "NVIDIA_API_KEY")
@@ -109,7 +133,7 @@ class _Cache:
         m = self._model.lower()
         if _is_local(self._model):
             backend = self._gw.LocalOpenAICompatibleBackend(
-                model=self._model,
+                model=_served_name(self._model),
                 base_url=LOCAL_BASE_URL,
                 api_key=self.key
             )

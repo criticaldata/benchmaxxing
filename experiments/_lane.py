@@ -61,15 +61,38 @@ MIN_CALL_INTERVAL = float(os.environ.get("BENCHMAXXING_MIN_CALL_INTERVAL", "0") 
 # someone else's id. Kept identical to the definition on the other text lane so consolidating the
 # two copies of this module is a no-op rather than a behaviour change.
 HOSTED_PREFIXES = ("nvidia/",)
+# To serve a vendor-hosted id's open weights locally, a run names them ``local/<id>``, for example
+# ``local/nvidia/cosmos-reason2-8b``. The request sends the id without the prefix; the cache key,
+# output directory and result rows keep it, so a hosted run of the same id can never be answered
+# from a locally served cache, and the reverse. Kept identical to the other dispatch copies.
+LOCAL_PREFIX = "local/"
+
+
+def _has_local_prefix(model: str) -> bool:
+    return model.lower().startswith(LOCAL_PREFIX)
+
+
+def served_name(model: str) -> str:
+    """The id the server is asked for: the model id without the ``local/`` prefix."""
+    return model[len(LOCAL_PREFIX):] if _has_local_prefix(model) else model
+
+
+def require_server(model: str) -> None:
+    """Exit when a ``local/`` id has no local server, rather than falling back to a vendor."""
+    if _has_local_prefix(model) and not LOCAL_BASE_URL:
+        raise SystemExit(f"{model} is served locally ('{LOCAL_PREFIX}' prefix) but "
+                         "BENCHMAXXING_LOCAL_BASE_URL is not set.")
 
 
 def is_local(model: str) -> bool:
     """True when this model is served locally rather than by a vendor endpoint.
 
-    Requires BENCHMAXXING_LOCAL_BASE_URL, and excludes every Gemini and DeepSeek id and every id
-    under HOSTED_PREFIXES, so setting the variable can only ever capture an open-weights id that
-    has no vendor endpoint here.
+    Requires BENCHMAXXING_LOCAL_BASE_URL. A ``local/`` id is always local. Otherwise every Gemini
+    and DeepSeek id and every id under HOSTED_PREFIXES is excluded, so setting the variable can only
+    ever capture an open-weights id that has no vendor endpoint here.
     """
+    if _has_local_prefix(model):
+        return bool(LOCAL_BASE_URL)
     m = model.lower()
     if not LOCAL_BASE_URL or "gemini" in m or "deepseek" in m:
         return False
@@ -184,6 +207,9 @@ def rebind_models(namespace: dict, model: str) -> int:
 
 def key_name(model: str) -> str:
     """Name the environment variable a model's key comes from."""
+    if _has_local_prefix(model):
+        # No key: what a cache miss on a local/ id lacks is the server.
+        return "BENCHMAXXING_LOCAL_BASE_URL"
     m = model.lower()
     if "gemini" in m:
         return "GEMINI_API_KEY"
@@ -197,6 +223,9 @@ def key_for(model: str):
     if is_local(model):
         # A cache miss on a local endpoint must not exit for a key that no server checks.
         return "not-needed"
+    if _has_local_prefix(model):
+        # No server: a fully cached run still replays, and the first miss exits naming the variable.
+        return None
     m = model.lower()
     if "gemini" in m:
         return os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
@@ -211,10 +240,13 @@ def backend_for(model: str, key, client=None):
     ``client`` is the gateway's own injection hook, so dispatch is testable without constructing
     an SDK client.
     """
-    if "gemini" in model.lower():
-        return gateway.GeminiBackend(model=model, api_key=key)
+    require_server(model)
     if is_local(model):
+        # Checked before Gemini so a local/ id is never sent to a vendor; for an unprefixed id
+        # is_local already excludes Gemini, so the order changes nothing there.
         base_url = LOCAL_BASE_URL
+    elif "gemini" in model.lower():
+        return gateway.GeminiBackend(model=model, api_key=key)
     elif "deepseek" in model.lower():
         base_url = DEEPSEEK_BASE_URL
     else:
@@ -223,7 +255,7 @@ def backend_for(model: str, key, client=None):
     # completion, so it gets a generous timeout; a hosted endpoint keeps the 60 s fast-fail, where a
     # stall is the failure mode worth converting into a retryable error.
     return gateway.LocalOpenAICompatibleBackend(
-        model=model, base_url=base_url, api_key=key, client=client,
+        model=served_name(model), base_url=base_url, api_key=key, client=client,
         default_decoding={"max_tokens": MAX_TOKENS},
         timeout=600.0 if is_local(model) else 60.0,
     )
@@ -264,7 +296,8 @@ def declared(text: str, options) -> str | None:
 def add_model_arg(ap, default: str = DEFAULT_MODEL):
     ap.add_argument("--model", default=default,
                     help="Model id. Gemini ids go through the Google SDK; anything else through "
-                         "the OpenAI-compatible endpoint (NVIDIA NIM by default).")
+                         "the OpenAI-compatible endpoint (NVIDIA NIM by default). Prefix an id "
+                         "with 'local/' to serve it on BENCHMAXXING_LOCAL_BASE_URL.")
 
 
 def scoped(model: str, out: str, default_cache: str, cache: str | None = None,
