@@ -120,7 +120,7 @@ ARMS: tuple[Arm, ...] = (
         "matched_baseline_reason",
         "blind_metric_100.csv",
         package="experiments.matched_baseline",
-        extra=("--lane", "imaging", "--allow-blind-calls",
+        extra=("--lane", "imaging", "--allow-blind-calls", "--repeats", "5",
                "--committed-flags", "{results}/deid/blind_metric.csv"),
     ),
     Arm("referee_cascade", "imaging_cascade", "referee_300.csv", out="referee_300"),

@@ -56,6 +56,9 @@ def test_every_committed_summary_has_an_arm_that_regenerates_it():
     # real committed files rather than a hand-copied list, so a new summary with no producing arm
     # fails here instead of becoming the next unreproducible number.
     produced = {(a.out, a.module) for a in ARMS}
+    # An arm run with --repeats also writes <module>_repeats_summary.json (the noise band of the
+    # matched control), so that summary is produced by the same arm.
+    produced |= {(a.out, f"{a.module}_repeats") for a in ARMS if "--repeats" in a.extra}
     checked, orphans = 0, []
     for path in sorted(RESULTS_DIR.rglob("*_summary.json")):
         if path.name == "plant_direction_summary.json":
