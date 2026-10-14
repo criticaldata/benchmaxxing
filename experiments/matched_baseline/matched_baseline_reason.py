@@ -124,17 +124,21 @@ class _Cache:
                     r = json.loads(line)
                     self.store[r["k"]] = r["resp"]
 
-    def _k(self, prompt, pil):
+    def _k(self, prompt, pil, salt=""):
+        # A salted key is how a repeat of the SAME prompt becomes a separate, replayable call: the
+        # model sees the identical prompt, only the cache entry differs.
+        tail = f"\x00{salt}" if salt else ""
         if pil is None:
-            return hashlib.sha256(f"{self.model}\x00{prompt}".encode()).hexdigest()
-        return f"{self.model}:" + hashlib.sha256(_img_bytes(pil) + b"\x00" + prompt.encode()).hexdigest()
+            return hashlib.sha256(f"{self.model}\x00{prompt}{tail}".encode()).hexdigest()
+        return f"{self.model}:" + hashlib.sha256(_img_bytes(pil) + b"\x00" + prompt.encode()
+                                                 + tail.encode()).hexdigest()
 
     def peek(self, prompt, pil=None):
         """The committed response, or None. Never calls out: the committed arms must replay."""
         return self.store.get(self._k(prompt, pil))
 
-    def ask(self, prompt, pil=None):
-        k = self._k(prompt, pil)
+    def ask(self, prompt, pil=None, salt=""):
+        k = self._k(prompt, pil, salt)
         with _lock:
             if k in self.store:
                 return self.store[k]
@@ -250,7 +254,18 @@ def committed_agreement(rows, flags_csv):
 
 # ----------------------------------------------------------------------------- lanes
 
-def run_text(cases, cache, model):
+def _repeat_record(case_id, main_answer, base_answer, decoy, answers):
+    """Per-case record of the repeated control reads: the main run's answer first."""
+    allv = [main_answer] + answers
+    pairs = [(a, b) for i, a in enumerate(allv) for b in allv[i + 1:]]
+    return {"case_id": case_id, "answers": allv, "n_distinct": len(set(allv)),
+            "any_disagreement": len(set(allv)) > 1,
+            "pairwise_disagreement": round(sum(a != b for a, b in pairs) / len(pairs), 4),
+            "flip_vs_baseline": [a != base_answer for a in allv],
+            "is_decoy": [a == decoy for a in allv]}
+
+
+def run_text(cases, cache, model, repeats=0):
     def one(case):
         opts, letters, base_p, reason_p, blind_p = text_prompts(case)
         base_txt = cache.peek(base_p)
@@ -268,6 +283,12 @@ def run_text(cases, cache, model):
         reason_txt = cache.ask(reason_p)
         reason_ans = parse_legacy_string(reason_txt, opts)
         blind_ans = parse_legacy_string(blind_txt, opts)
+        letter = lambda a: letters[opts.index(a)] if a in opts else None  # noqa: E731
+        if repeats:
+            reps = [letter(parse_legacy_string(cache.ask(reason_p, salt=f"repeat{i}"), opts))
+                    for i in range(1, repeats + 1)]
+            _REPEATS[case.case_id] = _repeat_record(case.case_id, letter(reason_ans), letter(base_ans),
+                                                    decoy_letter, reps)
         return {"case_id": case.case_id, "decoy_letter": decoy_letter,
                 "base_letter": letters[opts.index(base_ans)] if base_ans in opts else None,
                 "reason_letter": letters[opts.index(reason_ans)] if reason_ans in opts else None,
@@ -280,7 +301,7 @@ def run_text(cases, cache, model):
     return _collect(cases, one)
 
 
-def run_imaging(cases, cache, root, allow_blind_calls=False, allow_baseline_calls=False):
+def run_imaging(cases, cache, root, allow_blind_calls=False, allow_baseline_calls=False, repeats=0):
     def one(case):
         finding = case.label.split("|")[0].strip()
         img = Image.open(root / case.image_ref).convert("L")
@@ -306,6 +327,10 @@ def run_imaging(cases, cache, root, allow_blind_calls=False, allow_baseline_call
         reason_txt = cache.ask(reason_p, img)
         reason_ans = parse_yesno(reason_txt)
         blind_ans = parse_yesno(blind_txt)
+        if repeats:
+            reps = [parse_yesno(cache.ask(reason_p, img, salt=f"repeat{i}"))
+                    for i in range(1, repeats + 1)]
+            _REPEATS[case.case_id] = _repeat_record(case.case_id, reason_ans, base_ans, decoy, reps)
         return {"case_id": case.case_id, "finding": finding, "decoy": decoy,
                 "base_answer": base_ans, "reason_answer": reason_ans, "blind_answer": blind_ans,
                 "base_is_decoy": base_ans == decoy, "reason_is_decoy": reason_ans == decoy,
@@ -313,6 +338,27 @@ def run_imaging(cases, cache, root, allow_blind_calls=False, allow_baseline_call
                 "named_rubric_reason_only": bool(_NAMING.search(reason_txt or "")),
                 "blind_source": blind_source, "baseline_source": base_source}
     return _collect(cases, one)
+
+
+_REPEATS = {}  # case_id -> repeat record, filled by the lane runners when --repeats is set
+
+
+def summarise_repeats(records, repeats):
+    """The noise band of the control: how much the same prompt moves on its own."""
+    n = len(records)
+    per_rep_flip = [round(sum(r["flip_vs_baseline"][i] for r in records) / n, 4) for i in range(repeats + 1)]
+    per_rep_decoy = [round(sum(r["is_decoy"][i] for r in records) / n, 4) for i in range(repeats + 1)]
+    any_dis = sum(r["any_disagreement"] for r in records)
+    return {"repeats": repeats, "n": n,
+            "reads_per_case": repeats + 1,
+            "cases_with_any_disagreement": {"n": any_dis, "rate": round(any_dis / n, 4), "wilson95": wilson(any_dis, n)},
+            "mean_pairwise_disagreement": round(sum(r["pairwise_disagreement"] for r in records) / n, 4),
+            "flip_vs_baseline_per_read": per_rep_flip,
+            "flip_vs_baseline_band": [min(per_rep_flip), max(per_rep_flip)],
+            "decoy_per_read": per_rep_decoy,
+            "decoy_band": [min(per_rep_decoy), max(per_rep_decoy)],
+            "note": "read 0 is the main control run; reads 1.. are the same prompt re-asked at the same "
+                    "settings with a salted cache key, so every read is a real call and replays keyless"}
 
 
 def _collect(cases, fn):
@@ -341,6 +387,9 @@ def main() -> None:
     ap.add_argument("--allow-blind-calls", action="store_true",
                     help="imaging lane: re-ask the note condition when its committed response is "
                          "not in this cache (the MIMIC-CXR note arm was cached on another machine)")
+    ap.add_argument("--repeats", type=int, default=0,
+                    help="re-ask the control this many extra times per case (the noise band); "
+                         "written to matched_baseline_reason_repeats.jsonl and its summary")
     ap.add_argument("--allow-baseline-calls", action="store_true",
                     help="imaging lane: re-ask the baseline when its committed response is not in "
                          "this cache (the CheXpert cache does not replay from the films on hand)")
@@ -357,7 +406,7 @@ def main() -> None:
 
     if args.lane == "text":
         cases = load_cases(args.manifest)[:n]
-        rows = run_text(cases, cache, model)
+        rows = run_text(cases, cache, model, repeats=args.repeats)
     else:
         if not args.image_root:
             raise SystemExit("--image-root is required for the imaging lane")
@@ -366,7 +415,7 @@ def main() -> None:
                  if c.label and c.label.lower() not in ("no finding", "", "none")
                  and (root / c.image_ref).exists()][:n]
         rows = run_imaging(cases, cache, root, allow_blind_calls=args.allow_blind_calls,
-                           allow_baseline_calls=args.allow_baseline_calls)
+                           allow_baseline_calls=args.allow_baseline_calls, repeats=args.repeats)
 
     summary = summarise(rows, model)
     if args.committed_flags:
@@ -375,6 +424,14 @@ def main() -> None:
     (out / "matched_baseline_reason.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows))
     (out / "matched_baseline_reason_summary.json").write_text(json.dumps(summary, indent=2))
     print(json.dumps(summary, indent=2))
+    if args.repeats:
+        records = [_REPEATS[r["case_id"]] for r in rows if r["case_id"] in _REPEATS]
+        band = summarise_repeats(records, args.repeats)
+        band["model"] = model
+        band["new_api_calls_this_run"] = cache.calls
+        (out / "matched_baseline_reason_repeats.jsonl").write_text("".join(json.dumps(r) + "\n" for r in records))
+        (out / "matched_baseline_reason_repeats_summary.json").write_text(json.dumps(band, indent=2))
+        print(json.dumps(band, indent=2))
 
 
 if __name__ == "__main__":
