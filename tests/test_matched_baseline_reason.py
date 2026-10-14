@@ -126,3 +126,23 @@ def test_noise_band_replays_from_the_repeat_records(lane, n, any_dis):
         assert got[k] == s[k], k
     assert s["repeats"] == 5 and s["n"] == n and s["cases_with_any_disagreement"]["n"] == any_dis
     assert all(len(r["answers"]) == 6 for r in recs)
+
+
+def test_mimic_noise_band_summary_is_internally_consistent():
+    s = json.loads((ROOT / "experiments/mimic_cxr_image/results/matched_baseline_reason_repeats_summary.json").read_text())
+    assert s["repeats"] == 5 and s["n"] == 141 and s["reads_per_case"] == 6
+    assert s["cases_with_any_disagreement"]["n"] == 24
+    assert s["flip_vs_baseline_band"][0] <= s["flip_vs_baseline_per_read"][0] <= s["flip_vs_baseline_band"][1]
+
+
+def test_justification_reread_summary_replays_from_rows():
+    """Two model readers over every justification; the summary must follow from the flag rows."""
+    sys.path.insert(0, str(ROOT / "experiments" / "matched_baseline"))
+    import justification_reread as jr
+    rows = _rows("experiments/matched_baseline/results/justification_reread.jsonl")
+    s = json.loads((ROOT / "experiments/matched_baseline/results/justification_reread_summary.json").read_text())
+    got = jr.summarise(rows)
+    for k in ("n_items", "note_drifted", "note_held", "control"):
+        assert got[k] == s[k], k
+    assert s["n_items"] == 502 and s["note_drifted"]["n"] + s["note_held"]["n"] == 251 == s["control"]["n"]
+    assert not any("text" in r for r in rows)
