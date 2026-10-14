@@ -44,13 +44,15 @@ def _rows(path):
 @pytest.mark.parametrize("lane,model,n,flips,note_only,request_only", [
     ("experiments/blind_metric/results", "gemini-2.5-flash-lite", 40, 8, 8, 0),
     ("experiments/imaging/results", "gemini-2.5-flash", 35, 7, 22, 0),
+    ("experiments/chexpert/results", "gemini-2.5-flash", 35, 3, 28, 0),
 ])
 def test_committed_summary_replays_from_committed_rows(lane, model, n, flips, note_only, request_only):
     rows = _rows(f"{lane}/matched_baseline_reason.jsonl")
     committed = json.loads((ROOT / lane / "matched_baseline_reason_summary.json").read_text())
     got = mb.summarise(rows, model)
     for k in ("n", "decoy_uptake", "reason_flip", "uptake_delta", "stable_subset",
-              "paired_reason_only_vs_blind", "keyword_screen_without_a_note"):
+              "paired_reason_only_vs_blind", "keyword_screen_without_a_note", "blind_source",
+              "baseline_source"):
         assert got[k] == committed[k], k
     assert got["n"] == n and got["reason_flip"]["n"] == flips
     assert got["paired_reason_only_vs_blind"]["note_only"] == note_only
@@ -92,3 +94,15 @@ def test_mimic_summary_replays_from_the_deid_rows():
     assert s["paired_reason_only_vs_blind"]["request_only"] == request_only == 9
     assert s["blind_source"] == {"cache": 0, "fresh": 141}
     assert s["committed_arm_agreement"]["n_decoy_committed"] == 75
+
+
+def test_chexpert_fresh_arms_are_compared_with_the_committed_rows():
+    """CheXpert's committed cache does not replay from the films on hand, so its baseline and note
+    arms were re-asked; the summary must say so and carry the case-by-case agreement."""
+    s = json.loads((ROOT / "experiments/chexpert/results/matched_baseline_reason_summary.json").read_text())
+    assert s["baseline_source"] == {"cache": 0, "fresh": 35}
+    assert s["blind_source"] == {"cache": 0, "fresh": 35}
+    agree = s["committed_arm_agreement"]
+    assert agree["joined_on"] == "case_id" and agree["n"] == 35
+    assert agree["blind_is_decoy_agree"] == 26 and agree["decoy_agree"] == 30
+    assert agree["n_decoy_committed"] == 30 and agree["n_decoy_here"] == 31

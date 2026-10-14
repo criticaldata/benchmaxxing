@@ -103,3 +103,108 @@
 {"k": "gemini-2.5-flash:7ad8c399ef504089b30a06ebfadb9791e19e0c004f17f2e2e8e89f2e602ed2c7", "resp": "Yes"}
 {"k": "gemini-2.5-flash:aa49056b4c0ce8085185c3d8b5aa2b6b7b0233e4edf0a1d56443a362e019a823", "resp": "The diffuse haziness observed is likely due to suboptimal inspiration and technical factors inherent in a portable AP chest X-ray, rather than true parenchymal opacity.\nno"}
 {"k": "gemini-2.5-flash:d9a927d3d95fce46d7d5b33900f827a9e4404455638b7e416ef7c98326165e2a", "resp": "yes"}
+{"k": "gemini-2.5-flash:ceca6e804b58e243bd187d20e7bcff1f407a202718f6a6792f90cf467f234a49", "resp": "yes"}
+{"k": "gemini-2.5-flash:332ba67c03f6e6a66c0f2a4f36431d1e80a44e14ed982fef7b5400ad1c646bfe", "resp": "yes"}
+{"k": "gemini-2.5-flash:b2cf23de43397a07d3e585865395fda59638fa9bde6f70ad24040d62b9526e55", "resp": "no"}
+{"k": "gemini-2.5-flash:6ff687bf82c9714fd230b4e3424e1e89deebbe0c0cf6d8cec6d860f7780dd9d8", "resp": "no"}
+{"k": "gemini-2.5-flash:a111036817b1e92621fce8986ec3ee4f66b97690c51a80009f9d1d810e4996e4", "resp": "There is no visible visceral pleural line and lung markings extend to the chest wall bilaterally.\nno"}
+{"k": "gemini-2.5-flash:9e70089996ed03634f86bb2e6e1a2a8390b516c96fbaa7414783e744712b6dd7", "resp": "The X-ray demonstrates diffuse, patchy opacities and increased lung density throughout the lung fields, consistent with alveolar filling.\nyes"}
+{"k": "gemini-2.5-flash:1cc855b91ccc3efbcc7f86a44933115b37b2c4d04303bf29f910ac3c929547da", "resp": "There is no visible visceral pleural line or absence of lung markings in the periphery of either lung field.\nno"}
+{"k": "gemini-2.5-flash:8fc4cdafbd9a6714c1f46ca8c74130c0a2dd7bdf557c2d9c2fa8d428d31bc413", "resp": "The X-ray shows diffuse reticulonodular opacities throughout the lung fields, which is not characteristic of focal lobar or segmental consolidation.\n\nno"}
+{"k": "gemini-2.5-flash:a89b624db85030ef98c1d9c85e478dadb3330e97e5db6341e66215bb01d3c134", "resp": "no"}
+{"k": "gemini-2.5-flash:a715dd0626abdc314a1de4244088d318e61f8062add3bbe3b77dc18b34e1624d", "resp": "yes"}
+{"k": "gemini-2.5-flash:ea53bd210f72f0dcae22d994df23f3a215d3795e7cf9954257235884e9223ce8", "resp": "The diffuse lower zone opacities are non-specific and could represent pulmonary edema or atelectasis rather than definitive pleural effusion.\nno"}
+{"k": "gemini-2.5-flash:f6259a74691f1902e30d5bb458664cd7e0092b27e3b8444c625ea6f5f78cee9d", "resp": "There is blunting of both costophrenic angles and diffuse opacification of the lower lung fields, consistent with fluid accumulation.\nyes"}
+{"k": "gemini-2.5-flash:a08d8f03afb3ce3ec2692dc72c52872ce3eb82536e2435f5a3de284495eda838", "resp": "A classic meniscus sign, indicative of free pleural fluid, is not clearly demonstrated.\nno"}
+{"k": "gemini-2.5-flash:3684330175b8aea0d18ba724b1ca6694fb115c583c91bc6ba3df1b3ea7eac946", "resp": "yes"}
+{"k": "gemini-2.5-flash:a843be42d823adf76da11899bf8170c1cec2561d9910a071bbf521322a9dd31e", "resp": "A subtle visceral pleural line is visible in the right apex, with an absence of lung markings peripheral to it.\nyes"}
+{"k": "gemini-2.5-flash:4b0356d51e5b5f35308e82c4ccc58ad708ce648f32ab4ab32f3827da71716274", "resp": "Both costophrenic angles are blunted with visible fluid levels and opacification of the lower lung fields, indicating bilateral pleural effusion.\nyes"}
+{"k": "gemini-2.5-flash:6698e60da0af041322925e4dcf41b35730c731c54aa996ce3a7ab37a469de100", "resp": "no"}
+{"k": "gemini-2.5-flash:cb7698abeff4bdd61b333d403f7462ae7a84549b958f3b06ce5950ef89505f42", "resp": "There is no visible visceral pleural line or absence of lung markings in the periphery of either lung field.\nno"}
+{"k": "gemini-2.5-flash:4c1208cb22575b9eef67e0213807f5193af9b7edac7e0dbcb74fd1da8a0bd9b6", "resp": "yes"}
+{"k": "gemini-2.5-flash:35d1735dea1d2361c6ef211423c4dce5a047bf6da52106b354967f6b5068c002", "resp": "I do not observe a visceral pleural line separated from the chest wall with an associated absence of lung markings in the periphery.\nno"}
+{"k": "gemini-2.5-flash:617080e98fa7de26fa50fecbe19dab118d8542999df9170f930c5e26ae0ee5da", "resp": "Both costophrenic angles are sharp and clear, and there is no evidence of fluid layering or blunting of the diaphragms.\nno"}
+{"k": "gemini-2.5-flash:7790e81bdcf076c82e8c8df1c04c245013e027b46465b147c2a1f95c51a9070d", "resp": "There is no visible visceral pleural line or absence of lung markings in the periphery of either lung field.\nno"}
+{"k": "gemini-2.5-flash:1ae237cecba60dd67cfb9cfc594d64a503645cae74825a5268317bc01869446f", "resp": "The left costophrenic angle is blunted with a visible meniscus sign and opacification of the lower left hemithorax.\nyes"}
+{"k": "gemini-2.5-flash:c1719a5a62f349d6e3b1a59f108eef252f3815f3eab76ab165be5bafef43cd50", "resp": "The X-ray does not demonstrate lung opacity.\nno"}
+{"k": "gemini-2.5-flash:0c4f6ab970de0bc51a1f2fd01a39e90d4ae2807567fdb460d49230c7f39b114b", "resp": "yes"}
+{"k": "gemini-2.5-flash:00af2b6d4ce19a75bdf951c3c96fbd2a694466303c761e238daf9f3f2b05d17b", "resp": "There are widespread, patchy, and confluent areas of increased density throughout both lung fields, indicating lung opacity.\nyes"}
+{"k": "gemini-2.5-flash:ac823549e3ce7b6a242fb7993f6089e6078a61f3366bd8359b8eb2b77f9af47f", "resp": "yes"}
+{"k": "gemini-2.5-flash:2e71a1a875957c6094df268d66f93506f90b43a7ea8912f9a8dd576d91001fc0", "resp": "yes"}
+{"k": "gemini-2.5-flash:14bcdfda65065ea7cdd91331e02cdcf312e24783c0e793e05a79f431cf66f4ee", "resp": "The image primarily shows large bilateral pleural effusions and diffuse lower zone opacification, obscuring clear signs of atelectasis.\nno"}
+{"k": "gemini-2.5-flash:a00a4c1ffa5d3d4c2363b1187dca1683a786dadace51f5cab4b3a9d215ab54ae", "resp": "The lung fields are clear and well-aerated without any focal or diffuse areas of increased density.\nno"}
+{"k": "gemini-2.5-flash:b7857140dd55ebfd1f06b9d4b172ebcf7ddf5f6623f62b8c8c359d41a9b77dc2", "resp": "The lung fields appear clear and well-aerated without focal areas of increased density.\nno"}
+{"k": "gemini-2.5-flash:2e9b581d7726dd13f839ba027ffe8fc6fd308fd983f727af755158f3f2962536", "resp": "The X-ray shows diffuse hazy opacities in the lower lung zones with associated loss of lung volume, consistent with atelectasis.\nyes"}
+{"k": "gemini-2.5-flash:fcdbb7001dd9c7c73ece0c5ee3a1b5da98a324b5d714e4cf241147aa7d27f5ed", "resp": "The lung fields appear clear and well-aerated without focal or diffuse areas of increased radiodensity.\nno"}
+{"k": "gemini-2.5-flash:8f69f8a6b1ff2575064c0283093678c9ea346c0564f92ae4200026f4b888fcfa", "resp": "There are diffuse bilateral reticular and nodular opacities, particularly in the lower lung zones, indicating lung pathology.\nyes"}
+{"k": "gemini-2.5-flash:61e29d44e625c7adc2507fed3f74645d2898d6b849317025daec73d07037ea9e", "resp": "yes"}
+{"k": "gemini-2.5-flash:52447e82709315ceae59757188d06c3513efbe3852a7cfbf774ff8e3c065920d", "resp": "The findings are not definitively pulmonary edema.\nno"}
+{"k": "gemini-2.5-flash:32276c88ca6e65235b752b34cdbc5e7a6a2caa5836e612d107674c71ba2687b2", "resp": "yes"}
+{"k": "gemini-2.5-flash:829f9aaff735684fa39fcd53d667f71e6503001e34dd53cde8e5939fae076bd9", "resp": "yes"}
+{"k": "gemini-2.5-flash:8ef6b0058d68194c361489d530303b782a9c05c94cf9512a589585d4e5cdbe1c", "resp": "The X-ray shows cardiomegaly, blunted costophrenic angles, and diffuse bilateral hazy opacities consistent with pulmonary edema.\nyes"}
+{"k": "gemini-2.5-flash:d87b6529db56091e42730b7928ff2732be40bbfc24a56f08db64d4e5698b0637", "resp": "yes"}
+{"k": "gemini-2.5-flash:0749f442d833857ef4cb88a927efc298618fd797d1b86e3a9632d0b434486993", "resp": "Despite opacification in the left lower lobe, there are no clear signs of volume loss such as mediastinal shift or significant hemidiaphragm elevation.\nno"}
+{"k": "gemini-2.5-flash:440453f5b80f943938d5f2b11a0aae25175ff450211cd53081afba5005300a9c", "resp": "The widespread bilateral opacities and cardiomegaly are more characteristic of severe pulmonary edema, which involves the lung parenchyma, rather than solely pleural effusion.\nno"}
+{"k": "gemini-2.5-flash:a600b3dbfa9027afbba1943b04aa192ff5e4dd65db8d8c32004a0f825191ebee", "resp": "Both costophrenic angles are blunted and there is significant opacification of the lower lung fields with a meniscus sign, indicating fluid accumulation.\nyes"}
+{"k": "gemini-2.5-flash:a3f4a17316c496b452c91437b1c38823a8a17b73ef5ff519f0599d6a5208f575", "resp": "The X-ray shows linear opacities and some volume loss at the right lung base, consistent with atelectasis.\nyes"}
+{"k": "gemini-2.5-flash:dfedea121edfcaedb2de6b29d2741798986ff68199a72e5669b96b540bb83bdb", "resp": "The image displays diffuse bilateral infiltrates consistent with severe pulmonary edema, rather than discrete focal lung opacities.\nno"}
+{"k": "gemini-2.5-flash:550a5cee639fe4575d49945f3d98d7ee21b0f3b07528425583bd4219c4d4de5d", "resp": "yes"}
+{"k": "gemini-2.5-flash:61f640551ec076fb9e49918479918326772790e464c577921040c87551c46b37", "resp": "yes"}
+{"k": "gemini-2.5-flash:4a4d515473fb1be6b2d2107193cd64c38ee23e9e2ebc19524aa12cb8419a2000", "resp": "No clear meniscus sign or definite fluid level is visible, and the lower lung opacities are non-specific.\nno"}
+{"k": "gemini-2.5-flash:2feaa2928cb285643f90a8d6810aa6a787c8d08b50921687f9cd275e4f7a6b63", "resp": "There are widespread hazy and confluent areas of increased density throughout both lung fields, particularly at the bases.\nyes"}
+{"k": "gemini-2.5-flash:f98a3c48a30d0ff7b0b33aac3fa5c4744598439fcd58bca8c9d0642e25817eae", "resp": "yes"}
+{"k": "gemini-2.5-flash:b37d8374ea6bf8c48fa6c5b2a115bd24e7d43e0e682df7b5b5e3bceb4e45852e", "resp": "The X-ray shows blunting of the costophrenic angles and homogeneous opacification, particularly on the left side, consistent with pleural effusion.\nyes"}
+{"k": "gemini-2.5-flash:8c799d64d4503d25c710abfc9cedbcc1504d0e8b47624ecb2b6c8adbd64558fe", "resp": "The diffuse bilateral opacities are more consistent with severe pulmonary edema or consolidation rather than a distinct pleural effusion.\nno"}
+{"k": "gemini-2.5-flash:eece5f625295849326f4ec92f3930b41206b87bf52cbd22a0bb04b6ce77c3891", "resp": "yes"}
+{"k": "gemini-2.5-flash:d585ecb5af8c371ba773fabca276dacaf30384864a6827dcc09ec798ad899a25", "resp": "There is blunting of both costophrenic angles and homogeneous opacification obscuring the hemidiaphragms, especially on the right, consistent with fluid.\nyes"}
+{"k": "gemini-2.5-flash:7b49fe47c08142a89ffba87c2101fc6cb1b7cd575966b028f43d2a2e60e0a465", "resp": "No acute fracture lines or displacement are identified in the visible bones, including the clavicles, ribs, and shoulders, despite the presence of surgical hardware indicating a prior injury.\nno"}
+{"k": "gemini-2.5-flash:ad84c39bfdbb8d4cdacd7b4f9e2ee89912cdca41ef0c1269ac9cf41cfb205f1d", "resp": "The diffuse opacification at the lung bases is more consistent with severe pulmonary edema, obscuring clear signs of a distinct pleural effusion.\nno"}
+{"k": "gemini-2.5-flash:a91a57ffb99cdfb824243e05e2acf1cc9f5da0f54155fe2aa025fa59e66edd07", "resp": "yes"}
+{"k": "gemini-2.5-flash:dc57f4cebb1b52510143dff397f47891d6ce2ea4919c14140b000b00cba270d3", "resp": "Both costophrenic angles are severely blunted and obscured by diffuse opacification in the lower lung fields, indicating the presence of fluid.\nyes"}
+{"k": "gemini-2.5-flash:874c5cec3ae0e986d63a4c271078da5f3f90507bc4ee41dc68c99f8a051b6e06", "resp": "yes"}
+{"k": "gemini-2.5-flash:34a81ec854d4c7591b98ccf6017534809ff67eacd8809917f8d42fa8b9f5c69e", "resp": "Basal opacities and blunting are more consistent with severe pulmonary edema or atelectasis, not definitive pleural effusion.\nno"}
+{"k": "gemini-2.5-flash:8bc7f1fc17f66df512da52add7eefd44b91c08bf82558dae86ee1fb9cb05738b", "resp": "The costophrenic angles are blunted and obscured by dense opacities at both lung bases, consistent with fluid accumulation.\nyes"}
+{"k": "gemini-2.5-flash:d7ff4cb28e88bb0d41b1d71debb9b1be79a397e8e7f9216a38b94f7fc7b2aeff", "resp": "no"}
+{"k": "gemini-2.5-flash:88141c7ca1b239dbc5563c998892a84dc4a5b2ca165ff2f3549ebadc3e0e1666", "resp": "The lung fields appear clear without focal consolidation or significant ground-glass opacities.\nno"}
+{"k": "gemini-2.5-flash:10758fddb8c18b3369b8fa473c321c90e7663fdb1787562469a907442a9a507a", "resp": "Surgical hardware is present on the left clavicle, which is evidence of a treated fracture.\nyes"}
+{"k": "gemini-2.5-flash:baf38cb3b0c3d1bf9e71453eecfa8bc5b91baa01c8fbd173359b6b8a2bb83e62", "resp": "The right lung field demonstrates diffuse increased haziness and density, obscuring normal lung markings and the hemidiaphragm, consistent with lung opacity.\nyes"}
+{"k": "gemini-2.5-flash:0e4e370223e357c120b75204ed195f5d0f63724bd0913eb451384b7c1910a562", "resp": "no"}
+{"k": "gemini-2.5-flash:f069015de811ee4eb6ade80d7509407f063df88e0279b18264336c1c1d31abf5", "resp": "A thin visceral pleural line is visible in the left apex, separated from the chest wall by a radiolucent space devoid of lung markings.\nyes"}
+{"k": "gemini-2.5-flash:aa108f7cb1478ee817ccdf278aa7e7d44001da3b846ca046e286045dd79b9aaf", "resp": "yes"}
+{"k": "gemini-2.5-flash:dc26fb6d1c8d4283a6b2921473cc0eba021927907bd2b96c79a93d6b01232980", "resp": "There is blunting of the right costophrenic angle and haziness in the lower lung fields, consistent with pleural effusion.\nyes"}
+{"k": "gemini-2.5-flash:a33da74812d6b05d4604223a4a71d79c3aa32388a42a78cebbf98266b519ef27", "resp": "A clear visceral pleural line is visible on the left side, separated from the chest wall by a radiolucent space devoid of lung markings.\nyes"}
+{"k": "gemini-2.5-flash:2c8f2e0f746b2a8b64dc7639068d22f4c95a561cb722bfbc3fda58e5089e6c99", "resp": "The costophrenic angles are sharp and clear, and there is no evidence of fluid collection or blunting.\nno"}
+{"k": "gemini-2.5-flash:c37ef36faaf92aede8c5e6b228c12c54938d2f07bb5a88ae9c37a4eaf55105b8", "resp": "The lungs appear fully expanded with lung markings extending to the chest wall bilaterally, and no visceral pleural line is visible.\nno"}
+{"k": "gemini-2.5-flash:2b5d8672ada3a81ee2a5b3ee86f7d558ba3e4e85a8051e36bfbb1f0793dc5ff2", "resp": "yes"}
+{"k": "gemini-2.5-flash:dcb1c6d2d4ca048928ce0609a08fed55a59134b44a098fa4d529b616c9640885", "resp": "yes"}
+{"k": "gemini-2.5-flash:31b0277ffcce9ead02c39276663ad9a90c1c936e3ebea869f3a66f2cdd7fe1af", "resp": "The diffuse bilateral opacities are dense and somewhat heterogeneous, more consistent with extensive consolidation from severe pneumonia or ARDS rather than typical hydrostatic pulmonary edema.\nno"}
+{"k": "gemini-2.5-flash:1b346d3881fbe59508884eb594c533f40a54eb45aa829e8e5acdf2c6f7bc0cbe", "resp": "There is no visible visceral pleural line or absence of lung markings in the periphery of either lung field.\nno"}
+{"k": "gemini-2.5-flash:0fed7cb1ebe56778ec104b78ee4a944459a9257666103b30fd584a2b1b3f59e3", "resp": "The left costophrenic angle is blunted with a significant opacification and a meniscus sign in the left lower lung field, consistent with fluid.\nyes"}
+{"k": "gemini-2.5-flash:9aacb794bab8576893a107b48f21140d4ab475b4b88fb1abf8d38b92b6f371cb", "resp": "yes"}
+{"k": "gemini-2.5-flash:2ec886bc77f643982799fc3b3cc65e11b590aa5925ae2ba50a45c103434505f1", "resp": "The left costophrenic angle is blunted and obscured by opacification, indicating fluid accumulation in the pleural space.\nyes"}
+{"k": "gemini-2.5-flash:90ede60e58ad727fa5d5d2c781212536fd6a0a455a32b08016b442550fce977a", "resp": "The X-ray demonstrates diffuse bilateral perihilar and lower lobe opacities, consistent with alveolar edema, along with cardiomegaly and bilateral pleural effusions.\nyes"}
+{"k": "gemini-2.5-flash:e2658aa81288ec003078d6a2e7f842f8c05571883a58d8c9add05f9a28124741", "resp": "The X-ray demonstrates cardiomegaly, bilateral pleural effusions, and diffuse interstitial opacities.\nno"}
+{"k": "gemini-2.5-flash:b131eccedea3f3b6f8cfc5afde8405a012ab47e05f7533e620262142c9300591", "resp": "yes"}
+{"k": "gemini-2.5-flash:7132beb663a94513b7b4d441ed89ba1104c6a4f865ac94b3fca20d15d1ff3866", "resp": "The lung fields appear clear and well-aerated without focal areas of increased density or consolidation.\nno"}
+{"k": "gemini-2.5-flash:143aa180103d748a004f7f00a4c8565a3990d3a6ff7633962c0adda94928eeff", "resp": "The X-ray shows cardiomegaly, diffuse bilateral perihilar opacities, and blunting of the right costophrenic angle, all consistent with pulmonary edema.\nyes"}
+{"k": "gemini-2.5-flash:5089004bacb242fd5672ad0881f0d9b68fa6f8c114cfd7e2f2f5c9360ff7fb06", "resp": "There are diffuse reticulonodular opacities present throughout both lung fields, indicating increased density.\nyes"}
+{"k": "gemini-2.5-flash:f7020c881af6c336c1338d1ce7871543c8d67a342500497e14693df22891a8f5", "resp": "yes"}
+{"k": "gemini-2.5-flash:5878c826c24f0431d5006b9d2e1dde3ab24348e49f654320cbdc8ec9dea3df3f", "resp": "yes"}
+{"k": "gemini-2.5-flash:cc78d9fe767795b7f9eea3a793d8cce046352c3759887f82e9c62c570116c000", "resp": "The costophrenic angles are sharp and clear, with no evidence of blunting or a meniscus sign.\nno"}
+{"k": "gemini-2.5-flash:92d1a76d762193454ccdc34acc435d749454bee8ae20dea5ffc1029fb7361636", "resp": "The diffuse bilateral opacities, particularly the perihilar and \"bat wing\" pattern, are more consistent with severe pulmonary edema (intraparenchymal fluid) than free pleural fluid.\nno"}
+{"k": "gemini-2.5-flash:de0f64863df9d9389ee74c62e7784a118e577fd59bdf8ea21d8cee936d3feff8", "resp": "There is blunting of both costophrenic angles and opacification of the lower lung fields, especially on the left, indicating pleural fluid.\nyes"}
+{"k": "gemini-2.5-flash:4a4a6f1abfe66b45e12d74f86dd83f791c6f02a2af3c6c6b2ded8943cf71d17d", "resp": "The costophrenic angles are not blunted, and there is no clear evidence of fluid layering.\nno"}
+{"k": "gemini-2.5-flash:f92bc708a35995619721c04182dac98778c087ba72bf267d93cc03a2c7a3ca22", "resp": "yes"}
+{"k": "gemini-2.5-flash:024918a40386150fae30824996690bd25ac1db707decb94e8a96a1db14f75109", "resp": "There is significant blunting of the right costophrenic angle with a clear meniscus sign and opacification of the lower right hemithorax.\nyes"}
+{"k": "gemini-2.5-flash:e29ea76e400412a44e031730fddaebf1fafc01c144124e3716df951a2f8e10d7", "resp": "no"}
+{"k": "gemini-2.5-flash:1ad40d02a01265b2c50b275a739e5a498653dbf15a3dc47bba1918aaca292b78", "resp": "yes"}
+{"k": "gemini-2.5-flash:b11680c2780c31d39c574188efd768d7455f64b3f730b2a9c1383e221e4f12b8", "resp": "The right costophrenic angle is completely blunted and the hemidiaphragm is obscured by dense opacification, consistent with pleural fluid layering posteriorly in this supine view.\nyes"}
+{"k": "gemini-2.5-flash:795588a124b068cedf4d5e2c8a4635647fdacbec2597a65737bbb354b3ab0ee0", "resp": "Multiple thoracic vertebral bodies show significant anterior wedging and loss of height, consistent with compression fractures.\nyes"}
+{"k": "gemini-2.5-flash:25690ff190ca1c0cf0b13da29a930f93e5fc708c150c234c421988ff733e4d73", "resp": "yes"}
+{"k": "gemini-2.5-flash:94c6d6701a5039483c0a05de35e7525d668be4416e6cf94543f45e9173215192", "resp": "There are no clear signs of volume loss, such as mediastinal shift or diaphragm elevation, typically associated with atelectasis.\nno"}
+{"k": "gemini-2.5-flash:7f1b6903e26708c0e59f835297e9a96121ec54e150066b04810d950c5db06cfc", "resp": "Multiple thoracic vertebral bodies exhibit severe loss of height and anterior wedging, indicative of compression fractures.\nyes"}
+{"k": "gemini-2.5-flash:10261acbaddc189a41b54843477f4e3a0f053aafbcf458faeb40c23c73e113d4", "resp": "There are patchy opacities and reduced lung volumes, particularly in the lower lobes, consistent with atelectasis.\nyes"}
+{"k": "gemini-2.5-flash:d5f0adfe10e4e844913a718f6af132116e4ebaf0c69dfdb580b82e1198db5eb8", "resp": "A subtle visceral pleural line is visible anteriorly, separated from the chest wall by air.\nyes"}
+{"k": "gemini-2.5-flash:e0a2a018cd9a35cb023337a9f56a74dab993093c473e172fdc7e640735531087", "resp": "There is no visible visceral pleural line or absence of lung markings in the periphery.\nno"}
+{"k": "gemini-2.5-flash:14ca3f59cee80776ff9c634f432defe02be8dd66422d9021160bc9b5034b5cc1", "resp": "No focal consolidative opacities are clearly identified.\nno"}
+{"k": "gemini-2.5-flash:8576c9102eca28d01b7cfcf775b268d421f242fa4971179488fc1815fe0b8973", "resp": "There are diffuse, patchy areas of increased density throughout both lung fields, consistent with lung opacities.\nyes"}

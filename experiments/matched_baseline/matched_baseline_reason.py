@@ -205,6 +205,8 @@ def summarise(rows, model):
         "keyword_screen_without_a_note": {"n_flagged": named, "rate": round(named / n, 4)},
         "blind_source": {src: sum(1 for r in rows if r.get("blind_source", "cache") == src)
                          for src in ("cache", "fresh")},
+        "baseline_source": {src: sum(1 for r in rows if r.get("baseline_source", "cache") == src)
+                            for src in ("cache", "fresh")},
     }
 
 
@@ -217,6 +219,19 @@ def committed_agreement(rows, flags_csv):
     because its committed responses are not in the cache on this machine.
     """
     import csv
+    if str(flags_csv).endswith(".jsonl"):
+        # A public cohort keeps its committed rows with case ids, so the join is exact.
+        committed = {json.loads(l)["case_id"]: json.loads(l) for l in open(flags_csv) if l.strip()}
+        shared = [r for r in rows if r["case_id"] in committed]
+        if not shared:
+            return {"n_committed": len(committed), "n_here": len(rows), "comparable": False}
+        agree = sum(1 for r in shared if r["blind_is_decoy"] == committed[r["case_id"]]["blind_is_decoy"])
+        same_decoy = sum(1 for r in shared if "decoy" in r and r["decoy"] == committed[r["case_id"]].get("decoy"))
+        return {"n": len(shared), "comparable": True, "joined_on": "case_id",
+                "blind_is_decoy_agree": agree, "blind_is_decoy_disagree": len(shared) - agree,
+                "decoy_agree": same_decoy,
+                "n_decoy_here": sum(r["blind_is_decoy"] for r in shared),
+                "n_decoy_committed": sum(committed[r["case_id"]]["blind_is_decoy"] for r in shared)}
     committed = list(csv.DictReader(open(flags_csv)))
     if len(committed) != len(rows):
         return {"n_committed": len(committed), "n_here": len(rows), "comparable": False}
@@ -256,18 +271,23 @@ def run_text(cases, cache, model):
                 "base_is_decoy": base_ans == decoy, "reason_is_decoy": reason_ans == decoy,
                 "blind_is_decoy": blind_ans == decoy, "reason_flip": reason_ans != base_ans,
                 "named_rubric_reason_only": bool(_NAMING.search(reason_txt or "")),
-                "blind_source": "cache"}
+                "blind_source": "cache", "baseline_source": "cache"}
     return _collect(cases, one)
 
 
-def run_imaging(cases, cache, root, allow_blind_calls=False):
+def run_imaging(cases, cache, root, allow_blind_calls=False, allow_baseline_calls=False):
     def one(case):
         finding = case.label.split("|")[0].strip()
         img = Image.open(root / case.image_ref).convert("L")
         base_p, reason_p, blind_p = imaging_prompts(finding)
         base_txt = cache.peek(base_p, img)
+        base_source = "cache"
         if base_txt is None:
-            raise SystemExit(f"{case.case_id}: committed baseline missing from the cache")
+            if not allow_baseline_calls:
+                raise SystemExit(f"{case.case_id}: committed baseline missing from the cache "
+                                 "(pass --allow-baseline-calls to re-ask it)")
+            base_txt = cache.ask(base_p, img)
+            base_source = "fresh"
         base_ans = parse_yesno(base_txt)
         decoy = "no" if base_ans == "yes" else "yes"
         blind_txt = cache.peek(blind_p(decoy), img)
@@ -286,7 +306,7 @@ def run_imaging(cases, cache, root, allow_blind_calls=False):
                 "base_is_decoy": base_ans == decoy, "reason_is_decoy": reason_ans == decoy,
                 "blind_is_decoy": blind_ans == decoy, "reason_flip": reason_ans != base_ans,
                 "named_rubric_reason_only": bool(_NAMING.search(reason_txt or "")),
-                "blind_source": blind_source}
+                "blind_source": blind_source, "baseline_source": base_source}
     return _collect(cases, one)
 
 
@@ -316,9 +336,12 @@ def main() -> None:
     ap.add_argument("--allow-blind-calls", action="store_true",
                     help="imaging lane: re-ask the note condition when its committed response is "
                          "not in this cache (the MIMIC-CXR note arm was cached on another machine)")
+    ap.add_argument("--allow-baseline-calls", action="store_true",
+                    help="imaging lane: re-ask the baseline when its committed response is not in "
+                         "this cache (the CheXpert cache does not replay from the films on hand)")
     ap.add_argument("--committed-flags", default=None,
-                    help="a committed de-identified blind_metric.csv to compare re-asked note "
-                         "answers against, row for row")
+                    help="a committed blind_metric file to compare re-asked note answers against: "
+                         "a de-identified .csv joins on case_index, a .jsonl joins on case_id")
     args = ap.parse_args()
 
     model = args.model or (TEXT_MODEL if args.lane == "text" else IMAGING_MODEL)
@@ -337,7 +360,8 @@ def main() -> None:
         cases = [c for c in load_cases(args.manifest)
                  if c.label and c.label.lower() not in ("no finding", "", "none")
                  and (root / c.image_ref).exists()][:n]
-        rows = run_imaging(cases, cache, root, allow_blind_calls=args.allow_blind_calls)
+        rows = run_imaging(cases, cache, root, allow_blind_calls=args.allow_blind_calls,
+                           allow_baseline_calls=args.allow_baseline_calls)
 
     summary = summarise(rows, model)
     if args.committed_flags:
