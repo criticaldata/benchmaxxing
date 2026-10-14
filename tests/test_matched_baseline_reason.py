@@ -109,3 +109,20 @@ def test_chexpert_fresh_arms_are_compared_with_the_committed_rows():
     assert agree["joined_on"] == "case_id" and agree["n"] == 35
     assert agree["blind_is_decoy_agree"] == 26 and agree["decoy_agree"] == 30
     assert agree["n_decoy_committed"] == 30 and agree["n_decoy_here"] == 31
+
+
+@pytest.mark.parametrize("lane,n,any_dis", [
+    ("experiments/blind_metric/results", 40, 0),
+    ("experiments/imaging/results", 35, 3),
+    ("experiments/chexpert/results", 35, 5),
+])
+def test_noise_band_replays_from_the_repeat_records(lane, n, any_dis):
+    """Five extra reads of the control per case; the band summary must follow from the records."""
+    recs = _rows(f"{lane}/matched_baseline_reason_repeats.jsonl")
+    s = json.loads((ROOT / lane / "matched_baseline_reason_repeats_summary.json").read_text())
+    got = mb.summarise_repeats(recs, s["repeats"])
+    for k in ("n", "reads_per_case", "cases_with_any_disagreement", "mean_pairwise_disagreement",
+              "flip_vs_baseline_per_read", "flip_vs_baseline_band", "decoy_per_read", "decoy_band"):
+        assert got[k] == s[k], k
+    assert s["repeats"] == 5 and s["n"] == n and s["cases_with_any_disagreement"]["n"] == any_dis
+    assert all(len(r["answers"]) == 6 for r in recs)

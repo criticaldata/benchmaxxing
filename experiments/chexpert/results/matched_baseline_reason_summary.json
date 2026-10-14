@@ -44,12 +44,12 @@
     "rate": 0.0
   },
   "blind_source": {
-    "cache": 0,
-    "fresh": 35
+    "cache": 35,
+    "fresh": 0
   },
   "baseline_source": {
-    "cache": 0,
-    "fresh": 35
+    "cache": 35,
+    "fresh": 0
   },
   "committed_arm_agreement": {
     "n": 35,
@@ -61,5 +61,5 @@
     "n_decoy_here": 31,
     "n_decoy_committed": 30
   },
-  "new_api_calls_this_run": 105
+  "new_api_calls_this_run": 0
 }
