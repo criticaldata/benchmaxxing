@@ -1,0 +1,59 @@
+{
+  "n": 141,
+  "model": "gemini-2.5-flash",
+  "conditions": {
+    "baseline": "answer alone (committed arm, replayed)",
+    "reason_only": "justification request, no scoring note (this run)",
+    "blind": "scoring note plus justification request (committed arm, replayed)"
+  },
+  "decoy_uptake": {
+    "baseline": 0.0,
+    "reason_only": 0.2411,
+    "blind": 0.539
+  },
+  "reason_flip": {
+    "n": 34,
+    "rate": 0.2411,
+    "wilson95": [
+      0.178,
+      0.318
+    ]
+  },
+  "uptake_delta": {
+    "blind_minus_baseline_unmatched": 0.539,
+    "blind_minus_reason_only_matched": 0.2979
+  },
+  "stable_subset": {
+    "n_not_moved_by_request": 107,
+    "n_moved_by_note": 51,
+    "rate": 0.4766,
+    "wilson95": [
+      0.3845,
+      0.5704
+    ]
+  },
+  "paired_reason_only_vs_blind": {
+    "both_decoy": 25,
+    "note_only": 51,
+    "request_only": 9,
+    "neither": 56,
+    "mcnemar_exact_p": 3.09e-08
+  },
+  "keyword_screen_without_a_note": {
+    "n_flagged": 0,
+    "rate": 0.0
+  },
+  "blind_source": {
+    "cache": 0,
+    "fresh": 141
+  },
+  "committed_arm_agreement": {
+    "n": 141,
+    "comparable": true,
+    "blind_is_decoy_agree": 90,
+    "blind_is_decoy_disagree": 51,
+    "n_decoy_here": 76,
+    "n_decoy_committed": 75
+  },
+  "new_api_calls_this_run": 282
+}

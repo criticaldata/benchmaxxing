@@ -71,3 +71,24 @@ def test_mcnemar_exact_two_sided():
     assert mb.mcnemar_exact(0, 0) == 1.0
     assert mb.mcnemar_exact(8, 0) == pytest.approx(2 * 0.5 ** 8, rel=1e-3)
     assert mb.mcnemar_exact(3, 3) == 1.0
+
+
+def test_mimic_summary_replays_from_the_deid_rows():
+    """MIMIC-CXR keeps no per-case jsonl in the repo; its committed summary must follow from the
+    de-identified flags alone, which is all a reader without PhysioNet access can check."""
+    import csv
+    lane = ROOT / "experiments/mimic_cxr_image/results"
+    rows = list(csv.DictReader((lane / "deid/matched_baseline_reason.csv").open()))
+    s = json.loads((lane / "matched_baseline_reason_summary.json").read_text())
+    n = len(rows)
+    flips = sum(r["reason_flip"] == "1" for r in rows)
+    blind = sum(r["blind_is_decoy"] == "1" for r in rows)
+    note_only = sum(r["blind_is_decoy"] == "1" and r["reason_is_decoy"] == "0" for r in rows)
+    request_only = sum(r["reason_is_decoy"] == "1" and r["blind_is_decoy"] == "0" for r in rows)
+    assert n == s["n"] == 141
+    assert flips == s["reason_flip"]["n"] == 34
+    assert round(blind / n, 4) == s["decoy_uptake"]["blind"]
+    assert s["paired_reason_only_vs_blind"]["note_only"] == note_only == 51
+    assert s["paired_reason_only_vs_blind"]["request_only"] == request_only == 9
+    assert s["blind_source"] == {"cache": 0, "fresh": 141}
+    assert s["committed_arm_agreement"]["n_decoy_committed"] == 75
