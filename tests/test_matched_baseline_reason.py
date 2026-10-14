@@ -45,6 +45,8 @@ def _rows(path):
     ("experiments/blind_metric/results", "gemini-2.5-flash-lite", 40, 8, 8, 0),
     ("experiments/imaging/results", "gemini-2.5-flash", 35, 7, 22, 0),
     ("experiments/chexpert/results", "gemini-2.5-flash", 35, 3, 28, 0),
+    ("experiments/medmcqa/results/blind_metric", "gemini-2.5-flash-lite", 40, 6, 14, 0),
+    ("experiments/support2/results/blind_metric", "gemini-2.5-flash-lite", 31, 0, 13, 0),
 ])
 def test_committed_summary_replays_from_committed_rows(lane, model, n, flips, note_only, request_only):
     rows = _rows(f"{lane}/matched_baseline_reason.jsonl")
@@ -62,7 +64,9 @@ def test_committed_summary_replays_from_committed_rows(lane, model, n, flips, no
 def test_blind_flags_match_the_committed_note_arm():
     """Row for row, this arm's replayed note flags equal the committed hidden-rubric rows."""
     for lane, committed in (("experiments/blind_metric/results", "blind_metric.jsonl"),
-                            ("experiments/imaging/results", "imaging_blind_metric.jsonl")):
+                            ("experiments/imaging/results", "imaging_blind_metric.jsonl"),
+                            ("experiments/medmcqa/results/blind_metric", "blind_metric.jsonl"),
+                            ("experiments/support2/results/blind_metric", "blind_metric.jsonl")):
         ours = {r["case_id"]: r for r in _rows(f"{lane}/matched_baseline_reason.jsonl")}
         theirs = {r["case_id"]: r for r in _rows(f"{lane}/{committed}")}
         assert set(ours) == set(theirs)
@@ -113,6 +117,8 @@ def test_chexpert_fresh_arms_are_compared_with_the_committed_rows():
 
 @pytest.mark.parametrize("lane,n,any_dis", [
     ("experiments/blind_metric/results", 40, 0),
+    ("experiments/medmcqa/results/blind_metric", 40, 0),
+    ("experiments/support2/results/blind_metric", 31, 0),
     ("experiments/imaging/results", 35, 3),
     ("experiments/chexpert/results", 35, 5),
 ])
