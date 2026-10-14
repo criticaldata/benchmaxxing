@@ -95,6 +95,7 @@ class Arm:
     takes_manifest: bool = True  # False for runners that replay a transcript and open no image
     cache: str = CACHE_NAME
     needs: str = ""  # transcript this arm reads, relative to --results; checked before launching
+    package: str = "experiments.imaging"  # the runner's package; the shared imaging runners by default
 
 
 # Order matters twice: system_flag stages the cascade transcript, and the referee consumes the
@@ -111,6 +112,17 @@ ARMS: tuple[Arm, ...] = (
     ),
     Arm("strength_cascade", "imaging_strength_cascade", "solo_600.csv"),
     Arm("blind_metric", "imaging_blind_metric", "blind_metric_100.csv"),
+    # The hidden-rubric arm's matched control: the rubric prompt minus the rubric line, on the same
+    # manifest. Its rubric responses are re-asked here (the committed ones were cached elsewhere) and
+    # compared row for row with the committed de-identified flags.
+    Arm(
+        "matched_baseline_reason",
+        "matched_baseline_reason",
+        "blind_metric_100.csv",
+        package="experiments.matched_baseline",
+        extra=("--lane", "imaging", "--allow-blind-calls",
+               "--committed-flags", "{results}/deid/blind_metric.csv"),
+    ),
     Arm("referee_cascade", "imaging_cascade", "referee_300.csv", out="referee_300"),
     Arm(
         "referee",
@@ -215,7 +227,7 @@ def _scope_arg(a: str, results: Path, model: str | None) -> str:
 def build_command(arm: Arm, manifests: Path, image_root: Path, results: Path,
                   python: str = sys.executable, model: str | None = None) -> list[str]:
     """The exact argv for one arm. Pure: no filesystem writes, so tests can assert on it."""
-    cmd = [python, "-m", f"experiments.imaging.{arm.module}"]
+    cmd = [python, "-m", f"{arm.package}.{arm.module}"]
     if model:
         cmd += ["--model", model]
     if arm.takes_manifest:
