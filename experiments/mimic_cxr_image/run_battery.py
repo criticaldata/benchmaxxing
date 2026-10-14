@@ -111,6 +111,11 @@ ARMS: tuple[Arm, ...] = (
     ),
     Arm("strength_cascade", "imaging_strength_cascade", "solo_600.csv"),
     Arm("blind_metric", "imaging_blind_metric", "blind_metric_100.csv"),
+    # The blind metric with a matched reason-only baseline and five repeats per condition; same
+    # 141 films as blind_metric, its own session cache so repeats are never answered from the
+    # shared cache, and the de-identified export is written by matched_conditions_report.py.
+    Arm("matched", "matched_conditions", "blind_metric_100.csv", out="matched",
+        cache="matched/session_cache.jsonl", extra=("--repeats", "5")),
     Arm("referee_cascade", "imaging_cascade", "referee_300.csv", out="referee_300"),
     Arm(
         "referee",

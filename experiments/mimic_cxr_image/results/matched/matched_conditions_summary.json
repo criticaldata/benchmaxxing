@@ -1,0 +1,67 @@
+{
+  "n": 141,
+  "repeats": 5,
+  "effect_net_of_reason": {
+    "reason_decoy_rate_first_repeat": 0.2128,
+    "note_decoy_rate_first_repeat": 0.5816,
+    "delta_note_minus_reason": 0.3688,
+    "paired": {
+      "gain": 58,
+      "lose": 6,
+      "pvalue_exact": 9.029018960445001e-12
+    },
+    "reason_decoy_rate_all_repeats": 0.2426,
+    "note_decoy_rate_all_repeats": 0.5801,
+    "reason_wilson95_first_repeat": [
+      0.1533,
+      0.2875
+    ],
+    "note_wilson95_first_repeat": [
+      0.499,
+      0.6598
+    ]
+  },
+  "noise_band": {
+    "mean_pairwise_disagreement_reason": 0.0766,
+    "mean_pairwise_disagreement_note": 0.139,
+    "cases_with_any_disagreement_reason": 20,
+    "cases_with_any_disagreement_note": 37,
+    "flips_above_band": 42,
+    "flips_strict_5_of_5_vs_0_of_5": 33,
+    "flips_by_majority": 56,
+    "rule": "note-driven iff mean(note_is_decoy) - mean(reason_is_decoy) > max(pairwise disagreement within reason, within note) and the note majority is the decoy"
+  },
+  "referee_calibration": {
+    "base_is_decoy_majority_rate": 0.2482,
+    "blind_is_decoy_majority_rate": 0.5957,
+    "cases_where_single_call_would_mislabel_base": 9,
+    "cases_where_single_call_would_mislabel_blind": 16
+  },
+  "naming": {
+    "note_calls_named": 0,
+    "reason_calls_named": 0,
+    "note_following_calls": 409,
+    "note_following_calls_named": 0
+  },
+  "per_patient": {
+    "n_patients": 97,
+    "note_driven_patients": 37,
+    "patient_level_note_rate": 0.621,
+    "patient_level_reason_rate": 0.2601
+  },
+  "lane": "imaging",
+  "model": "gemini-2.5-flash",
+  "session": "2026-10-14",
+  "seed": 0,
+  "new_api_calls_this_run": 1551,
+  "settings": {
+    "temperature": 0,
+    "reasoning": "backend default (thinking config unset), as in the committed arms",
+    "max_output_tokens": "backend default"
+  },
+  "conditions": {
+    "reason": "no note; 'justify in one short sentence, then answer'",
+    "note": "the committed blind prompt verbatim"
+  },
+  "decoy_rule": "fixed from one fresh plain-baseline read, as the committed runner does"
+}
