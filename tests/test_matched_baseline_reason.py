@@ -92,16 +92,19 @@ def test_mimic_summary_replays_from_the_deid_rows():
     assert round(blind / n, 4) == s["decoy_uptake"]["blind"]
     assert s["paired_reason_only_vs_blind"]["note_only"] == note_only == 51
     assert s["paired_reason_only_vs_blind"]["request_only"] == request_only == 9
-    assert s["blind_source"] == {"cache": 0, "fresh": 141}
-    assert s["committed_arm_agreement"]["n_decoy_committed"] == 75
+    # The note arm was re-asked on ORCD (its committed cache is elsewhere): the agreement block
+    # is the record of that, and it holds whether the file was written by the run that called out
+    # or by a later keyless replay, which reports every source as cache.
+    agree = s["committed_arm_agreement"]
+    assert agree["comparable"] and agree["n"] == 141
+    assert agree["n_decoy_committed"] == 75 and agree["n_decoy_here"] == 76
+    assert agree["blind_is_decoy_agree"] == 90
 
 
 def test_chexpert_fresh_arms_are_compared_with_the_committed_rows():
     """CheXpert's committed cache does not replay from the films on hand, so its baseline and note
     arms were re-asked; the summary must say so and carry the case-by-case agreement."""
     s = json.loads((ROOT / "experiments/chexpert/results/matched_baseline_reason_summary.json").read_text())
-    assert s["baseline_source"] == {"cache": 0, "fresh": 35}
-    assert s["blind_source"] == {"cache": 0, "fresh": 35}
     agree = s["committed_arm_agreement"]
     assert agree["joined_on"] == "case_id" and agree["n"] == 35
     assert agree["blind_is_decoy_agree"] == 26 and agree["decoy_agree"] == 30

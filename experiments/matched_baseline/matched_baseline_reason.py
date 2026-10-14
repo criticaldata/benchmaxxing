@@ -29,6 +29,11 @@ differs from the baseline and whether it lands on the rewarded answer. The summa
   stable_subset        among cases the request did not move, the share the note moved
   discordant pairs     reason_only-vs-blind on each case, with an exact two-sided McNemar P
 
+``blind_source`` and ``baseline_source`` say whether the run that wrote the file called out for that
+condition or read it from the cache; a later keyless replay reports cache for everything. The
+lasting record of a re-asked arm is ``committed_arm_agreement``, written when --committed-flags
+names the committed file.
+
 Reads the key for the model from the env (GEMINI_API_KEY for Gemini); a fully cached run
 reproduces the committed summary with no key. All paths are arguments; no secrets committed.
 """
