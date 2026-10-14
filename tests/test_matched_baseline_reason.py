@@ -146,3 +146,20 @@ def test_justification_reread_summary_replays_from_rows():
         assert got[k] == s[k], k
     assert s["n_items"] == 502 and s["note_drifted"]["n"] + s["note_held"]["n"] == 251 == s["control"]["n"]
     assert not any("text" in r for r in rows)
+
+
+def test_mimic_reports_cohort_replays_from_its_deidentified_rows():
+    """The MIMIC-CXR reports lane: rows keyed by case_index, baseline and note re-asked, band flat."""
+    lane = "experiments/mimic_cxr_text/results"
+    rows = _rows(f"{lane}/matched_baseline_reason.jsonl")
+    s = json.loads((ROOT / lane / "matched_baseline_reason_summary.json").read_text())
+    assert all("case_index" in r and "case_id" not in r for r in rows)
+    got = mb.summarise(rows, "gemini-2.5-flash-lite")
+    for k in ("n", "decoy_uptake", "reason_flip", "uptake_delta", "stable_subset", "paired_reason_only_vs_blind"):
+        assert got[k] == s[k], k
+    assert s["n"] == 40 and s["reason_flip"]["n"] == 9
+    assert s["paired_reason_only_vs_blind"]["note_only"] == 2 and s["paired_reason_only_vs_blind"]["request_only"] == 2
+    agree = s["committed_arm_agreement"]
+    assert agree["joined_on"] == "case_index" and agree["blind_is_decoy_agree"] == 39 and agree["n_decoy_committed"] == 2
+    band = json.loads((ROOT / lane / "matched_baseline_reason_repeats_summary.json").read_text())
+    assert band["cases_with_any_disagreement"]["n"] == 0 and band["n"] == 40
