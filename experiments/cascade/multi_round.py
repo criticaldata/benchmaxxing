@@ -119,8 +119,7 @@ class _Cache:
                 return self.store[k]
         if not self.key:
             raise SystemExit("Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key).")
-        resp = self._gw.RetryBackend(_lane.backend_for(model, self.key),
-                                     tries=5, backoff=3.0).complete(prompt, decoding={"temperature": 0})
+        resp = _lane.paced_complete(model, self.key, prompt, decoding={"temperature": 0})
         with _lock:
             self.store[k] = resp
             self.calls += 1

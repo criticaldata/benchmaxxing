@@ -58,7 +58,7 @@ def test_cross_dataset_pilot_uses_the_shared_dispatch():
     """The MedQA/MedMCQA cue pilot keeps its own --model, cache and skip path; only the backend and the
     key for a non-Gemini model come from the dispatch, so the default model still needs a Gemini key."""
     src = (ROOT / "experiments/cross_dataset/run_cross_dataset.py").read_text()
-    assert "_lane.backend_for(model, api_key)" in src and "GeminiBackend(" not in src
+    assert "_lane.paced_complete(" in src and "GeminiBackend(" not in src and "RetryBackend(" not in src
     assert "key = _lane.key_for(args.model)" in src
     assert 'os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")' in src
 
