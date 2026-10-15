@@ -121,7 +121,9 @@ def main():
     # Every *_summary.json in the model's directory is an arm, except the derived reconciliations:
     # stats_reconciliation re-tests contrasts the arm summaries already carry, so folding it in would
     # count the same tables twice; cross_lane_reconciliation is a correction over those same arms.
-    DERIVED = {"stats_reconciliation", "cross_lane_reconciliation"}
+    # reasoning_effort_sensitivity repeats the authority ladder at three effort levels, so its
+    # contrasts would triple-count that arm
+    DERIVED = {"stats_reconciliation", "cross_lane_reconciliation", "reasoning_effort_sensitivity"}
     arms = sorted(name for name in (os.path.basename(s)[: -len("_summary.json")]
                                     for s in glob.glob(f"{other_dir}/*_summary.json"))
                   if name not in DERIVED)
