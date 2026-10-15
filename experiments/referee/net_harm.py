@@ -72,6 +72,9 @@ def main():
 
     cases = {c.case_id: c for c in load_cases(args.manifest)}
     rows = [json.loads(line) for line in referee_jsonl.read_text().splitlines() if line.strip()]
+    # the clean-control rows added later carry case_id "<id>::clean" and arm "clean"; the harm and
+    # rescue rates are defined on the planted rows only, so the controls are not counted as missing
+    rows = [r for r in rows if r.get("arm", "planted") == "planted"]
 
     per_case = []
     missing = []
