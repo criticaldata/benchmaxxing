@@ -514,6 +514,8 @@ class LocalOpenAICompatibleBackend(OpenAIBackend):
         self.model = model
         self.base_url = base_url
         self.default_decoding = dict(default_decoding or {})
+        self.timeout = timeout
+        self.max_retries = max_retries
         if client is not None:
             # Injected client (used by tests): no SDK import required.
             self._client = client
