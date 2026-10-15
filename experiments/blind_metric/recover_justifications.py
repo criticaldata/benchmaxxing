@@ -60,14 +60,14 @@ def main(argv=None) -> int:
     for c in cases:
         r = rows[c.case_id]
         if args.lane == "text":
-            _, _, _, _, note = text_prompts(c)
-            prompt = note(r["decoy_letter"])
+            _, _, _, P = text_prompts(c)
+            prompt = P["note"](r["decoy_letter"])
             k = hashlib.sha256(f"{model}\x00{prompt}".encode()).hexdigest()
         else:
             from PIL import Image
             finding = c.label.split("|")[0].strip()
-            _, _, note = imaging_prompts(finding)
-            prompt = note(r["decoy"])
+            _, P = imaging_prompts(finding)
+            prompt = P["note"](r["decoy"])
             pil = Image.open(Path(args.image_root) / c.image_ref).convert("L")
             k = f"{model}:" + hashlib.sha256(_img_bytes(pil) + b"\x00" + prompt.encode()).hexdigest()
         txt = cache.get(k)

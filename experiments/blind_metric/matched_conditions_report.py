@@ -36,7 +36,7 @@ from collections import defaultdict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from matched_conditions import exact_mcnemar, majority, summarise, wilson  # noqa: E402
+from matched_conditions import ALL_CONDITIONS, exact_mcnemar, majority, summarise, wilson  # noqa: E402
 
 
 def load_rows(d: Path):
@@ -53,18 +53,16 @@ def rows_from_deid(path: Path):
     """Rebuild the per-case rows summarise() needs from the de-identified export."""
     out = []
     for r in csv.DictReader(open(path)):
+        conds = [c for c in ALL_CONDITIONS if f"{c}_is_decoy_0" in r]
         k = max(int(c.split("_")[-1]) for c in r if c.startswith("reason_is_decoy_")) + 1
-        out.append({
-            "case_id": r["case_index"], "patient_id": r.get("patient_index", r["case_index"]),
-            "reason_is_decoy": [r[f"reason_is_decoy_{i}"] == "1" for i in range(k)],
-            "note_is_decoy": [r[f"note_is_decoy_{i}"] == "1" for i in range(k)],
+        row = {"case_id": r["case_index"], "patient_id": r.get("patient_index", r["case_index"]), "conditions": conds}
+        for c in conds:
+            row[f"{c}_is_decoy"] = [r[f"{c}_is_decoy_{i}"] == "1" for i in range(k)]
             # answers reduce to decoy / not-decoy in the export; disagreement is preserved exactly
             # for a binary read and is a lower bound for a letter read
-            "reason_answers": [r[f"reason_is_decoy_{i}"] for i in range(k)],
-            "note_answers": [r[f"note_is_decoy_{i}"] for i in range(k)],
-            "reason_named": [r[f"reason_named_{i}"] == "1" for i in range(k)],
-            "note_named": [r[f"note_named_{i}"] == "1" for i in range(k)],
-        })
+            row[f"{c}_answers"] = [r[f"{c}_is_decoy_{i}"] for i in range(k)]
+            row[f"{c}_named"] = [r[f"{c}_named_{i}"] == "1" for i in range(k)]
+        out.append(row)
     return out
 
 
@@ -81,32 +79,38 @@ def write_calibrated(d: Path, rows):
 
 
 def write_deid(d: Path, rows, repeats: int):
-    rows = sorted(rows, key=lambda r: r["case_id"])
+    rows = sorted(rows, key=lambda r: str(r["case_id"]))
     ids = [r["case_id"] for r in rows]
     assert len(set(ids)) == len(ids), "duplicate case_id, case_index would be ambiguous"
-    pats = sorted({r.get("patient_id") for r in rows})
+    conds = [c for c in ALL_CONDITIONS if all(f"{c}_is_decoy" in r for r in rows)]
+    pats = sorted({str(r.get("patient_id")) for r in rows})
     prank = {p: i for i, p in enumerate(pats)}
-    cols = (["case_index", "patient_index"]
-            + [f"reason_is_decoy_{i}" for i in range(repeats)] + [f"note_is_decoy_{i}" for i in range(repeats)]
-            + [f"reason_named_{i}" for i in range(repeats)] + [f"note_named_{i}" for i in range(repeats)]
-            + ["noise_band", "note_effect", "note_driven", "strict_flip", "majority_flip"])
+    cols = ["case_index", "patient_index"]
+    for c in conds:
+        cols += [f"{c}_is_decoy_{i}" for i in range(repeats)]
+    for c in conds:
+        cols += [f"{c}_named_{i}" for i in range(repeats)]
+    cols += ["noise_band", "note_effect", "note_driven", "strict_flip", "majority_flip"]
     (d / "deid").mkdir(exist_ok=True)
     with open(d / "deid" / "matched_conditions.csv", "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(cols)
         for i, r in enumerate(rows):
-            w.writerow([i, prank[r.get("patient_id")]]
-                       + [int(x) for x in r["reason_is_decoy"]] + [int(x) for x in r["note_is_decoy"]]
-                       + [int(x) for x in r["reason_named"]] + [int(x) for x in r["note_named"]]
-                       + [r.get("noise_band"), r.get("note_effect"), int(bool(r.get("note_driven"))),
-                          int(bool(r.get("strict_flip"))), int(bool(r.get("majority_flip")))])
+            vals = [i, prank[str(r.get("patient_id"))]]
+            for c in conds:
+                vals += [int(x) for x in r[f"{c}_is_decoy"]]
+            for c in conds:
+                vals += [int(x) for x in r[f"{c}_named"]]
+            vals += [r.get("noise_band"), r.get("note_effect"), int(bool(r.get("note_driven"))),
+                     int(bool(r.get("strict_flip"))), int(bool(r.get("majority_flip")))]
+            w.writerow(vals)
     return len(rows)
 
 
 def pooled(all_rows, repeats):
     s = summarise([dict(r) for r in all_rows], repeats)
-    return {k: s[k] for k in ("n", "effect_net_of_reason", "noise_band", "referee_calibration", "naming")
-            if k in s}
+    return {k: s[k] for k in ("n", "conditions", "effect_net_of_reason", "no_note", "effect_by_condition", "noise_band",
+                              "two_by_two", "note_position", "image_ablated", "referee_calibration", "naming") if k in s}
 
 
 def main(argv=None) -> int:
