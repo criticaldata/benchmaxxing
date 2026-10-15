@@ -1,7 +1,7 @@
 {
   "lane": "MedQA text",
   "n_cases": 40,
-  "n_missing_from_manifest": 40,
+  "n_missing_from_manifest": 0,
   "ground_truth_convention": "case.options[case.answer_index] from the MedQA manifest",
   "harm_rate_correct_to_wrong": {
     "n": 30,

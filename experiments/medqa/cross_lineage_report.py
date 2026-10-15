@@ -118,7 +118,13 @@ def main():
     args = ap.parse_args()
     slug = args.model.replace("/", "_")
     other_dir = os.path.join(GEMINI_DIR, slug)
-    arms = sorted(os.path.basename(s)[: -len("_summary.json")] for s in glob.glob(f"{other_dir}/*_summary.json"))
+    # Every *_summary.json in the model's directory is an arm, except the derived reconciliations:
+    # stats_reconciliation re-tests contrasts the arm summaries already carry, so folding it in would
+    # count the same tables twice; cross_lane_reconciliation is a correction over those same arms.
+    DERIVED = {"stats_reconciliation", "cross_lane_reconciliation"}
+    arms = sorted(name for name in (os.path.basename(s)[: -len("_summary.json")]
+                                    for s in glob.glob(f"{other_dir}/*_summary.json"))
+                  if name not in DERIVED)
 
     report = {"model": args.model, "arms": arms, "family": {}, "repeats": {}}
     for name, d in (("gemini", GEMINI_DIR), (args.model, other_dir)):

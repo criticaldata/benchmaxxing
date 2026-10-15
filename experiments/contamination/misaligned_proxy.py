@@ -22,10 +22,15 @@ not flip at all (neither).
 """
 from __future__ import annotations
 
+import argparse
 import json
+import sys
 from pathlib import Path
 
 from benchmaxxing.blind_arms import misaligned_proxy_run
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
 
 
 def _load_jsonl(path):
@@ -44,9 +49,32 @@ def _truth_fn(row):
     return 1.0 if row["contaminated_correct"] else 0.0
 
 
+def _solo_records(model, results_dir, explicit):
+    """The solo baseline rows to audit. The committed contamination copy of solo_records.jsonl is
+    byte-identical to the MedQA lane's, so when a model-scoped copy was never written under this
+    lane the MedQA lane's model-scoped file is the same baseline for that lineage."""
+    if explicit:
+        return Path(explicit)
+    local = results_dir / "solo_records.jsonl"
+    if local.exists() or model == _lane.DEFAULT_MODEL:
+        return local
+    medqa = Path(__file__).resolve().parents[1] / "medqa" / "results"
+    return _lane.scoped(model, str(medqa), str(medqa / "call_cache.jsonl"))[0] / "solo_records.jsonl"
+
+
 def main():
-    results_dir = Path(__file__).parent / "results"
-    rows = _load_jsonl(results_dir / "solo_records.jsonl")
+    ap = argparse.ArgumentParser(description="Misaligned-proxy arm over the committed solo baseline "
+                                             "rows (#176); no model calls.")
+    ap.add_argument("--solo-records", default=None,
+                    help="solo baseline rows; defaults to solo_records.jsonl in the model-scoped "
+                         "results dir, falling back to the MedQA lane's model-scoped copy")
+    _lane.add_model_arg(ap)
+    args = ap.parse_args()
+    model = args.model
+
+    base = Path(__file__).parent / "results"
+    results_dir, _cache = _lane.scoped(model, str(base), str(base / "call_cache.jsonl"))
+    rows = _load_jsonl(_solo_records(model, results_dir, args.solo_records))
     cases = [r for r in rows if r["cue"] == "longest_option"]
 
     result = misaligned_proxy_run(cases, _model_fn, _proxy_fn, _truth_fn, method="pearson")
@@ -75,6 +103,8 @@ def main():
             "evidence that length is doing the work the cue's name suggests."
         ),
     }
+    if model != _lane.DEFAULT_MODEL:
+        out["lineage_note"] = _lane.derived_note(model)
     (results_dir / "misaligned_proxy.json").write_text(json.dumps(out, indent=2))
     print(json.dumps(out, indent=2))
 
