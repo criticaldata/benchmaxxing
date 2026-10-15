@@ -178,12 +178,14 @@ class SessionCache:
                     r = json.loads(line)
                     self.store[r["k"]] = r
 
-    def ask(self, prompt: str, rep: int, pil=None, tag: str = "") -> dict:
+    def ask(self, prompt: str, rep: int, pil=None, tag: str = "", img_bytes: bytes | None = None) -> dict:
         h = hashlib.sha256()
         h.update((f"{self.model}\x00{self.session}\x00{rep}\x00{prompt}" if not tag else
                   f"{self.model}\x00{self.session}\x00{rep}\x00{tag}\x00{prompt}").encode())
         if pil is not None:
-            h.update(b"\x00" + _img_bytes(pil))
+            # the key is over the PNG bytes; a caller that already encoded the film passes them, so
+            # a full-resolution film is encoded once per case rather than once per call
+            h.update(b"\x00" + (img_bytes if img_bytes is not None else _img_bytes(pil)))
         k = h.hexdigest()
         with _lock:
             if k in self.store:
@@ -232,8 +234,9 @@ def run_case(case, lane, cache, image_root, repeats, seed, model, conditions, in
         from PIL import Image
         finding = case.label.split("|")[0].strip()
         pil = Image.open(Path(image_root) / case.image_ref).convert("L")
+        pil_bytes = _img_bytes(pil)
         base_p, prompts = imaging_prompts(finding)
-        base_row = cache.ask(base_p, rep=0, pil=pil)
+        base_row = cache.ask(base_p, rep=0, pil=pil, img_bytes=pil_bytes)
         base_ans = parse_yesno(base_row["resp"])
         decoy = "no" if base_ans == "yes" else "yes"
         parse = parse_yesno
@@ -250,7 +253,8 @@ def run_case(case, lane, cache, image_root, repeats, seed, model, conditions, in
         img = None if cond == "note_noimage" else pil
         # the image-ablated prompt has the note prompt's words with no film; the tag keeps its key
         # apart from a text-lane call of the same words
-        row = cache.ask(built[cond], rep=rep, pil=img, tag=cond if cond == "note_noimage" else "")
+        row = cache.ask(built[cond], rep=rep, pil=img, tag=cond if cond == "note_noimage" else "",
+                        img_bytes=None if img is None else pil_bytes)
         txt = row["resp"] or ""
         ans = parse(txt)
         calls.append({"case_id": cid, "patient_id": pid, "condition": cond,
