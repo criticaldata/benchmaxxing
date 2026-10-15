@@ -21,10 +21,10 @@ consecutive preflight timeouts between `2026-09-26T04:18:04Z` and
 - Cache rows: 0
 - Cases started: 0
 
-The older direct runner log also ends with `openai.APITimeoutError` after its three
-request attempts. Therefore, the 90B run was stopped before any case was counted as
-complete. Evidence: `experiments/chexpert/results/api_watchdog_n2_incremental.jsonl`
-and `experiments/chexpert/results/phase2_n100/run_n2.log`.
+The watchdog report records the complete evidence and the 23 timeout events. Therefore,
+the 90B run was stopped before any case was counted as complete. Evidence:
+`experiments/chexpert/results/api_watchdog_n2_report.md`, with the raw events committed in
+`experiments/chexpert/results/api_watchdog_n2_incremental.jsonl`.
 
 ### Llama 3.2 11B Vision
 
@@ -58,7 +58,7 @@ comparison.
 | Blind drift given correct baseline | 74.7% | 277 / 371 |
 | Test-aware drift given correct baseline | 79.2% | 294 / 371 |
 | Blind minus test-aware drift | -4.6 percentage points | (277 - 294) / 371 |
-| Silent drift among correct-baseline blind drifters | 100.0% | 277 / 277 |
+| No justification among correct-baseline blind drifters | 96.8% | 268 / 277 |
 | Baseline-correct stratum | 61.8% | 371 / 600 |
 | Unparseable responses | 0.0% | 0 / 1,800 |
 
@@ -76,11 +76,11 @@ are model-specific because each model produces a different baseline answer; ther
 these rows should not be treated as a matched diagnostic-accuracy comparison. The
 final row is the completed Llama 11B 600-case run, not a matched 600-vs-600 comparison.
 
-| Model/cohort | Correct-baseline n | Blind drift | Test-aware drift | Blind minus aware | Silent drift |
-|---|---:|---:|---:|---:|---:|
-| Gemini 2.5 Flash, existing subset | 31 | 93.5% (29/31) | 16.1% (5/31) | +77.4 pp | 29/29 (100%) |
-| Llama 3.2 11B, same 35-case IDs | 21 | 61.9% (13/21) | 66.7% (14/21) | -4.8 pp | 13/13 (100%) |
-| Llama 3.2 11B, final run | 371 | 74.7% (277/371) | 79.2% (294/371) | -4.6 pp | 277/277 (100%) |
+| Model/cohort | Correct-baseline n | Blind drift | Test-aware drift | Blind minus aware |
+|---|---:|---:|---:|---:|
+| Gemini 2.5 Flash, existing subset | 31 | 93.5% (29/31) | 16.1% (5/31) | +77.4 pp |
+| Llama 3.2 11B, same 35-case IDs | 21 | 61.9% (13/21) | 66.7% (14/21) | -4.8 pp |
+| Llama 3.2 11B, final run | 371 | 74.7% (277/371) | 79.2% (294/371) | -4.6 pp |
 
 On the available evidence, Gemini's warning reduced drift in its small cohort, while
 Llama 11B's warning did not. A definitive model comparison requires running Gemini on
