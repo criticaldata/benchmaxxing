@@ -129,7 +129,7 @@ def main():
         pairs = [r for r in rows if r[f"{a}_{rung}_adopt"] is not None and r[f"{b}_{rung}_adopt"] is not None]
         gain = sum(1 for r in pairs if r[f"{b}_{rung}_adopt"] and not r[f"{a}_{rung}_adopt"])
         lose = sum(1 for r in pairs if r[f"{a}_{rung}_adopt"] and not r[f"{b}_{rung}_adopt"])
-        return {"gain": gain, "lose": lose, "n": len(pairs), "pvalue": round(mcnemar(gain, lose).pvalue, 6)}
+        return {"gain": gain, "lose": lose, "n": len(pairs), "pvalue": float(mcnemar(gain, lose).pvalue)}
 
     n = len(rows)
     summary = {
@@ -143,7 +143,17 @@ def main():
         "calls_by_effort": {e: sum(1 + sum(1 for g in RUNG_ORDER if r[f"{e}_{g}_adopt"] is not None) for r in rows)
                             for e in efforts},
     }
-    if len(efforts) >= 2:
+    def rate_nonempty(effort, rung):
+        v = [r[f"{effort}_{rung}_adopt"] for r in rows
+             if r[f"{effort}_{rung}_adopt"] is not None and not r[f"{effort}_{rung}_empty"]]
+        return {"rate": round(sum(v) / len(v), 4) if v else None, "n": len(v)}
+
+    # an empty completion scores as no adoption, so a level with many of them is read on the
+    # non-empty denominator as well
+    summary["adoption_by_effort_and_rung_nonempty"] = {e: {g: rate_nonempty(e, g) for g in RUNG_ORDER} for e in efforts}
+    for a, b in zip(efforts, efforts[1:]):
+        summary[f"{a}_vs_{b}_by_rung"] = {g: paired(g, a, b) for g in RUNG_ORDER}
+    if len(efforts) >= 3:
         lo, hi = efforts[0], efforts[-1]
         summary[f"{lo}_vs_{hi}_by_rung"] = {g: paired(g, lo, hi) for g in RUNG_ORDER}
     g_rates = summary["adoption_by_effort_and_rung"]
