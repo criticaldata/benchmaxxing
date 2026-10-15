@@ -32,7 +32,6 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import _lane  # noqa: E402
 
-from benchmaxxing import gateway
 from benchmaxxing.blackboard import AgentResponse, render_board, run_committee
 from benchmaxxing.data import load_cases
 from benchmaxxing.roster import build_committee
@@ -78,8 +77,7 @@ class _Cache:
                 return self.store[k]
         if not self.key:
             raise SystemExit("Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key).")
-        resp = gateway.RetryBackend(_lane.backend_for(model, self.key),
-                                    tries=5, backoff=3.0).complete(prompt, decoding={"temperature": temperature})
+        resp = _lane.paced_complete(model, self.key, prompt, decoding={"temperature": temperature})
         with _lock:
             self.store[k] = resp
             self.calls += 1

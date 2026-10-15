@@ -38,7 +38,7 @@ import _lane  # noqa: E402
 from experiments.support2._common import (
     COMMITTEE,
     COMMITTEE_ONE_PEER,
-    MODEL,
+    MODEL,  # noqa: F401  (rebind_models needs it in this module namespace)
     Cache,
     api_key,
     hedged_rationale,
