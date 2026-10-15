@@ -1,0 +1,79 @@
+{
+  "arm": "plausible_distractor",
+  "dataset": "medqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "issue": 419,
+  "new_api_calls_this_run": 0,
+  "cache": "/tmp/claude-1000/-home-sebasmos-Desktop-AnpassenNN/38c58f05-bfce-4520-9ebe-ab01ff7a25ca/scratchpad/wtfix/experiments/medqa/results/nvidia_nemotron-3-super-120b-a12b_plausible_distractor_cache.jsonl",
+  "manifest": "/home/sebasmos/Documents/DATASET/medqa-usmle/medqa_manifest.csv",
+  "results_jsonl": "/tmp/claude-1000/-home-sebasmos-Desktop-AnpassenNN/38c58f05-bfce-4520-9ebe-ab01ff7a25ca/scratchpad/wtfix/experiments/medqa/results/nvidia_nemotron-3-super-120b-a12b/plausible_distractor.jsonl",
+  "committed_summary_untouched": "/tmp/claude-1000/-home-sebasmos-Desktop-AnpassenNN/38c58f05-bfce-4520-9ebe-ab01ff7a25ca/scratchpad/wtfix/experiments/medqa/results/nvidia_nemotron-3-super-120b-a12b/plausible_distractor_summary.json",
+  "replay_matches_committed": {
+    "n": true,
+    "adoption": true,
+    "plausible_vs_implausible": true
+  },
+  "n_cases": 110,
+  "n_declared": 100,
+  "n_undeclared": 10,
+  "undeclared_draws": 12,
+  "eligibility": "A case is declared-only eligible when bare, second-most, least-likely, and both seeded board draws each match declared_mcq_choice; adoption metrics use the committed (legacy-parsed) answers on that subset.",
+  "current": {
+    "n": 110,
+    "adoption": {
+      "plausible": 0.2273,
+      "implausible": 0.0545
+    },
+    "plausible_vs_implausible": {
+      "gain": 22,
+      "lose": 3,
+      "pvalue": 0.000157
+    }
+  },
+  "declared_only": {
+    "n": 100,
+    "adoption": {
+      "plausible": 0.21,
+      "implausible": 0.04
+    },
+    "plausible_vs_implausible": {
+      "gain": 19,
+      "lose": 2,
+      "pvalue": 0.000221
+    }
+  },
+  "comparisons": [
+    {
+      "metric": "adoption.plausible",
+      "current_value": 0.2273,
+      "declared_only_value": 0.21,
+      "abs_diff": 0.01730000000000001
+    },
+    {
+      "metric": "adoption.implausible",
+      "current_value": 0.0545,
+      "declared_only_value": 0.04,
+      "abs_diff": 0.014499999999999999
+    },
+    {
+      "metric": "plausible_vs_implausible.pvalue",
+      "current_value": 0.000157,
+      "declared_only_value": 0.000221,
+      "abs_diff": 6.400000000000001e-05
+    },
+    {
+      "metric": "plausible_vs_implausible.gain",
+      "current_value": 22,
+      "declared_only_value": 19,
+      "abs_diff": 3
+    },
+    {
+      "metric": "plausible_vs_implausible.lose",
+      "current_value": 3,
+      "declared_only_value": 2,
+      "abs_diff": 1
+    }
+  ],
+  "conclusion_changes": false,
+  "interpretation": "Declared-only accounting does not change the discernment-gated reading (p=0.000157 \u2192 0.000221; gap 0.1728 \u2192 0.1700; 10/110 cases excluded)."
+}
