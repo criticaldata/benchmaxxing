@@ -20,6 +20,7 @@ sys.path.insert(0, str(ROOT / "experiments" / "blind_metric"))
 
 import _lane  # noqa: E402
 import matched_conditions as mc  # noqa: E402
+REPO = Path(__file__).resolve().parents[1]
 from benchmaxxing import gateway  # noqa: E402
 from benchmaxxing.schema import Case  # noqa: E402
 
@@ -254,3 +255,38 @@ def test_full_condition_set_runs_and_the_two_by_two_reads_from_cells(tmp_path, m
                     "--session", "t", "--conditions", "base", "--out", str(out / "again"), "--cache", str(out / "session_cache.jsonl")]) == 0
     s2 = json.load(open(out / "again" / "matched_conditions_summary.json"))
     assert s2["new_api_calls_this_run"] == 0 and s2["effect_net_of_reason"]["note_decoy_rate_first_repeat"] == 1.0
+
+
+COMMITTED = [
+    # (results dir, rows file, is the MIMIC de-identified export)
+    ("experiments/blind_metric/results/matched", "matched_conditions.jsonl", False),
+    ("experiments/imaging/results/matched", "matched_conditions.jsonl", False),
+    ("experiments/chexpert/results/matched", "matched_conditions.jsonl", False),
+    ("experiments/mimic_cxr_image/results/matched", "deid/matched_conditions.csv", True),
+]
+
+
+def test_every_committed_summary_regenerates_from_its_rows_keyless():
+    # The same pin #437 carries: no committed number depends on a key or a cache. The MIMIC
+    # cohort regenerates from the de-identified export alone, the rows never having left ORCD.
+    import matched_conditions_report as rep
+    for d, rows_name, deid in COMMITTED:
+        d = REPO / d
+        if not (d / "matched_conditions_summary.json").exists():
+            continue
+        committed = json.load(open(d / "matched_conditions_summary.json"))
+        if deid:
+            rows = rep.rows_from_deid(d / rows_name)
+        else:
+            rows = [json.loads(l) for l in open(d / rows_name) if l.strip()]
+        s = mc.summarise(rows, committed["repeats"])
+        assert s["n"] == committed["n"]
+        for block in ("effect_net_of_reason", "noise_band", "referee_calibration", "two_by_two", "note_position", "image_ablated", "no_note"):
+            if block not in committed:
+                continue
+            got, want = json.loads(json.dumps(s[block])), committed[block]
+            # the band-by-condition map and the per-condition naming counts were added after the
+            # first release; compare the keys the committed file carries
+            assert {k: got.get(k) for k in want} == want, (d, block)
+        for k, v in committed["naming"].items():
+            assert s["naming"].get(k) == v, (d, "naming", k)
