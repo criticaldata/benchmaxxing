@@ -163,10 +163,8 @@ def main():
     args = ap.parse_args()
     model = args.model
     conditions = [c for c in args.conditions.split(",") if c]
-    out_dir, _ = _lane.scoped(model, args.out, str(Path(args.out) / "deliberation_channel_cache.jsonl"))
-    slug = model.replace("/", "_")
-    store = _Store(Path(args.out) / ("deliberation_channel_cache.jsonl" if model == _lane.DEFAULT_MODEL
-                                     else f"{slug}_deliberation_channel_cache.jsonl"))
+    out_dir, cache_path = _lane.scoped(model, args.out, str(Path(args.out) / "deliberation_channel_cache.jsonl"))
+    store = _Store(Path(cache_path))
     key = _lane.key_for(model)
     cases = load_cases(args.manifest)[:args.n]
 
