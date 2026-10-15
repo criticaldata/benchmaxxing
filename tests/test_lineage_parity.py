@@ -19,6 +19,16 @@ IMAGING_LANES = {"imaging", "imaging_chexpert", "chexpert", "mimic_cxr_image"}
 ALIASES = {
     "results/{slug}/solo_results_600.json": "results_n600/{slug}/solo_results.json",
 }
+# Files a lineage cannot produce from the repository, declared with the reason so the gap is visible
+# rather than hidden by an alias. Key: (lineage slug, lane, results dir, file name). An entry must say
+# what is missing and what would close it; the test below checks that the reason is a real sentence.
+DECLARED_GAPS = {
+    ("nvidia_nemotron-3-super-120b-a12b", "referee", "results", "referee_deployable_declared_audit.json"):
+        "the nemotron referee call cache was never committed (the arm ran on a machine whose caches are "
+        "lost), so the declared-only rescore of the deployable referee cannot be replayed from the "
+        "repository; closing it means re-running that arm, which replaces committed numbers and needs "
+        "the owner's decision. The plausible-distractor audit for the same lineage is committed.",
+}
 PAT = re.compile(r"experiments/([a-z_0-9]+)/(results[^/]*)/([^/]+)/([^/]+\.json)$")
 
 
@@ -51,6 +61,12 @@ def test_the_lineage_has_every_text_lane_file_a_sibling_has(lineage):
             if alias:
                 ares, aname = alias.format(slug=lineage).split("/")[0], alias.split("/")[-1]
                 want = (lane, ares, aname)
-            if want not in mine:
+            if want not in mine and (lineage, lane, res, name) not in DECLARED_GAPS:
                 missing.append(f"{lane}/{res}/{sib}/{name}")
     assert not missing, "sibling result files with no counterpart for " + lineage + ":\n  " + "\n  ".join(sorted(missing))
+
+
+def test_every_declared_gap_carries_a_reason_and_names_a_real_lineage():
+    for (lineage, lane, res, name), why in DECLARED_GAPS.items():
+        assert lineage in TEXT_ONLY, lineage
+        assert len(why.split()) >= 25, f"{lineage}/{lane}/{res}/{name}: the reason has to say what is missing and what would close it"
