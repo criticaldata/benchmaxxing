@@ -1,0 +1,9 @@
+{
+  "lane": "imaging",
+  "model": "gemini-2.5-flash",
+  "cases": 35,
+  "recovered": 0,
+  "missed": 35,
+  "drifters_recovered": 0,
+  "note": "keys did not reproduce here; for films the key depends on the PNG encoder of the machine that wrote the cache"
+}

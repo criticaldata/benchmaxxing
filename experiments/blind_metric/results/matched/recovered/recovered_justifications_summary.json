@@ -1,0 +1,9 @@
+{
+  "lane": "text",
+  "model": "gemini-2.5-flash-lite",
+  "cases": 40,
+  "recovered": 40,
+  "missed": 0,
+  "drifters_recovered": 11,
+  "note": null
+}

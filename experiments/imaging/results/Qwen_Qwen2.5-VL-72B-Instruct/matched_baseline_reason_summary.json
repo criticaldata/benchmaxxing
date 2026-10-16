@@ -1,0 +1,55 @@
+{
+  "n": 35,
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "conditions": {
+    "baseline": "answer alone (committed arm, replayed)",
+    "reason_only": "justification request, no scoring note (this run)",
+    "blind": "scoring note plus justification request (committed arm, replayed)"
+  },
+  "decoy_uptake": {
+    "baseline": 0.0,
+    "reason_only": 0.2,
+    "blind": 0.6571
+  },
+  "reason_flip": {
+    "n": 7,
+    "rate": 0.2,
+    "wilson95": [
+      0.1004,
+      0.3589
+    ]
+  },
+  "uptake_delta": {
+    "blind_minus_baseline_unmatched": 0.6571,
+    "blind_minus_reason_only_matched": 0.4571
+  },
+  "stable_subset": {
+    "n_not_moved_by_request": 28,
+    "n_moved_by_note": 17,
+    "rate": 0.6071,
+    "wilson95": [
+      0.4241,
+      0.7643
+    ]
+  },
+  "paired_reason_only_vs_blind": {
+    "both_decoy": 6,
+    "note_only": 17,
+    "request_only": 1,
+    "neither": 11,
+    "mcnemar_exact_p": 0.000145
+  },
+  "keyword_screen_without_a_note": {
+    "n_flagged": 0,
+    "rate": 0.0
+  },
+  "blind_source": {
+    "cache": 35,
+    "fresh": 0
+  },
+  "baseline_source": {
+    "cache": 35,
+    "fresh": 0
+  },
+  "new_api_calls_this_run": 35
+}
