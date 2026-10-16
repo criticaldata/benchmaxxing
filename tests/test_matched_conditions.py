@@ -263,6 +263,13 @@ COMMITTED = [
     ("experiments/imaging/results/matched", "matched_conditions.jsonl", False),
     ("experiments/chexpert/results/matched", "matched_conditions.jsonl", False),
     ("experiments/mimic_cxr_image/results/matched", "deid/matched_conditions.csv", True),
+    ("experiments/medmcqa/results/blind_metric/matched", "matched_conditions.jsonl", False),
+    ("experiments/support2/results/blind_metric/matched", "matched_conditions.jsonl", False),
+    ("experiments/mimic_cxr_text/results/matched", "deid/matched_conditions.csv", True),
+    ("experiments/blind_metric/results/matched/Qwen_Qwen2.5-VL-72B-Instruct", "matched_conditions.jsonl", False),
+    ("experiments/imaging/results/matched/Qwen_Qwen2.5-VL-72B-Instruct", "matched_conditions.jsonl", False),
+    ("experiments/chexpert/results/matched/Qwen_Qwen2.5-VL-72B-Instruct", "matched_conditions.jsonl", False),
+    ("experiments/blind_metric/results/matched/openai_gpt-oss-120b", "matched_conditions.jsonl", False),
 ]
 
 
