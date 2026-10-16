@@ -43,8 +43,13 @@ def _result_files():
     return out
 
 
+# results subdirectories that are cohorts or arms, not model slugs: n100 (the 100-case blind cohort)
+# and matched (the matched-conditions arm, whose lineage runs sit one level below it)
+NOT_A_LINEAGE = ("n100", "matched")
+
+
 def _siblings(files):
-    return {s for s in files if s != LINEAGE and s not in ("n100",)}
+    return {s for s in files if s != LINEAGE and s not in NOT_A_LINEAGE}
 
 
 @pytest.mark.parametrize("lineage", sorted(TEXT_ONLY))
