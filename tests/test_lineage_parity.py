@@ -65,6 +65,22 @@ DECLARED_GAPS = {
         "by prompt condition from its committed caches; it was written for the gpt-oss lineages, whose completions come "
         "back empty when the hidden-reasoning budget is exhausted, and whether this lineage produces empty completions "
         "has not been checked, so running it belongs to that lineage's own pass.",
+    ("nvidia_nemotron-3-super-120b-a12b", "blind_metric", "results", "blind_metric_ci.json"):
+        "the derived analysis experiments/blind_metric/reanalysis.py gained a --model flag on the gpt-oss branches after this lineage merged; "
+        "it makes no model call, so one run with --model nvidia/nemotron-3-super-120b-a12b on this lineage's committed rows "
+        "closes the gap, which belongs to that lineage's own pass.",
+    ("nvidia_nemotron-3-super-120b-a12b", "referee", "results", "referee_agreement.json"):
+        "the derived analysis experiments/referee/agreement.py gained a --model flag on the gpt-oss branches after this lineage merged; "
+        "it makes no model call, so one run with --model nvidia/nemotron-3-super-120b-a12b on this lineage's committed rows "
+        "closes the gap, which belongs to that lineage's own pass.",
+    ("nvidia_nemotron-3-super-120b-a12b", "medmcqa", "results", "onset_distribution.json"):
+        "the derived analysis experiments/medqa/onset_distribution.py --results-dir experiments/medmcqa/results --label MedMCQA gained a --model flag on the gpt-oss branches after this lineage merged; "
+        "it makes no model call, so one run with --model nvidia/nemotron-3-super-120b-a12b on this lineage's committed rows "
+        "closes the gap, which belongs to that lineage's own pass.",
+    ("nvidia_nemotron-3-super-120b-a12b", "medmcqa", "results", "stats_reconciliation_summary.json"):
+        "the derived analysis experiments/medqa/stats_reconciliation.py --results-dir experiments/medmcqa/results --out experiments/medmcqa/results gained a --model flag on the gpt-oss branches after this lineage merged; "
+        "it makes no model call, so one run with --model nvidia/nemotron-3-super-120b-a12b on this lineage's committed rows "
+        "closes the gap, which belongs to that lineage's own pass.",
     ("nvidia_nemotron-3-super-120b-a12b", "medqa", "results", "empty_content_tally.json"):
         "the per-arm tally of empty completions is written by the gpt-oss-20b lineage because that model exhausts "
         "its hidden-reasoning budget on some calls and returns no answer; whether this lineage ever returns an "
