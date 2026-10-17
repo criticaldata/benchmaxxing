@@ -81,19 +81,20 @@ def test_the_default_model_path_is_unchanged(runner):
     assert re.search(r"if model != _lane\.DEFAULT_MODEL else (_key|api_key)\(\)", src)
 
 
-def test_cross_lineage_report_reproduces_the_committed_report(tmp_path):
+@pytest.mark.parametrize("model", ["openai/gpt-oss-120b", "openai/gpt-oss-20b"])
+def test_cross_lineage_report_reproduces_the_committed_report(tmp_path, model):
     """The family and repeat-prompt integers in the PR body come from a committed script, not a hand count."""
     import json
     import subprocess
     import sys
 
-    committed = ROOT / "experiments/medqa/results/openai_gpt-oss-120b/cross_lineage_report.json"
+    committed = ROOT / "experiments/medqa/results" / model.replace("/", "_") / "cross_lineage_report.json"
     out = tmp_path / "report.json"
     subprocess.run([sys.executable, str(ROOT / "experiments/medqa/cross_lineage_report.py"),
-                    "--model", "openai/gpt-oss-120b", "--out", str(out)],
+                    "--model", model, "--out", str(out)],
                    cwd=ROOT, check=True, capture_output=True)
     fresh, kept = json.load(open(out)), json.load(open(committed))
     assert fresh["family"] == kept["family"]
     assert fresh["repeats"] == kept["repeats"]
-    fam = kept["family"]["openai/gpt-oss-120b"]
+    fam = kept["family"][model]
     assert fam["n_contrasts"] == 43 and fam["n_survive_bh_0.05"] == 4
