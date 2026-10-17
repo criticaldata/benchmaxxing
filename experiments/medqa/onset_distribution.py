@@ -54,7 +54,9 @@ def _case_onset(transcript):
     non_seed_committed = [v for k, v in transcript.committed.items() if k != seeded_turns[0].agent_id]
     if not non_seed_committed:
         return None, seed_answer, None
-    evidence_answer = max(set(non_seed_committed), key=non_seed_committed.count)
+    # ties on the count are broken by option text, not by set iteration order, so the report is
+    # the same on every run (string hashing is randomised per interpreter)
+    evidence_answer = max(sorted(set(non_seed_committed)), key=non_seed_committed.count)
 
     series, turn_indices = _cascade_series(transcript, seed_answer, evidence_answer)
     idx = cascade_onset(series, min_size=1)
