@@ -22,7 +22,13 @@
     },
     "reader_agreement": {
       "raw": 1.0,
-      "kappa": 1.0
+      "kappa": 1.0,
+      "pairs": {
+        "gemini-2.5-flash vs gemini-2.5-pro": {
+          "raw": 1.0,
+          "kappa": 1.0
+        }
+      }
     },
     "keyword_vs_consensus": {
       "tp": 1,
@@ -87,7 +93,13 @@
     },
     "reader_agreement": {
       "raw": 1.0,
-      "kappa": null
+      "kappa": null,
+      "pairs": {
+        "gemini-2.5-flash vs gemini-2.5-pro": {
+          "raw": 1.0,
+          "kappa": null
+        }
+      }
     },
     "keyword_vs_consensus": {
       "tp": 0,
@@ -152,7 +164,13 @@
     },
     "reader_agreement": {
       "raw": 0.9761,
-      "kappa": 0.0
+      "kappa": 0.0,
+      "pairs": {
+        "gemini-2.5-flash vs gemini-2.5-pro": {
+          "raw": 0.9761,
+          "kappa": 0.0
+        }
+      }
     },
     "keyword_vs_consensus": {
       "tp": 0,
@@ -199,5 +217,5 @@
       }
     }
   },
-  "new_api_calls_this_run": 865
+  "new_api_calls_this_run": 0
 }
