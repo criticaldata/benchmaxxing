@@ -182,14 +182,17 @@ figure.figure:fullscreen .steps,figure.figure:fullscreen .player,figure.figure:f
 .box-foot{margin:0;padding:12px 18px 16px;border-top:1px solid var(--line);font-family:var(--serif);font-size:16px;line-height:1.55;color:var(--ink)}
 
 /* back matter */
-.back{margin-top:48px;border-top:2px solid var(--rule)}
+.back{margin-top:48px;border-top:2px solid var(--muted);color:var(--muted)}
+.back a{color:var(--muted)}
+.back a:hover{color:var(--ink)}
 .back section{padding:26px 0;border-bottom:1px solid var(--line)}
-.back h2{font-family:var(--serif);font-size:22px;font-weight:700;margin:0 0 10px}
+.back h2{font-family:var(--serif);font-size:22px;font-weight:700;margin:0 0 10px;color:var(--muted)}
 .back p{font-family:var(--serif);font-size:17px;line-height:1.6;margin:0 0 10px}
 .back p:last-child{margin-bottom:0}
 .cite{position:relative;margin:12px 0 0;background:var(--tint);border:1px solid var(--line)}
-.cite pre{margin:0;padding:16px 18px;overflow:auto;font:12.5px/1.55 var(--mono);color:var(--ink);white-space:pre}
-.cite .btn{position:absolute;top:8px;right:8px;padding:7px 10px;font-size:12px;background:var(--panel)}
+.cite pre{margin:0;padding:16px 18px;overflow:auto;font:12.5px/1.55 var(--mono);color:var(--muted);white-space:pre}
+.cite .btn{position:absolute;top:8px;right:8px;padding:7px 10px;font-size:12px;background:var(--panel);color:var(--muted);border-color:var(--line)}
+.cite .btn:hover{background:var(--muted);border-color:var(--muted);color:var(--bg)}
 .cite-text{font-family:var(--serif);font-size:16px;line-height:1.55}
 .site-foot{border-top:1px solid var(--line);margin-top:24px}
 .site-foot .site-in{font-size:13px;color:var(--muted);padding-top:22px;padding-bottom:28px}
