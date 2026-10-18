@@ -87,6 +87,51 @@ _DECLARATION_REGEX = re.compile(
 )
 
 
+def declared_mcq_choice(
+    text: str,
+    options: tuple[str, ...] | list[str],
+) -> tuple[str, bool]:
+    """Return (declared_answer, declared_flag).
+
+    Unlike parse_mcq_choice(), this only recognizes explicit answer
+    declarations and intentionally ignores fallback heuristics such as
+    trailing-letter scans or last-mentioned-option resolution.
+    """
+
+    if not text:
+        return "", False
+
+    num_options = len(options)
+    if num_options == 0:
+        return "", False
+
+    valid_letters = {
+        chr(ord("A") + i)
+        for i in range(min(num_options, 26))
+    }
+
+    declarations = [
+        _first_group(m)
+        for m in _DECLARATION_REGEX.finditer(text)
+        if _first_group(m) in valid_letters
+    ]
+
+    if declarations:
+        letter = declarations[-1]
+        return options[ord(letter) - ord("A")], True
+
+    stripped = text.strip()
+
+    if (
+        len(stripped) == 1
+        and stripped.upper() in valid_letters
+    ):
+        return options[ord(stripped.upper()) - ord("A")], True
+
+    return "", False
+
+
+
 def _first_group(m: re.Match) -> str:
     """Return the first non-None group from a regex match with alternations."""
     for g in m.groups():

@@ -42,16 +42,31 @@ def _arm(name: str) -> Arm:
     return next(a for a in ARMS if a.name == name)
 
 
+def _strip_model_slug(rel: Path, outs: set[str]) -> Path:
+    """The shared runners scope a non-default model's output one level deeper than the arm's
+    ``out`` (``results/<out>/<Model_slug>/``). If the parent is a known arm ``out`` (or the root) and
+    the leaf is not, the leaf is a model slug and the producing arm is the parent's."""
+    if rel != Path() and str(rel) not in outs and str(rel.parent) in outs | {"."}:
+        return rel.parent
+    return rel
+
+
 def test_every_committed_summary_has_an_arm_that_regenerates_it():
     # The gap #343 opened on: results/ held summaries no committed code could reproduce. Read the
     # real committed files rather than a hand-copied list, so a new summary with no producing arm
     # fails here instead of becoming the next unreproducible number.
     produced = {(a.out, a.module) for a in ARMS}
+    # An arm run with --repeats also writes <module>_repeats_summary.json (the noise band of the
+    # matched control), so that summary is produced by the same arm.
+    produced |= {(a.out, f"{a.module}_repeats") for a in ARMS if "--repeats" in a.extra}
     checked, orphans = 0, []
     for path in sorted(RESULTS_DIR.rglob("*_summary.json")):
         if path.name == "plant_direction_summary.json":
             continue  # written by plant_direction_check.py, an offline reanalysis of transcripts
         rel = path.parent.relative_to(RESULTS_DIR)
+        # A second lineage's summaries sit one level deeper, in the model-scoped subdirectory the
+        # shared runners write (results/<out>/<Model_slug>/); the producing arm is the same.
+        rel = _strip_model_slug(rel, {a.out for a in ARMS if a.out})
         out = "" if rel == Path() else str(rel)
         checked += 1
         if (out, path.name.removesuffix("_summary.json")) not in produced:
@@ -69,9 +84,12 @@ def test_arms_reference_manifests_build_subset_actually_writes():
 
 def test_cache_is_pinned_inside_the_mimic_results_dir():
     # Every runner but imaging_solo defaults --cache to the NIH lane's committed cache; an
-    # unpinned MIMIC run would append credentialed-derived reads into it.
+    # unpinned MIMIC run would append credentialed-derived reads into it. The matched-conditions
+    # arm keeps its own session cache one level down, still inside --results: its repeats must be
+    # fresh calls, so it cannot share the root cache the nested arms replay from.
     for arm in ARMS:
-        assert Path(_flag(_cmd(arm), "--cache")).parent == RESULTS
+        cache = Path(_flag(_cmd(arm), "--cache"))
+        assert cache.parent == (RESULTS / "matched" if arm.name == "matched" else RESULTS)
 
 
 def test_one_shared_cache_so_nested_image_arms_reuse_calls():
@@ -80,8 +98,11 @@ def test_one_shared_cache_so_nested_image_arms_reuse_calls():
     # purpose: they ask a different question of the image, so they share no call with the
     # diagnostic arms and folding them in would make their hit rate unreadable. They also differ
     # from each other (one sees the film, one does not), so they cannot share a cache either.
-    judges = {"judge", "judge_with_image"}
+    # The matched-conditions arm is excluded too: its repeated calls must never be answered from a
+    # cache, so it keeps a session cache of its own under matched/.
+    judges = {"judge", "judge_with_image", "matched"}
     diagnostic_arms = [a for a in ARMS if a.takes_manifest and a.name not in judges]
+    assert _flag(_cmd(_arm("matched")), "--cache") == str(RESULTS / "matched" / "session_cache.jsonl")
     assert {_flag(_cmd(a), "--cache") for a in diagnostic_arms} == {str(RESULTS / CACHE_NAME)}
     assert _flag(_cmd(_arm("judge_with_image")), "--cache") == str(RESULTS / JUDGE_CACHE_NAME)
     assert _flag(_cmd(_arm("judge")), "--cache") == str(RESULTS / JUDGE_TEXTONLY_CACHE_NAME)

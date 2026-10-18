@@ -57,6 +57,10 @@ have come out any other way. Two of them were monitor scores that quietly reduce
 they were being scored against. The screen that caught them ships here too, not just its verdict,
 so you can run the check that caught us.
 
+## The matched control, added after the MICCAI release
+
+The hidden-note arm asked for a one-sentence justification as well as the answer, and the baseline asked for the answer alone, so the note's effect and the request's effect were confounded in the original release. `experiments/matched_baseline/matched_baseline_reason.py` asks each case again with the same request and no note, on the same model at temperature 0, replaying the committed baseline and note responses from their caches, so the note's effect is read net of the request. `--repeats` re-asks the control five more times for a noise band. `experiments/matched_baseline/justification_reread.py` has two model readers score every justification for a mention of the note, against the keyword screen. Summaries for MedQA, NIH ChestX-ray14, CheXpert and MIMIC-CXR (de-identified rows) sit next to each cohort's committed results as `matched_baseline_reason*`, and `tests/test_matched_baseline_reason.py` regenerates every one of them from its rows with no key.
+
 ## Reproduce it without an API key
 
 Every model call is cached, so the committed runs replay offline.
