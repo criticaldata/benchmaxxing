@@ -45,15 +45,31 @@ authors:
   - family-names: Celi
     given-names: "Leo Anthony"
 preferred-citation:
-  type: article
+  type: conference-paper
   title: >-
     Agents Catching Agents: Shortcut Cascades and Benchmark Gaming in Clinical
     Multi-Agent Systems
   year: 2026
-  month: 8
-  doi: "10.48550/arXiv.2608.03744"
-  url: "https://arxiv.org/abs/2608.03744"
-  notes: "arXiv preprint arXiv:2608.03744 [cs.AI]"
+  month: 10
+  collection-title: >-
+    Medical Image Computing and Computer Assisted Intervention, MICCAI 2026
+    Workshops and Challenges (Lecture Notes in Computer Science)
+  collection-type: proceedings
+  volume: 17263
+  publisher:
+    name: Springer Nature Switzerland
+  conference:
+    name: "2nd Agentic AI for Medicine workshop (MedAgent), MICCAI 2026"
+    city: Strasbourg
+    country: FR
+    date-start: 2026-10-01
+    date-end: 2026-10-01
+  url: "https://papers.miccai.org/miccai-2026-sat/paper/MedAgent_040.pdf"
+  identifiers:
+    - type: doi
+      value: "10.48550/arXiv.2608.03744"
+      description: arXiv preprint
+  notes: "Open-access version from the MICCAI Society; Springer DOI pending"
   authors:
     - family-names: "Cajas Ordóñez"
       given-names: "Sebastián Andrés"
