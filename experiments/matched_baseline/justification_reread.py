@@ -160,7 +160,14 @@ def prf(pred, truth):
 
 
 def summarise(rows, readers=None):
-    readers = list(readers or READERS)
+    if readers is None:  # infer from the rows, so a replay never depends on the default list
+        seen = []
+        for r in rows:
+            for k in r:
+                if k.startswith("reader_") and k[7:] not in seen:
+                    seen.append(k[7:])
+        readers = seen or list(READERS)
+    readers = list(readers)
     out = {"readers": readers, "n_items": len(rows)}
     sets = {"note_drifted": [r for r in rows if r["condition"] == "note" and r["drifted"]],
             "note_held": [r for r in rows if r["condition"] == "note" and not r["drifted"]],

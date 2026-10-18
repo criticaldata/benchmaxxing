@@ -154,6 +154,26 @@ def test_justification_reread_summary_replays_from_rows():
     assert not any("text" in r for r in rows)
 
 
+def test_justification_reread_families_replays_and_readers_agree():
+    """Readers from more than one family over the same 502 justifications: summary follows from rows,
+    every reader pair is scored, and no reader flags a note-held or control item that the others miss
+    on the note-following side."""
+    sys.path.insert(0, str(ROOT / "experiments" / "matched_baseline"))
+    import justification_reread as jr
+    rows = _rows("experiments/matched_baseline/results/justification_reread_families.jsonl")
+    s = json.loads((ROOT / "experiments/matched_baseline/results/justification_reread_families_summary.json").read_text())
+    got = jr.summarise(rows)
+    for k in ("n_items", "note_drifted", "note_held", "control"):
+        assert got[k] == s[k], k
+    readers = s["readers"]
+    assert len(readers) >= 3 and "openai/gpt-oss-20b" in readers
+    assert len(s["note_drifted"]["reader_agreement"]["pairs"]) == len(readers) * (len(readers) - 1) // 2
+    assert s["n_items"] == 502 and s["note_drifted"]["n"] == 147 and s["note_held"]["n"] == 104
+    assert s["note_drifted"]["flagged"]["keyword"] == 1 and s["note_drifted"]["flagged"]["either_reader"] == 1
+    assert s["note_held"]["flagged"]["either_reader"] == 0
+    assert not any("text" in r for r in rows)
+
+
 def test_mimic_reports_cohort_replays_from_its_deidentified_rows():
     """The MIMIC-CXR reports lane: rows keyed by case_index, baseline and note re-asked, band flat."""
     lane = "experiments/mimic_cxr_text/results"
