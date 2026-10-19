@@ -69,12 +69,25 @@ test-aware), but they mix in 229 cases where the model was already wrong and sho
 not be used as the causal drift headline. These metrics measure robustness to the
 synthetic decoy/rubric prompt, not clinical diagnostic accuracy.
 
+## Execution safety
+
+The hosted 11B image runs were configured with `N_2` as the preferred NVIDIA credential,
+one worker, a 20-second minimum gap between requests, and the same gap between gateway
+retries. Every successful response is appended to the model-scoped cache before the next
+case is attempted; a timeout or authorization error is not counted as a completed case.
+
 ## Gemini comparison
 
 The existing Gemini CheXpert result covers only 35 cases. The conditional denominators
 are model-specific because each model produces a different baseline answer; therefore
 these rows should not be treated as a matched diagnostic-accuracy comparison. The
 final row is the completed Llama 11B 600-case run, not a matched 600-vs-600 comparison.
+
+For the shared 35-case hidden-note arm, also report the unconditional prompt-uptake rates
+beside the conditional drift headline: the blind `SCORING NOTE` decoy was adopted in 23/35
+(65.7%) cases, and the test-aware validation message decoy was adopted in 15/35 (42.9%).
+These are unconditional rates over all 35 rows; the drift rows below are conditioned on
+`base_ans == "yes"`.
 
 | Model/cohort | Correct-baseline n | Blind drift | Test-aware drift | Blind minus aware |
 |---|---:|---:|---:|---:|
@@ -88,9 +101,10 @@ the same 600-case protocol and reporting the same baseline-correct conditioning.
 
 ## Reproducibility artifacts
 
-- Summary: `experiments/chexpert/results/phase2_11b/phase2_n600/meta_llama-3.2-11b-vision-instruct/imaging_blind_metric_summary.json`
-- Combined per-case results: `experiments/chexpert/results/phase2_11b/phase2_n600/meta_llama-3.2-11b-vision-instruct/imaging_blind_metric.jsonl`
+- Summary: `experiments/chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_blind_metric_summary.json`
+- Combined per-case results: `experiments/chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_blind_metric.jsonl`
 - Phase checkpoints: the `imaging_blind_metric_phase*.jsonl` files in the same directory
+- Shared 35-case hidden-note arm: `experiments/chexpert/results/meta_llama-3.2-11b-vision-instruct/hidden_note_n35/`
 - Cache: `experiments/chexpert/results/600_runs/img_cache_llama11b_n2.jsonl`
 - Incremental execution log: `experiments/chexpert/results/api_watchdog_n2_11b_incremental.jsonl`
 

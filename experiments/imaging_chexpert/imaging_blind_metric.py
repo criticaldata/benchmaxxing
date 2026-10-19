@@ -121,7 +121,9 @@ def _key(model: str):
         return os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
     # Everything else on this lane is served through NIM; the former llama/nvidia/meta branch
     # returned the same key and was dead (review on #421).
-    return os.environ.get("NVIDIA_API_KEY")
+    # Prefer the campaign's explicitly named second NVIDIA credential. The legacy variable remains
+    # a fallback so existing users and fully cached replays keep working.
+    return os.environ.get("N_2") or os.environ.get("NVIDIA_API_KEY")
 
 
 def _generation_config(model: str) -> dict:

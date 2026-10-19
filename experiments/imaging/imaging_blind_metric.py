@@ -138,7 +138,7 @@ def main() -> None:
                 "aware_is_decoy": aware_ans == decoy, "named_rubric_when_drifted": drifted and named}
 
     rows = []
-    with ThreadPoolExecutor(max_workers=4) as ex:
+    with ThreadPoolExecutor(max_workers=_lane.worker_count()) as ex:
         for fut in as_completed([ex.submit(run, c) for c in cases]):
             rows.append(fut.result())
 

@@ -136,7 +136,7 @@ def main():
         return row
 
     rows = []
-    with ThreadPoolExecutor(max_workers=4) as ex:
+    with ThreadPoolExecutor(max_workers=_lane.worker_count()) as ex:
         for fut in as_completed([ex.submit(run, c) for c in cases]):
             rows.append(fut.result())
     # Write once (not append) so a re-run overwrites rather than duplicating the per-case rows.
@@ -161,7 +161,7 @@ def main():
             return {"case_id": case.case_id, "finding": finding, "clean_temp0": first,
                     "clean_resample": second, "noise_flip": (first is not None and first != second)}
         noise_rows = []
-        with ThreadPoolExecutor(max_workers=4) as ex:
+        with ThreadPoolExecutor(max_workers=_lane.worker_count()) as ex:
             for fut in as_completed([ex.submit(noise, c) for c in cases]):
                 noise_rows.append(fut.result())
         (out / "imaging_noise_floor.jsonl").write_text("".join(json.dumps(r) + "\n" for r in noise_rows))
