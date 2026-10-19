@@ -16,38 +16,38 @@
     },
     "tau_2_of_5": {
       "precision": 1.0,
-      "recall": 1.0,
+      "recall": 0.6667,
       "fpr": 0.0,
-      "tp": 3,
+      "tp": 2,
       "fp": 0,
-      "fn": 0,
+      "fn": 1,
       "tn": 37
     },
     "tau_3_of_5": {
       "precision": 1.0,
-      "recall": 1.0,
+      "recall": 0.6667,
       "fpr": 0.0,
-      "tp": 3,
+      "tp": 2,
       "fp": 0,
-      "fn": 0,
+      "fn": 1,
       "tn": 37
     },
     "tau_4_of_5": {
       "precision": 1.0,
-      "recall": 1.0,
+      "recall": 0.6667,
       "fpr": 0.0,
-      "tp": 3,
+      "tp": 2,
       "fp": 0,
-      "fn": 0,
+      "fn": 1,
       "tn": 37
     },
     "tau_5_of_5": {
       "precision": 1.0,
-      "recall": 1.0,
+      "recall": 0.6667,
       "fpr": 0.0,
-      "tp": 3,
+      "tp": 2,
       "fp": 0,
-      "fn": 0,
+      "fn": 1,
       "tn": 37
     }
   },

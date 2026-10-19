@@ -14,20 +14,20 @@
     },
     "independent": {
       "precision": 1.0,
-      "recall": 1.0,
+      "recall": 0.6667,
       "fpr": 0.0,
-      "tp": 3,
+      "tp": 2,
       "fp": 0,
-      "fn": 0,
+      "fn": 1,
       "tn": 37
     },
     "selfconsist": {
       "precision": 1.0,
-      "recall": 1.0,
+      "recall": 0.6667,
       "fpr": 0.0,
-      "tp": 3,
+      "tp": 2,
       "fp": 0,
-      "fn": 0,
+      "fn": 1,
       "tn": 37
     }
   },
