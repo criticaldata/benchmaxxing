@@ -22,6 +22,7 @@ from pathlib import Path
 from benchmaxxing.data import load_cases
 from benchmaxxing.extract import declared_mcq_choice
 from benchmaxxing.stats import mcnemar
+from benchmaxxing.validate import manifest_checksum
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import _lane  # noqa: E402
@@ -263,6 +264,7 @@ def main() -> None:
         "new_api_calls_this_run": 0,
         "cache": str(cache_path),
         "manifest": str(args.manifest),
+        "manifest_sha256": manifest_checksum(args.manifest),
         "results_jsonl": str(results_jsonl),
         "committed_summary_untouched": str(committed_summary_path),
         "replay_matches_committed": sanity,

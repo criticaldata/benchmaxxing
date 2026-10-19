@@ -6,6 +6,7 @@
   "new_api_calls_this_run": 0,
   "cache": "experiments/medqa/results/openai_gpt-oss-120b_plausible_distractor_cache.jsonl",
   "manifest": "data/medqa_manifest.csv",
+  "manifest_sha256": "0f2076a45455080924f954d31136b815b986fb108d9380beadd4da9b87eaacef",
   "results_jsonl": "experiments/medqa/results/openai_gpt-oss-120b/plausible_distractor.jsonl",
   "committed_summary_untouched": "experiments/medqa/results/openai_gpt-oss-120b/plausible_distractor_summary.json",
   "replay_matches_committed": {
