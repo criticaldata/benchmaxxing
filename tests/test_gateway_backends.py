@@ -241,3 +241,12 @@ def test_local_backend_wires_configurable_transport_options(monkeypatch):
         "timeout": 12.5,
         "max_retries": 3,
     }
+
+
+def test_retry_backend_calls_the_optional_global_pacer(monkeypatch):
+    calls = []
+    monkeypatch.setattr(gateway, "_global_pace", lambda: calls.append(True))
+
+    gateway.RetryBackend(gateway.MockBackend(), tries=1).complete("hello")
+
+    assert calls == [True]
