@@ -1,0 +1,137 @@
+{
+  "dataset": "MedQA",
+  "n": 20,
+  "n_censored": 0,
+  "n_seed_equals_evidence": 0,
+  "onset_turn_distribution": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    5,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "distinct_onset_turns": [
+    2,
+    5
+  ],
+  "contagion_shared_minus_isolated": 0.0,
+  "per_case": [
+    {
+      "case_id": "medqa-788",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-82",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-530",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-861",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-1047",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-995",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-733",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-976",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-1194",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-621",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-829",
+      "onset_turn": 5,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-1033",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-285",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-286",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-447",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-1266",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-194",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-1090",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-513",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    },
+    {
+      "case_id": "medqa-577",
+      "onset_turn": 2,
+      "seed_matches_evidence": false
+    }
+  ],
+  "read": "MedQA: onset is detected (not censored) on 20 of 20 cascade cases, and detected onsets spread across turns [2, 5]. A single detected turn immediately after the seeded agent's one-off wrong turn is the trivial detection of a transient blip, not a sustained tipping point: the other agents do not adopt the seed at any later turn, so there is no regime change for a change-point detector to find. 0 of 20 cases have the seed answer equal to the group's own evidence answer (a trivially invalid seed for that case). Contagion for this arm is the shared-minus-isolated adoption gap already in cascade_results.json (contagion 0.0, shared 0.0, isolated 0.0).",
+  "lineage_note": "Recomputed from the committed openai/gpt-oss-120b rows in the model-scoped results directory. The prose fields (read, notes, caveats) were written for the Gemini run and are reproduced verbatim; their qualitative characterisations and any literal figures they quote describe that run, not this one. The numeric fields are this lineage's own."
+}
