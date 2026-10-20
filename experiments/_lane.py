@@ -267,6 +267,17 @@ def add_model_arg(ap, default: str = DEFAULT_MODEL):
                          "the OpenAI-compatible endpoint (NVIDIA NIM by default).")
 
 
+def derived_note(model: str) -> str:
+    """Provenance line a derived (model-call-free) analysis attaches when it is pointed at another
+    lineage's committed rows. The numbers in such a summary are recomputed from that lineage's
+    files, but its prose fields were written against the Gemini run and are kept verbatim so the
+    default path stays byte-identical; this note says so in the artifact itself."""
+    return (f"Recomputed from the committed {model} rows in the model-scoped results directory. "
+            "The prose fields (read, notes, caveats) were written for the Gemini run and are "
+            "reproduced verbatim; their qualitative characterisations and any literal figures they "
+            "quote describe that run, not this one. The numeric fields are this lineage's own.")
+
+
 def scoped(model: str, out: str, default_cache: str, cache: str | None = None,
            default: str | None = None):
     """Model-scoped output directory and cache path.
