@@ -107,6 +107,16 @@ def test_declared_reads_a_committed_letter_and_refuses_prose():
     assert _lane.declared("Z", opts) is None
 
 
+def test_declared_reads_a_final_letter_with_its_full_option_text():
+    opts = ["Psoriatic arthritis", "Reactive arthritis", "Gout", "Septic arthritis"]
+    assert _lane.declared("Urethritis then joint pain.\n\nB. Reactive arthritis", opts) == "B"
+    assert _lane.declared("Reasoning.\n\n**D) septic arthritis.**", opts) == "D"
+    # The text has to be that letter's option: truncated, or naming a different option, is not.
+    assert _lane.declared("Reasoning.\n\nB. Reactive arth", opts) is None
+    assert _lane.declared("Reasoning.\n\nB. Gout", opts) is None
+    assert _lane.declared("Reasoning.\n\nE. Gout", opts) is None
+
+
 def test_pacing_follows_the_documented_nim_ceiling(monkeypatch):
     """#416 measured the NVIDIA endpoint at about 40 RPM and found it punishes bursts."""
     import time as _time
