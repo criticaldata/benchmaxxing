@@ -269,3 +269,19 @@ def test_paced_complete_waits_through_429_and_503_then_succeeds(monkeypatch):
     import pytest
     with pytest.raises(ValueError):
         _lane.paced_complete("nvidia/x", "k", "p")
+
+
+def test_nim_base_url_override_keeps_hosted_routing(monkeypatch):
+    """BENCHMAXXING_NIM_BASE_URL redirects the hosted-prefix endpoint to a server of ours serving the
+    same id; the id stays hosted (paced, keyed), so the local-URL variable still cannot capture it."""
+    import importlib, sys
+    sys.path.insert(0, "experiments")
+    import _lane
+    monkeypatch.setenv("BENCHMAXXING_NIM_BASE_URL", "http://127.0.0.1:1/v1")
+    monkeypatch.setenv("BENCHMAXXING_LOCAL_BASE_URL", "http://127.0.0.1:2/v1")
+    importlib.reload(_lane)
+    assert _lane.NIM_BASE_URL == "http://127.0.0.1:1/v1"
+    assert not _lane.is_local("nvidia/nemotron-3-super-120b-a12b")
+    monkeypatch.delenv("BENCHMAXXING_NIM_BASE_URL")
+    importlib.reload(_lane)
+    assert _lane.NIM_BASE_URL == "https://integrate.api.nvidia.com/v1"
