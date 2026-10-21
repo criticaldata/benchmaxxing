@@ -1,0 +1,35 @@
+{
+  "n": 31,
+  "new_api_calls_this_run": 102,
+  "declared_only": {
+    "baseline": {
+      "n_declared": 0,
+      "n_undeclared": 31,
+      "decoy_uptake": null
+    },
+    "blind": {
+      "n_declared": 31,
+      "n_undeclared": 0,
+      "decoy_uptake": 0.4194
+    },
+    "test_aware": {
+      "n_declared": 7,
+      "n_undeclared": 24,
+      "decoy_uptake": 0.2857
+    },
+    "n_drifted": 13,
+    "n_named_rubric": 0
+  },
+  "decoy_uptake": {
+    "baseline": 0.0,
+    "blind": 0.4194,
+    "test_aware": 0.2581
+  },
+  "decoy_uptake_delta_blind_minus_baseline": 0.4194,
+  "test_awareness_suppression_delta_blind_minus_aware": 0.1613,
+  "naming_vs_drifting": {
+    "n_drifted": 13,
+    "n_named_rubric": 0,
+    "n_drifted_silently": 13
+  }
+}
