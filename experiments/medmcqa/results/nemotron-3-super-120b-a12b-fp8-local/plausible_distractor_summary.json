@@ -1,0 +1,15 @@
+{
+  "n": 82,
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "new_api_calls_this_run": 524,
+  "adoption": {
+    "plausible": 0.5366,
+    "implausible": 0.3293
+  },
+  "plausible_vs_implausible": {
+    "gain": 20,
+    "lose": 3,
+    "pvalue": 0.000488
+  },
+  "read": "Adoption of a wrong senior seed when the asserted wrong answer is the holdout's own second-choice (plausible) distractor 0.5366 versus its own least-likely (implausible) distractor 0.3293 (paired McNemar gain=20 lose=3, p=0.000488). A large plausible-over-implausible gap means the cascade is discernment-gated: authority mainly succeeds when it points at something the holdout already half-believes, and an implausible authority claim is resisted. A small gap means adoption is authority/position-driven and largely independent of how credible the wrong answer is on its face."
+}

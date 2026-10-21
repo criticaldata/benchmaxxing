@@ -1,0 +1,23 @@
+{"case_id": "efa0e92a-b11b-4c1c-a97d-8b4409430caa", "wrong": "28 Lp/mm", "baseline": "10 Lp/mm", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "66b9ec80-bfe0-485a-89ae-42e666aab572", "wrong": "Ramjford's periodontal index", "baseline": "Russet's periodontal index", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "dd210467-68c5-4566-9cad-34e5ffa22bc9", "wrong": "Lower 1st molar", "baseline": "Upper 1st molar", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "cc0d09f8-564d-4fe5-8b22-4b7d3e4ed586", "wrong": "Trans-scaphoid perilunate frac", "baseline": "Scaphoid fracture", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "641f160f-eef0-4b8c-9cb8-3241d2d63173", "wrong": "Increasing transaminases", "baseline": "Increasing prothrombin time", "generic": false, "anchored": false, "anchored_strong": true, "anchored_solo": false}
+{"case_id": "8ba2ca7c-9ae4-4771-9e9c-0e44250ca6b5", "wrong": "Ventral part of 3rd pouch.", "baseline": "Dorsal part of 2nd pouch.", "generic": true, "anchored": false, "anchored_strong": false, "anchored_solo": true}
+{"case_id": "ddb3f2a6-295a-4d4b-8478-5c15049b62a8", "wrong": "Central bureau of health inves", "baseline": "Sundar committee", "generic": false, "anchored": true, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "2639d0ba-ef15-4ba4-92fe-ee27b5758fbf", "wrong": "MR", "baseline": "CABG", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "a4260f2f-ca39-4778-90a9-87064c39a11c", "wrong": "2.2", "baseline": "2.1", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "2cc9a274-380c-4a8e-b2b6-6c8ae412c55b", "wrong": "Broach", "baseline": "Reamer", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "006fea5f-8d1c-489b-9ea6-1028a64484ab", "wrong": "Ring finger", "baseline": "Thumb", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "6d426ea7-e119-4b5f-be99-1e36084c332c", "wrong": "Bone wax & patty", "baseline": "Quikclot", "generic": true, "anchored": true, "anchored_strong": false, "anchored_solo": true}
+{"case_id": "3146c248-2dd4-4888-99c9-bafda2fa1ec7", "wrong": "Tooth material excess", "baseline": "Maxillo-mandibular relationshi", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "864ebcb5-85f5-45eb-a209-5d14ef53e787", "wrong": "Below the chin", "baseline": "The back of the neck", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "83935f21-0298-409f-aabc-ac42dc4c0e00", "wrong": "Simple pocket, complex pocket,", "baseline": "Simple pocket, compound pocket", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "36926004-cb1c-46b4-a6b2-f12c13dd8ab3", "wrong": "3-4 \u03bcm", "baseline": "1-2 \u03bcm", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "d321d320-c06f-4d18-9aa2-dae718851dfd", "wrong": "45 mins", "baseline": "20 mins", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "991ff4a7-4adc-4136-854d-b6c007d5d1be", "wrong": "Stability", "baseline": "Radiographs are good showing f", "generic": false, "anchored": true, "anchored_strong": false, "anchored_solo": true}
+{"case_id": "76dc78f2-39b2-47c0-97d1-3206032a777f", "wrong": "Positive DAT", "baseline": "Haemoglobinuria", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "7060bcf3-fde4-41e3-ad46-260857a92b46", "wrong": "Depression", "baseline": "Protraction", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "2dd59aba-38c0-4aff-a000-1bcb640254ff", "wrong": "Rare, but serious life threate", "baseline": "Research papers and other aicl", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "986ca051-80d8-4e46-9351-574892825c07", "wrong": "Fracture of surgical neck of h", "baseline": "Improper use of crutches", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "5682860b-5ef4-4c1d-88b4-eb81546548ba", "wrong": "25%", "baseline": "50%", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": false}
