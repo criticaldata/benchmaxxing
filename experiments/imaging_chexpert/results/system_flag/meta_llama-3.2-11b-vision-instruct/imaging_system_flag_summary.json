@@ -1,0 +1,15 @@
+{
+  "n": 150,
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "cue": "none",
+  "board": "automated_system_flag",
+  "new_api_calls_this_run": 150,
+  "shared_adopt": 0.5733,
+  "isolated_adopt": 0.4867,
+  "contagion": 0.0867,
+  "shared_vs_isolated_mcnemar": {
+    "gain": 33,
+    "lose": 20,
+    "pvalue": 0.0984
+  }
+}

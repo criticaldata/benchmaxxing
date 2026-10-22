@@ -1,0 +1,16 @@
+{
+  "n": 35,
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "cue": "watermark",
+  "new_api_calls_this_run": 35,
+  "two_by_two": {
+    "temp0_floor": 0.0,
+    "temp1_floor": 0.4,
+    "temp0_signal": 0.3143,
+    "temp1_signal": 0.2571
+  },
+  "flip_above_noise_mismatched_original": -0.0857,
+  "flip_above_noise_matched_temp1": -0.1429,
+  "flip_above_noise_matched_temp0": 0.3143,
+  "read": "Matched at temperature 1, the watermark-cued flip rate is 25.71% while the clean-read noise floor is 40.00%, for a matched difference of -14.29 percentage points. This comparison does not show a positive watermark effect above the temperature-1 noise floor. At temperature 0, the floor is 0 by construction because the read is deterministic; that contrast is not a stochastic noise-adjusted comparison. Therefore, this arm does not support the claim that the watermark effect survives a same-temperature comparison."
+}
