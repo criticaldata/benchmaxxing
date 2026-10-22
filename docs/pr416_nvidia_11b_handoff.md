@@ -1,28 +1,32 @@
 # PR #416 — Llama 3.2 11B experiment handoff
 
-_Estado de experimentos para continuar la ejecución con otra cuenta/API · 20 de octubre de 2026 · America/Guayaquil_
+_Estado de experimentos y datos para continuar la campaña · 22 de octubre de 2026 · America/Guayaquil_
 
 ---
 
 ## 📋 Resumen ejecutivo
 
-- **Completado:** CheXpert principal de `n=600` para Llama 3.2 11B, con sus tres fases y cache reproducible.
-- **Completado:** brazo `hidden_note` de CheXpert en los 35 casos compartidos con los otros modelos.
-- **En curso:** batería `experiments/imaging_chexpert`; `imaging_solo` está corriendo con un worker y una pausa de 20 s entre llamadas.
-- **Bloqueado por datos:** la batería NIH no tiene imágenes locales utilizables y la batería de texto no tiene los manifiestos crudos de MedQA/MedMCQA.
-- **Importante:** no iniciar otra corrida mientras exista el proceso activo. El cache no equivale al número de casos completados hasta que aparezca el `summary` correspondiente.
+- **Completado:** CheXpert principal `n=600`, sus tres fases, y el brazo `hidden_note` de 35 casos.
+- **Ejecutado y validado por conteo:** los ocho brazos solicitados de `experiments/imaging_chexpert`: cuatro de `n=35` y cuatro de `n=150`; cuatro controles `cue=none` tienen la limitación causal descrita abajo.
+- **En curso:** SUPPORT2 `n=120`, comenzando por `support2_solo`, con un worker y una pausa global de 20 s entre llamadas.
+- **Descargas:** MedQA y el primer lote de imágenes NIH están en curso; el ZIP de MedMCQA ya pasó la validación de integridad; PubMedQA y el CSV NIH están validados localmente.
+- **No subir:** datos crudos ni credenciales. Permanecen en `data/` (ignorado por Git); el repositorio documenta las fuentes y requisitos en [`DATASETS.md`](./DATASETS.md#the-datasets).
+- **Importante:** no iniciar una corrida duplicada mientras el proceso SUPPORT2 siga activo. Un cache parcial no equivale a casos completados ni a un checkpoint validado.
 
-## 🚦 Estado actual
+## 📋 Estado actual
 
 | Área | Estado | Evidencia o siguiente acción |
 | --- | --- | --- |
-| CheXpert principal | 🟢 Completo | 600 filas en cada una de las tres fases |
-| CheXpert `hidden_note` | 🟢 Completo | 35 filas en cada una de las cuatro salidas |
-| CheXpert imaging `imaging_solo` | 🟡 En curso | PID `11130`; cache activo con 123 filas válidas y únicas |
-| CheXpert imaging restante | 📋 Pendiente | Ejecutar secuencialmente después de `imaging_solo` |
-| NIH imaging | 🔴 Bloqueado | Falta el árbol local de imágenes NIH |
-| MedQA/MedMCQA y batería textual | 🔴 Bloqueado | Faltan los manifiestos crudos y opciones/preguntas |
+| CheXpert principal | 🟢 Completo | 600 filas por fase; cache con 1,800 respuestas |
+| CheXpert `hidden_note` | 🟢 Completo | 35 filas en las cuatro salidas |
+| CheXpert imaging | 🟢 Conteos completos | 8 brazos: cuatro con 35 y cuatro con 150 filas; cuatro controles no admiten lectura causal |
+| SUPPORT2 `n=120` | 🟡 En curso | `support2_solo`; cache parcial, sin checkpoint validado todavía |
+| NIH ChestX-ray14 | 🟡 Descargando | CSV completo; lote `images_001.tar.gz` todavía incompleto y sin extracción validada |
+| MedQA | 🟡 Descargando | ZIP incompleto; falta reconstruir y validar el manifest US |
+| MedMCQA | 🟢 Descargado | ZIP íntegro; falta reconstruir y validar el manifest requerido |
+| PubMedQA | 🟢 Descargado | `ori_pqal.json` está local; validar antes de usarlo en una corrida |
 | Llama 3.2 90B con `N_2` | 🔴 No ejecutado | 23 preflights agotaron timeout; no hubo respuesta del modelo |
+| Microsoft Phi-3 Vision | 🔴 No disponible | El endpoint probado devolvió `404`; no hay resultados utilizables |
 
 ## 📊 Resultados ya conseguidos
 
@@ -52,20 +56,28 @@ Estas tasas son incondicionales sobre los 35 casos. Las tasas de drift deben con
 
 Gemini sigue limitado a 35 casos. No existe todavía una corrida Gemini de 600 casos con el mismo protocolo, por lo que no debe presentarse como comparación emparejada 600-vs-600.
 
-## 🔄 Batería adicional en curso
+## 📊 Batería de CheXpert con imágenes
 
-La corrida activa usa el modelo exacto `meta/llama-3.2-11b-vision-instruct`, la credencial prioritaria `N_2`, un solo worker y una separación mínima de 20 s entre llamadas. El cache activo está en:
+Los ocho brazos pedidos ya tienen los conteos de filas esperados. La cache canónica de Llama 11B contiene 1,612 respuestas con claves únicas y prefijo de modelo correcto; no contiene imágenes embebidas ni patrones de credenciales. No se agrega la cache auxiliar `img_cache_pre_n2.jsonl`. Los `case_id` de cada brazo coinciden exactamente con los de Qwen; también coinciden `n` y `cue` en los resúmenes comparables.
 
-`experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/img_cache.jsonl`
+| Brazo | Casos | Artefacto y validación |
+| --- | ---: | --- |
+| `imaging_solo` | 35 | JSONL y resumen `n=35` |
+| `imaging_cascade` | 35 | JSONL y resumen `n=35` |
+| `imaging_matched_temp` | 35 | JSONL y resumen `n=35` |
+| `imaging_noise_floor` | 35 | JSONL con 35 filas; no tiene resumen |
+| `device_absent` (`imaging_cascade_none`) | 150 | JSONL y resumen `n=150` |
+| `natural_cues` (`imaging_cascade_none`) | 150 | JSONL y resumen `n=150` |
+| `natural_independent` (`imaging_cascade_none`) | 150 | JSONL y resumen `n=150` |
+| `system_flag` | 150 | JSONL y resumen `n=150` |
 
-Al momento de generar este informe:
+**Limitación interpretativa:** los cuatro controles de `cue=none` (los tres cascades y `system_flag`) reutilizan la misma clave de cache para las lecturas `clean` e `iso`: ambas usan exactamente el mismo prompt y la misma imagen. Por eso `clean == iso` en las 150 filas de cada brazo; no son dos inferencias independientes. Sus filas y tasas de adopción compartida son reproducibles, pero no se debe interpretar `shared_adopt - iso_adopt` como contagio causal. El mismo defecto está registrado para la línea Qwen y se mantiene explícito en el guard; el arreglo requiere un comparador genuino y una nueva corrida.
 
-- proceso activo: `experiments.imaging.imaging_solo`, PID `11130`;
-- cache: 123 filas, 123 claves únicas y 0 respuestas vacías;
-- `imaging_solo_summary.json`: todavía no generado;
-- los 123 registros no deben reportarse como 123 casos terminados.
+## ⚙️ Ejecución alojada y control de saturación
 
-La ejecución debe mantenerse serializada:
+La cola activa es SUPPORT2, modelo `meta/llama-3.2-11b-vision-instruct`, un worker y separación global de 20 s. El primer brazo es `support2_solo`; la cache parcial no es un checkpoint validado. No iniciar una segunda corrida ni reutilizarla hasta que termine el proceso actual.
+
+El protocolo de llamadas alojadas es:
 
 ```mermaid
 flowchart LR
@@ -86,7 +98,7 @@ flowchart LR
     class checkpoint success
 ```
 
-## 🛡️ Continuación segura con otra cuenta
+## 🔐 Continuación segura con otra cuenta
 
 No usar `source .env`: el archivo contiene asignaciones que no están escritas como comandos shell ejecutables. Cargar la clave sin imprimirla:
 
@@ -103,64 +115,39 @@ export PYTHONUNBUFFERED=1
 Antes de iniciar cualquier comando, comprobar que no exista otra corrida:
 
 ```bash
-pgrep -af 'experiments.imaging.imaging_solo|experiments.imaging.imaging_cascade|experiments.imaging.imaging_matched_temp_floor|experiments.imaging.imaging_system_flag'
-wc -l experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/img_cache.jsonl
+pgrep -af 'experiments.support2.support2_(solo|cascade|cascade_strength|referee|referee_judge)'
+wc -l experiments/support2/results/meta_llama-3.2-11b-vision-instruct_call_cache.jsonl
 ```
 
-No editar `.env` mientras el PID `11130` siga activo. Si se cambia de cuenta antes de que termine, hay que detener ese proceso de forma controlada y volver a validar el modelo con una sola llamada; nunca deben correr dos cuentas o dos workers sobre el mismo cache.
+Si el proceso SUPPORT2 sigue activo, no iniciar otro worker ni modificar su cache. La API key no debe copiarse a este informe, a Git ni a logs.
 
-## 📋 Orden recomendado de ejecución
+## 📋 Datos descargados y siguientes pasos
 
-Ejecutar un arm, validar su `summary` y sólo después iniciar el siguiente. Reutilizar siempre el mismo cache model-scoped:
+Las entradas crudas permanecen en `data/`, que está ignorado por Git; sólo se publicarán resultados, documentación, manifiestos autorizados y caches reproducibles.
 
-```bash
-export MODEL=meta/llama-3.2-11b-vision-instruct
-export ROOT=/Users/yehu/.cache/kagglehub/datasets/ashery/chexpert/versions/1
-export MANIFEST=experiments/imaging_chexpert/results/nih_match_35.csv
-export CACHE=experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/img_cache.jsonl
-```
+| Dataset | Estado local | Uso pendiente |
+| --- | --- | --- |
+| MedQA | `data/medqa/data_clean.zip` descargándose | Terminar, validar el ZIP y reconstruir el manifest US |
+| MedMCQA | `data/medmcqa/data.zip`, descargado y verificado con `unzip -t` | Reconstruir y validar el manifest requerido |
+| PubMedQA | `data/pubmedqa/ori_pqal.json`, 1,000 registros JSON válidos | No está en la batería de paridad solicitada; no lanzar sin ampliar el plan |
+| NIH ChestX-ray14 | CSV de etiquetas válido; `images_001.tar.gz` descargándose | Validar el archivo y las 35 imágenes requeridas antes de cualquier brazo NIH |
+| CheXpert | No se está descargando en esta tarea | Revisar registro/acuerdo de investigación antes de otra adquisición |
+| MIMIC-CXR/EHR | No descargado | Requiere credenciales/formación; fuera del alcance actual |
 
-1. Esperar a que termine `imaging_solo` en los 35 casos.
-2. Ejecutar el cascade estándar en los mismos 35 casos:
+Una vez terminadas y verificadas las descargas:
 
-```bash
-$PY -m experiments.imaging.imaging_cascade \
-  --model "$MODEL" --manifest "$MANIFEST" --image-root "$ROOT" \
-  --out experiments/imaging_chexpert/results --cache "$CACHE" --n 35
-```
+1. Dejar que la cola SUPPORT2 activa termine; validar cada JSONL, resumen y cache antes de contar un brazo como completo.
+2. Esperar a que termine MedQA y validar su ZIP; después generar los manifests de MedQA y MedMCQA con las fuentes descritas en [`DATASETS.md`](./DATASETS.md#the-datasets).
+3. Cuando finalice `images_001.tar.gz`, extraer o localizar las imágenes de `experiments/imaging/results/nih_manifest.csv` y comprobar que todas existan antes de iniciar la batería NIH.
+4. Mantener fuera de Git los ZIP, las radiografías y los datos crudos. No aceptar acuerdos legales ni descargar datasets credentialed en nombre del usuario.
 
-3. Ejecutar `imaging_matched_temp_floor` en los 35 casos con `--cue watermark`.
-4. Ejecutar los tres cascades de 150 casos: `device_absent`, `natural_cues` y `natural_independent`, usando `--cue none` y sus respectivos manifests `cascade_150.csv`.
-5. Ejecutar `imaging_system_flag` sobre el mismo manifest de `natural_independent` y escribir en `experiments/imaging_chexpert/results/system_flag`.
-6. Después de cada arm, verificar que exista su JSONL y su `*_summary.json` con el `n` esperado.
-7. Cuando termine toda la batería, force-add únicamente el cache final ignorado por Git:
+El 90B con `N_2` no obtuvo ninguna respuesta durante 23 preflights; la evidencia está en [`api_watchdog_n2_report.md`](../experiments/chexpert/results/api_watchdog_n2_report.md) y [`api_watchdog_n2_incremental.jsonl`](../experiments/chexpert/results/api_watchdog_n2_incremental.jsonl). Microsoft Phi-3 Vision devolvió `404` en el endpoint probado. Ninguno de los dos resultados debe mezclarse con los resultados válidos de 11B.
 
-```bash
-git add -f experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/img_cache.jsonl
-```
+## ✅ Validación y estado de Git
 
-No agregar `img_cache_pre_n2.jsonl`: contiene intentos fallidos previos y está apartado como artefacto de diagnóstico.
-
-## 🚧 Bloqueos que requieren datos adicionales
-
-### NIH ChestX-ray14
-
-Existe el manifest `experiments/imaging/results/nih_manifest.csv`, pero no está disponible localmente un árbol de imágenes NIH utilizable. No ejecutar ni publicar resultados NIH sin recuperar ese dataset o indicar una ruta válida de imágenes.
-
-### MedQA y MedMCQA
-
-El checkout conserva algunos IDs y resultados de referencia, pero no las preguntas, opciones y respuestas necesarias para reproducir los brazos solicitados. Se necesitan los manifiestos crudos de MedQA y MedMCQA antes de iniciar la batería textual.
-
-### Llama 3.2 90B y Microsoft Phi-3 Vision
-
-El 90B con `N_2` no obtuvo ninguna respuesta durante 23 preflights; la evidencia está en [`api_watchdog_n2_report.md`](../experiments/chexpert/results/api_watchdog_n2_report.md) y [`api_watchdog_n2_incremental.jsonl`](../experiments/chexpert/results/api_watchdog_n2_incremental.jsonl). Microsoft Phi-3 Vision devolvió `404` en el endpoint probado. Ninguno de los dos resultados debe mezclarse con la corrida válida de 11B.
-
-## 🧪 Validación y estado de Git
-
-- Tests de dispatch, gateway, ports, Gemini y lineage: **202 passed, 2 skipped**.
-- Degeneracy guard y lineage parity: **4 passed**.
-- Último commit local: `898bf46 test: account for scoped CheXpert pilot exemptions`.
-- La rama está rebasada sobre `main` y no se ha hecho push desde esta sesión.
+- Pruebas dirigidas de `test_lineage_parity`, `test_degeneracy_guard`, `test_imaging_blind_metric` y `test_chexpert_incremental`: **64 passed**.
+- Los siete avisos nuevos del guard corresponden al mismo defecto `cue=none` ya registrado para Qwen; quedaron anotados por ruta exacta y el límite de baseline subió explícitamente de 116 a 123, sin añadir gaps a lineage parity.
+- La rama está basada en `main`; este handoff y los resultados validados se publican en el PR #416. No se incluye ningún dataset crudo.
 - Los valores de API no están incluidos en este informe ni en los artefactos rastreados.
 
 ## 🔗 Artefactos principales
@@ -169,6 +156,9 @@ El 90B con `N_2` no obtuvo ninguna respuesta durante 23 preflights; la evidencia
 - [Resultados CheXpert Llama 11B, `n=600`](../experiments/chexpert/results/meta_llama-3.2-11b-vision-instruct/)
 - [Brazo oculto de 35 casos](../experiments/chexpert/results/meta_llama-3.2-11b-vision-instruct/hidden_note_n35/)
 - [Cache reproducible de CheXpert](../experiments/chexpert/results/600_runs/img_cache_llama11b_n2.jsonl)
+- [Batería CheXpert con imágenes y cache Llama 11B](../experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/)
+- [Cache parcial de la cola SUPPORT2](../experiments/support2/results/meta_llama-3.2-11b-vision-instruct_call_cache.jsonl)
+- [Fuentes y requisitos de datasets](./DATASETS.md#the-datasets)
 - [Reporte de bloqueo del 90B](../experiments/chexpert/results/api_watchdog_n2_report.md)
 
-_Este archivo es un handoff local. Para que otra cuenta lo vea desde GitHub hace falta publicar la rama o actualizar el PR; esa publicación no se realizó automáticamente._
+_El PR #416 contiene este handoff y los artefactos de resultados reproducibles; los datasets y las credenciales permanecen locales._

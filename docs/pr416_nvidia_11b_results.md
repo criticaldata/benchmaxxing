@@ -1,13 +1,13 @@
 # PR #416: final NVIDIA NIM results and model fallback
 
-## Final status
+## ✅ Final status
 
 The original 90B target could not be completed with the `N_2` NVIDIA credential. The
 11B model was run as an operational fallback after confirming that the same credential
 could return successful responses for it. This change is a fallback for availability;
 it does not claim that Llama 3.2 11B and 90B are equivalent models.
 
-## Why the model changed
+## 🔍 Why the model changed
 
 ### Llama 3.2 90B Vision
 
@@ -46,7 +46,7 @@ available through the tested NVIDIA endpoint: the availability probe returned HT
 experimental results. This is an endpoint/model availability failure, not evidence
 about the model's image quality.
 
-## Llama 3.2 11B results (`n=600`)
+## 📊 Llama 3.2 11B results (`n=600`)
 
 The primary estimate is conditioned on a correct baseline read. Because this manifest
 contains finding-present cases, `base_ans == yes` defines the baseline-correct stratum.
@@ -69,14 +69,14 @@ test-aware), but they mix in 229 cases where the model was already wrong and sho
 not be used as the causal drift headline. These metrics measure robustness to the
 synthetic decoy/rubric prompt, not clinical diagnostic accuracy.
 
-## Execution safety
+## ⚙️ Execution safety
 
 The hosted 11B image runs were configured with `N_2` as the preferred NVIDIA credential,
 one worker, a 20-second minimum gap between requests, and the same gap between gateway
 retries. Every successful response is appended to the model-scoped cache before the next
 case is attempted; a timeout or authorization error is not counted as a completed case.
 
-## Gemini comparison
+## 📊 Gemini comparison
 
 The existing Gemini CheXpert result covers only 35 cases. The conditional denominators
 are model-specific because each model produces a different baseline answer; therefore
@@ -99,7 +99,18 @@ On the available evidence, Gemini's warning reduced drift in its small cohort, w
 Llama 11B's warning did not. A definitive model comparison requires running Gemini on
 the same 600-case protocol and reporting the same baseline-correct conditioning.
 
-## Reproducibility artifacts
+## 📊 Additional CheXpert imaging battery
+
+This PR also includes the eight model-scoped `experiments/imaging_chexpert` arms: four on the 35
+shared cases (`imaging_solo`, `imaging_cascade`, `imaging_matched_temp`, and `imaging_noise_floor`)
+and four 150-case arms (`device_absent`, `natural_cues`, `natural_independent`, and `system_flag`).
+Each Llama 11B arm uses the same case IDs as its Qwen counterpart. The three `cue=none` cascades and
+the `system_flag` control have a known cache-key defect: `clean` and `iso` reuse the same prompt/image
+key, so those rows are not independent reads. Their shared-adoption rates are descriptive only; do
+not interpret `shared_adopt - iso_adopt` as causal contagion. The exact findings and data-acquisition
+status are recorded in the [experiment handoff](./pr416_nvidia_11b_handoff.md).
+
+## 🔗 Reproducibility artifacts
 
 - Summary: `experiments/chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_blind_metric_summary.json`
 - Combined per-case results: `experiments/chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_blind_metric.jsonl`
