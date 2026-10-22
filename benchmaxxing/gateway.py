@@ -23,6 +23,8 @@ from __future__ import annotations
 
 import abc
 import hashlib
+import os
+import threading
 import time
 from typing import Callable
 
@@ -36,6 +38,34 @@ __all__ = [
     "with_retry",
     "cached",
 ]
+
+
+_GLOBAL_PACE_LOCK = threading.Lock()
+_GLOBAL_LAST_CALL = 0.0
+
+
+def _global_pace() -> None:
+    """Optionally serialize outgoing calls across legacy retry wrappers.
+
+    Most model-specific runners use ``experiments._lane.paced_complete`` already. A few older
+    runners still construct ``RetryBackend`` directly, though, so a campaign can opt them into the
+    same process-wide pacing without changing their individual cache implementations. The setting
+    is deliberately opt-in: ordinary library users and the default Gemini runs remain unchanged.
+    """
+    raw = os.environ.get("BENCHMAXXING_GLOBAL_MIN_CALL_INTERVAL", "").strip()
+    try:
+        gap = float(raw) if raw else 0.0
+    except ValueError:
+        gap = 0.0
+    if gap <= 0:
+        return
+
+    global _GLOBAL_LAST_CALL
+    with _GLOBAL_PACE_LOCK:
+        wait = gap - (time.monotonic() - _GLOBAL_LAST_CALL)
+        if wait > 0:
+            time.sleep(wait)
+        _GLOBAL_LAST_CALL = time.monotonic()
 
 
 class Backend(abc.ABC):
@@ -226,6 +256,7 @@ class RetryBackend(Backend):
     ) -> str:
         for attempt in range(1, self.tries + 1):
             try:
+                _global_pace()
                 return self.backend.complete(prompt, image=image, decoding=decoding)
             except self.transient as exc:
                 if attempt >= self.tries:
@@ -514,6 +545,8 @@ class LocalOpenAICompatibleBackend(OpenAIBackend):
         self.model = model
         self.base_url = base_url
         self.default_decoding = dict(default_decoding or {})
+        self.timeout = timeout
+        self.max_retries = max_retries
         if client is not None:
             # Injected client (used by tests): no SDK import required.
             self._client = client

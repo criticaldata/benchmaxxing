@@ -182,13 +182,14 @@ def test_columns_that_genuinely_vary_are_not_flagged(keys, path, column):
 # line in a 122-entry JSON file, which a reviewer skimming a diff will not catch. I demonstrated
 # that hole before closing it, by planting a fresh constant column and hiding it behind one
 # boilerplate reason with the whole suite green.
-# Raised 113 -> 116 deliberately, and the raise is a DETECTION improvement rather than three new
-# defects. The `identical_reads` screen reads yes/no columns, which `_binary` does not, so the pair
-# screens had been blind to the whole imaging lane; turning it on surfaced five pre-existing
-# instances at once (three no-cue arms, the CheXpert system-flag arm, and k1 vs k2 on the peer-size
-# curve). Two of the five nobody had found by review. Lowering this number is always fine; raising
-# it again needs the same kind of justification in the commit message.
-PREEXISTING_CEILING = 116
+# Raised 113 -> 116 for the `identical_reads` detection improvement, then 116 -> 123 for the
+# Llama 3.2 11B replication of the already documented no-cue/cache-key defect (#387/#391). The
+# seven exact findings are three 150-row cascade files (one duplicate-column and one identical-read
+# finding each) plus the system-flag identical-read finding. They add no new failure mode; the
+# handoff restricts these arms to raw shared-adoption rates and withdraws causal comparisons. New
+# defect classes still fail the gate. Lowering this number is always fine; raising it again needs
+# the same evidence and explanation in the commit message.
+PREEXISTING_CEILING = 123
 
 
 def test_identical_reads_fires_on_two_reads_that_never_diverge():

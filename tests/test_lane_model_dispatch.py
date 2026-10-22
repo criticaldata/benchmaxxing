@@ -21,12 +21,19 @@ def test_key_name_and_key_follow_the_model_id(monkeypatch):
     assert _lane.key_name("gemini-2.5-flash-lite") == "GEMINI_API_KEY"
     assert _lane.key_name("deepseek-ai/deepseek-v4-flash-0731") == "DEEPSEEK_API_KEY"
     assert _lane.key_name("nvidia/nemotron-3-super-120b-a12b") == "NVIDIA_API_KEY"
+    monkeypatch.delenv("N_2", raising=False)
     monkeypatch.setenv("GEMINI_API_KEY", "g")
     monkeypatch.setenv("NVIDIA_API_KEY", "nv")
     monkeypatch.setenv("DEEPSEEK_API_KEY", "ds")
     assert _lane.key_for("gemini-2.5-flash-lite") == "g"
     assert _lane.key_for("nvidia/nemotron-3-super-120b-a12b") == "nv"
     assert _lane.key_for("deepseek-ai/deepseek-v4-flash-0731") == "ds"
+
+
+def test_n2_takes_priority_for_nvidia_models(monkeypatch):
+    monkeypatch.setenv("NVIDIA_API_KEY", "primary")
+    monkeypatch.setenv("N_2", "second")
+    assert _lane.key_for("meta/llama-3.2-11b-vision-instruct") == "second"
 
 
 def test_gemini_routes_to_the_google_sdk(monkeypatch):
@@ -130,6 +137,15 @@ def test_pacing_follows_the_documented_nim_ceiling(monkeypatch):
     t0 = _time.monotonic()
     _lane._pace("gemini-2.5-flash-lite")
     assert _time.monotonic() - t0 < 0.05
+
+
+def test_worker_count_can_force_serial_api_calls(monkeypatch):
+    monkeypatch.delenv("BENCHMAXXING_MAX_WORKERS", raising=False)
+    assert _lane.worker_count() == 4
+    monkeypatch.setenv("BENCHMAXXING_MAX_WORKERS", "1")
+    assert _lane.worker_count() == 1
+    monkeypatch.setenv("BENCHMAXXING_MAX_WORKERS", "not-an-int")
+    assert _lane.worker_count() == 4
 
 
 def test_rate_limit_detection_covers_the_vendor_shapes():

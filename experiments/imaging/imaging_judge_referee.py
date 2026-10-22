@@ -218,7 +218,7 @@ def main() -> None:
                 "clean_correct": row.get("clean_correct")}
 
     rows = []
-    with ThreadPoolExecutor(max_workers=4) as ex:
+    with ThreadPoolExecutor(max_workers=_lane.worker_count()) as ex:
         for fut in as_completed([ex.submit(judge, r) for r in cascade_rows]):
             rows.append(fut.result())
 
