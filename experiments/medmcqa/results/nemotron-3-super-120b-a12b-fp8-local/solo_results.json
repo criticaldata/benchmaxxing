@@ -1,0 +1,37 @@
+{
+  "n_records": 300,
+  "noise_floor_by_model": {
+    "nemotron-3-super-120b-a12b-fp8-local": 0.0
+  },
+  "flip_rate_by_model": {
+    "nemotron-3-super-120b-a12b-fp8-local": {
+      "overall": 0.17333333333333334,
+      "per_cue": {
+        "lexical_overlap": 0.2,
+        "longest_option": 0.19,
+        "option_order": 0.13
+      },
+      "n": 300
+    }
+  },
+  "susceptibility_matrix": {
+    "models": [
+      "nemotron-3-super-120b-a12b-fp8-local"
+    ],
+    "cues": [
+      "lexical_overlap",
+      "longest_option",
+      "option_order"
+    ],
+    "matrix": [
+      [
+        0.2,
+        0.19,
+        0.13
+      ]
+    ]
+  },
+  "overlap": {
+    "error": "Need at least 2 models for an overlap test."
+  }
+}
