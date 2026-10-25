@@ -6,6 +6,7 @@
   "new_api_calls_this_run": 0,
   "cache": "experiments/referee/results/openai_gpt-oss-20b_call_cache.jsonl",
   "manifest": "/home/sebasmos/Documents/DATASET/medqa/manifest_test.csv",
+  "manifest_sha256": "6a2ac665b2362185a314a011c6f66f727073b9147adb17435a4bdf713b8f6c54",
   "committed_summary_untouched": "experiments/referee/results/openai_gpt-oss-20b/referee_deployable_summary.json",
   "replay_matches_committed": {
     "n_cases": true,
