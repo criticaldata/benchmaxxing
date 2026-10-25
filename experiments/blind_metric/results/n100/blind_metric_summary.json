@@ -8,9 +8,9 @@
       "decoy_uptake": 0.0
     },
     "blind": {
-      "n_declared": 98,
-      "n_undeclared": 2,
-      "decoy_uptake": 0.2857
+      "n_declared": 100,
+      "n_undeclared": 0,
+      "decoy_uptake": 0.28
     },
     "test_aware": {
       "n_declared": 97,
