@@ -2,6 +2,33 @@
 
 Thanks for helping build the referee-agent sandbox. This guide is how to reproduce the code, run the checks, and land a change. The conceptual plan lives in the project docs; this file is the practical how-to.
 
+## 0. Reproduce it without an API key
+
+Every model call is cached, so the committed runs replay offline.
+
+```bash
+pip install -e ".[dev]"
+pytest -q          # the full suite, no network and no key
+```
+
+Most lanes replay from the cache at zero cost. The MIMIC-CXR lanes cannot, under PhysioNet terms,
+and ship de-identified per-case rows instead. Two of the image-cue arms reproduce only under a
+pinned font version, a caching defect we document rather than paper over; for those, the per-case
+rows rather than the regenerated images are the record.
+
+No dataset is redistributed here. MedQA-USMLE, MedMCQA, NIH ChestX-ray14, CheXpert, SUPPORT2 and
+MIMIC-CXR each carry their own terms and must be obtained from their providers. Access requirements and the full walkthrough follow below.
+
+### Design principle: reuse the originals
+
+Every line we write ourselves is a line that can be wrong, and a line a reviewer can blame the
+result on instead of the phenomenon. So the pipeline is thin wrappers over established,
+version-pinned libraries, and the small bespoke core is tested hardest. The measure of progress is
+how little of the pipeline is ours.
+
+Agents run on the **Gemini API**, behind one gateway so other providers can be added without
+touching experiment code. No fine-tuning; models are off-the-shelf and deterministic.
+
 ## 1. Setup
 
 Python 3.10+ . The pure-Python core installs and tests anywhere; the heavy pieces are optional extras.

@@ -6,6 +6,7 @@
   "new_api_calls_this_run": 0,
   "cache": "experiments/referee/results/call_cache.jsonl",
   "manifest": "data/medqa_manifest.csv",
+  "manifest_sha256": "0f2076a45455080924f954d31136b815b986fb108d9380beadd4da9b87eaacef",
   "committed_summary_untouched": "experiments/referee/results/referee_deployable_summary.json",
   "replay_matches_committed": {
     "n_cases": true,
