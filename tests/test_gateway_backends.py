@@ -13,7 +13,6 @@ import pytest
 
 from benchmaxxing import gateway
 
-
 # --------------------------------------------------------------------------- fake clients
 
 
@@ -218,3 +217,36 @@ def test_local_backend_injected_client_uses_base_url_and_reuses_completion():
     model, messages, _ = client.chat.completions.received[0]
     assert model == "qwen2.5"
     assert messages == [{"role": "user", "content": "hi"}]
+
+
+def test_local_backend_wires_configurable_transport_options(monkeypatch):
+    captured = {}
+
+    class _FakeSDK:
+        def __init__(self, **kwargs):
+            captured.update(kwargs)
+
+    monkeypatch.setitem(__import__("sys").modules, "openai", type("OpenAIModule", (), {"OpenAI": _FakeSDK}))
+    gateway.LocalOpenAICompatibleBackend(
+        model="qwen2.5",
+        base_url="http://localhost:11434/v1",
+        api_key="test-key",
+        timeout=12.5,
+        max_retries=3,
+    )
+
+    assert captured == {
+        "base_url": "http://localhost:11434/v1",
+        "api_key": "test-key",
+        "timeout": 12.5,
+        "max_retries": 3,
+    }
+
+
+def test_retry_backend_calls_the_optional_global_pacer(monkeypatch):
+    calls = []
+    monkeypatch.setattr(gateway, "_global_pace", lambda: calls.append(True))
+
+    gateway.RetryBackend(gateway.MockBackend(), tries=1).complete("hello")
+
+    assert calls == [True]

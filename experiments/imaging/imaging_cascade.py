@@ -188,7 +188,7 @@ def main():
 
     rows = []
     completed = 0
-    with ThreadPoolExecutor(max_workers=4) as ex:
+    with ThreadPoolExecutor(max_workers=_lane.worker_count()) as ex:
         futs = {ex.submit(run, c): c for c in cases}
         for fut in as_completed(futs):
             r = fut.result()
