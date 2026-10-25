@@ -22,12 +22,7 @@ from benchmaxxing import gateway
 from benchmaxxing.extract import declared_mcq_choice
 
 DEFAULT_MODEL = "gemini-2.5-flash-lite"
-# The hosted endpoint for every id under HOSTED_PREFIXES. BENCHMAXXING_NIM_BASE_URL points it at a
-# vLLM server of ours serving the same public release under the same id (the hosted function for
-# nvidia/nemotron-3-super-120b-a12b was withdrawn from the free tier on 2026-10-20); the result
-# files then keep the committed slug, and the run records that it was served locally in a
-# serving_provenance.json beside them. Pacing and the key lookup stay as for the hosted endpoint.
-NIM_BASE_URL = os.environ.get("BENCHMAXXING_NIM_BASE_URL", "").strip() or "https://integrate.api.nvidia.com/v1"
+NIM_BASE_URL = "https://integrate.api.nvidia.com/v1"
 DEEPSEEK_BASE_URL = "https://api.deepseek.com"
 # An open-weights model served on the machine that runs the experiment has no vendor endpoint, no
 # key and no request ceiling. BENCHMAXXING_LOCAL_BASE_URL names that server, and setting it is
