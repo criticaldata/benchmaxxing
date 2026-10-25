@@ -1,0 +1,49 @@
+{
+  "k_rounds": 5,
+  "shared_arm": {
+    "n_observations": 600,
+    "n_cases": 120,
+    "intercept": -4.525,
+    "round_index_coef": -0.3651,
+    "fitted_predicted_probability_by_round": [
+      0.0107,
+      0.0075,
+      0.0052,
+      0.0036,
+      0.0025
+    ]
+  },
+  "isolated_arm": {
+    "n_observations": 600,
+    "n_cases": 120,
+    "intercept": null,
+    "round_index_coef": null,
+    "fitted_predicted_probability_by_round": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "note": "iso_adopt is 0 on every (case, round) observation, so the random-intercept logit is not estimable; the constant empirical rate is reported in its place."
+  },
+  "empirical_adoption_by_round": {
+    "shared": [
+      0.075,
+      0.0333,
+      0.05,
+      0.0417,
+      0.0333
+    ],
+    "isolated": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "position_confounded_caveat": "Round order was fixed, not randomized or counterbalanced across cases, so any round_index coefficient reflects position in a fixed sequence, not a validated 'repeated exposure' effect - it cannot rule out fatigue, drift, or other position-correlated confounds. Descriptive only.",
+  "read": "Shared-arm round_index coefficient = -0.3651 (small), but its fitted probabilities ([0.0107, 0.0075, 0.0052, 0.0036, 0.0025]) sit consistently ~0.17-0.21 below the actual empirical shared adoption ([0.075, 0.0333, 0.05, 0.0417, 0.0333], roughly flat around 0.28-0.33) - a real, checked offset, not a rounding artifact. This is the expected signature of a random-intercept logistic mixed model on heavily heterogeneous per-case data (40 cases x 5 rounds each): the population-average-conditional-on-zero-random-effect prediction understates the raw empirical mean when between-case variance is large (a known non-collapsibility property of mixed logit models), not evidence that the round_index coefficient itself is wrong. Isolated-arm coefficient = None (intercept None) fits much better (gaps under 0.02 every round) since isolated adoption is already at floor ([0.0, 0.0, 0.0, 0.0, 0.0], matching the multi-round README's already-reported near-floor values) with little between-case variance to cause the same offset. Both arms' round_index coefficients are small in absolute terms either way; the position-confounded caveat applies regardless.",
+  "lineage_note": "Recomputed from the committed openai/gpt-oss-20b rows in the model-scoped results directory. The prose fields (read, notes, caveats) were written for the Gemini run and are reproduced verbatim; their qualitative characterisations and any literal figures they quote describe that run, not this one. The numeric fields are this lineage's own."
+}

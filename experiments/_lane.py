@@ -234,15 +234,22 @@ def letters(n: int) -> list[str]:
 
 
 _TERMINAL_LETTER = re.compile(r"^\s*\**\(?([A-E])\)?\**[.:]?\s*$")
+_TERMINAL_LETTER_WITH_TEXT = re.compile(r"^\s*\**\(?([A-E])[.):]\**\s+(.+?)\s*$")
+
+
+def _norm_option(s: str) -> str:
+    return " ".join(s.strip().strip("*").strip().rstrip(".").split()).casefold()
 
 
 def declared(text: str, options) -> str | None:
     """The option letter the model actually committed to, or None if it committed to nothing.
 
-    Prefers the shared declaration detector added in #418, and falls back to a bare option letter
-    on the final non-empty line, which is the form the text prompts ask for. A completion that ends
-    mid-reasoning, or in prose that merely mentions options, is undeclared and must not be scored:
-    the legacy parser will still find *some* letter in it.
+    Prefers the shared declaration detector added in #418, and falls back to the final non-empty
+    line when it is a bare option letter (the form the text prompts ask for) or an option letter
+    followed by that option's full text, e.g. ``B. Insulin and glucose``. The text must match the
+    option exactly: a completion truncated partway through an option is still undeclared. A
+    completion that ends mid-reasoning, or in prose that merely mentions options, is undeclared and
+    must not be scored: the legacy parser will still find *some* letter in it.
     """
     if not text:
         return None
@@ -258,6 +265,11 @@ def declared(text: str, options) -> str | None:
         m = _TERMINAL_LETTER.match(lines[-1])
         if m and m.group(1) in valid:
             return m.group(1)
+        m = _TERMINAL_LETTER_WITH_TEXT.match(lines[-1])
+        if m and m.group(1) in valid:
+            option = options[letter_of.index(m.group(1))]
+            if _norm_option(m.group(2)) == _norm_option(str(option)):
+                return m.group(1)
     return None
 
 
