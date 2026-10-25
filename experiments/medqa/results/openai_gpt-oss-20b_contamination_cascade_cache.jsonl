@@ -1,0 +1,360 @@
+{"k": "51de2dd046145537249688a8b382b8aaf95b4de53c62e32a1db257f4dd0673c2", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "e50ca4cd0155769f07d1d90e5f13f598ec69f15003d9bd53bb98ba25af6a81f4", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "e00468cc5709c5758c2686c506b551aa21dfecf44979c9f66ba773c9eb399220", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "0092bb1a0aaf8a6cac680182965d5cf694ad5f49c4eabbdc9701360eeb066df3", "model": "openai/gpt-oss-20b", "resp": "Document the tendon injury in the operative report and inform the patient."}
+{"k": "c82881bfc789f73c7da6333cd92b797fc04a0f065954594dcfda566dd520428e", "model": "openai/gpt-oss-20b", "resp": "DNA cross\u2011linking that blocks DNA replication."}
+{"k": "6201016f58a0ed5dac137abf4719a845640c7568774926c69a287f1d1b92cc4c", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "e9b7d53ea039591b93eba4f6e51c2ce0e1267a02911f7e289f58abb9f4cb4003", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "c0e8a6aba58dfd16bc52bb43dead5c391d6e3e5a93cbc1007d7d91e53a8e60e3", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "28da4d2a58845c8d54512ee0c60453592cd7faa031fe702da7e373ec24b22cab", "model": "openai/gpt-oss-20b", "resp": "Topical antihistamine eye drops (e.g., ketotifen or olopatadine) to relieve the allergic conjunctivitis."}
+{"k": "2d9f1fd43583f3d9688f0ce6bc0b4149895e34d98f106d346042bffc9ec0606c", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "b6f9ec8849dbb5ae2396d6c9686ede79695eecbd0b2d11c6891134eec7cdb3e2", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "632b63d304f02bab221f2f8677eddf55c85c61bf8d9769046fdf570b5de82a09", "model": "openai/gpt-oss-20b", "resp": "Ureteral stone obstruction."}
+{"k": "74a4da519ff08db0f4f846bfc237c3e2224f533123799e7bb186210421e3427f", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "8480b484e7f4e65afcafd1404133ea5bf0aeb5f0ef55fa55766ec2190bb8f9cd", "model": "openai/gpt-oss-20b", "resp": "Obtain an emergent 12\u2011lead ECG."}
+{"k": "38800821f7039f0e2851fe523d7233b03b1dc6194fe5874dd6ed9e52fe263e61", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "b62880358240e2cc95a47bfbb5965a5fa89f1fa2f6b16baacccb891a0574d1e3", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "702900077312db7ced62d5bf70859d7b8391adb99dc830689a9e6967017dad1e", "model": "openai/gpt-oss-20b", "resp": "Clopidogrel."}
+{"k": "80e92a1af56a6b1ec6bf679927a32ec84e6c638f8b2f9f54f43d0dc3ea261855", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "97992e90c7e5b04be32b926f5a953c751c1ebbb64ac77c75ea9336766a4faef7", "model": "openai/gpt-oss-20b", "resp": "Naproxen (NSAID\u2011induced acute interstitial nephritis)."}
+{"k": "7ecaf25a4b6f797041a9f109ecc8742c5091d32f839eb5f56efc364ea190d313", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "56b57c6bc3eea635b8195171ac39c2031d940a53f441b2029f00e1f857a1acea", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "dfd11514592c3e8c52c6b5346cb3ba265d432176c2f154bce6aaae5c04ff759e", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "7ad2105eacc8ff42a282e4a9edb21690af1ffd34a6139ca1582390202156339e", "model": "openai/gpt-oss-20b", "resp": "History of pelvic inflammatory disease."}
+{"k": "54cb4f586b4161f9c8f96562cef82b3c0ae342e525d851ec8220af69c784897e", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "c67c1c2ef8002edfbfb0bdcb6ee0737bddd5c11f5014f0b8f383945fdf779625", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "858e078fa2bdc359834634ab732dfd8125a2d56a3767634dbb52caa98e38a922", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "a9a9757e4aa4fe21a62d835a5dba8a14ee69a7e452e51d090f7a5e3102e4d159", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "8d3e3c71bf5e9f578c879df371e429047552ea1db2b731f6d9a49eb940875db4", "model": "openai/gpt-oss-20b", "resp": "Start ruxolitinib (a JAK1/2 inhibitor) to control the primary myelofibrosis."}
+{"k": "47b5b61abc3eaa537df6bf188ba44725eec88e2339cd24869d8e23244646958f", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "19381903514ddb9cc1ad3acac503fde0be82e754cbb57dcc47683583d7ab09a0", "model": "openai/gpt-oss-20b", "resp": "Psoriatic skin plaques on the extensor surfaces (classic nail\u2011psoriasis association)."}
+{"k": "67a130093e7f7691b45207a825206172fcf38aed5c9274f44ae7725f0062bc30", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "c0dddd3974f38bb08e00a9e91ae9744946ecc48c147a7eddd593f90d28c82e6e", "model": "openai/gpt-oss-20b", "resp": "Meningioma."}
+{"k": "7261953d273066847018ed73ab23de0c0317e296db6f7889e9ac88f359ff8977", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "cfad01fe2e22d57e9658a8cc89862a960989ea559a29b726ebfab6cfe11ba398", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "dd38867ac49f9c933fc111e86b94a1d19c9c05380284af87e4f32257236ee1d3", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "f0bad5e01c313b8ea4e9d8123d0e8d5663c0316bf21bcf13f9a1cfa7847fbcac", "model": "openai/gpt-oss-20b", "resp": "Murmur intensity decreases (the murmur becomes softer)."}
+{"k": "c5daf5c4dd637535605388186183536672ac48fe239f89318f6bafe6276995c2", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "d02edb9e41194a7870a40e6f54261acc3813149c19bb3e6e7bbe070d74c39e31", "model": "openai/gpt-oss-20b", "resp": "Western blot that detects antibodies to HIV\u20111 and HIV\u20112 \u2013 positive if \u22653 of 5 bands are present."}
+{"k": "9ddcca23477afb5c8e3dbbc4986f53d71af9fe5147b2e39acdae25fed87586fc", "model": "openai/gpt-oss-20b", "resp": "Influenza virus (Orthomyxoviridae)"}
+{"k": "771ffea703e990bc4650b6a28b6322fb5709a176205992d17814e1b115d4bf1d", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "3b0858421c13ebe0d2f605d4b699debd720ac18ad1ab659ca5a915fd73b8c062", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "51c1e691204af16d1f5620f271a727871c625e74f56fe8a331ff032d6226a2ec", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "6ebe180f1334602cb6d2bb9c6cd4a2c3c645c9ad9f5cad5c3a044fb8be025953", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "6d42d687b308f96c640533dc3e1b9bfd73ff69aeff2bb91417ceb3d1063bb57f", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "880d6cce8438a8364447138a05a867b067529151ce064686d8f389ae795ed28c", "model": "openai/gpt-oss-20b", "resp": "Matching (a matched case\u2011control design)."}
+{"k": "a0ee60c2f2896650a1467d5e5f6be3e5cda346e58194c1a63e95459eef4aa1ec", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "91b22d5826592db6f84144b5b3183f6f375148d1b8226ec84ae40206e9844b2b", "model": "openai/gpt-oss-20b", "resp": ""}
+{"k": "93f4e6060bbb0e30087e4b16978d14feb614ec983e4acf7c708c29557fd62175", "model": "openai/gpt-oss-20b", "resp": "Interleukin\u20114 (IL\u20114)"}
+{"k": "3db2673bc8662f623432c10ee718596a0e352116f322f45f0542cb5c0a32403c", "model": "openai/gpt-oss-20b", "resp": "Gallbladder carcinoma."}
+{"k": "e3a9968b446d352a5ecdede02e0d076d3820fac918a2b993b19dd74a78084b61", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "aef52dd460c36e5198b59bc56066a0d34aa7848a9234f9406711a99755fd2033", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "581b5652660ed1a4368ed186fe9d51b7d6d3a6adca6b1383f85359cc4261d623", "model": "openai/gpt-oss-20b", "resp": "Ibuprofen (high\u2011dose NSAID) plus colchicine."}
+{"k": "4e8b5210267007a7b051088fcdbdb86c8888e961b1b88786ab0305a72d939b6a", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "271859f99267fc2d4669b9aab737a7619e93f2b91b6e037873b8adec46cc4443", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "603c981a4c8e9b85ef49c22dc8f62988ee6fab65001595144502d572d4a924fb", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "11feebe9fcab366cbd5a4079b644db6f0725807e2e439a78fe73a905eb1057bd", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "e5361755f447b758b654d184f05d3e21bc252a233f65ee2861e1cb88974c3c3c", "model": "openai/gpt-oss-20b", "resp": "Prior radiation therapy (radiation exposure)."}
+{"k": "799df3edfa17f875487a2e11a73accd793a83fb5298678996d496db3d57bfea4", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "7069fb4f3331f13792dbe93cdc97191ad9d66f8493563f480c1cb90a19b3c1cf", "model": "openai/gpt-oss-20b", "resp": "Neisseria\u202fgonorrhoeae (Gram\u2011negative, oxidase\u2011positive diplococcus)"}
+{"k": "04e5eb994286e5b5a425605c8048c7d024e89b2739a49087ac7cd055d525c18f", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "4188c96601c2a962d8d7f5c273049e814131d9252b63c03ec1c6fa163b64340f", "model": "openai/gpt-oss-20b", "resp": "Acute ethanol intoxication (binge\u2011drinking\u2011related alcohol intoxication)."}
+{"k": "7dac26390397f80bb796d47058a0a7ebf19aa45995791f9b6fcf092e0230da73", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "e861aa244e74c668bddd80e3ab6e0db8f421528d9716b4aa4f68ff7f7c53d3db", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "d569ee88d4082121107f9a302e8b43fd55811289d37c803db0945811c50328d2", "model": "openai/gpt-oss-20b", "resp": "Inhalation of Histoplasma capsulatum spores from soil contaminated with bat or bird droppings."}
+{"k": "8fa0ae82d08312a8195e3235752791dde499002ebdc7133637b09b86a820d352", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "8408f009dc22d4138846839132c50a3c524691488bf1093b1a0dcf493f19124c", "model": "openai/gpt-oss-20b", "resp": "A defect in the membranous portion of the interventricular septum."}
+{"k": "4bbb1d0a00a7f38b181980b0ae8f96aefcdb91f593410fc339b0b1a0909f7a3d", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "b74631a4470ffc46a5b910c425103def7f59eed625302d4c558903a589d29e5d", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "a07c45c5a69251c40943c8afe59f37b2e1018685bcb8fa97d2eabb8233ce4e0e", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "6681da9f83c67c09d98564ba1ef87ea0cf1f2c1593983cdc7cd95d7efdd6d3e2", "model": "openai/gpt-oss-20b", "resp": "Staphylococcus aureus"}
+{"k": "c51bd36759fff2beb0e308a5de9339fb71289a1bbab8536d66e20139d9a2310b", "model": "openai/gpt-oss-20b", "resp": "Give calcium gluconate to reverse magnesium sulfate toxicity."}
+{"k": "3a7be4cb01667572fa62ea87def8b0d308304c6f52ef3694cc10a42515c302a8", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "1a42d708d5d1e215d6f1418cd48fe946b7b51cdeacb9f772f560fc0e2aa8324c", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "c75ac846cb644cb9443a99b22b09e4cb7959d59e9bc2a9ef2eef14f737812b51", "model": "openai/gpt-oss-20b", "resp": "NADPH oxidase (the gp91phox subunit of the respiratory burst complex)."}
+{"k": "82d94d5460bf095b1d403542c5dc915532121370c7910981efbcf27729c034f9", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "dafc05fc8c83e913865bd28032d547db3fc12929fe5b506510e8c13cc2d6edb4", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "7619aaa11ab7f8230610c18b608fbd98d14b1b579db6bad88895bf0a62c54cee", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "38755dd4398962a635ad075ee23689e8215178e42ba03fe6481b19d3fd3bfb36", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "d1f55db2ac688e9b599be6322f8efc33d7c150d2834f9e34b463f44514114ef2", "model": "openai/gpt-oss-20b", "resp": "Thumb\u2011print sign \u2013 markedly enlarged epiglottis on the lateral neck X\u2011ray."}
+{"k": "e061039446804fb0681c95e76b98f3b89c4e1d4beab192a641887017c3ad0297", "model": "openai/gpt-oss-20b", "resp": "Induction of hepatic microsomal enzymes (CYP3A4) by rifampin, which accelerates metabolism of the estrogen/progestin and lowers their plasma levels."}
+{"k": "574503b6a526ac22510e940616f57ef1d039ef8ed7e00b5d2841e2665740f3a5", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "cfb3e77b8bf5b9f91891e20e014ea5fbf8f8d142fc004d624947a0aaf154718d", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "4f2da767bae9d77be877d79c9d5ea203c46d6fdcdd497507a001ac1dc6091a47", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "388bfea6bb0274d3adf989fa2ad607523270be0e1a18eda86e8c9f5ca06c0858", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "a08931ae8922c35e255ca267ff83cf28f9e3900b26d3dce5488b3125f46eeca3", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "826a643eecd0b0cc5e645e9d15b6ffd241972ca949a6df79aa4a670ab761c385", "model": "openai/gpt-oss-20b", "resp": "Begin serial manipulation and casting (the Ponseti method)."}
+{"k": "0624d77210f28ea3e90ed9d2525d8eaa6beb45260691b41f9d239f215bc9ce6e", "model": "openai/gpt-oss-20b", "resp": "CSF shows albuminocytologic dissociation \u2013 markedly elevated protein with a normal white\u2011cell count."}
+{"k": "536c83084232ac62e8005114e48f0ee5130ff029bf974f63e1d5057ed1140f5d", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "23ff8380c8fb8bf968f249ef8bfdb36cf31ab347eb3ea6db63657cfd93f0fd28", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "af62ce81ecfa306d6fabbc9184f81102959573940f5760a8bddacd0446dc6967", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "b7c8d0460c39d8942df5ec1ea6c6be5377da62cd471c32d14cdc367e8c74d86b", "model": "openai/gpt-oss-20b", "resp": "Acute pancreatitis\u2014most likely gallstone pancreatitis from a stone that passed into the pancreatic duct."}
+{"k": "6465adc8a922e30c57cebaa4d315afa4b1c78819874f3a976b1a0747fc1d511a", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "d3c10e7aee22716a6f0666614e96a2676332ca8f67c2273a610a1b850a30a376", "model": "openai/gpt-oss-20b", "resp": "Chloramphenicol."}
+{"k": "a1076b46a743f03060e12797501917e5409a4308e1c260595c5b421883f31436", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "854e5d39e4fd18ee6d9de33caed243a98e755156c2828d476c9d97ed05f0b7da", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "beeba32a16d27f7e902a39c07bfc8903148ef5204db5fd5a219e4a76afe36e22", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "165de52f97baf6f7286a3543c71940028b6455621f891db371c1d094f005edfd", "model": "openai/gpt-oss-20b", "resp": "Autoimmune destruction of gastric parietal cells (type\u202fI atrophic gastritis)."}
+{"k": "fb9f715f77fe6af5f8334e13a2a51d6690f7eb4ed86630974160c96d4f844608", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "74c07dd2c11e7d0e1456c1f56c434231a6a44074a4f38f189f753ee4b9e1b648", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "5004c96d9d8b302f52277f22647a48bf940d1933fd3fa27842e9bc680b8ad804", "model": "openai/gpt-oss-20b", "resp": "Begin a subcutaneous insulin regimen to maintain euglycemia."}
+{"k": "10f7fe9023eee4bc981a6aaebb578b50f4011fd93ea929ec76e3435e1d291fac", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "fe2327cec3f3f1f3fbbfcd7c727bd17fd0389f109a60296d510e501e26f03e55", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "8bed81d97a5fc2e08dfd85adb799121ab4385678a4ebeda06a79567a7eefe3c2", "model": "openai/gpt-oss-20b", "resp": "Psoriatic arthritis."}
+{"k": "33f7bb1b22e46144a521f0e224a9e4deb95b584335cb5fc90a86c84b84b3978e", "model": "openai/gpt-oss-20b", "resp": ""}
+{"k": "975eb0341ca2c9dece791df3dd7ed9d1976c4c98cd185bd3eae55c52f7c1db4a", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "ef2ad57698fe193aaf525a54c1196952b22c27a1ec77cfaff0af6764b5b170ab", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "54ccce80aeb15c21a34892307a84d60629a434e845621dc369d03c58d47d5c67", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "bdb9ae1c272569384db6bac5efb1a8a9e3a19ffb96ec602eab0eb67a36ab3efd", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "be73119e13257e1a2979029a95301530e10b99f38dff2124292bc660fb0b714b", "model": "openai/gpt-oss-20b", "resp": "Small\u2011cell carcinoma of the lung (paraneoplastic Lambert\u2011Eaton myasthenic syndrome)."}
+{"k": "b59e4d449b34070def412019483c1fe22764a419d439d1b2aeb570cc25d38689", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "54015c91d2644dc5a15c0db39a54ab29e3efeef9fbc14f07a430a40c6e960d54", "model": "openai/gpt-oss-20b", "resp": "Decreased LV contractility from ischemic heart disease (i.e., an infarct\u2011related reduction in systolic function)."}
+{"k": "7aead3c815f7a882b811f913d79db2d80ac956d2b9b74c6a1524c55d0388acbf", "model": "openai/gpt-oss-20b", "resp": "Severe combined immunodeficiency (SCID) \u2013 most commonly from adenosine deaminase deficiency."}
+{"k": "50937832a7fc8fe44229d8b32380f8add39cb476a88cb2da85bc035d759c20c1", "model": "openai/gpt-oss-20b", "resp": "\u2248\u202f2.7 (about 80\u202fmg/30\u202fmg)."}
+{"k": "35e0726ab0919420b571350c6a0cc219357f67454a52e99909f7b0110ce883de", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "cb45f9a3a2385e4fd05d061ec6aa3032133c601c249b79a868b768a2f6f6888f", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "fe4474c0c658fb3428296b317be864a2758a3e0fc78348cdd20fac83bf17d165", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "5c4a6dfa424c4c4fb8cce59ba1e329bc6d0dab23f12bf13bbb6085dcf0e999e9", "model": "openai/gpt-oss-20b", "resp": "Arcuate fasciculus (the arcuate bundle connecting Broca\u2019s and Wernicke\u2019s areas)."}
+{"k": "0ddf654fb7f628fb2577bf6ef811eaa97598449c26b8c8d579b60e65452a3a7d", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "badc9e6ea09555869a90f7e86c4476053842c2811e3743574c72b35b487d8f2f", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "80a242f2a3d745ee9a974fbfe60486bf9cfc709265e232515a49ead4c1fffeb6", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "dd051812e0b8755bb42a8709f2d40f2bae8d2291fc5ff7088ce0f30243259892", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "2b277aa0f5a4f191de6ef2c288f4c9531b5f6716b25abcf9686bd3e256815185", "model": "openai/gpt-oss-20b", "resp": "Polycystic ovary syndrome (PCOS)"}
+{"k": "5e0559602dbdb9054b4fc14eb025192725ffe8bfcbba60c71b724fd2339152d8", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "ac464de98515f86b7f4378847a0509e69e499df2a15146001a903e87db17bad9", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "45e83350b37fb8042a0961a8d9f7e13d6d8dbdbacb69d085f20121309c203723", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "608e2c68e9c580f3052564cee596ec124cdd9620d6ebce92e1def8f851870807", "model": "openai/gpt-oss-20b", "resp": "Tight glycemic control \u2013 bring his HbA1c down (e.g., <7\u202f%) with optimized diabetes management."}
+{"k": "c6fd6f5dd30e97e1624472d7c728b6bb119bda3d65cc93bd7caa4dfe0c119393", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "3aaa2831b03647e9d310ef20d772861db0ebc4407704c7ad9b16fde7614e880b", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "8a06f54c8ad90c688e234ac6c86cb2ced564fba92da3763203e305781ce2b84e", "model": "openai/gpt-oss-20b", "resp": "Venous blood from the peripheral lower\u2011extremity veins (e.g., femoral vein)."}
+{"k": "66a793d536623c64ffb403d74160b8ac50a9e45968095a27f3a882e0b68c334b", "model": "openai/gpt-oss-20b", "resp": "Intestinal malrotation with mid\u2011gut volvulus (a common obstruction seen in Down\u2011syndrome infants)."}
+{"k": "e33b3d60598c1b30a83a461022a901b734661558f4faaa1537fe473235e0d497", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "b0de9ed120053132ac175f80b0ecc0257856cca8b5ba2d871f5bfa8a1dc50b79", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "68c543d6393a113b9ab22ab1faa9c6b9ebf07fcbc2a7c37a0ec4ff3000988b87", "model": "openai/gpt-oss-20b", "resp": "20"}
+{"k": "6ca9fd9c27b48a2a405132b72a2daf2bdb876bf93295ad473caf1bc9f1579bcd", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "9aafb1695c475d6d7dfd99a42b53a4535cb696f10ce4daf6394fd425d51e9dd3", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "ebbc8aed1750f74e29b013fd61b05f577e06b0091e9f938b450ae2894adf1b45", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "a80cb8583d457acf7505c243f75d741223b40306df1ee76e28030ecebafbd99b", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "1ada269319eceb311f9a59424d69254569b278e213fcd0050a8d32ddbdff1acd", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "16dada4f139691c913a4295b60c9ceec25d73e044ad48ef9fb5b8bb818ac2c09", "model": "openai/gpt-oss-20b", "resp": "IV thiamine."}
+{"k": "43a9bcf4e6b119a2c92a31bab47b4f06d16353b6d279f6ac63a1f11a6aeff214", "model": "openai/gpt-oss-20b", "resp": "Peripheral arterial disease (intermittent claudication) of the lower extremity."}
+{"k": "6e634c2b788086d0fa825fb58855cd979460ac44163ce6b8eb1f2947cb46dc5a", "model": "openai/gpt-oss-20b", "resp": "Obtain a chromosomal study (karyotype) of the fetal tissue to evaluate for genetic causes."}
+{"k": "8dc416874e68fbb131360862f8d7f698a6730bfc4e98259c785586c8d3b43ccf", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "1a91e753d2c5ec0a5c7b95d4e569b5b958153351520b38e9b0e27c5cf5809905", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "cc1b0a149b70be45c5601f7c9d1c31be544d0a302ecf5a33103a92d4872ebd7e", "model": "openai/gpt-oss-20b", "resp": "Proliferation of type\u202fII pneumocytes that then differentiate into type\u202fI alveolar cells."}
+{"k": "3f4108e9be4b5b17a65bb35e42ff1d6c348d5fbb16707fa9e328f19bfa901cfc", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "655898887a5024e206ba1c541e0025d40b1ecf07716431cd3bc8e0d8437aff9a", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "aca21d8d737292051d873d01edb3b58c03f534a3a9e9139977710b1e2aef08ca", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "a9a8e6fe4e7d52afda178dc94e6aae70a555a2ce678a8d37a1f7f50cc621450d", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "b537c1ced4b63b0ed6e13d336fc3996d53ea1149f8607b776d065679e5ed3bac", "model": "openai/gpt-oss-20b", "resp": "It damages DNA, causing double\u2011strand breaks that trigger cell death."}
+{"k": "1464198a45b21cf2d7a5cf22649c8a5ebf20362c16c5e230eb35d2dc236b6ee7", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "59a94643dfa77a3becb2c2c22ce954a935bfc0f4315063db1019e643dd777aaf", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "abe831bd87e54cd46194769f8ddabca5b7044b071473017227d644bf8b25d4f3", "model": "openai/gpt-oss-20b", "resp": "Obstruction of the common bile duct (e.g., a pancreatic head tumor causing cholestatic jaundice)."}
+{"k": "435f496ff6ca16e0f6560e50051125e35f00d65fc71a6103a7d104e10cfccb9e", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "b1474dd3826bb8c45c190ca128c84f6d066da2398efd699c9506ed68ec81e6fe", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "d1bf57a14ae8227411de2f8e2e44cd1423bebf8892de0e041ab8028352bfb590", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "7cdac322ed398211db04a0fe4da61cd33e4b12b80595dd0cfa9213aaa11ecce3", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "544fda21ec83f8a436f1d326a43095eb82ef203e4e0e32f5be15185e4798a106", "model": "openai/gpt-oss-20b", "resp": "Reduce the galantamine dose."}
+{"k": "dbf7617300ade9620638689482bfa633e52fded90c179a57b2118e95ba6dcebf", "model": "openai/gpt-oss-20b", "resp": "Stereotypic behavior (repetitive, purposeless motor movements)."}
+{"k": "8bb8f404d194a971e90f4fef1c952436e82033ba7d75fb2f4d20380e50637d78", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "fa22a3e2bf750830bc52f54dbfb6b8577b7291980a04ef78b38a1ec2fbf130c0", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "2b0f86caa81a45ba3011896c9439b84581d5aced2a608b1ac6a6faff082478fb", "model": "openai/gpt-oss-20b", "resp": "KOH preparation of a skin scraping from the lesion."}
+{"k": "7813999160a80ec69fc67f73c520509c4e3ec0ba36e50c8a5b44889410e97181", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "1dba6d34137c7b9243d313f47ea62e08e9824093778e61c31ba237bd54dbcda0", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "cad0d5e83691c71988ee7d9e1f258fa25922572fe66d2647ef4c5ea243df3600", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "c77eb590ba1359bdfd70a9528f7a2242f897e0724e8574833c97097810f99e3c", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "8cd2831de6d506ec34637736012f02e40496226ff8a4a777ec45e9bfa2f6f1e7", "model": "openai/gpt-oss-20b", "resp": "Hyperprolactinemia (\u2191 prolactin levels)."}
+{"k": "db2c5e91e51bfd38ce3b454517f1d09384b5a2162a41a348a5249426f2bb2a1b", "model": "openai/gpt-oss-20b", "resp": "T\u2011cell receptor \u03b2\u2011chain variable region (the V\u03b2 region of the T\u2011cell receptor)."}
+{"k": "673da867361abc53c463a7928a7fc79a2d4d658e70ddd00feb6ec1191fbe6acb", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "c6665c55ebfb965f8e11bb8010c32e7d264d93ae5100d5b1b0678c4921feaaed", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "9474ca0d2688d14ef510415400c656ab0a024101a5557c5cfa9089c277849e0a", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "f8d7546db7482f126bf0d277721c48d9f366b387c60870eb31cfe43ee3950a63", "model": "openai/gpt-oss-20b", "resp": ""}
+{"k": "77f3e6e5fda786e5da81ee8a06e4c80f2f23533502acdd2f344920f1fa1b038f", "model": "openai/gpt-oss-20b", "resp": "Hemolytic uremic syndrome (post\u2011diarrheal HUS)."}
+{"k": "ec3a4092ec7fc7548643cf42a9c3e8d8956b57afa6f9898707866b60de67dbbe", "model": "openai/gpt-oss-20b", "resp": "Primary hyperaldosteronism (Conn syndrome)."}
+{"k": "829df11dd1cdc599efe12ceb0ae2006f221779f26e387c0e43c846b4e6923474", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "78fe0c7cb7747c614359e1b1ccec7349f9d5563eb7eb296059e76cd195ef15a1", "model": "openai/gpt-oss-20b", "resp": "A firm, enlarged, irregular uterus on bimanual examination."}
+{"k": "72449553dad169ca030819f5f4204395a8e03345bd2cf89b5bea176a8599d8dc", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "4641f6a9b35b2da6d99f0c3230ce048aab98efcffc61ee96ae5220e98ac84d53", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "d70bfc35a7dbef86338491048be6c31e58284ff2d92c783c00b6e32b85f21769", "model": "openai/gpt-oss-20b", "resp": "Salmonella enterica serotype Typhi."}
+{"k": "522ad2cae41826f703f540d342009b0c8fa93eebb5f9ec33254cfdaca8d0a917", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "ce424236cfdbda7980b51d87ec81363f3e0a1a93628fbeb0c034d90df8928e58", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "f48b3a59a8df990c0b37b691c41878f51b84e8a85139cba9291e8cac2673147a", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "cc38c951f86c1e540fbf0c606622a40080502ac234a72eadd76b7041306f141a", "model": "openai/gpt-oss-20b", "resp": "Normal BMI (normal weight) with recurrent binge\u2011eating followed by purging."}
+{"k": "160df3e5ec18f5f6cf82d498bca1726dabb78ba762e6d615948be15e98ee9934", "model": "openai/gpt-oss-20b", "resp": "Acetaldehyde."}
+{"k": "289011d92e55db0c710485b488b93228f3874da0dbaecf356c2f850c9a8dccdf", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "86487afdef4a4815e0914bfe821c1f9fb7d6171ed1e26a7fe95cd73620ae0a4c", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "a2e3eb1d41faa581334c71e4bc531531efb67cbb61386a3620f2ae17f95cfb3c", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "9ee4eb42323fcbacc5b2c06ccc9101b3b454fdd123469c4b081900744f318a83", "model": "openai/gpt-oss-20b", "resp": "Insert a urinary catheter (Foley) to relieve retention."}
+{"k": "c29ad6055da05a7f1a4cb5d7d5dd78f23b3b71bf4cadf8bdc58fe8cc414400a7", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "a13e2ed6ccb2bccb0aa7a630597f78a8f844b49e4d5f2652e7d20202f79500c4", "model": "openai/gpt-oss-20b", "resp": "Serum ferritin (iron studies) to evaluate for iron\u2011deficiency anemia."}
+{"k": "439a54f25d1a7aadcf8ade0d8047840a74f5b7b568988b0b1318d62311f2004d", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "088bc3f9884cd9c0555ce15c4cdef41d47ad40fce92547643e687a1f64559385", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "dcef58f3621740213acd9d54a4afa942ba674600300d98c7f0838c96c083bd1a", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "f1064f8868cb543f77d8e516f8bb621cf4c981d6136aecc6994fc678d82dfb1a", "model": "openai/gpt-oss-20b", "resp": "Lytic metastatic lesion in the lumbar vertebral body (often with a compression fracture)."}
+{"k": "27283ee2f84e86af63c2fc1b5797fa836fff4a73d20442473012fa28a1052209", "model": "openai/gpt-oss-20b", "resp": "Inhibit fungal ergosterol synthesis by blocking the 14\u03b1\u2011demethylase (cytochrome\u2011P450) enzyme."}
+{"k": "d3618960e80d136607b1cb0d2ef9cd71b220c0e34cb5e2046df6b44581ba1d3c", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "cb5357c74816a286c4bf36ee8ff4ad63824cfce4f2001e043a1f6a4e05dc6831", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "d83feda7dc3ece4dc70a42661600defc1f8f4dbd21490627d4093ff93438ed1d", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "4bb1157eb1aec0dbe17cbc754c16325e7b339d6ad4960a094be3f6e7e0cc6daa", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "e46feaaf37b839b29ad021918bf8662b8f3f81402dbe6e8d4108b1888a563a68", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "6b2bc767d670e1551738b55f7b7295d87f2f85a262655ca0575f58f5ffe93a47", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "4811bdad5abf642a96e0b05c147775388ea7cf06ce957121410d034987d258a2", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "6de7d390e12d1a499bd860e439f7469adce011d8b063f6add802a3b6a3c9b60b", "model": "openai/gpt-oss-20b", "resp": "Proceed with the emergency laparotomy\u2014treat the child immediately without waiting for parental consent."}
+{"k": "840bcac5761fe0fa15f77275636282f224213bbe697a6b84ea44f4b8d7fa73c2", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "4343a8a506a04d5bd598e2eb606cfc8c0d60ef1b4d6bc1fa3ae4955964dd423a", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "9b76efa60308dbe32dff514cf910d52b23bbdc843906b64ddd372c41c9606c88", "model": "openai/gpt-oss-20b", "resp": "Propranolol (a non\u2011selective \u03b2\u2011blocker) to prevent rebleeding."}
+{"k": "344342745396d478c78220dc797953f0a39762aac6e35b644bfdd8b9a87930a1", "model": "openai/gpt-oss-20b", "resp": "Percutaneous liver biopsy of the lesion."}
+{"k": "cafedb02553c6cb8e1bd467bda1f3a13f7836d3531132300e73e6ca02db3ddcc", "model": "openai/gpt-oss-20b", "resp": "Maternal TSH\u2011receptor stimulating antibodies (TSI) that crossed the placenta and hyperstimulated the infant\u2019s thyroid."}
+{"k": "dbc0c9796c7360561c57120a455ec7fc67e79098f51b8c75edf303e439927fff", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "f6be594ebd8e3748d9c73549ab78de698b17ead03871bebb36eb46f426d7f577", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "f6e22b8ce0f2c39aec85f9d2b02a1fbf4a4bc18d064388f205490402ec07f7aa", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "cef1ea24fc4323096b22e05fc9792a3c6f276f27831e2366f33eab86320a9be6", "model": "openai/gpt-oss-20b", "resp": "Spontaneous bacterial peritonitis (SBP) precipitating hepatic encephalopathy."}
+{"k": "a9fc0913b1c4be51349b8c56b82b29b5c5e3beca12a182c27ac00cba39ed17e3", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "303a7a7b33eb85a2f0509d6863e35545dc8aa36b69feca0a1fee79f8c6b172f6", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "f81d4ae5e5abf247e242bee2169bcd95316527eb09f79ffe52d37a37dc4764b7", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "8e622561ca98e5b680192f8b1889876c671078ba99260b9572d0474899e98a27", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "5ab3ff67d4ed8402bbdca010c039e73b4e0fe7f699653a49099ab44764b6039c", "model": "openai/gpt-oss-20b", "resp": "Terlipressin infusion (with albumin support)."}
+{"k": "f6d3f2a819aa6b1e463e1a96b95a3a5d76d3c3d04854e70c3e5811c0a76f2f97", "model": "openai/gpt-oss-20b", "resp": "Blunt cardiac injury \u2013 a myocardial contusion from the chest impact."}
+{"k": "ad80b78500a6a230f84ce31a736bb189b48b216b053bf2c9a70e5547c5b7ea64", "model": "openai/gpt-oss-20b", "resp": "Methimazole."}
+{"k": "eaf0ed79d5f8f1e2f963a776e26b80b74c2380a667901fdfbd45531b57fc5532", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "5537ac6e033ffe66344ff660611768458d1f4e2278593ed8381967e9ff1a73b1", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "bbbfcbdfb72aa278afc0b3cb020850bbf3f6fecf32dc649d59a383bad07934f8", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "c6b9a21768b6ed390ad116520b9ea38b565dd1ead36ce43e49e18a3959888082", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "63e0cc4d835dced86bf201f9ec28fdb107e4e60b0819a8711317fb378bdc6fe6", "model": "openai/gpt-oss-20b", "resp": "KOH preparation of a skin scraping showing \u201cspaghetti\u2011and\u2011meatball\u201d yeast hyphae (Malassezia)."}
+{"k": "38c13a499846f394f9fb946cd6d72c202401b3cc723f05f625bf4f77c1c8ecb3", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "74b195e7fbcbcb539f9daaf502201c1e8528e43794c1a9f2d751d8619824e4d4", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "c29677244ad2d1b7d9674fa818e660da21830a2515a0d9dd61c56d42748d8ad5", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "445c6a5eace89f636a6aa4a32e0998d344b9d1e74fa476e9fc3feb7f59db8296", "model": "openai/gpt-oss-20b", "resp": "Biopsy the vaginal mass (e.g., punch or excisional biopsy) to obtain tissue for diagnosis."}
+{"k": "f5b2d36301e45aee20600a086ce0c4db4158ea84cc22b4d05d9bedbb18aca226", "model": "openai/gpt-oss-20b", "resp": "Chromosome\u202f21 (trisomy\u202f21)."}
+{"k": "02a8ff55db2f0a28e4edecba15be2aab03d99979589240bc4fe26c0f2cf6b682", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "41c86ad44583e82c25efc525f912ac249f090b182fdd8b0f20bc4b79ea262e4a", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "7644a6cb07b7b30976453cc37cb377829052e7273c4e1c09b815a1b812e78e48", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "66919c9f7be9311796560ccec5681134deac3b74f94c339fdd41e0718fa887c9", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "cd93e7014febc34429d50409ba4fb6661a41169cbe7e247af53a370be96ef5de", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "1f3d62a1cc8c78209bb09fa24b703efc4a065918c5eabefc7653914c7d9f6e6d", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "59471132236eb2fb1efa333bfdf68000a94ddfd07f1b866e182a4bef0a650356", "model": "openai/gpt-oss-20b", "resp": "Iron deposition in the joint cartilage from secondary hemochromatosis (iron overload)."}
+{"k": "c13d5fb2f05e9d114f3f5245b507e42a3377ec0ccea294c2cbaae68789886646", "model": "openai/gpt-oss-20b", "resp": "Left anterolateral thoracotomy."}
+{"k": "f87145bd64ec51ebc3ba4764347187520e08598d295520cc7be9f09cc1a6482d", "model": "openai/gpt-oss-20b", "resp": "Chronic bronchitis \u2013 marked mucous\u2011gland hyperplasia and thickened bronchial walls with mucus plugging."}
+{"k": "2c4b18596e0c0bd66e9581e9dbdca7eea802d53b0ef281efa3d629aed9701d0f", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "0e0dee8353b1a1de0448de31d494e967d5751346500534789c95e3ba1c0fa706", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "2b9ec0079f23a95acdaf9562b561c0482267dc536c0680951132d3255ffa23ea", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "72b6f2a957df9294453d2a6a5a909b12a49750213368dfdfa913266c3c8361c4", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "2e0729406bbbbffd5da8365bd09a48b7e1560ca9de4b41fe07a3df405f07e521", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "383b395824efa724dac152edc41d8ea456ce11ccf8f1d89e4be419bb6d19bf8b", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "6762819577bfbbc01e326c9412d4118ba0536647f31cf92a644e7e7b31b23d72", "model": "openai/gpt-oss-20b", "resp": "SMAD4 \u2013 the TGF\u2011\u03b2 signaling mediator on chromosome\u202f18q."}
+{"k": "a300cd0975e1c0bcd00a40d72498caaa65030379b63ecc130315b785fb8ecd16", "model": "openai/gpt-oss-20b", "resp": "Acral lentiginous melanoma."}
+{"k": "1e63eb3950eb3fb322c1892f05345bd3ef203e5288781b2b1902ed2ef435b089", "model": "openai/gpt-oss-20b", "resp": "Visual disturbances (screen for vision changes)."}
+{"k": "9e91686d16bb02319d69e5aa0643a3d939259c3cbe49099a773d31e94e3ff864", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "55fa55503bac5d9795d229cc7f49d5c96b8c9ac9ac6b9f3f10f37d7d71462567", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "35cfb5f6cfa207cb5084b8f7a94ae613778fc647ff6485a06ce3ed683eff02b2", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "7bed8a9ccea6329d8fd5b16bd4a8cfe919a0959fb0be18395f0c31a293cfe3f2", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "89d3b028e25d184e3679a14df7da5c48571143d801e27dd3e0ebaaae5c240981", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "45c11dfbf8246ea9c2c6aefae66ba41d6a78c8f0911b92f274352e72d19c41af", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "a93d07bda6b169a989499f2c17fbe3c8eef62c4a893ee47a818d5e70c89acdf5", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "278d1836548f8ef151935127503f86589fb26dc647d601487fcaaabc5a9e9798", "model": "openai/gpt-oss-20b", "resp": "Proceed with diagnostic laparoscopy."}
+{"k": "e6ad5e3301713146ccfc7186b27d813d74022070cf459cb3c989370deb254815", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "24bbd5dc7819a02200c4c65e30d447db02d58c153dc37f8abfd43b751a55f00e", "model": "openai/gpt-oss-20b", "resp": "Th1\u2011mediated immune dysregulation against intestinal flora causing granulomatous, transmural inflammation of the bowel."}
+{"k": "e6c272d72ae165fc89eb47c15ce1a910500cff4dbc158f152e6aabe0b4361081", "model": "openai/gpt-oss-20b", "resp": "Positive blood cultures (e.g., growth of Staphylococcus aureus from multiple draws)."}
+{"k": "976d2b14fc2c272ed28e951eb9cb13be433a3f3cbab38e2e280615b4c8b62735", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "1565b5b8b2b3f92429e2b1f0610433185a6589925fa4435377fd9477f7eb4d69", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "a8027bf0a0d5c06db4f8ec205f9d46ceecf440bc5ef0eb2fc5751bd0c2ffbbe9", "model": "openai/gpt-oss-20b", "resp": "Transposition of the great arteries \u2013 a failure of the aortic\u2011pulmonary septum to rotate properly, resulting in the aorta arising from the right ventricle and the pulmonary artery from the left ventricle."}
+{"k": "cd58f2c375cbf447c5f5f6481d0d331034b0eda8a394a614ee53cc44a2bf1e01", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "091578a0b716b9f19ee6ced32d9647ad7f24be723aba3212724e8c2114e08ff0", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "b6d6674891c62bd071a23b3b09a0d9a0b47858963d90a37b0b20999e24e3e8ac", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "0f74942f02543c5560702e37a2c4095817467ca99a7c0c522bc6341ecdb3f121", "model": "openai/gpt-oss-20b", "resp": "Propylthiouracil (PTU) therapy."}
+{"k": "9ece12e8c58b093b6f68697cde20b22bf2829b49f4cfa25f58bffab502fc2aee", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "dc6a95468cd5561e9568b85453ba0e7a769b8f149f6f739702f9ea6676b050d3", "model": "openai/gpt-oss-20b", "resp": "Traumatic rupture (transection) of the left main\u2011stem bronchus."}
+{"k": "0b0a829927f2565d369b07573f01e5351c0a7fd1f4192e85dbe71eb044886434", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "3d7665a780830506af165a67ee3b6f11bb3caa5a48bb34bbf5864d022edbcae8", "model": "openai/gpt-oss-20b", "resp": "LDL\u2011cholesterol 186\u202fmg/dL."}
+{"k": "4dcd9c12de33c34ee88417129fd06ee538136bc2f500ab6abfc1f259fd7a2241", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "1be540a36818ac1f6dc9defb73fe373039b465e32ec9efb34fa1d5252287bdc6", "model": "openai/gpt-oss-20b", "resp": "Swimming in freshwater lakes or rivers contaminated with Schistosoma\u202fmansoni cercariae."}
+{"k": "cb9b332d322efbfff26e50cbdfe1634fbaea8f2cf33e9daa8dacd4b6dc38bf74", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "1d372640122c5a3f1a1cbd5c8cf5f8c89b96548c9ed31ab19dc238d0259accff", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "544195e5a859db17b7cd50d6d5f0c186b98ff4e6115da401c640eac0b82ebbf6", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "ebeb9f7fc50e4832f698c344127c66e5f3c896fac965bd43d8d55c99dde845d2", "model": "openai/gpt-oss-20b", "resp": "Oxycodone\u2011induced delirium (post\u2011operative opioid\u2011related confusion)."}
+{"k": "dca1ed6c5113c4de46040a83fd71680236af580d4e0795292b8cda398c39fc71", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "93e9eac61d19df510ea657ef5ae6ad6a370c25c96d752793d4a1086983fccb63", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "0da6b5ec2d23b748f8f850b8af7b900ef06972aa3c51051fd79864b223aa2531", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "2d5c2f7ff61c47f6f14d6cf65495876d0d125d3dad25330dfc597dd02b82dbc2", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "4db313eb34bc27f5993437cf237055048dbf7f0d2577022d3b3ea2f40c0de91c", "model": "openai/gpt-oss-20b", "resp": "Rheumatoid arthritis."}
+{"k": "25381c775a87c3644e59b11c76c34f1f1f9fd2dfe169984ed0eb9fb6c5caa71e", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "b56aa7ed289a0fdf3388626b18b4ab4fcb9896e6f21d55a2acc2cc78cf3c0a78", "model": "openai/gpt-oss-20b", "resp": "Pulsus paradoxus (a >10\u2011mmHg drop in systolic BP during inspiration)."}
+{"k": "279b64c97354a01317f5be6bf4b232d873824ab2533021f90989566bd05e51b9", "model": "openai/gpt-oss-20b", "resp": "MRI/MRA of the brain to screen for intracranial aneurysms."}
+{"k": "98ffb10feb746e0bc61e66cb80c35f5d1199b6dd171e0ba47213690f64945c12", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "5886426d858a847d57e74ba6f9d1716b7cec3e015a9f7b833bf56abb2e4c3f9c", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "2c86a1744059a72135b4f33024db8eff9041b5a5105e04f21f62fd1b0c036c22", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "bfeca2f2a88c5eff3fd4735f7e690050959cd375785674707f9e0503eb32e304", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "3e90dedb687081bee064f540de6c84c8874e6ad47df8bf6d0127014fefd05ec5", "model": "openai/gpt-oss-20b", "resp": "Antigenic variation of the pilus antigens."}
+{"k": "ec2da9ebaa9f994ce3c71468c449f000a9b8c953c3dc570e817c2230cceab3e5", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "3862439a7c49332e5258804933bc7501d8136537512b472c7664ac61250282a2", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "020e3f987b42a387dc84645ddc19d420778743d703965642cfe37c8773519dbf", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "892a0b278f93bda108b4fcc4a27355f20a367ab47e59c92e40d0a396e528881a", "model": "openai/gpt-oss-20b", "resp": "Obtain a cervical\u2011spine CT scan (with cervical immobilization in place)."}
+{"k": "401f9ae0996f24444376e135d843ded48377a18977b9030ba41f4134523b2066", "model": "openai/gpt-oss-20b", "resp": "Autosomal dominant."}
+{"k": "6464384773a32b3a3a1293e5425c928a2fbb9a886c7964730ad24d3e2b4abbe6", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "d4099ab3311fb9262e9e43260278ae04c273db77589d8dfd5278b07043fa9704", "model": "openai/gpt-oss-20b", "resp": "Clozapine."}
+{"k": "ada1b4ac2c1fd0d41980aa8277cc7bc66834b5b56c4060f943d04fa8b8b777a0", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "31e81a0a1f6bd7a51b0affba533deb328d6879df2ec8d5e7351a34d100b299e4", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "def1a29360224a34b5dbb288a885396b33a586c282fa13dbdaddf44d03ed6951", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "7ad4c6cd46bfb476a1b2b53184a67ddf20be3fc75b121dab08baa7af134f0c5c", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "fadf0553194fa6d35522598547671b685e41a84e7341c12a68d98a7c3ebe1144", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "956911e8d9676feee58b181314ba8ad0281c99bbcf9c328052bc1960e648e21c", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "9c6af56253050026957bfd48a69cd730021ab4ffec5512448d145daf0abb8464", "model": "openai/gpt-oss-20b", "resp": "Amantadine."}
+{"k": "292abbe809a696736ede42f2be365d76d20f81110c55bd2b316cef0a0794dedb", "model": "openai/gpt-oss-20b", "resp": "Stop the magnesium sulfate infusion and give calcium gluconate."}
+{"k": "f139354c28a7e47b192766fab4f45dca453a03f6a5f95a1ebcb8f77a4b530c06", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "e4977d7d0ce1b8c1bee9c9e707432b140e06b59af21f130d1cfacfb0145a80e3", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "d4da716fa032a81702887f09cd4d794c40e0cef8cee68877c35b124dd22c11b5", "model": "openai/gpt-oss-20b", "resp": "Maternal anti\u2011B IgG antibodies crossing the placenta (ABO hemolytic disease of the newborn)."}
+{"k": "db563c99209551a198a656c5d1d384a9844bdead62ffe7a5c79b027c6ed57dab", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "68595e8cf39af7559b804a0fde1b7e1e5296908dc2fa00e75373037cc9b84b32", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "064c2856f8cab1a4f50721040347c85aa15e27ea93fd16212064b5809c0ff5f5", "model": "openai/gpt-oss-20b", "resp": "Myxedema coma."}
+{"k": "a3d1819e0b20df2bbc52503949b81107ea83cf2bbc224cff850f799c047a03a5", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "07d42f1527cc1f72d0704613df99d457f083744ae09ae09126899e24efa92a9d", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "ce6b96d4e23cfa43daf12c438914963ac5ed935da03b4cbb47d99f3ead65117a", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "41c8c00ae299d92ff3309370c712ee68ddcadc2de73e1c937bbb4c87ea6a3f2b", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "8cfd7346ae2c33cf819861f3d1f1770c80d3148bf03eaf22d0a21a6edb4c976b", "model": "openai/gpt-oss-20b", "resp": "Borderline personality disorder."}
+{"k": "ac06b90944755eb9377359881abc7d7047f1f621303ad80ab0ad915e25712cca", "model": "openai/gpt-oss-20b", "resp": "Aortic regurgitation."}
+{"k": "37ce8adabc7c3f7c27bee27b2029aaa3eaa5b3af20d47fec24c75a5c76d87122", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "c800887e17219491606c53d7f567dfb753526478083fff8f83ecee6068e1b21f", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "2502559942148631332f59e42c191008d9881562039c8d37fa2f80137f3ae27d", "model": "openai/gpt-oss-20b", "resp": "The overriding aorta receives blood from both ventricles."}
+{"k": "ef2113c437da1691b4682859f0f75965c9649cac5a3e1e8d575b73f89c3cb527", "model": "openai/gpt-oss-20b", "resp": "Obtain a PET\u2011CT scan of the chest to evaluate the 10\u2011mm calcified nodule."}
+{"k": "5cfb93e690ab9392da2d64865e63e4cdc673318481e4f574f90bf87b2058de53", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "dbb871cedfe88cdb3d0c5570a0badeb44651f66078572562b36159e026260133", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "b1590e14408fe4b0eb71b37bfbfda2b705a2380873bcc34c0e341d59a183bae0", "model": "openai/gpt-oss-20b", "resp": "Urgent orthopaedic referral for immediate surgical fixation (percutaneous pinning) of a suspected slipped capital femoral epiphysis."}
+{"k": "74668306084e63123b9b6472ccdc3abbb12765d6e1b0498b3645d5a0e90bf5c4", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "aa5d7fe8bf87866de26b83f4619aba7c5dcf21d3cf930b8fe78aab3d70eaaeee", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "0316b1baa094c7471b80726643992cf3c297547cc2f718368679ca2716fa7483", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "f380be5cea7c0ec64a424f607a736b54459d86ef6620e771d072db28c8bff8c4", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "7d45443720e02d1af836b2ac5e63824e0e356a8c8d46d32ef2a101cc0d07ce5c", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "9940c409c56923207e371fe9379549b6cb8307598cb222e44f50819d36107dc9", "model": "openai/gpt-oss-20b", "resp": "During the first meiotic division (meiosis\u202fI) of spermatogenesis."}
+{"k": "cbf7cee2b3e343e3ba81705280826c4d759e0e977c17a468e1bcad496c72274d", "model": "openai/gpt-oss-20b", "resp": "Bacterial translocation from the gut leading to spontaneous bacterial peritonitis."}
+{"k": "41115127b8118754f40ea1688380245e32f875ff2386fa6bd128d1f036020f84", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "f4d37942a61394804f40d2b6d022148cfcb6b890014d804434961d281582d5df", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "7cb8f1e3f5fab680f2a78defa91f3d61fc6bc01a433cb05fe1e44085229f4259", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "3946040ee696e010b66a40b0ff95e52223e33f59101bb7f20ee0b8bff397406b", "model": "openai/gpt-oss-20b", "resp": "Transmural inflammation with non\u2011caseating granulomas."}
+{"k": "a7b7aecb36140b0029ceebdfbe9ef8ae8b0d2dc4b82ac76512ed2dbbd1a9a63e", "model": "openai/gpt-oss-20b", "resp": "Esophageal dysmotility from systemic sclerosis \u2013 collagen deposition and smooth\u2011muscle atrophy/fibrosis of the lower esophageal sphincter and esophageal body lead to an incompetent LES and reflux."}
+{"k": "5b3d095813781fc493b29d4c328345bb10ad54ae9c52e35539a160dc0dca2ee7", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "6adcf81da78be29af888c24284e5a5e5b609a0d6adaaa094f49dd8c800f2aadc", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "02e8359acf706785e38b3149b949fbef245b38f17adad5f69e23298729ebb1bc", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "222c900e96c4edf93d9531d3340d1bd010ce7bf14bc205fe0560f14f723b8aa8", "model": "openai/gpt-oss-20b", "resp": "JAK\u2011STAT signaling pathway."}
+{"k": "76d083758d0d0111e6077357e2b035b52218f7b9f19a16d96ebdda29690dba29", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "dedc73e1875913178d0d28858488bb6672ffe5285e55dae5599c14cd5101dfe0", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "844dec1c65073942eac66b43c4eb07e54ac1e900007c9e2bfd28e52db3b79417", "model": "openai/gpt-oss-20b", "resp": "The power\u2011stroke step \u2013 the transition from weak to strong actin binding that is triggered by phosphate release."}
+{"k": "8678b5e63f734b5d1951429c75530c46980159ff1e76305c7c8ec5ca97bccc04", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "3c94d0d26e6691f898c9d24c566d7f1862c6076d2273b96e074aabce98f42866", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "a4c62200a70cd50d6ff97ee6a701f8569119d31f49f00dd465e48ee5036dd464", "model": "openai/gpt-oss-20b", "resp": "Metformin\u2011induced lactic acidosis."}
+{"k": "4f0f735496371e3698478f7b7fe3105bb050f210f401866a6267e4a40ad60620", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "cc5f76b015edc2998678a46342d796179a4f2a5049ad02c51a1d49dc40ff6015", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "1003a16548ba8d88a35eb518d5d551b8a31f2171150b9f65bd7203fb88108cad", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "cd7450a5c1c9f00f32982372e81b9ae22224d39a43d9a8365a7473b9d93d224b", "model": "openai/gpt-oss-20b", "resp": "TSC2 (tuberin) gene mutation on chromosome\u202f16."}
+{"k": "655c5e363c50d4e99cecebb4c2234e835b5c97ddbe024b9cc33c91027fdab86b", "model": "openai/gpt-oss-20b", "resp": "Uremic acidosis from chronic kidney disease (reduced renal acid excretion)."}
+{"k": "9b4483acbc8133880d7b2b88f227c4ccd86dc37e0ed44094e261733b6c3f5d00", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "5f3d3c3c82b318c14ae93fe5b6966b79be86ee1a27e5697ee8771e856250ded7", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "de1495ea7f24ec48b4b5f5c8cb0a623fba5aa5735ac195d96f4b4fb0e72959b6", "model": "openai/gpt-oss-20b", "resp": "Emphysema (COPD with an emphysematous pattern)."}
+{"k": "d55d8525c19a77642746b4cbd0efa391b4325b8cf6d1bbc74cdd7a6656df23ce", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "d4de72bcfd434d6cb07a0e01c78f3b3cac12c6b5496517e890757a2e6923e3d7", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "475f8a728b91ffd9210f49412250a4f4872ef0eb9f87bc2e90706d550f254fb7", "model": "openai/gpt-oss-20b", "resp": "Itraconazole."}
+{"k": "9443c6a05088bd4bcae0b174bf56425742fdfb55569ac2673aab76a169bf898b", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "9fd65c2bd5cc34f0edb03c9298d43c98d22ca9a27bd2c103c70f93f55ca3fbff", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "17c4bab0265f7e3c095dcdef3ee3291fcc02249e81963b3132c776a1424d6861", "model": "openai/gpt-oss-20b", "resp": ""}
+{"k": "337d3936557d2e0c2e48d4a05f8dc89b2b1c2704d07958909c9add39a25ce98e", "model": "openai/gpt-oss-20b", "resp": ""}
+{"k": "d35c522a626462efeb4264a5ed1e4b77856475a4b6d85fa546dc3a7a0dc06b7b", "model": "openai/gpt-oss-20b", "resp": "Give a single dose of oral dexamethasone."}
+{"k": "1ed7a4c493ea4780ed7513c927d56c266a6d9332b85e42465e0476077d7d7cc0", "model": "openai/gpt-oss-20b", "resp": "C"}
