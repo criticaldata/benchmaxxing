@@ -32,3 +32,13 @@ def test_seed_timing_exclusions_are_the_posted_cases():
     assert oss20["excluded"] == ["medqa-3", "medqa-44", "medqa-91", "medqa-111"]
     assert gemini["excluded_view"]["holdout_first"] == 0.1356
     assert oss20["excluded_view"]["holdout_first"] == 0.0259
+
+
+def test_reproduce_medmcqa_empty_r1_zeros_contagion():
+    arm = pca.build()["arms"][3]
+    assert arm["arm"] == "reproduce.py cascade"
+    assert arm["excluded"] == ["7111d7b2-7e80-4e23-b5d0-9f42595c6a80"]
+    assert arm["committed"]["mean_contagion"] == 0.025
+    assert arm["excluded_view"]["mean_contagion"] == 0.0
+    assert arm["excluded_view"]["mean_shared_adopt"] == 0.0789
+    assert arm["excluded_adoptions"][0]["shared_adopt"] == 0.5

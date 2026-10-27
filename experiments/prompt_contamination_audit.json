@@ -149,6 +149,35 @@
           "pvalue": 0.453125
         }
       }
+    },
+    {
+      "arm": "reproduce.py cascade",
+      "dataset": "medmcqa",
+      "model": "openai/gpt-oss-20b",
+      "rows": "experiments/medmcqa/results/openai_gpt-oss-20b/cascade_results.json",
+      "n_committed": 20,
+      "excluded": [
+        "7111d7b2-7e80-4e23-b5d0-9f42595c6a80"
+      ],
+      "n_remaining": 19,
+      "excluded_adoptions": [
+        {
+          "case_id": "7111d7b2-7e80-4e23-b5d0-9f42595c6a80",
+          "shared_adopt": 0.5,
+          "isolated_adopt": 0.0,
+          "contagion": 0.5
+        }
+      ],
+      "committed": {
+        "mean_shared_adopt": 0.1,
+        "mean_isolated_adopt": 0.075,
+        "mean_contagion": 0.025
+      },
+      "excluded_view": {
+        "mean_shared_adopt": 0.0789,
+        "mean_isolated_adopt": 0.0789,
+        "mean_contagion": 0.0
+      }
     }
   ],
   "already_covered": {
@@ -156,7 +185,10 @@
   },
   "negative": {
     "support2_rounds_2": "Gemini, gpt-oss-120b and Qwen r1 board draws are all declared; parse_answer returns None on a refusal, so a true abstention never enters r2",
-    "isolated_multi_round_other_lineages": "gpt-oss-120b, gpt-oss-20b, Qwen, hosted nemotron: 0 undeclared r1 in n=40"
+    "isolated_multi_round_other_lineages": "gpt-oss-120b, gpt-oss-20b, Qwen, hosted nemotron: 0 undeclared r1 in n=40",
+    "reproduce_medqa": "Gemini, gpt-oss-120b, gpt-oss-20b, Qwen: 20 cases each, prompts reconstructed from the committed manifest and call cache (0 misses). 0 undeclared r1 that entered a later prompt",
+    "reproduce_medmcqa_other_lineages": "gpt-oss-120b and Qwen transcripts have no empty unseeded answers. Gemini MedMCQA cannot be reconstructed without the gitignored manifest; prefix match on the 150-char transcript clip is ambiguous, and no Gemini transcript has an empty r1"
   },
-  "read": "The contaminated cases did not drive the headlines: Gemini isolated multi-round medqa-38 never adopted; Gemini seed-timing holdout_first stays 0.13; gpt-oss-20b seed-timing holdout_first stays 0.026. Exclude them anyway so a later prompt is never scored as if the holdout had committed."
+  "later_round_empty": "Empty unseeded completions that entered a later prompt but were not r1: gpt-oss-20b MedQA isolated medqa-1047 turn 5; MedMCQA isolated 83935f21-0298-409f-aabc-ac42dc4c0e00 turn 3; MedMCQA shared fd315adc-df4b-4a81-895b-6f093eeb71b2 turn 3. All three have adopt 0",
+  "read": "Most contaminated cases did not drive the headlines: Gemini isolated multi-round medqa-38 never adopted; Gemini seed-timing holdout_first stays 0.13; gpt-oss-20b seed-timing holdout_first stays 0.026. The exception is gpt-oss-20b MedMCQA reproduce.py: dropping the r1-empty case zeros mean contagion (0.025 \u2192 0). Exclude them so a later prompt is never scored as if the holdout had committed."
 }
