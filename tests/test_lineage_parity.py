@@ -23,6 +23,21 @@ ALIASES = {
 # rather than hidden by an alias. Key: (lineage slug, lane, results dir, file name). An entry must say
 # what is missing and what would close it; the test below checks that the reason is a real sentence.
 DECLARED_GAPS = {
+    # hidden-note arms run self-hosted under the fp8-local lineage
+    ("nvidia_nemotron-3-super-120b-a12b", "blind_metric", "results", "matched_baseline_reason_repeats_summary.json"):
+        "The hosted endpoint for this model id has been withdrawn, so this hidden-note arm cannot be run under the hosted id. It is run on the same FP8 weights served locally and committed under the separate lineage nemotron-3-super-120b-a12b-fp8-local, so hosted and self-hosted answers keep separate ids and caches; this entry closes if the hosted id is served again.",
+    ("nvidia_nemotron-3-super-120b-a12b", "medmcqa", "results", "blind_metric_summary.json"):
+        "The hosted endpoint for this model id has been withdrawn, so this hidden-note arm cannot be run under the hosted id. It is run on the same FP8 weights served locally and committed under the separate lineage nemotron-3-super-120b-a12b-fp8-local, so hosted and self-hosted answers keep separate ids and caches; this entry closes if the hosted id is served again.",
+    ("nvidia_nemotron-3-super-120b-a12b", "support2", "results", "blind_metric_summary.json"):
+        "The hosted endpoint for this model id has been withdrawn, so this hidden-note arm cannot be run under the hosted id. It is run on the same FP8 weights served locally and committed under the separate lineage nemotron-3-super-120b-a12b-fp8-local, so hosted and self-hosted answers keep separate ids and caches; this entry closes if the hosted id is served again.",
+    ("nvidia_nemotron-3-super-120b-a12b", "support2", "results", "matched_baseline_reason_repeats_summary.json"):
+        "The hosted endpoint for this model id has been withdrawn, so this hidden-note arm cannot be run under the hosted id. It is run on the same FP8 weights served locally and committed under the separate lineage nemotron-3-super-120b-a12b-fp8-local, so hosted and self-hosted answers keep separate ids and caches; this entry closes if the hosted id is served again.",
+    ("nvidia_nemotron-3-super-120b-a12b", "support2", "results", "matched_baseline_reason_summary.json"):
+        "The hosted endpoint for this model id has been withdrawn, so this hidden-note arm cannot be run under the hosted id. It is run on the same FP8 weights served locally and committed under the separate lineage nemotron-3-super-120b-a12b-fp8-local, so hosted and self-hosted answers keep separate ids and caches; this entry closes if the hosted id is served again.",
+    ("nvidia_nemotron-3-super-120b-a12b", "medmcqa", "results", "matched_baseline_reason_repeats_summary.json"):
+        "The hosted endpoint for this model id has been withdrawn, so this hidden-note arm cannot be run under the hosted id. It is run on the same FP8 weights served locally and committed under the separate lineage nemotron-3-super-120b-a12b-fp8-local, so hosted and self-hosted answers keep separate ids and caches; this entry closes if the hosted id is served again.",
+    ("nvidia_nemotron-3-super-120b-a12b", "medmcqa", "results", "matched_baseline_reason_summary.json"):
+        "The hosted endpoint for this model id has been withdrawn, so this hidden-note arm cannot be run under the hosted id. It is run on the same FP8 weights served locally and committed under the separate lineage nemotron-3-super-120b-a12b-fp8-local, so hosted and self-hosted answers keep separate ids and caches; this entry closes if the hosted id is served again.",
     ("nvidia_nemotron-3-super-120b-a12b", "referee", "results", "referee_deployable_declared_audit.json"):
         "the nemotron referee call cache was never committed (the arm ran on a machine whose caches are "
         "lost), so the declared-only rescore of the deployable referee cannot be replayed from the "
