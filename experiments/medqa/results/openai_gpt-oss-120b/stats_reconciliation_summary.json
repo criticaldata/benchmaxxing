@@ -1,0 +1,136 @@
+{
+  "family_size": 8,
+  "correction": "BH and Holm at alpha=0.05 over the committee-structure headline family",
+  "contrasts": [
+    {
+      "n": 120,
+      "rate_a": 0.0167,
+      "rate_b": 0.8,
+      "delta": 0.7833,
+      "delta_ci95": [
+        0.7083,
+        0.85
+      ],
+      "mcnemar_gain": 94,
+      "mcnemar_lose": 0,
+      "pvalue": 0.0,
+      "label": "authority_ladder: guideline vs colleague",
+      "survives_bh": true,
+      "survives_holm": true
+    },
+    {
+      "n": 100,
+      "rate_a": 0.0,
+      "rate_b": 0.03,
+      "delta": 0.03,
+      "delta_ci95": [
+        0.0,
+        0.07
+      ],
+      "mcnemar_gain": 3,
+      "mcnemar_lose": 0,
+      "pvalue": 0.25,
+      "label": "seed_confidence: confident vs hedged",
+      "survives_bh": false,
+      "survives_holm": false
+    },
+    {
+      "n": 120,
+      "rate_a": 0.0583,
+      "rate_b": 0.0167,
+      "delta": -0.0417,
+      "delta_ci95": [
+        -0.0833,
+        0.0
+      ],
+      "mcnemar_gain": 1,
+      "mcnemar_lose": 6,
+      "pvalue": 0.125,
+      "label": "rationale_validity: any-reasoning vs bare",
+      "survives_bh": false,
+      "survives_holm": false
+    },
+    {
+      "n": 120,
+      "rate_a": 0.0667,
+      "rate_b": 0.0583,
+      "delta": -0.0083,
+      "delta_ci95": [
+        -0.0333,
+        0.0167
+      ],
+      "mcnemar_gain": 1,
+      "mcnemar_lose": 2,
+      "pvalue": 1.0,
+      "label": "super_additivity: both vs peer-alone",
+      "survives_bh": false,
+      "survives_holm": false
+    },
+    {
+      "n": 5,
+      "rate_a": 0.2,
+      "rate_b": 0.2,
+      "delta": 0.0,
+      "delta_ci95": [
+        -0.6,
+        0.6
+      ],
+      "mcnemar_gain": 1,
+      "mcnemar_lose": 1,
+      "pvalue": 1.0,
+      "label": "true_peer: correct vs wrong peer",
+      "survives_bh": false,
+      "survives_holm": false
+    },
+    {
+      "n": 12,
+      "rate_a": 0.0,
+      "rate_b": 0.0833,
+      "delta": 0.0833,
+      "delta_ci95": [
+        0.0,
+        0.25
+      ],
+      "mcnemar_gain": 1,
+      "mcnemar_lose": 0,
+      "pvalue": 1.0,
+      "label": "unanimity: unanimous vs with-dissenter",
+      "survives_bh": false,
+      "survives_holm": false
+    },
+    {
+      "n": 40,
+      "rate_a": 0.05,
+      "rate_b": 0.05,
+      "delta": 0.0,
+      "delta_ci95": [
+        0.0,
+        0.0
+      ],
+      "mcnemar_gain": 0,
+      "mcnemar_lose": 0,
+      "pvalue": 1.0,
+      "label": "majority_pressure: 2-peer vs 1-peer",
+      "survives_bh": false,
+      "survives_holm": false
+    },
+    {
+      "n": 95,
+      "rate_a": 0.0211,
+      "rate_b": 0.0526,
+      "delta": 0.0316,
+      "delta_ci95": [
+        0.0,
+        0.0737
+      ],
+      "mcnemar_gain": 3,
+      "mcnemar_lose": 0,
+      "pvalue": 0.25,
+      "label": "orchestrator: wrong-peer vs honest-orch over 2 wrong peers",
+      "survives_bh": false,
+      "survives_holm": false
+    }
+  ],
+  "read": "One consistent multiple-comparison scope over the committee-structure battery, each headline contrast reported as an adoption-rate delta with a paired bootstrap 95% CI and a paired McNemar p, then BH- and Holm-corrected together. Findings that survive Holm (the strictest) are the robust ones to foreground; those surviving only BH or neither are real but correction-sensitive and should be stated as such.",
+  "lineage_note": "Recomputed from the committed openai/gpt-oss-120b rows in the model-scoped results directory. The prose fields (read, notes, caveats) were written for the Gemini run and are reproduced verbatim; their qualitative characterisations and any literal figures they quote describe that run, not this one. The numeric fields are this lineage's own."
+}
