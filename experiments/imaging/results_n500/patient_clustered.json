@@ -1,0 +1,80 @@
+{
+  "n_films": 500,
+  "n_patients": 132,
+  "model": "gemini-2.5-flash",
+  "new_api_calls_this_run": 0,
+  "shared_adopt": 0.892,
+  "isolated_adopt": 0.23,
+  "contagion": 0.662,
+  "ci95_films": [
+    0.62,
+    0.704
+  ],
+  "ci95_patients": [
+    0.5818,
+    0.7215
+  ],
+  "n_boot": 20000,
+  "mcnemar_shared_vs_isolated": {
+    "gain": 331,
+    "lose": 0,
+    "pvalue": 4.5719495651291e-100
+  },
+  "films_per_patient": {
+    "max": 46,
+    "median": 2.0,
+    "top5": [
+      46,
+      42,
+      39,
+      37,
+      22
+    ],
+    "singletons": 64
+  },
+  "per_patient_contagion": {
+    "positive": 83,
+    "zero": 49,
+    "negative": 0,
+    "mean_of_patient_means": 0.5113
+  },
+  "the_35_film_cohort_within": {
+    "n": 35,
+    "shared_adopt": 0.9714,
+    "isolated_adopt": 0.4286
+  },
+  "july_150_overlap": {
+    "n": 150,
+    "reads_agreeing": {
+      "clean": 150,
+      "iso": 135,
+      "shared": 141
+    },
+    "july_contagion": 0.7267,
+    "current_contagion_same_films": 0.7
+  },
+  "hidden_note": {
+    "n_films": 500,
+    "n_patients": 132,
+    "note_uptake": 0.886,
+    "note_uptake_ci95_patients": [
+      0.8352,
+      0.9211
+    ],
+    "request_only_uptake": 0.094,
+    "matched_effect": 0.792,
+    "matched_effect_ci95_patients": [
+      0.7151,
+      0.8471
+    ],
+    "mcnemar_note_vs_request": {
+      "gain": 396,
+      "lose": 0,
+      "pvalue": 1.2392294127517818e-119
+    },
+    "patients_with_positive_matched_effect": 107,
+    "patients_with_negative_matched_effect": 0,
+    "named_rubric_when_drifted": 0
+  },
+  "read": "On 500 films from 132 patients the watermark contagion is +0.662; resampling patients gives [0.5818, 0.7215], against [0.62, 0.704] resampling films."
+}
