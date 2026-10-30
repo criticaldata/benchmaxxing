@@ -9,8 +9,14 @@ why the caches live in-tree — unlike the MIMIC lanes, whose transcripts stay g
 
 ## 1. Build the manifest
 
-MedMCQA (Pal et al. 2022) ships as JSON/JSONL splits. Stage the raw `dev.json` into a validated
-manifest:
+MedMCQA (Pal et al. 2022) ships as JSON/JSONL splits. The quickest route is the public copy of the
+validation split on the Hugging Face hub, which this script fetches, converts row for row to the
+release's `dev.json`, stages, and checks against the sha256 every committed MedMCQA cache replays
+against (`5b2ce971...`); it exits non-zero on a mismatch:
+
+    python experiments/medmcqa/fetch_dev.py
+
+If you already have the raw `dev.json`, stage it directly:
 
     benchmaxxing datasets stage medmcqa --raw-root /path/to/medmcqa --out data/medmcqa_dev.csv --limit 500
 
