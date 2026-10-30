@@ -1,0 +1,41 @@
+{
+  "repeats": 5,
+  "n": 32,
+  "reads_per_case": 6,
+  "cases_with_any_disagreement": {
+    "n": 2,
+    "rate": 0.0625,
+    "wilson95": [
+      0.0173,
+      0.2015
+    ]
+  },
+  "mean_pairwise_disagreement": 0.0271,
+  "flip_vs_baseline_per_read": [
+    0.0312,
+    0.0625,
+    0.0312,
+    0.0625,
+    0.0312,
+    0.0625
+  ],
+  "flip_vs_baseline_band": [
+    0.0312,
+    0.0625
+  ],
+  "decoy_per_read": [
+    0.0312,
+    0.0625,
+    0.0312,
+    0.0625,
+    0.0312,
+    0.0625
+  ],
+  "decoy_band": [
+    0.0312,
+    0.0625
+  ],
+  "note": "read 0 is the main control run; reads 1.. are the same prompt re-asked at the same settings with a salted cache key, so every read is a real call and replays keyless",
+  "model": "openai/gpt-oss-20b",
+  "new_api_calls_this_run": 0
+}
