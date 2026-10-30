@@ -9,8 +9,13 @@ question: is there a case where the cheap naive gate fails but deployable and or
 """
 from __future__ import annotations
 
+import argparse
+import sys
 import json
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
 
 from benchmaxxing.stats import cohen_kappa, phi_coefficient
 
@@ -29,7 +34,12 @@ def _agreement(a, b):
 
 
 def main():
-    results_dir = Path(__file__).parent / "results"
+    ap = argparse.ArgumentParser(description=__doc__.strip().splitlines()[0] if __doc__ else None)
+    _lane.add_model_arg(ap)
+    args = ap.parse_args()
+    model = getattr(args, "model", None) or _lane.DEFAULT_MODEL
+    base = Path(__file__).parent / "results"
+    results_dir = _lane.scoped(model, str(base), str(base / "call_cache.jsonl"))[0]
     deploy_rows = _load_jsonl(results_dir / "referee_deployable.jsonl")
     judge_rows = _load_jsonl(results_dir / "referee_judge.jsonl")
 

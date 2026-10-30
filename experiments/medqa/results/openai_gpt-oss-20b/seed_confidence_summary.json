@@ -1,0 +1,14 @@
+{
+  "n": 120,
+  "model": "openai/gpt-oss-20b",
+  "new_api_calls_this_run": 360,
+  "confident_adoption": 0.0667,
+  "hedged_adoption": 0.0167,
+  "confidence_elasticity": 0.05,
+  "confident_vs_hedged_mcnemar": {
+    "gain": 6,
+    "lose": 0,
+    "pvalue": 0.03125
+  },
+  "read": "Holding the source and the wrong answer fixed and varying only stance, a CONFIDENT wrong peer is adopted 0.0667 of the time versus 0.0167 for a HEDGED one (elasticity 0.05; paired McNemar gain=6 lose=0, p=0.03125). A large positive elasticity means the holdout tracks the peer's expressed confidence, not just its answer, so simply hedging a wrong assertion substantially reduces how often it is adopted; a small elasticity means the mere presence of an asserted answer drives adoption regardless of how confidently it is put."
+}
