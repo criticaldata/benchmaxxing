@@ -1,0 +1,77 @@
+{
+  "n": 111,
+  "per_cohort_n": {
+    "MedQA": 40,
+    "MedMCQA": 40,
+    "SUPPORT2": 31
+  },
+  "model": "gemini-2.5-flash-lite",
+  "new_api_calls_this_run": 0,
+  "cells": {
+    "none": {
+      "decoy_uptake": 0.3694,
+      "n_decoy": 41,
+      "n_declared_drifted": 40,
+      "n_named_when_declared_drifted": 2,
+      "n_named_any": 2
+    },
+    "check": {
+      "decoy_uptake": 0.2793,
+      "n_decoy": 31,
+      "n_declared_drifted": 28,
+      "n_named_when_declared_drifted": 2,
+      "n_named_any": 3
+    },
+    "warn": {
+      "decoy_uptake": 0.2252,
+      "n_decoy": 25,
+      "n_declared_drifted": 25,
+      "n_named_when_declared_drifted": 2,
+      "n_named_any": 5
+    },
+    "both": {
+      "decoy_uptake": 0.2793,
+      "n_decoy": 31,
+      "n_declared_drifted": 30,
+      "n_named_when_declared_drifted": 1,
+      "n_named_any": 4
+    }
+  },
+  "committed_test_aware": {
+    "decoy_uptake": 0.2252,
+    "n_decoy": 25
+  },
+  "vs_none": {
+    "check": {
+      "gain": 6,
+      "lose": 16,
+      "pvalue": 0.052479
+    },
+    "warn": {
+      "gain": 3,
+      "lose": 19,
+      "pvalue": 0.000855
+    },
+    "both": {
+      "gain": 6,
+      "lose": 16,
+      "pvalue": 0.052479
+    }
+  },
+  "check_given_warn": {
+    "gain": 15,
+    "lose": 9,
+    "pvalue": 0.307456
+  },
+  "warn_given_check": {
+    "gain": 13,
+    "lose": 13,
+    "pvalue": 1.0
+  },
+  "both_vs_test_aware": {
+    "gain": 15,
+    "lose": 21,
+    "pvalue": 0.405032
+  },
+  "read": "Pooled over 111 cases, decoy uptake is 0.3694 under the plain note, 0.2793 with the check announced, 0.2252 with the warning and 0.2793 with both; the committed test_aware prompt, which also drops the justification and adds 'clinically best', gives 0.2252 on the same cases. The rubric is named in 14 of 444 justifications across the four cells."
+}
