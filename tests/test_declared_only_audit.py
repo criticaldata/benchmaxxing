@@ -90,3 +90,44 @@ def test_undeclared_draws_are_counted_per_draw_not_per_case(audit_run):
 def test_declared_only_block_is_computed_on_the_declared_subset(audit_run):
     assert audit_run["declared_only"]["n_cases"] == N // 2
     assert audit_run["current"]["n_cases"] == N
+
+
+class _MixedStub(_StubCache):
+    """q0 declares on every draw; q1/q2/q3 each answer in prose on exactly one draw.
+
+    q1 on the bare re-query, q2 on the planted board (peers assert a wrong option), q3 on the
+    clean-control board (peers assert the correct option). Each of the three conjuncts in
+    ``fully_declared`` is then load-bearing on its own.
+    """
+
+    def complete(self, model, prompt):
+        board, _, _ = prompt.partition("Question:")
+        for i, case in enumerate(CASES[:4]):
+            if case.options[0] in prompt:
+                if not board:
+                    undeclared = i == 1
+                elif case.options[0] in board:
+                    undeclared = i == 3
+                else:
+                    undeclared = i == 2
+                return PROSE if undeclared else "C"
+        raise AssertionError("prompt names no synthetic case")
+
+
+def test_one_undeclared_draw_is_enough_to_exclude_a_case(tmp_path, monkeypatch):
+    mod = _load()
+    monkeypatch.setattr(mod, "_CacheReader", _MixedStub)
+    manifest = write_manifest(CASES[:4], tmp_path / "cases.csv")
+    results = tmp_path / "results"
+    results.mkdir()
+    (results / "referee_deployable_summary.json").write_text(json.dumps({
+        "n_cases": 4, "n_holdout_adopted_shortcut": 0, "n_false_positive_on_clean_control": 0,
+    }))
+    monkeypatch.setattr(sys, "argv", [
+        "declared_only_audit_deployable.py", "--manifest", str(manifest), "--results", str(results),
+        "--cache", str(tmp_path / "unused_cache.jsonl"), "--n", "4",
+    ])
+    mod.main()
+    audit = json.loads((results / "referee_deployable_declared_audit.json").read_text())
+    assert audit["n_declared"] == 1, "a case with one undeclared draw must not count as declared"
+    assert audit["undeclared_draws"] == 3
