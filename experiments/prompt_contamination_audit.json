@@ -1,0 +1,194 @@
+{
+  "issue": 420,
+  "rule": "Exclude a case from a multi-round arm when its r1 completion is undeclared under _lane.declared (as of #446) and that parse was written into a later prompt. Committed files are left untouched.",
+  "arms": [
+    {
+      "arm": "cascade/multi_round",
+      "rows": "experiments/cascade/results/multi_round.jsonl",
+      "n_committed": 40,
+      "excluded": [
+        "medqa-38"
+      ],
+      "n_remaining": 39,
+      "excluded_adopted_isolated": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "excluded_adopted_shared": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "committed": {
+        "shared_adoption_by_round": [
+          0.275,
+          0.3,
+          0.275,
+          0.325,
+          0.325
+        ],
+        "isolated_adoption_by_round": [
+          0.0,
+          0.025,
+          0.0,
+          0.025,
+          0.0
+        ]
+      },
+      "excluded_view": {
+        "shared_adoption_by_round": [
+          0.2821,
+          0.3077,
+          0.2821,
+          0.3333,
+          0.3333
+        ],
+        "isolated_adoption_by_round": [
+          0.0,
+          0.0256,
+          0.0,
+          0.0256,
+          0.0
+        ],
+        "round1_vs_roundK_shared": {
+          "gained": 3,
+          "lost": 1,
+          "mcnemar_p": 0.625
+        }
+      }
+    },
+    {
+      "arm": "seed_timing",
+      "model": "gemini-2.5-flash-lite",
+      "rows": "experiments/medqa/results/seed_timing.jsonl",
+      "n_committed": 120,
+      "excluded": [
+        "medqa-38",
+        "medqa-65"
+      ],
+      "n_remaining": 118,
+      "excluded_adoptions": [
+        {
+          "case_id": "medqa-38",
+          "holdout_last_adopt": 0,
+          "holdout_first_adopt": 0
+        },
+        {
+          "case_id": "medqa-65",
+          "holdout_last_adopt": 1,
+          "holdout_first_adopt": 0
+        }
+      ],
+      "committed": {
+        "holdout_last": 0.45,
+        "holdout_first": 0.1333
+      },
+      "excluded_view": {
+        "holdout_last": 0.4492,
+        "holdout_first": 0.1356,
+        "last_vs_first": {
+          "gain": 2,
+          "lose": 39,
+          "pvalue": 0.0
+        }
+      }
+    },
+    {
+      "arm": "seed_timing",
+      "model": "openai/gpt-oss-20b",
+      "rows": "experiments/medqa/results/openai_gpt-oss-20b/seed_timing.jsonl",
+      "n_committed": 120,
+      "excluded": [
+        "medqa-3",
+        "medqa-44",
+        "medqa-91",
+        "medqa-111"
+      ],
+      "n_remaining": 116,
+      "excluded_adoptions": [
+        {
+          "case_id": "medqa-44",
+          "holdout_last_adopt": 0,
+          "holdout_first_adopt": 0
+        },
+        {
+          "case_id": "medqa-3",
+          "holdout_last_adopt": 0,
+          "holdout_first_adopt": 0
+        },
+        {
+          "case_id": "medqa-91",
+          "holdout_last_adopt": 0,
+          "holdout_first_adopt": 0
+        },
+        {
+          "case_id": "medqa-111",
+          "holdout_last_adopt": 0,
+          "holdout_first_adopt": 0
+        }
+      ],
+      "committed": {
+        "holdout_last": 0.05,
+        "holdout_first": 0.025
+      },
+      "excluded_view": {
+        "holdout_last": 0.0517,
+        "holdout_first": 0.0259,
+        "last_vs_first": {
+          "gain": 2,
+          "lose": 5,
+          "pvalue": 0.453125
+        }
+      }
+    },
+    {
+      "arm": "reproduce.py cascade",
+      "dataset": "medmcqa",
+      "model": "openai/gpt-oss-20b",
+      "rows": "experiments/medmcqa/results/openai_gpt-oss-20b/cascade_results.json",
+      "n_committed": 20,
+      "excluded": [
+        "7111d7b2-7e80-4e23-b5d0-9f42595c6a80"
+      ],
+      "n_remaining": 19,
+      "excluded_adoptions": [
+        {
+          "case_id": "7111d7b2-7e80-4e23-b5d0-9f42595c6a80",
+          "shared_adopt": 0.5,
+          "isolated_adopt": 0.0,
+          "contagion": 0.5
+        }
+      ],
+      "committed": {
+        "mean_shared_adopt": 0.1,
+        "mean_isolated_adopt": 0.075,
+        "mean_contagion": 0.025
+      },
+      "excluded_view": {
+        "mean_shared_adopt": 0.0789,
+        "mean_isolated_adopt": 0.0789,
+        "mean_contagion": 0.0
+      }
+    }
+  ],
+  "already_covered": {
+    "referee_deployable_declared_audit": "experiments/referee/results/referee_deployable_declared_audit.json already drops medqa-38 (1/40) under declared-only accounting"
+  },
+  "negative": {
+    "support2_rounds_2": "Gemini, gpt-oss-120b and Qwen r1 board draws are all declared; parse_answer returns None on a refusal, so a true abstention never enters r2",
+    "isolated_multi_round_other_lineages": "gpt-oss-120b, gpt-oss-20b, Qwen, hosted nemotron: 0 undeclared r1 in n=40",
+    "reproduce_medqa": "Gemini, gpt-oss-120b, gpt-oss-20b, Qwen: 20 cases each, prompts reconstructed from the committed manifest and call cache (0 misses). 0 undeclared r1 that entered a later prompt",
+    "reproduce_medmcqa_other_lineages": "gpt-oss-120b and Qwen transcripts have no empty unseeded answers. Gemini MedMCQA cannot be reconstructed without the gitignored manifest; prefix match on the 150-char transcript clip is ambiguous, and no Gemini transcript has an empty r1"
+  },
+  "later_round_empty": "Empty unseeded completions that entered a later prompt but were not r1: gpt-oss-20b MedQA isolated medqa-1047 turn 5; MedMCQA isolated 83935f21-0298-409f-aabc-ac42dc4c0e00 turn 3; MedMCQA shared fd315adc-df4b-4a81-895b-6f093eeb71b2 turn 3. All three have adopt 0",
+  "read": "Most contaminated cases did not drive the headlines: Gemini isolated multi-round medqa-38 never adopted; Gemini seed-timing holdout_first stays 0.13; gpt-oss-20b seed-timing holdout_first stays 0.026. The exception is gpt-oss-20b MedMCQA reproduce.py: dropping the r1-empty case zeros mean contagion (0.025 \u2192 0). Exclude them so a later prompt is never scored as if the holdout had committed."
+}
