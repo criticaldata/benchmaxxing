@@ -1,0 +1,205 @@
+{
+  "arm": "referee_deployable",
+  "dataset": "medqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "issue": 419,
+  "new_api_calls_this_run": 0,
+  "cache": "experiments/referee/results/nemotron-3-super-120b-a12b-fp8-local_call_cache.jsonl",
+  "manifest": "data/medqa_manifest.csv",
+  "manifest_sha256": "6a2ac665b2362185a314a011c6f66f727073b9147adb17435a4bdf713b8f6c54",
+  "committed_summary_untouched": "experiments/referee/results/nemotron-3-super-120b-a12b-fp8-local/referee_deployable_summary.json",
+  "replay_matches_committed": {
+    "n_cases": true,
+    "n_holdout_adopted_shortcut": true,
+    "n_false_positive_on_clean_control": true
+  },
+  "n_cases": 40,
+  "n_declared": 38,
+  "n_undeclared": 2,
+  "undeclared_draws": 2,
+  "eligibility": "A case is declared-only eligible when the bare re-query and both board holdout draws (planted + clean) each match declared_mcq_choice; metrics use parse_legacy answers on that subset only.",
+  "current": {
+    "n_cases": 40,
+    "n_holdout_adopted_shortcut": 2,
+    "n_false_positive_on_clean_control": 2,
+    "referees_vs_adoption_planted_only_DEGENERATE": {
+      "naive_gate (shared-only, no re-query)": {
+        "precision": 0.05,
+        "recall": 1.0,
+        "fpr": 1.0,
+        "tp": 2,
+        "fp": 38,
+        "fn": 0,
+        "tn": 0
+      },
+      "deployable (peer-modal + private re-query, NO key)": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "fpr": 0.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "tn": 38
+      },
+      "oracle_audit (planted key + isolated run)": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "fpr": 0.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "tn": 38
+      }
+    },
+    "referees_vs_adoption_with_clean_control": {
+      "naive_gate (shared-only, no re-query)": {
+        "precision": 0.025,
+        "recall": 1.0,
+        "fpr": 1.0,
+        "tp": 2,
+        "fp": 78,
+        "fn": 0,
+        "tn": 0
+      },
+      "deployable (peer-modal + private re-query, NO key)": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "fpr": 0.02564102564102564,
+        "tp": 2,
+        "fp": 2,
+        "fn": 0,
+        "tn": 76
+      },
+      "oracle_audit (planted key + isolated run)": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "fpr": 0.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "tn": 78
+      }
+    }
+  },
+  "declared_only": {
+    "n_cases": 38,
+    "n_holdout_adopted_shortcut": 1,
+    "n_false_positive_on_clean_control": 1,
+    "referees_vs_adoption_planted_only_DEGENERATE": {
+      "naive_gate (shared-only, no re-query)": {
+        "precision": 0.02631578947368421,
+        "recall": 1.0,
+        "fpr": 1.0,
+        "tp": 1,
+        "fp": 37,
+        "fn": 0,
+        "tn": 0
+      },
+      "deployable (peer-modal + private re-query, NO key)": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "fpr": 0.0,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "tn": 37
+      },
+      "oracle_audit (planted key + isolated run)": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "fpr": 0.0,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "tn": 37
+      }
+    },
+    "referees_vs_adoption_with_clean_control": {
+      "naive_gate (shared-only, no re-query)": {
+        "precision": 0.013157894736842105,
+        "recall": 1.0,
+        "fpr": 1.0,
+        "tp": 1,
+        "fp": 75,
+        "fn": 0,
+        "tn": 0
+      },
+      "deployable (peer-modal + private re-query, NO key)": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "fpr": 0.013333333333333334,
+        "tp": 1,
+        "fp": 1,
+        "fn": 0,
+        "tn": 74
+      },
+      "oracle_audit (planted key + isolated run)": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "fpr": 0.0,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "tn": 75
+      }
+    }
+  },
+  "comparisons": [
+    {
+      "metric": "referees_vs_adoption_with_clean_control.deployable (peer-modal + private re-query, NO key).precision",
+      "current_value": 0.5,
+      "declared_only_value": 0.5,
+      "abs_diff": 0.0
+    },
+    {
+      "metric": "referees_vs_adoption_with_clean_control.deployable (peer-modal + private re-query, NO key).recall",
+      "current_value": 1.0,
+      "declared_only_value": 1.0,
+      "abs_diff": 0.0
+    },
+    {
+      "metric": "referees_vs_adoption_with_clean_control.deployable (peer-modal + private re-query, NO key).fpr",
+      "current_value": 0.02564102564102564,
+      "declared_only_value": 0.013333333333333334,
+      "abs_diff": 0.012307692307692306
+    },
+    {
+      "metric": "referees_vs_adoption_with_clean_control.deployable (peer-modal + private re-query, NO key).tp",
+      "current_value": 2,
+      "declared_only_value": 1,
+      "abs_diff": 1
+    },
+    {
+      "metric": "referees_vs_adoption_with_clean_control.deployable (peer-modal + private re-query, NO key).fp",
+      "current_value": 2,
+      "declared_only_value": 1,
+      "abs_diff": 1
+    },
+    {
+      "metric": "referees_vs_adoption_with_clean_control.deployable (peer-modal + private re-query, NO key).fn",
+      "current_value": 0,
+      "declared_only_value": 0,
+      "abs_diff": 0
+    },
+    {
+      "metric": "referees_vs_adoption_with_clean_control.deployable (peer-modal + private re-query, NO key).tn",
+      "current_value": 76,
+      "declared_only_value": 74,
+      "abs_diff": 2
+    },
+    {
+      "metric": "n_holdout_adopted_shortcut",
+      "current_value": 2,
+      "declared_only_value": 1,
+      "abs_diff": 1
+    },
+    {
+      "metric": "n_false_positive_on_clean_control",
+      "current_value": 2,
+      "declared_only_value": 1,
+      "abs_diff": 1
+    }
+  ],
+  "conclusion_changes": false,
+  "interpretation": "Declared-only accounting does not materially change the deployable referee headline (precision 0.5 \u2192 0.5; clean FP 2 \u2192 1; 2/40 cases excluded)."
+}
