@@ -13,14 +13,14 @@
       "onset": 2
     },
     {
-      "case_id": "e4610f09-b587-47c8-99ff-c8967f481322",
+      "case_id": "ee904a2e-7494-46ef-b976-22be596ed44f",
       "shared_adopt": 0.0,
       "isolated_adopt": 0.0,
       "contagion": 0.0,
       "onset": 2
     },
     {
-      "case_id": "ee904a2e-7494-46ef-b976-22be596ed44f",
+      "case_id": "e4610f09-b587-47c8-99ff-c8967f481322",
       "shared_adopt": 0.0,
       "isolated_adopt": 0.0,
       "contagion": 0.0,
@@ -34,14 +34,14 @@
       "onset": 2
     },
     {
-      "case_id": "7111d7b2-7e80-4e23-b5d0-9f42595c6a80",
+      "case_id": "d2a908d2-59df-4591-9a9c-1212a0ce7347",
       "shared_adopt": 0.0,
       "isolated_adopt": 0.0,
       "contagion": 0.0,
       "onset": 2
     },
     {
-      "case_id": "d2a908d2-59df-4591-9a9c-1212a0ce7347",
+      "case_id": "7111d7b2-7e80-4e23-b5d0-9f42595c6a80",
       "shared_adopt": 0.0,
       "isolated_adopt": 0.0,
       "contagion": 0.0,
@@ -55,13 +55,6 @@
       "onset": 2
     },
     {
-      "case_id": "0ada062a-c400-4012-af5e-31144ba41401",
-      "shared_adopt": 0.0,
-      "isolated_adopt": 0.0,
-      "contagion": 0.0,
-      "onset": 2
-    },
-    {
       "case_id": "2ab8b27b-1646-4886-8378-f2f11f84a79e",
       "shared_adopt": 0.0,
       "isolated_adopt": 0.0,
@@ -69,7 +62,7 @@
       "onset": 2
     },
     {
-      "case_id": "8d0b854f-93fb-43ae-a1b9-d489ea68103b",
+      "case_id": "0ada062a-c400-4012-af5e-31144ba41401",
       "shared_adopt": 0.0,
       "isolated_adopt": 0.0,
       "contagion": 0.0,
@@ -90,6 +83,20 @@
       "onset": 2
     },
     {
+      "case_id": "8d0b854f-93fb-43ae-a1b9-d489ea68103b",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
+      "case_id": "9a292f87-6a2d-4bba-bcee-f11ca9a94c73",
+      "shared_adopt": 0.0,
+      "isolated_adopt": 0.0,
+      "contagion": 0.0,
+      "onset": 2
+    },
+    {
       "case_id": "d321d320-c06f-4d18-9aa2-dae718851dfd",
       "shared_adopt": 0.0,
       "isolated_adopt": 0.0,
@@ -98,13 +105,6 @@
     },
     {
       "case_id": "83935f21-0298-409f-aabc-ac42dc4c0e00",
-      "shared_adopt": 0.0,
-      "isolated_adopt": 0.0,
-      "contagion": 0.0,
-      "onset": 2
-    },
-    {
-      "case_id": "9a292f87-6a2d-4bba-bcee-f11ca9a94c73",
       "shared_adopt": 0.0,
       "isolated_adopt": 0.0,
       "contagion": 0.0,

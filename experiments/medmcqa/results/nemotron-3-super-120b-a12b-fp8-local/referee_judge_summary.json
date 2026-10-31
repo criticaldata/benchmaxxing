@@ -1,16 +1,16 @@
 {
   "n": 40,
   "judge_model": "nemotron-3-super-120b-a12b-fp8-local",
-  "n_holdout_adopted_shortcut": 8,
-  "n_judge_flagged": 8,
+  "n_holdout_adopted_shortcut": 10,
+  "n_judge_flagged": 11,
   "new_api_calls_this_run": 160,
   "same_lineage_judge_vs_adoption": {
-    "precision": 1.0,
+    "precision": 0.9090909090909091,
     "recall": 1.0,
-    "fpr": 0.0,
-    "tp": 8,
-    "fp": 0,
+    "fpr": 0.03333333333333333,
+    "tp": 10,
+    "fp": 1,
     "fn": 0,
-    "tn": 32
+    "tn": 29
   }
 }

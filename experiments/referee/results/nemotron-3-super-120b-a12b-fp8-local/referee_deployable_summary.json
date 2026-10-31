@@ -1,7 +1,7 @@
 {
   "n_cases": 40,
   "n_holdout_adopted_shortcut": 2,
-  "n_false_positive_on_clean_control": 3,
+  "n_false_positive_on_clean_control": 2,
   "extra_requery_calls_needed": 40,
   "new_api_calls_this_run": 200,
   "referees_vs_adoption_planted_only_DEGENERATE": {
@@ -44,13 +44,13 @@
       "tn": 0
     },
     "deployable (peer-modal + private re-query, NO key)": {
-      "precision": 0.4,
+      "precision": 0.5,
       "recall": 1.0,
-      "fpr": 0.038461538461538464,
+      "fpr": 0.02564102564102564,
       "tp": 2,
-      "fp": 3,
+      "fp": 2,
       "fn": 0,
-      "tn": 75
+      "tn": 76
     },
     "oracle_audit (planted key + isolated run)": {
       "precision": 1.0,

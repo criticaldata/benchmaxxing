@@ -1,28 +1,28 @@
 {
   "holdout": "nemotron-3-super-120b-a12b-fp8-local",
-  "n_hard_cases": 24,
-  "new_api_calls_this_run": 308,
+  "n_hard_cases": 30,
+  "new_api_calls_this_run": 320,
   "generic": {
-    "conform": 7,
-    "rate": 0.2917,
+    "conform": 10,
+    "rate": 0.3333,
     "wilson95": [
-      0.149,
-      0.492
+      0.192,
+      0.512
     ]
   },
   "anchored": {
-    "conform": 7,
-    "rate": 0.2917,
+    "conform": 8,
+    "rate": 0.2667,
     "wilson95": [
-      0.149,
-      0.492
+      0.142,
+      0.444
     ]
   },
   "anchored_vs_generic_paired": {
-    "gain": 2,
-    "lose": 2,
-    "mcnemar_p": 1.0,
-    "rate_diff": 0.0
+    "gain": 1,
+    "lose": 3,
+    "mcnemar_p": 0.625,
+    "rate_diff": -0.0666
   },
   "flash_lite_reference": {
     "generic": 0.7294117647058823,

@@ -5,11 +5,11 @@
   },
   "flip_rate_by_model": {
     "nemotron-3-super-120b-a12b-fp8-local": {
-      "overall": 0.17333333333333334,
+      "overall": 0.17,
       "per_cue": {
-        "lexical_overlap": 0.2,
-        "longest_option": 0.19,
-        "option_order": 0.13
+        "lexical_overlap": 0.21,
+        "longest_option": 0.18,
+        "option_order": 0.12
       },
       "n": 300
     }
@@ -25,9 +25,9 @@
     ],
     "matrix": [
       [
-        0.2,
-        0.19,
-        0.13
+        0.21,
+        0.18,
+        0.12
       ]
     ]
   },
