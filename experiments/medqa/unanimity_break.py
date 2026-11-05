@@ -86,6 +86,7 @@ def main():
     ap.add_argument("--out", default="experiments/medqa/results")
     _lane.add_model_arg(ap)
     ap.add_argument("--n", type=int, default=150)
+    ap.add_argument("--case-ids", default=None, help="optional newline-delimited fixed cohort")
     ap.add_argument("--show-rationale", action="store_true",
                     help="render each peer's reasoning under its vote (#373); off is the "
                          "committed answer-only board, which the cache replays at zero calls")
@@ -104,7 +105,16 @@ def main():
                                  for a, m in COMMITTEE])
     holdout_only = build_committee(
         [ModelSpec(name="holdout", lineage="gemini", tier="gemini-2.5-flash-lite", is_open_weights=False)])
-    cases = load_cases(args.manifest)[:args.n]
+    all_cases = load_cases(args.manifest)
+    if args.case_ids:
+        wanted = [line.strip() for line in Path(args.case_ids).read_text().splitlines() if line.strip()]
+        by_id = {c.case_id: c for c in all_cases}
+        missing = [case_id for case_id in wanted if case_id not in by_id]
+        if missing:
+            raise SystemExit(f"case IDs missing from manifest: {missing[:5]}")
+        cases = [by_id[case_id] for case_id in wanted]
+    else:
+        cases = all_cases[:args.n]
 
     def backend_for(spec):
         backend_model = model_by_agent[spec.name]
@@ -125,8 +135,9 @@ def main():
         gt = options[case.answer_index]
         base = run_committee(holdout_only, case, Condition.CONTAMINATED, backend_for, shared=False, rounds=1)
         bare = base.committed.get(HOLDOUT)
-        if bare is None or bare == gt:
-            return None  # solo-wrong only
+        baseline_solo_correct = bare == gt
+        if (bare is None or baseline_solo_correct) and not args.case_ids:
+            return None  # default cohort: solo-wrong only
         wrong = next((o for i, o in enumerate(options) if i != case.answer_index and o != bare), None)
         if wrong is None:
             return None
@@ -143,6 +154,7 @@ def main():
                            seed_turn=[(0, wrong, "peer1", rat(wrong)), (1, gt, "peer2", rat(gt))], rounds=1)
         return {
             "case_id": case.case_id, "bare": bare, "ground_truth": gt, "wrong": wrong,
+            "baseline_solo_correct": int(baseline_solo_correct),
             "unanimous_wrong_adopt": int(uw.committed.get(HOLDOUT) == wrong),
             "with_dissenter_adopt": int(ds.committed.get(HOLDOUT) == wrong),
         }
@@ -160,21 +172,25 @@ def main():
     gain = sum(1 for r in rows if r["unanimous_wrong_adopt"] and not r["with_dissenter_adopt"])
     lose = sum(1 for r in rows if r["with_dissenter_adopt"] and not r["unanimous_wrong_adopt"])
     mc = mcnemar(gain, lose)
+    solo_wrong_rows = [r for r in rows if not r["baseline_solo_correct"]]
     summary = {
-        "n_solo_wrong_cases": n, "new_api_calls_this_run": cache.calls,
+        "n_cases": n, "n_solo_wrong_cases": len(solo_wrong_rows),
+        "fixed_comparator_cohort": bool(args.case_ids),
+        "new_api_calls_this_run": cache.calls,
         "adoption_unanimous_two_wrong_peers": unanim,
         "adoption_with_one_correct_dissenter": dissent,
         "dissenter_reduction": round(unanim - dissent, 4) if n else None,
         "unanimous_vs_dissenter_mcnemar": {"gain": gain, "lose": lose, "pvalue": round(mc.pvalue, 6)},
         "read": (
-            f"On {n} solo-wrong cases, the flash-lite holdout adopts the wrong answer {unanim} "
+            f"On {n} fixed cases ({len(solo_wrong_rows)} Q4 solo-wrong), the flash-lite holdout "
+            f"adopts the wrong answer {unanim} "
             f"under two unanimous wrong peers but only {dissent} when one of the two instead "
             f"asserts the CORRECT answer (a single dissenter), a directional reduction of "
             f"{round(unanim - dissent, 4) if n else 'n/a'}. This is CONSISTENT with the classic "
             "Asch finding that a single ally breaks conformity (the deference depends on a "
             f"unanimous board), but it is NOT significant at this sample size (paired McNemar "
             f"gain={gain} lose={lose}, p={round(mc.pvalue, 6)}; only {gain + lose} discordant "
-            f"cases): n is capped at the {n} solo-wrong cases in the scanned set. Reported "
+            f"cases) across the fixed cohort. Reported "
             "honestly as a suggestive-but-underpowered dissenter effect; a larger solo-wrong pool "
             "(or a lower-baseline-accuracy set) would be needed to confirm it."
         ),

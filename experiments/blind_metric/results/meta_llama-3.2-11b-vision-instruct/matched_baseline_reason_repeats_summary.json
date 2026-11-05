@@ -1,0 +1,41 @@
+{
+  "repeats": 5,
+  "n": 40,
+  "reads_per_case": 6,
+  "cases_with_any_disagreement": {
+    "n": 7,
+    "rate": 0.175,
+    "wilson95": [
+      0.0875,
+      0.3195
+    ]
+  },
+  "mean_pairwise_disagreement": 0.0583,
+  "flip_vs_baseline_per_read": [
+    0.325,
+    0.175,
+    0.175,
+    0.175,
+    0.175,
+    0.175
+  ],
+  "flip_vs_baseline_band": [
+    0.175,
+    0.325
+  ],
+  "decoy_per_read": [
+    0.1,
+    0.05,
+    0.05,
+    0.05,
+    0.05,
+    0.05
+  ],
+  "decoy_band": [
+    0.05,
+    0.1
+  ],
+  "note": "read 0 is the main control run; reads 1.. are the same prompt re-asked at the same settings with a salted cache key, so every read is a real call and replays keyless",
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "new_api_calls_this_run": 200
+}

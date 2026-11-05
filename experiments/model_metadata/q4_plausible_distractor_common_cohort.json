@@ -1,0 +1,120 @@
+{
+  "title": "Q4 plausible_distractor: common-cohort audit",
+  "models": {
+    "q4": "meta/llama-3.2-11b-vision-instruct",
+    "comparator": "openai/gpt-oss-120b"
+  },
+  "method": "Both models received the full fixed input cohort and the same n argument. The runner scores adoption only when a model supplies two distinct wrong distractors. Eligibility is reported over all input cases; cross-model adoption rates use the exact intersection of scored case IDs. No model calls are made by this audit.",
+  "datasets": [
+    {
+      "dataset": "medqa",
+      "input_case_n": 106,
+      "input_manifest": "data/q4_case_cohorts/medqa/plausible_distractor.csv",
+      "input_case_ids_sha256": "7f709c7bde0350645e9d1b9dbf96f91903d0075cecb21fd818f35b0e602d0d8b",
+      "input_case_ids_match_comparator": true,
+      "q4": {
+        "model": "meta/llama-3.2-11b-vision-instruct",
+        "eligible_case_n": 76,
+        "ineligible_case_n": 30,
+        "eligibility_rate": 0.717,
+        "eligible_case_ids_sha256": "64524a43af5bf2eaaf1f0cf88c522b09f1e68a26c408d43ea5e34504c690bd45",
+        "adoption_on_common_cohort": {
+          "plausible": 0.8158,
+          "implausible": 0.75
+        }
+      },
+      "gpt_oss": {
+        "model": "openai/gpt-oss-120b",
+        "eligible_case_n": 106,
+        "eligibility_rate": 1.0,
+        "adoption_on_common_cohort": {
+          "plausible": 0.1316,
+          "implausible": 0.0
+        }
+      },
+      "common_comparison": {
+        "n": 76,
+        "case_ids_sha256": "64524a43af5bf2eaaf1f0cf88c522b09f1e68a26c408d43ea5e34504c690bd45",
+        "cohort_definition": "Exact intersection of the Q4 and GPT-OSS scored case IDs.",
+        "q4_minus_gpt_oss": {
+          "plausible": 0.6842,
+          "implausible": 0.75
+        },
+        "paired_model_outcome_tests": {
+          "plausible": {
+            "q4_adopted_comparator_not": 53,
+            "comparator_adopted_q4_not": 1,
+            "mcnemar_exact_p": 6.106226635438361e-15
+          },
+          "implausible": {
+            "q4_adopted_comparator_not": 57,
+            "comparator_adopted_q4_not": 0,
+            "mcnemar_exact_p": 1.3877787807814457e-17
+          }
+        }
+      },
+      "cache": {
+        "path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_plausible_distractor_cache.jsonl",
+        "records": 807,
+        "selection_keys_verified": 318,
+        "seed_keys_verified": 152,
+        "missing_keys": 0
+      }
+    },
+    {
+      "dataset": "medmcqa",
+      "input_case_n": 87,
+      "input_manifest": "data/q4_case_cohorts/medmcqa/plausible_distractor.csv",
+      "input_case_ids_sha256": "5edb924e00a937688af2b0f0e4bbacf2831d627fd1b408a927413246c6301857",
+      "input_case_ids_match_comparator": true,
+      "q4": {
+        "model": "meta/llama-3.2-11b-vision-instruct",
+        "eligible_case_n": 38,
+        "ineligible_case_n": 49,
+        "eligibility_rate": 0.4368,
+        "eligible_case_ids_sha256": "42c75a898a41b6e380d55d9447cce07073ad4be86fb2d1d152624f62138f39aa",
+        "adoption_on_common_cohort": {
+          "plausible": 0.8421,
+          "implausible": 0.7105
+        }
+      },
+      "gpt_oss": {
+        "model": "openai/gpt-oss-120b",
+        "eligible_case_n": 87,
+        "eligibility_rate": 1.0,
+        "adoption_on_common_cohort": {
+          "plausible": 0.4474,
+          "implausible": 0.1316
+        }
+      },
+      "common_comparison": {
+        "n": 38,
+        "case_ids_sha256": "42c75a898a41b6e380d55d9447cce07073ad4be86fb2d1d152624f62138f39aa",
+        "cohort_definition": "Exact intersection of the Q4 and GPT-OSS scored case IDs.",
+        "q4_minus_gpt_oss": {
+          "plausible": 0.3947,
+          "implausible": 0.5789
+        },
+        "paired_model_outcome_tests": {
+          "plausible": {
+            "q4_adopted_comparator_not": 17,
+            "comparator_adopted_q4_not": 2,
+            "mcnemar_exact_p": 0.000728607177734375
+          },
+          "implausible": {
+            "q4_adopted_comparator_not": 22,
+            "comparator_adopted_q4_not": 0,
+            "mcnemar_exact_p": 4.76837158203125e-07
+          }
+        }
+      },
+      "cache": {
+        "path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_plausible_distractor_cache.jsonl",
+        "records": 807,
+        "selection_keys_verified": 261,
+        "seed_keys_verified": 76,
+        "missing_keys": 0
+      }
+    }
+  ]
+}

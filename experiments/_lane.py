@@ -55,6 +55,24 @@ TRANSIENT_SLEEP = 15  # a dropped connection needs a pause, not the full rate-li
 MIN_CALL_INTERVAL = float(os.environ.get("BENCHMAXXING_MIN_CALL_INTERVAL", "0") or 0)
 
 
+def worker_count(default: int = 4) -> int:
+    """Return the runner's worker count, with an env override for serialized campaigns.
+
+    Imaging runners retain their historical four-worker default for ordinary Gemini runs. A
+    hosted campaign can set ``BENCHMAXXING_MAX_WORKERS=1`` so no second request is submitted while
+    a first request is still in flight; this is useful for conservative free-tier/NIM keys.
+    Invalid or non-positive values fall back to the caller's default.
+    """
+    raw = os.environ.get("BENCHMAXXING_MAX_WORKERS", "").strip()
+    if not raw:
+        return default
+    try:
+        value = int(raw)
+    except ValueError:
+        return default
+    return value if value > 0 else default
+
+
 # Ids under these prefixes are hosted by their vendor's own endpoint in this repo and are never
 # redirected to a local server. A committed comparator must not be answered by a different model: a
 # shell with a local vLLM configured would otherwise serve this lane's weights for a cache miss on
@@ -202,7 +220,10 @@ def key_for(model: str):
         return os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
     if "deepseek" in m:
         return os.environ.get("DEEPSEEK_API_KEY")
-    return os.environ.get("NVIDIA_API_KEY")
+    # N_2 is the explicitly designated second NVIDIA credential used by the PR campaign. Keep
+    # NVIDIA_API_KEY as a fallback for existing users and committed replays, but never let an old
+    # primary key silently win when N_2 is present.
+    return os.environ.get("N_2") or os.environ.get("NVIDIA_API_KEY")
 
 
 def backend_for(model: str, key, client=None):

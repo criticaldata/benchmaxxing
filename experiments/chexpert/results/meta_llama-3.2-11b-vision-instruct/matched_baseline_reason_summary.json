@@ -1,0 +1,55 @@
+{
+  "n": 35,
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "conditions": {
+    "baseline": "answer alone (committed arm, replayed)",
+    "reason_only": "justification request, no scoring note (this run)",
+    "blind": "scoring note plus justification request (committed arm, replayed)"
+  },
+  "decoy_uptake": {
+    "baseline": 0.0,
+    "reason_only": 0.4571,
+    "blind": 0.8
+  },
+  "reason_flip": {
+    "n": 27,
+    "rate": 0.7714,
+    "wilson95": [
+      0.6098,
+      0.8793
+    ]
+  },
+  "uptake_delta": {
+    "blind_minus_baseline_unmatched": 0.8,
+    "blind_minus_reason_only_matched": 0.3429
+  },
+  "stable_subset": {
+    "n_not_moved_by_request": 8,
+    "n_moved_by_note": 5,
+    "rate": 0.625,
+    "wilson95": [
+      0.3057,
+      0.8632
+    ]
+  },
+  "paired_reason_only_vs_blind": {
+    "both_decoy": 13,
+    "note_only": 15,
+    "request_only": 3,
+    "neither": 4,
+    "mcnemar_exact_p": 0.00754
+  },
+  "keyword_screen_without_a_note": {
+    "n_flagged": 0,
+    "rate": 0.0
+  },
+  "blind_source": {
+    "cache": 35,
+    "fresh": 0
+  },
+  "baseline_source": {
+    "cache": 35,
+    "fresh": 0
+  },
+  "new_api_calls_this_run": 210
+}

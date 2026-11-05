@@ -1,0 +1,26 @@
+{
+  "n": 76,
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "new_api_calls_this_run": 470,
+  "adoption": {
+    "plausible": 0.8158,
+    "implausible": 0.75
+  },
+  "plausible_vs_implausible": {
+    "gain": 11,
+    "lose": 6,
+    "pvalue": 0.332306
+  },
+  "read": "Adoption of a wrong senior seed when the asserted wrong answer is the holdout's own second-choice (plausible) distractor 0.8158 versus its own least-likely (implausible) distractor 0.75 (paired McNemar gain=11 lose=6, p=0.332306). A large plausible-over-implausible gap means the cascade is discernment-gated: authority mainly succeeds when it points at something the holdout already half-believes, and an implausible authority claim is resisted. A small gap means adoption is authority/position-driven and largely independent of how credible the wrong answer is on its face.",
+  "input_case_n": 106,
+  "eligible_case_n": 76,
+  "ineligible_case_n": 30,
+  "eligibility_rate": 0.717,
+  "input_case_ids_sha256": "7f709c7bde0350645e9d1b9dbf96f91903d0075cecb21fd818f35b0e602d0d8b",
+  "eligible_case_ids_sha256": "64524a43af5bf2eaaf1f0cf88c522b09f1e68a26c408d43ea5e34504c690bd45",
+  "matched_comparison_case_n": 76,
+  "coverage_file": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/plausible_distractor_coverage.jsonl",
+  "matched_comparison_report": "experiments/model_metadata/q4_plausible_distractor_common_cohort.json",
+  "selection_cache_keys_verified": 318,
+  "seed_cache_keys_verified": 152
+}

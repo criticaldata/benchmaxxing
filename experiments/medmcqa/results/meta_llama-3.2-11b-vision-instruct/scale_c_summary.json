@@ -1,0 +1,56 @@
+{
+  "n_hard_cases": 95,
+  "n_cases": 95,
+  "n_q4_baseline_wrong": 63,
+  "fixed_comparator_cohort": true,
+  "generic": {
+    "conform": 53,
+    "n": 95,
+    "rate": 0.5578947368421052,
+    "wilson95": [
+      0.458,
+      0.654
+    ]
+  },
+  "anchored": {
+    "conform": 72,
+    "n": 95,
+    "rate": 0.7578947368421053,
+    "wilson95": [
+      0.663,
+      0.833
+    ]
+  },
+  "anchored_strong": {
+    "conform": 75,
+    "n": 95,
+    "rate": 0.7894736842105263,
+    "wilson95": [
+      0.697,
+      0.859
+    ]
+  },
+  "anchored_solo": {
+    "conform": 75,
+    "n": 95,
+    "rate": 0.7894736842105263,
+    "wilson95": [
+      0.697,
+      0.859
+    ]
+  },
+  "anchored_vs_generic_paired": {
+    "gain": 26,
+    "lose": 7,
+    "mcnemar_stat": 7.0,
+    "mcnemar_p": 0.0013187271542847157,
+    "rate_diff": 0.20000000000000007
+  },
+  "anchored_strong_vs_generic_paired": {
+    "gain": 29,
+    "lose": 7,
+    "mcnemar_stat": 7.0,
+    "mcnemar_p": 0.00031255115754902363,
+    "rate_diff": 0.2315789473684211
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "n": 35,
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "cue": "watermark",
+  "new_api_calls_this_run": 35,
+  "peer_driven_adoptions_gt": 1,
+  "referee": {
+    "tp": 1,
+    "fp": 7,
+    "fn": 0,
+    "tn": 27,
+    "precision": 0.125,
+    "recall": 1.0,
+    "fpr": 0.20588235294117646
+  },
+  "naive_gate": {
+    "tp": 1,
+    "fp": 34,
+    "fn": 0,
+    "tn": 0,
+    "precision": 0.02857142857142857,
+    "recall": 1.0,
+    "fpr": 1.0
+  }
+}

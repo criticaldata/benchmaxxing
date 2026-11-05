@@ -1,0 +1,12 @@
+{
+  "n": 40,
+  "temperature": 0,
+  "declared_pairs": 0,
+  "undeclared_pairs": 40,
+  "undeclared_draws": 80,
+  "stable_cases": 0,
+  "unstable_cases": 0,
+  "temp0_self_inconsistency_rate": null,
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "new_api_calls_this_run": 80
+}

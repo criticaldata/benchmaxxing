@@ -1,0 +1,27 @@
+{
+  "n": 120,
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "new_api_calls_this_run": 600,
+  "adoption_by_committee_size": {
+    "s0": 0.7167,
+    "s1": 0.35,
+    "s2": 0.3583,
+    "s4": 0.2833
+  },
+  "s0_vs_s1": {
+    "gain": 0,
+    "lose": 44,
+    "pvalue": 1.1368683772161603e-13
+  },
+  "s0_vs_s2": {
+    "gain": 1,
+    "lose": 44,
+    "pvalue": 2.6147972675971687e-12
+  },
+  "s0_vs_s4": {
+    "gain": 1,
+    "lose": 53,
+    "pvalue": 6.106226635438361e-15
+  },
+  "read": "Adoption of the fixed wrong answer as honest peers accumulate around one wrong senior seed: alone 0.7167, +1 honest 0.35, +2 honest 0.3583, +4 honest 0.2833. A monotone fall means honest majority DILUTES a single wrong seed (safety in numbers); a flat curve means one anchored authority resists dilution even when outnumbered. Paired McNemars (s0 vs each larger committee) test whether adding honest peers significantly rescues the holdout from the wrong seed."
+}

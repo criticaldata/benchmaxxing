@@ -8,6 +8,22 @@ is API-side, no local GPU. Reads `GEMINI_API_KEY` (or `GOOGLE_API_KEY`) from the
 deterministic (temperature 0) step below reproduces the committed numbers with
 `new_api_calls_this_run: 0` and no key.
 
+### Conservative hosted-model execution
+
+For a hosted NVIDIA/NIM run, use one worker and serialize both logical calls and retry attempts:
+
+```bash
+export BENCHMAXXING_MIN_CALL_INTERVAL=20
+export BENCHMAXXING_GLOBAL_MIN_CALL_INTERVAL=20
+export BENCHMAXXING_MAX_WORKERS=1
+```
+
+The first interval spaces normal requests, the second also spaces retries made inside the gateway,
+and the worker limit prevents multiple image requests from being in flight. Each runner appends a
+successful response to its explicit model-scoped cache, so an interrupted arm resumes without
+repeating successful calls. These settings are intentionally opt-in; the default Gemini runs keep
+their historical worker count and pacing.
+
 ## Manifest build (`build_manifest.py`, #162)
 
 Parses the real ChestX-ray14 release via the registered `nih_cxr14` adapter

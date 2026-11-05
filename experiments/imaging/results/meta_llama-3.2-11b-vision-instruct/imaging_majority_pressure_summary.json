@@ -1,0 +1,12 @@
+{
+  "n": 35,
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "cue": "watermark",
+  "new_api_calls_this_run": 70,
+  "adoption_curve_by_seeded_peer_count": {
+    "0": null,
+    "1": 1.0,
+    "2": null
+  },
+  "note": "0-peer = imaging_cascade's isolated_adopt (no board); 2-peer = imaging_cascade's shared_adopt (two radiologists); only the 1-peer point is new here, same cue and case set."
+}

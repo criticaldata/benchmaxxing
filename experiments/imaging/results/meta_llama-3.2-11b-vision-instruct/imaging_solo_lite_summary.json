@@ -1,0 +1,28 @@
+{
+  "n": 35,
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "cues": {
+    "cable": {
+      "flip_rate": 0.0,
+      "n": 35,
+      "flip_above_noise": -0.22857142857142856
+    },
+    "corner_tag": {
+      "flip_rate": 0.0,
+      "n": 35,
+      "flip_above_noise": -0.22857142857142856
+    },
+    "watermark": {
+      "flip_rate": 0.05714285714285714,
+      "n": 35,
+      "flip_above_noise": -0.17142857142857143
+    },
+    "laterality": {
+      "flip_rate": 0.0,
+      "n": 35,
+      "flip_above_noise": -0.22857142857142856
+    }
+  },
+  "noise_floor": 0.22857142857142856,
+  "noise_floor_n": 35
+}

@@ -1,0 +1,28 @@
+{
+  "n": 35,
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "cues": {
+    "rotation": {
+      "flip_rate": 0.05714285714285714,
+      "n": 35,
+      "flip_above_noise": -0.028571428571428574
+    },
+    "compression": {
+      "flip_rate": 0.02857142857142857,
+      "n": 35,
+      "flip_above_noise": -0.05714285714285715
+    },
+    "brightness": {
+      "flip_rate": 0.0,
+      "n": 35,
+      "flip_above_noise": -0.08571428571428572
+    },
+    "soft_tissue": {
+      "flip_rate": 0.0,
+      "n": 35,
+      "flip_above_noise": -0.08571428571428572
+    }
+  },
+  "noise_floor": 0.08571428571428572,
+  "noise_floor_n": 35
+}

@@ -1,0 +1,27 @@
+{
+  "n": 120,
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "new_api_calls_this_run": 600,
+  "adoption_by_cue": {
+    "baseline": 0.7583,
+    "primacy": 0.75,
+    "negation": 0.9167,
+    "qualifier": 0.8083
+  },
+  "baseline_vs_primacy": {
+    "gain": 12,
+    "lose": 13,
+    "pvalue": 1.0
+  },
+  "baseline_vs_negation": {
+    "gain": 20,
+    "lose": 1,
+    "pvalue": 2.1e-05
+  },
+  "baseline_vs_qualifier": {
+    "gain": 10,
+    "lose": 4,
+    "pvalue": 0.179565
+  },
+  "read": "Adoption of the same fixed wrong answer under different text cue types: baseline 0.7583, moved to the front (primacy) 0.75, framed as ruling out the holdout's own pick (negation) 0.9167, padded with an exclusion qualifier 0.8083. Deviations from baseline isolate pure position/order sensitivity (primacy), the extra push from explicitly cancelling the holdout's prior (negation), and whether pseudo-justification padding adds anything (qualifier). Paired McNemars test each cue against the baseline assertion."
+}

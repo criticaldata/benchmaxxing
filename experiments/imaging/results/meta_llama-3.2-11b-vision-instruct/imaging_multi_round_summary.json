@@ -1,0 +1,23 @@
+{
+  "n": 35,
+  "K": 3,
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "cue": "watermark",
+  "new_api_calls_this_run": 210,
+  "shared_adoption_by_round": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "isolated_adoption_by_round": [
+    1.0,
+    0.8286,
+    0.8
+  ],
+  "round1_vs_roundK_shared": {
+    "gained": 0,
+    "lost": 0,
+    "mcnemar_p": 1.0
+  },
+  "monotone_nondecreasing_shared": true
+}
