@@ -185,7 +185,8 @@ class _Cache:
             backend = self._gw.LocalOpenAICompatibleBackend(
                 model=self._model,
                 base_url=LOCAL_BASE_URL,
-                api_key=self.key
+                api_key=self.key,
+                timeout=300.0
             )
         elif "gemini" in m:
             backend = self._gw.GeminiBackend(model=self._model, api_key=self.key)

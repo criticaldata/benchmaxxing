@@ -1,0 +1,22 @@
+{
+  "n": 120,
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "new_api_calls_this_run": 480,
+  "adoption_by_template": {
+    "t0_canonical": 0.75,
+    "t1_consultant": 0.9,
+    "t2_attending": 0.6583
+  },
+  "per_case_unanimous_fraction": 0.6333,
+  "t0_vs_t1": {
+    "gain": 19,
+    "lose": 1,
+    "pvalue": 4e-05
+  },
+  "t0_vs_t2": {
+    "gain": 10,
+    "lose": 21,
+    "pvalue": 0.070756
+  },
+  "read": "Adoption of the same fixed wrong seed under three independently paraphrased instruction and assertion templates: {'t0_canonical': 0.75, 't1_consultant': 0.9, 't2_attending': 0.6583}. Per-case verdicts are unanimous across all three templates on 0.6333 of cases. Tightly clustered rates and high agreement mean the cascade is a property of the manipulation rather than one brittle prompt string; large swings would flag prompt-sensitivity. Paired McNemars test the canonical template against each paraphrase."
+}

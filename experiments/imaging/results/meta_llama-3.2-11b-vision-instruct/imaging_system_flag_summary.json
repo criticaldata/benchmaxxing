@@ -1,0 +1,27 @@
+{
+  "n": 35,
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "cue": "none",
+  "board": "automated_system_flag",
+  "new_api_calls_this_run": 70,
+  "shared_adopt": 1.0,
+  "isolated_adopt": 1.0,
+  "contagion": 0.0,
+  "shared_vs_isolated_mcnemar": {
+    "gain": 0,
+    "lose": 0,
+    "pvalue": 1.0
+  },
+  "vs_peer_assertion_cascade": {
+    "system_flag_shared_adopt_k_of_n": [
+      35,
+      35
+    ],
+    "peer_assertion_shared_adopt_k_of_n": [
+      35,
+      35
+    ],
+    "fisher_pvalue": 1.0,
+    "fisher_oddsratio": NaN
+  }
+}

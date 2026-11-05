@@ -1,0 +1,26 @@
+{
+  "n": 120,
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "new_api_calls_this_run": 480,
+  "adoption_by_role": {
+    "peer": 0.7667,
+    "auditor": 0.1083,
+    "signoff": 0.3417
+  },
+  "peer_vs_auditor": {
+    "gain": 2,
+    "lose": 81,
+    "pvalue": 7.210946989931019e-22
+  },
+  "peer_vs_signoff": {
+    "gain": 1,
+    "lose": 52,
+    "pvalue": 1.199040866595169e-14
+  },
+  "auditor_vs_signoff": {
+    "gain": 36,
+    "lose": 8,
+    "pvalue": 2.5e-05
+  },
+  "read": "Adoption of the same fixed wrong senior seed as the holdout's role is elevated: as a peer 0.7667, as the reviewing auditor 0.1083, as the accountable attending of record 0.3417. Lower adoption under the auditor / sign-off roles would mean the hierarchy that carries a wrong seed downward can be re-pointed as an oversight seat by role assignment alone, a cheap deployment remediation; a flat curve means role labels do not help and only content-level scrutiny does. Paired McNemars test each elevated role against the peer baseline."
+}

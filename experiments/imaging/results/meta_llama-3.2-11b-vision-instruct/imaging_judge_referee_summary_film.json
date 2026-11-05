@@ -1,0 +1,48 @@
+{
+  "n": 35,
+  "judge_model": "meta/llama-3.2-11b-vision-instruct",
+  "new_api_calls_this_run": 35,
+  "judge_sees_the_film": true,
+  "note": "The judge sees the film alongside the board, so its verdict is not pinned to the naive_gate row beside it. Run --text-only on the same cascade for the contrast.",
+  "peer_driven_adoptions_gt": 1,
+  "same_lineage_judge": {
+    "tp": 0,
+    "fp": 0,
+    "fn": 1,
+    "tn": 34,
+    "precision": null,
+    "recall": 0.0,
+    "fpr": 0.0
+  },
+  "naive_gate": {
+    "tp": 1,
+    "fp": 34,
+    "fn": 0,
+    "tn": 0,
+    "precision": 0.02857142857142857,
+    "recall": 1.0,
+    "fpr": 1.0
+  },
+  "clean_correct_only": {
+    "n": 1,
+    "peer_driven_adoptions_gt": 1,
+    "same_lineage_judge": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1,
+      "tn": 0,
+      "precision": null,
+      "recall": 0.0,
+      "fpr": null
+    },
+    "naive_gate": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "tn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "fpr": null
+    }
+  }
+}

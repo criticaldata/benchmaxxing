@@ -93,6 +93,7 @@ def main():
     ap.add_argument("--out", default="experiments/medqa/results")
     _lane.add_model_arg(ap)
     ap.add_argument("--n", type=int, default=60)
+    ap.add_argument("--case-ids", default=None, help="optional newline-delimited fixed cohort")
     ap.add_argument("--show-rationale", action="store_true",
                     help="render each peer's reasoning under its vote (#373); off is the "
                          "committed answer-only board, which the cache replays at zero calls")
@@ -111,7 +112,16 @@ def main():
                                  for a, m in COMMITTEE])
     holdout_only = build_committee(
         [ModelSpec(name="holdout", lineage="gemini", tier="gemini-2.5-flash-lite", is_open_weights=False)])
-    cases = load_cases(args.manifest)[:args.n]
+    all_cases = load_cases(args.manifest)
+    if args.case_ids:
+        wanted = [line.strip() for line in Path(args.case_ids).read_text().splitlines() if line.strip()]
+        by_id = {c.case_id: c for c in all_cases}
+        missing = [case_id for case_id in wanted if case_id not in by_id]
+        if missing:
+            raise SystemExit(f"case IDs missing from manifest: {missing[:5]}")
+        cases = [by_id[case_id] for case_id in wanted]
+    else:
+        cases = all_cases[:args.n]
 
     def backend_for(spec):
         backend_model = model_by_agent[spec.name]
@@ -132,8 +142,9 @@ def main():
         gt = options[case.answer_index]
         base = run_committee(holdout_only, case, Condition.CONTAMINATED, backend_for, shared=False, rounds=1)
         bare = base.committed.get(HOLDOUT)
-        if bare is None or bare == gt:
-            return None  # only solo-WRONG cases
+        baseline_solo_correct = bare == gt
+        if (bare is None or baseline_solo_correct) and not args.case_ids:
+            return None  # default cohort: only solo-WRONG cases
         wrong = next((o for i, o in enumerate(options) if i != case.answer_index and o != bare), None)
         if wrong is None:
             return None
@@ -149,6 +160,7 @@ def main():
                                     seed_turn=[(0, gt, "peer", rationale(gt))], rounds=1)
         return {
             "case_id": case.case_id, "bare": bare, "ground_truth": gt, "wrong_seed": wrong,
+            "baseline_solo_correct": int(baseline_solo_correct),
             "wrong_peer_adopt": int(wrong_run.committed.get(HOLDOUT) == wrong),
             "correct_peer_adopt": int(correct_run.committed.get(HOLDOUT) == gt),
         }
@@ -163,12 +175,21 @@ def main():
     n = len(rows)
     wrong_rate = sum(r["wrong_peer_adopt"] for r in rows) / n if n else None
     correct_rate = sum(r["correct_peer_adopt"] for r in rows) / n if n else None
+    solo_wrong_rows = [r for r in rows if not r["baseline_solo_correct"]]
+    def cohort_rate(cohort, key):
+        return round(sum(r[key] for r in cohort) / len(cohort), 4) if cohort else None
     summary = {
-        "n_solo_wrong_cases": n, "holdout": HOLDOUT, "new_api_calls_this_run": cache.calls,
+        "n_cases": n, "n_solo_wrong_cases": len(solo_wrong_rows),
+        "holdout": HOLDOUT, "fixed_comparator_cohort": bool(args.case_ids),
+        "new_api_calls_this_run": cache.calls,
         "wrong_peer_adoption": round(wrong_rate, 4) if n else None,
         "correct_peer_adoption": round(correct_rate, 4) if n else None,
+        "rates_on_solo_wrong_cases": {
+            "wrong_peer_adoption": cohort_rate(solo_wrong_rows, "wrong_peer_adopt"),
+            "correct_peer_adoption": cohort_rate(solo_wrong_rows, "correct_peer_adopt"),
+        },
         "read": (
-            f"On {n} cases the flash-lite holdout gets wrong alone, a single confident peer asserting "
+            f"On {n} fixed cases ({len(solo_wrong_rows)} Q4 solo-wrong), a single confident peer asserting "
             f"the CORRECT answer is adopted {round(correct_rate, 4) if n else 'n/a'} of the time, "
             f"versus {round(wrong_rate, 4) if n else 'n/a'} for a confident peer asserting a WRONG "
             "answer. If these two rates are close, the holdout is deferring to a confident peer's "

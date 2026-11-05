@@ -96,6 +96,7 @@ def main():
     ap.add_argument("--out", default="experiments/medqa/results")
     _lane.add_model_arg(ap)
     ap.add_argument("--n", type=int, default=80)
+    ap.add_argument("--case-ids", default=None, help="optional newline-delimited fixed cohort")
     ap.add_argument("--show-rationale", action="store_true",
                     help="render each peer's reasoning under its vote (#373); off is the "
                          "committed answer-only board, which the cache replays at zero calls")
@@ -112,7 +113,16 @@ def main():
     model_by_agent = dict(MEMBERS)
     committee = build_committee(
         [ModelSpec(name=a, lineage="gemini", tier=m, is_open_weights=False) for a, m in MEMBERS])
-    cases = load_cases(args.manifest)[:args.n]
+    all_cases = load_cases(args.manifest)
+    if args.case_ids:
+        wanted = [line.strip() for line in Path(args.case_ids).read_text().splitlines() if line.strip()]
+        by_id = {c.case_id: c for c in all_cases}
+        missing = [case_id for case_id in wanted if case_id not in by_id]
+        if missing:
+            raise SystemExit(f"case IDs missing from manifest: {missing[:5]}")
+        cases = [by_id[case_id] for case_id in wanted]
+    else:
+        cases = all_cases[:args.n]
 
     def real_backend(spec):
         backend_model = model_by_agent[spec.name]
@@ -151,8 +161,9 @@ def main():
         options = list(case.options)
         gt = options[case.answer_index]
         clean = run_committee(committee, case, Condition.CONTAMINATED, real_backend, shared=True, rounds=1)
-        if committee_output(clean, False) != gt:
-            return None  # only cases the clean committee gets right
+        clean_correct = committee_output(clean, False) == gt
+        if not clean_correct and not args.case_ids:
+            return None  # default cohort: only cases the clean committee gets right
         wrong = next((o for i, o in enumerate(options) if i != case.answer_index), None)
         detail = " ".join((case.question or "").split()[:14])
         rat = f"I am confident the answer is \"{wrong}\": given that {detail}..., it points there."
@@ -169,6 +180,7 @@ def main():
                            rounds=1)
         return {
             "case_id": case.case_id, "ground_truth": gt, "wrong": wrong,
+            "clean_committee_correct": int(clean_correct),
             "wrong_peer_output_wrong": int(committee_output(wp, False) != gt),
             "wrong_orch_output_wrong": int(committee_output(wo, True) != gt),
             "honest_orch_output_wrong": int(committee_output(hg, True) != gt),
@@ -182,13 +194,22 @@ def main():
                 rows.append(r)
 
     n = len(rows)
-    def rate(k):
-        return round(sum(r[k] for r in rows) / n, 4) if n else None
+    clean_rows = [r for r in rows if r["clean_committee_correct"]]
+    def rate(k, cohort=rows):
+        return round(sum(r[k] for r in cohort) / len(cohort), 4) if cohort else None
     summary = {
-        "n_clean_correct_cases": n, "new_api_calls_this_run": cache.calls,
+        "n_cases": n, "n_clean_correct_cases": len(clean_rows),
+        "clean_correct_case_rate": round(len(clean_rows) / n, 4) if n else None,
+        "fixed_comparator_cohort": bool(args.case_ids),
+        "new_api_calls_this_run": cache.calls,
         "wrong_peer_poisons_output": rate("wrong_peer_output_wrong"),
         "wrong_orchestrator_poisons_output": rate("wrong_orch_output_wrong"),
         "honest_orchestrator_over_wrong_peers_output_wrong": rate("honest_orch_output_wrong"),
+        "rates_on_clean_correct_cases": {
+            "wrong_peer_poisons_output": rate("wrong_peer_output_wrong", clean_rows),
+            "wrong_orchestrator_poisons_output": rate("wrong_orch_output_wrong", clean_rows),
+            "honest_orchestrator_over_wrong_peers_output_wrong": rate("honest_orch_output_wrong", clean_rows),
+        },
         "read": (
             f"On {n} cases a clean committee gets right, a wrong PEER poisons the committee output "
             f"{rate('wrong_peer_output_wrong')} of the time (it must actually move the other "

@@ -1,0 +1,15 @@
+{
+  "n": 76,
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "new_api_calls_this_run": 470,
+  "adoption": {
+    "plausible": 0.8158,
+    "implausible": 0.75
+  },
+  "plausible_vs_implausible": {
+    "gain": 11,
+    "lose": 6,
+    "pvalue": 0.332306
+  },
+  "read": "Adoption of a wrong senior seed when the asserted wrong answer is the holdout's own second-choice (plausible) distractor 0.8158 versus its own least-likely (implausible) distractor 0.75 (paired McNemar gain=11 lose=6, p=0.332306). A large plausible-over-implausible gap means the cascade is discernment-gated: authority mainly succeeds when it points at something the holdout already half-believes, and an implausible authority claim is resisted. A small gap means adoption is authority/position-driven and largely independent of how credible the wrong answer is on its face."
+}

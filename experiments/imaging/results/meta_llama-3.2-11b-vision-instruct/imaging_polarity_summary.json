@@ -1,0 +1,38 @@
+{
+  "n_cases": 35,
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "positive_polarity_yes_to_no": {
+    "flips": 0,
+    "eligible": 0,
+    "rate": null
+  },
+  "negative_polarity_no_to_yes": {
+    "flips": 0,
+    "eligible": 140,
+    "rate": 0.0
+  },
+  "per_cue": {
+    "cable": {
+      "pos_flip_rate": null,
+      "neg_flip_rate": 0.0
+    },
+    "corner_tag": {
+      "pos_flip_rate": null,
+      "neg_flip_rate": 0.0
+    },
+    "watermark": {
+      "pos_flip_rate": null,
+      "neg_flip_rate": 0.0
+    },
+    "laterality": {
+      "pos_flip_rate": null,
+      "neg_flip_rate": 0.0
+    }
+  },
+  "asymmetry_mcnemar": {
+    "pos_only": 0,
+    "neg_only": 0,
+    "pvalue": 1.0
+  },
+  "read": "Cue-induced flips by polarity, pooled over the four cues: a TRUE finding is suppressed (yes -> no) at rate None (0/0), while an ABSENT finding is hallucinated (no -> yes) at rate 0.0 (0/140) (paired McNemar pos-only=0 neg-only=0, p=1.0). A dominant yes->no rate means the cues work mainly by erasing real signal (missed findings); a dominant no->yes rate means they inject spurious signal (false alarms). Symmetry means the cue destabilises the read in both directions equally."
+}

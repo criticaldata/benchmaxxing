@@ -1,0 +1,32 @@
+{
+  "n": 120,
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "new_api_calls_this_run": 600,
+  "adoption_by_framing": {
+    "none": 0.725,
+    "collaborative": 0.7667,
+    "independent": 0.7083,
+    "critical": 0.3833
+  },
+  "none_vs_collaborative": {
+    "gain": 12,
+    "lose": 7,
+    "pvalue": 0.359283
+  },
+  "none_vs_independent": {
+    "gain": 8,
+    "lose": 10,
+    "pvalue": 0.814529
+  },
+  "none_vs_critical": {
+    "gain": 9,
+    "lose": 50,
+    "pvalue": 5.264832102225281e-08
+  },
+  "independent_vs_critical": {
+    "gain": 7,
+    "lose": 46,
+    "pvalue": 4.003196174551249e-08
+  },
+  "read": "Adoption of the same fixed wrong senior seed under different deliberation instructions: none 0.725, collaborative 0.7667, independent 0.7083, critical 0.3833. A one-line instruction that licenses dissent (independent / critical) lowering adoption below the collaborative or unframed baseline would mean the cascade is cheaply steerable at deployment time by prompt alone; a flat curve means the framing is ignored and only structural interventions (a dissenter, a referee) help. Paired McNemars test each frame against the unframed baseline."
+}

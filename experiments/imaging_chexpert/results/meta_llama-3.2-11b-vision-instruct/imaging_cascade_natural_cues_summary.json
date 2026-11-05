@@ -1,0 +1,20 @@
+{
+  "n": 150,
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "cue": "none",
+  "new_api_calls_this_run": 450,
+  "shared_adopt": 0.9533,
+  "isolated_adopt": 0.22,
+  "contagion": 0.7333,
+  "n_correct_baseline": 117,
+  "contagion_on_correct": 0.9402,
+  "contagion_ci_95": [
+    0.8736,
+    0.9707
+  ],
+  "pure_sycophancy": 0.9402,
+  "pure_sycophancy_ci_95": [
+    0.8736,
+    0.9707
+  ]
+}

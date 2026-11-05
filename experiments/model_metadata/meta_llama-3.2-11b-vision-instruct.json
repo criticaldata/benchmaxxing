@@ -1,0 +1,12 @@
+{
+  "model_id": "meta/llama-3.2-11b-vision-instruct",
+  "ollama_source_tag": "llama3.2-vision:11b",
+  "quantization": "Q4_K_M",
+  "ollama_manifest_digest": "sha256:6f2f9757ae97e8a3f8ea33d6adb2b11d93d9a35bef277cd2c0b1b5af8e8d0b1e",
+  "model_layer_digest": "sha256:9999d473417a8e179d993498195be5f42cab963acc75f4a6b15d981e8b68abed",
+  "ollama_version": "0.23.2",
+  "server_endpoint": "http://127.0.0.1:11437/v1",
+  "gpu_index": 1,
+  "gpu_uuid": "GPU-53baf38a-4a3c-673d-52d9-e0febededa32",
+  "recorded_at_utc": "2026-11-02T22:18:22Z"
+}

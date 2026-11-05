@@ -1,0 +1,19 @@
+{
+  "new_api_calls_this_run": 200,
+  "by_model": {
+    "meta/llama-3.2-11b-vision-instruct": {
+      "n": 100,
+      "full_accuracy": 0.57,
+      "q_only_accuracy": 0.13,
+      "options_only_accuracy": 0.2,
+      "options_only_chance": 0.2,
+      "options_only_above_chance": 0.0,
+      "per_record_flip_rate": 0.2633,
+      "ever_flipped_rate": 0.41,
+      "flip_rate_when_baseline_correct": 0.2105,
+      "flip_rate_when_baseline_wrong": 0.6744,
+      "flip_correct_vs_wrong_fisher_p": 4.294263562910134e-06,
+      "flip_correct_vs_wrong_or": 0.12873563218390804
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "holdout": "meta/llama-3.2-11b-vision-instruct",
+  "n_cases": 22,
+  "n_hard_cases": 21,
+  "fixed_comparator_cohort": true,
+  "new_api_calls_this_run": 66,
+  "generic": {
+    "conform": 13,
+    "rate": 0.5909,
+    "wilson95": [
+      0.387,
+      0.767
+    ]
+  },
+  "generic_on_baseline_wrong": {
+    "conform": 12,
+    "n": 21,
+    "rate": 0.5714,
+    "wilson95": [
+      0.365,
+      0.755
+    ]
+  },
+  "anchored": {
+    "conform": 16,
+    "rate": 0.7273,
+    "wilson95": [
+      0.518,
+      0.868
+    ]
+  },
+  "anchored_on_baseline_wrong": {
+    "conform": 15,
+    "n": 21,
+    "rate": 0.7143,
+    "wilson95": [
+      0.5,
+      0.862
+    ]
+  },
+  "anchored_vs_generic_paired": {
+    "gain": 4,
+    "lose": 1,
+    "mcnemar_p": 0.375,
+    "rate_diff": 0.1364
+  },
+  "flash_lite_reference": {
+    "generic": 0.6590909090909091,
+    "anchored": 0.6818181818181818,
+    "mcnemar_p": 1.0,
+    "n": 44,
+    "source": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/scale_c_summary.json"
+  }
+}

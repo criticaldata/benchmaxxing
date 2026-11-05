@@ -1,0 +1,16 @@
+{
+  "n": 40,
+  "judge_model": "meta/llama-3.2-11b-vision-instruct",
+  "n_holdout_adopted_shortcut": 29,
+  "n_judge_flagged": 13,
+  "new_api_calls_this_run": 40,
+  "same_lineage_judge_vs_adoption": {
+    "precision": 0.6923076923076923,
+    "recall": 0.3103448275862069,
+    "fpr": 0.36363636363636365,
+    "tp": 9,
+    "fp": 4,
+    "fn": 20,
+    "tn": 7
+  }
+}

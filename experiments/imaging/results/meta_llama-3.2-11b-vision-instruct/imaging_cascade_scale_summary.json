@@ -1,0 +1,14 @@
+{
+  "n": 150,
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "cue": "watermark",
+  "new_api_calls_this_run": 0,
+  "shared_adopt": 1.0,
+  "isolated_adopt": 0.9333,
+  "contagion": 0.0667,
+  "contagion_ci95": [
+    0.0333,
+    0.1067
+  ],
+  "note": "scaled watermark cascade n=150, bootstrap 95% CI on contagion (5000 resamples); tightens the n=35 imaging headline"
+}
