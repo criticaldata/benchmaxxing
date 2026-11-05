@@ -153,10 +153,11 @@ El 90B con `N_2` no obtuvo ninguna respuesta durante 23 preflights; la evidencia
 ## 🔗 Artefactos principales
 
 - [Resultados Llama 11B y comparación](./pr416_nvidia_11b_results.md)
-- [Resultados CheXpert Llama 11B, `n=600`](../experiments/chexpert/results/meta_llama-3.2-11b-vision-instruct/)
+- Los artefactos Q4_K_M verificados quedan en el nivel raíz de cada scope meta_llama-3.2-11b-vision-instruct; los resultados NIM históricos se conservan en las subcarpetas nvidia_nim/ y nvidia_nim_n600/ para distinguir runtime y evitar sobrescrituras.
+- [Resultados CheXpert Llama 11B, `n=600`](../experiments/chexpert/results/meta_llama-3.2-11b-vision-instruct/nvidia_nim_n600/)
 - [Brazo oculto de 35 casos](../experiments/chexpert/results/meta_llama-3.2-11b-vision-instruct/hidden_note_n35/)
 - [Cache reproducible de CheXpert](../experiments/chexpert/results/600_runs/img_cache_llama11b_n2.jsonl)
-- [Batería CheXpert con imágenes y cache Llama 11B](../experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/)
+- [Batería CheXpert con imágenes y cache Llama 11B](../experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/nvidia_nim/)
 - [Cache parcial de la cola SUPPORT2](../experiments/support2/results/meta_llama-3.2-11b-vision-instruct_call_cache.jsonl)
 - [Fuentes y requisitos de datasets](./DATASETS.md#the-datasets)
 - [Reporte de bloqueo del 90B](../experiments/chexpert/results/api_watchdog_n2_report.md)

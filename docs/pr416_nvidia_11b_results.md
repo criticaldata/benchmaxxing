@@ -112,8 +112,8 @@ status are recorded in the [experiment handoff](./pr416_nvidia_11b_handoff.md).
 
 ## 🔗 Reproducibility artifacts
 
-- Summary: `experiments/chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_blind_metric_summary.json`
-- Combined per-case results: `experiments/chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_blind_metric.jsonl`
+- Summary: `experiments/chexpert/results/meta_llama-3.2-11b-vision-instruct/nvidia_nim_n600/imaging_blind_metric_summary.json`
+- Combined per-case results: `experiments/chexpert/results/meta_llama-3.2-11b-vision-instruct/nvidia_nim_n600/imaging_blind_metric.jsonl`
 - Phase checkpoints: the `imaging_blind_metric_phase*.jsonl` files in the same directory
 - Shared 35-case hidden-note arm: `experiments/chexpert/results/meta_llama-3.2-11b-vision-instruct/hidden_note_n35/`
 - Cache: `experiments/chexpert/results/600_runs/img_cache_llama11b_n2.jsonl`
