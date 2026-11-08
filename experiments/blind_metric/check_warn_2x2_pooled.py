@@ -37,7 +37,7 @@ def _pair(rows, a, b, col="is_decoy"):
 
 
 def main():
-    rows, aware, per = [], {}, {}
+    rows, per = [], {}
     for name, d in COHORTS.items():
         rs = _rows(d)
         a = _aware(d)
@@ -65,6 +65,8 @@ def main():
         "vs_none": {c: _pair(rows, "none", c) for c in CELLS[1:]},
         "check_given_warn": _pair(rows, "warn", "both"),
         "warn_given_check": _pair(rows, "check", "both"),
+        "warn_vs_test_aware": _pair(
+            [{**r, "ta_is_decoy": r["aware_is_decoy"]} for r in rows], "warn", "ta"),
         "both_vs_test_aware": _pair(
             [{**r, "ta_is_decoy": r["aware_is_decoy"]} for r in rows], "both", "ta"),
     }
@@ -73,7 +75,10 @@ def main():
         f"{cells['check']['decoy_uptake']} with the check announced, {cells['warn']['decoy_uptake']} with "
         f"the warning and {cells['both']['decoy_uptake']} with both; the committed test_aware prompt, "
         f"which also drops the justification and adds 'clinically best', gives "
-        f"{test_aware['decoy_uptake']} on the same cases. The rubric is named in "
+        f"{test_aware['decoy_uptake']} on the same cases; against the warning cell alone it moves "
+        f"{out['warn_vs_test_aware']['gain']} cases one way and {out['warn_vs_test_aware']['lose']} the "
+        f"other (P = {out['warn_vs_test_aware']['pvalue']}), so the warning accounts for the whole "
+        f"test-aware drop. The rubric is named in "
         f"{sum(cells[c]['n_named_any'] for c in CELLS)} of {4 * n} justifications across the four cells.")
     p = ROOT / "experiments/blind_metric/results/check_warn_2x2_pooled.json"
     p.write_text(json.dumps(out, indent=2) + "\n")
