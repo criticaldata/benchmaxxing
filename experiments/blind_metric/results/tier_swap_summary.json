@@ -1,0 +1,100 @@
+{
+  "new_api_calls_this_run": 0,
+  "arms": {
+    "text/gemini-2.5-flash-lite": {
+      "n": 40,
+      "blind_uptake": 0.275,
+      "aware_uptake": 0.15,
+      "suppression_blind_vs_aware": {
+        "gain": 6,
+        "lose": 1,
+        "pvalue": 0.125
+      },
+      "n_drifted": 11,
+      "n_named_rubric": 1
+    },
+    "text/gemini-2.5-flash": {
+      "n": 40,
+      "blind_uptake": 0.575,
+      "aware_uptake": 0.175,
+      "suppression_blind_vs_aware": {
+        "gain": 16,
+        "lose": 0,
+        "pvalue": 3.1e-05
+      },
+      "n_drifted": 23,
+      "n_named_rubric": 1
+    },
+    "imaging/gemini-2.5-flash": {
+      "n": 35,
+      "blind_uptake": 0.8286,
+      "aware_uptake": 0.3714,
+      "suppression_blind_vs_aware": {
+        "gain": 17,
+        "lose": 1,
+        "pvalue": 0.000145
+      },
+      "n_drifted": 29,
+      "n_named_rubric": 0,
+      "baseline_correct": 22
+    },
+    "imaging/gemini-2.5-flash-lite": {
+      "n": 35,
+      "blind_uptake": 0.5429,
+      "aware_uptake": 0.1429,
+      "suppression_blind_vs_aware": {
+        "gain": 14,
+        "lose": 0,
+        "pvalue": 0.000122
+      },
+      "n_drifted": 19,
+      "n_named_rubric": 0,
+      "baseline_correct": 17
+    }
+  },
+  "tier_within_modality": {
+    "text": {
+      "n_paired": 40,
+      "blind_flash_vs_lite": {
+        "gain": 14,
+        "lose": 2,
+        "pvalue": 0.004181
+      },
+      "aware_flash_vs_lite": {
+        "gain": 5,
+        "lose": 4,
+        "pvalue": 1.0
+      }
+    },
+    "imaging": {
+      "n_paired": 35,
+      "blind_flash_vs_lite": {
+        "gain": 11,
+        "lose": 1,
+        "pvalue": 0.006348
+      },
+      "aware_flash_vs_lite": {
+        "gain": 10,
+        "lose": 2,
+        "pvalue": 0.038574
+      }
+    }
+  },
+  "modality_within_tier": {
+    "gemini-2.5-flash-lite": {
+      "blind_text": 0.275,
+      "blind_imaging": 0.5429,
+      "imaging_minus_text_blind": 0.2679,
+      "aware_text": 0.15,
+      "aware_imaging": 0.1429
+    },
+    "gemini-2.5-flash": {
+      "blind_text": 0.575,
+      "blind_imaging": 0.8286,
+      "imaging_minus_text_blind": 0.2536,
+      "aware_text": 0.175,
+      "aware_imaging": 0.3714
+    }
+  },
+  "read": "Swapping tiers keeps the modality ordering: under Flash-Lite the hidden rubric takes 0.275 of MedQA answers and 0.5429 of NIH reads; under Flash 0.575 and 0.8286. Tier matters on its own: Flash drifts more than Flash-Lite on the same cases in both lanes (text 14 vs 2 discordant, P = 0.004181; imaging 11 vs 1, P = 0.006348). Test-awareness suppresses uptake in every cell."
+}
