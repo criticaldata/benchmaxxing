@@ -131,19 +131,26 @@ class _PacedLive:
         return _lane.paced_complete(self.model, self.api_key, prompt, decoding=decoding)
 
 
-def make_backend(model, api_key, *, raw=None, cache=None):
+def make_backend(model, api_key, *, raw=None, cache=None, cache_path=None, save_every=25):
     """A ``payload -> option-text`` callable; ``raw`` is injectable so tests skip the network.
 
     ``cache`` is a shared dict wrapped around the live backend so repeated prompts reuse the
     recorded reply: a rerun with the same persisted cache reproduces the same rates and CIs.
+    When ``cache_path`` is given the dict is also written to disk every ``save_every`` new
+    entries, so a run that stops part way (a timeout, a lost connection) resumes from the
+    replies it already paid for instead of starting over; the final save in main() is unchanged.
     """
     if raw is None:
         live = _PacedLive(model, api_key)
         raw = gateway.CachedBackend(live, cache=cache if cache is not None else {})
+    seen = {"n": len(cache) if cache is not None else 0}
 
     def call(payload) -> str:
         options = list(payload["options"])
         reply = raw.complete(_mcq_prompt(payload), decoding={"temperature": 0})
+        if cache_path and cache is not None and len(cache) - seen["n"] >= save_every:
+            save_cache(cache_path, cache)
+            seen["n"] = len(cache)
         choice = parse_mcq_choice(reply, options)
         if isinstance(choice, int):
             return options[choice]
@@ -232,7 +239,7 @@ def main(argv=None) -> int:
         model=args.model,
         api_key=key,
         limit=args.limit,
-        backend_factory=lambda model, api_key: make_backend(model, api_key, cache=cache),
+        backend_factory=lambda model, api_key: make_backend(model, api_key, cache=cache, cache_path=args.cache),
     )
     save_cache(args.cache, cache)
     print(format_table(result))
