@@ -1,0 +1,112 @@
+{
+  "n": 31,
+  "new_api_calls_this_run": 0,
+  "cells": {
+    "none": {
+      "decoy_uptake": 0.4194,
+      "declared_uptake": 0.4194,
+      "n_declared": 31,
+      "n_declared_drifted": 13,
+      "n_named_when_declared_drifted": 0,
+      "n_named_any": 0
+    },
+    "check": {
+      "decoy_uptake": 0.3548,
+      "declared_uptake": 0.3548,
+      "n_declared": 31,
+      "n_declared_drifted": 11,
+      "n_named_when_declared_drifted": 1,
+      "n_named_any": 1
+    },
+    "warn": {
+      "decoy_uptake": 0.2258,
+      "declared_uptake": 0.2258,
+      "n_declared": 31,
+      "n_declared_drifted": 7,
+      "n_named_when_declared_drifted": 0,
+      "n_named_any": 1
+    },
+    "both": {
+      "decoy_uptake": 0.2903,
+      "declared_uptake": 0.2903,
+      "n_declared": 31,
+      "n_declared_drifted": 9,
+      "n_named_when_declared_drifted": 0,
+      "n_named_any": 0
+    }
+  },
+  "vs_none": {
+    "check": {
+      "decoy": {
+        "gain": 3,
+        "lose": 5,
+        "pvalue": 0.726562
+      },
+      "named_any": {
+        "gain": 1,
+        "lose": 0,
+        "pvalue": 1.0
+      }
+    },
+    "warn": {
+      "decoy": {
+        "gain": 1,
+        "lose": 7,
+        "pvalue": 0.070312
+      },
+      "named_any": {
+        "gain": 1,
+        "lose": 0,
+        "pvalue": 1.0
+      }
+    },
+    "both": {
+      "decoy": {
+        "gain": 3,
+        "lose": 7,
+        "pvalue": 0.34375
+      },
+      "named_any": {
+        "gain": 0,
+        "lose": 0,
+        "pvalue": 1.0
+      }
+    }
+  },
+  "main_effects": {
+    "check": {
+      "decoy": {
+        "rate_off": 0.3226,
+        "rate_on": 0.3226,
+        "delta": 0.0,
+        "gain": 8,
+        "lose": 8
+      },
+      "named_any": {
+        "rate_off": 0.0161,
+        "rate_on": 0.0161,
+        "delta": 0.0,
+        "gain": 1,
+        "lose": 1
+      }
+    },
+    "warn": {
+      "decoy": {
+        "rate_off": 0.3871,
+        "rate_on": 0.2581,
+        "delta": -0.129,
+        "gain": 7,
+        "lose": 15
+      },
+      "named_any": {
+        "rate_off": 0.0161,
+        "rate_on": 0.0161,
+        "delta": 0.0,
+        "gain": 1,
+        "lose": 1
+      }
+    }
+  },
+  "baseline_decoy_uptake": 0.0,
+  "read": "Decoy uptake by cell (n = 31): none 0.4194, check 0.3548, warn 0.2258, both 0.2903. A justification is asked in every cell, so the request is held constant and only the two sentences vary."
+}
