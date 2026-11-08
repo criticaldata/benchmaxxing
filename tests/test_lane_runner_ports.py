@@ -81,9 +81,11 @@ def test_the_default_model_path_is_unchanged(runner):
     assert re.search(r"if model != _lane\.DEFAULT_MODEL else (_key|api_key)\(\)", src)
 
 
-@pytest.mark.parametrize("model", ["openai/gpt-oss-120b", "openai/gpt-oss-20b"])
-def test_cross_lineage_report_reproduces_the_committed_report(tmp_path, model):
-    """The family and repeat-prompt integers in the PR body come from a committed script, not a hand count."""
+@pytest.mark.parametrize("model, n_survive", [("openai/gpt-oss-120b", 4), ("openai/gpt-oss-20b", 4),
+                                              ("Qwen/Qwen2.5-VL-72B-Instruct", 30)])
+def test_cross_lineage_report_reproduces_the_committed_report(tmp_path, model, n_survive):
+    """The family and repeat-prompt integers in a lineage PR body come from a committed script, not a
+    hand count; one pin per lineage that has committed a report."""
     import json
     import subprocess
     import sys
@@ -97,4 +99,4 @@ def test_cross_lineage_report_reproduces_the_committed_report(tmp_path, model):
     assert fresh["family"] == kept["family"]
     assert fresh["repeats"] == kept["repeats"]
     fam = kept["family"][model]
-    assert fam["n_contrasts"] == 43 and fam["n_survive_bh_0.05"] == 4
+    assert fam["n_contrasts"] == 43 and fam["n_survive_bh_0.05"] == n_survive

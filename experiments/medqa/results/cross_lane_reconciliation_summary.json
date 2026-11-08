@@ -91,20 +91,6 @@
       "survives_holm": true
     },
     {
-      "label": "orchestrator poisoning (wrong-orch vs wrong-peer)",
-      "lane": "text",
-      "pvalue": 0.0,
-      "survives_bh": true,
-      "survives_holm": true
-    },
-    {
-      "label": "imaging system-flag vs peer cascade (Fisher)",
-      "lane": "imaging",
-      "pvalue": 6e-08,
-      "survives_bh": true,
-      "survives_holm": true
-    },
-    {
       "label": "paraphrase robustness: template t0 vs t2",
       "lane": "text",
       "pvalue": 1e-06,
@@ -112,9 +98,23 @@
       "survives_holm": true
     },
     {
+      "label": "imaging system-flag vs peer cascade (Fisher)",
+      "lane": "imaging",
+      "pvalue": 0.00023409,
+      "survives_bh": true,
+      "survives_holm": true
+    },
+    {
+      "label": "orchestrator poisoning (wrong-peer vs honest orchestrator over two wrong peers)",
+      "lane": "text",
+      "pvalue": 0.00048828,
+      "survives_bh": true,
+      "survives_holm": true
+    },
+    {
       "label": "contamination: recall-prone vs adoption",
       "lane": "text",
-      "pvalue": 0.002121,
+      "pvalue": 0.000783,
       "survives_bh": true,
       "survives_holm": true
     },
@@ -124,13 +124,6 @@
       "pvalue": 0.005925,
       "survives_bh": true,
       "survives_holm": true
-    },
-    {
-      "label": "first-peer majority (k1 vs isolated)",
-      "lane": "text",
-      "pvalue": 0.0625,
-      "survives_bh": false,
-      "survives_holm": false
     },
     {
       "label": "unanimity: unanimous vs single dissenter",
@@ -155,6 +148,13 @@
     },
     {
       "label": "super-additivity: both vs stronger single",
+      "lane": "text",
+      "pvalue": 1.0,
+      "survives_bh": false,
+      "survives_holm": false
+    },
+    {
+      "label": "first-peer majority (2-peer vs 1-peer)",
       "lane": "text",
       "pvalue": 1.0,
       "survives_bh": false,
