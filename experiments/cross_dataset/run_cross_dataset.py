@@ -12,7 +12,9 @@ identity (not position) even after the options are permuted. That mirrors the pr
 normalizer in ``experiments/medqa/reproduce.py``.
 
 With no API key or a missing manifest the script prints a skip line and exits 0: it is a real run,
-so it never fabricates numbers. The wiring and skip paths are covered offline by
+so it never fabricates numbers. A locally served ``local/`` id needs no key: it replays from its
+call cache with no server, and the first cache miss without ``BENCHMAXXING_LOCAL_BASE_URL`` exits
+naming that variable. The wiring and skip paths are covered offline by
 ``tests/test_cross_dataset_run.py``; the real flip rates need a key and are deferred to a run with
 the datasets staged.
 """
@@ -219,7 +221,9 @@ def main(argv=None) -> int:
             key = _lane.key_for(args.model)
         except Exception as exc:  # a missing key for the requested model is a skip, not a traceback
             return _skip(f"no key for {args.model}: {exc}")
-        if not key:
+        # A local/ id has no key by design, and with no server configured it still replays from its
+        # cache; the first miss exits through _lane, naming the server variable.
+        if not key and not args.model.startswith(_lane.LOCAL_PREFIX):
             return _skip(f"no {_lane.key_name(args.model)} for {args.model}: this is a real-model run, nothing fabricated.")
     for label, path in (("MedQA", args.medqa_manifest), ("MedMCQA", args.medmcqa_manifest)):
         if not Path(path).exists():

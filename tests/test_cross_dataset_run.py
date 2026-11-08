@@ -217,3 +217,47 @@ def test_the_live_backend_goes_through_the_paced_path():
     src = (Path(__file__).resolve().parents[1] / "experiments/cross_dataset/run_cross_dataset.py").read_text()
     assert "_lane.paced_complete(" in src
     assert "RetryBackend(" not in src
+
+
+_LOCAL_ID = "local/nvidia/cosmos-reason2-8b"
+
+
+def _local_args(tmp_path):
+    from benchmaxxing.data import write_manifest
+
+    medqa = write_manifest([_case("a0"), _case("a1")], tmp_path / "medqa.csv")
+    medmcqa = write_manifest([_case("b0"), _case("b1")], tmp_path / "medmcqa.csv")
+    return ["--medqa-manifest", str(medqa), "--medmcqa-manifest", str(medmcqa), "--model", _LOCAL_ID,
+            "--out", str(tmp_path / "out.json"), "--cache", str(tmp_path / "cache.jsonl")]
+
+
+def test_a_cached_local_run_replays_with_no_server(monkeypatch, tmp_path, capsys):
+    """A local/ id has no key and, in a fresh clone, no server: its committed cache must still replay."""
+    lane = run_cross._lane
+    args = _local_args(tmp_path)
+    monkeypatch.setattr(lane, "LOCAL_BASE_URL", "http://127.0.0.1:9/v1")
+    live = []
+    monkeypatch.setattr(lane, "paced_complete",
+                        lambda model, key, prompt, decoding=None, **_: live.append(prompt) or "A. option")
+    assert run_cross.main(args) == 0
+    first = json.loads((tmp_path / "out.json").read_text())
+    assert live, "the recording run must have called the model"
+
+    (tmp_path / "out.json").unlink()
+    monkeypatch.setattr(lane, "LOCAL_BASE_URL", "")
+
+    def no_call(*a, **k):
+        raise AssertionError("a fully cached replay must not call the model")
+
+    monkeypatch.setattr(lane, "paced_complete", no_call)
+    capsys.readouterr()
+    assert run_cross.main(args) == 0
+    assert "[skip]" not in capsys.readouterr().out
+    assert json.loads((tmp_path / "out.json").read_text()) == first
+
+
+def test_a_local_cache_miss_with_no_server_exits_naming_the_variable(monkeypatch, tmp_path):
+    monkeypatch.setattr(run_cross._lane, "LOCAL_BASE_URL", "")
+    with pytest.raises(SystemExit) as exc:
+        run_cross.main(_local_args(tmp_path))
+    assert "BENCHMAXXING_LOCAL_BASE_URL" in str(exc.value)
