@@ -48,6 +48,11 @@ def main():
     sizes = sorted((len(v) for v in by_p.values()), reverse=True)
 
     sub = [r for r in rows if r["case_id"] in small]
+    n35 = {r["case_id"]: r for r in _jsonl(R / "imaging_cascade.jsonl")}
+    sub35 = [r for r in sub if r["case_id"] in n35]
+    agree35 = {k: sum(r[k] == n35[r["case_id"]][k] for r in sub35) for k in ("clean", "iso", "shared")}
+    iso_flips = {"to_adopt": sum(1 for r in sub35 if r["iso_adopt"] and not n35[r["case_id"]]["iso_adopt"]),
+                 "to_hold": sum(1 for r in sub35 if n35[r["case_id"]]["iso_adopt"] and not r["iso_adopt"])}
     july = {r["case_id"]: r for r in _jsonl(R / "imaging_cascade_scale.jsonl")}
     both = [r for r in rows if r["case_id"] in july]
     agree = {k: sum(r[k] == july[r["case_id"]][k] for r in both) for k in ("clean", "iso", "shared")}
@@ -72,7 +77,9 @@ def main():
         "the_35_film_cohort_within": {
             "n": len(sub),
             "shared_adopt": round(sum(r["shared_adopt"] for r in sub) / len(sub), 4) if sub else None,
-            "isolated_adopt": round(sum(r["iso_adopt"] for r in sub) / len(sub), 4) if sub else None},
+            "isolated_adopt": round(sum(r["iso_adopt"] for r in sub) / len(sub), 4) if sub else None,
+            "reads_agreeing_with_committed_n35": agree35,
+            "isolated_flips_vs_committed_n35": iso_flips},
         "july_150_overlap": {"n": len(both), "reads_agreeing": agree,
                              "july_contagion": round(sum(july[r["case_id"]]["shared_adopt"] - july[r["case_id"]]["iso_adopt"] for r in both) / len(both), 4),
                              "current_contagion_same_films": round(sum(r["shared_adopt"] - r["iso_adopt"] for r in both) / len(both), 4)},
@@ -101,7 +108,11 @@ def main():
     }
     out["read"] = (
         f"On {n} films from {len(by_p)} patients the watermark contagion is {out['contagion']:+.3f}; resampling "
-        f"patients gives {out['ci95_patients']}, against {out['ci95_films']} resampling films.")
+        f"patients gives {out['ci95_patients']}, against {out['ci95_films']} resampling films. The 35-film "
+        f"cohort inside the 500 reproduces its committed rates, but film by film the isolated reads differ "
+        f"from the committed n=35 run on {len(sub35) - agree35['iso']} films ({iso_flips['to_adopt']} now "
+        f"adopting, {iso_flips['to_hold']} now holding) while the shared reads agree on {agree35['shared']} "
+        f"of {len(sub35)}: the rates match by cancellation, not film-stable isolated adoption.")
     (OUT / "patient_clustered.json").write_text(json.dumps(out, indent=2) + "\n")
     print(json.dumps(out, indent=2))
 

@@ -41,7 +41,16 @@
   "the_35_film_cohort_within": {
     "n": 35,
     "shared_adopt": 0.9714,
-    "isolated_adopt": 0.4286
+    "isolated_adopt": 0.4286,
+    "reads_agreeing_with_committed_n35": {
+      "clean": 32,
+      "iso": 29,
+      "shared": 35
+    },
+    "isolated_flips_vs_committed_n35": {
+      "to_adopt": 3,
+      "to_hold": 3
+    }
   },
   "july_150_overlap": {
     "n": 150,
@@ -76,5 +85,5 @@
     "patients_with_negative_matched_effect": 0,
     "named_rubric_when_drifted": 0
   },
-  "read": "On 500 films from 132 patients the watermark contagion is +0.662; resampling patients gives [0.5818, 0.7215], against [0.62, 0.704] resampling films."
+  "read": "On 500 films from 132 patients the watermark contagion is +0.662; resampling patients gives [0.5818, 0.7215], against [0.62, 0.704] resampling films. The 35-film cohort inside the 500 reproduces its committed rates, but film by film the isolated reads differ from the committed n=35 run on 6 films (3 now adopting, 3 now holding) while the shared reads agree on 35 of 35: the rates match by cancellation, not film-stable isolated adoption."
 }
