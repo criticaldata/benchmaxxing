@@ -1,0 +1,5101 @@
+{
+ "seed": 0,
+ "items": {
+  "J000": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-23",
+   "rep": 2
+  },
+  "J001": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-16",
+   "rep": 1
+  },
+  "J002": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient18447/study2/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J003": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-4",
+   "rep": 0
+  },
+  "J004": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-39",
+   "rep": 2
+  },
+  "J005": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient05119/study4/view2_lateral.jpg",
+   "rep": 4
+  },
+  "J006": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000011_000.png",
+   "rep": 2
+  },
+  "J007": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000005_006.png",
+   "rep": 1
+  },
+  "J008": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient17249/study6/view2_lateral.jpg",
+   "rep": 4
+  },
+  "J009": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient11132/study4/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J010": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient07882/study4/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J011": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient09014/study1/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J012": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_007.png",
+   "rep": 0
+  },
+  "J013": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000011_006.png",
+   "rep": 4
+  },
+  "J014": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-9",
+   "rep": 1
+  },
+  "J015": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient23860/study20/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J016": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient42243/study1/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J017": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_030.png",
+   "rep": 0
+  },
+  "J018": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient37725/study3/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J019": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000001_001.png",
+   "rep": 0
+  },
+  "J020": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_032.png",
+   "rep": 3
+  },
+  "J021": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient42328/study3/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J022": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-39",
+   "rep": 2
+  },
+  "J023": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-35",
+   "rep": 1
+  },
+  "J024": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient17249/study6/view2_lateral.jpg",
+   "rep": 0
+  },
+  "J025": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-3",
+   "rep": 0
+  },
+  "J026": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_006.png",
+   "rep": 0
+  },
+  "J027": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient06449/study1/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J028": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient13949/study2/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J029": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient62872/study1/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J030": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_022.png",
+   "rep": 3
+  },
+  "J031": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-12",
+   "rep": 1
+  },
+  "J032": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient09483/study11/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J033": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient15877/study2/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J034": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient61626/study1/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J035": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-25",
+   "rep": 4
+  },
+  "J036": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient07882/study4/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J037": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient15877/study2/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J038": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000005_006.png",
+   "rep": 4
+  },
+  "J039": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient09483/study11/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J040": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_023.png",
+   "rep": 4
+  },
+  "J041": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient05390/study11/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J042": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient50399/study4/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J043": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient30812/study7/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J044": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient42964/study1/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J045": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000013_032.png",
+   "rep": -1
+  },
+  "J046": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient55904/study2/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J047": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_027.png",
+   "rep": 2
+  },
+  "J048": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient03164/study14/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J049": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient11132/study4/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J050": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient13949/study2/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J051": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient62872/study1/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J052": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient15877/study2/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J053": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-18",
+   "rep": 3
+  },
+  "J054": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_002.png",
+   "rep": 2
+  },
+  "J055": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-1",
+   "rep": 1
+  },
+  "J056": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000010_000.png",
+   "rep": -1
+  },
+  "J057": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient39868/study3/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J058": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient11436/study2/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J059": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-6",
+   "rep": 3
+  },
+  "J060": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000005_007.png",
+   "rep": 0
+  },
+  "J061": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient03164/study14/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J062": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_006.png",
+   "rep": 3
+  },
+  "J063": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient44813/study9/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J064": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient13949/study2/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J065": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-39",
+   "rep": 1
+  },
+  "J066": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient42964/study1/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J067": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000005_006.png",
+   "rep": -1
+  },
+  "J068": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient44813/study9/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J069": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient42328/study3/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J070": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000008_000.png",
+   "rep": 0
+  },
+  "J071": {
+   "cohort": "medqa",
+   "source": "original",
+   "condition": "note",
+   "case_id": "medqa-39",
+   "rep": -1
+  },
+  "J072": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient36411/study1/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J073": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_032.png",
+   "rep": 3
+  },
+  "J074": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000008_000.png",
+   "rep": 0
+  },
+  "J075": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000008_002.png",
+   "rep": 3
+  },
+  "J076": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient11436/study2/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J077": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_027.png",
+   "rep": 4
+  },
+  "J078": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000001_001.png",
+   "rep": 1
+  },
+  "J079": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_030.png",
+   "rep": 4
+  },
+  "J080": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_030.png",
+   "rep": 1
+  },
+  "J081": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_025.png",
+   "rep": 3
+  },
+  "J082": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient18447/study2/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J083": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient38693/study8/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J084": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient61626/study1/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J085": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient09014/study1/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J086": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient09014/study1/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J087": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-11",
+   "rep": 2
+  },
+  "J088": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient09483/study11/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J089": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient28922/study3/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J090": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000009_000.png",
+   "rep": 0
+  },
+  "J091": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient20671/study3/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J092": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient61626/study1/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J093": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000001_001.png",
+   "rep": 1
+  },
+  "J094": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient13162/study53/view2_lateral.jpg",
+   "rep": 4
+  },
+  "J095": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-8",
+   "rep": 2
+  },
+  "J096": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-39",
+   "rep": 0
+  },
+  "J097": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_026.png",
+   "rep": 2
+  },
+  "J098": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-3",
+   "rep": 1
+  },
+  "J099": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient40149/study2/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J100": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000003_001.png",
+   "rep": -1
+  },
+  "J101": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient23860/study20/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J102": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient44813/study9/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J103": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_006.png",
+   "rep": 2
+  },
+  "J104": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient39868/study3/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J105": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_004.png",
+   "rep": 1
+  },
+  "J106": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient28104/study1/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J107": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000008_000.png",
+   "rep": 3
+  },
+  "J108": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000001_001.png",
+   "rep": 4
+  },
+  "J109": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-27",
+   "rep": 0
+  },
+  "J110": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000008_002.png",
+   "rep": 2
+  },
+  "J111": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient17249/study6/view2_lateral.jpg",
+   "rep": 3
+  },
+  "J112": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-29",
+   "rep": 2
+  },
+  "J113": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient62872/study1/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J114": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_023.png",
+   "rep": 2
+  },
+  "J115": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient22834/study1/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J116": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient09014/study1/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J117": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000004_000.png",
+   "rep": 0
+  },
+  "J118": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient61626/study1/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J119": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_000.png",
+   "rep": 4
+  },
+  "J120": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-7",
+   "rep": 4
+  },
+  "J121": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000013_026.png",
+   "rep": -1
+  },
+  "J122": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-34",
+   "rep": 4
+  },
+  "J123": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-28",
+   "rep": 1
+  },
+  "J124": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient42243/study1/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J125": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000011_005.png",
+   "rep": 3
+  },
+  "J126": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_002.png",
+   "rep": 4
+  },
+  "J127": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient05119/study4/view2_lateral.jpg",
+   "rep": 0
+  },
+  "J128": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient44813/study9/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J129": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient36411/study1/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J130": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_004.png",
+   "rep": 3
+  },
+  "J131": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient28104/study1/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J132": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000011_005.png",
+   "rep": 1
+  },
+  "J133": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_026.png",
+   "rep": 0
+  },
+  "J134": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient13949/study2/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J135": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_029.png",
+   "rep": 3
+  },
+  "J136": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient44813/study9/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J137": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000011_006.png",
+   "rep": 1
+  },
+  "J138": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient44813/study9/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J139": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000013_029.png",
+   "rep": -1
+  },
+  "J140": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient36411/study1/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J141": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient05390/study11/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J142": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_030.png",
+   "rep": 4
+  },
+  "J143": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient11132/study4/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J144": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient30812/study7/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J145": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-18",
+   "rep": 4
+  },
+  "J146": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient42964/study1/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J147": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000004_000.png",
+   "rep": 0
+  },
+  "J148": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient18447/study2/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J149": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_001.png",
+   "rep": 0
+  },
+  "J150": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000001_002.png",
+   "rep": 4
+  },
+  "J151": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-39",
+   "rep": 1
+  },
+  "J152": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient36792/study5/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J153": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_007.png",
+   "rep": 2
+  },
+  "J154": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient05390/study11/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J155": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_033.png",
+   "rep": 2
+  },
+  "J156": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_025.png",
+   "rep": 1
+  },
+  "J157": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient22834/study1/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J158": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_000.png",
+   "rep": 0
+  },
+  "J159": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000013_023.png",
+   "rep": -1
+  },
+  "J160": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_000.png",
+   "rep": 3
+  },
+  "J161": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-23",
+   "rep": 3
+  },
+  "J162": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient05390/study11/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J163": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient09483/study11/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J164": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000010_000.png",
+   "rep": 4
+  },
+  "J165": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_004.png",
+   "rep": 0
+  },
+  "J166": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-4",
+   "rep": 2
+  },
+  "J167": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-28",
+   "rep": 2
+  },
+  "J168": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient11436/study2/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J169": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_024.png",
+   "rep": 2
+  },
+  "J170": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient50399/study4/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J171": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000005_007.png",
+   "rep": 3
+  },
+  "J172": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_002.png",
+   "rep": 0
+  },
+  "J173": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient37725/study3/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J174": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient42243/study1/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J175": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000005_007.png",
+   "rep": 2
+  },
+  "J176": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000011_007.png",
+   "rep": 0
+  },
+  "J177": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000011_007.png",
+   "rep": 1
+  },
+  "J178": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient20671/study3/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J179": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000008_000.png",
+   "rep": 4
+  },
+  "J180": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000010_000.png",
+   "rep": 3
+  },
+  "J181": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-32",
+   "rep": 0
+  },
+  "J182": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient38693/study8/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J183": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient05390/study11/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J184": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000008_002.png",
+   "rep": 1
+  },
+  "J185": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_025.png",
+   "rep": 2
+  },
+  "J186": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient37725/study3/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J187": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient42328/study3/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J188": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_031.png",
+   "rep": 1
+  },
+  "J189": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-15",
+   "rep": 0
+  },
+  "J190": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000012_000.png",
+   "rep": 2
+  },
+  "J191": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-36",
+   "rep": 2
+  },
+  "J192": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient30812/study7/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J193": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000013_031.png",
+   "rep": -1
+  },
+  "J194": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_003.png",
+   "rep": 4
+  },
+  "J195": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient23860/study20/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J196": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient11436/study2/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J197": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient22834/study1/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J198": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_006.png",
+   "rep": 1
+  },
+  "J199": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient30812/study7/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J200": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient13949/study2/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J201": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-9",
+   "rep": 0
+  },
+  "J202": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_023.png",
+   "rep": 0
+  },
+  "J203": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000012_000.png",
+   "rep": 4
+  },
+  "J204": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_029.png",
+   "rep": 2
+  },
+  "J205": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient37725/study3/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J206": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient09014/study1/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J207": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_031.png",
+   "rep": 4
+  },
+  "J208": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient03164/study14/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J209": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-13",
+   "rep": 4
+  },
+  "J210": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-33",
+   "rep": 3
+  },
+  "J211": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient07882/study4/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J212": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000004_000.png",
+   "rep": 3
+  },
+  "J213": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient23860/study20/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J214": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000001_001.png",
+   "rep": 4
+  },
+  "J215": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient06792/study1/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J216": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-8",
+   "rep": 4
+  },
+  "J217": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient17249/study6/view2_lateral.jpg",
+   "rep": 4
+  },
+  "J218": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient38693/study8/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J219": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient38693/study8/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J220": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient15877/study2/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J221": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient28104/study1/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J222": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-15",
+   "rep": 0
+  },
+  "J223": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient50399/study4/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J224": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-23",
+   "rep": 4
+  },
+  "J225": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient28104/study1/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J226": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient15877/study2/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J227": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-9",
+   "rep": 3
+  },
+  "J228": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient62872/study1/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J229": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient50399/study4/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J230": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient42964/study1/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J231": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient06792/study1/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J232": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_026.png",
+   "rep": 3
+  },
+  "J233": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_027.png",
+   "rep": 2
+  },
+  "J234": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient44813/study9/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J235": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient23860/study20/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J236": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient42964/study1/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J237": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient42964/study1/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J238": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_033.png",
+   "rep": 3
+  },
+  "J239": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient05119/study4/view2_lateral.jpg",
+   "rep": 0
+  },
+  "J240": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_022.png",
+   "rep": 0
+  },
+  "J241": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient42243/study1/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J242": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient28922/study3/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J243": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient36411/study1/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J244": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-20",
+   "rep": 4
+  },
+  "J245": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000009_000.png",
+   "rep": 4
+  },
+  "J246": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000011_005.png",
+   "rep": 4
+  },
+  "J247": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient42243/study1/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J248": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient37725/study3/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J249": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-15",
+   "rep": 4
+  },
+  "J250": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient15877/study2/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J251": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_004.png",
+   "rep": 4
+  },
+  "J252": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient05390/study11/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J253": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-24",
+   "rep": 1
+  },
+  "J254": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient62872/study1/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J255": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000001_001.png",
+   "rep": 2
+  },
+  "J256": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000008_002.png",
+   "rep": 1
+  },
+  "J257": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_033.png",
+   "rep": 4
+  },
+  "J258": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient42243/study1/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J259": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient06792/study1/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J260": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient03164/study14/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J261": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient36792/study5/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J262": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient39868/study3/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J263": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient06449/study1/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J264": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-7",
+   "rep": 3
+  },
+  "J265": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000008_002.png",
+   "rep": 4
+  },
+  "J266": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient11132/study4/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J267": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient42243/study1/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J268": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient06792/study1/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J269": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient36792/study5/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J270": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient62872/study1/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J271": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient18447/study2/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J272": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-20",
+   "rep": 0
+  },
+  "J273": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient05119/study4/view2_lateral.jpg",
+   "rep": 1
+  },
+  "J274": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000005_006.png",
+   "rep": 0
+  },
+  "J275": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_030.png",
+   "rep": 0
+  },
+  "J276": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000008_002.png",
+   "rep": 4
+  },
+  "J277": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000005_006.png",
+   "rep": 2
+  },
+  "J278": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000005_006.png",
+   "rep": 3
+  },
+  "J279": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000010_000.png",
+   "rep": 1
+  },
+  "J280": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient38693/study8/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J281": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000008_002.png",
+   "rep": 2
+  },
+  "J282": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-1",
+   "rep": 2
+  },
+  "J283": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient37725/study3/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J284": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000011_007.png",
+   "rep": 4
+  },
+  "J285": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_004.png",
+   "rep": 2
+  },
+  "J286": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient22834/study1/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J287": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient06792/study1/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J288": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_028.png",
+   "rep": 0
+  },
+  "J289": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-32",
+   "rep": 1
+  },
+  "J290": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient05390/study11/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J291": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000003_000.png",
+   "rep": -1
+  },
+  "J292": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient11436/study2/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J293": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient22834/study1/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J294": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000009_000.png",
+   "rep": 3
+  },
+  "J295": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient13162/study53/view2_lateral.jpg",
+   "rep": 4
+  },
+  "J296": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient13162/study53/view2_lateral.jpg",
+   "rep": 1
+  },
+  "J297": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-3",
+   "rep": 4
+  },
+  "J298": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000001_001.png",
+   "rep": -1
+  },
+  "J299": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_003.png",
+   "rep": 0
+  },
+  "J300": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000008_000.png",
+   "rep": 2
+  },
+  "J301": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000011_005.png",
+   "rep": -1
+  },
+  "J302": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_032.png",
+   "rep": 1
+  },
+  "J303": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient13949/study2/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J304": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient03164/study14/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J305": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_030.png",
+   "rep": 2
+  },
+  "J306": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient06449/study1/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J307": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_028.png",
+   "rep": 2
+  },
+  "J308": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000011_000.png",
+   "rep": 0
+  },
+  "J309": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient18447/study2/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J310": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient11436/study2/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J311": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_031.png",
+   "rep": 4
+  },
+  "J312": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient09483/study11/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J313": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000009_000.png",
+   "rep": 0
+  },
+  "J314": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient13162/study53/view2_lateral.jpg",
+   "rep": 0
+  },
+  "J315": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_022.png",
+   "rep": 1
+  },
+  "J316": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-6",
+   "rep": 2
+  },
+  "J317": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_033.png",
+   "rep": 4
+  },
+  "J318": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_006.png",
+   "rep": 3
+  },
+  "J319": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient55904/study2/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J320": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_007.png",
+   "rep": 1
+  },
+  "J321": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient39868/study3/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J322": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-31",
+   "rep": 3
+  },
+  "J323": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000011_005.png",
+   "rep": 2
+  },
+  "J324": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient28104/study1/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J325": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient17249/study6/view2_lateral.jpg",
+   "rep": 3
+  },
+  "J326": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient09483/study11/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J327": {
+   "cohort": "medqa",
+   "source": "original",
+   "condition": "note",
+   "case_id": "medqa-32",
+   "rep": -1
+  },
+  "J328": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-23",
+   "rep": 0
+  },
+  "J329": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000012_000.png",
+   "rep": 3
+  },
+  "J330": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient11132/study4/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J331": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient55904/study2/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J332": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-35",
+   "rep": 2
+  },
+  "J333": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_029.png",
+   "rep": 3
+  },
+  "J334": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient40149/study2/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J335": {
+   "cohort": "medqa",
+   "source": "original",
+   "condition": "note",
+   "case_id": "medqa-8",
+   "rep": -1
+  },
+  "J336": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000001_001.png",
+   "rep": 0
+  },
+  "J337": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_006.png",
+   "rep": 0
+  },
+  "J338": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_027.png",
+   "rep": 4
+  },
+  "J339": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient17249/study6/view2_lateral.jpg",
+   "rep": 1
+  },
+  "J340": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient40149/study2/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J341": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient06792/study1/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J342": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient30812/study7/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J343": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-0",
+   "rep": 0
+  },
+  "J344": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-21",
+   "rep": 1
+  },
+  "J345": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000004_000.png",
+   "rep": 2
+  },
+  "J346": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_003.png",
+   "rep": 4
+  },
+  "J347": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000005_006.png",
+   "rep": 2
+  },
+  "J348": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_030.png",
+   "rep": 3
+  },
+  "J349": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-1",
+   "rep": 4
+  },
+  "J350": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_024.png",
+   "rep": 1
+  },
+  "J351": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient55904/study2/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J352": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient13949/study2/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J353": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_026.png",
+   "rep": 4
+  },
+  "J354": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_001.png",
+   "rep": 3
+  },
+  "J355": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient61626/study1/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J356": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000011_007.png",
+   "rep": 4
+  },
+  "J357": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000008_000.png",
+   "rep": 1
+  },
+  "J358": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient15877/study2/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J359": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_028.png",
+   "rep": 3
+  },
+  "J360": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient61626/study1/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J361": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-3",
+   "rep": 4
+  },
+  "J362": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_005.png",
+   "rep": 2
+  },
+  "J363": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient62872/study1/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J364": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient36411/study1/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J365": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient11132/study4/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J366": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient42964/study1/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J367": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000001_001.png",
+   "rep": 2
+  },
+  "J368": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_002.png",
+   "rep": 3
+  },
+  "J369": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient23860/study20/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J370": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient38693/study8/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J371": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_001.png",
+   "rep": 2
+  },
+  "J372": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient55904/study2/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J373": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient37725/study3/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J374": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000011_005.png",
+   "rep": 0
+  },
+  "J375": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient40149/study2/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J376": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient20671/study3/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J377": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient05119/study4/view2_lateral.jpg",
+   "rep": 4
+  },
+  "J378": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient03164/study14/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J379": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-6",
+   "rep": 1
+  },
+  "J380": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000011_007.png",
+   "rep": 0
+  },
+  "J381": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient13162/study53/view2_lateral.jpg",
+   "rep": 2
+  },
+  "J382": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient22834/study1/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J383": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-18",
+   "rep": 2
+  },
+  "J384": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_023.png",
+   "rep": 3
+  },
+  "J385": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient30812/study7/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J386": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient05119/study4/view2_lateral.jpg",
+   "rep": 3
+  },
+  "J387": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-20",
+   "rep": 2
+  },
+  "J388": {
+   "cohort": "medqa",
+   "source": "original",
+   "condition": "note",
+   "case_id": "medqa-3",
+   "rep": -1
+  },
+  "J389": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_004.png",
+   "rep": 1
+  },
+  "J390": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-31",
+   "rep": 1
+  },
+  "J391": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient40149/study2/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J392": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient28104/study1/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J393": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-13",
+   "rep": 0
+  },
+  "J394": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient05119/study4/view2_lateral.jpg",
+   "rep": 2
+  },
+  "J395": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient20671/study3/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J396": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient37725/study3/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J397": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_000.png",
+   "rep": 1
+  },
+  "J398": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_032.png",
+   "rep": 1
+  },
+  "J399": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000004_000.png",
+   "rep": 4
+  },
+  "J400": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_005.png",
+   "rep": 2
+  },
+  "J401": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000001_001.png",
+   "rep": 3
+  },
+  "J402": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_000.png",
+   "rep": 3
+  },
+  "J403": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_033.png",
+   "rep": 0
+  },
+  "J404": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient42328/study3/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J405": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient13162/study53/view2_lateral.jpg",
+   "rep": 0
+  },
+  "J406": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient42964/study1/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J407": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient55904/study2/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J408": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient28104/study1/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J409": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient18447/study2/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J410": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_007.png",
+   "rep": 2
+  },
+  "J411": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient36792/study5/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J412": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_026.png",
+   "rep": 4
+  },
+  "J413": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-5",
+   "rep": 2
+  },
+  "J414": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_032.png",
+   "rep": 2
+  },
+  "J415": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000011_007.png",
+   "rep": 3
+  },
+  "J416": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_024.png",
+   "rep": 4
+  },
+  "J417": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient05119/study4/view2_lateral.jpg",
+   "rep": 2
+  },
+  "J418": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient28104/study1/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J419": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient15877/study2/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J420": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-19",
+   "rep": 3
+  },
+  "J421": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient05390/study11/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J422": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-39",
+   "rep": 3
+  },
+  "J423": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient11132/study4/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J424": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_005.png",
+   "rep": 3
+  },
+  "J425": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000011_006.png",
+   "rep": 1
+  },
+  "J426": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_029.png",
+   "rep": 4
+  },
+  "J427": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient20671/study3/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J428": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_004.png",
+   "rep": 2
+  },
+  "J429": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient13162/study53/view2_lateral.jpg",
+   "rep": 2
+  },
+  "J430": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000013_030.png",
+   "rep": -1
+  },
+  "J431": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000003_005.png",
+   "rep": -1
+  },
+  "J432": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_025.png",
+   "rep": 4
+  },
+  "J433": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient28922/study3/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J434": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000011_006.png",
+   "rep": 3
+  },
+  "J435": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_025.png",
+   "rep": 3
+  },
+  "J436": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-9",
+   "rep": 2
+  },
+  "J437": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_002.png",
+   "rep": 1
+  },
+  "J438": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient18447/study2/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J439": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_000.png",
+   "rep": 2
+  },
+  "J440": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_004.png",
+   "rep": 0
+  },
+  "J441": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000005_007.png",
+   "rep": 4
+  },
+  "J442": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-20",
+   "rep": 1
+  },
+  "J443": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000011_006.png",
+   "rep": 0
+  },
+  "J444": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient07882/study4/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J445": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_006.png",
+   "rep": 2
+  },
+  "J446": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient23860/study20/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J447": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient50399/study4/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J448": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-32",
+   "rep": 4
+  },
+  "J449": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient05119/study4/view2_lateral.jpg",
+   "rep": 3
+  },
+  "J450": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient09014/study1/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J451": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient03164/study14/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J452": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient11132/study4/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J453": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_026.png",
+   "rep": 2
+  },
+  "J454": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-25",
+   "rep": 0
+  },
+  "J455": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000008_002.png",
+   "rep": 0
+  },
+  "J456": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000011_005.png",
+   "rep": 1
+  },
+  "J457": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_007.png",
+   "rep": 0
+  },
+  "J458": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_003.png",
+   "rep": 1
+  },
+  "J459": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient03164/study14/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J460": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient28922/study3/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J461": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-23",
+   "rep": 1
+  },
+  "J462": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-6",
+   "rep": 0
+  },
+  "J463": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000011_007.png",
+   "rep": 1
+  },
+  "J464": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-26",
+   "rep": 1
+  },
+  "J465": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient17249/study6/view2_lateral.jpg",
+   "rep": 1
+  },
+  "J466": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_031.png",
+   "rep": 2
+  },
+  "J467": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000009_000.png",
+   "rep": -1
+  },
+  "J468": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient11436/study2/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J469": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient40149/study2/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J470": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000009_000.png",
+   "rep": 2
+  },
+  "J471": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000001_002.png",
+   "rep": 2
+  },
+  "J472": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000004_000.png",
+   "rep": -1
+  },
+  "J473": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-9",
+   "rep": 4
+  },
+  "J474": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_029.png",
+   "rep": 0
+  },
+  "J475": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_023.png",
+   "rep": 1
+  },
+  "J476": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient39868/study3/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J477": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000005_007.png",
+   "rep": 1
+  },
+  "J478": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient55904/study2/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J479": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000011_000.png",
+   "rep": 4
+  },
+  "J480": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_023.png",
+   "rep": 2
+  },
+  "J481": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_000.png",
+   "rep": 0
+  },
+  "J482": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-15",
+   "rep": 2
+  },
+  "J483": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient61626/study1/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J484": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_033.png",
+   "rep": 1
+  },
+  "J485": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient13949/study2/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J486": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_004.png",
+   "rep": 3
+  },
+  "J487": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient11436/study2/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J488": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-20",
+   "rep": 1
+  },
+  "J489": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient44813/study9/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J490": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_005.png",
+   "rep": 3
+  },
+  "J491": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_025.png",
+   "rep": 0
+  },
+  "J492": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000011_007.png",
+   "rep": -1
+  },
+  "J493": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_031.png",
+   "rep": 3
+  },
+  "J494": {
+   "cohort": "medqa",
+   "source": "original",
+   "condition": "note",
+   "case_id": "medqa-31",
+   "rep": -1
+  },
+  "J495": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient28104/study1/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J496": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000011_006.png",
+   "rep": -1
+  },
+  "J497": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient55904/study2/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J498": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000008_002.png",
+   "rep": 3
+  },
+  "J499": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient06449/study1/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J500": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_032.png",
+   "rep": 4
+  },
+  "J501": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000008_000.png",
+   "rep": -1
+  },
+  "J502": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient11132/study4/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J503": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_027.png",
+   "rep": 3
+  },
+  "J504": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient37725/study3/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J505": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000011_006.png",
+   "rep": 2
+  },
+  "J506": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_028.png",
+   "rep": 4
+  },
+  "J507": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_007.png",
+   "rep": 4
+  },
+  "J508": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_024.png",
+   "rep": 0
+  },
+  "J509": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient36411/study1/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J510": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000013_025.png",
+   "rep": -1
+  },
+  "J511": {
+   "cohort": "medqa",
+   "source": "original",
+   "condition": "note",
+   "case_id": "medqa-23",
+   "rep": -1
+  },
+  "J512": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient61626/study1/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J513": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_028.png",
+   "rep": 4
+  },
+  "J514": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient30812/study7/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J515": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient39868/study3/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J516": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient15877/study2/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J517": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-15",
+   "rep": 1
+  },
+  "J518": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_007.png",
+   "rep": 3
+  },
+  "J519": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient42964/study1/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J520": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient28922/study3/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J521": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-10",
+   "rep": 0
+  },
+  "J522": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient20671/study3/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J523": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient61626/study1/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J524": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient61626/study1/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J525": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_028.png",
+   "rep": 0
+  },
+  "J526": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient39868/study3/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J527": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_031.png",
+   "rep": 0
+  },
+  "J528": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000009_000.png",
+   "rep": 4
+  },
+  "J529": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient11436/study2/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J530": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient09014/study1/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J531": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient42328/study3/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J532": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient05119/study4/view2_lateral.jpg",
+   "rep": 1
+  },
+  "J533": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient13949/study2/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J534": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_007.png",
+   "rep": 1
+  },
+  "J535": {
+   "cohort": "medqa",
+   "source": "original",
+   "condition": "note",
+   "case_id": "medqa-15",
+   "rep": -1
+  },
+  "J536": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_003.png",
+   "rep": 0
+  },
+  "J537": {
+   "cohort": "medqa",
+   "source": "original",
+   "condition": "note",
+   "case_id": "medqa-6",
+   "rep": -1
+  },
+  "J538": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000011_006.png",
+   "rep": 3
+  },
+  "J539": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-18",
+   "rep": 2
+  },
+  "J540": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient28922/study3/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J541": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient39868/study3/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J542": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient22834/study1/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J543": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_025.png",
+   "rep": 1
+  },
+  "J544": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient13162/study53/view2_lateral.jpg",
+   "rep": 3
+  },
+  "J545": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_024.png",
+   "rep": 4
+  },
+  "J546": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient40149/study2/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J547": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-18",
+   "rep": 1
+  },
+  "J548": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient06792/study1/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J549": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient11436/study2/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J550": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-34",
+   "rep": 0
+  },
+  "J551": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient42964/study1/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J552": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000003_003.png",
+   "rep": -1
+  },
+  "J553": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient07882/study4/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J554": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_032.png",
+   "rep": 2
+  },
+  "J555": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient20671/study3/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J556": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_029.png",
+   "rep": 0
+  },
+  "J557": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_023.png",
+   "rep": 3
+  },
+  "J558": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient28922/study3/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J559": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient09483/study11/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J560": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient07882/study4/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J561": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000004_000.png",
+   "rep": 2
+  },
+  "J562": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient13162/study53/view2_lateral.jpg",
+   "rep": 3
+  },
+  "J563": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient05390/study11/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J564": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-17",
+   "rep": 2
+  },
+  "J565": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-8",
+   "rep": 4
+  },
+  "J566": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient03164/study14/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J567": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-3",
+   "rep": 2
+  },
+  "J568": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient36792/study5/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J569": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-8",
+   "rep": 0
+  },
+  "J570": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient09014/study1/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J571": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000003_007.png",
+   "rep": -1
+  },
+  "J572": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_001.png",
+   "rep": 4
+  },
+  "J573": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient20671/study3/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J574": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_032.png",
+   "rep": 0
+  },
+  "J575": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000012_000.png",
+   "rep": 0
+  },
+  "J576": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient39868/study3/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J577": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000001_002.png",
+   "rep": 3
+  },
+  "J578": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_029.png",
+   "rep": 1
+  },
+  "J579": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000001_002.png",
+   "rep": 0
+  },
+  "J580": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_006.png",
+   "rep": 4
+  },
+  "J581": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000008_002.png",
+   "rep": -1
+  },
+  "J582": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000004_000.png",
+   "rep": 1
+  },
+  "J583": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000005_006.png",
+   "rep": 4
+  },
+  "J584": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient44813/study9/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J585": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-20",
+   "rep": 0
+  },
+  "J586": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-14",
+   "rep": 1
+  },
+  "J587": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000011_006.png",
+   "rep": 0
+  },
+  "J588": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000001_002.png",
+   "rep": 0
+  },
+  "J589": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient36792/study5/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J590": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient17249/study6/view2_lateral.jpg",
+   "rep": 2
+  },
+  "J591": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000009_000.png",
+   "rep": 2
+  },
+  "J592": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient23860/study20/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J593": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000005_006.png",
+   "rep": 1
+  },
+  "J594": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000008_000.png",
+   "rep": 3
+  },
+  "J595": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_026.png",
+   "rep": 0
+  },
+  "J596": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-31",
+   "rep": 4
+  },
+  "J597": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_003.png",
+   "rep": 2
+  },
+  "J598": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000003_007.png",
+   "rep": 4
+  },
+  "J599": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_032.png",
+   "rep": 0
+  },
+  "J600": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient28104/study1/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J601": {
+   "cohort": "medqa",
+   "source": "original",
+   "condition": "note",
+   "case_id": "medqa-18",
+   "rep": -1
+  },
+  "J602": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient17249/study6/view2_lateral.jpg",
+   "rep": 2
+  },
+  "J603": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000011_006.png",
+   "rep": 2
+  },
+  "J604": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_005.png",
+   "rep": 0
+  },
+  "J605": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_031.png",
+   "rep": 0
+  },
+  "J606": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-31",
+   "rep": 2
+  },
+  "J607": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000003_002.png",
+   "rep": -1
+  },
+  "J608": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient55904/study2/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J609": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-18",
+   "rep": 0
+  },
+  "J610": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000001_002.png",
+   "rep": 4
+  },
+  "J611": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_025.png",
+   "rep": 2
+  },
+  "J612": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-15",
+   "rep": 3
+  },
+  "J613": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_026.png",
+   "rep": 1
+  },
+  "J614": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_005.png",
+   "rep": 1
+  },
+  "J615": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient06792/study1/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J616": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient06792/study1/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J617": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000001_002.png",
+   "rep": -1
+  },
+  "J618": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_031.png",
+   "rep": 3
+  },
+  "J619": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-20",
+   "rep": 3
+  },
+  "J620": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000009_000.png",
+   "rep": 1
+  },
+  "J621": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_024.png",
+   "rep": 3
+  },
+  "J622": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_029.png",
+   "rep": 2
+  },
+  "J623": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient18447/study2/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J624": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000001_000.png",
+   "rep": 3
+  },
+  "J625": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient42328/study3/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J626": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-9",
+   "rep": 2
+  },
+  "J627": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000009_000.png",
+   "rep": 3
+  },
+  "J628": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-29",
+   "rep": 3
+  },
+  "J629": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000008_000.png",
+   "rep": 2
+  },
+  "J630": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000001_000.png",
+   "rep": 0
+  },
+  "J631": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient36792/study5/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J632": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-32",
+   "rep": 3
+  },
+  "J633": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient38693/study8/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J634": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient11132/study4/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J635": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient15877/study2/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J636": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-32",
+   "rep": 0
+  },
+  "J637": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000004_000.png",
+   "rep": 3
+  },
+  "J638": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient03164/study14/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J639": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-27",
+   "rep": 1
+  },
+  "J640": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-25",
+   "rep": 3
+  },
+  "J641": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient07882/study4/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J642": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient36411/study1/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J643": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-15",
+   "rep": 3
+  },
+  "J644": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient09483/study11/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J645": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient42243/study1/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J646": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient09483/study11/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J647": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_006.png",
+   "rep": 1
+  },
+  "J648": {
+   "cohort": "medqa",
+   "source": "original",
+   "condition": "note",
+   "case_id": "medqa-20",
+   "rep": -1
+  },
+  "J649": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000001_000.png",
+   "rep": 1
+  },
+  "J650": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient39868/study3/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J651": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient09014/study1/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J652": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient42328/study3/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J653": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient38693/study8/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J654": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient07882/study4/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J655": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-19",
+   "rep": 1
+  },
+  "J656": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_031.png",
+   "rep": 2
+  },
+  "J657": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000013_028.png",
+   "rep": 1
+  },
+  "J658": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient13162/study53/view2_lateral.jpg",
+   "rep": 1
+  },
+  "J659": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient40149/study2/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J660": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient42243/study1/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J661": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-31",
+   "rep": 0
+  },
+  "J662": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000009_000.png",
+   "rep": 1
+  },
+  "J663": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient30812/study7/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J664": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-6",
+   "rep": 4
+  },
+  "J665": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-8",
+   "rep": 1
+  },
+  "J666": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-32",
+   "rep": 4
+  },
+  "J667": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient50399/study4/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J668": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_023.png",
+   "rep": 1
+  },
+  "J669": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient17249/study6/view2_lateral.jpg",
+   "rep": 0
+  },
+  "J670": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000011_007.png",
+   "rep": 2
+  },
+  "J671": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000003_006.png",
+   "rep": -1
+  },
+  "J672": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient13949/study2/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J673": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000013_033.png",
+   "rep": -1
+  },
+  "J674": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-39",
+   "rep": 3
+  },
+  "J675": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000011_007.png",
+   "rep": 3
+  },
+  "J676": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient42243/study1/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J677": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000001_001.png",
+   "rep": 3
+  },
+  "J678": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000004_000.png",
+   "rep": 4
+  },
+  "J679": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000013_028.png",
+   "rep": -1
+  },
+  "J680": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000001_002.png",
+   "rep": 3
+  },
+  "J681": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000011_005.png",
+   "rep": 4
+  },
+  "J682": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient37725/study3/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J683": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000001_002.png",
+   "rep": 1
+  },
+  "J684": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient62872/study1/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J685": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_025.png",
+   "rep": 0
+  },
+  "J686": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient62872/study1/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J687": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient55904/study2/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J688": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient22834/study1/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J689": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient42328/study3/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J690": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-26",
+   "rep": 3
+  },
+  "J691": {
+   "cohort": "medqa",
+   "source": "original",
+   "condition": "note",
+   "case_id": "medqa-9",
+   "rep": -1
+  },
+  "J692": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient36411/study1/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J693": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000013_024.png",
+   "rep": -1
+  },
+  "J694": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000012_000.png",
+   "rep": 4
+  },
+  "J695": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_028.png",
+   "rep": 2
+  },
+  "J696": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient36792/study5/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J697": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient62872/study1/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J698": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-27",
+   "rep": 2
+  },
+  "J699": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000013_022.png",
+   "rep": 2
+  },
+  "J700": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient28922/study3/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J701": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_003.png",
+   "rep": 3
+  },
+  "J702": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient28922/study3/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J703": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient18447/study2/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J704": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-32",
+   "rep": 2
+  },
+  "J705": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-3",
+   "rep": 3
+  },
+  "J706": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient09483/study11/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J707": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient23860/study20/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J708": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-6",
+   "rep": 4
+  },
+  "J709": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-8",
+   "rep": 3
+  },
+  "J710": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient18447/study2/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J711": {
+   "cohort": "nih",
+   "source": "original",
+   "condition": "note",
+   "case_id": "00000013_027.png",
+   "rep": -1
+  },
+  "J712": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient22834/study1/view1_frontal.jpg",
+   "rep": 4
+  },
+  "J713": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient40149/study2/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J714": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient23860/study20/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J715": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient06792/study1/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J716": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "00000011_005.png",
+   "rep": 3
+  },
+  "J717": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_007.png",
+   "rep": 3
+  },
+  "J718": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient42328/study3/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J719": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient05390/study11/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J720": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-3",
+   "rep": 3
+  },
+  "J721": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "CheXpert-v1.0-small/train/patient44813/study9/view1_frontal.jpg",
+   "rep": 1
+  },
+  "J722": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient36411/study1/view1_frontal.jpg",
+   "rep": 3
+  },
+  "J723": {
+   "cohort": "nih",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "00000003_005.png",
+   "rep": 4
+  },
+  "J724": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient09014/study1/view1_frontal.jpg",
+   "rep": 0
+  },
+  "J725": {
+   "cohort": "chexpert",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "CheXpert-v1.0-small/train/patient28922/study3/view1_frontal.jpg",
+   "rep": 2
+  },
+  "J726": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "note",
+   "case_id": "medqa-39",
+   "rep": 4
+  },
+  "J727": {
+   "cohort": "medqa",
+   "source": "fresh",
+   "condition": "reason",
+   "case_id": "medqa-6",
+   "rep": 2
+  }
+ }
+}

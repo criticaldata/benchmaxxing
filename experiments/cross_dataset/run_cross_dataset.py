@@ -120,6 +120,17 @@ def _mcq_prompt(payload) -> str:
     )
 
 
+class _PacedLive:
+    """Backend-shaped handle whose every call goes through the shared paced path, so a 429 or a
+    dropped connection waits instead of ending the pilot; the cache is only written at the end."""
+
+    def __init__(self, model, api_key):
+        self.model, self.api_key = model, api_key
+
+    def complete(self, prompt, decoding=None, **_):
+        return _lane.paced_complete(self.model, self.api_key, prompt, decoding=decoding)
+
+
 def make_backend(model, api_key, *, raw=None, cache=None):
     """A ``payload -> option-text`` callable; ``raw`` is injectable so tests skip the network.
 
@@ -127,9 +138,7 @@ def make_backend(model, api_key, *, raw=None, cache=None):
     recorded reply: a rerun with the same persisted cache reproduces the same rates and CIs.
     """
     if raw is None:
-        live = gateway.RetryBackend(
-            _lane.backend_for(model, api_key), tries=5, backoff=3.0
-        )
+        live = _PacedLive(model, api_key)
         raw = gateway.CachedBackend(live, cache=cache if cache is not None else {})
 
     def call(payload) -> str:

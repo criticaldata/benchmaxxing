@@ -37,13 +37,21 @@ new API calls:
 """
 from __future__ import annotations
 
+import argparse
 import json
+import sys
 from collections import Counter
 from pathlib import Path
 
 from benchmaxxing.referee import precision_recall, score_shortcut
 from benchmaxxing.referee_ablations import referee_panel_vote
 from benchmaxxing.schema import Condition, Transcript, Turn
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
+
+# The committed judge rows were ruled by gemini-2.5-flash; another lineage's judge is that model.
+JUDGE = "gemini-2.5-flash"
 
 
 def _load_jsonl(path):
@@ -100,7 +108,15 @@ def _make_judge_detector(judge_flag):
 
 
 def main():
-    results_dir = Path(__file__).parent / "results"
+    ap = argparse.ArgumentParser(description="Referee panel majority vote over the committed "
+                                             "deployable and judge rows (#178); no model calls.")
+    _lane.add_model_arg(ap)
+    args = ap.parse_args()
+    model = args.model
+    judge = JUDGE if model == _lane.DEFAULT_MODEL else model
+
+    base = Path(__file__).parent / "results"
+    results_dir, _cache = _lane.scoped(model, str(base), str(base / "call_cache.jsonl"))
     dep_rows = {r["case_id"]: r for r in _load_jsonl(results_dir / "referee_deployable.jsonl")}
     judge_rows = {r["case_id"]: r for r in _load_jsonl(results_dir / "referee_judge.jsonl")}
     case_ids = sorted(set(dep_rows) & set(judge_rows))
@@ -136,7 +152,7 @@ def main():
     out = {
         "n": len(case_ids),
         "detectors": ["deployable (board-vs-bare re-query)", "naive (peer-agreement gate)",
-                      "same-lineage judge (gemini-2.5-flash)"],
+                      f"same-lineage judge ({judge})"],
         "single_deployable_alone": precision_recall(single_flags, truth),
         "panel_majority_vote": precision_recall(panel_flags, truth),
         "n_panel_flags": sum(panel_flags),
@@ -153,6 +169,8 @@ def main():
             "shared transcript, recovers what an independent counterfactual answer reveals."
         ),
     }
+    if model != _lane.DEFAULT_MODEL:
+        out["lineage_note"] = _lane.derived_note(model)
     (results_dir / "panel_vote.json").write_text(json.dumps(out, indent=2))
     print(json.dumps(out, indent=2))
 

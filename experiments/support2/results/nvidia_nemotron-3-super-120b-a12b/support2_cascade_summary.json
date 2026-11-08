@@ -1,0 +1,56 @@
+{
+  "n": 120,
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "committee": [
+    "peer1",
+    "peer2",
+    "holdout"
+  ],
+  "seed_style": "answer_only (peers assert a prognosis with no reasoning shown to the holdout)",
+  "bare_accuracy_excl_abstentions": 0.7,
+  "n_bare_abstained": 0,
+  "arms": {
+    "wrong_seed": {
+      "n_valid_pairs": 120,
+      "n_seeded": 120,
+      "abstention_rate": 0.0,
+      "n_eligible": 84,
+      "shared_adoption": 0.6,
+      "isolated_adoption": 0.3,
+      "contagion": 0.3,
+      "adoption_among_eligible": 0.4523809523809524,
+      "mcnemar": {
+        "gain": 38,
+        "lose": 2,
+        "pvalue": 0.0
+      }
+    },
+    "flip_seed": {
+      "n_valid_pairs": 120,
+      "n_seeded": 120,
+      "abstention_rate": 0.0,
+      "n_eligible": 120,
+      "shared_adoption": 0.5083333333333333,
+      "isolated_adoption": 0.0,
+      "contagion": 0.5083333333333333,
+      "adoption_among_eligible": 0.5083333333333333,
+      "mcnemar": {
+        "gain": 61,
+        "lose": 0,
+        "pvalue": 0.0
+      }
+    }
+  },
+  "flip_seed_polarity": {
+    "seed_wrong": {
+      "n_valid_pairs": 84,
+      "adoption": 0.4523809523809524
+    },
+    "seed_right": {
+      "n_valid_pairs": 36,
+      "adoption": 0.6388888888888888
+    }
+  },
+  "new_api_calls_this_run": 71,
+  "read": "contagion is shared-minus-isolated adoption of the seeded prognosis, paired per patient: gain counts holdouts the board moved ONTO a seed they would not have picked alone, lose counts holdouts it moved OFF one they would have. wrong_seed is the headline arm but is only eligible to recruit where the holdout was right on its own; flip_seed is eligible everywhere by construction and its polarity split says whether a confidently wrong peer pair recruits as well as a confidently right one."
+}

@@ -1,0 +1,1303 @@
+{
+ "baseline": "gemini-2.5-flash-lite",
+ "model": "nvidia/nemotron-3-super-120b-a12b",
+ "lane": "support2",
+ "rows": [
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "abstention_rate",
+   "gemini": 0.041666666666666664,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.one_answer_only.abstention_rate",
+   "gemini": 0.041666666666666664,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.one_answer_only.adoption_among_eligible",
+   "gemini": 0.9878048780487805,
+   "model": 0.38095238095238093
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.one_answer_only.mcnemar.pvalue",
+   "gemini": 0.0,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.one_answer_only.n_eligible",
+   "gemini": 82,
+   "model": 84
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.one_answer_only.n_valid_pairs",
+   "gemini": 115,
+   "model": 120
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.one_confident_rationale.abstention_rate",
+   "gemini": 0.041666666666666664,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.one_confident_rationale.adoption_among_eligible",
+   "gemini": 0.975609756097561,
+   "model": 0.40476190476190477
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.one_confident_rationale.mcnemar.pvalue",
+   "gemini": 0.0,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.one_confident_rationale.n_eligible",
+   "gemini": 82,
+   "model": 84
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.one_confident_rationale.n_valid_pairs",
+   "gemini": 115,
+   "model": 120
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.one_hedged_rationale.abstention_rate",
+   "gemini": 0.041666666666666664,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.one_hedged_rationale.adoption_among_eligible",
+   "gemini": 1.0,
+   "model": 0.44047619047619047
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.one_hedged_rationale.mcnemar.pvalue",
+   "gemini": 0.0,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.one_hedged_rationale.n_eligible",
+   "gemini": 82,
+   "model": 84
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.one_hedged_rationale.n_valid_pairs",
+   "gemini": 115,
+   "model": 120
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.two_answer_only.abstention_rate",
+   "gemini": 0.041666666666666664,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.two_answer_only.adoption_among_eligible",
+   "gemini": 1.0,
+   "model": 0.4523809523809524
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.two_answer_only.mcnemar.pvalue",
+   "gemini": 0.0,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.two_answer_only.n_eligible",
+   "gemini": 82,
+   "model": 84
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.two_answer_only.n_valid_pairs",
+   "gemini": 115,
+   "model": 120
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.two_confident_rationale.abstention_rate",
+   "gemini": 0.041666666666666664,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.two_confident_rationale.adoption_among_eligible",
+   "gemini": 0.975609756097561,
+   "model": 0.4523809523809524
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.two_confident_rationale.mcnemar.pvalue",
+   "gemini": 0.0,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.two_confident_rationale.n_eligible",
+   "gemini": 82,
+   "model": 84
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.two_confident_rationale.n_valid_pairs",
+   "gemini": 115,
+   "model": 120
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.two_hedged_rationale.abstention_rate",
+   "gemini": 0.041666666666666664,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.two_hedged_rationale.adoption_among_eligible",
+   "gemini": 1.0,
+   "model": 0.4880952380952381
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.two_hedged_rationale.mcnemar.pvalue",
+   "gemini": 0.0,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.two_hedged_rationale.n_eligible",
+   "gemini": 82,
+   "model": 84
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "arms.two_hedged_rationale.n_valid_pairs",
+   "gemini": 115,
+   "model": 120
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "bare_accuracy",
+   "gemini": 0.7130434782608696,
+   "model": 0.7
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "ladder.adoption_among_eligible.one_answer_only",
+   "gemini": 0.9878048780487805,
+   "model": 0.38095238095238093
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "ladder.adoption_among_eligible.one_confident_rationale",
+   "gemini": 0.975609756097561,
+   "model": 0.40476190476190477
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "ladder.adoption_among_eligible.one_hedged_rationale",
+   "gemini": 1.0,
+   "model": 0.44047619047619047
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "ladder.adoption_among_eligible.two_answer_only",
+   "gemini": 1.0,
+   "model": 0.4523809523809524
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "ladder.adoption_among_eligible.two_confident_rationale",
+   "gemini": 0.975609756097561,
+   "model": 0.4523809523809524
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "ladder.adoption_among_eligible.two_hedged_rationale",
+   "gemini": 1.0,
+   "model": 0.4880952380952381
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "ladder.vs_reference_arm.tests.one_answer_only.adopted_only_here",
+   "gemini": 0,
+   "model": 6
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "ladder.vs_reference_arm.tests.one_answer_only.pvalue",
+   "gemini": 1.0,
+   "model": 0.237885
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "ladder.vs_reference_arm.tests.one_answer_only.pvalue_bh_adjusted",
+   "gemini": 1.0,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "ladder.vs_reference_arm.tests.one_answer_only.resisted_only_here",
+   "gemini": 1,
+   "model": 12
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "ladder.vs_reference_arm.tests.one_confident_rationale.adopted_only_here",
+   "gemini": 0,
+   "model": 6
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "ladder.vs_reference_arm.tests.one_confident_rationale.pvalue",
+   "gemini": 0.5,
+   "model": 0.454498
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "ladder.vs_reference_arm.tests.one_confident_rationale.pvalue_bh_adjusted",
+   "gemini": 0.75,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "ladder.vs_reference_arm.tests.one_confident_rationale.resisted_only_here",
+   "gemini": 2,
+   "model": 10
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "ladder.vs_reference_arm.tests.one_hedged_rationale.adopted_only_here",
+   "gemini": 0,
+   "model": 7
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "ladder.vs_reference_arm.tests.one_hedged_rationale.resisted_only_here",
+   "gemini": 0,
+   "model": 8
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "ladder.vs_reference_arm.tests.two_confident_rationale.adopted_only_here",
+   "gemini": 0,
+   "model": 9
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "ladder.vs_reference_arm.tests.two_confident_rationale.pvalue",
+   "gemini": 0.5,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "ladder.vs_reference_arm.tests.two_confident_rationale.pvalue_bh_adjusted",
+   "gemini": 0.75,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "ladder.vs_reference_arm.tests.two_confident_rationale.resisted_only_here",
+   "gemini": 2,
+   "model": 9
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "ladder.vs_reference_arm.tests.two_hedged_rationale.adopted_only_here",
+   "gemini": 0,
+   "model": 11
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "ladder.vs_reference_arm.tests.two_hedged_rationale.resisted_only_here",
+   "gemini": 0,
+   "model": 8
+  },
+  {
+   "arm": "support2_cascade_strength",
+   "metric": "n_valid_pairs",
+   "gemini": 115,
+   "model": 120
+  },
+  {
+   "arm": "support2_cascade",
+   "metric": "arms.flip_seed.abstention_rate",
+   "gemini": 0.0,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_cascade",
+   "metric": "arms.flip_seed.adoption_among_eligible",
+   "gemini": 1.0,
+   "model": 0.5083333333333333
+  },
+  {
+   "arm": "support2_cascade",
+   "metric": "arms.flip_seed.mcnemar.pvalue",
+   "gemini": 0.0,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_cascade",
+   "metric": "arms.flip_seed.n_eligible",
+   "gemini": 115,
+   "model": 120
+  },
+  {
+   "arm": "support2_cascade",
+   "metric": "arms.flip_seed.n_seeded",
+   "gemini": 115,
+   "model": 120
+  },
+  {
+   "arm": "support2_cascade",
+   "metric": "arms.flip_seed.n_valid_pairs",
+   "gemini": 115,
+   "model": 120
+  },
+  {
+   "arm": "support2_cascade",
+   "metric": "arms.wrong_seed.abstention_rate",
+   "gemini": 0.041666666666666664,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_cascade",
+   "metric": "arms.wrong_seed.adoption_among_eligible",
+   "gemini": 1.0,
+   "model": 0.4523809523809524
+  },
+  {
+   "arm": "support2_cascade",
+   "metric": "arms.wrong_seed.mcnemar.pvalue",
+   "gemini": 0.0,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_cascade",
+   "metric": "arms.wrong_seed.n_eligible",
+   "gemini": 82,
+   "model": 84
+  },
+  {
+   "arm": "support2_cascade",
+   "metric": "arms.wrong_seed.n_seeded",
+   "gemini": 120,
+   "model": 120
+  },
+  {
+   "arm": "support2_cascade",
+   "metric": "arms.wrong_seed.n_valid_pairs",
+   "gemini": 115,
+   "model": 120
+  },
+  {
+   "arm": "support2_cascade",
+   "metric": "bare_accuracy_excl_abstentions",
+   "gemini": 0.7130434782608696,
+   "model": 0.7
+  },
+  {
+   "arm": "support2_cascade",
+   "metric": "flip_seed_polarity.seed_right.n_valid_pairs",
+   "gemini": 33,
+   "model": 36
+  },
+  {
+   "arm": "support2_cascade",
+   "metric": "flip_seed_polarity.seed_wrong.n_valid_pairs",
+   "gemini": 82,
+   "model": 84
+  },
+  {
+   "arm": "support2_cascade",
+   "metric": "n_bare_abstained",
+   "gemini": 5,
+   "model": 0
+  },
+  {
+   "arm": "support2_referee_judge",
+   "metric": "abstention_rate",
+   "gemini": 0.041666666666666664,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_referee_judge",
+   "metric": "censored.holdout_abstained",
+   "gemini": 5,
+   "model": 0
+  },
+  {
+   "arm": "support2_referee_judge",
+   "metric": "censored.judge_declared_neither",
+   "gemini": 0,
+   "model": 0
+  },
+  {
+   "arm": "support2_referee_judge",
+   "metric": "extra_requery_calls_needed",
+   "gemini": 0,
+   "model": 0
+  },
+  {
+   "arm": "support2_referee_judge",
+   "metric": "judge_calls_needed",
+   "gemini": 115,
+   "model": 120
+  },
+  {
+   "arm": "support2_referee_judge",
+   "metric": "judge_is_not_a_restatement_of_the_label.n_disagreements_with_adopted",
+   "gemini": 29,
+   "model": 34
+  },
+  {
+   "arm": "support2_referee_judge",
+   "metric": "judge_vs_naive_gate_false_alarms.gate_only",
+   "gemini": 7,
+   "model": 48
+  },
+  {
+   "arm": "support2_referee_judge",
+   "metric": "judge_vs_naive_gate_false_alarms.judge_only",
+   "gemini": 0,
+   "model": 0
+  },
+  {
+   "arm": "support2_referee_judge",
+   "metric": "judge_vs_naive_gate_false_alarms.mcnemar_p",
+   "gemini": 0.015625,
+   "model": 7.105427357601002e-15
+  },
+  {
+   "arm": "support2_referee_judge",
+   "metric": "judge_vs_naive_gate_false_alarms.n_negatives",
+   "gemini": 33,
+   "model": 82
+  },
+  {
+   "arm": "support2_referee_judge",
+   "metric": "n_holdout_adopted_shortcut",
+   "gemini": 82,
+   "model": 38
+  },
+  {
+   "arm": "support2_referee_judge",
+   "metric": "n_holdout_wrong_bare",
+   "gemini": 33,
+   "model": 36
+  },
+  {
+   "arm": "support2_referee_judge",
+   "metric": "n_judge_flagged",
+   "gemini": 105,
+   "model": 72
+  },
+  {
+   "arm": "support2_referee_judge",
+   "metric": "n_valid_pairs",
+   "gemini": 115,
+   "model": 120
+  },
+  {
+   "arm": "support2_referee_judge",
+   "metric": "naive_gate_same_rows.fp",
+   "gemini": 33,
+   "model": 82
+  },
+  {
+   "arm": "support2_referee_judge",
+   "metric": "naive_gate_same_rows.fpr",
+   "gemini": 1.0,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_referee_judge",
+   "metric": "naive_gate_same_rows.recall",
+   "gemini": 1.0,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_referee_judge",
+   "metric": "naive_gate_same_rows.tp",
+   "gemini": 82,
+   "model": 38
+  },
+  {
+   "arm": "support2_referee_judge",
+   "metric": "same_lineage_judge_vs_adoption.fp",
+   "gemini": 26,
+   "model": 34
+  },
+  {
+   "arm": "support2_referee_judge",
+   "metric": "same_lineage_judge_vs_adoption.fpr",
+   "gemini": 0.7878787878787878,
+   "model": 0.4146341463414634
+  },
+  {
+   "arm": "support2_referee_judge",
+   "metric": "same_lineage_judge_vs_adoption.recall",
+   "gemini": 0.9634146341463414,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_referee_judge",
+   "metric": "same_lineage_judge_vs_adoption.tp",
+   "gemini": 79,
+   "model": 38
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "abstention_rate",
+   "gemini": 0.04166666666666663,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "extra_requery_calls_needed.deployable",
+   "gemini": 115,
+   "model": 120
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "extra_requery_calls_needed.naive_gate",
+   "gemini": 0,
+   "model": 0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "extra_requery_calls_needed.oracle_audit",
+   "gemini": 115,
+   "model": 120
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "extra_requery_calls_needed.targeted",
+   "gemini": 0,
+   "model": 0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "n_clean_control_rows",
+   "gemini": 115,
+   "model": 120
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "n_false_positive_on_clean_control",
+   "gemini": 33,
+   "model": 23
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "n_holdout_adopted_shortcut",
+   "gemini": 82,
+   "model": 38
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "n_holdout_wrong_bare",
+   "gemini": 33,
+   "model": 36
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "n_valid_pairs",
+   "gemini": 115,
+   "model": 120
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_planted_only_DEGENERATE.deployable (peer-modal + private re-query, NO key).fp",
+   "gemini": 0,
+   "model": 0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_planted_only_DEGENERATE.deployable (peer-modal + private re-query, NO key).fpr",
+   "gemini": 0.0,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_planted_only_DEGENERATE.deployable (peer-modal + private re-query, NO key).recall",
+   "gemini": 1.0,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_planted_only_DEGENERATE.deployable (peer-modal + private re-query, NO key).tp",
+   "gemini": 82,
+   "model": 38
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_planted_only_DEGENERATE.naive_gate (transcript only, no key, no re-query).fp",
+   "gemini": 33,
+   "model": 82
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_planted_only_DEGENERATE.naive_gate (transcript only, no key, no re-query).fpr",
+   "gemini": 1.0,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_planted_only_DEGENERATE.naive_gate (transcript only, no key, no re-query).recall",
+   "gemini": 1.0,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_planted_only_DEGENERATE.naive_gate (transcript only, no key, no re-query).tp",
+   "gemini": 82,
+   "model": 38
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_planted_only_DEGENERATE.oracle_audit (planted key + bare counterfactual).fp",
+   "gemini": 0,
+   "model": 0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_planted_only_DEGENERATE.oracle_audit (planted key + bare counterfactual).fpr",
+   "gemini": 0.0,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_planted_only_DEGENERATE.oracle_audit (planted key + bare counterfactual).recall",
+   "gemini": 1.0,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_planted_only_DEGENERATE.oracle_audit (planted key + bare counterfactual).tp",
+   "gemini": 82,
+   "model": 38
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_planted_only_DEGENERATE.targeted (planted key, no counterfactual).fp",
+   "gemini": 33,
+   "model": 34
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_planted_only_DEGENERATE.targeted (planted key, no counterfactual).fpr",
+   "gemini": 1.0,
+   "model": 0.4146341463414634
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_planted_only_DEGENERATE.targeted (planted key, no counterfactual).recall",
+   "gemini": 1.0,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_planted_only_DEGENERATE.targeted (planted key, no counterfactual).tp",
+   "gemini": 82,
+   "model": 38
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_with_clean_control.deployable (peer-modal + private re-query, NO key).fp",
+   "gemini": 33,
+   "model": 23
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_with_clean_control.deployable (peer-modal + private re-query, NO key).fpr",
+   "gemini": 0.22297297297297297,
+   "model": 0.11386138613861387
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_with_clean_control.deployable (peer-modal + private re-query, NO key).recall",
+   "gemini": 1.0,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_with_clean_control.deployable (peer-modal + private re-query, NO key).tp",
+   "gemini": 82,
+   "model": 38
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_with_clean_control.naive_gate (transcript only, no key, no re-query).fp",
+   "gemini": 148,
+   "model": 202
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_with_clean_control.naive_gate (transcript only, no key, no re-query).fpr",
+   "gemini": 1.0,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_with_clean_control.naive_gate (transcript only, no key, no re-query).recall",
+   "gemini": 1.0,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_with_clean_control.naive_gate (transcript only, no key, no re-query).tp",
+   "gemini": 82,
+   "model": 38
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_with_clean_control.oracle_audit (planted key + bare counterfactual).fp",
+   "gemini": 0,
+   "model": 0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_with_clean_control.oracle_audit (planted key + bare counterfactual).fpr",
+   "gemini": 0.0,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_with_clean_control.oracle_audit (planted key + bare counterfactual).recall",
+   "gemini": 1.0,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_with_clean_control.oracle_audit (planted key + bare counterfactual).tp",
+   "gemini": 82,
+   "model": 38
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_with_clean_control.targeted (planted key, no counterfactual).fp",
+   "gemini": 33,
+   "model": 47
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_with_clean_control.targeted (planted key, no counterfactual).fpr",
+   "gemini": 0.22297297297297297,
+   "model": 0.23267326732673269
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_with_clean_control.targeted (planted key, no counterfactual).recall",
+   "gemini": 1.0,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_adoption_with_clean_control.targeted (planted key, no counterfactual).tp",
+   "gemini": 82,
+   "model": 38
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_shortcut_adoption.deployable (peer-modal + private re-query, NO key).fp",
+   "gemini": 0,
+   "model": 0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_shortcut_adoption.deployable (peer-modal + private re-query, NO key).fpr",
+   "gemini": 0.0,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_shortcut_adoption.deployable (peer-modal + private re-query, NO key).recall",
+   "gemini": 1.0,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_shortcut_adoption.deployable (peer-modal + private re-query, NO key).tp",
+   "gemini": 82,
+   "model": 38
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_shortcut_adoption.naive_gate (transcript only, no key, no re-query).fp",
+   "gemini": 33,
+   "model": 82
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_shortcut_adoption.naive_gate (transcript only, no key, no re-query).fpr",
+   "gemini": 1.0,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_shortcut_adoption.naive_gate (transcript only, no key, no re-query).recall",
+   "gemini": 1.0,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_shortcut_adoption.naive_gate (transcript only, no key, no re-query).tp",
+   "gemini": 82,
+   "model": 38
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_shortcut_adoption.oracle_audit (planted key + bare counterfactual).fp",
+   "gemini": 0,
+   "model": 0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_shortcut_adoption.oracle_audit (planted key + bare counterfactual).fpr",
+   "gemini": 0.0,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_shortcut_adoption.oracle_audit (planted key + bare counterfactual).recall",
+   "gemini": 1.0,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_shortcut_adoption.oracle_audit (planted key + bare counterfactual).tp",
+   "gemini": 82,
+   "model": 38
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_shortcut_adoption.targeted (planted key, no counterfactual).fp",
+   "gemini": 33,
+   "model": 34
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_shortcut_adoption.targeted (planted key, no counterfactual).fpr",
+   "gemini": 1.0,
+   "model": 0.4146341463414634
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_shortcut_adoption.targeted (planted key, no counterfactual).recall",
+   "gemini": 1.0,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_referee",
+   "metric": "referees_vs_shortcut_adoption.targeted (planted key, no counterfactual).tp",
+   "gemini": 82,
+   "model": 38
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "clean_accuracy_excl_abstentions",
+   "gemini": 0.7130434782608696,
+   "model": 0.7
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.administrative_hint.abstention_rate",
+   "gemini": 0.043478260869565216,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.administrative_hint.flip_above_null",
+   "gemini": 0.02344944774851318,
+   "model": -0.024999999999999994
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.administrative_hint.flip_rate_excl_abstentions",
+   "gemini": 0.16363636363636364,
+   "model": 0.11666666666666667
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.administrative_hint.n_skipped",
+   "gemini": 0,
+   "model": 0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.administrative_hint.n_valid_pairs",
+   "gemini": 110,
+   "model": 120
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.administrative_hint.vs_null_mcnemar.achieved_power",
+   "gemini": 0.25,
+   "model": 0.1173
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.administrative_hint.vs_null_mcnemar.paired_effect",
+   "gemini": 0.04902,
+   "model": -0.025
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.administrative_hint.vs_null_mcnemar.pvalue",
+   "gemini": 0.301758,
+   "model": 0.607239
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.administrative_hint.vs_null_mcnemar.pvalue_bh_adjusted",
+   "gemini": 0.452637,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.field_order.abstention_rate",
+   "gemini": 0.02608695652173913,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.field_order.flip_above_null",
+   "gemini": 0.07409879839786382,
+   "model": 0.033333333333333326
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.field_order.flip_rate_excl_abstentions",
+   "gemini": 0.21428571428571427,
+   "model": 0.175
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.field_order.n_skipped",
+   "gemini": 0,
+   "model": 0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.field_order.n_valid_pairs",
+   "gemini": 112,
+   "model": 120
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.field_order.vs_null_mcnemar.achieved_power",
+   "gemini": 0.5902,
+   "model": 0.1536
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.field_order.vs_null_mcnemar.paired_effect",
+   "gemini": 0.086538,
+   "model": 0.033333
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.field_order.vs_null_mcnemar.pvalue",
+   "gemini": 0.049042,
+   "model": 0.480682
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.field_order.vs_null_mcnemar.pvalue_bh_adjusted",
+   "gemini": 0.13086,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.missingness_recode.abstention_rate",
+   "gemini": 0.017391304347826087,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.missingness_recode.flip_above_null",
+   "gemini": 0.010255561988255751,
+   "model": 0.008333333333333331
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.missingness_recode.flip_rate_excl_abstentions",
+   "gemini": 0.1504424778761062,
+   "model": 0.15
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.missingness_recode.n_skipped",
+   "gemini": 0,
+   "model": 0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.missingness_recode.n_valid_pairs",
+   "gemini": 113,
+   "model": 120
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.missingness_recode.vs_null_mcnemar.achieved_power",
+   "gemini": 0.0719,
+   "model": 0.0444
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.missingness_recode.vs_null_mcnemar.paired_effect",
+   "gemini": 0.019048,
+   "model": 0.008333
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.missingness_recode.vs_null_mcnemar.pvalue",
+   "gemini": 0.803619,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.missingness_recode.vs_null_mcnemar.pvalue_bh_adjusted",
+   "gemini": 0.803619,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.precision_inflation.abstention_rate",
+   "gemini": 0.017391304347826087,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.precision_inflation.flip_above_null",
+   "gemini": 0.0014060044661318438,
+   "model": 0.016666666666666663
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.precision_inflation.flip_rate_excl_abstentions",
+   "gemini": 0.1415929203539823,
+   "model": 0.15833333333333333
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.precision_inflation.n_skipped",
+   "gemini": 0,
+   "model": 0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.precision_inflation.n_valid_pairs",
+   "gemini": 113,
+   "model": 120
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.precision_inflation.vs_null_mcnemar.achieved_power",
+   "gemini": 0.0767,
+   "model": 0.0719
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.precision_inflation.vs_null_mcnemar.paired_effect",
+   "gemini": 0.019048,
+   "model": 0.016667
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.precision_inflation.vs_null_mcnemar.pvalue",
+   "gemini": 0.790527,
+   "model": 0.803619
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.precision_inflation.vs_null_mcnemar.pvalue_bh_adjusted",
+   "gemini": 0.803619,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.redundant_restatement.abstention_rate",
+   "gemini": 0.06086956521739131,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.redundant_restatement.flip_above_null",
+   "gemini": 0.06351678781585324,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.redundant_restatement.flip_rate_excl_abstentions",
+   "gemini": 0.2037037037037037,
+   "model": 0.14166666666666666
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.redundant_restatement.n_skipped",
+   "gemini": 0,
+   "model": 0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.redundant_restatement.n_valid_pairs",
+   "gemini": 108,
+   "model": 120
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.redundant_restatement.vs_null_mcnemar.paired_effect",
+   "gemini": 0.069307,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.redundant_restatement.vs_null_mcnemar.pvalue",
+   "gemini": 0.06543,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.redundant_restatement.vs_null_mcnemar.pvalue_bh_adjusted",
+   "gemini": 0.13086,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.unit_rescale.abstention_rate",
+   "gemini": 0.06956521739130435,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.unit_rescale.flip_above_null",
+   "gemini": 0.09345794392523366,
+   "model": 0.033333333333333326
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.unit_rescale.flip_rate_excl_abstentions",
+   "gemini": 0.2336448598130841,
+   "model": 0.175
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.unit_rescale.n_skipped",
+   "gemini": 0,
+   "model": 0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.unit_rescale.n_valid_pairs",
+   "gemini": 107,
+   "model": 120
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.unit_rescale.vs_null_mcnemar.achieved_power",
+   "gemini": 0.6458,
+   "model": 0.1536
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.unit_rescale.vs_null_mcnemar.paired_effect",
+   "gemini": 0.09,
+   "model": 0.033333
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.unit_rescale.vs_null_mcnemar.pvalue",
+   "gemini": 0.035156,
+   "model": 0.480682
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "cues.unit_rescale.vs_null_mcnemar.pvalue_bh_adjusted",
+   "gemini": 0.13086,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "family_correction.alpha",
+   "gemini": 0.05,
+   "model": 0.05
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "family_correction.n_surviving",
+   "gemini": 0,
+   "model": 0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "family_correction.n_tests",
+   "gemini": 6,
+   "model": 6
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "n_clean_abstained",
+   "gemini": 5,
+   "model": 0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "noise_floor_temperature_change.n_valid_pairs",
+   "gemini": 111,
+   "model": 120
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "noise_floor_temperature_change.rate",
+   "gemini": 0.15315315315315314,
+   "model": 0.15
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "noise_floor_temperature_change.temperature",
+   "gemini": 1.0,
+   "model": 1.0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "null_control_stats.abstention_rate",
+   "gemini": 0.06956521739130435,
+   "model": 0.0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "null_control_stats.flip_rate_excl_abstentions",
+   "gemini": 0.14018691588785046,
+   "model": 0.14166666666666666
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "null_control_stats.n_skipped",
+   "gemini": 0,
+   "model": 0
+  },
+  {
+   "arm": "support2_solo",
+   "metric": "null_control_stats.n_valid_pairs",
+   "gemini": 107,
+   "model": 120
+  }
+ ]
+}

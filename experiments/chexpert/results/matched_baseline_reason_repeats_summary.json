@@ -1,0 +1,41 @@
+{
+  "repeats": 5,
+  "n": 35,
+  "reads_per_case": 6,
+  "cases_with_any_disagreement": {
+    "n": 5,
+    "rate": 0.1429,
+    "wilson95": [
+      0.0626,
+      0.2938
+    ]
+  },
+  "mean_pairwise_disagreement": 0.0819,
+  "flip_vs_baseline_per_read": [
+    0.0857,
+    0.0857,
+    0.0857,
+    0.1143,
+    0.1143,
+    0.1143
+  ],
+  "flip_vs_baseline_band": [
+    0.0857,
+    0.1143
+  ],
+  "decoy_per_read": [
+    0.0857,
+    0.0857,
+    0.0857,
+    0.1143,
+    0.1143,
+    0.1143
+  ],
+  "decoy_band": [
+    0.0857,
+    0.1143
+  ],
+  "note": "read 0 is the main control run; reads 1.. are the same prompt re-asked at the same settings with a salted cache key, so every read is a real call and replays keyless",
+  "model": "gemini-2.5-flash",
+  "new_api_calls_this_run": 0
+}

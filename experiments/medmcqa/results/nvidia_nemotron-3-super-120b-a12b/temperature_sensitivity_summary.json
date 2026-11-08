@@ -1,0 +1,17 @@
+{
+  "n": 120,
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "new_api_calls_this_run": 1320,
+  "adoption_rate_by_temperature": {
+    "t0.0": 0.425,
+    "t0.3": 0.4028,
+    "t0.7": 0.4222,
+    "t1.0": 0.4194
+  },
+  "temp_gt0_within_case_flip_fraction": {
+    "t0.3": 0.275,
+    "t0.7": 0.35,
+    "t1.0": 0.3083
+  },
+  "read": "Adoption of the fixed anchored wrong seed as decoding temperature rises: {'t0.0': 0.425, 't0.3': 0.4028, 't0.7': 0.4222, 't1.0': 0.4194}. A roughly flat curve means the cascade is not a greedy-decoding artifact and survives sampling; a sharp drop at higher temperature would mean adoption depends on the model committing to its single most likely token. The temp>0 within-case flip fractions {'t0.3': 0.275, 't0.7': 0.35, 't1.0': 0.3083} are the run-to-run reliability envelope (#204): the share of cases whose repeated sampled draws disagree, i.e. how reproducible a single sampled adoption verdict is."
+}

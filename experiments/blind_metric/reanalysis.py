@@ -8,10 +8,15 @@ re-analysis of `results/blind_metric.jsonl`; no API calls.
 """
 from __future__ import annotations
 
+import argparse
+import sys
 import json
 import math
 from collections import defaultdict
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
 
 
 def _wilson(k, n, z=1.96):
@@ -31,7 +36,12 @@ def _rate_with_ci(vals):
 
 
 def main():
-    results_dir = Path(__file__).parent / "results"
+    ap = argparse.ArgumentParser(description=__doc__.strip().splitlines()[0] if __doc__ else None)
+    _lane.add_model_arg(ap)
+    args = ap.parse_args()
+    model = getattr(args, "model", None) or _lane.DEFAULT_MODEL
+    base = Path(__file__).parent / "results"
+    results_dir = _lane.scoped(model, str(base), str(base / "call_cache.jsonl"))[0]
     rows = [json.loads(line) for line in (results_dir / "blind_metric.jsonl").read_text().splitlines() if line.strip()]
 
     base = _rate_with_ci([r["base_is_decoy"] for r in rows])

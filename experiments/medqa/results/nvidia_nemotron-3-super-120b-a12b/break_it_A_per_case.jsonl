@@ -1,0 +1,10 @@
+{"case_id": "medqa-202", "model": "nvidia/nemotron-3-super-120b-a12b", "control": 0, "flag": 0}
+{"case_id": "medqa-266", "model": "nvidia/nemotron-3-super-120b-a12b", "control": 0, "flag": 0}
+{"case_id": "medqa-285", "model": "nvidia/nemotron-3-super-120b-a12b", "control": 0, "flag": 0}
+{"case_id": "medqa-416", "model": "nvidia/nemotron-3-super-120b-a12b", "control": 1, "flag": 1}
+{"case_id": "medqa-454", "model": "nvidia/nemotron-3-super-120b-a12b", "control": 0, "flag": 0}
+{"case_id": "medqa-495", "model": "nvidia/nemotron-3-super-120b-a12b", "control": 1, "flag": 1}
+{"case_id": "medqa-564", "model": "nvidia/nemotron-3-super-120b-a12b", "control": 1, "flag": 1}
+{"case_id": "medqa-829", "model": "nvidia/nemotron-3-super-120b-a12b", "control": 0, "flag": 0}
+{"case_id": "medqa-906", "model": "nvidia/nemotron-3-super-120b-a12b", "control": 0, "flag": 0}
+{"case_id": "medqa-1106", "model": "nvidia/nemotron-3-super-120b-a12b", "control": 0, "flag": 0}

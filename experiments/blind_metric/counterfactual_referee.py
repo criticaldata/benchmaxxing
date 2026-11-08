@@ -27,10 +27,15 @@ no-key referees at silent-gaming (blind-metric) transcripts instead, both alread
 """
 from __future__ import annotations
 
+import argparse
 import json
+import sys
 from pathlib import Path
 
 from benchmaxxing.referee import precision_recall
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
 
 
 def _load_jsonl(path):
@@ -38,7 +43,16 @@ def _load_jsonl(path):
 
 
 def main():
-    results_dir = Path(__file__).parent / "results"
+    ap = argparse.ArgumentParser(description="Counterfactual and reasoning-reading referees over the "
+                                             "committed blind-metric rows (#175); no model calls.")
+    _lane.add_model_arg(ap)
+    args = ap.parse_args()
+    model = args.model
+
+    # The default model reads and rewrites the committed Gemini artifact in place; any other model
+    # reads its own blind_metric.jsonl from the model-scoped subdirectory and writes there.
+    base = Path(__file__).parent / "results"
+    results_dir, _cache = _lane.scoped(model, str(base), str(base / "call_cache.jsonl"))
     rows = _load_jsonl(results_dir / "blind_metric.jsonl")
 
     drift = [bool(r["blind_is_decoy"]) and not bool(r["base_is_decoy"]) for r in rows]
@@ -90,6 +104,8 @@ def main():
             "Precision is honestly unverifiable rather than assumed perfect."
         ),
     }
+    if model != _lane.DEFAULT_MODEL:
+        out["lineage_note"] = _lane.derived_note(model)
     (results_dir / "counterfactual_referee.json").write_text(json.dumps(out, indent=2))
     print(json.dumps(out, indent=2))
 

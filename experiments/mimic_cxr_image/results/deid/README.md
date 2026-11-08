@@ -47,6 +47,7 @@ All flag columns are `0`/`1`.
 | `judge.csv` | 417 | `case_index`, `clean_correct`, `gt`, `judge_flag`, `naive_flag`. Transcript-only judge |
 | `judge_with_image.csv` | 417 | same columns. The judge given the film but performing no private re-query, the arm that isolates image access from the re-query |
 | `blind_metric.csv` | 141 | `case_index`, `base_is_decoy`, `blind_is_decoy`, `aware_is_decoy`, `named_rubric_when_drifted` |
+| `matched_baseline_reason.csv` | 141 | `case_index` (same films and order as `blind_metric.csv`), `base_is_decoy`, `reason_is_decoy`, `blind_is_decoy`, `reason_flip`, `named_rubric_reason_only`. The blind prompt with the scoring note removed: `reason_flip` is whether the justification request alone changed the read |
 | `provenance.csv` | 834 | `case_index` (matches `solo.csv`), `sha256`, `bytes` — per-image checksums of the superset, so a holder of the credentialed images can confirm identical pixels |
 
 Field meanings: `iso_adopt` = the model alone adopts the planted `"no"` on the cued image;

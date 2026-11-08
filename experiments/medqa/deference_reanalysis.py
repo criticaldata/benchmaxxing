@@ -23,11 +23,17 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import sys
 from collections import defaultdict
 from pathlib import Path
 
 from benchmaxxing.transcript import load_transcript
 from benchmaxxing.transcript_dynamics import deference_summary, summarize_transcripts
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
+
+RESULTS = "experiments/medqa/results"
 
 
 def _answers_equal(left, right) -> bool:
@@ -177,18 +183,26 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--transcript-dir",
-        default="experiments/medqa/results/transcripts",
-        help="directory of committed cascade transcript JSONL files",
+        default=None,
+        help="directory of committed cascade transcript JSONL files (default: transcripts/ under "
+             "the model-scoped MedQA results dir)",
     )
     parser.add_argument(
         "--out",
-        default="experiments/medqa/results/deference_reanalysis.json",
-        help="where to write the JSON summary",
+        default=None,
+        help="where to write the JSON summary (default: deference_reanalysis.json in the "
+             "model-scoped MedQA results dir)",
     )
+    _lane.add_model_arg(parser)
     args = parser.parse_args()
+    model = args.model
 
-    report = run_reanalysis(Path(args.transcript_dir))
-    out = Path(args.out)
+    results_dir = _lane.scoped(model, RESULTS, str(Path(RESULTS) / "call_cache.jsonl"))[0]
+    transcript_dir = Path(args.transcript_dir) if args.transcript_dir else results_dir / "transcripts"
+    report = run_reanalysis(transcript_dir)
+    if model != _lane.DEFAULT_MODEL:
+        report["lineage_note"] = _lane.derived_note(model)
+    out = Path(args.out) if args.out else results_dir / "deference_reanalysis.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(_jsonable(report), indent=2) + "\n", encoding="utf-8")
     print(format_report(report))

@@ -22,6 +22,7 @@ anywhere.
 from __future__ import annotations
 
 import abc
+import sys
 import hashlib
 import time
 from typing import Callable
@@ -410,7 +411,16 @@ class OpenAIBackend(Backend):
             messages=[{"role": "user", "content": content}],
             **config,
         )
-        return response.choices[0].message.content
+        choice = response.choices[0]
+        if choice.message.content is None:
+            # A reasoning model that spends the whole budget before its final answer returns no
+            # content at all. That is an undeclared answer, not a transport fault: hand the parsers
+            # an empty string so the row scores as no answer instead of crashing the arm.
+            usage = getattr(response, "usage", None)
+            print(f"[gateway] empty content from {self.model}: finish_reason={choice.finish_reason} "
+                  f"completion_tokens={getattr(usage, 'completion_tokens', None)}", file=sys.stderr)
+            return ""
+        return choice.message.content
 
 
 class AnthropicBackend(Backend):

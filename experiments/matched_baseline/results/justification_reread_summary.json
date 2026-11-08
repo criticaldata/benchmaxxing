@@ -1,0 +1,221 @@
+{
+  "readers": [
+    "gemini-2.5-flash",
+    "gemini-2.5-pro"
+  ],
+  "n_items": 502,
+  "note_drifted": {
+    "n": 147,
+    "flagged": {
+      "keyword": 1,
+      "gemini-2.5-flash": 1,
+      "gemini-2.5-pro": 1,
+      "both_readers": 1,
+      "either_reader": 1
+    },
+    "rates": {
+      "keyword": 0.0068,
+      "gemini-2.5-flash": 0.0068,
+      "gemini-2.5-pro": 0.0068,
+      "both_readers": 0.0068,
+      "either_reader": 0.0068
+    },
+    "reader_agreement": {
+      "raw": 1.0,
+      "kappa": 1.0,
+      "pairs": {
+        "gemini-2.5-flash vs gemini-2.5-pro": {
+          "raw": 1.0,
+          "kappa": 1.0
+        }
+      }
+    },
+    "keyword_vs_consensus": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "keyword_vs_either": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "per_cohort": {
+      "chexpert": {
+        "n": 31,
+        "keyword": 0,
+        "gemini-2.5-flash": 0,
+        "gemini-2.5-pro": 0,
+        "both_readers": 0
+      },
+      "medqa": {
+        "n": 11,
+        "keyword": 1,
+        "gemini-2.5-flash": 1,
+        "gemini-2.5-pro": 1,
+        "both_readers": 1
+      },
+      "mimic_cxr": {
+        "n": 76,
+        "keyword": 0,
+        "gemini-2.5-flash": 0,
+        "gemini-2.5-pro": 0,
+        "both_readers": 0
+      },
+      "nih": {
+        "n": 29,
+        "keyword": 0,
+        "gemini-2.5-flash": 0,
+        "gemini-2.5-pro": 0,
+        "both_readers": 0
+      }
+    }
+  },
+  "note_held": {
+    "n": 104,
+    "flagged": {
+      "keyword": 0,
+      "gemini-2.5-flash": 0,
+      "gemini-2.5-pro": 0,
+      "both_readers": 0,
+      "either_reader": 0
+    },
+    "rates": {
+      "keyword": 0.0,
+      "gemini-2.5-flash": 0.0,
+      "gemini-2.5-pro": 0.0,
+      "both_readers": 0.0,
+      "either_reader": 0.0
+    },
+    "reader_agreement": {
+      "raw": 1.0,
+      "kappa": null,
+      "pairs": {
+        "gemini-2.5-flash vs gemini-2.5-pro": {
+          "raw": 1.0,
+          "kappa": null
+        }
+      }
+    },
+    "keyword_vs_consensus": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": null,
+      "recall": null
+    },
+    "keyword_vs_either": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": null,
+      "recall": null
+    },
+    "per_cohort": {
+      "chexpert": {
+        "n": 4,
+        "keyword": 0,
+        "gemini-2.5-flash": 0,
+        "gemini-2.5-pro": 0,
+        "both_readers": 0
+      },
+      "medqa": {
+        "n": 29,
+        "keyword": 0,
+        "gemini-2.5-flash": 0,
+        "gemini-2.5-pro": 0,
+        "both_readers": 0
+      },
+      "mimic_cxr": {
+        "n": 65,
+        "keyword": 0,
+        "gemini-2.5-flash": 0,
+        "gemini-2.5-pro": 0,
+        "both_readers": 0
+      },
+      "nih": {
+        "n": 6,
+        "keyword": 0,
+        "gemini-2.5-flash": 0,
+        "gemini-2.5-pro": 0,
+        "both_readers": 0
+      }
+    }
+  },
+  "control": {
+    "n": 251,
+    "flagged": {
+      "keyword": 2,
+      "gemini-2.5-flash": 0,
+      "gemini-2.5-pro": 6,
+      "both_readers": 0,
+      "either_reader": 6
+    },
+    "rates": {
+      "keyword": 0.008,
+      "gemini-2.5-flash": 0.0,
+      "gemini-2.5-pro": 0.0239,
+      "both_readers": 0.0,
+      "either_reader": 0.0239
+    },
+    "reader_agreement": {
+      "raw": 0.9761,
+      "kappa": 0.0,
+      "pairs": {
+        "gemini-2.5-flash vs gemini-2.5-pro": {
+          "raw": 0.9761,
+          "kappa": 0.0
+        }
+      }
+    },
+    "keyword_vs_consensus": {
+      "tp": 0,
+      "fp": 2,
+      "fn": 0,
+      "precision": 0.0,
+      "recall": null
+    },
+    "keyword_vs_either": {
+      "tp": 0,
+      "fp": 2,
+      "fn": 6,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    "per_cohort": {
+      "chexpert": {
+        "n": 35,
+        "keyword": 0,
+        "gemini-2.5-flash": 0,
+        "gemini-2.5-pro": 1,
+        "both_readers": 0
+      },
+      "medqa": {
+        "n": 40,
+        "keyword": 2,
+        "gemini-2.5-flash": 0,
+        "gemini-2.5-pro": 5,
+        "both_readers": 0
+      },
+      "mimic_cxr": {
+        "n": 141,
+        "keyword": 0,
+        "gemini-2.5-flash": 0,
+        "gemini-2.5-pro": 0,
+        "both_readers": 0
+      },
+      "nih": {
+        "n": 35,
+        "keyword": 0,
+        "gemini-2.5-flash": 0,
+        "gemini-2.5-pro": 0,
+        "both_readers": 0
+      }
+    }
+  },
+  "new_api_calls_this_run": 0
+}

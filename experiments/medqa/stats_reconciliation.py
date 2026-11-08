@@ -13,9 +13,13 @@ from __future__ import annotations
 import argparse
 import json
 import random
+import sys
 from pathlib import Path
 
 from benchmaxxing.stats import mcnemar
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
 
 RESULTS = Path("experiments/medqa/results")
 
@@ -102,11 +106,17 @@ def main():
     ap.add_argument("--results-dir", default=None,
                     help="dir holding the per-case arm jsonls (default: the MedQA lane); point at "
                          "experiments/medmcqa/results to reconcile the MedMCQA battery")
+    _lane.add_model_arg(ap)
     args = ap.parse_args()
+    model = args.model
 
+    # The default model keeps the committed lane paths; another model reads its own per-case arm
+    # files from the model-scoped subdirectory of --results-dir and writes its summary under --out's.
     global RESULTS
     if args.results_dir:
         RESULTS = Path(args.results_dir)
+    RESULTS = _lane.scoped(model, str(RESULTS), str(RESULTS / "call_cache.jsonl"))[0]
+    out_dir = _lane.scoped(model, args.out, str(Path(args.out) / "call_cache.jsonl"))[0]
 
     rows_out = []
     for label, fn, a, b in CONTRASTS:
@@ -136,7 +146,9 @@ def main():
             "are real but correction-sensitive and should be stated as such."
         ),
     }
-    out = Path(args.out) / "stats_reconciliation_summary.json"
+    if model != _lane.DEFAULT_MODEL:
+        summary["lineage_note"] = _lane.derived_note(model)
+    out = out_dir / "stats_reconciliation_summary.json"
     out.write_text(json.dumps(summary, indent=2))
     print(json.dumps(summary, indent=2))
 

@@ -56,6 +56,9 @@ def test_every_committed_summary_has_an_arm_that_regenerates_it():
     # real committed files rather than a hand-copied list, so a new summary with no producing arm
     # fails here instead of becoming the next unreproducible number.
     produced = {(a.out, a.module) for a in ARMS}
+    # An arm run with --repeats also writes <module>_repeats_summary.json (the noise band of the
+    # matched control), so that summary is produced by the same arm.
+    produced |= {(a.out, f"{a.module}_repeats") for a in ARMS if "--repeats" in a.extra}
     checked, orphans = 0, []
     for path in sorted(RESULTS_DIR.rglob("*_summary.json")):
         if path.name == "plant_direction_summary.json":
@@ -81,9 +84,12 @@ def test_arms_reference_manifests_build_subset_actually_writes():
 
 def test_cache_is_pinned_inside_the_mimic_results_dir():
     # Every runner but imaging_solo defaults --cache to the NIH lane's committed cache; an
-    # unpinned MIMIC run would append credentialed-derived reads into it.
+    # unpinned MIMIC run would append credentialed-derived reads into it. The matched-conditions
+    # arm keeps its own session cache one level down, still inside --results: its repeats must be
+    # fresh calls, so it cannot share the root cache the nested arms replay from.
     for arm in ARMS:
-        assert Path(_flag(_cmd(arm), "--cache")).parent == RESULTS
+        cache = Path(_flag(_cmd(arm), "--cache"))
+        assert cache.parent == (RESULTS / "matched" if arm.name == "matched" else RESULTS)
 
 
 def test_one_shared_cache_so_nested_image_arms_reuse_calls():
@@ -92,8 +98,11 @@ def test_one_shared_cache_so_nested_image_arms_reuse_calls():
     # purpose: they ask a different question of the image, so they share no call with the
     # diagnostic arms and folding them in would make their hit rate unreadable. They also differ
     # from each other (one sees the film, one does not), so they cannot share a cache either.
-    judges = {"judge", "judge_with_image"}
+    # The matched-conditions arm is excluded too: its repeated calls must never be answered from a
+    # cache, so it keeps a session cache of its own under matched/.
+    judges = {"judge", "judge_with_image", "matched"}
     diagnostic_arms = [a for a in ARMS if a.takes_manifest and a.name not in judges]
+    assert _flag(_cmd(_arm("matched")), "--cache") == str(RESULTS / "matched" / "session_cache.jsonl")
     assert {_flag(_cmd(a), "--cache") for a in diagnostic_arms} == {str(RESULTS / CACHE_NAME)}
     assert _flag(_cmd(_arm("judge_with_image")), "--cache") == str(RESULTS / JUDGE_CACHE_NAME)
     assert _flag(_cmd(_arm("judge")), "--cache") == str(RESULTS / JUDGE_TEXTONLY_CACHE_NAME)

@@ -1,0 +1,41 @@
+{
+  "repeats": 5,
+  "n": 33,
+  "reads_per_case": 6,
+  "cases_with_any_disagreement": {
+    "n": 2,
+    "rate": 0.0606,
+    "wilson95": [
+      0.0168,
+      0.1961
+    ]
+  },
+  "mean_pairwise_disagreement": 0.0202,
+  "flip_vs_baseline_per_read": [
+    0.0606,
+    0.0606,
+    0.1212,
+    0.0606,
+    0.0606,
+    0.0606
+  ],
+  "flip_vs_baseline_band": [
+    0.0606,
+    0.1212
+  ],
+  "decoy_per_read": [
+    0.0606,
+    0.0606,
+    0.1212,
+    0.0606,
+    0.0606,
+    0.0606
+  ],
+  "decoy_band": [
+    0.0606,
+    0.1212
+  ],
+  "note": "read 0 is the main control run; reads 1.. are the same prompt re-asked at the same settings with a salted cache key, so every read is a real call and replays keyless",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "new_api_calls_this_run": 198
+}

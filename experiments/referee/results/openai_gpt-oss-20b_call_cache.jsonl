@@ -1,0 +1,360 @@
+{"k": "51de2dd046145537249688a8b382b8aaf95b4de53c62e32a1db257f4dd0673c2", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "e50ca4cd0155769f07d1d90e5f13f598ec69f15003d9bd53bb98ba25af6a81f4", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "e00468cc5709c5758c2686c506b551aa21dfecf44979c9f66ba773c9eb399220", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "38071b3e5fad83a2d4b1a40830e84451e36be64bcdfb214c7a380adfc580e36d", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "6e7069d56ef5e425411977cc314826a542b3cb389ca7a4454fc168a5e36c1f9e", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "17d30224ed848df2c60e8aec51fc14ec23196820913572cc4292e7510fcf3956", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "440aa3c8bef02a752f6f11546f23f470e097715a1cf3d52759b2ca80e485e508", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "f92bb7ca3f0a605e95fb75c374c3bcfe90fb8690ee34cf1a3a047efe36da60d4", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "481f077df462684cfcf958c36d202c468c487b98aecd8e6442281cc2c1113d47", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "83065e04d02d3d278a3602380e024a3676fd6823f31eaa3b625c17e9637a432f", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "e9b7d53ea039591b93eba4f6e51c2ce0e1267a02911f7e289f58abb9f4cb4003", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "00a61921cc46ca29c5616bd2d2ee5a48f86944ad56fe74c6521ef440f89a3485", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "4e52d21354a40d450392ed42bfd11b1507983099a3c117d6c9155323a455d93e", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "a53f5c61f5db7e05967b1675c4fa05c6ebd83e5a013214623086bdc9ad2d199b", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "b6d863913a76c6be92e4b82bc27b94f3b35a23ebe13e63a3780b6e0b752a8f9a", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "2209c9ba1810f07d2bed2af9f3aba5f8b6ecf9e345a13aa0e0f7505a9ad1ca5d", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "610e890ea72eac36855cd87642d374eb61230012e8720ec74013dcab394fb1c9", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "059b9623a1323028e50348abd50aad0cd31c608c575994ad5b236bf333d5d26e", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "07d393089fe54e706922a2dd7ec2add52562642f9c269e6bf2fbae6293b4c4f4", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "91b22d5826592db6f84144b5b3183f6f375148d1b8226ec84ae40206e9844b2b", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "a10046b10b62c710fc410cebec63a5d183be62e9e79454aa5a44688f4de3945f", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "b62880358240e2cc95a47bfbb5965a5fa89f1fa2f6b16baacccb891a0574d1e3", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "74a4da519ff08db0f4f846bfc237c3e2224f533123799e7bb186210421e3427f", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "b6f9ec8849dbb5ae2396d6c9686ede79695eecbd0b2d11c6891134eec7cdb3e2", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "df22145cfa25ba0bb0108c636577e31abdaa503fb80a3a1fa3163dd1b481ba59", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "9d39e82683f6ab76d5c6abc83f655b10e7a4d47cae614ec07fd2d5833b3b90ba", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "b8dc6714101a4cdd64ac4dbaf86896cab1bc7b79991d40520245914bdfbe3a54", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "548cba0d8091b895bdb80e0378e2a0da585019d171477f29a6b65b937b5cfa89", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "6e226424c47dcc866ccc9913c31f906e461940e01147e54232057edb1fff2419", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "a524143055bc6cc00b243c81c143e3f3e1a6a186261ed9014fe8f0039a25cb9f", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "4c4518a085c8dc07ba3707b1eef0be4c31c0330baa53770ff25dffb49394bc3b", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "eec6e89eaec345da3a19b16a07b88324019c412010c379ab0027a52edf1daf0d", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "dfd11514592c3e8c52c6b5346cb3ba265d432176c2f154bce6aaae5c04ff759e", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "b33743980b39c353c0addf1d39c23398faca918e62094d75bb0657e9b776db2f", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "c08df73a132c6e3065aa7205a3096d4084404e569e3868e10331df9e4a9d8997", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "f34cf5f1710cfcfbe34b871aa1c0af9a5fb388a2977a237d1285a3d67c080c23", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "54cb4f586b4161f9c8f96562cef82b3c0ae342e525d851ec8220af69c784897e", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "61f788cca948dc8c49fbad67e2f6ff57e8aca4386c1003221595922591981259", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "6ac0df7d7f15089e54a051266844200f1e9b681008ca87bf4937f95e13c3ea9c", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "c7aaef08afe128b613b4b3adc3a068150625116c6ea2c2337df50caced059a2d", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "2cccc3d27c4e485d7f0c68ffcf317486f3edc207322b46b3e33b0e029815ba10", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "b2905d0c84aaa1707648e4361335e84e1f2a4da8123745ba1a0781914131a85e", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "2be1a722a15df9a66c2d54662fa59f46de63a8759e353b41fde55622352f6974", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "c445b1eb73411e39429672af1218ab4debc4ab018722f37b90a42d6b17ac0d92", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "b846e4142ad61839120ea13a44c6649f11fea69b803fc19404a1a61635c85840", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "858e078fa2bdc359834634ab732dfd8125a2d56a3767634dbb52caa98e38a922", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "7b30375da447643569ace70877d3fa5c0f092d8caa8ba40acc495eff2273f859", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "595d992868f07bdc468303533379cacc62915f3e58615ce43608c5d99f7714fe", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "c8e94691dcac2ac4f9587ebfdb52f81bf97aa7ebff8093e75ec4f2bee000b69c", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "a9a9757e4aa4fe21a62d835a5dba8a14ee69a7e452e51d090f7a5e3102e4d159", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "d82d97f11c9336147eff437f761ab79f3f5d683247b1712c92ab2c273321f8f1", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "9377500f5473f1b805a08472cdc89f37200c43f9b571a0bc9cc6d8cdd1213364", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "dbb90cd1e728c9cdd64f9e71651a279a0e748d044a16fc4f19238da43777b54f", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "278972774c2055c860ed06ec352ec4c2b42a819dd933f48041cb34dccae0fb51", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "d4a99a50537648c2980be6d2bd322a6107adf67950700b7e61e2499ea408543c", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "67a130093e7f7691b45207a825206172fcf38aed5c9274f44ae7725f0062bc30", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "2295f4eb34a845e5a08abd5b902268142ef6114bd6cec49a871550a5c44603a1", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "2d0cdf599eeef930e9b615de8a573270075085faeb604608936a38b33808a996", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "a923939c63a413709359b653dd486a9958515ec2fea289dc05429e6e4b40081b", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "0776039a0fc2e527510b980a1a83c0319bd07433850d61bdac1ef763d80c2102", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "c5daf5c4dd637535605388186183536672ac48fe239f89318f6bafe6276995c2", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "b99929dc857bb47bd484bfa8d8afff833bb5992efceb0c86bf55d324b6d924d9", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "92392299e69a20a9c28790d8cf5bd5dfea1c2ead91ddef72e55b678b680a6dce", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "b1f7722be7bd247a9d1e10bd615a56cbd8621b30dad7b579eebe036986891c69", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "4af73dacb08d37d0908bc2af183ef0e986ea9d2ca02ef58a9ff0d3a59dc847b6", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "cfad01fe2e22d57e9658a8cc89862a960989ea559a29b726ebfab6cfe11ba398", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "993c3549ef8fee6f23e293a7136118d22f1e902a4a20f64a55a42406c75b9eba", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "aa0515886c7f80411d4a1fd7da01038e301716c56a01552096f71c5d1a7af39f", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "139363a8f008ba323f05a677faf2f007d1a29b3dc27aed8db4a2ad33e98f9ac7", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "e8c4c7b43625e073cac0adbcf1f26acaf840e96a9552774f5b379f4b429bf447", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "a0ee60c2f2896650a1467d5e5f6be3e5cda346e58194c1a63e95459eef4aa1ec", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "6d42d687b308f96c640533dc3e1b9bfd73ff69aeff2bb91417ceb3d1063bb57f", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "f1babdd7a0668220de01ca7ddd85744d6f8a6fb194394249a1ef5b69f408677b", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "c84af48cd1be2d7351dd703f9c939b36ea7a91aebbb345e1e0b6ca228b04c417", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "a0be3c763b2205d6945208bb8e24a0e08a8f2870833ce43802590cb24cfe0a55", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "847bf2f5e392bf4459090cc484f734fe0c1f48ef1920135d722198d53babe6fc", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "68548997ddcb4ba87f23c6bb0746faf90fedafd6974146397345dd4c47a952b8", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "fe5eb7b925cef4c8714aa82c151211c0f0bbe93c043138a5273716cbd34a4194", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "3e9be6cc8ffbaedd67ab88e93dac2228a1e624b2ea0514f147cc1b1dc9fc328c", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "e2844363b5c112a5ac5bf72c7ec4111c122ed3d276b6851027be386d97d7cb1c", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "202d96432cf2e7a43cb4f1aac3a8f0fc1fc383ec7094dd6471e63e5dfa5d9764", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "4872b52f7424e29ecbc3965e3806e1d311ca8e980d84588a7f82c3032489a53f", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "aef52dd460c36e5198b59bc56066a0d34aa7848a9234f9406711a99755fd2033", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "6ebe180f1334602cb6d2bb9c6cd4a2c3c645c9ad9f5cad5c3a044fb8be025953", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "1639d32705a64a9d54f354fd77d8031db4aa3764ae6f2d7253f2fd8536421112", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "2f17a79ebcd59da0c739b217606b86776fcfec8a312a58dff992e37a8e1af85f", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "c9b118d2f2316ef69b9e23cd7752969498c43e23e3965de57f5c93755138b4f1", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "bbf5a90be55b928150f9b4fff767a287848ba784f7037383d290267ba3995330", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "021f2d78bd865782fa75d25d5ad3783f088b9a14d253de45ed905caa4c5ea32b", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "346dba83a8aa669f85dabee536d5141c7c83d49794ff67a02731bd72ed9d1e70", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "aec2d31b1e4707e091ff59cb6ac428fe86fb6fcb043ebb350ff4d29e275865cb", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "5455cafeab0fc40edd2368ccd1a905bc3997c70bc0ab474261d2fa77820d1dfb", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "11feebe9fcab366cbd5a4079b644db6f0725807e2e439a78fe73a905eb1057bd", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "0be09d54fe075ee3e810b11972d580486d17bfb6b91256baa5a05d544643f792", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "8626b4b6e9dd15c6b566f776fa00365e33e72aef882920c5fd68e30786da5138", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "dadf51ffb0bd45c3f1723ca0f36ce9884194fb5df0be71dd9a587bb2dc3f555c", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "7c64aad1d2677b1906e93d4b7dcf8e5edcf2f81b1c591f6f283fdfc5204bc8ee", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "04e5eb994286e5b5a425605c8048c7d024e89b2739a49087ac7cd055d525c18f", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "02205af6a84d17bf29d2e3fa347fcd2bf1debf42433f442055312e6f4b9724c7", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "1ff022d40aa1fe055cf6f42b7a434b453102717155ce50310836cafa72792890", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "e861aa244e74c668bddd80e3ab6e0db8f421528d9716b4aa4f68ff7f7c53d3db", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "7f098c734a8cba170aa4922d54a676f802147ddcdd97153cfcfc4ef0400fdf7e", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "fcb28f17e524f1d5b3d87d2225b0c2beefc2cbeae330edab3af85421e842a3be", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "b74631a4470ffc46a5b910c425103def7f59eed625302d4c558903a589d29e5d", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "7dac26390397f80bb796d47058a0a7ebf19aa45995791f9b6fcf092e0230da73", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "e750599a4d3737894b2c023241cbcb18c40f9991983c05e7b867cd3e1c0a0da2", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "1b9688bd4b76e76524aab4ec49423f0f10df3671f0ecb56f0ade7d91712898fb", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "fb2e8fcece321199270db7fbec0249dd05cce931ed55f3c6b2e9c58fc94b5b07", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "8bd6aa33d5a391c9a81c5e91ab5db2b19ab91ec4cba40d96fdd32f7f27383abd", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "c6a0a50e099adfa12f4684edaa7a1b8df62aef3cd07f1abb037c429fd8ef9524", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "ddbe33abb060fdbe2162f918aa75bf604fceaecb881a9aa601df660b563eaa5a", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "30184f33c7bd9f68d693c343f650d492632e352ab39ba58831b031844dd23496", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "cc61d8f10de0b220553901aa5c6d33329afd099dac0e36fcc560bbbddec02a5c", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "7840e7229dab4d9d9bcc03f8604f00be7e3617a20a9682d9418806cfa2185279", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "a24dc44c60875ba5ac30c5f076c84adf15802494cbb200256df97cab232eb0e2", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "6bd063da1422255829b85600cc71fc8e3016c565fd17e16a97a219cbd4a23209", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "ea84a769f3203dd664d18669ca0905d496b7c5d45153db6418a649a44eadb2b0", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "1a42d708d5d1e215d6f1418cd48fe946b7b51cdeacb9f772f560fc0e2aa8324c", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "f02b4561944e3422b6ed9c6721d06bb8203f6038cd609d2fc4ae17ff46adfed3", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "25c4be2633f1251516e0c617041830ea940ac6d792665f46479c386af88d55f0", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "b210462d1feadb8fe5f7e9deb4c97987ef6cf85d59b24bbd5eaab2a4db3a5c31", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "a26db1c437ab3904bdeb4f1f03e236a4a22b1500b67fadb598d463ffca983f45", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "a07c45c5a69251c40943c8afe59f37b2e1018685bcb8fa97d2eabb8233ce4e0e", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "38755dd4398962a635ad075ee23689e8215178e42ba03fe6481b19d3fd3bfb36", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "e6e2adc74ebde28ab36c75c99992c735c66f370db3bb865a8e955a17dffea6c6", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "7619aaa11ab7f8230610c18b608fbd98d14b1b579db6bad88895bf0a62c54cee", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "154753ba9379fdf1b406fe8d49599a36f1edc95fe234df778aebb86232a87164", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "205d007dde839c4d039c1266fb34987876befc6a20fce5dcd3c4c5cf5093515e", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "97381b0c606127e393e7ecbd638e3d7fe3ed3fc674e5260bd5492922cc75b2a8", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "2551a3d1c9fe452e98b1cfeb7c5fe995521234446544db052dc329be96f23450", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "913fa8ccc4cb6b095e50f15eba40b5e91f7473346ec5b1b3267397e3abdebae4", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "bd96326cd05e8a23d74fcdda14cfc0e98af09c5ffc61c2e95726c2aa4ef50f27", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "ffd152476b12770c6760b9ea9ff5b11c3f6ecc810c015e57d315fd4ea1bd3f25", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "e9c097fa32c258950e586a813485127a4ec4d8f2fe3032bec9689a8fc639a43b", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "4f2da767bae9d77be877d79c9d5ea203c46d6fdcdd497507a001ac1dc6091a47", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "67a100d3f53d60cb48448b3c8ff097e030da9250812fcf4f4c5d18756da618b6", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "a08931ae8922c35e255ca267ff83cf28f9e3900b26d3dce5488b3125f46eeca3", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "bcc39740b3d202c966fdeda9bbff6367c05f92cc99f7a30263c8d6242b68aaff", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "13eb2f9534687419c35fcf5fd7315561c952da674b9c35f3f3d8b5acf1297f18", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "af48be0332f5bfc1e93133f02b23aeb6b7923651d5799f31fdeb1874fb74aa56", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "d62d69b60bb0fe5e679ece3750b2977e0fdfde91d76731067b7208e15eac9118", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "536c83084232ac62e8005114e48f0ee5130ff029bf974f63e1d5057ed1140f5d", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "3099b2af6d602bb745b43e5327298abf7632568d293bed83cf4af3a68f034c4d", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "0546299f1552a33aff7f2740ae1848e7feb47baa65138d0c06eae666a3b2afce", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "242ee60581b8c573e311d0c2dd98dbc2019d52bb31f00ac5ecc7a4f08977672f", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "d594bf7e65a17e33aed7e634fd1aedd100b5ee50898ee1e44cc77eb8aef200d3", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "a36c8146401b54b3449638027af14ef105832aecbc745f5a4be7a09b1af31ec7", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "43fae39438f40aad6b2bf030cc5edd66fd14dbab672026f2c9fc894dacd91af4", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "9e54e34e9b8405c160a8314ce893998e0d5a524ae954896148bc99f454cbe2c6", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "b5afa72eb9b76ade0d73ee34e26ac694ee29b1066930f715011d9d7184ebd00a", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "c35af310e7a330acfaf150f4dbef8107e3f16230c1d7b730f5c9ca2aedca621e", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "dc7a868c4c3ce7442680779f8dfcb7002cadcc5cf701af3afbd249af03af6a92", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "5f8ffb3a8215114bcbb9f9267ee7d055e6aa45fe173a5a753002cdbd683756c7", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "c8deab2641ddcb45412835d60679ca23258bf13180e62e5032c9a664ca0728c6", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "6465adc8a922e30c57cebaa4d315afa4b1c78819874f3a976b1a0747fc1d511a", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "b284f35c244cc4d46c0dedbb876a8b672e702427c8160ee7412d50f265f49d28", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "648574f17e68bb3db430ba9d9816a2692b58e5bae8f1c1d8a4d0f1518a563fda", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "1210d19e3b30ac9ea162d0b851f302068e9fb120d97640d875368415a764e48a", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "f334ed640e25bb6d8f2fa3144f4762c1402fdf4433c3093a1501e47971b93f3d", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "4337365966c0eaceb23876472c995545335624b431c7675092cd77f0f2904b57", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "fb9f715f77fe6af5f8334e13a2a51d6690f7eb4ed86630974160c96d4f844608", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "beeba32a16d27f7e902a39c07bfc8903148ef5204db5fd5a219e4a76afe36e22", "model": "openai/gpt-oss-20b", "resp": "D"}
+{"k": "fe2327cec3f3f1f3fbbfcd7c727bd17fd0389f109a60296d510e501e26f03e55", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "47819273aa9875264ad8e58234f9eddafc2ec6cf5fed40cce2fdbe9897ddf735", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "ded0c8540dd923ee47bf0dfac13c63c503e8688f04741fec055151bc3261e26d", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "7d6567d4f7464049f0f7adf6a9f243bad90ca48770d55360990edd0d3484f6aa", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "553a2c487022f7515e450777b3cbd0339bf2171a95891c89732a191157c717bc", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "192d323fcef1d87e4f69393b2952aa0123366e3876f9062d684b9efce16678bc", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "ce04d55904509c152d7950bcc23a3004986298f2e339a9f6a9abbe012463fe48", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "ef2ad57698fe193aaf525a54c1196952b22c27a1ec77cfaff0af6764b5b170ab", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "cd07ea19c59a0f4841cf1823f58be570f60ee0c025bdcaa720cc7ef1818c1361", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "a938892934de458aa9019902480079f07a1cc3f33f95b860c5c8c3b85bd26d24", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "f48c900344ada07a618c5eaad14344b0fe04bfe768238b1927b9808128743330", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "2260da6b7e98005d56ff29ca4038a575cc0f7eb2fa1e9cedc213837875220186", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "0eec3f9986f10a61b778f6f923790cc4e0aa3d1836f912b00e3f2e85b2753b11", "model": "openai/gpt-oss-20b", "resp": "C"}
+{"k": "77c8d608e3ed6f7c0ccfb9e686ad8df817d173b0eb370fa3dcd50a50cb269b9c", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "54ccce80aeb15c21a34892307a84d60629a434e845621dc369d03c58d47d5c67", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "8c246a15aed0a5ae3db3d5ffd1998630d8007091f9534c907b79c602f3404e02", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "ace51118af4afa66b67daf3ac998ab5680cca173580c88a64469ca94b5f8097f", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "b59e4d449b34070def412019483c1fe22764a419d439d1b2aeb570cc25d38689", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "d3ad26ecec593ab4a143af232c2fb6bb03d0edfeba704608e4bc214795f8c7d1", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "3e05293fae687b1e70839e290bd7f2f46125922a9fc6d924d091b80c2b09f357", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "eb7f97fc5429fa57ed12443e84c06afddff601f2ae5359d8052c5abed99128b5", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "f3d24e8c0311e8436e88879442c35ae6c183a8d70c11636e80a8e70072a2ccd8", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "5bb924b99b6462a928f8090dc28cb91e345a15778c39e6220c3887f33f75851d", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "cb45f9a3a2385e4fd05d061ec6aa3032133c601c249b79a868b768a2f6f6888f", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "ba11422e0fc0638eb59456998a6cd611d939951a962efb320d3c39228f77f619", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "b1f4ba44c4e3083330f1dfd5142b14d2e8139b1e82ca824f67f8c0388b55a974", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "be104b7c89ab6df2bf500c34fd51a135806c552e96179c5172a6a3664d7a69d8", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "43a9deb650a16e913e9834a7dc1b648236ebebb0e9e0f53adcb0a32576ce4dc2", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "4fd5aaf145acdb1d07c3341bded8ad5b5c71ec14aeedb868e1827859c33cd850", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "fe2fc180044a90d0ac768c7a7ea30f65f550e572b55d5e30e22d405206ef03c0", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "8605f10daad8b946d32c93820df29f23755677d60c8f1311631dc472323ced50", "model": "openai/gpt-oss-20b", "resp": "A"}
+{"k": "851f9de7e1c24e7de9d94a17b1e3d278cfe80c60c241d36ef27d066595b14a32", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "74c07dd2c11e7d0e1456c1f56c434231a6a44074a4f38f189f753ee4b9e1b648", "model": "openai/gpt-oss-20b", "resp": ""}
+{"k": "be4a6cf0dd175cf083d88346754eaf24c93ea53adae78e993c54c93ac47e85f9", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "aa3f2f963301408f4182b172d4b3254be9141eb89c66f9810a140db71fbb7117", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "dcbdfdadc5f0520432fbdc68b990adff4e4f9a6aea9581b18c9000f2b972ba21", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "2e350b177ddca5500f72157437b56f9f33129d807de688d1d37832f7ceca02c1", "model": "openai/gpt-oss-20b", "resp": "E"}
+{"k": "3a87c458d382f1a6a7fc4e58fcc49ec033772e79dfd6304969a80d324ebdfd05", "model": "openai/gpt-oss-20b", "resp": "B"}
+{"k": "7eb4604b1047e1b72b3aa055b286a2bc18db03079caf8495516401494e109918", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "2868dd53ef4d7592210b11e9991f9b110686bb50ea75afcf4d516b7185015898", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "d59cefcf791fa7aecd09c7f2fb0d60d215c39054e3ed38f0b776354a08137e9d", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "fe5824c9bbf8fdb6cacbb4578b6c5352bd56e3d48cfc3f6e59d371de2d4bb619", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "d5f5647594483f6040138dd230b9fbc97fabfccf3cac95cbe76a20a3dd39e83c", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "c9edb9fb03da9dfa10e361b32e0c616d12f5f1e70b669afbbd3e1a8a6a0720ac", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "d9e73366ea2bb7d1d2d7215d4516ccd914ba9b2f8db4408622e204602e54dd04", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "6c2cec9cd2ab5058cabe46ae7f738541ef7bfb04d34fdad83bbc7e9ee156fffc", "model": "openai/gpt-oss-20b", "resp": "FLAG"}
+{"k": "a35cc7b8b88514397b911c0e5f79ff72df36da2754d5dab189ba377185c9a678", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "819357f51687a92f406a167728e1408e970af6c47b3fc5971873bf866a05686e", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "9ac142167de39ee703c4be5ebd57167282e2761e76ed93d064799b87d6ad456d", "model": "openai/gpt-oss-20b", "resp": "FLAG"}
+{"k": "27de2dd91c95e1a0a1a8fee1be33472e452ed17c040796f50a3f35cefdc59929", "model": "openai/gpt-oss-20b", "resp": "FLAG"}
+{"k": "4ad5e14930f0a14d16c0ed6b0282c8b2f18769f8f9f1421d45583c35ebba3af2", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "3f41d628127c9daf0cdd4257ba2196d4a58985568b3647bcf0bf8fee048c1f15", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "311c41331bb706dd53b3757f7ec69dd561069c40099e899f1709a7d1ce2e5f0b", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "daf97a486581dc3c7894247a00bf39c620cb850d115bddead3f5829741927436", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "f2ffb1e6fb501b47aff08e32b45d5d2076f04ce4f9de6de7706017a6e53d4314", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "ba7b97842db475da98cec4038665244585ba5079ba575cbd9119eb929f20a7e1", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "310711a52901b90c99825b1b54aef3104617e9185bd2dc296e0b10bfe5d6e708", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "6206f16d7e248adf1457c151321e25cbb8ebcd6dd32abc6e8fed8f5aa32c4ba3", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "90875d4d0c12f2539608c84bcb33c5c1a8b7cada39efa21b231f3e7875398728", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "fe231be8d555a1117c3328b6b9709ea6371357f697ec373b9edc4b92eed2191a", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "d4a226650d49d3384e59c3caf2fae619f59e6db6c5d1f1695d2776df3b5fe16c", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "71de90ce73a3f060a5fc12391f67cf076320bcdb7925c2fbeb134d3e53e11da3", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "83c0be31b9188c5332eae917a2c837442886eb53b41913b8b8b8db8a66333daf", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "106e2ac3ffc26f748eb65e267e300e9b27290ccc3a95fb7f80487ae6c354d7df", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "d6edec4522e7e2b5c85db53d9190f78f76a5d3fcbde21db28721734dcff137b9", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "a99a5938931f4d50a59563497064d14f0ea75b462be9d2baf3304cb018fe0a97", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "b663517692695ae75098a52a3648b41c0eb86d6554988d27d0c8e238a7f35c28", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "49592972e89cb4a0f62afd3e4d5f90bc146d8fd74da53bf31da2095998c13f8a", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "8667b264664c9a2b344ce2a207ba760431365f79442f1cf11882b8a33200683a", "model": "openai/gpt-oss-20b", "resp": "FLAG"}
+{"k": "d66a13a987ca1c8f213a79c0b35d34c2b544a7047479a3ffa9998feb4fad8ff0", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "ffbeeef3c47d3649bca0d975a7c234fa33df257930d561df959f4a006cfef88e", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "85cb3518528aabc4e45c0d8470655290334c2672067a5de05932d3a5ca614d4e", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "0f045bd365f8223d867acfd42085cb9b5a76965771b930b9f9a332476095d7c0", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "5c7ef192b9c44bb070aede9bc395f8005632f4971ea955dbea1a4e04065f634a", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "9bd05119b65299e4bec33cadc183c41f303da7d844e5961147fef7f56da3cbce", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "c88a6c270f8a861e1a92c1eeb6ca9357fc7087081651f3336e03f7fbb839bfe2", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "e3e8fbbafc9ac06bfa6cf19eb979bc4f57c652ec3fb5e69ca860a2ea8f319263", "model": "openai/gpt-oss-20b", "resp": "FLAG"}
+{"k": "e261f0db65834eecdda316112249cac5782f7511a7ad2c5f08f41ac73f1b6fdd", "model": "openai/gpt-oss-20b", "resp": "OK"}
+{"k": "f35119f831c8658f769207a4be45298be77468a9e343340b1a4cd76feb6230ae", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "B"}
+{"k": "1ec7ab8cfc8a97ed317e4bb5d4a81f9fa6501488f425bd8305a432aae7b17e7a", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "C"}
+{"k": "f48deb19d0170c3530da797d0719215a8fb32171a43494fbcde9a06fedf68f44", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "B"}
+{"k": "1360c6e1bb6707fd19e9e4cdb2bc72ef01973984f06a88bd5332f14694310326", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "d07ddadac1dfb85dbf1a3425743392a1a2e73eb7c26c833c1a06ed619d070a68", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "B"}
+{"k": "390c3bf1b0aca6e938b00bc0097fabe9852eab23b0df770d61acc80ad3737197", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "C"}
+{"k": "5bf872da7af7709be1b15a314601dd1f08c49929d37ad8d2a22ea09c4d1fe436", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "9c9785759489ccfdedab9e2553f9e9a1edfaf69ff319d7f684d5ba5b735b7511", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "C"}
+{"k": "cd03a73f8735001e3ab497da551b6f1d525ada33466791a3047afed87afb3aac", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "4929e5c6e2ac8e2d76d47a44ad7e424613061cfe927efe56b0b38fa5b77d3a94", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "B"}
+{"k": "8ce0a9c68ebdcf1c0fec905bacd47e2a59e25e613eaa968519ca8af62a0e0d54", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "B"}
+{"k": "9834581b253be94051fce2f3fb775ad056b062b8ff179d5e33b56cff0bc03743", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "B"}
+{"k": "87ab3d0b62416eb19ea89a6c116d2f6d7c5a7a372f847f07949e484b2367cf84", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "B"}
+{"k": "9f6b3502baa0a04efecff1d74b5b02aef751085c7eb8a2e46f2de5fd7883cc51", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "C"}
+{"k": "709e361b0c4d616889b82139d552ed18d36c7b7beb5278fe2794202e527de1e9", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "e8f3806971976f81c9b6ae3c655a97a814e7785294f117f28fcf1bd9fd03a326", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "D"}
+{"k": "3d3c510961c9e2ab52c19711d986020130ca5248ac8b50e26e6c9976fbd40fc4", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "C"}
+{"k": "9a017f1d32f9ea23fc85e415f77dd082ea68b30099fa795888c1cc68243959e9", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "C"}
+{"k": "467df6201e36dbb37d1ebecbae2a8e6c97134fb861c7aa21819f9e4510db821d", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "D"}
+{"k": "11eb44edebe69101fc5ba52a64ab3a4fdac5729ba0879b297b42d315381286c7", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "C"}
+{"k": "98dfc0ba857a5bfb13df428990a23d3e37984e82e072b37d8db49a9b312eedb0", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "D"}
+{"k": "c91b4475be2d3f84f5f27d37ead25e030c84f1dfc1837c484988df2bbcf02d29", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "6059aa03079718cf3e8d8f4f1efbe0de8c0bd7608ad7a5a9a1667738749f5abc", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "C"}
+{"k": "d360ea1031ba369570d2dc26dca28071ef86e5026133eff90ae02f35d76a904b", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "C"}
+{"k": "af380469ece4aeb72f7eda7e58aa9bda2a72ead3f00bbcca2f08ea7ad6c1c5dd", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "C"}
+{"k": "5bbe7bb9cb0b12e97b35f507dae998226b3357fcd178395804577c5de645fe13", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "3265e124d556d06bfabb655053fc4aef5ff03183c610af254eeb187b33b5ba15", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "813bf96d40bf9ef7013754fdffbf8cc9e8ab4c77f739d5ddd883bc0cf03453ff", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "D"}
+{"k": "11228e7634650028d6281dcf2bc166fe06738ce73cc43baa85e7e100a0216538", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "D"}
+{"k": "ad5cd3230dd46cada7d8bbe4aa48da44bc42a271da5ae404a5cd8234fb018327", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "3823afb4a6a9e9a00482142a286ec44a080f77931c84ea919b4319976ac4fb58", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "D"}
+{"k": "0e5e79c9fe2c987e839edd2211051df3076764964981c3cf9b35628d26f49baf", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "81dae2ffb3670a958582087f8125230260d0e53742ab3ee7ff8a4e3de2033840", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "B"}
+{"k": "a1a6b83d0e7c240d4afc2f8c330c5478ae10ed9cfc880a5dcc8ba918c121f7e3", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "b7959f406f436a08719a25f59da78139dd57aef91d8c13f53ad449caaa13eab5", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "D"}
+{"k": "beda4a8075ccfdb1d1d15368574f0e7886298705f27ed07c5b776695a2db66c4", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "B"}
+{"k": "4d41ee63053c244b026b6c3eb7ebfcf020099e3db91e85a0384335713616bac2", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "B"}
+{"k": "5d8a7dcafd4f18643c48ff16a130c3ba1bfcea50cfaef6470786cff1e9233706", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "B"}
+{"k": "46e5f78096fd1659c6a42dc384e65eded09824159571a61415e68fe4d99cdbc4", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "9567a5a8839636caf1e1c63187f3f7274ea5fa4f54e7d62533d5a61917659093", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "D"}
+{"k": "fe67d5b3336bf4d9a1ba2a357b2bd64d441aa33ae855f7fc8c1256caf06c6c45", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "f8e374e8730c1ae7fa3a3e4b41be6f2921054816802bd639a2bce2583c068b64", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "D"}
+{"k": "f3090854a57b00125fd06b06eb222659288a5d444fe82d4ce18f852f04c902e1", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "D"}
+{"k": "48415633f53f23e8bb62c66e1b8058daad11e56973058768e38c3d4e8d4e2ba1", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "D"}
+{"k": "3c5931505700bfe715f5958a4b469250f84d15d7255294078e25d6c93c923e80", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "8f51f6f3641967f44ba24c94e51ca1d1901c0e9651f3ebf43ca199eb59422f26", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "D"}
+{"k": "e3fbb7f6b648313b6ea56d73e2bf68313dbd86cae333c820bca5ec6cd3cbe36d", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "ba9a7696b196df31c106673ceef600f21d64da8fd22b8434122fa54590015c1d", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "D"}
+{"k": "a8af05373599ab223052693d0a88c163cb774184f472a5f48341b27f8d09f131", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "5753e7f27bc1825cdfdd4e7fef859e817f2efd2c94bd49d0472f11417a88f02f", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "D"}
+{"k": "a44f77e3d7f76fabe5ead96c252421147ca13edb36c9a1ed1b361ea95e6ae435", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "c2904a7e2e873229ee2ffdb2693e996a555fa9992315d64d7d2cf4f1dd427224", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "C"}
+{"k": "ce7d4f48558c123370326653a1d94c48819386dfb85ddcffe230e8284202562a", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "B"}
+{"k": "f0667c8f7da2e2469e50726d04d5a1edf18072f6c10840d8441065d1bc19d656", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "50a3e7df7518d9e72520a7e490e959799fba0c733d8d2b820dc912103352343f", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "B"}
+{"k": "487f2f8a7e9f1a34f1b76fba08176286373276a1520460c9cf04d109f555be05", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "B"}
+{"k": "c3e07cb0cfe670f502abb3ff41215f48f681b5777be4d0ee744106ec88651149", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "e7a1fa98b5915f9d5170203d16d9d7812dd33cad74a73342483516a8aa7b68e1", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "C"}
+{"k": "1af3058965a649b47a76cfd5b5d41a1591c5a8b6fdd23da086fe82a08cc97ef1", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "C"}
+{"k": "fc00d11365cb01759b159692e58849ffd27d8586875152342a6c21fb6eadfbe2", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "C"}
+{"k": "f5f6887262d50c39a52c6a68d7cad51f1b9ec5ba1dc5ef069d08c4b7569616ea", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "C"}
+{"k": "ea7c1d5ac58a2bcf4872e0ea276af8f19fed3defbc7f1f4a73a60c417ffbe026", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "C"}
+{"k": "9815870eba2e9986629ed1b5f84d83b7a19499988f9b8d00a91bddf6117d2f44", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "f2c833f000467b3a1f6e9df2c92fa49344027602a46fa5fe44dd4a55a1c4d694", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "e3d0d3ceaf120a37abb0189f90bc95e8f51cdbd5587edda53c3ce6d5d34f4bed", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "D"}
+{"k": "224b6d56a184f175633fba831163cdc92c92af53a2a659aeeae491b32bf17463", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "3e1e4e508bede10b3b797a2843b4750750564b8b0a2d08cab667e9c6846afb9d", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "7e567d9fe4a7029a1da724e92fdefdebdb4e1f0af8b94a320ffbcb87a89ee338", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "66d65ec0ac17870c6ea5738c94db995a0f2d4eb129851b8b9e4d3d22335aeaa3", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "D"}
+{"k": "77b9ded377ee7b78aa5d92db8787726eaca1e4116f91a8f7d91c329ae5e56a26", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "de2da66a419974ad9369e890e3c238a05d56e7ff33cafc35b118f6ee8c0a82da", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "742045b9dabbfdc8db0d7b388229dbc5d4e86327f03a62af10cb1e32895dce28", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "D"}
+{"k": "af371f637a89d16365053e595b1f8c6378c7de25e25a983bec827a76ac90c3fb", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "0f9b17c98517c52b00ae9a6dda20eca11cac498694d0e263c1ed894434fa009a", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "17922100eb520b83a5be0086c40e2373ab4a448d19b2cf3ff6acc6bae34e8cc5", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "1e30da05bd30103eda077d09de269946392dfda8d837bdfe647ae4107bb89a82", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "8d80e491e0ef32d07d8cd57e5699fe3ad9fd1f61fd3654727490c4871dc1acd1", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "5fcb417cea6aa1b68339d3438a58d8d01d30b38e596cb3a7e5af9b72c34b83a8", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "f58e531d58a813e5f488301be8064a739b8f202f43d441b231093fa78d2e0101", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "f81b502fa40c1969e7f9d799ecd538ad753b9fc7206d8c570f5f59f4c52635ef", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "6b9d3c5b264962414a8d46834a8d3115cf2ddfd56fcf8f472c2f3c82e45b97dc", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "83bb9a32ccc128f86b76a050d447fec6bacbeb4dd28c3e9d48c7e2f510f15f14", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "ee70b664a9d8c27af8a6f27a68689a2c733acc6f955af1179c7d1a2647f29671", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "b1399ac0223172750ad6ed6b601ec4ee8713961f4fd146257e18fd2d184c23fc", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "4256137cda30e212b39a1145e4e9985ae55836a7ae732e59b25d9ec6dac0c0e2", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "D"}
+{"k": "4079bb629e8b6ee9438d3cf66fab3dae040ff51fd9c61796845c73a4d3f28a66", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "693cb6c250833d5adb29dd7b32cdc49bf9483696fad92215993f48e30e884d9f", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "63a22d31073842c0d05d4ab0c80159e0f4c854425ca00f2aafdc3b350992d889", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "D"}
+{"k": "c28019369cb8dc1e575202a7e8f8d9adf10f92cd56e1e8916cc50c84b80ddcb3", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "b617ce08be00962f0214142ff03780e77cf08525b4d1fa37226a01c2068b4215", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "D"}
+{"k": "bd1e80969c03abd5ffdeef1e3d9313d207eaac34813bf9aceb74dfeedc43914c", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "2451e136d8c848ad7af4a5af36d2e657961f27f1cb95cdebbe124b5499cd6d58", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "3d88d7d9786ccc4307f166a65635db2d831c523f58feb07f0571111aa952eb45", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "97b77a5ce434c42ba5b0367ed227a0e159b79d776d20a044023bca144925f8c8", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "7d6f5453a9eb685424cc7f2ce715ff776fd655d6974b419d17bc24c2c57679bb", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "87b0ddc082bbbc445a441fcca29510cd7862f2dbf1da70d70ba55daf118c3ed2", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "afc06927cb2bb874293a32c47a4dd02c9e9521cd37c112c4002e0f3cc6ade264", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "C"}
+{"k": "c75d1867a760042e83b0c5bb6290251c24231d11e5051a97ef6f5997972b9ffa", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "C"}
+{"k": "1c784bfeca1bc0f7d5949aaab9cdf5721e75f3a464e5d43d2f8e27e6b4d97038", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "24453a3663bc8265272ef01d7d0a3e43f307dcc13bfec917c4418ed8b2e8fa3f", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "731129dd70243af9a2919b1d206ca6164cfffa1c72dcab8b5983bd8967c42a77", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "b8a903f93866c978e790aa5bdbf82042feee52cc1edce457003e62afe699b292", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "9eb956a66819f4bc50f4488f99408c9ada7ef9a11bad294ff961dbc347f1628c", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "d157218c6576c2773a314a65e26a4849081854c7885011c15f337b37ec99973b", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "B"}
+{"k": "8fa3b78cd6ff48b9532dc44a87eedb759793fae63b1209f27f46399729614f5d", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "B"}
+{"k": "5d394096d44f009f0b648a9bf198c27f02ecfd8b86b6438a52764e75447fd69e", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "d41f54effd2517691c4a5c5ad12005e90c658946fc5280d112c5bccb75ee83d1", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "cc75ea553f5715e62f04f27492f177386983c004ab521ad909b399c3f0e0c7e0", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "e9e659b0a8049b6a92f5366a0c1dee22e133df1a3a160ae47e291554ac00a25e", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": ""}
+{"k": "c78a94fc44fd1c6bab66ce81ff5204f727891c21f56418ad44e038ee91150062", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "0efbb22fb0680085a293fe9f87ee5f042712a88c2a471daefdda284aec40d2ac", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "ba6e82bb5504ba543e606ebd23df4f26298f1078c3a0667b8d464e2bb1a60fd1", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "0eff61c668df61f15101c4066b1e9438043ea9d5b5b1c0c631f2ea7e012b1fdf", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "a4fb5825edf6382eebe2bbf51273b7ec383cc32b7f8645ca7dd5f147f455bf7b", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "fc73cb93fc95103317c524f9ba9c4ab6d9b52be654551ada3ca063869acbf420", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "81eccad3528b8aa062db9b041c05f3fcdba6309d16d5a812444d101cbc477efe", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "a65c21bec771e2c24a089484a679f7d7b8fb73828c8525c6a84fc0e16be5973e", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "a98c2c2567794ce104608e453f33455bb83fe9269e5d4949eab89a69c3867cab", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}
+{"k": "f4e1f0536caf3ee87959dfad1528f727850d6a51b0fb1d8310383e39d4f1f874", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "A"}
+{"k": "52cc5d6d06a3eccf9c9ad4d9af5474ac59ccf15f820e1a5bd9dd3f5e0de9170a", "model": "openai/gpt-oss-20b", "temperature": 0.0, "resp": "E"}

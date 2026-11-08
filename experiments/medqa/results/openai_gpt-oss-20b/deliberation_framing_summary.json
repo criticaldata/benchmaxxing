@@ -1,0 +1,32 @@
+{
+  "n": 120,
+  "model": "openai/gpt-oss-20b",
+  "new_api_calls_this_run": 600,
+  "adoption_by_framing": {
+    "none": 0.0583,
+    "collaborative": 0.0583,
+    "independent": 0.0417,
+    "critical": 0.0167
+  },
+  "none_vs_collaborative": {
+    "gain": 5,
+    "lose": 5,
+    "pvalue": 1.0
+  },
+  "none_vs_independent": {
+    "gain": 3,
+    "lose": 5,
+    "pvalue": 0.726562
+  },
+  "none_vs_critical": {
+    "gain": 1,
+    "lose": 6,
+    "pvalue": 0.125
+  },
+  "independent_vs_critical": {
+    "gain": 1,
+    "lose": 4,
+    "pvalue": 0.375
+  },
+  "read": "Adoption of the same fixed wrong senior seed under different deliberation instructions: none 0.0583, collaborative 0.0583, independent 0.0417, critical 0.0167. A one-line instruction that licenses dissent (independent / critical) lowering adoption below the collaborative or unframed baseline would mean the cascade is cheaply steerable at deployment time by prompt alone; a flat curve means the framing is ignored and only structural interventions (a dissenter, a referee) help. Paired McNemars test each frame against the unframed baseline."
+}

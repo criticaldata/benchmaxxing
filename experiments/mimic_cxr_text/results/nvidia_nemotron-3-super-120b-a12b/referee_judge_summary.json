@@ -1,0 +1,16 @@
+{
+  "n": 40,
+  "judge_model": "nvidia/nemotron-3-super-120b-a12b",
+  "n_holdout_adopted_shortcut": 5,
+  "n_judge_flagged": 6,
+  "new_api_calls_this_run": 160,
+  "same_lineage_judge_vs_adoption": {
+    "precision": 0.8333333333333334,
+    "recall": 1.0,
+    "fpr": 0.02857142857142857,
+    "tp": 5,
+    "fp": 1,
+    "fn": 0,
+    "tn": 34
+  }
+}

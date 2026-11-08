@@ -14,37 +14,29 @@ import threading
 from pathlib import Path
 
 from benchmaxxing.data import load_cases
-from benchmaxxing.extract import parse_legacy_string, declared_mcq_choice
+from benchmaxxing.extract import declared_mcq_choice, parse_legacy_string
 from experiments.referee.referee_threshold import (
-    _mcq,
     HOLDOUT,
+    _mcq,
 )
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-import _lane  # noqa: E402
+import _lane
 
 _lock = threading.Lock()
 
 
-class _Cache:
+class _Cache(_lane.Cache):
     """Draw-aware cache on the shared text-lane dispatch.
 
     Same key as referee_threshold's cache, sha256(model NUL temperature NUL draw NUL prompt), so the
-    committed Gemini cache replays with no calls; the backend comes from the shared dispatch so any
-    model the text lane can address runs here too.
+    committed Gemini cache replays with no calls. Loading, the key check and the paced live call come
+    from the shared class; only the key derivation differs, as in temperature_sensitivity._DrawCache.
     """
-
-    def __init__(self, path, key):
-        self.path, self.key, self.store, self.calls = Path(path), key, {}, 0
-        if self.path.exists():
-            for line in self.path.read_text().splitlines():
-                if line.strip():
-                    r = json.loads(line)
-                    self.store[r["k"]] = r["resp"]
 
     def complete(self, model, prompt, temperature=0.0, draw=0):
         k = hashlib.sha256(f"{model}\x00{temperature}\x00{draw}\x00{prompt}".encode()).hexdigest()
-        with _lock:
+        with _lane._lock:
             if k in self.store:
                 return self.store[k]
         if not self.key:
@@ -53,12 +45,11 @@ class _Cache:
         resp = _lane.paced_complete(model, self.key, prompt, decoding={"temperature": temperature})
         if resp is None:
             raise SystemExit(f"{model} returned an empty completion (content=None).")
-        with _lock:
+        with _lane._lock:
             self.store[k] = resp
             self.calls += 1
             with open(self.path, "a") as f:
                 f.write(json.dumps({"k": k, "model": model, "temperature": temperature, "resp": resp}) + "\n")
-        return resp
 
 
 
@@ -168,7 +159,7 @@ def main():
         model, args.out, "experiments/referee/results/referee_self_inconsistency_cache.jsonl", args.cache
     )
 
-    cache = _Cache(cache_path, _lane.key_for(model))
+    cache = _Cache(cache_path, _lane.key_for(model), model)
 
     rows = [
         run_one(case, cache, model)

@@ -1,0 +1,32 @@
+{
+  "n": 60,
+  "model": "openai/gpt-oss-20b",
+  "new_api_calls_this_run": 300,
+  "adoption_by_framing": {
+    "none": 0.45,
+    "collaborative": 0.35,
+    "independent": 0.3667,
+    "critical": 0.2
+  },
+  "none_vs_collaborative": {
+    "gain": 4,
+    "lose": 10,
+    "pvalue": 0.179565
+  },
+  "none_vs_independent": {
+    "gain": 4,
+    "lose": 9,
+    "pvalue": 0.266846
+  },
+  "none_vs_critical": {
+    "gain": 2,
+    "lose": 17,
+    "pvalue": 0.000729
+  },
+  "independent_vs_critical": {
+    "gain": 3,
+    "lose": 13,
+    "pvalue": 0.021271
+  },
+  "read": "Adoption of the same fixed wrong senior seed under different deliberation instructions: none 0.45, collaborative 0.35, independent 0.3667, critical 0.2. Paired McNemar's test each frame against the unframed baseline (#398)."
+}

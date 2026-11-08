@@ -1,0 +1,69 @@
+{
+  "n": 120,
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "skipped_no_committed_bare": 0,
+  "new_api_calls_this_run": 646,
+  "adoption_by_condition": {
+    "none": 0.4083,
+    "hidden": 0.1167,
+    "open": 0.15
+  },
+  "declared_adoption_by_condition": {
+    "none": 0.4083,
+    "hidden": 0.1167,
+    "open": 0.15
+  },
+  "undeclared_by_condition": {
+    "none": 0,
+    "hidden": 0,
+    "open": 2
+  },
+  "median_len_by_condition": {
+    "none": 1,
+    "hidden": 1,
+    "open": 3550
+  },
+  "finish_reason_counts": {
+    "none": {
+      "stop": 120
+    },
+    "hidden": {
+      "length": 2,
+      "stop": 118
+    },
+    "open": {
+      "stop": 120
+    }
+  },
+  "reasoning_content_present": {
+    "none": 0,
+    "hidden": 120,
+    "open": 0
+  },
+  "unseeded_accuracy_by_condition": {
+    "none": 0.7917,
+    "hidden": 0.925,
+    "open": 0.875
+  },
+  "median_unseeded_len_by_condition": {
+    "none": 1,
+    "hidden": 1,
+    "open": 3202
+  },
+  "none_vs_hidden": {
+    "gain": 1,
+    "lose": 36,
+    "pvalue": 0.0
+  },
+  "hidden_vs_open": {
+    "gain": 10,
+    "lose": 6,
+    "pvalue": 0.454498
+  },
+  "none_vs_open": {
+    "gain": 4,
+    "lose": 35,
+    "pvalue": 0.0
+  },
+  "read": "Adoption of the same planted wrong answer with reasoning in no channel, a hidden channel, or the answer channel, within each model. Read adoption against unseeded accuracy in the same cell: a cell whose accuracy collapses is a model that cannot answer without reasoning, not one that resists the seed. If adoption tracks the channel within a model, the cross-lineage cascade gap is a response-policy difference rather than a susceptibility one."
+}

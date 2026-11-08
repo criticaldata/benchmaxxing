@@ -1,0 +1,19 @@
+{
+  "new_api_calls_this_run": 200,
+  "by_model": {
+    "openai/gpt-oss-20b": {
+      "n": 100,
+      "full_accuracy": 0.83,
+      "q_only_accuracy": 0.2,
+      "options_only_accuracy": 0.27,
+      "options_only_chance": 0.2,
+      "options_only_above_chance": 0.07,
+      "per_record_flip_rate": 0.1233,
+      "ever_flipped_rate": 0.22,
+      "flip_rate_when_baseline_correct": 0.1205,
+      "flip_rate_when_baseline_wrong": 0.7059,
+      "flip_correct_vs_wrong_fisher_p": 2.163231169714029e-06,
+      "flip_correct_vs_wrong_or": 0.05707762557077625
+    }
+  }
+}

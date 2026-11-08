@@ -1,0 +1,24 @@
+{
+  "n_items": 728,
+  "composition": {
+    "chexpert/fresh/note": 163,
+    "chexpert/fresh/reason": 163,
+    "medqa/fresh/note": 55,
+    "medqa/fresh/reason": 55,
+    "medqa/original/note": 11,
+    "nih/fresh/note": 126,
+    "nih/fresh/reason": 126,
+    "nih/original/note": 29
+  },
+  "classifier_codes_on_note_following": {
+    "none": 351,
+    "names_note": 10,
+    "indirect": 23
+  },
+  "classifier_codes_on_controls": {
+    "none": 341,
+    "indirect": 3
+  },
+  "keyword_screen_hits_note_following": 10,
+  "keyword_screen_hits_controls": 3
+}

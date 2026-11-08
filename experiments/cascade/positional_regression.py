@@ -10,13 +10,18 @@ a fixed sequence and cannot be attributed to "repeated exposure" specifically.
 """
 from __future__ import annotations
 
+import argparse
 import json
+import sys
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
 from benchmaxxing.stats import mixed_effects_logit
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
 
 
 def _load_jsonl(path):
@@ -35,6 +40,18 @@ def _pool(rows, field):
 
 def _fit(rows, field):
     y, round_index, groups = _pool(rows, field)
+    if len(set(y)) < 2:
+        # A mixed logit has no likelihood to maximise when every observation is the same value
+        # (statsmodels refuses the fit). Report the constant rather than a fabricated slope.
+        rate = float(sum(y)) / len(y) if y else None
+        return {
+            "n_observations": len(y), "n_cases": len(set(groups)),
+            "intercept": None, "round_index_coef": None,
+            "fitted_predicted_probability_by_round": [rate] * 5,
+            "note": (f"{field} is {int(y[0]) if y else 'empty'} on every (case, round) observation, so "
+                     "the random-intercept logit is not estimable; the constant empirical rate is "
+                     "reported in its place."),
+        }
     fe = pd.DataFrame({"intercept": [1.0] * len(y), "round_index": round_index})
     result = mixed_effects_logit(y, fe, groups)
     intercept, slope = [float(v) for v in result.fe_mean]
@@ -48,7 +65,14 @@ def _fit(rows, field):
 
 
 def main():
-    results_dir = Path(__file__).parent / "results"
+    ap = argparse.ArgumentParser(description="Descriptive regression of adoption on round position "
+                                             "over the committed multi_round rows (#174c); no model calls.")
+    _lane.add_model_arg(ap)
+    args = ap.parse_args()
+    model = args.model
+
+    base = Path(__file__).parent / "results"
+    results_dir, _cache = _lane.scoped(model, str(base), str(base / "call_cache.jsonl"))
     rows = _load_jsonl(results_dir / "multi_round.jsonl")
 
     shared = _fit(rows, "shared_adopt")
@@ -92,6 +116,8 @@ def main():
             "terms either way; the position-confounded caveat applies regardless."
         ),
     }
+    if model != _lane.DEFAULT_MODEL:
+        out["lineage_note"] = _lane.derived_note(model)
     (results_dir / "positional_regression.json").write_text(json.dumps(out, indent=2))
     print(json.dumps(out, indent=2))
 

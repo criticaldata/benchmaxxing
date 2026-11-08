@@ -1,0 +1,25 @@
+{
+  "nvidia/nemotron-3-super-120b-a12b": {
+    "total_calls": 1800,
+    "abstention_rate": 0.0056,
+    "flip_rate_excl_abstentions": 0.1101,
+    "n_valid_pairs": 1790,
+    "per_cue": {
+      "longest_option": {
+        "flip_rate_excl_abstentions": 0.1005,
+        "abstention_rate": 0.005,
+        "n_valid_pairs": 597
+      },
+      "option_order": {
+        "flip_rate_excl_abstentions": 0.0673,
+        "abstention_rate": 0.01,
+        "n_valid_pairs": 594
+      },
+      "lexical_overlap": {
+        "flip_rate_excl_abstentions": 0.1619,
+        "abstention_rate": 0.0017,
+        "n_valid_pairs": 599
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "n": 40,
+  "judge_model": "openai/gpt-oss-20b",
+  "n_holdout_adopted_shortcut": 8,
+  "n_judge_flagged": 9,
+  "new_api_calls_this_run": 160,
+  "same_lineage_judge_vs_adoption": {
+    "precision": 0.8888888888888888,
+    "recall": 1.0,
+    "fpr": 0.03125,
+    "tp": 8,
+    "fp": 1,
+    "fn": 0,
+    "tn": 31
+  }
+}

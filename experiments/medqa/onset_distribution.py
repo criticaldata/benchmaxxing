@@ -19,10 +19,14 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
 from benchmaxxing.onset import cascade_onset
 from benchmaxxing.transcript import load_transcript
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
 
 
 def _cascade_series(transcript, seed_answer, evidence_answer):
@@ -50,7 +54,9 @@ def _case_onset(transcript):
     non_seed_committed = [v for k, v in transcript.committed.items() if k != seeded_turns[0].agent_id]
     if not non_seed_committed:
         return None, seed_answer, None
-    evidence_answer = max(set(non_seed_committed), key=non_seed_committed.count)
+    # ties on the count are broken by option text, not by set iteration order, so the report is
+    # the same on every run (string hashing is randomised per interpreter)
+    evidence_answer = max(sorted(set(non_seed_committed)), key=non_seed_committed.count)
 
     series, turn_indices = _cascade_series(transcript, seed_answer, evidence_answer)
     idx = cascade_onset(series, min_size=1)
@@ -67,9 +73,13 @@ def main():
         help="results dir with cascade_results.json and transcripts/ (default: the MedQA lane)",
     )
     ap.add_argument("--label", default="MedQA", help="dataset label for the report text")
+    _lane.add_model_arg(ap)
     args = ap.parse_args()
+    model = args.model
 
-    results_dir = Path(args.results_dir)
+    # The default model keeps the lane's committed paths; another model reads cascade_results.json
+    # and transcripts/ from its subdirectory of --results-dir and writes its summary there.
+    results_dir = _lane.scoped(model, args.results_dir, str(Path(args.results_dir) / "call_cache.jsonl"))[0]
     transcript_dir = results_dir / "transcripts"
     summary = json.loads((results_dir / "cascade_results.json").read_text())
     case_ids = [c["case_id"] for c in summary["per_case"]]
@@ -134,6 +144,8 @@ def main():
         "Contagion for this arm is the shared-minus-isolated adoption gap already in "
         f"cascade_results.json (contagion {contagion}, shared {shared}, isolated {isolated})."
     )
+    if model != _lane.DEFAULT_MODEL:
+        out["lineage_note"] = _lane.derived_note(model)
     (results_dir / "onset_distribution.json").write_text(json.dumps(out, indent=2))
     print(json.dumps(out, indent=2))
 

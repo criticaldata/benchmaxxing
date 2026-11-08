@@ -36,21 +36,16 @@ def served_locally(monkeypatch):
 
 
 def test_a_local_server_captures_open_weights_ids_and_no_committed_comparator(served_locally):
-    """A local server captures this lane's open-weights id and never a vendor-hosted comparator.
+    """Only an open-weights id with no vendor endpoint here is served locally.
 
-    An earlier version of this test asserted the opposite for the nemotron id, on the reasoning
-    that an open-weights comparator could also be served on the machine and routing it elsewhere
-    would be surprising. That is superseded: the id reaches a vendor endpoint in this repo and its
-    committed cache is what a cross-lineage comparison rests on, so a shell serving these weights
-    locally must not answer a cache miss for it from the wrong model. HOSTED_PREFIXES is kept
-    identical to the other text lane's copy of the module, so consolidating them is a no-op.
+    The nemotron id is a committed comparator arm served by NIM; a shell with a local vLLM
+    configured must not quietly answer a cache miss for it from a different model behind the same
+    id. Gemini and DeepSeek reach their vendor through its own SDK path and never move either.
     """
-    assert _lane.HOSTED_PREFIXES == ("nvidia/",)
     assert _lane.is_local(OPEN_WEIGHTS)
     assert not _lane.is_local(NIM)
     assert not _lane.is_local(GEMINI)
     assert not _lane.is_local(DEEPSEEK)
-    assert _lane.interval_for(NIM) > 0
 
 
 def test_unset_variable_leaves_every_model_on_its_vendor_endpoint(monkeypatch):
@@ -117,18 +112,18 @@ def test_a_miss_without_a_local_server_still_names_the_vendor_variable(tmp_path,
     assert "NVIDIA_API_KEY" in str(exc.value)
 
 
-# The blind-metric lane carries its own copy of the key and backend dispatch, so the same variable
-# has to reach that copy too, on the same terms.
+# The blind-metric lane goes through the shared dispatch; these tests pin that its public names are
+# the shared implementations and honour the same variable.
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "experiments" / "blind_metric"))
 import blind_metric  # noqa: E402
 
 
 def test_the_blind_metric_lane_honours_the_same_variable(monkeypatch):
-    monkeypatch.setattr(blind_metric, "LOCAL_BASE_URL", LOCAL)
+    monkeypatch.setattr(_lane, "LOCAL_BASE_URL", LOCAL)
     assert blind_metric._is_local(OPEN_WEIGHTS)
+    # A NIM house id is a committed comparator and is never redirected to the local server.
+    assert not blind_metric._is_local("nvidia/nemotron-3-super-120b-a12b")
     assert not blind_metric._is_local(GEMINI)
-    # This copy must not disagree with _lane on a vendor-hosted id (HOSTED_PREFIXES).
-    assert not blind_metric._is_local(NIM)
     assert blind_metric._key(OPEN_WEIGHTS) == "not-needed"
     backend = blind_metric._backend(OPEN_WEIGHTS, blind_metric._key(OPEN_WEIGHTS), client=_Stub())
     assert backend.base_url == LOCAL
@@ -137,7 +132,7 @@ def test_the_blind_metric_lane_honours_the_same_variable(monkeypatch):
 
 
 def test_the_blind_metric_lane_keeps_vendor_routing_without_the_variable(monkeypatch):
-    monkeypatch.setattr(blind_metric, "LOCAL_BASE_URL", "")
+    monkeypatch.setattr(_lane, "LOCAL_BASE_URL", "")
     assert not blind_metric._is_local(OPEN_WEIGHTS)
     assert blind_metric._backend(OPEN_WEIGHTS, "nvapi-test",
                                  client=_Stub()).base_url == blind_metric.NIM_BASE_URL
@@ -196,9 +191,11 @@ def _load_chexpert_copy():
 
 chexpert = _load_chexpert_copy()
 
+# blind_metric delegates to _lane (its _is_local, _key and _backend are _lane's), so the server it
+# sees is _lane.LOCAL_BASE_URL: its entry patches _lane and checks blind_metric's own names.
 _COPIES = {
     "_lane": (_lane, _lane.is_local),
-    "blind_metric": (blind_metric, blind_metric._is_local),
+    "blind_metric": (_lane, blind_metric._is_local),
     "chexpert": (chexpert, chexpert._is_local),
 }
 
@@ -251,7 +248,7 @@ def _gray():
 
 
 def test_a_prefixed_id_reaches_the_local_server_without_its_prefix(tmp_path, recorded, monkeypatch):
-    for module in (_lane, blind_metric, chexpert):
+    for module in (_lane, chexpert):  # blind_metric reads _lane's server
         monkeypatch.setattr(module, "LOCAL_BASE_URL", LOCAL)
 
     lane_cache = _lane.Cache(tmp_path / "lane.jsonl", _lane.key_for(LOCAL_ID), LOCAL_ID)
@@ -266,7 +263,7 @@ def test_a_prefixed_id_reaches_the_local_server_without_its_prefix(tmp_path, rec
 
 def test_a_prefixed_id_keeps_its_prefix_in_cache_keys_and_output_paths(tmp_path, recorded,
                                                                         monkeypatch):
-    for module in (_lane, blind_metric, chexpert):
+    for module in (_lane, chexpert):  # blind_metric reads _lane's server
         monkeypatch.setattr(module, "LOCAL_BASE_URL", LOCAL)
     expected_key = hashlib.sha256(f"{LOCAL_ID}\x00p".encode()).hexdigest()
 
@@ -297,7 +294,7 @@ def test_a_prefixed_id_with_no_local_server_exits_and_never_reaches_the_vendor(t
     NVIDIA key and endpoint, so this request went to the hosted service under an invalid name.
     """
     monkeypatch.setenv("NVIDIA_API_KEY", "nvapi-test")
-    for module in (_lane, blind_metric, chexpert):
+    for module in (_lane, chexpert):  # blind_metric reads _lane's server
         monkeypatch.setattr(module, "LOCAL_BASE_URL", "")
     # A local/ id never resolves a vendor key, whatever the environment holds.
     assert _lane.key_for(LOCAL_ID) is None
@@ -376,7 +373,7 @@ def test_every_dispatch_copy_gives_a_local_server_the_long_timeout(tmp_path, mon
             return "yes" if image is not None else "B"
 
     monkeypatch.setattr(_lane.gateway, "LocalOpenAICompatibleBackend", _Capture)
-    for module in (_lane, blind_metric, chexpert):
+    for module in (_lane, chexpert):  # blind_metric reads _lane's server
         monkeypatch.setattr(module, "LOCAL_BASE_URL", LOCAL)
     _lane.backend_for(LOCAL_ID, "k")
     blind_metric._backend(LOCAL_ID, "k")

@@ -1,0 +1,32 @@
+{
+  "n": 120,
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "new_api_calls_this_run": 600,
+  "adoption_by_framing": {
+    "none": 0.4083,
+    "collaborative": 0.45,
+    "independent": 0.1417,
+    "critical": 0.125
+  },
+  "none_vs_collaborative": {
+    "gain": 11,
+    "lose": 6,
+    "pvalue": 0.332306
+  },
+  "none_vs_independent": {
+    "gain": 2,
+    "lose": 34,
+    "pvalue": 0.0
+  },
+  "none_vs_critical": {
+    "gain": 1,
+    "lose": 35,
+    "pvalue": 0.0
+  },
+  "independent_vs_critical": {
+    "gain": 6,
+    "lose": 8,
+    "pvalue": 0.790527
+  },
+  "read": "Adoption of the same fixed wrong senior seed under different deliberation instructions: none 0.4083, collaborative 0.45, independent 0.1417, critical 0.125. A one-line instruction that licenses dissent (independent / critical) lowering adoption below the collaborative or unframed baseline would mean the cascade is cheaply steerable at deployment time by prompt alone; a flat curve means the framing is ignored and only structural interventions (a dissenter, a referee) help. Paired McNemars test each frame against the unframed baseline."
+}

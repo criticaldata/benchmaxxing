@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 150" width="720" height="150" role="img" aria-label="benchmaxxing">
+<style>
+ .t{transform-box:fill-box;transform-origin:50% 100%}
+ .t1{animation:f1 6s cubic-bezier(.6,0,.9,.4) infinite}
+ .t2{animation:f2 6s cubic-bezier(.6,0,.9,.4) infinite}
+ .t3{animation:f3 6s ease-out infinite}
+ .bar{transform-box:fill-box;transform-origin:50% 100%;animation:b 6s ease-out infinite}
+ @keyframes f1{0%,8%{transform:rotate(0)}22%{transform:rotate(52deg)}92%{transform:rotate(52deg)}100%{transform:rotate(0)}}
+ @keyframes f2{0%,20%{transform:rotate(0)}34%{transform:rotate(26deg)}92%{transform:rotate(26deg)}100%{transform:rotate(0)}}
+ @keyframes f3{0%,32%{transform:rotate(0)}40%{transform:rotate(9deg)}46%{transform:rotate(5deg)}52%{transform:rotate(7deg)}92%{transform:rotate(7deg)}100%{transform:rotate(0)}}
+ @keyframes b{0%,38%{transform:rotate(0)}42%{transform:rotate(2deg)}50%{transform:rotate(0)}100%{transform:rotate(0)}}
+ @media (prefers-reduced-motion: reduce){.t1{animation:none;transform:rotate(52deg)}.t2{animation:none;transform:rotate(26deg)}.t3{animation:none;transform:rotate(7deg)}.bar{animation:none}}
+</style>
+<g transform="translate(14 11)">
+  <line x1="12" y1="106" x2="116" y2="106" stroke="#111111" stroke-width="4" stroke-linecap="round"/>
+  <rect class="t t1" x="16" y="48" width="16" height="56" rx="3" fill="#8A8B8C"/>
+  <rect class="t t2" x="46" y="48" width="16" height="56" rx="3" fill="#8A8B8C"/>
+  <rect class="t t3" x="74" y="48" width="16" height="56" rx="3" fill="#A31F34"/>
+  <rect class="bar" x="98" y="38" width="8" height="66" rx="3" fill="#111111"/>
+</g>
+<text x="166" y="84" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="58" font-weight="700" letter-spacing="-1.5" fill="#111111">benchmaxxing</text>
+<text x="169" y="118" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="18.5" letter-spacing="0.2" fill="#5f6368">How AI agents cheat together, and how to catch them</text>
+</svg>

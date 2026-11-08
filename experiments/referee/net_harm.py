@@ -26,10 +26,14 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import sys
 from pathlib import Path
 
 from benchmaxxing.data import load_cases
 from benchmaxxing.stats import bootstrap_ci, fisher_exact
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import _lane  # noqa: E402
 
 
 def _wilson(k, n, z=1.96):
@@ -55,15 +59,22 @@ def _summarize(group):
 def main():
     ap = argparse.ArgumentParser(description="Net-harm sign of the MedQA text-lane cascade (#227).")
     ap.add_argument("--manifest", required=True, help="the MedQA manifest (ground-truth lookup only)")
-    ap.add_argument("--referee-jsonl", default="experiments/referee/results/referee_deployable.jsonl")
+    ap.add_argument("--referee-jsonl", default=None,
+                    help="deployable-referee rows (default: referee_deployable.jsonl in the "
+                         "model-scoped results dir under --out)")
     ap.add_argument("--out", default="experiments/referee/results")
+    _lane.add_model_arg(ap)
     args = ap.parse_args()
+    model = args.model
 
-    out_dir = Path(args.out)
-    out_dir.mkdir(parents=True, exist_ok=True)
+    out_dir = _lane.scoped(model, args.out, str(Path(args.out) / "call_cache.jsonl"))[0]
+    referee_jsonl = Path(args.referee_jsonl) if args.referee_jsonl else out_dir / "referee_deployable.jsonl"
 
     cases = {c.case_id: c for c in load_cases(args.manifest)}
-    rows = [json.loads(line) for line in Path(args.referee_jsonl).read_text().splitlines() if line.strip()]
+    rows = [json.loads(line) for line in referee_jsonl.read_text().splitlines() if line.strip()]
+    # the clean-control rows added later carry case_id "<id>::clean" and arm "clean"; the harm and
+    # rescue rates are defined on the planted rows only, so the controls are not counted as missing
+    rows = [r for r in rows if r.get("arm", "planted") == "planted"]
 
     per_case = []
     missing = []
@@ -119,6 +130,8 @@ def main():
     }
     if fe_note:
         out["harm_vs_rescue_fisher"]["note"] = fe_note
+    if model != _lane.DEFAULT_MODEL:
+        out["lineage_note"] = _lane.derived_note(model)
     (out_dir / "net_harm.json").write_text(json.dumps(out, indent=2))
     print(json.dumps(out, indent=2))
 

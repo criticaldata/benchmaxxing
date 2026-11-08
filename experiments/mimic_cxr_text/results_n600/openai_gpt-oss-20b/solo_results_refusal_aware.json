@@ -1,0 +1,25 @@
+{
+  "openai/gpt-oss-20b": {
+    "total_calls": 1800,
+    "abstention_rate": 0.0533,
+    "flip_rate_excl_abstentions": 0.0915,
+    "n_valid_pairs": 1704,
+    "per_cue": {
+      "longest_option": {
+        "flip_rate_excl_abstentions": 0.0981,
+        "abstention_rate": 0.0483,
+        "n_valid_pairs": 571
+      },
+      "option_order": {
+        "flip_rate_excl_abstentions": 0.0544,
+        "abstention_rate": 0.05,
+        "n_valid_pairs": 570
+      },
+      "lexical_overlap": {
+        "flip_rate_excl_abstentions": 0.1226,
+        "abstention_rate": 0.0617,
+        "n_valid_pairs": 563
+      }
+    }
+  }
+}

@@ -208,3 +208,12 @@ def test_format_table_reads_the_result():
 
 if __name__ == "__main__":
     raise SystemExit(pytest.main([__file__, "-q"]))
+
+
+def test_the_live_backend_goes_through_the_paced_path():
+    """A hosted second vendor rate-limits; the pilot must wait out a 429 like every other text runner."""
+    from pathlib import Path
+
+    src = (Path(__file__).resolve().parents[1] / "experiments/cross_dataset/run_cross_dataset.py").read_text()
+    assert "_lane.paced_complete(" in src
+    assert "RetryBackend(" not in src
