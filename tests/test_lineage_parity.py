@@ -14,6 +14,9 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 LINEAGE = "nvidia_nemotron-3-super-120b-a12b"
 TEXT_ONLY = {LINEAGE}
+# Vision-language lineages: the imaging lanes count too, against the siblings that have them.
+COSMOS = "local_nvidia_cosmos-reason2-8b"
+VISION_LANGUAGE = {COSMOS}
 IMAGING_LANES = {"imaging", "imaging_chexpert", "chexpert", "mimic_cxr_image"}
 # sibling path -> the path this lane uses for the same artifact
 ALIASES = {
@@ -23,6 +26,18 @@ ALIASES = {
 # rather than hidden by an alias. Key: (lineage slug, lane, results dir, file name). An entry must say
 # what is missing and what would close it; the test below checks that the reason is a real sentence.
 DECLARED_GAPS = {
+    ("local_nvidia_cosmos-reason2-8b", "medqa", "results", "empty_content_by_condition.json"):
+        "the keyless replay experiments/medqa/empty_content_by_condition.py classifies empty completions, which the gpt-oss "
+        "lineages return when their hidden-reasoning budget runs out; none of the 32441 replies in this lineage's 62 committed "
+        "call caches is empty, so there is nothing to classify, and the entry closes if a later run produces one.",
+    ("local_nvidia_cosmos-reason2-8b", "medqa", "results", "empty_content_tally.json"):
+        "the per-arm tally of empty completions exists because gpt-oss-20b exhausts its hidden-reasoning budget on some "
+        "calls; none of the 32441 replies in this lineage's 62 committed call caches is empty, so the tally would be zero "
+        "in every arm, and the entry closes if a later run produces an empty reply.",
+    ("local_nvidia_cosmos-reason2-8b", "medqa", "results", "reasoning_effort_sensitivity_summary.json"):
+        "experiments/medqa/reasoning_effort_sensitivity.py sweeps the reasoning_effort field of the chat API, a gpt-oss "
+        "setting; this lineage is served without a reasoning parser and in its default non-reasoning mode, so the field "
+        "has no effect, and the entry closes if the lineage is ever run in a mode that exposes such a knob.",
     # hidden-note arms run self-hosted under the fp8-local lineage
     ("nvidia_nemotron-3-super-120b-a12b", "blind_metric", "results", "matched_baseline_reason_repeats_summary.json"):
         "The hosted endpoint for this model id has been withdrawn, so this hidden-note arm cannot be run under the hosted id. It is run on the same FP8 weights served locally and committed under the separate lineage nemotron-3-super-120b-a12b-fp8-local, so hosted and self-hosted answers keep separate ids and caches; this entry closes if the hosted id is served again.",
@@ -120,22 +135,25 @@ def _result_files():
 
 
 # results subdirectories that are cohorts or arms, not model slugs: n100 (the 100-case blind cohort)
-# and matched (the matched-conditions arm, whose lineage runs sit one level below it)
-NOT_A_LINEAGE = ("n100", "matched")
+# and matched (the matched-conditions arm, whose lineage runs sit one level below it); and the imaging
+# lanes' arm and cohort folders, which only a vision-language lineage's check reaches
+NOT_A_LINEAGE = ("n100", "matched",
+                 "cascade_150", "referee_300", "nih_match_35", "judge_with_image",
+                 "device_absent", "natural_cues", "natural_independent", "system_flag")
 
 
-def _siblings(files):
-    return {s for s in files if s != LINEAGE and s not in NOT_A_LINEAGE}
+def _siblings(files, lineage=LINEAGE):
+    return {s for s in files if s != lineage and s not in NOT_A_LINEAGE}
 
 
-@pytest.mark.parametrize("lineage", sorted(TEXT_ONLY))
+@pytest.mark.parametrize("lineage", sorted(TEXT_ONLY | VISION_LANGUAGE))
 def test_the_lineage_has_every_text_lane_file_a_sibling_has(lineage):
     files = _result_files()
     mine = files.get(lineage, set())
     missing = []
-    for sib in _siblings(files):
+    for sib in _siblings(files, lineage):
         for lane, res, name in files[sib]:
-            if lane in IMAGING_LANES:
+            if lane in IMAGING_LANES and lineage not in VISION_LANGUAGE:
                 continue
             want = (lane, res, name)
             alias = ALIASES.get(f"{res}/{{slug}}/{name}")
@@ -149,5 +167,5 @@ def test_the_lineage_has_every_text_lane_file_a_sibling_has(lineage):
 
 def test_every_declared_gap_carries_a_reason_and_names_a_real_lineage():
     for (lineage, lane, res, name), why in DECLARED_GAPS.items():
-        assert lineage in TEXT_ONLY, lineage
+        assert lineage in TEXT_ONLY | VISION_LANGUAGE, lineage
         assert len(why.split()) >= 25, f"{lineage}/{lane}/{res}/{name}: the reason has to say what is missing and what would close it"
