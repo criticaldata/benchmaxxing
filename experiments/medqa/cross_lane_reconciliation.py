@@ -57,13 +57,15 @@ FAMILY = [
      "last_vs_first.pvalue"),
     ("pre-emptive referee: none vs soft warning", "text", MEDQA / "pre_emptive_referee_summary.json",
      "no_vs_soft.pvalue"),
-    # true-peer and orchestrator primary contrasts live in the committee-structure reconciliation
+    # true-peer, orchestrator and majority primary contrasts live in the committee-structure
+    # reconciliation; they are looked up by label prefix, not list position, because that family
+    # dropped its degenerate contrasts (0a7b664) and the positions moved
     ("true-peer directionality (correct vs wrong)", "text", MEDQA / "stats_reconciliation_summary.json",
-     "contrasts.5.pvalue"),
-    ("orchestrator poisoning (wrong-orch vs wrong-peer)", "text", MEDQA / "stats_reconciliation_summary.json",
-     "contrasts.8.pvalue"),
-    ("first-peer majority (k1 vs isolated)", "text", MEDQA / "stats_reconciliation_summary.json",
-     "contrasts.7.pvalue"),
+     "contrasts[label=true_peer].pvalue"),
+    ("orchestrator poisoning (wrong-peer vs honest orchestrator over two wrong peers)", "text",
+     MEDQA / "stats_reconciliation_summary.json", "contrasts[label=orchestrator].pvalue"),
+    ("first-peer majority (2-peer vs 1-peer)", "text", MEDQA / "stats_reconciliation_summary.json",
+     "contrasts[label=majority_pressure].pvalue"),
     # --- NIH imaging lane ---
     ("imaging system-flag vs peer cascade (Fisher)", "imaging", IMG / "imaging_system_flag_summary.json",
      "vs_peer_assertion_cascade.fisher_pvalue"),
@@ -77,9 +79,18 @@ FAMILY = [
 
 
 def _dig(obj, path):
+    """Follow a dotted key path; ``name[field=prefix]`` picks the one list item whose field starts with prefix."""
     cur = obj
     for part in path.split("."):
-        cur = cur[int(part)] if isinstance(cur, list) else cur[part]
+        if part.endswith("]") and "[" in part:
+            name, sel = part[:-1].split("[", 1)
+            field, prefix = sel.split("=", 1)
+            hits = [x for x in cur[name] if str(x.get(field, "")).startswith(prefix)]
+            if len(hits) != 1:
+                raise KeyError(f"{path}: {len(hits)} items of {name!r} have {field} starting with {prefix!r}")
+            cur = hits[0]
+        else:
+            cur = cur[int(part)] if isinstance(cur, list) else cur[part]
     return cur
 
 

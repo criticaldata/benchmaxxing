@@ -29,7 +29,9 @@ import re
 from statsmodels.stats.multitest import multipletests
 
 GEMINI_DIR = "experiments/medqa/results"
-OTHER_LINEAGE_PREFIXES = ("nvidia_", "openai_", "Qwen_", "meta_", "deepseek")
+# every non-Gemini cache slug in experiments/medqa/results; the self-hosted FP8 nemotron id has no vendor
+# prefix, so it is listed by name or its caches would be counted as Gemini repeats
+OTHER_LINEAGE_PREFIXES = ("nvidia_", "openai_", "Qwen_", "meta_", "deepseek", "nemotron-")
 _LETTER = re.compile(r"^\s*\**\(?([A-E])\)?\**[.:]?\s*$")
 
 

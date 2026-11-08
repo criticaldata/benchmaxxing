@@ -25,6 +25,7 @@ image = ["pillow>=10", "opencv-python-headless>=4.8"]  # cue injection; needs a 
                                                        # for the vendored TrueType face (#393)
 models = ["google-genai>=1.0", "litellm>=1.40", "transformers>=4.50", "torch>=2.1"]
 config = ["pyyaml>=6.0"]
+manifest = ["pandas>=2.0", "pyarrow>=14"]  # experiments/medmcqa/fetch_dev.py reads the public Parquet split
 dev = ["pytest>=7.4", "ruff>=0.5"]
 
 [project.scripts]
