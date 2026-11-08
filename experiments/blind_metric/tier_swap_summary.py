@@ -1,4 +1,4 @@
-"""Tier swap on the hidden-rubric arm (no API calls): Flash on text, Flash-Lite on imaging.
+"""Tier swap on the hidden-rubric arm (no API calls): Flash on text (MedQA, MedMCQA), Flash-Lite on imaging.
 
 The committed hidden-rubric arms run Gemini 2.5 Flash-Lite on text (MedQA, 40 cases) and Gemini 2.5
 Flash on imaging (NIH ChestX-ray14, 35 films), so the "imaging drifts more" comparison confounds
@@ -20,6 +20,8 @@ ROOT = Path(__file__).resolve().parents[2]
 ARMS = {
     ("text", "gemini-2.5-flash-lite"): "experiments/blind_metric/results/blind_metric.jsonl",
     ("text", "gemini-2.5-flash"): "experiments/blind_metric/results/gemini-2.5-flash/blind_metric.jsonl",
+    ("medmcqa", "gemini-2.5-flash-lite"): "experiments/medmcqa/results/blind_metric.jsonl",
+    ("medmcqa", "gemini-2.5-flash"): "experiments/medmcqa/results/gemini-2.5-flash/blind_metric.jsonl",
     ("imaging", "gemini-2.5-flash"): "experiments/imaging/results/imaging_blind_metric.jsonl",
     ("imaging", "gemini-2.5-flash-lite"): "experiments/imaging/results/gemini-2.5-flash-lite/imaging_blind_metric.jsonl",
 }
@@ -53,7 +55,7 @@ def main():
             # baseline read was correct; the decoy is the opposite of the model's own read
             cell["baseline_correct"] = sum(1 for x in r.values() if str(x["decoy"]).lower() == "no")
         out["arms"][f"{lane}/{tier}"] = cell
-    for lane in ("text", "imaging"):
+    for lane in ("text", "medmcqa", "imaging"):
         a, b = rows[(lane, TIERS[0])], rows[(lane, TIERS[1])]
         ids = sorted(set(a) & set(b))
         out["tier_within_modality"][lane] = {
@@ -63,7 +65,8 @@ def main():
     for tier in TIERS:
         t, i = out["arms"][f"text/{tier}"], out["arms"][f"imaging/{tier}"]
         out["modality_within_tier"][tier] = {
-            "blind_text": t["blind_uptake"], "blind_imaging": i["blind_uptake"],
+            "blind_text": t["blind_uptake"], "blind_medmcqa": out["arms"][f"medmcqa/{tier}"]["blind_uptake"],
+            "blind_imaging": i["blind_uptake"],
             "imaging_minus_text_blind": round(i["blind_uptake"] - t["blind_uptake"], 4),
             "aware_text": t["aware_uptake"], "aware_imaging": i["aware_uptake"]}
     a = out["arms"]
@@ -72,10 +75,15 @@ def main():
         f"{a['text/gemini-2.5-flash-lite']['blind_uptake']} of MedQA answers and "
         f"{a['imaging/gemini-2.5-flash-lite']['blind_uptake']} of NIH reads; under Flash "
         f"{a['text/gemini-2.5-flash']['blind_uptake']} and {a['imaging/gemini-2.5-flash']['blind_uptake']}. "
-        f"Tier matters on its own: Flash drifts more than Flash-Lite on the same cases in both lanes "
-        f"(text {out['tier_within_modality']['text']['blind_flash_vs_lite']['gain']} vs "
+        f"MedMCQA under Flash-Lite {a['medmcqa/gemini-2.5-flash-lite']['blind_uptake']} and under Flash "
+        f"{a['medmcqa/gemini-2.5-flash']['blind_uptake']}. "
+        f"Tier matters on its own: Flash drifts more than Flash-Lite on the same cases in every lane "
+        f"(MedQA {out['tier_within_modality']['text']['blind_flash_vs_lite']['gain']} vs "
         f"{out['tier_within_modality']['text']['blind_flash_vs_lite']['lose']} discordant, "
-        f"P = {out['tier_within_modality']['text']['blind_flash_vs_lite']['pvalue']}; imaging "
+        f"P = {out['tier_within_modality']['text']['blind_flash_vs_lite']['pvalue']}; MedMCQA "
+        f"{out['tier_within_modality']['medmcqa']['blind_flash_vs_lite']['gain']} vs "
+        f"{out['tier_within_modality']['medmcqa']['blind_flash_vs_lite']['lose']}, "
+        f"P = {out['tier_within_modality']['medmcqa']['blind_flash_vs_lite']['pvalue']}; imaging "
         f"{out['tier_within_modality']['imaging']['blind_flash_vs_lite']['gain']} vs "
         f"{out['tier_within_modality']['imaging']['blind_flash_vs_lite']['lose']}, "
         f"P = {out['tier_within_modality']['imaging']['blind_flash_vs_lite']['pvalue']}). "

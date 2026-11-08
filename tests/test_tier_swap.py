@@ -17,6 +17,8 @@ def test_tier_swap_summary_reproduces():
 def test_swapped_arms_cover_the_committed_cases():
     for a, b in (("experiments/blind_metric/results/blind_metric.jsonl",
                   "experiments/blind_metric/results/gemini-2.5-flash/blind_metric.jsonl"),
+                 ("experiments/medmcqa/results/blind_metric.jsonl",
+                  "experiments/medmcqa/results/gemini-2.5-flash/blind_metric.jsonl"),
                  ("experiments/imaging/results/imaging_blind_metric.jsonl",
                   "experiments/imaging/results/gemini-2.5-flash-lite/imaging_blind_metric.jsonl")):
         ids = lambda p: {json.loads(l)["case_id"] for l in (ROOT / p).read_text().splitlines() if l.strip()}

@@ -25,6 +25,30 @@
       "n_drifted": 23,
       "n_named_rubric": 1
     },
+    "medmcqa/gemini-2.5-flash-lite": {
+      "n": 40,
+      "blind_uptake": 0.425,
+      "aware_uptake": 0.275,
+      "suppression_blind_vs_aware": {
+        "gain": 9,
+        "lose": 3,
+        "pvalue": 0.145996
+      },
+      "n_drifted": 17,
+      "n_named_rubric": 1
+    },
+    "medmcqa/gemini-2.5-flash": {
+      "n": 40,
+      "blind_uptake": 0.6,
+      "aware_uptake": 0.225,
+      "suppression_blind_vs_aware": {
+        "gain": 17,
+        "lose": 2,
+        "pvalue": 0.000729
+      },
+      "n_drifted": 24,
+      "n_named_rubric": 0
+    },
     "imaging/gemini-2.5-flash": {
       "n": 35,
       "blind_uptake": 0.8286,
@@ -66,6 +90,19 @@
         "pvalue": 1.0
       }
     },
+    "medmcqa": {
+      "n_paired": 40,
+      "blind_flash_vs_lite": {
+        "gain": 10,
+        "lose": 3,
+        "pvalue": 0.092285
+      },
+      "aware_flash_vs_lite": {
+        "gain": 5,
+        "lose": 7,
+        "pvalue": 0.774414
+      }
+    },
     "imaging": {
       "n_paired": 35,
       "blind_flash_vs_lite": {
@@ -83,6 +120,7 @@
   "modality_within_tier": {
     "gemini-2.5-flash-lite": {
       "blind_text": 0.275,
+      "blind_medmcqa": 0.425,
       "blind_imaging": 0.5429,
       "imaging_minus_text_blind": 0.2679,
       "aware_text": 0.15,
@@ -90,11 +128,12 @@
     },
     "gemini-2.5-flash": {
       "blind_text": 0.575,
+      "blind_medmcqa": 0.6,
       "blind_imaging": 0.8286,
       "imaging_minus_text_blind": 0.2536,
       "aware_text": 0.175,
       "aware_imaging": 0.3714
     }
   },
-  "read": "Swapping tiers keeps the modality ordering: under Flash-Lite the hidden rubric takes 0.275 of MedQA answers and 0.5429 of NIH reads; under Flash 0.575 and 0.8286. Tier matters on its own: Flash drifts more than Flash-Lite on the same cases in both lanes (text 14 vs 2 discordant, P = 0.004181; imaging 11 vs 1, P = 0.006348). Test-awareness suppresses uptake in every cell."
+  "read": "Swapping tiers keeps the modality ordering: under Flash-Lite the hidden rubric takes 0.275 of MedQA answers and 0.5429 of NIH reads; under Flash 0.575 and 0.8286. MedMCQA under Flash-Lite 0.425 and under Flash 0.6. Tier matters on its own: Flash drifts more than Flash-Lite on the same cases in every lane (MedQA 14 vs 2 discordant, P = 0.004181; MedMCQA 10 vs 3, P = 0.092285; imaging 11 vs 1, P = 0.006348). Test-awareness suppresses uptake in every cell."
 }
