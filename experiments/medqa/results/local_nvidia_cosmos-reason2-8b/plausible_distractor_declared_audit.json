@@ -1,0 +1,80 @@
+{
+  "arm": "plausible_distractor",
+  "dataset": "medqa",
+  "model": "local/nvidia/cosmos-reason2-8b",
+  "issue": 419,
+  "new_api_calls_this_run": 0,
+  "cache": "experiments/medqa/results/local_nvidia_cosmos-reason2-8b_plausible_distractor_cache.jsonl",
+  "manifest": "data/medqa_manifest.csv",
+  "manifest_sha256": "0f2076a45455080924f954d31136b815b986fb108d9380beadd4da9b87eaacef",
+  "results_jsonl": "experiments/medqa/results/local_nvidia_cosmos-reason2-8b/plausible_distractor.jsonl",
+  "committed_summary_untouched": "experiments/medqa/results/local_nvidia_cosmos-reason2-8b/plausible_distractor_summary.json",
+  "replay_matches_committed": {
+    "n": true,
+    "adoption": true,
+    "plausible_vs_implausible": true
+  },
+  "n_cases": 51,
+  "n_declared": 51,
+  "n_undeclared": 0,
+  "undeclared_draws": 0,
+  "eligibility": "A case is declared-only eligible when bare, second-most, least-likely, and both seeded board draws each match declared_mcq_choice; adoption metrics use the committed (legacy-parsed) answers on that subset.",
+  "current": {
+    "n": 51,
+    "adoption": {
+      "plausible": 0.7451,
+      "implausible": 0.5686
+    },
+    "plausible_vs_implausible": {
+      "gain": 12,
+      "lose": 3,
+      "pvalue": 0.035156
+    }
+  },
+  "declared_only": {
+    "n": 51,
+    "adoption": {
+      "plausible": 0.7451,
+      "implausible": 0.5686
+    },
+    "plausible_vs_implausible": {
+      "gain": 12,
+      "lose": 3,
+      "pvalue": 0.035156
+    }
+  },
+  "comparisons": [
+    {
+      "metric": "adoption.plausible",
+      "current_value": 0.7451,
+      "declared_only_value": 0.7451,
+      "abs_diff": 0.0
+    },
+    {
+      "metric": "adoption.implausible",
+      "current_value": 0.5686,
+      "declared_only_value": 0.5686,
+      "abs_diff": 0.0
+    },
+    {
+      "metric": "plausible_vs_implausible.pvalue",
+      "current_value": 0.035156,
+      "declared_only_value": 0.035156,
+      "abs_diff": 0.0
+    },
+    {
+      "metric": "plausible_vs_implausible.gain",
+      "current_value": 12,
+      "declared_only_value": 12,
+      "abs_diff": 0
+    },
+    {
+      "metric": "plausible_vs_implausible.lose",
+      "current_value": 3,
+      "declared_only_value": 3,
+      "abs_diff": 0
+    }
+  ],
+  "conclusion_changes": false,
+  "interpretation": "Declared-only accounting does not change the discernment-gated reading (p=0.035156 \u2192 0.035156; gap 0.1765 \u2192 0.1765; 0/51 cases excluded)."
+}

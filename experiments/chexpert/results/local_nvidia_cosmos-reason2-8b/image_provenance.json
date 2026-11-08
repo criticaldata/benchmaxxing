@@ -1,0 +1,4076 @@
+{
+  "source": "hf:danjacobellis/chexpert (mirror of CheXpert-v1.0-small)",
+  "images": {
+    "CheXpert-v1.0-small/train/patient00143/study1/view2_lateral.jpg": {
+      "sha256": "077db570324c6c5b59bd5d89891fa03f0ef96d205bd630817d37b74c0f7ff498",
+      "bytes": 34740,
+      "jpeg": true,
+      "size": [
+        353,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient00178/study7/view1_frontal.jpg": {
+      "sha256": "98608e62319f13d583e4016bf0d313df122221dd56bc4be2fc8ac8c8c224dbdd",
+      "bytes": 51995,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient00270/study3/view1_frontal.jpg": {
+      "sha256": "56b03d2e0f8c87242d17e1f578cf0e818a8f048d46bdf900a1037ddd21769e99",
+      "bytes": 53812,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient00403/study5/view1_frontal.jpg": {
+      "sha256": "0feca5f05323d2181b06c97e99339b330a15c1952de4cd0eddef64b40774864a",
+      "bytes": 57324,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient00824/study2/view1_frontal.jpg": {
+      "sha256": "764e034354492384a0d70914b6fe38244b1c5b11ca8ffbbcf4bb0797506f874e",
+      "bytes": 59360,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient00889/study1/view1_frontal.jpg": {
+      "sha256": "030ce96a53ff01816a03ca6cc9ed81a2d7fb4b84395b9111a432f1f0e416953e",
+      "bytes": 53017,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient01262/study3/view1_frontal.jpg": {
+      "sha256": "3f1a5cbd32a23bf4a3110228eb559ef306c58c97e488af841332d2db31e0bd0c",
+      "bytes": 60023,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient01263/study6/view1_frontal.jpg": {
+      "sha256": "d745146f1ba74b5aeae8e013fb8629bb36db8b7a96b5417218a817c652f2eb02",
+      "bytes": 52192,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient01437/study5/view1_frontal.jpg": {
+      "sha256": "7116ddfd2b73f4a40d8d63414ba2c0ef49a04b390aa5e96a7bd12cde73160a1d",
+      "bytes": 45312,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient01529/study2/view1_frontal.jpg": {
+      "sha256": "01e0323ef38af7881017e8ff1b8dad82d01d62a1d40968524cc55cec708daac5",
+      "bytes": 55221,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient02001/study10/view1_frontal.jpg": {
+      "sha256": "e637707f52c0330d5e62c88532fc9ea903f417b87a5dc645992833a0e164bbd4",
+      "bytes": 58287,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient02140/study1/view1_frontal.jpg": {
+      "sha256": "3f75d60f058705ff3033cd3fb185ae1ee491c76834b0315a7cadb483bbecc055",
+      "bytes": 52300,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient02153/study14/view1_frontal.jpg": {
+      "sha256": "666840fbf8a71bb2408b3eb2c638cca10ce2e97b368e5e73e19ceb1524f84c3f",
+      "bytes": 48325,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient02459/study1/view1_frontal.jpg": {
+      "sha256": "7362cddd947226bab623af2f03f54835ad6fc9e6db6e5d88869e5d4677ac26f9",
+      "bytes": 56366,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient02612/study1/view1_frontal.jpg": {
+      "sha256": "c57201b139067b5862156ada4dfb70274f08a7b3d0778a2a1328d1c24ed110c3",
+      "bytes": 59581,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient02741/study7/view1_frontal.jpg": {
+      "sha256": "5b9bc70a9d8dfde03ef35e5c725aa6cf94047cbc4ac724fe6a52d4c41a677926",
+      "bytes": 50520,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient02759/study1/view1_frontal.jpg": {
+      "sha256": "d3cb8d948c30abcb54fd57706dde25df87d35ce8a61226f62115c638109aff4e",
+      "bytes": 56729,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient02847/study16/view1_frontal.jpg": {
+      "sha256": "57d4f9fda6f0bfec3370b01bb09ebe8b4a0170b112419937747df283e6309afe",
+      "bytes": 55008,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient03017/study2/view1_frontal.jpg": {
+      "sha256": "25397240a4167efb40330a13dd1bf43d24e821cd1594135df486b1ebd148dcd6",
+      "bytes": 46200,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient03027/study8/view2_lateral.jpg": {
+      "sha256": "5fbf2bd505ab065763be62ef507b1f1323b0d37941c5c669d0f87e46a3ca80b9",
+      "bytes": 36738,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient03129/study6/view1_frontal.jpg": {
+      "sha256": "19121e243c599a5cd88891280aaa26f5e5a160c8c0411fd20e996e83e430dd6b",
+      "bytes": 45874,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient03164/study14/view1_frontal.jpg": {
+      "sha256": "2c8a4a7604688361a9ddd4a63b88d6d6c8247444ab4814e82cb65f31a92cda8c",
+      "bytes": 55796,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient03230/study12/view1_frontal.jpg": {
+      "sha256": "dd75b1f3c1cfa52f4af35fe44d92be002d7299c5b95d0de18c8104756ca16bf3",
+      "bytes": 59239,
+      "jpeg": true,
+      "size": [
+        384,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient03236/study2/view1_frontal.jpg": {
+      "sha256": "bd41f6a80c12d63df8f43c72802531c772fdd15b3f132214668acecc2b237da9",
+      "bytes": 53749,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient03350/study1/view2_lateral.jpg": {
+      "sha256": "6e32233c9666863e2683d65ebfb8d8fa255cd458cff13e83eac376b5f219adab",
+      "bytes": 32741,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient03740/study2/view2_lateral.jpg": {
+      "sha256": "1ba4c136bedba2d3cc6edfb10ff0d00bd3f71dc27209a21f374ede0ba5b5516a",
+      "bytes": 43304,
+      "jpeg": true,
+      "size": [
+        320,
+        391
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient03999/study1/view2_lateral.jpg": {
+      "sha256": "e313657d08fae75398e6b9638f6b0f0eb3fccb4e2fea38c7687c4d2bd2d86176",
+      "bytes": 41502,
+      "jpeg": true,
+      "size": [
+        320,
+        356
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient04132/study1/view1_frontal.jpg": {
+      "sha256": "2ad72436c3b2fc068ac4e4bcc035471d87fdfe9b6faa785dc0c7da9ca494fce2",
+      "bytes": 51934,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient04246/study2/view1_frontal.jpg": {
+      "sha256": "5c7fc04f52cc2214307067cc6f22033b3403d9092c36e21cac56c892a8c48c03",
+      "bytes": 55846,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient04497/study2/view1_frontal.jpg": {
+      "sha256": "4976f72ac3c3d508e3ee26fd7b56eca7fe6f3ec627419e4b746b1a9f3700ae33",
+      "bytes": 61922,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient04729/study1/view1_frontal.jpg": {
+      "sha256": "8fc1539c2c981714ff59c5c8d9c2cd266c5965740d7e2e9372807db7b7baa93a",
+      "bytes": 40315,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient05119/study4/view2_lateral.jpg": {
+      "sha256": "17ee9439fa4b59a0e5e0beb32c1bbf7f3488be2e6d2a1d4654faca90653e9a2d",
+      "bytes": 41152,
+      "jpeg": true,
+      "size": [
+        320,
+        369
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient05137/study7/view2_lateral.jpg": {
+      "sha256": "64707b945b83d5ca3629513cdc17e311a9d205eab05223ffb2672c9eaf30ec08",
+      "bytes": 37193,
+      "jpeg": true,
+      "size": [
+        375,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient05205/study2/view2_lateral.jpg": {
+      "sha256": "e246731d46cc4531bd11dbe09c5d79f72c25826a07eabe26e8907e5d9e3a4945",
+      "bytes": 33318,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient05348/study3/view1_frontal.jpg": {
+      "sha256": "81791d632ff7be050fc44ff601a409c5953c05aa9f26d34f13d5a2ce6168d044",
+      "bytes": 58750,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient05390/study11/view1_frontal.jpg": {
+      "sha256": "d59afb6af222f11d7cd9bf4d72575d8a10f23acf7acd5b3c99767944491a7965",
+      "bytes": 53110,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient05392/study5/view1_frontal.jpg": {
+      "sha256": "60bab57159d181f1bca378bf1f6a39faa70eecb6753a3e606fbaa9f9233dc63d",
+      "bytes": 60011,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient05945/study2/view1_frontal.jpg": {
+      "sha256": "7df20d7b3a8e0cdb363e7f3c7241f246c44f04ab9e3d83f04c535553067b3e5a",
+      "bytes": 50635,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient05975/study1/view1_frontal.jpg": {
+      "sha256": "d56812cc9d001198546581f4386e4a1889cf0c6b8cc61e46f008a4dd79e12e4f",
+      "bytes": 56227,
+      "jpeg": true,
+      "size": [
+        374,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient06148/study1/view1_frontal.jpg": {
+      "sha256": "2351f9daa98fb639d281f8f90f667b971e3cb2fb31fb10f4ecba7260d68fde7d",
+      "bytes": 54942,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient06316/study6/view1_frontal.jpg": {
+      "sha256": "96e92d7e94be5b6dd9b41d2e9a9d1bf0a5cc86aecfe3467b958f1fc07c5db7d6",
+      "bytes": 51783,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient06449/study1/view1_frontal.jpg": {
+      "sha256": "52f3b46930e97a898265e5785f64de237521ae5d5d876610d9b72d1afc820869",
+      "bytes": 53401,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient06575/study2/view1_frontal.jpg": {
+      "sha256": "ca6e030fe2e0c503c68ec0c48f1d789a18ff221239a2af2b5169a012efcc443b",
+      "bytes": 55502,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient06792/study1/view1_frontal.jpg": {
+      "sha256": "45e6a35ccda3518754251bb832d961703ae9046269ae331192ac31e84404ade5",
+      "bytes": 61601,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient06981/study3/view1_frontal.jpg": {
+      "sha256": "1c797e39dcf877cccea2bb6191291c690dfefbd715ad90a0b800b8360627b0bc",
+      "bytes": 48076,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient06995/study4/view1_frontal.jpg": {
+      "sha256": "6a67eba327ce4ef0fa98440db339890bc7e8043db39a3505d17b421ecfbe5b72",
+      "bytes": 46715,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient07213/study5/view1_frontal.jpg": {
+      "sha256": "0abf06b218d43f24bc10b313b14112de31d21095207f264cfcc3d89342a140dc",
+      "bytes": 59016,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient07496/study1/view1_frontal.jpg": {
+      "sha256": "757be730cbeaf7f8391c192ca39ffa53c69fb40b8ca606c575b3b5734bd6f189",
+      "bytes": 38924,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient07529/study4/view1_frontal.jpg": {
+      "sha256": "deada88146c61b5698830ff44fd39a7be1751e34607dd148de9d7c7ac06e8f8d",
+      "bytes": 48963,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient07666/study2/view1_frontal.jpg": {
+      "sha256": "e224e4821b0388de26b7070491c6a30df0d4bb750f350a29e5b82531e5cb3425",
+      "bytes": 48978,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient07882/study4/view1_frontal.jpg": {
+      "sha256": "92944b8ba42dba857126fca4208aa1f21397d2d90db8cfae727f88fa53f28979",
+      "bytes": 45499,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient07900/study1/view1_frontal.jpg": {
+      "sha256": "b3a89fef0d3bbfbe9969253ff5c884d223eec8e09cdaf386b83cbea9aa665b8a",
+      "bytes": 52477,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient08107/study10/view1_frontal.jpg": {
+      "sha256": "399c4365065bacd265805e189ebf2d50bbca1ceeebdabaa7cf9b8283f3ce9d60",
+      "bytes": 46125,
+      "jpeg": true,
+      "size": [
+        321,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient08173/study43/view1_frontal.jpg": {
+      "sha256": "1c42e025d690acd626a3cbcd4deea0db209905a6c394af7409e9b6b4d08b422a",
+      "bytes": 57849,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient08450/study11/view1_frontal.jpg": {
+      "sha256": "cc837e4681991798e323ef946a7ed7f8ca8a9a35c49f3f490e9de04da480a209",
+      "bytes": 45698,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient08700/study10/view1_frontal.jpg": {
+      "sha256": "ac37317bdb02d139d870016be0a8b369cb13444198ace6e887c71f99cd5c3f5d",
+      "bytes": 48804,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient08896/study1/view1_frontal.jpg": {
+      "sha256": "71f225a6ebec93f12b67f569120b6804d2d73f857dd03b8e658784998cebefe8",
+      "bytes": 55147,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient08940/study2/view2_lateral.jpg": {
+      "sha256": "693d60efb99b94dd94a9ac2340601846532961065f000a2dbff3d9d84f2e3ebe",
+      "bytes": 48426,
+      "jpeg": true,
+      "size": [
+        320,
+        390
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient09014/study1/view1_frontal.jpg": {
+      "sha256": "099d8574e00ae457221158bd8941abc8a9b0d83f3e3cff43c5b6a9caf55a25bc",
+      "bytes": 44173,
+      "jpeg": true,
+      "size": [
+        369,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient09286/study3/view1_frontal.jpg": {
+      "sha256": "9a75024e0c2c28856879a70ed9c2a910bc5bb51bf8f7a784b3c89685b815377e",
+      "bytes": 51310,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient09331/study4/view1_frontal.jpg": {
+      "sha256": "676f16d0b567660a38920b84b3744ecfb5283bd2f69143141fd1762568ebe056",
+      "bytes": 55933,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient09339/study4/view1_frontal.jpg": {
+      "sha256": "bc73df77ce5890683e3cc35c8defa5406808b8f8437cf27305b2e8bbf02582e2",
+      "bytes": 53250,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient09365/study3/view2_lateral.jpg": {
+      "sha256": "2091ba007c28c5f65e83c4633e6364113b1cdb3c0989c0595dfac8db76898bcb",
+      "bytes": 37654,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient09389/study1/view1_frontal.jpg": {
+      "sha256": "5671693c4faa73ec5fbfc4bcb772ce4d1387bf9182c5b1ad1c712c0c4b9cde7c",
+      "bytes": 45453,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient09407/study4/view1_frontal.jpg": {
+      "sha256": "c09ab7a8e318277ec2db3f5f9a6597d89133c2f25e476a89a610a56b820ebbe8",
+      "bytes": 57468,
+      "jpeg": true,
+      "size": [
+        369,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient09483/study11/view1_frontal.jpg": {
+      "sha256": "aed94a713e063d6daeb578a05ca0ba4b2cfce5d76920ddc97e4176c261a74121",
+      "bytes": 55209,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient09613/study4/view1_frontal.jpg": {
+      "sha256": "421f507c04448e13e55bfd1e9b96bef50fafc307ca1a5c55051eb7f651b2b88f",
+      "bytes": 50755,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient09694/study10/view1_frontal.jpg": {
+      "sha256": "d4fcc602f823878bc8946430d0df5ec6a6d20ef7b184a5db5d5a18b76fc5eadb",
+      "bytes": 57921,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient09809/study1/view2_lateral.jpg": {
+      "sha256": "abb88c6c085b6819692be3be1c244af8a703bcbbf7ad18525faed280c518fb56",
+      "bytes": 38008,
+      "jpeg": true,
+      "size": [
+        320,
+        369
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient10037/study4/view2_lateral.jpg": {
+      "sha256": "c9b05a35fbb6d6918f2c0219beda938382c92ed15843af9b6d871dd733c38a13",
+      "bytes": 33665,
+      "jpeg": true,
+      "size": [
+        320,
+        365
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient10692/study1/view1_frontal.jpg": {
+      "sha256": "44a4019e6d3a4bc2e1c9c4f1aad91e2cdea306f5804b0c0d8d33f040f41ca9a1",
+      "bytes": 46995,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient10780/study13/view1_frontal.jpg": {
+      "sha256": "309c23ae79aad321aea3adcc7f49604c7297fa3fe22b226be044f77cc664a094",
+      "bytes": 55373,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient10964/study2/view1_frontal.jpg": {
+      "sha256": "03efc42914ce3243daff459b630abb8c1f08224fd0e145e9072dabd0fc770be1",
+      "bytes": 40210,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient10983/study4/view3_lateral.jpg": {
+      "sha256": "4de6f287521ee29e2464e13c00014aa7926a480d1a8bda3cfc36746a30339a1e",
+      "bytes": 35418,
+      "jpeg": true,
+      "size": [
+        329,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient11122/study9/view1_frontal.jpg": {
+      "sha256": "8d19468472dcf468e12fad08597bcc14be1b5b2330a2c1963e88f852e40a8a5b",
+      "bytes": 54934,
+      "jpeg": true,
+      "size": [
+        369,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient11132/study4/view1_frontal.jpg": {
+      "sha256": "ced07d4ffd87202835b629c78db06eb6f03a4a059386ca402bae09b0b92d79b2",
+      "bytes": 60004,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient11436/study12/view1_frontal.jpg": {
+      "sha256": "36d30e7b38ce6215431e62c96044302519cfa67b3fbdb666df052115832f0429",
+      "bytes": 58632,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient11436/study2/view1_frontal.jpg": {
+      "sha256": "2e1e330780cdb1f29ad92dc8d5c260b55f2a55d09ee8d50ebe125798b6273c0d",
+      "bytes": 53308,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient11663/study1/view1_frontal.jpg": {
+      "sha256": "ccf61001cc5b6d7637f21d0853fa1e9b4d32fa669e5dc642cad6302ac9c6511c",
+      "bytes": 61110,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient11751/study1/view1_frontal.jpg": {
+      "sha256": "629abff8057e0db335e8d4e99a2e1adf7daa5d6c143dc1e7b3383431d66dcd88",
+      "bytes": 56763,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient11751/study7/view1_frontal.jpg": {
+      "sha256": "f82c0aa5636bc199ffb963f6a340d4d81eb75d661d044652d7334b23d71034ae",
+      "bytes": 55922,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient12245/study1/view1_frontal.jpg": {
+      "sha256": "614e5de27de05d1f8aeedf89374c09722c3374060b8764c598c52f46cb8c9034",
+      "bytes": 46984,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient12261/study1/view1_frontal.jpg": {
+      "sha256": "0e48f3e149bef4db546cf2e63f245a78fe7d4a0c7c08377790c6b6ec29c671ce",
+      "bytes": 57634,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient12309/study2/view1_frontal.jpg": {
+      "sha256": "00886a72482a3939ab188c448f7ac253b656e2920b2ef541f236bc056ae6f7e1",
+      "bytes": 42794,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient12342/study7/view1_frontal.jpg": {
+      "sha256": "4e740c5694a20b8eff590e3ec6af7436d62a8c6a0900a8e8498fadb9b8a2d005",
+      "bytes": 48884,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient12470/study5/view1_frontal.jpg": {
+      "sha256": "88ced13e5b4f99ef27d83b75ac5a19cf787838135a6512df8158b933b8b42d07",
+      "bytes": 43070,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient12865/study2/view1_frontal.jpg": {
+      "sha256": "c46f0a45f031bad435f176a2202f3d07f2527deac5980f989d6b535485ad2ea5",
+      "bytes": 45554,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient13011/study65/view1_frontal.jpg": {
+      "sha256": "760af3fd3531ea7704b577e685d61c6b5d7df13a3f7807e39d69308fa535947d",
+      "bytes": 46241,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient13162/study53/view2_lateral.jpg": {
+      "sha256": "fc9b3850040f545914f949d6affc39642745dec5b29f132c3d3274d4c1d51284",
+      "bytes": 43964,
+      "jpeg": true,
+      "size": [
+        320,
+        387
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient13208/study3/view1_frontal.jpg": {
+      "sha256": "78046e6a4a1a8f962be4ff7d90fa51579978de691b7f206228cdf514712f47bc",
+      "bytes": 54707,
+      "jpeg": true,
+      "size": [
+        320,
+        322
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient13227/study11/view2_lateral.jpg": {
+      "sha256": "4c1b4675987b71eaa8ce14e0d4a09f0afc40f41baa57dd7ceaf69db4fcca9a14",
+      "bytes": 35686,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient13270/study7/view1_frontal.jpg": {
+      "sha256": "81fe7024a1945371fea2406b6da15341154fe8825e932bcb9daa7b38ac772e39",
+      "bytes": 52892,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient13368/study1/view2_lateral.jpg": {
+      "sha256": "40d2853dc9e0930878c49fe1f6defbba844de3185acbc3f2bc5bc4f4742db405",
+      "bytes": 33448,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient13570/study41/view1_frontal.jpg": {
+      "sha256": "bb74f158aca4f22e234e2403d6837d2d1ae01409eef003817a663b6404ac53c8",
+      "bytes": 56135,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient13605/study2/view2_lateral.jpg": {
+      "sha256": "6761c45776fdf78051eef440b3928f123c4ad17e458eb0f8b3f56172a36c7d5b",
+      "bytes": 39669,
+      "jpeg": true,
+      "size": [
+        379,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient13684/study12/view1_frontal.jpg": {
+      "sha256": "4b3e44f89f9c3f70598f554ef28425bc38f65b403508e048333e6accb3e899df",
+      "bytes": 51952,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient13722/study1/view1_frontal.jpg": {
+      "sha256": "a73dbc945a39a314735a19be57deaee65c15895601604932c2c0d1c6c28d892c",
+      "bytes": 59007,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient13745/study4/view1_frontal.jpg": {
+      "sha256": "6c3f8c832c4cb915987a90bdacf547227aaed36774bd1e6db438bcf71fb2001f",
+      "bytes": 51339,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient13884/study1/view1_frontal.jpg": {
+      "sha256": "58144642b84cd9886791233475437504420abecdd89b8e7251dcafc1fd1c1979",
+      "bytes": 61294,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient13902/study1/view2_lateral.jpg": {
+      "sha256": "6caec3173cc262a99ceac898f8b4d726501736da315a4c33346a47e391363721",
+      "bytes": 57987,
+      "jpeg": true,
+      "size": [
+        320,
+        390
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient13949/study2/view1_frontal.jpg": {
+      "sha256": "06993c4a03227bed7bbc5a72edd60209c9038f0ded3deaefd3e90d1ee82d5aa3",
+      "bytes": 57152,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient14034/study1/view1_frontal.jpg": {
+      "sha256": "e844587f3e9d530edc204a7c187bf9b43976ceeac191068080e58dc2c2cfe26b",
+      "bytes": 53599,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient14074/study2/view2_lateral.jpg": {
+      "sha256": "7b087e8cfdc5122e67025a408d88cc0775fd47fe13435f1d76dddeb94239af29",
+      "bytes": 37357,
+      "jpeg": true,
+      "size": [
+        320,
+        355
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient14301/study6/view1_frontal.jpg": {
+      "sha256": "c2012a108248bec151f5601f742088e83db6af32cc2bc79000abab7279e9952c",
+      "bytes": 46350,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient14341/study10/view1_frontal.jpg": {
+      "sha256": "42b1f906562581d9484378f76788dc0c827f0b98a4308ae0b0b707971c9d9da1",
+      "bytes": 51387,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient14360/study4/view1_frontal.jpg": {
+      "sha256": "32c39d121d540c0cc0eaefd40f60ba3edc2df7c0c9467df381f7fe723fb024a5",
+      "bytes": 42349,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient14475/study8/view1_frontal.jpg": {
+      "sha256": "1ff0353cf5b448983eea9a14486a815a33dc9ae38b4d8ca260ae288dfd859337",
+      "bytes": 49268,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient14630/study5/view1_frontal.jpg": {
+      "sha256": "e289ee5eb76ffdb5cc58e1858f860e356d51f045ee3fabd51e5ff057a6b8c328",
+      "bytes": 55606,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient14739/study4/view1_frontal.jpg": {
+      "sha256": "fb773fbf683c111bff7bd181db60a4c5e1f9ea95d723e7561bb35fd94f72e6f0",
+      "bytes": 52555,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient14932/study1/view2_lateral.jpg": {
+      "sha256": "6a7ae60f81b15bc38aea7066a9c9cd3e76338ad76367080779496102bccc2318",
+      "bytes": 58530,
+      "jpeg": true,
+      "size": [
+        320,
+        389
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient15069/study1/view1_frontal.jpg": {
+      "sha256": "6f084e0cf134acf8e6c7caae377801ff01a3f563a15f423055fd4d0168ad8b74",
+      "bytes": 57294,
+      "jpeg": true,
+      "size": [
+        356,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient15218/study16/view1_frontal.jpg": {
+      "sha256": "c966250de99948b497401ce653b6f99b7e668724d2abaf629ff7e05679179539",
+      "bytes": 45352,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient15258/study42/view1_frontal.jpg": {
+      "sha256": "e1b2375fbd6626a8e48374d95880c4fa529a3ed4182460a1f667efbd357f0235",
+      "bytes": 52428,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient15318/study19/view1_frontal.jpg": {
+      "sha256": "fd03cfb299ef6ca9b275657b391f4e1b2fc87472a3de2e2c9c153c23dd81806c",
+      "bytes": 47209,
+      "jpeg": true,
+      "size": [
+        320,
+        331
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient15482/study34/view1_frontal.jpg": {
+      "sha256": "7e157da084c9090eacd78374300aa249675050c3380cab07faf10059c4a42de1",
+      "bytes": 58572,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient15877/study2/view1_frontal.jpg": {
+      "sha256": "62b565b11fa78d7292a1d0ce8273e5c69be6c228f8e5c747234774ce2e46da79",
+      "bytes": 50506,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient15889/study14/view1_frontal.jpg": {
+      "sha256": "0997ad41e7bdd3a5f91727512a2f0c2fe6416574797b92cb7753f7d927e6ae0f",
+      "bytes": 54479,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient15913/study1/view1_frontal.jpg": {
+      "sha256": "67ff048007b57293fb0047d25cf9d1962dbfd48cca4a18bfd33d2febcd7b1847",
+      "bytes": 54635,
+      "jpeg": true,
+      "size": [
+        320,
+        325
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient15918/study2/view1_frontal.jpg": {
+      "sha256": "182012091e5c9b99ebaa91fa614b03a29e795e251389359208656653db429704",
+      "bytes": 54970,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient15930/study1/view2_lateral.jpg": {
+      "sha256": "69a3bcfe8438d7cf0d966677c06620a92360c334470fdcf664bc6699a03343c8",
+      "bytes": 47127,
+      "jpeg": true,
+      "size": [
+        320,
+        390
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient16206/study21/view1_frontal.jpg": {
+      "sha256": "28e3e7923ad35b240b471326a28b96c25cf9528c2f18aeb67dd3c491cf6d0677",
+      "bytes": 52014,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient16278/study8/view1_frontal.jpg": {
+      "sha256": "c0e33c6ffbd501b151fc2a5a78f1db9e639d8c1500ef5f23722ee853d9652de4",
+      "bytes": 55944,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient16324/study5/view1_frontal.jpg": {
+      "sha256": "48dd34a60e999f9ebbd110906ebf814c97f4d32e4c69854b59b787ab3049a911",
+      "bytes": 49635,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient16723/study19/view1_frontal.jpg": {
+      "sha256": "ba3d27a8cf96be9366d7fc2f8242c863dd02113cb442f50316fed223f6060f16",
+      "bytes": 52347,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient16889/study7/view1_frontal.jpg": {
+      "sha256": "bf52b40c3c94a312ce655ee45200ec296da4a0ea6e02e9cea6b683458118bc7d",
+      "bytes": 56796,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient17013/study3/view2_lateral.jpg": {
+      "sha256": "d2bc5cdda9c6463c81b838cbdecfc4629f42fbd098369472f085050384070c9c",
+      "bytes": 42613,
+      "jpeg": true,
+      "size": [
+        320,
+        369
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient17196/study2/view2_lateral.jpg": {
+      "sha256": "dbd4d5a17c1471f0c82a2510757814860c793fe7636e9ef173c0f47a754c3327",
+      "bytes": 44164,
+      "jpeg": true,
+      "size": [
+        320,
+        369
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient17249/study6/view2_lateral.jpg": {
+      "sha256": "a7658df8816c4b6b0d660746dd6437f86bf2622dd32c7494c52b2eb190da82a0",
+      "bytes": 39180,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient17445/study4/view1_frontal.jpg": {
+      "sha256": "4b7e31b9dd90834bf70f0d6e8458c34f4e0816436a9e6b1f5fa89e60a94b278d",
+      "bytes": 54269,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient17451/study1/view1_frontal.jpg": {
+      "sha256": "0572525809d9d5ea7382331a7ba29d7ae0359b2113a5066747051fae2d3644cf",
+      "bytes": 50942,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient17626/study3/view1_frontal.jpg": {
+      "sha256": "abcdb96d4eb32c7e0770b30246013a10d90967ba8ab9ec1f198b32443c0eeb44",
+      "bytes": 54131,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient17884/study7/view1_frontal.jpg": {
+      "sha256": "199728698d9969442d3ff53ca0fca3c11dd6d2332033247810b6eb1933c3b4d8",
+      "bytes": 54182,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient17916/study6/view1_frontal.jpg": {
+      "sha256": "ee0c8910d24edaef66bef854d3dc077fcc0e3d26a039a11be453b314528fba82",
+      "bytes": 46600,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient18027/study5/view1_frontal.jpg": {
+      "sha256": "f600ac12e50c22324ecb1c1f0b1d456e9786289db3010058bcd50ad41d631a99",
+      "bytes": 51900,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient18051/study1/view1_frontal.jpg": {
+      "sha256": "cc2a8f4c01cd8d73cf7a7420ff5da6779c5ec0161c69d5cf461276f1e5d224e7",
+      "bytes": 60811,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient18051/study6/view2_lateral.jpg": {
+      "sha256": "82ffb3c73879dbfc19c8875ddc32a408784cd7bae914e612ace85bb92b2706e2",
+      "bytes": 32249,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient18277/study2/view1_frontal.jpg": {
+      "sha256": "09a5444b4ced9c19d423b6d92abb545073f3c3ef8c754cdac61beb75fc9d5c5a",
+      "bytes": 49616,
+      "jpeg": true,
+      "size": [
+        361,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient18447/study2/view1_frontal.jpg": {
+      "sha256": "d95c992e8557200a37d11d8361f169867993fbe5ddf2f87ea3e195e42e89c174",
+      "bytes": 58680,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient18522/study5/view1_frontal.jpg": {
+      "sha256": "d83a84e7aa1b203a37f26c64580dbc78cfc5880f5ca6c32cbaf664971c986402",
+      "bytes": 43416,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient18964/study9/view1_frontal.jpg": {
+      "sha256": "cbbd6f458aada09160fe8029b7e72391e65a9575943d71ef0a85e1886a7af433",
+      "bytes": 48449,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient19053/study1/view2_lateral.jpg": {
+      "sha256": "997beeeb89e984b2760d576ebc9f8cf422dc413b2e5e7d4ace4e6b751c6990bc",
+      "bytes": 43274,
+      "jpeg": true,
+      "size": [
+        320,
+        390
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient19206/study4/view1_frontal.jpg": {
+      "sha256": "4fe8594ef01eaa1d284eee83ca17d69a2483784563b9b76d5be6962e133447cd",
+      "bytes": 46904,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient19343/study18/view1_frontal.jpg": {
+      "sha256": "08388ee5c1e0b7c73dac37a3ba36b7bb60f919593233e81a371f5c1ad73803eb",
+      "bytes": 50767,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient19588/study7/view2_lateral.jpg": {
+      "sha256": "3ed889a2de2c88802099c23bfdda78a0c900acbe19fe813efa46a4c4cfefb947",
+      "bytes": 48287,
+      "jpeg": true,
+      "size": [
+        320,
+        436
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient19766/study1/view1_frontal.jpg": {
+      "sha256": "1e17d811ff70590cffb58cf6c611d10d3e9acb440100100ad662442d6857aa2e",
+      "bytes": 52982,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient20007/study1/view1_frontal.jpg": {
+      "sha256": "148dc71c871cc0afce07953a6450a10b9a8f80c34c69784146d91c81da4bc10f",
+      "bytes": 51278,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient20094/study3/view2_lateral.jpg": {
+      "sha256": "1aa59de1483573d65cc92b8bd41775049187ef9a01f7f0d485265c6092c373a8",
+      "bytes": 34182,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient20095/study2/view1_frontal.jpg": {
+      "sha256": "74f14d42a3325b0e9d136e7940a60442aeccd1628d7308bfdb2f2aacfa8610d4",
+      "bytes": 56890,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient20128/study1/view1_frontal.jpg": {
+      "sha256": "162b7f14288e8a6218ddb9f8bb2311b8d5a9f92690a648755203fd54e13f6d9b",
+      "bytes": 46292,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient20180/study1/view2_lateral.jpg": {
+      "sha256": "1541e46a35d15926bd2c61edd5505a1f607afb30a659d43e7e6d273f69c7080b",
+      "bytes": 51733,
+      "jpeg": true,
+      "size": [
+        320,
+        369
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient20274/study3/view1_frontal.jpg": {
+      "sha256": "98d8b3b569b08381929b3f8f80f3c971bd5d704dbeefb83c679e085ffc323d44",
+      "bytes": 52963,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient20295/study7/view1_frontal.jpg": {
+      "sha256": "9934fbfd1bdc873e0af830e963914dcf2aa8aed82ab39b15b1d46dc0ee149a93",
+      "bytes": 59147,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient20417/study1/view1_frontal.jpg": {
+      "sha256": "5a8a40586ef794afe826120bed9796e74eff555f6ab065f6ff149576b04b611d",
+      "bytes": 49174,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient20556/study41/view1_frontal.jpg": {
+      "sha256": "bf33987ed5f4f76b5820886551f74a5de6194f2ff157befe78045d41e368df23",
+      "bytes": 51420,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient20671/study3/view1_frontal.jpg": {
+      "sha256": "40093faefd111679a5ddcb5d48625fe0a04dd2f5d842c32c85f73731428b10ea",
+      "bytes": 64762,
+      "jpeg": true,
+      "size": [
+        440,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient20789/study8/view1_frontal.jpg": {
+      "sha256": "487c6e416089150f15d91a04aea8ac34da14cca44a07adc85effa9ec0abfdf1b",
+      "bytes": 52688,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient20887/study2/view1_frontal.jpg": {
+      "sha256": "bf963c5ae258a2b75b4ee2e9ba9e4c7fb7d8415d91f42c6aa54cf5dd1c54d17e",
+      "bytes": 50653,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient20906/study4/view2_lateral.jpg": {
+      "sha256": "a09eb5f6c9c53406ca413fcd1e4d61d633d2f755849b314510d3f779321ca145",
+      "bytes": 39997,
+      "jpeg": true,
+      "size": [
+        320,
+        369
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient21345/study5/view1_frontal.jpg": {
+      "sha256": "bfc3ab9ec4fef542f0179f8ea7fabff6177eef55b890c26e8fc7d2ef19accc85",
+      "bytes": 50903,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient21385/study1/view1_frontal.jpg": {
+      "sha256": "3530d4d917fee3229b70b7b25407f4d88bc0ea509f1c40a3ddfdd6f71261c577",
+      "bytes": 50324,
+      "jpeg": true,
+      "size": [
+        335,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient21610/study3/view1_frontal.jpg": {
+      "sha256": "9deeb0dd75ad1348a883facd39511499252f80a07204f516c523389e5195092e",
+      "bytes": 59786,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient21769/study10/view1_frontal.jpg": {
+      "sha256": "43f60aaeabc52d7003c5663de8820afdef00adaafc3114ab8fca0ca07f6faf6c",
+      "bytes": 53770,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient21814/study20/view1_frontal.jpg": {
+      "sha256": "4e1506753436c299c6676e79fac724438d80ea67ce4f7baa28eb8dca108fa3c2",
+      "bytes": 55202,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient21845/study9/view1_frontal.jpg": {
+      "sha256": "c2d1ff2a43730528fc09295c490a3f1ad084c7e04d46e903e37418b5b07a4a82",
+      "bytes": 51462,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient22014/study1/view1_frontal.jpg": {
+      "sha256": "583083f0d4faeffe6bcb6bf5c9806f0941c2ec89e752e1f324b521818ef96d99",
+      "bytes": 48522,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient22046/study2/view1_frontal.jpg": {
+      "sha256": "218aa52d13d18dc55934309fca549b1f96a7388bc6c3e4a9e935c79e5680c245",
+      "bytes": 49749,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient22050/study1/view2_lateral.jpg": {
+      "sha256": "1fb2d61b77dae60249d2992bd274488efbf825f120a92bac3e4e0dd3c408f36d",
+      "bytes": 43187,
+      "jpeg": true,
+      "size": [
+        320,
+        384
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient22174/study17/view1_frontal.jpg": {
+      "sha256": "ca038597006f7502f43443d0896b3795ecd35324f65e5dfe09a32319352f68c0",
+      "bytes": 50027,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient22518/study5/view3_lateral.jpg": {
+      "sha256": "72673cb7d7b5111c8a8ac4ddbee5dfd0f40cbc35c89289dfc0de0244c308afea",
+      "bytes": 35595,
+      "jpeg": true,
+      "size": [
+        320,
+        368
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient22834/study1/view1_frontal.jpg": {
+      "sha256": "35760cdb76c53406e35ae8d901c4601da6374d50d4256f22ff755f923ef0c514",
+      "bytes": 44398,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient22865/study1/view1_frontal.jpg": {
+      "sha256": "f1dfd269bbcdfa416becfe1120568be95704d5f7d2b548dd8f3091828e0ebbbc",
+      "bytes": 48742,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient23081/study4/view1_frontal.jpg": {
+      "sha256": "994d39dcf43b3f620344a1d57e51414f9e519c80a4bc31523cf49b9fd95775bb",
+      "bytes": 42614,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient23351/study25/view1_frontal.jpg": {
+      "sha256": "a76e78b4024aa1c89da08a20211696392aa6e385a34727be8b97a2ef906022cf",
+      "bytes": 56860,
+      "jpeg": true,
+      "size": [
+        368,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient23397/study5/view1_frontal.jpg": {
+      "sha256": "180b92873ce0a9a5dd05d5e76de4ee68171c7f97410e55ca124d9ecdbc36ead5",
+      "bytes": 54601,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient23860/study20/view1_frontal.jpg": {
+      "sha256": "52a6e86d2bfd332cb814bcc6d1b191ee9f47610ef1d2ec55b3f0053778e894a0",
+      "bytes": 53863,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient24087/study1/view1_frontal.jpg": {
+      "sha256": "6ea35084fd908bc93cae25049ec80a087b8a63830b4a9c8357bb3efc40d88f49",
+      "bytes": 43381,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient24339/study2/view1_frontal.jpg": {
+      "sha256": "38497411a45a82e309d11e37de45b61fd0bb41fc3d87d9bd94bead9627e60388",
+      "bytes": 53784,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient24574/study9/view1_frontal.jpg": {
+      "sha256": "2b5c711a2f2e70a90c5c3886c7cf112decbf45887549c0b8e0ee945e571a68fd",
+      "bytes": 54998,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient24813/study65/view1_frontal.jpg": {
+      "sha256": "b4833507f40e9cbb5c9e0d464a0d93169673500604daae581a3c5ccc943679d9",
+      "bytes": 55366,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient25399/study1/view1_frontal.jpg": {
+      "sha256": "4e36eca900fe10f51c84fb001d1f31b47e6106c58c3b1132668e3e0069431d7b",
+      "bytes": 58869,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient25516/study1/view1_frontal.jpg": {
+      "sha256": "c3be4971a7328341851112e491a91944d2eb96a36fd89420d9e965314ad3bc22",
+      "bytes": 56801,
+      "jpeg": true,
+      "size": [
+        369,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient25523/study3/view2_lateral.jpg": {
+      "sha256": "3b819a9565a8723731e044c01229bcf03ed41ec5dccac8ce8ba7b6853ced9b86",
+      "bytes": 35569,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient25559/study6/view1_frontal.jpg": {
+      "sha256": "c5a7e59abecc6678c53728d3a56d78615ae86164dfc41890fb7d6c0094006702",
+      "bytes": 62871,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient25596/study2/view1_frontal.jpg": {
+      "sha256": "a2c53ac73fee039193f65960171706541b6476fb8e2c51aa32ce1a6129b27883",
+      "bytes": 55352,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient25746/study4/view1_frontal.jpg": {
+      "sha256": "685005153f91c6856a154d5921fcdcc6c27459da8f35d2a034b35635ee0f848b",
+      "bytes": 60481,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient25874/study2/view2_lateral.jpg": {
+      "sha256": "4bf292caf3df58324dc305a85caa9e7ec85966fc2e51405e741ae3f4b0d538ab",
+      "bytes": 41131,
+      "jpeg": true,
+      "size": [
+        320,
+        372
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient26025/study2/view1_frontal.jpg": {
+      "sha256": "1109bb1444a535c66c6bcfde7bc6ad187210ee7043218db0d0f72f017acee053",
+      "bytes": 61826,
+      "jpeg": true,
+      "size": [
+        380,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient26121/study3/view1_frontal.jpg": {
+      "sha256": "6fc56d9cfa3fbd321bd6e0d121c3775f6dcb2260dfcaea17ca0955e67954ada9",
+      "bytes": 56607,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient26145/study1/view1_frontal.jpg": {
+      "sha256": "963d3627770f48382adc4d08d4c1dca3cd5c218de386db69dc88fb4304c2ed92",
+      "bytes": 52533,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient26271/study6/view1_frontal.jpg": {
+      "sha256": "166e42474df040585071705c43f5e1b63f9fcbccd7248086ab629d345c1701bf",
+      "bytes": 48644,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient26416/study2/view1_frontal.jpg": {
+      "sha256": "43aa8451523a0260d2d80e7d84d8a3db6d80500f2815de412cb5f8b33dee1b16",
+      "bytes": 51614,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient26750/study4/view1_frontal.jpg": {
+      "sha256": "8816a7047cdea2f465f0e23559b3189717583e3d2cb7a7ebe59a83010a182406",
+      "bytes": 53719,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient26780/study5/view1_frontal.jpg": {
+      "sha256": "fee4acaf0652d33fb69c10290de286c43818066ee0bc52a904f1a535cd2344e9",
+      "bytes": 52656,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient26886/study17/view1_frontal.jpg": {
+      "sha256": "02d81c563eac944f3bd43d604381b1a3165c9fab2ae711685cf9633700de3a8e",
+      "bytes": 53961,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient26886/study23/view1_frontal.jpg": {
+      "sha256": "349971d0a3fd1eb108b33e1c302137e7975de65aea80c55ec2e928913c8668e5",
+      "bytes": 53909,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient26889/study5/view1_frontal.jpg": {
+      "sha256": "26574622e4d19030dfbdfb386ed58da8979c8d2a9f34b7bc0e8c143fc6d05642",
+      "bytes": 56486,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient26908/study3/view2_lateral.jpg": {
+      "sha256": "ff5bb3d908ebb3aef8fa899e4a21e119227cf4e2e4a7fb43094bf52b14dae126",
+      "bytes": 41034,
+      "jpeg": true,
+      "size": [
+        320,
+        369
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient26917/study1/view1_frontal.jpg": {
+      "sha256": "c21d6f36d14be14b5f219fca7a50728dc21869133fdfda5d3a2278324631925e",
+      "bytes": 45480,
+      "jpeg": true,
+      "size": [
+        320,
+        321
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient27103/study3/view2_lateral.jpg": {
+      "sha256": "2392b40dd0dedfd7f2fa2628be62ae9e38fc824a5a7c4d570b6aea31a4bb7c71",
+      "bytes": 38418,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient27193/study12/view2_lateral.jpg": {
+      "sha256": "d82170ce575becca0af893c9d1cc9030999c8b45257a3add21d89ef0d7a5ebe0",
+      "bytes": 43193,
+      "jpeg": true,
+      "size": [
+        320,
+        369
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient27497/study2/view1_frontal.jpg": {
+      "sha256": "5595e8fb82029444265a30cd8f69d58e9a391661084fb9e0b929d96fa41c3e7f",
+      "bytes": 45659,
+      "jpeg": true,
+      "size": [
+        326,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient27584/study1/view2_lateral.jpg": {
+      "sha256": "91d8721f0c7effa7d6507e866138e0cb1d9fdebeb8549d8e406e7abdfb3c6de3",
+      "bytes": 35864,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient27680/study22/view1_frontal.jpg": {
+      "sha256": "dd0a9e4ebf66957d6c60cf54c004c60e148b53195edbf24f7f026b30ed6a1e0e",
+      "bytes": 50444,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient27701/study7/view1_frontal.jpg": {
+      "sha256": "a6507c4b9f66bc65953087ff001a374fe3a893657c12e2eab8e11b3b248c6554",
+      "bytes": 54213,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient27743/study4/view1_frontal.jpg": {
+      "sha256": "121af570a4490cee1b05dce6f63e89eea471ac9144d601c769c884dc28af5db1",
+      "bytes": 56768,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient27872/study5/view2_lateral.jpg": {
+      "sha256": "aa4a464213cbe6045d0616df6d33dd057442ee2710091060392d7bfa583a9d24",
+      "bytes": 36698,
+      "jpeg": true,
+      "size": [
+        320,
+        369
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient28104/study1/view1_frontal.jpg": {
+      "sha256": "cab748e75f483718a1ac2172e14debcb94d7c1598d982191839e1cdbeaad286f",
+      "bytes": 52664,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient28412/study1/view2_lateral.jpg": {
+      "sha256": "24dae5d627ddfcaa61534c2eab4621d47540b5774c6f26dd7ed9df53cbbfaaa0",
+      "bytes": 27829,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient28614/study20/view1_frontal.jpg": {
+      "sha256": "c12dc8001458bf36ebb02c74edee6cdc26a8ba61dad889a1053cc7c6a70365a2",
+      "bytes": 54942,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient28652/study1/view1_frontal.jpg": {
+      "sha256": "2a391d3db124b32169983aa8c1c7d275eb6566d1cf9053e37399e56ad3c838ee",
+      "bytes": 58850,
+      "jpeg": true,
+      "size": [
+        360,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient28737/study4/view2_lateral.jpg": {
+      "sha256": "8bd46881fa43b7a6a9e48e4eca1853e21e2f2cb5e9b04b5e845fb7d443089a4e",
+      "bytes": 50795,
+      "jpeg": true,
+      "size": [
+        320,
+        371
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient28922/study3/view1_frontal.jpg": {
+      "sha256": "e71de88a005c12abb4b43ad7736c3f7791b737ab89be9bee164a2f33fb375303",
+      "bytes": 55443,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient29302/study2/view1_frontal.jpg": {
+      "sha256": "3149af28a2502e7d24b7c59abf86d320f7629e34e656ffbb98a5111c8cdc789d",
+      "bytes": 61134,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient29435/study7/view1_frontal.jpg": {
+      "sha256": "46ee817b0bdbabe5453e5b5d70b2d57578d9a2354854e246718d4d450661b1e1",
+      "bytes": 46111,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient29439/study4/view1_frontal.jpg": {
+      "sha256": "d60f22a389faac613e94a4ebaa310d32f757cb5f1b810bedee0ebc14bee80950",
+      "bytes": 51887,
+      "jpeg": true,
+      "size": [
+        384,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient29533/study12/view1_frontal.jpg": {
+      "sha256": "b2952b05afa7b5ae332bf28bf0912b8cce98dee9ae1206286dd1356186dcd112",
+      "bytes": 45989,
+      "jpeg": true,
+      "size": [
+        361,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient29641/study2/view1_frontal.jpg": {
+      "sha256": "0bc15c2499f3e2ed03360dcdec338f222887c6ada839a41ef94791648b45c120",
+      "bytes": 51876,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient29653/study3/view1_frontal.jpg": {
+      "sha256": "a6769082004953cd36bdcb25ffd977a876571a835a069fc8674caa1c48efbbbc",
+      "bytes": 54247,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient29733/study3/view1_frontal.jpg": {
+      "sha256": "64d0a1b93ae99f3cd8f1138cfa1cf2c0597c020f751c9466f55d9ad88a121307",
+      "bytes": 60712,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient29781/study4/view1_frontal.jpg": {
+      "sha256": "2135aefc101b50655419d289426ae46a4365de5ac2ff659d50df2b85771b4e7e",
+      "bytes": 49828,
+      "jpeg": true,
+      "size": [
+        369,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient29820/study1/view3_lateral.jpg": {
+      "sha256": "331a77f601aa35b4bfd7a9dc2cf5f1e08017cf41e568f1af70ad3e8b8c5289ee",
+      "bytes": 35381,
+      "jpeg": true,
+      "size": [
+        321,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient30015/study1/view1_frontal.jpg": {
+      "sha256": "c90e0bbe1b7d52a8ee76d2229540468aad45a892267d625e6323cea40e64057b",
+      "bytes": 51222,
+      "jpeg": true,
+      "size": [
+        368,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient30028/study14/view1_frontal.jpg": {
+      "sha256": "7ec5421efe5ced2fb13f5dc4e8af8e174811c51dd6abdeb529375681fbd41933",
+      "bytes": 54737,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient30224/study1/view2_lateral.jpg": {
+      "sha256": "8c88f835b762539fe4beca26d3921890c04a62afac4a8c625feeb0a909beeb7c",
+      "bytes": 45959,
+      "jpeg": true,
+      "size": [
+        320,
+        373
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient30407/study1/view1_frontal.jpg": {
+      "sha256": "aed22db0af611fd93e3ebe5f0e731519172bd445acdcef854d9a9acdb88d01d8",
+      "bytes": 51141,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient30495/study1/view1_frontal.jpg": {
+      "sha256": "d10e46aad9987fe93ba888f6fcbc96c225098671ae0bb04e5cb431241b76b17a",
+      "bytes": 58552,
+      "jpeg": true,
+      "size": [
+        371,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient30532/study34/view1_frontal.jpg": {
+      "sha256": "20341916a00b9c37f5f270e0c1fc4f4d45d87ba6f5c0590e8a4ca6b9a9b8a8dd",
+      "bytes": 52728,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient30718/study6/view2_frontal.jpg": {
+      "sha256": "b3297fb647be744012e172fe50a5df84603421bd275731acedda7033fe161f6d",
+      "bytes": 56975,
+      "jpeg": true,
+      "size": [
+        371,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient30812/study1/view1_frontal.jpg": {
+      "sha256": "666dae90dc10943284aff1d51994bc51c2b5c521e4696550b8956ac506240672",
+      "bytes": 43206,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient30812/study7/view1_frontal.jpg": {
+      "sha256": "112e6569a97fd4953f62d02257dbb7f5e5d67f67328ba4db72984cc146e4c922",
+      "bytes": 55448,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient30902/study2/view2_lateral.jpg": {
+      "sha256": "b13a56e2e0f4cda2f45523208d68f40c5a094add3d9630dbe9d3a76f105119a7",
+      "bytes": 32955,
+      "jpeg": true,
+      "size": [
+        326,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient30958/study7/view1_frontal.jpg": {
+      "sha256": "955e9339685ef3001d0b12429648783b040484a44d38b1e1d8b307841b88b76f",
+      "bytes": 47144,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient31163/study1/view1_frontal.jpg": {
+      "sha256": "39f052ac644df8ea7d851181cb209f65bfd9b72de851e22491f8ce4dcc9e2788",
+      "bytes": 45732,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient31349/study14/view1_frontal.jpg": {
+      "sha256": "05e5aa985ccb75799b97c506c1e97a26f25fc07ab9dcb1af56e0690d901710e1",
+      "bytes": 56404,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient31432/study6/view1_frontal.jpg": {
+      "sha256": "0e29cad809bfdf8560b29dad51e7f5704cea97a6311f70724fe92a46d359f51e",
+      "bytes": 55570,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient31564/study5/view2_lateral.jpg": {
+      "sha256": "313fd59152ed00af6391800e224909115275e2380541d56610eec83e2f81c572",
+      "bytes": 41728,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient31593/study6/view1_frontal.jpg": {
+      "sha256": "8c735904bd4f4ad33c71dbdaa94d35793428a3e741c9c599ab44121ff11b46c8",
+      "bytes": 45042,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient31673/study14/view1_frontal.jpg": {
+      "sha256": "e0f9602420241e11600efb441545912a98f597834a046142e439fb007c4d4f47",
+      "bytes": 54562,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient31828/study1/view2_lateral.jpg": {
+      "sha256": "be7079395912539bf618a0addb5aa179c6f353eb0b1d40894ebfc15d245d67f3",
+      "bytes": 38915,
+      "jpeg": true,
+      "size": [
+        320,
+        369
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient32003/study8/view1_frontal.jpg": {
+      "sha256": "8fbd7630b7850ee362b454db1a6559f712ca224629443661fd039d1b5c9c57e3",
+      "bytes": 56189,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient32129/study1/view1_frontal.jpg": {
+      "sha256": "61baa56d73da15f4ba6cb568e0d688e51644c141f8e0266031c808e085407f76",
+      "bytes": 63292,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient32592/study18/view1_frontal.jpg": {
+      "sha256": "d5f891f5a6aa2995ac2ac04246f4068871b4fc2c6aece0e8f0d680a82c95998c",
+      "bytes": 57615,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient32669/study2/view1_frontal.jpg": {
+      "sha256": "c8202531ff8c80811798c02fc8d010749849497fcbcfc9067a5fe581f56e84ef",
+      "bytes": 43348,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient32769/study2/view2_lateral.jpg": {
+      "sha256": "16a7013b65be016d14c09af8d825f5e9f7cc9f7d7433c4a52d9d4c1ec3b4fb65",
+      "bytes": 41105,
+      "jpeg": true,
+      "size": [
+        320,
+        343
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient32832/study16/view1_frontal.jpg": {
+      "sha256": "938c76e2078e3233c486e94492c958c8b64d6b7db69cc1525be1626e6158664d",
+      "bytes": 55710,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient32905/study10/view1_frontal.jpg": {
+      "sha256": "44b0f1dbcf2b83e0e270b1ced5c1f80e86eb514296787adddc96c5bf9ca06097",
+      "bytes": 53048,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient32927/study4/view1_frontal.jpg": {
+      "sha256": "700f3d2d33095500a90d324396b3187e645935683a67b576466dcf78a2123170",
+      "bytes": 46552,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient33013/study4/view1_frontal.jpg": {
+      "sha256": "5fcdc876a317ad7a3dbbb2b0f5279de5817f3a2e966202dbc06d65a8aca39f48",
+      "bytes": 54370,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient33041/study4/view2_frontal.jpg": {
+      "sha256": "e88eff0dae5cc8cf21581885bc72d430b4cab2accac877076f1967afe0c5ce73",
+      "bytes": 46490,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient33162/study3/view2_lateral.jpg": {
+      "sha256": "224c2f893702b619cd6f52a99c9a90c75eddece997fd80a3ebf8f5ab04692b4e",
+      "bytes": 30081,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient33247/study4/view1_frontal.jpg": {
+      "sha256": "363e2cf2d0849c2952248c1f7fc820636629122dcb65d6d8e9cdf13d338364c4",
+      "bytes": 56284,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient33289/study5/view1_frontal.jpg": {
+      "sha256": "3a49a3a15e259841721a696ef977d54ddfca83c1f8792ffdccaa626776e3d140",
+      "bytes": 61516,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient33671/study1/view1_frontal.jpg": {
+      "sha256": "f51b76714f203f6090e3bdc6dbc6c6700871c1b96abe5ef4f5f1ba12a2755597",
+      "bytes": 57011,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient34258/study1/view1_frontal.jpg": {
+      "sha256": "51ba48926fbd014412de1c3c6f0a096235e66c9ebc48e153d0ac182255e7c539",
+      "bytes": 46883,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient34425/study1/view1_frontal.jpg": {
+      "sha256": "71fe83c04deb5e636c258b8e9be07e25e07f40f8356bdc0cce6848cf011f44a9",
+      "bytes": 55674,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient34549/study2/view2_lateral.jpg": {
+      "sha256": "70936285e0fc9da0bf6bbc7172a55b19fb37380ede12bf3655085a3a4e6c1b26",
+      "bytes": 37463,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient34617/study6/view1_frontal.jpg": {
+      "sha256": "63a4917d6a8984d3270f5dc7ca3da2642f483e6ada4c462ccea21fbf767a490c",
+      "bytes": 54479,
+      "jpeg": true,
+      "size": [
+        320,
+        327
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient34727/study7/view1_frontal.jpg": {
+      "sha256": "0429582f3b6c16872fb2227acf7c253be93e2bf40a1fc059b6d761b8be8c9c7c",
+      "bytes": 57059,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient34767/study4/view1_frontal.jpg": {
+      "sha256": "fb5a94703a36c92046b9f220d960a5c3c0859a2ec50b99ad90ee928f664ee860",
+      "bytes": 53366,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient34832/study1/view1_frontal.jpg": {
+      "sha256": "55aa5b3a01e0a71df20ed67c4b839d3322f5385dad657bddf2fa483a6c88d0ae",
+      "bytes": 54170,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient34850/study6/view1_frontal.jpg": {
+      "sha256": "62ac3c05faab55b0b9266d879cce69dac6f4af9037dbc9c8b157b7b74f4e3137",
+      "bytes": 52834,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient34897/study12/view1_frontal.jpg": {
+      "sha256": "d27bd373260c201b9498d61c4c2bb6121d810f2a1ce3580847a55bcde3121461",
+      "bytes": 53643,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient34908/study11/view1_frontal.jpg": {
+      "sha256": "82853319f2c71191f68c1a626e12cc864eb4a0bffa3dc01dcb3fd4cabd12a754",
+      "bytes": 58116,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient35013/study6/view1_frontal.jpg": {
+      "sha256": "76b4441dfabc6fa9b7daf642c1eb2e11eee28d329cc03591cd5ca38d9483b9ad",
+      "bytes": 57085,
+      "jpeg": true,
+      "size": [
+        345,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient35163/study11/view1_frontal.jpg": {
+      "sha256": "897a58c4ef36212fbe4510a689aa22354bb2c8106213b6024469522288f54576",
+      "bytes": 48764,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient35181/study5/view1_frontal.jpg": {
+      "sha256": "cf411944405119804b80e83d4010dfc36105a42224002e868191eb421de1c827",
+      "bytes": 53777,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient35261/study2/view2_lateral.jpg": {
+      "sha256": "b78c8e0d0a1308414595005f2778a66231fb5ce8aa7070cdc51580cbc62deecc",
+      "bytes": 40381,
+      "jpeg": true,
+      "size": [
+        320,
+        364
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient35302/study4/view1_frontal.jpg": {
+      "sha256": "73329d4da80b6bad8fe85a7bba7dae25fea07ac11673d771c1cceebc8df35f0a",
+      "bytes": 48676,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient35336/study1/view1_frontal.jpg": {
+      "sha256": "0fad8211458d855a597044e0831cfea29968c10746e2c2630ec7da02a5da8f8a",
+      "bytes": 46803,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient35395/study7/view1_frontal.jpg": {
+      "sha256": "812e6a6bdff83af1d7a13aa12c123593ca66f605d534de5256dd6db635e73205",
+      "bytes": 53418,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient35484/study11/view1_frontal.jpg": {
+      "sha256": "4399400815d358fbc9d8379832937b9686c6323dd77731bdc6187117ce139978",
+      "bytes": 59796,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient35631/study18/view1_frontal.jpg": {
+      "sha256": "1945dd4fa7d3ae07e946d165fcebd0b6ef31c3ba0e47aceb77773adc2acf62b2",
+      "bytes": 59591,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient35932/study1/view1_frontal.jpg": {
+      "sha256": "62caa270fa47b0469eeaf39897d06a7d48aefc5bef788f7373ec4b5bb2c8bee1",
+      "bytes": 53381,
+      "jpeg": true,
+      "size": [
+        346,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient35941/study3/view1_frontal.jpg": {
+      "sha256": "3f3a1070a51fbe83632e0331f7290e66e3047a07e864f44076d9f37afc6c8644",
+      "bytes": 54418,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient36044/study1/view1_frontal.jpg": {
+      "sha256": "a6e3e123f3cc23bb289a9875e8b5c8f1f9864bee08d5ad84b176e9dee159eef4",
+      "bytes": 49900,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient36103/study2/view1_frontal.jpg": {
+      "sha256": "ee5bc8ab6b5790461cc26e262f4d9d7e86aef803309cd4dc1ad3444b8c6defde",
+      "bytes": 53911,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient36125/study17/view1_frontal.jpg": {
+      "sha256": "d4013c7786d9359b3cddf843e03933c93984c8ceb635e5c1ae29228b320d803d",
+      "bytes": 51651,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient36125/study2/view1_frontal.jpg": {
+      "sha256": "a421627771ea95dc04c29fdab1f61b6364f969ba53467ce29a30f20c555aafd9",
+      "bytes": 56549,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient36409/study6/view1_frontal.jpg": {
+      "sha256": "ac0f0291a9049134033b13b334fcde4127543611714be4a9782fa13196f34180",
+      "bytes": 62931,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient36411/study1/view1_frontal.jpg": {
+      "sha256": "4f5c68ce041c37795dbb084d204787e3e8613448738d13452c831318188de702",
+      "bytes": 53581,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient36649/study3/view1_frontal.jpg": {
+      "sha256": "81e8e9911fdd206c2452bc9fc99d4efb0baab052aa64a795893a97595d5d90fc",
+      "bytes": 44698,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient36792/study5/view1_frontal.jpg": {
+      "sha256": "87fb06a99e54d44ba292f00ea1b6820180b8c1644d4733fadd5dbc608bb42de3",
+      "bytes": 51370,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient36816/study1/view1_frontal.jpg": {
+      "sha256": "6afd2c661bbcfb06925c418aa8de4a8d89ec787845fffd573c7857d07658ba1a",
+      "bytes": 55342,
+      "jpeg": true,
+      "size": [
+        384,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient36819/study7/view1_frontal.jpg": {
+      "sha256": "f63a388c2e9ed8bb7309deaa328e1de155969cc689f505179cfdc606aff6e097",
+      "bytes": 46124,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient36929/study2/view1_frontal.jpg": {
+      "sha256": "83172e40e3674c8b6eebe31777368616212755c12d9982a54c36f0e80dacc87f",
+      "bytes": 57653,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient37241/study3/view1_frontal.jpg": {
+      "sha256": "9d09b3359c9adf90dab2e961f298d3159b6ba7f2d862b1f293d7e39585acdf7b",
+      "bytes": 57603,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient37406/study2/view1_frontal.jpg": {
+      "sha256": "6969672e86ef6b2c9f20a589c91d306c8fb93b0d10c2330a1b1686e40f4cb71f",
+      "bytes": 55736,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient37435/study12/view1_frontal.jpg": {
+      "sha256": "dc5d0c0c485132fd607aeadbe16c4c6064757e7c16160356d7f10741fbef5998",
+      "bytes": 55100,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient37450/study5/view1_frontal.jpg": {
+      "sha256": "9a57bd0bcac535d0ec04d948a756bd55110924b1b2f65d7f7d54ee4b2bc556ed",
+      "bytes": 56909,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient37469/study4/view2_frontal.jpg": {
+      "sha256": "3347ec4d991243b2979f8156f6acf14234fd9a2bb6ed8585b96f38f6501fd45e",
+      "bytes": 68997,
+      "jpeg": true,
+      "size": [
+        436,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient37661/study5/view1_frontal.jpg": {
+      "sha256": "dd426aad4f83278ccfe4555ee969a16df59ae284ed74e1ffb81dfeda1369a95c",
+      "bytes": 59181,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient37725/study3/view1_frontal.jpg": {
+      "sha256": "736443585b45606a374bb9751177dd30c2d4d465fde1fac302d2120647834cdc",
+      "bytes": 53245,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient38023/study6/view1_frontal.jpg": {
+      "sha256": "aa446a5852c3f74ca7a7bc415e72595321b37b51f4e2a4eb228ca2fdc193d660",
+      "bytes": 56504,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient38167/study2/view1_frontal.jpg": {
+      "sha256": "49a5fe08d74b8198bde39ed9fe1aaacc0003b17e422a7719f67fa9fd7271356d",
+      "bytes": 65677,
+      "jpeg": true,
+      "size": [
+        376,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient38168/study4/view1_frontal.jpg": {
+      "sha256": "d9ebd992b29893104c4a81fc7af42bd902c0847372139feedca49fbd2bea6fa5",
+      "bytes": 54848,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient38233/study1/view2_frontal.jpg": {
+      "sha256": "601c9323830933db06da339fd6f4e30490db540de5f1dd8ba7522f7e991eed3a",
+      "bytes": 57965,
+      "jpeg": true,
+      "size": [
+        384,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient38327/study5/view1_frontal.jpg": {
+      "sha256": "f65379066e634a926ba5b720dc5bbd5bb4fb1acb8d96362aa978da512c732ccf",
+      "bytes": 45587,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient38349/study4/view1_frontal.jpg": {
+      "sha256": "e046146dac826e8e621d10d59f2359e43410191abf6c53fb5747e6ef0d8c0b32",
+      "bytes": 52146,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient38526/study11/view1_frontal.jpg": {
+      "sha256": "e364d43e0b6e3ea7d21fa52d5e1b382486d3c9cbc197862c7662a191382d7ea0",
+      "bytes": 56745,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient38693/study8/view1_frontal.jpg": {
+      "sha256": "edc5ff0e81788f0a715e5eed96e592daec82a2d2048b2ad6710ea077e156013b",
+      "bytes": 50882,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient38929/study5/view1_frontal.jpg": {
+      "sha256": "dbdf3d9d954d557a8eed7a258c5cb109edad7ce6b096360de6b587e3319fe72f",
+      "bytes": 43966,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient39138/study2/view1_frontal.jpg": {
+      "sha256": "62f3b0d8c6a2f3ef2e696d1bc9d4617cbb81136740e323e705130c9bcb193af2",
+      "bytes": 50762,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient39140/study7/view1_frontal.jpg": {
+      "sha256": "736cb326b1d41baf6c83065c468c03c87f5bddc592e35f01776b0acb5ec31476",
+      "bytes": 51877,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient39226/study11/view1_frontal.jpg": {
+      "sha256": "59292919c20c288e028a8c1a6b28d5934b136a59e2126defac86799615c93fd4",
+      "bytes": 45078,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient39230/study9/view1_frontal.jpg": {
+      "sha256": "8c782bea101a0f2784ac1170cb896879565e3223619127a78d193f0dcde580e9",
+      "bytes": 53834,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient39545/study1/view1_frontal.jpg": {
+      "sha256": "c9a7135aa99dd2529ec6b9bb3d882c4100e375a75db5c5d4a6194bcabb675b82",
+      "bytes": 61316,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient39836/study2/view1_frontal.jpg": {
+      "sha256": "e90346bdfc3aa11cb966b38ac4cf6b1b62d894b4dd47cc8850106dba66a2c3c1",
+      "bytes": 47590,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient39868/study3/view1_frontal.jpg": {
+      "sha256": "d534e499720a4bce3ca73d06ce6d44881b271f8b79b7817cae4f6b37760b830a",
+      "bytes": 55697,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient39945/study2/view1_frontal.jpg": {
+      "sha256": "04e164055b5a72eb0d04ae41dc8e5070b1089c5abd9af9d1b2cfcbcfae82eaa0",
+      "bytes": 57550,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient40025/study14/view1_frontal.jpg": {
+      "sha256": "b107998a70054c8b371c7b61d9a696e377428b622af09408502e4d050dfccff9",
+      "bytes": 51901,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient40149/study2/view1_frontal.jpg": {
+      "sha256": "5a1c9846c9fbc66e1061cc4d3d10bb2d15ab5019d4f08f73b017fad9b8ad1287",
+      "bytes": 53034,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient40316/study1/view1_frontal.jpg": {
+      "sha256": "1d98f21260bd4f6ddad533b60c5e5dd0f9e28f12c843cab34dc65c4434003815",
+      "bytes": 53017,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient40410/study6/view1_frontal.jpg": {
+      "sha256": "46db6834abbfc7d63082c1bf2b8e31afae58603d04d3317c1430d240cde173ee",
+      "bytes": 55475,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient40928/study3/view1_frontal.jpg": {
+      "sha256": "aa8213827b3056a20cc71d9c8f17058d625c021b45f8e4f4402bb020091cd4c2",
+      "bytes": 52726,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient41117/study2/view1_frontal.jpg": {
+      "sha256": "fcd0ab4e640a2e1386a97d8e9499d4f7c498111b9ecee6ed5c15f3291750f251",
+      "bytes": 53846,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient41509/study3/view1_frontal.jpg": {
+      "sha256": "9d34b43a7780064fd22f38d0a3f1fd25eae0579a1ca21f3d86b937e0cc0be5a8",
+      "bytes": 50802,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient41687/study2/view1_frontal.jpg": {
+      "sha256": "5d58b125db5ce60f1ae7f7c6a29b7da2d5002aa23a2f437681913d34abc02cf4",
+      "bytes": 64341,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient41738/study1/view1_frontal.jpg": {
+      "sha256": "eabbc63721ea787627fc71fbffff8a391228e2b8690a5a786c652b38112038f7",
+      "bytes": 57076,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient41773/study1/view1_frontal.jpg": {
+      "sha256": "92dc2110cc849765dde4004e44eea39f96c7fdee8d1f43cb3158b1cf98c47b48",
+      "bytes": 54813,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient41909/study1/view1_frontal.jpg": {
+      "sha256": "aeb7b93467ace6b14aadcfa36da50c3236acaa32d2bd4255ad390c937125e6b6",
+      "bytes": 50268,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient42118/study7/view1_frontal.jpg": {
+      "sha256": "75a3b80db730402e5a7fdf9e7dc469ea27c7cff9d19e1ba8f36a29f6ba0220fc",
+      "bytes": 52611,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient42243/study1/view1_frontal.jpg": {
+      "sha256": "ef4d5db0447d1d4a564e7acb9f22dc487838a3b278333fbdcced00ec106bf68e",
+      "bytes": 52858,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient42251/study2/view1_frontal.jpg": {
+      "sha256": "649b7ba84f5b4ddafcd70b23df70158a898e56eb8bf0473f8b1340b5bfc7cc88",
+      "bytes": 67831,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient42307/study1/view1_frontal.jpg": {
+      "sha256": "dc04e2ffdb31d9d1cb63d0f4711ac9ca2aae8b0a929d9f92dca87062a55dc718",
+      "bytes": 56121,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient42328/study3/view1_frontal.jpg": {
+      "sha256": "fee69ca210f47be87c500a20a87a426362774c06bb1805024863f6b6b52ffe37",
+      "bytes": 58540,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient42409/study2/view1_frontal.jpg": {
+      "sha256": "db87fb7402ce1110662351c73f438dbfdafb218b13da879170b29b2a36ce9c11",
+      "bytes": 58681,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient42535/study3/view1_frontal.jpg": {
+      "sha256": "078a0a10f34150254e5c2c9937a4b3099bc608880ec0ce1725305502cbf23c78",
+      "bytes": 46567,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient42575/study3/view1_frontal.jpg": {
+      "sha256": "03860953ecc19d704b54bc2d6b1ad8c8172a1332ab66adcb082905715c758540",
+      "bytes": 56316,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient42801/study3/view1_frontal.jpg": {
+      "sha256": "1310d3ce5b1ded06a5ae9326e9b7267e4e9d0fb546068b9d6e28fac17d89f2d3",
+      "bytes": 48406,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient42964/study1/view1_frontal.jpg": {
+      "sha256": "237f4f37474b666a0a1428a0f04a330296667f6da53444ed649b534b365ff614",
+      "bytes": 43856,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient43059/study1/view1_frontal.jpg": {
+      "sha256": "8799307e5b6c99e0618435ca4d6d8aaf880b833e95edde9bd2bb16f2f41fe2e8",
+      "bytes": 59293,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient43060/study1/view2_frontal.jpg": {
+      "sha256": "1a7d7ae46697f7cc68ad6f270ffc49295631146b1aee15c70cba68e7c1bf8b46",
+      "bytes": 50853,
+      "jpeg": true,
+      "size": [
+        320,
+        390
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient43413/study7/view1_frontal.jpg": {
+      "sha256": "178941bb5a5e02be3e18bddcf8dcccbe74204a26ad62c36212ba5f432cb889de",
+      "bytes": 53679,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient43421/study2/view1_frontal.jpg": {
+      "sha256": "c0478dc89d6a838a17d51de35988fe70eeca30dd7c03c5ea08ddb4e02fc67e72",
+      "bytes": 52925,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient43485/study2/view1_frontal.jpg": {
+      "sha256": "ddd11f0a1ffdd302d18671165e4568bea7b7cf5540dfbfa613c0a0885d231b1b",
+      "bytes": 54474,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient44041/study3/view1_frontal.jpg": {
+      "sha256": "fd1818e4762726d0dd96ac41355792a455e43783d0af5ea7e3b2ccbf3ac46df1",
+      "bytes": 51648,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient44813/study9/view1_frontal.jpg": {
+      "sha256": "c22dc7fb6befc49d5be331ce047094b37c3a6890984b36caef49198c93b918a3",
+      "bytes": 55753,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient45299/study4/view1_frontal.jpg": {
+      "sha256": "e8a534efe7f1b9f8f8403183ca14b2785d791f0bbb381a13cc549ee3af13525f",
+      "bytes": 49353,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient45311/study2/view2_frontal.jpg": {
+      "sha256": "dca1a84f0099f8d43881b0c62eda4e5b76f8f9dfe9935494353214b5e40f125d",
+      "bytes": 54458,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient45547/study2/view1_frontal.jpg": {
+      "sha256": "0dc5e03387f5364608b27d30170c8b0c69b21da15c126685459beab53c23ff97",
+      "bytes": 53569,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient45616/study6/view1_frontal.jpg": {
+      "sha256": "cca2ff2c66809aa864bd6161f0dce995c1ac10f683165bc447f662615b31ab8c",
+      "bytes": 50242,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient45682/study8/view1_frontal.jpg": {
+      "sha256": "9734828ef62bef0ba317358bfcb6c1e05bf155b4e431fe5ade3e1b1f96e09971",
+      "bytes": 51499,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient45853/study6/view1_frontal.jpg": {
+      "sha256": "87ea0707695e486c26a30dcdb0e065d542d99a77a1f505c8c727ae873dcea244",
+      "bytes": 55046,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient45980/study1/view1_frontal.jpg": {
+      "sha256": "f8839da4a0fa31e98edf549b847de8e72b6dc9dffb04b5867fd2071e638a3250",
+      "bytes": 50791,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient46044/study2/view1_frontal.jpg": {
+      "sha256": "7ebb439fba4422a976cc48c01505f299cc33c1bd1de9a73eec24f8fa9286465f",
+      "bytes": 57181,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient46063/study4/view1_frontal.jpg": {
+      "sha256": "685ac10e32a9b899df68061f4b64119377b956fc92c2e7a343b6c43471a195c0",
+      "bytes": 53357,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient46398/study6/view1_frontal.jpg": {
+      "sha256": "7fada84eae31712134ea6cff9c71cd8d5eff887d2aabe1116f98311b4b5b6277",
+      "bytes": 51906,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient46422/study1/view1_frontal.jpg": {
+      "sha256": "eb86bd8c45596d1b94e22a98ed0fd98a8a09c6b88c18c0a708a8300e32d1a979",
+      "bytes": 52499,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient46651/study1/view1_frontal.jpg": {
+      "sha256": "6a2e14a3e6a28d8b07bd1aa62f831bbf467b8de079da1f6d87830aa88829f0e7",
+      "bytes": 57103,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient47014/study6/view1_frontal.jpg": {
+      "sha256": "aec7a89b036f79280393600d336ee05a94b760af07001181c0186a955d8727f7",
+      "bytes": 55359,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient47298/study1/view2_frontal.jpg": {
+      "sha256": "d232ed95d1a9b3cdee41e0aae9ce74b90c61888fd9317ccf5352117a914149a2",
+      "bytes": 51259,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient47826/study1/view1_frontal.jpg": {
+      "sha256": "42657e291a6142818215890fb294d9c5fe2bc5dc90750616c877023f454364f8",
+      "bytes": 46456,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient47838/study1/view1_frontal.jpg": {
+      "sha256": "d960cd523fee8b240da1c146740bad191ef9e7af281c42fc2322b9b86519ad37",
+      "bytes": 41793,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient48025/study1/view3_lateral.jpg": {
+      "sha256": "39d860c0ef836d25fa42b922e264ee39106b167911940f7284a813a9f9bee1b1",
+      "bytes": 32068,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient48623/study2/view1_frontal.jpg": {
+      "sha256": "cca6d03c5822c28116d7f8507aadfc01f744d51d1de82f490f3a5bedfdcef94e",
+      "bytes": 48204,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient48643/study2/view1_frontal.jpg": {
+      "sha256": "a3974e29ae1940b56563c9c47dc4f4bb207a1ed6551ed2c02d64b694a77278e8",
+      "bytes": 50325,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient48648/study2/view1_frontal.jpg": {
+      "sha256": "04d939b0f1ed15723dc072a7dba4f47e6a8e8f27cdb7d400cf0eacadc397ba2a",
+      "bytes": 56027,
+      "jpeg": true,
+      "size": [
+        364,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient48654/study6/view1_frontal.jpg": {
+      "sha256": "6b90a29b999f587c7cf2361deed7d951702ea83495cd01f551411e3f209f0619",
+      "bytes": 59886,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient49351/study5/view1_frontal.jpg": {
+      "sha256": "876913fb9b1a33c80ad1122d96a1b87930549c08092bbcabdcc2ead6cdb17894",
+      "bytes": 56760,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient49860/study3/view1_frontal.jpg": {
+      "sha256": "a6d64da0166e95963d8a62be1fabace2d9f8ec8263000044fcc218381652c34f",
+      "bytes": 52240,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient50399/study4/view1_frontal.jpg": {
+      "sha256": "f70d746a8ce93b16d29a9984beae55d9c42cc5b493b21d82bc055d2a2f99a251",
+      "bytes": 59504,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient50604/study3/view1_frontal.jpg": {
+      "sha256": "1dd55613ba3aefcb4f0c90ec91fde43b2632df5a5bb1f2747d9fb107741ec687",
+      "bytes": 50109,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient50753/study1/view1_frontal.jpg": {
+      "sha256": "4215bf36a5d4eef08d0d2e15cd9b46160d9eebd5a8906e41c31f74adb3ddf01d",
+      "bytes": 46769,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient50791/study2/view1_frontal.jpg": {
+      "sha256": "33b63d5efe3342c814a7729b9ae803b61b8694d852aea560d42a101cd6884b94",
+      "bytes": 50052,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient50814/study2/view1_frontal.jpg": {
+      "sha256": "537b6d6e52a63140c56c7861b7de710f812767a13018b0ac1a5a8e08f3cebe8b",
+      "bytes": 57365,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient51066/study2/view1_frontal.jpg": {
+      "sha256": "89c2b1013a198c16a28600c2fa788798ce21dae5fa3f51e8a0359cc8c1d098ac",
+      "bytes": 57750,
+      "jpeg": true,
+      "size": [
+        369,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient51095/study4/view1_frontal.jpg": {
+      "sha256": "c2d51cab03990f2d1942706beec29b62ed948942fa56591a5b4ac1b66a4dd08b",
+      "bytes": 50305,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient51430/study1/view2_frontal.jpg": {
+      "sha256": "ab0735f517e2b28a4d01fb28309b46a0382d43cafd98bf57efdb8085e1efcacc",
+      "bytes": 55976,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient51543/study1/view1_frontal.jpg": {
+      "sha256": "815d0f16a5078a971aed7080b16bb2d6d916413bdb2267c3cf5d8bf677bd7df1",
+      "bytes": 50667,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient51669/study1/view1_frontal.jpg": {
+      "sha256": "78d88d34d64c177a57a642cef4cd376ea234c57e43fea8909d6ae527cdc625b5",
+      "bytes": 44743,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient52224/study1/view1_frontal.jpg": {
+      "sha256": "dd4f88b6cdd58fcba21c2a9c19a1b015cf15e0482666e8b047bba26f81231786",
+      "bytes": 54904,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient52610/study1/view1_frontal.jpg": {
+      "sha256": "8811163b2da0ecd993daf2188d9175b230cb63ac43faa79259c69722cdf98b1a",
+      "bytes": 52257,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient52959/study2/view1_frontal.jpg": {
+      "sha256": "379dd06fb8859e9c59b61f0f41e699e655f39d020b3b1423f000774756dd74f1",
+      "bytes": 43799,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient52959/study2/view2_lateral.jpg": {
+      "sha256": "e40bddd6c7c50a071124d9bed3c71b882b89e580f01eca8847bddd9ba145e814",
+      "bytes": 48393,
+      "jpeg": true,
+      "size": [
+        320,
+        390
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient53090/study1/view1_frontal.jpg": {
+      "sha256": "1c3d5b26ad5e97f30be2ca5b8feb6f73c5d88a2905ece12df4b7d0421099fd73",
+      "bytes": 57275,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient54074/study2/view1_frontal.jpg": {
+      "sha256": "7505ba3268d92bfe8e033e8eb1bc22627042c323663b1e4e34e214eec9e2cda1",
+      "bytes": 58092,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient54381/study5/view1_frontal.jpg": {
+      "sha256": "eaf41607ff773d50cfd439b49b3fc5e0de1586958632779cd7c3001c95d32eb3",
+      "bytes": 53516,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient54460/study1/view1_frontal.jpg": {
+      "sha256": "1779882e150e9d1f72f95e2267ffae919dc62818b5d4031e6fd9078ce005ec9c",
+      "bytes": 54322,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient54545/study1/view1_frontal.jpg": {
+      "sha256": "5750c5a46b874b69837498e675420108f31d2fb3d5f0dd2064bbb5eb72006250",
+      "bytes": 52512,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient54672/study6/view1_frontal.jpg": {
+      "sha256": "de743eaab45f38c35428d2c1abb08efa90baac5673fde990be921bfb935ac600",
+      "bytes": 56535,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient55102/study1/view1_frontal.jpg": {
+      "sha256": "da4bb2795a81f93e4cc0fd22c3e6c6ee85cfbe434ce4d496aeedde334217a384",
+      "bytes": 55228,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient55904/study2/view1_frontal.jpg": {
+      "sha256": "9145f885fdf5c4457313e25a77e0630c2673a65a78a393a2b551f61db21c5275",
+      "bytes": 55972,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient56021/study1/view1_frontal.jpg": {
+      "sha256": "11aaa7b57944b0880014b85a47e2284dbe4eade7340086498c01f4a41fa77940",
+      "bytes": 57473,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient56615/study1/view1_frontal.jpg": {
+      "sha256": "5988638198884ce9892d583930875caa600d07d237f92b2634b1e438f76a5099",
+      "bytes": 49691,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient56834/study1/view1_frontal.jpg": {
+      "sha256": "78a7f7acf5dd2bc3c126511abd528422d4326559346d18436024aa863c071c8c",
+      "bytes": 60675,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient57117/study1/view1_frontal.jpg": {
+      "sha256": "86456e75a71b097a3b61ff04c443a5a2cf93af3e0659ed43bff54e65c6d4f0ac",
+      "bytes": 53666,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient57250/study1/view1_frontal.jpg": {
+      "sha256": "201ec0cc0fdeca27fa37cd929fa6daea81e5271f886076ca707336af5cf65d46",
+      "bytes": 53533,
+      "jpeg": true,
+      "size": [
+        346,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient57394/study1/view1_frontal.jpg": {
+      "sha256": "58931ca033f130ad9774dde52266c3a47ce1466371513edb36b86666bafdd1d9",
+      "bytes": 54422,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient57967/study1/view1_frontal.jpg": {
+      "sha256": "8e80435959378eecb1068a94413f8e10fbf1d5ede08300f4f3e00399d72919e7",
+      "bytes": 36939,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient58408/study3/view1_frontal.jpg": {
+      "sha256": "afa4d710a62b1c874bdac380341851b829fc416c33b561b97f69b0ed0b152873",
+      "bytes": 52655,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient58548/study1/view1_frontal.jpg": {
+      "sha256": "dbea8b0cc5a90ea53d2457f5a0eb6c6d1533e076a4d9fe4ba456539614393229",
+      "bytes": 51585,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient58600/study1/view1_frontal.jpg": {
+      "sha256": "4d14209e3bbd6e5757ddb721aec0252e195cf3740ba10df7c618f2216ec849c5",
+      "bytes": 52978,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient58666/study2/view1_frontal.jpg": {
+      "sha256": "e85f2df5430ff2d7cff815787b7a461e86da1661ca6bc886c74358aeea83ac79",
+      "bytes": 50633,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient58666/study3/view1_frontal.jpg": {
+      "sha256": "d7d59cb070c152e1e7a1f322d2e744b164563a2bfa362942edc7e58db141532e",
+      "bytes": 46602,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient60207/study1/view1_frontal.jpg": {
+      "sha256": "213bee56b2f26fccbde32505828439951f20936fecee80e5c9ddf6fac3a17ed1",
+      "bytes": 53860,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient60584/study1/view2_lateral.jpg": {
+      "sha256": "8f6f11f6cb01e75f1b915eb42b8c5c3a487e5aad703dc3cb2022e3cc2048ab7a",
+      "bytes": 37545,
+      "jpeg": true,
+      "size": [
+        320,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient61492/study1/view1_frontal.jpg": {
+      "sha256": "60c1815343ded0716dd0b3da74130b85e33fe6c4c27b7e91473f8929c5cb809d",
+      "bytes": 55814,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient61626/study1/view1_frontal.jpg": {
+      "sha256": "b070c8d000a963c2dd4b46ba9d46624945a3aba30ef2c05102d0f82d0b2cc07f",
+      "bytes": 56423,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient61746/study1/view1_frontal.jpg": {
+      "sha256": "b885a184671afddb0611ca9dbde249ad955958d0490d86e89fd09cce62fe2f7b",
+      "bytes": 56367,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient62862/study1/view1_frontal.jpg": {
+      "sha256": "ad88d1722fda5f12baf93e4230ff72a55c5a52e615a563ee8aaa514b8d3a6270",
+      "bytes": 51631,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient62872/study1/view1_frontal.jpg": {
+      "sha256": "6b8606a2e9b4601e6addf1480178a709ba61b888ab4376672ee2d20a444fb97e",
+      "bytes": 61668,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient63176/study1/view1_frontal.jpg": {
+      "sha256": "f6a620739a4a4f201132de7cc011a3b055e28b965d311004bcd2b41df0617610",
+      "bytes": 60668,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient63384/study2/view1_frontal.jpg": {
+      "sha256": "e97deb6190ec541f8ad6aa0055c39344248e7de6a20d358a1eeb9c70461c540e",
+      "bytes": 62457,
+      "jpeg": true,
+      "size": [
+        389,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient63617/study1/view1_frontal.jpg": {
+      "sha256": "ad85a5206b2a1ba4d7c3782ea4a5bb0e993680d51ef5742142502233c4af5245",
+      "bytes": 59320,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient64146/study2/view1_frontal.jpg": {
+      "sha256": "7cd8196eea772d4f5d45e7d1c7dfc04b6576bec871b2ce41825e9274755b8dd8",
+      "bytes": 51571,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient64265/study1/view1_frontal.jpg": {
+      "sha256": "e8fefd4e1acc64c297ee897a419b30b3d477bf50ade6cb5147966a0ef4cb68ba",
+      "bytes": 59218,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    },
+    "CheXpert-v1.0-small/train/patient64493/study1/view1_frontal.jpg": {
+      "sha256": "b2d122b1c2302f3a4627516538723f8d2e1b1b34a672a46b801b2460bb1ce85c",
+      "bytes": 57166,
+      "jpeg": true,
+      "size": [
+        390,
+        320
+      ],
+      "mode": "L"
+    }
+  },
+  "note": "Same CheXpert-v1.0-small study paths as the committed manifests, taken from the same public HF mirror as the Qwen2.5-VL-72B-Instruct lineage (revision ca5a840e438b5d2d0fa07f560782f196b38a84aa), stored JPEG bytes, not re-encoded. Every film both lineages list has the same sha256."
+}
