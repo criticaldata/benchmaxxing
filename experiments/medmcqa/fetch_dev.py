@@ -8,6 +8,7 @@ stages the 500-row manifest the README specifies, and checks its sha256 against 
 committed MedMCQA cache was built on. A mismatch exits non-zero rather than leaving a manifest that
 would silently pick different cases.
 
+    pip install -e '.[manifest]'                       # pandas and pyarrow, for the Parquet split
     python experiments/medmcqa/fetch_dev.py            # writes data/medmcqa_dev.csv
 """
 from __future__ import annotations
@@ -39,7 +40,12 @@ def main():
     ap.add_argument("--limit", type=int, default=500)
     args = ap.parse_args()
 
-    import pandas as pd  # parquet reading needs pandas with pyarrow
+    try:
+        import pandas as pd
+        import pyarrow  # noqa: F401  (pandas reads Parquet through it)
+    except ImportError as exc:
+        sys.exit(f"{exc}: the Parquet split needs pandas and pyarrow; install the extra with "
+                 "`pip install -e '.[manifest]'` (or `uv add pandas pyarrow`), then rerun.")
 
     raw = urllib.request.urlopen(PARQUET, timeout=120).read()
     df = pd.read_parquet(io.BytesIO(raw))

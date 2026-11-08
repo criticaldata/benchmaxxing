@@ -12,8 +12,10 @@ why the caches live in-tree — unlike the MIMIC lanes, whose transcripts stay g
 MedMCQA (Pal et al. 2022) ships as JSON/JSONL splits. The quickest route is the public copy of the
 validation split on the Hugging Face hub, which this script fetches, converts row for row to the
 release's `dev.json`, stages, and checks against the sha256 every committed MedMCQA cache replays
-against (`5b2ce971...`); it exits non-zero on a mismatch:
+against (`5b2ce971...`); it exits non-zero on a mismatch. It needs pandas and pyarrow, declared as the
+`manifest` extra:
 
+    pip install -e '.[manifest]'
     python experiments/medmcqa/fetch_dev.py
 
 If you already have the raw `dev.json`, stage it directly:
