@@ -1,0 +1,27 @@
+{
+  "n": 120,
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "new_api_calls_this_run": 600,
+  "adoption_by_cue": {
+    "baseline": 0.3667,
+    "primacy": 0.525,
+    "negation": 0.775,
+    "qualifier": 0.4833
+  },
+  "baseline_vs_primacy": {
+    "gain": 22,
+    "lose": 3,
+    "pvalue": 0.000157
+  },
+  "baseline_vs_negation": {
+    "gain": 51,
+    "lose": 2,
+    "pvalue": 0.0
+  },
+  "baseline_vs_qualifier": {
+    "gain": 18,
+    "lose": 4,
+    "pvalue": 0.004344
+  },
+  "read": "Adoption of the same fixed wrong answer under different text cue types: baseline 0.3667, moved to the front (primacy) 0.525, framed as ruling out the holdout's own pick (negation) 0.775, padded with an exclusion qualifier 0.4833. Deviations from baseline isolate pure position/order sensitivity (primacy), the extra push from explicitly cancelling the holdout's prior (negation), and whether pseudo-justification padding adds anything (qualifier). Paired McNemars test each cue against the baseline assertion."
+}
