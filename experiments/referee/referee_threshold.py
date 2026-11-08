@@ -60,9 +60,12 @@ def _mcq(case, prefix=""):
 
 
 class _Cache:
-    """Draw-aware cache: key includes temperature and draw index so sampled re-queries differ."""
+    """Call cache. With draw_aware (re-queries) the key includes temperature and draw so sampled draws
+    differ; without it (the committee board) the key is sha256(model NUL prompt), as referee_judge and
+    referee_deployable key the same file."""
 
-    def __init__(self, path, key):
+    def __init__(self, path, key, draw_aware=True):
+        self.draw_aware = draw_aware
         self.path, self.key, self.store, self.calls = Path(path), key, {}, 0
         if self.path.exists():
             for line in self.path.read_text().splitlines():
@@ -71,7 +74,14 @@ class _Cache:
                     self.store[r["k"]] = r["resp"]
 
     def complete(self, model, prompt, temperature=0.0, draw=0):
-        k = hashlib.sha256(f"{model}\x00{temperature}\x00{draw}\x00{prompt}".encode()).hexdigest()
+        # The committee board shares experiments/referee/results/call_cache.jsonl with referee_judge
+        # and referee_deployable, which key it as sha256(model NUL prompt); the board cache uses that
+        # key so every referee arm scores against the same committee answers. Re-queries keep the
+        # draw-aware key so sampled draws do not collide.
+        if self.draw_aware:
+            k = hashlib.sha256(f"{model}\x00{temperature}\x00{draw}\x00{prompt}".encode()).hexdigest()
+        else:
+            k = hashlib.sha256(f"{model}\x00{prompt}".encode()).hexdigest()
         with _lock:
             if k in self.store:
                 return self.store[k]
@@ -118,7 +128,7 @@ def main():
 
     out, board_path = _lane.scoped(model, args.out, "experiments/referee/results/call_cache.jsonl", args.board_cache)
     _, requery_path = _lane.scoped(model, args.out, "experiments/referee/results/referee_threshold_requery_cache.jsonl", args.requery_cache)
-    board_cache = _Cache(board_path, key)
+    board_cache = _Cache(board_path, key, draw_aware=False)
     requery_cache = _Cache(requery_path, key)
     cases = load_cases(args.manifest)[:args.n]
     committee = build_committee([
