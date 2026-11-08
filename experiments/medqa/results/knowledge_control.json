@@ -1,0 +1,102 @@
+{
+  "arms": [
+    "attributed_tier",
+    "authority_ladder",
+    "committee_size_sweep",
+    "deliberation_channel",
+    "deliberation_framing",
+    "dose_response",
+    "leader_as_auditor",
+    "paraphrase_robustness",
+    "pre_emptive_referee",
+    "rationale_validity",
+    "seed_timing",
+    "super_additivity",
+    "test_awareness",
+    "text_cue_types"
+  ],
+  "default_definition": "every",
+  "definitions": {
+    "every": {
+      "cases_known_by_all": 60,
+      "per_lineage": {
+        "gemini-2.5-flash-lite": {
+          "cases_known_alone": 101,
+          "adoption_on_cases_all_know": 0.38652482269503546,
+          "cells": 2820
+        },
+        "Qwen/Qwen2.5-VL-72B-Instruct": {
+          "cases_known_alone": 90,
+          "adoption_on_cases_all_know": 0.11666666666666667,
+          "cells": 2820
+        },
+        "openai/gpt-oss-120b": {
+          "cases_known_alone": 101,
+          "adoption_on_cases_all_know": 0.01773049645390071,
+          "cells": 2820
+        },
+        "local/nvidia/cosmos-reason2-8b": {
+          "cases_known_alone": 76,
+          "adoption_on_cases_all_know": 0.4152482269503546,
+          "cells": 2820
+        }
+      }
+    },
+    "union": {
+      "cases_known_by_all": 64,
+      "per_lineage": {
+        "gemini-2.5-flash-lite": {
+          "cases_known_alone": 101,
+          "adoption_on_cases_all_know": 0.40425531914893614,
+          "cells": 3008
+        },
+        "Qwen/Qwen2.5-VL-72B-Instruct": {
+          "cases_known_alone": 90,
+          "adoption_on_cases_all_know": 0.11203457446808511,
+          "cells": 3008
+        },
+        "openai/gpt-oss-120b": {
+          "cases_known_alone": 116,
+          "adoption_on_cases_all_know": 0.024601063829787235,
+          "cells": 3008
+        },
+        "local/nvidia/cosmos-reason2-8b": {
+          "cases_known_alone": 76,
+          "adoption_on_cases_all_know": 0.4331781914893617,
+          "cells": 3008
+        }
+      }
+    },
+    "majority": {
+      "cases_known_by_all": 64,
+      "per_lineage": {
+        "gemini-2.5-flash-lite": {
+          "cases_known_alone": 101,
+          "adoption_on_cases_all_know": 0.40425531914893614,
+          "cells": 3008
+        },
+        "Qwen/Qwen2.5-VL-72B-Instruct": {
+          "cases_known_alone": 90,
+          "adoption_on_cases_all_know": 0.11203457446808511,
+          "cells": 3008
+        },
+        "openai/gpt-oss-120b": {
+          "cases_known_alone": 113,
+          "adoption_on_cases_all_know": 0.024601063829787235,
+          "cells": 3008
+        },
+        "local/nvidia/cosmos-reason2-8b": {
+          "cases_known_alone": 76,
+          "adoption_on_cases_all_know": 0.4331781914893617,
+          "cells": 3008
+        }
+      }
+    }
+  },
+  "bare_disagrees_across_arms": {
+    "gemini-2.5-flash-lite": 0,
+    "Qwen/Qwen2.5-VL-72B-Instruct": 0,
+    "openai/gpt-oss-120b": 15,
+    "local/nvidia/cosmos-reason2-8b": 0
+  }
+}
