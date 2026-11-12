@@ -29,9 +29,9 @@ What is simulated or drawn
   In stage 04, the number of dots that return when the agent is told it is evaluated is
   taken from the summary files in the code repository; the page prints only the range
   given in the paper.
-  The chest X-ray, the exam card, the ICU table, the folded note, the model figures and
-  the overview map are drawn in code. No radiograph, no report text and no patient record
-  is on the page.
+  The chest X-ray in the 3D scene, the exam card, the ICU table, the folded note, the model
+  figures and the overview map are drawn in code. No report text and no patient record is
+  on the page. One real chest X-ray is shown in the panel of stage 01 (credit below).
   The conversation in the Example step (a question about fever, neck stiffness and altered
   mental status, two peer reviewers, a referee) is written for this page to show the idea.
   It is not a case from the paper's data and it carries no number.
@@ -93,6 +93,18 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+Chest X-ray shown in stage 01
+  One real film of the study, shown once as released and once with a corner
+  tag ("PORTABLE") planted by the study's code: NIH ChestX-ray14, image
+  00000001_000.png, labelled cardiomegaly, scaled down to 336 pixels.
+  Data provided by the NIH Clinical Center. Use of the dataset is
+  unrestricted when it is credited as follows.
+  Download site: https://nihcc.app.box.com/v/ChestXray-NIHCC
+  Citation: X. Wang, Y. Peng, L. Lu, Z. Lu, M. Bagheri, R. M. Summers.
+  ChestX-ray8: Hospital-scale Chest X-ray Database and Benchmarks on
+  Weakly-Supervised Classification and Localization of Common Thorax
+  Diseases. IEEE CVPR 2017.
 
 Fonts
   System fonts only. No font files are bundled or fetched.
