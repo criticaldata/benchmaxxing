@@ -16,6 +16,12 @@
 > proceedings in Lecture Notes in Computer Science 17263 (Springer). Also on [arXiv](https://arxiv.org/abs/2608.03744)
 > and [Hugging Face](https://huggingface.co/papers/2608.03744). [How to cite](#citation).
 
+**[Explore Benchmaxxing world: how AI agents cheat together, and how to catch them](https://criticaldata.github.io/benchmaxxing/world/)**: the experiments as a map you can walk through, in five stages.
+
+<p align="center">
+  <a href="https://criticaldata.github.io/benchmaxxing/world/"><img src="world/og-image.jpg" alt="Benchmaxxing world. How AI agents cheat together, and how to catch them: a drawn chest X-ray with a cable, and dots that each stand for one test case." width="720"></a>
+</p>
+
 ### Alone, it holds. In company, it folds.
 
 Shortcuts, the cues a benchmark rewards but a clinician would ignore, are one of the main reasons a
