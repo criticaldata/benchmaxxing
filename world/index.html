@@ -469,7 +469,7 @@ body.poster #caption{font-size:1.6rem;max-width:none}
 body.poster .bubble,body.poster .label3d{font-size:1.25rem}
 body.poster .legend{font-size:1.1rem}
 
-@media (max-width:379px){.brand-bm .wm{display:none}}
+@media (max-width:379px){.brand-bm .wm{display:none}#nav{gap:0}#nav .step{min-width:27px;padding:0 3px}}
 @media (max-width:900px) and (max-height:780px){.hub .line{display:none}.hub{background:radial-gradient(closest-side,rgba(250,250,248,.94) 62%,rgba(250,250,248,0))}}
 @media (max-width:900px) and (max-height:780px){body.map .side:not(.open) #detail-body{display:none}}
 @media (max-width:900px) and (max-height:640px){body.map .side:not(.open){display:none}.node{padding:5px 7px 6px}.node b{font-size:12px}.node i{font-size:11px}}
@@ -546,6 +546,48 @@ body.paused #stepbtns{color:var(--ink)}
 #example:not([hidden]){animation:viewin .34s ease both}
 @keyframes viewin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){#example:not([hidden]){animation:none}}
+
+/* ---------- round 8: stations 01 to 05 are told one step at a time. Back and Next are the only controls; Live sits in the top bar ---------- */
+.topbar #motion-toggle{margin-left:4px;height:32px}
+.label3d.lane{font-weight:700;color:var(--ink)}
+#stepcount{margin-left:auto;font-family:var(--mono);font-size:var(--fs-s);color:var(--muted);white-space:nowrap}
+#stepcount[hidden]{display:none}
+.bar-time{justify-content:flex-end;border-left:0}
+/* the step in the right panel: its result, then one or two sentences */
+#detail-body .big,.col.step .big{margin:2px 0 10px;font-size:2rem;font-weight:800;line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
+#detail-body .big .num,.col.step .big .num{font-weight:800}
+#detail-body .big small,.col.step .big small{display:block;margin-top:3px;font-size:var(--fs-tag);font-weight:600;letter-spacing:0;color:var(--muted)}
+#detail-body .bars{margin:12px 0 0;gap:6px 10px;font-size:var(--fs-tag)}
+#detail-body .bars i{height:8px;border-radius:4px}
+#detail-body table.t2.mini{margin:12px 0 0}
+table.t2.mini td:first-child{font-weight:600}
+table.t2.mini th{font-size:11px;letter-spacing:.02em}
+#detail-body{animation:fade .35s ease both}
+@media (min-width:901px){body.story #cols{display:none}}
+@media (max-width:900px){
+ /* a phone: the headline over the scene, the step in one card under it. The side sheet opens only for Sources and for a tapped case */
+ body.story .side:not(.open){display:none}
+ .col.step{display:block}
+ .col.step .kicker{display:flex;justify-content:space-between;gap:8px;margin:0 0 4px;font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--accent)}
+ .col.step .kicker em{font-style:normal;color:var(--muted)}
+ .col.step p{color:var(--ink);font-size:14px;line-height:1.45}
+ .col.step .big{font-size:24px;margin:0 0 4px}
+ .col.step .bars{margin-top:8px}
+ .col.step table.t2.mini{margin:8px 0 0}
+ table.t2.mini th{font-family:inherit;font-size:12px;letter-spacing:0;text-transform:none}
+ #cols .realcase{margin:8px 0 0;padding:8px 12px;border:1px solid var(--rule);border-radius:var(--r-card);background:var(--sheet)}
+ .bar{grid-template-columns:minmax(0,1fr) auto}
+ .bar-time{display:none}
+ .bar-nav{grid-row:1}#next{grid-row:1}
+ .topbar #motion-toggle{margin-left:auto;height:30px;padding:0 10px 0 9px}
+ #sources-open{margin-left:0;height:30px;padding:0 11px}
+ .brand-bm .wm{font-size:0}.brand-bm .wm b{font-size:14px}
+}
+@media (max-width:900px) and (min-height:780px){body.story #scene{height:47vh;height:47svh}}
+/* short phones: the scene gives room to the step's card, so a step with a table still fits without scrolling */
+@media (max-width:900px) and (max-height:700px){body.story #scene{height:38vh;height:38svh}.col.step table.t2.mini td,.col.step table.t2.mini th{padding:3px 6px}.col.step table.t2.mini{margin-top:6px}}
+@media (max-width:900px) and (max-height:600px){body.story #scene{height:31vh;height:31svh}body.story #caption{min-height:3.3em}.col.step{padding:6px 10px}.col.step .kicker{margin-bottom:2px}.col.step table.t2.mini td,.col.step table.t2.mini th{padding:2px 6px}}
+@media (prefers-reduced-motion:reduce){#detail-body{animation:none}}
 </style>
 </head>
 <body>
@@ -586,6 +628,7 @@ body.paused #stepbtns{color:var(--ink)}
    <a href="https://github.com/criticaldata/benchmaxxing/blob/main/docs/DATASETS.md" target="_blank" rel="noopener">Data</a>
    <a href="https://criticaldata.github.io/benchmaxxing/" target="_blank" rel="noopener">Explainer</a>
   </nav>
+  <button id="motion-toggle" type="button" aria-pressed="true" aria-label="Live: the story goes on by itself. Off: every step waits for Next" title="Live: the story goes on by itself"><i aria-hidden="true"></i><span>Live</span></button>
   <button id="sources-open" class="pill" type="button">Sources</button>
   <button id="reset-camera" class="iconbtn" type="button" aria-label="Reset view" title="Reset view"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 1 0 2.3-5.4"/><path d="M4.5 4.5v4.6h4.6"/></svg></button>
  </header>
@@ -628,8 +671,6 @@ body.paused #stepbtns{color:var(--ink)}
     <span id="ex-tag" hidden></span>
    </div>
    <div class="dock">
-    <div id="controls"></div>
-    <div id="coltabs" role="tablist" aria-label="Parts of the scene"></div>
     <div id="cols"></div>
     <div class="legend" id="legend" aria-label="Colour key"></div>
    </div>
@@ -642,15 +683,10 @@ body.paused #stepbtns{color:var(--ink)}
     <div id="detail-body"></div>
    </section>
    <div id="card" hidden role="region" aria-label="Details">
-    <button id="card-close" type="button" aria-label="Back to the stage text">×</button>
+    <button id="card-close" type="button" aria-label="Close">×</button>
     <p class="kicker" id="card-title"></p>
     <h2 id="card-page"></h2>
     <div id="card-body"></div>
-    <div class="pager" id="pager" hidden>
-     <button type="button" data-page="-1" aria-label="Previous page">‹</button>
-     <span id="pager-at" aria-live="polite"></span>
-     <button type="button" data-page="1" aria-label="Next page">›</button>
-    </div>
    </div>
   </aside>
  </main>
@@ -661,12 +697,7 @@ body.paused #stepbtns{color:var(--ink)}
    <div id="nav" role="group" aria-label="Where you are on the path"></div>
   </div>
   <div class="bar-time">
-   <button id="motion-toggle" type="button" aria-pressed="true" aria-label="Play or pause the animation"><i aria-hidden="true"></i><span>Live</span></button>
-   <div id="stepbtns" role="group" aria-label="One step at a time" hidden><button id="step-prev" type="button" aria-label="One step back">‹</button><span>Step</span><button id="step-next" type="button" aria-label="One step forward">›</button></div>
-   <div id="stepper" hidden>
-    <div class="track"><i class="rail"></i><i class="fill" id="scrub-fill"></i><i class="tick" style="left:33.333%"></i><i class="tick" style="left:66.667%"></i><input id="scrub" type="range" min="0" max="1000" step="1" value="0" aria-label="Timeline of this stage"></div>
-    <ol id="beats" aria-label="Steps of the animation"></ol>
-   </div>
+   <span id="stepcount" aria-live="polite" aria-label="Step of this stop" hidden></span>
   </div>
   <button id="next" type="button"><b>Next</b><em id="next-to"></em><span aria-hidden="true">→</span></button>
  </footer>
@@ -3070,7 +3101,7 @@ var RUB={
 var POOL={text:{n:11,label:'MedQA'},imaging:{n:134,label:'X-ray'}};
 var SUM134=num('29','s45','29/35')+' + '+num('75','s45','75/141')+' + '+num('30','s45','30/35');
 
-var state={view:'map',open:null,ex:0,stage:0,mod:'text',example:'off',tier:'flash',varB:'two',cohC:'nih',cohR:'nih',cohH:'medqa',filt:'all',aware:'off',pool:'text',reveal:'off',focus:0,paused:false,pausedBy:null,time:0,sel:null};
+var state={view:'map',open:null,ex:0,stage:0,mod:'text',example:'off',tier:'flash',varB:'two',cohC:'nih',cohR:'nih',cohH:'medqa',filt:'all',aware:'off',pool:'text',reveal:'off',focus:-1,step:0,paused:false,time:0,sel:null};
 /* stages. lead = the one block of the right panel. beats and narr = the three steps and their captions.
    once:true marks a timeline that plays once and then rests on its last step (stage 01: the cohort stays while someone reads). */
 var STAGES=[
@@ -3108,7 +3139,7 @@ var SHORT=['What we tested','The cascade','Three referees','Scoring note','How t
 function exNodeHTML(){return isPhone()?'<i>Ex</i><b>Example</b>':'<i>Start</i><b>'+EXNODE.title+'</b><span class="line">'+EXNODE.line+'</span><span class="res">'+EXNODE.res+' '+ILL+'</span>';}
 function hubHTML(){return '<p class="kicker">'+HUB.kicker+'</p><h1>'+HUB.h1+'</h1><p class="line">'+HUB.line+'</p><button type="button" id="start" class="start" data-view="example">Start</button>';}
 /* a station on the map opens into a subtree: its three parts hang under its card, each one a way in. open = the station whose subtree shows */
-function partsOf(k){var s=state.stage,v=state.view,c;state.stage=k;state.view='stage';c=cards().map(function(x){return x.title;});state.stage=s;state.view=v;return c;}
+function partsOf(k){return PARTS[k];}
 function kidsHTML(k){return '<div class="kids" role="group" aria-label="Parts of 0'+(k+1)+' '+STAGES[k].title+'">'+partsOf(k).map(function(t,p){return '<button type="button" class="kid" data-part="'+k+':'+p+'"><i>'+(k+1)+'.'+(p+1)+'</i><b>'+t+'</b><span aria-hidden="true">\u203a</span></button>';}).join('')+'</div>';}
 function openNodeHTML(k,sh){return '<div class="nc" role="button" tabindex="0" data-enter="'+k+'" aria-label="Go into 0'+(k+1)+' '+STAGES[k].title+'">'+nodeHTML(k,sh)+'<em class="enter">Go in \u2192</em></div>'+kidsHTML(k);}
 function openNode(k){if(state.view!=='map'||state.open===k)return;state.open=k;render();var n=$('#labels .node.open .nc');if(n)n.focus({preventScroll:true});}
@@ -3131,7 +3162,7 @@ function exDraw(){var st=state.ex,c=EXCOPY[st];
  $('#ex-caption').textContent=c[0];
  $('#ex-next').hidden=st>=6;if(st<6)$('#ex-next b').textContent=EXLABEL[st];$('#ex-restart').hidden=st<6;
  if(st<3){exStopType();$('#ex-inject').className='xinject';$('#ex-typed').textContent='';}else if(!exBusy)$('#ex-inject').className='xinject show done';
- if(state.view==='example'){$('#detail-kicker').textContent='Webinar guide';$('#detail-title').textContent=c[0];$('#detail-body').innerHTML='<p>'+c[1]+'</p><p class="fine">It plays by itself. The Step buttons move one part at a time.</p>';}}
+ if(state.view==='example'){$('#detail-kicker').textContent='Webinar guide';$('#detail-title').textContent=c[0];$('#detail-body').innerHTML='<p>'+c[1]+'</p><p class="fine">With Live on it plays by itself. Next and Back move one part at a time.</p>';}}
 function exStopType(){if(exBusy){clearTimeout(exBusy.t);exBusy=null;}}
 function exEndType(){exStopType();$('#ex-typed').textContent=EXTYPE;if(state.ex>=3)$('#ex-inject').className='xinject show done';}
 /* step 3: the peer cue is typed into the shared conversation, then it stays. A click while it types finishes the typing */
@@ -3145,42 +3176,14 @@ setInterval(function(){exAuto(0.25);},250);
 function exSet(n){exClock=0;n=clamp(n,0,6);if(exBusy){exEndType();if(n>state.ex)return;}var up=n===state.ex+1;state.ex=n;exDraw();if(up&&n===3)exType();render();
  var last=$$('#example .xpanel').map(function(p){var a=$$('[data-s].show',p);return a[a.length-1];});last.forEach(function(e){if(e&&e.scrollIntoView)e.scrollIntoView({block:'nearest'});});}
 var LOOP=11.5,T_INF=2.6,T_GO=4.4,HOLD=10.4,BEAT_T=[1.2,3.5,HOLD];
-function tau(){return state.time%LOOP;}
-/* the bar: each of the three steps owns one third of the track. u = bar position 0 to 1 */
-var TB=[0,T_INF,T_GO+0.3,HOLD],scrubAt=-1e9,scrubHeld=false;
-function tauOfU(u){u=clamp(u,0,1);var b=Math.min(2,Math.floor(3*u));return TB[b]+(3*u-b)*(TB[b+1]-TB[b]);}
-function uNow(){var t=Math.min(tau(),HOLD),b=t<TB[1]?0:t<TB[2]?1:2;return (b+(t-TB[b])/(TB[b+1]-TB[b]))/3;}
-function scrubbing(){return scrubHeld||performance.now()-scrubAt<250;}
-/* scrubbing pauses the clock and keeps the loop, so stage 03 does not switch its ringed case */
-/* a drag of the timeline drives the scene directly; a click far along it makes the scene run there in view */
-function scrub(u){var t=tauOfU(u);setPaused(true,state.pausedBy==='pill'?'pill':'scrub');
- if(three&&three.glide&&Math.abs(t-tau())>0.6)three.glide(t);else{if(three&&three.glide)three.glide(null);state.time=loopIndex()*LOOP+t;scrubAt=performance.now();}
- syncBeat();syncScrub();}
-function syncScrub(){var el=$('#scrub'),v;if(!el||$('#stepper').hidden)return;v=Math.round(uNow()*1000);if(!scrubHeld&&+el.value!==v)el.value=v;$('#scrub-fill').style.width=(v/10)+'%';}
-/* markers: inside a stage everything is numbered from its stage. The three tags of stage 02 are 2.1, 2.2 and 2.3 */
-function mk(i){return (state.stage+1)+'.'+(i+1);}
-function beatIndex(){var t=tau();return t<T_INF?0:t<T_GO+0.3?1:2;}
-function loopIndex(){return Math.floor(state.time/LOOP);}
-function exPersuaded(){return loopIndex()%2===0;}
+function tau(){return state.time;}
+function beatIndex(l){var t=three?LANE[l||0]:T_END;return t<T_INF?0:t<T_GO+0.3?1:2;}
+/* station 03 follows one ringed case on each board: a persuaded one */
+function exPersuaded(){return true;}
 /* stage 03 illustration: 20 persuaded + 20 honest cases per detector, flagged at the paper's recall and false-positive rate */
 function flagged(det,j){var v=TAB2[state.cohR][det];if(!v)return false;var nR=Math.round(parseFloat(v[1])*20),nF=Math.round(parseFloat(v[2])*20);return j<20?j<nR:(j-20)>=20-nF;}
 var EXP=0,EXH=30;
 
-/* control groups. lane = the tag (0 to 2) that holds the group; no lane = the centred row above the tags. show = keep the label visible inside a tag */
-function groups(){
- var SHOW={k:'filt',label:'Show',opts:[['all','All answers'],['moved','Only those that moved'],['names','Who says so']]};
- switch(state.stage){
-  case 0:return [{k:'mod',label:'Data',opts:[['text','Text'],['imaging','Imaging'],['tabular','Tabular']]},{k:'example',label:'One case',show:true,opts:[['off','Hide'],['on','Show']]}];
-  case 1:return [{k:'tier',lane:0,label:'Model',opts:[['flash','Flash'],['lite','Flash-Lite']]},{k:'varB',lane:1,label:'Peers',opts:[['two','Two peers'],['one','One peer'],['confident','Confident'],['hedged','Hedged']]},{k:'cohC',lane:2,label:'X-ray cohort',opts:[['nih','NIH'],['mimic','MIMIC-CXR'],['chex','CheXpert']]}];
-  case 2:return [{k:'cohR',label:'Cohort',opts:COHR}];
-  case 3:return state.filt==='names'?
-   [SHOW,{k:'pool',lane:2,label:'Answers that moved',opts:[['text','MedQA'],['imaging','X-rays']]},{k:'reveal',lane:2,label:'Lens',show:true,opts:[['off','Search'],['on','Reveal']]}]:
-   [SHOW,{k:'cohH',lane:0,label:'Cohort',opts:[['medqa','MedQA'],['nih','NIH'],['mimic','MIMIC-CXR'],['chex','CheXpert']]},{k:'aware',lane:0,label:'Evaluation notice',opts:[['off','Not told'],['on','Told it is evaluated']]}];
-  default:return [];
- }
-}
-function groupsNow(){return state.view!=='stage'?[]:groups();}
-function groupHTML(g){return '<div class="group'+(g.show?' lab':'')+'" role="group" aria-label="'+g.label+'"><span>'+g.label+'</span>'+g.opts.map(function(o){return '<button type="button" data-k="'+g.k+'" data-v="'+o[0]+'" aria-pressed="'+(state[g.k]===o[0])+'">'+o[1]+'</button>';}).join('')+'</div>';}
 function legend(){
  if(state.view==='map')return '<span class="one"><i></i>= 1 case</span><span>'+ILL+'</span><span class="hint">'+(state.open!==null?(isPhone()?'Pick a part, or tap outside.':'Pick a part to go in. Click outside to close.'):'Scroll to zoom in. Pick a stop.')+'</span>';
  var L=function(c,t){return '<span><i style="background:'+c+'"></i>'+t+'</span>';},K='var(--keep)',M='var(--move)',G='var(--gold-3d)',F='var(--flag)',ONE='<span class="one"><i></i>= 1 case</span>';
@@ -3196,13 +3199,6 @@ function bars(v){
  var row=function(lab,val,cls){return '<span>'+lab+'</span><i class="'+cls+'"><u style="width:'+(parseFloat(val)*100)+'%"></u></i><b>'+num(pct(val),'t2',val)+'</b>';};
  return '<div class="bars">'+row('flags that are right',v[0],'')+row('persuaded caught',v[1],'')+row('honest flagged',v[2],'fa')+'</div>';
 }
-function detTable(det){
- return '<table class="t2"><tr><th>cohort</th><th>flags right<br>(precision)</th><th>caught<br>(recall)</th><th>false alarms</th></tr>'+COHR.map(function(c){var v=TAB2[c[0]][det];
-  return '<tr><td>'+c[1]+'</td>'+v.map(function(x){return '<td>'+num(pct(x),'t2',x)+'</td>';}).join('')+'</tr>';}).join('')+'</table><p>'+chip('t2')+'</p>';
-}
-/* cards: one per tag in the scene. vis = what the tag shows; pages = what opens in the right panel, one block of 50 words or fewer each */
-function P(t,b){return {t:t,b:b};}
-function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
 /* one real case per data type, shown under the stage text of stage 01. Text: a public MedQA question. Imaging: a film of NIH ChestX-ray14, as released and
    with one of the study's planted cues. ICU records are not shown: the table in the scene is a drawing */
 var XRAY={clean:'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',cue:'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'};
@@ -3212,122 +3208,40 @@ function caseHTML(){var h='<div class="realcase"><p class="kicker">Real case</p>
  else if(state.mod==='imaging')h+=xrayHTML();
  else h+='<p>ICU records are not shown on this page. The model reads one structured record and answers: does the patient survive to hospital discharge? The table in the scene is a drawing.</p>';
  return h+'</div>';}
-function cards(){
- if(state.view!=='stage')return [];
- var m,a,b,c,t,r,p,one,st=state.stage,go=function(k,label,set){return '<button type="button" class="go" data-goto="'+k+'"'+(set?' data-set="'+set+'"':'')+'>'+label+' →</button>';};
- if(st===0){m=MOD[state.mod];
-  one=state.mod==='text'?[
-    P(null,'<blockquote>'+QUOTE.q+'</blockquote><ol type="A">'+QUOTE.opts.map(function(o){return '<li>'+o+'</li>';}).join('')+'</ol><p class="fine">MedQA-USMLE, MIT licence.</p>'),
-    P('What the model does','<p>The model picks one option. A cue or a peer never changes the right answer. The test is whether the model’s answer moves anyway.</p>')]
-   :state.mod==='imaging'?[P('One case: a chest X-ray','<p>The model sees one radiograph and answers yes or no: is the finding present? Cues are small overlays outside the anatomy, so the right answer never changes. The film in the scene is a drawing. The panel shows a real one.</p>')]
-   :[P('One case: an ICU record','<p>The model reads one structured record and answers: does the patient survive to hospital discharge? Cues restate the same values in another order, unit or precision. The table shown here is a drawing, not a patient record.</p>')];
-  one.push(P('Shown here','<p>'+m.cohorts.map(function(c){return num(c.n,'s31')+' '+c.name+' '+c.what+' ('+c.use+')';}).join(', ')+'.'+chip('s31')+'</p>'));
-  if(state.mod==='text')one.push(P('Other MedQA sets','<p>MedQA is also used in sets of '+num('50','s31')+', '+num('40','s31')+', '+num('20','s31')+' and '+num('120','s31')+' cases for the other tests.'+chip('s31')+'</p>'));
-  return [
-  {title:'The cases',vis:'<p class="note">'+m.cohorts.map(function(c){return num(c.n,'s31')+' '+c.name;}).join(' · ')+chip('s31')+'</p>',pages:one},
-  {title:'Cues and settings',vis:'<p class="note">A detail that should not change the right answer.'+chip('s32')+'</p>',pages:[
-   P('Planted cue','<p>A detail added to a case that a benchmark might reward and a clinician would ignore. It never changes the right answer.</p>'),
-   P('Cues in this data','<p>'+cap(m.cues.join(', '))+'.'+chip(m.csrc)+'</p><p>The gold bracket on the drawing marks one.</p>'),
-   P('Three settings','<ol><li><b>Alone:</b> the case is asked as it is, and again with a cue.</li><li><b>Shared board:</b> one or two peers, or an automated flag, first commit to a wrong answer.</li><li><b>Hidden scoring note:</b> one wrong answer gets full marks.'+chip('s32')+'</li></ol>')]},
-  {title:'The models',vis:'<p class="note">Gemini 2.5 Flash and Flash-Lite, two tiers of one family'+chip('s31')+'</p>',pages:[
-   P('One model family','<p>Every agent in the paper is Gemini 2.5 Flash or Flash-Lite, two tiers of one model family, at '+num('temperature 0','s31')+'. No model was fine-tuned.'+chip('s31')+'</p>'),
-   P('A limit','<p>With one family, the claim that checkers must differ is argued, not yet shown.'+chip('lim')+'</p>'),
-   P('Other runs','<p>The repository also holds runs on other model families. They are not in the paper, so this page shows no number for them.'+chip('repo')+'</p>')]}];}
- if(st===1){a=TIER[state.tier];b=VARB[state.varB];c=COHC[state.cohC];return [
-  {title:'Alone, with a planted cue',vis:'<p class="big">'+num(a.k+' of 100','s41',a.r[2],100)+' <small>change their answer</small></p><p>That is '+a.say+'.'+chip('s41')+'</p>',pages:[
-   P('The test','<p>The model answers each MedQA question twice: as written, and with a planted cue that changes nothing clinically. Here the cue is a wrong option that echoes the question’s words.</p>'),
-   P('All three cues','<p>Of '+num('100','s41')+' MedQA questions, the cues change '+num('5','s41','0.05',100)+', '+num('5','s41','0.05',100)+' and '+num('6','s41','0.06',100)+' answers for Flash, and '+num('12','s41','0.12',100)+', '+num('9','s41','0.09',100)+' and '+num('16','s41','0.16',100)+' for Flash-Lite (option length, option order, word overlap).'+chip('s41')+'</p>'),
-   P('Background wobble','<p>Answers also change a little when nothing is planted. Flash’s rate cannot be told apart from that background wobble. Flash-Lite’s can.'+chip('s41')+'</p>')]},
-  {title:'Wrong peers, text',vis:'<p class="big">'+b.big+'</p><p>'+b.sub+chip('s42')+'</p>',pages:[
-   P('Two peers','<p>The agent sees peers commit to a wrong answer on a shared board, then answers. With two peers: '+num('15 of 40','s42')+', against '+num('0','s42','0 by construction')+' alone. The wrong answer was chosen so the agent never gives it alone.'+chip('s42')+'</p>'),
-   P('One peer, and tone','<p>One peer: '+num('0 of 20','s42','0.0 over 20 cases')+'. A confident assertion: '+num('42 of 100','s42','0.42 of 100 cases')+'. A hedged one: '+num('14 of 100','s42','0.14',100)+'. The peer only states its answer, so what spreads is agreement, not argument.'+chip('s42')+'</p>'),
-   P('An automated flag','<p>A wrong pre-screen flag from another system, with no peer at all, raises wrong answers on MedQA by '+num('+0.26','t1')+' for Flash and '+num('0.22','t1')+' for Flash-Lite. The paper calls this an upstream system signal.'+chip('t1')+'</p>'),
-   P('What helps','<p>Telling the committee to review each other critically cuts wrong answers on hard MedQA cases from '+num('0.64','t1')+' to '+num('0.12','t1')+'.'+chip('t1')+'</p>'),
-   P('ICU records','<p>On SUPPORT2, two senior peers pull every agent along: '+num('0 of 115','s42','zero resisters of 115')+' resist.'+chip('s42')+'</p>')]},
-  {title:'Wrong peers, chest X-rays',vis:'<p class="big">'+c.big+'</p><p>'+c.sub+chip(c.src)+'</p>',pages:[
-   P('The test','<p>Two peer radiologists assert the wrong yes or no read of a film. Alone, the model already gives that read on some films. With the peers, almost always. The effect is the difference.</p>'),
-   P('NIH','<p>Alone '+num('14–16 of 35','t3','0.40–0.46',35)+', with peers '+num('34–35 of 35','t3','0.97–1.0',35)+', so '+num('+19 to 20 of 35','t3','+0.54 to +0.57',35)+'.'+chip('t3')+'</p>'),
-   P('MIMIC-CXR','<p>Alone '+num('22 of 42','t3','0.52',42)+', with peers '+num('39 of 42','t3','0.93',42)+', so '+num('+17 of 42','t3','+0.40',42)+'.'+chip('t3')+'</p>'),
-   P('CheXpert','<p>Nothing was added to the film. Wrong on '+num('92 of 150','s44','92/150')+', although it reads '+num('143 of 150','s44','143')+' correctly alone. '+num('85 of 143','s44','85/143')+' of the films it had right go wrong.'+chip('s44')+'</p>')]}];}
- if(st===2){t=TAB2[state.cohR];return [
-  {title:'Gate',vis:'<p class="sig">reads who agrees with whom</p>'+bars(t.gate)+'<p class="one">Flags agreement itself, honest or not.</p>',pages:[
-   P('Signal','<p>Agreement on the shared board. It flags every case where the agent ends on the peers’ answer.'+chip('s32')+'</p>'),
-   P('Catches','<p>Every persuaded case. That is true by definition: it flags every agreement, so every persuaded case is among them.'+chip('s32')+'</p>'),
-   P('Misses','<p>The difference between being persuaded and honestly agreeing. Nearly every honest agreement becomes a false alarm.</p>'),
-   P('All cohorts',detTable('gate'))]},
-  {title:'Judge',vis:'<p class="sig">reads the written discussion</p>'+bars(t.judge)+'<p class="one">'+t.jn+'</p>',pages:[
-   P('Signal','<p>The written discussion, read by a model of the same family. It never asks the agent again.'+chip('s32')+'</p>'),
-   P('Catches','<p>Persuasion on text, with no false alarms.</p>'),
-   P('Misses','<p>X-rays. There it flags exactly like the gate. Given the film as well, it catches only '+num('7%','s44','0.07')+' of persuaded cases. A detector that only observes cannot see what the agent would have said alone.'+chip('s44')+'</p>'),
-   P('All cohorts',detTable('judge'))]},
-  {title:'Referee',tag:'asks again, alone',vis:'<p class="sig">asks the agent again in private, then compares</p>'+bars(t.ref)+'<p class="one">Fewer false alarms than the gate in every cohort. The only detector that works on X-rays.</p>',pages:[
-   P('Signal','<p>An intervention. It works out which answer the peers pushed, asks the agent the same question again with no discussion in view, and flags when the board answer matches the peers and differs from the private one.'+chip('s32')+'</p>'),
-   P('A counterfactual check','<p>It tests what the agent would have said if the peers had not spoken. The paper calls the private question a re-query.</p>'),
-   P('Catches','<p>Persuasion on text, X-rays and ICU records. Where the table says '+num('100%','t2','1.0')+' on text and ICU records, that is by construction of those tests. Read the false-alarm column there.'+chip('s32')+'</p>'),
-   P('Misses','<p>Some persuaded cases on X-rays. It still raises false alarms: '+num('0.11 to 0.36','lim')+' of honest cases.'+chip('lim')+'</p>'),
-   P('Why observing is not enough','<p>A persuaded agent and an honestly agreeing agent leave the same agreement on the board. Only the private answer differs.</p>'),
-   P('All cohorts',detTable('ref'))]}];}
- if(st===3){r=RUB[state.cohH];p=POOL[state.pool];return [
-  {title:'Who moved',vis:state.filt==='names'?(state.pool==='text'?'<p class="big">'+num('11 of 40','s45','11/40')+'</p><p>MedQA answers moved. These 11 are shown.'+chip('s45')+'</p>':'<p class="big">'+num('134','s45','1/134')+' <small>X-ray answers moved</small></p><p>'+SUM134+' across NIH, MIMIC-CXR and CheXpert. These 134 are shown.'+chip('s45')+'</p>'):'<p class="big">'+num(r.k+' of '+r.n,'s45',r.k+'/'+r.n)+'</p><p>'+r.what+' move to the rewarded answer.'+chip('s45')+'</p>'+(state.aware==='on'?'<p>Told it is evaluated, fewer move: uptake falls by '+num('0.13 to 0.69','s45')+'.'+chip('s45')+'</p>':''),pages:[
-   P('All four cohorts','<p>Answers that moved to the rewarded answer: MedQA '+num('11 of 40','s45','11/40')+', NIH '+num('29 of 35','s45','29/35')+', MIMIC-CXR '+num('75 of 141','s45','75/141')+', CheXpert '+num('30 of 35','s45','30/35')+'.'+chip('s45')+'</p>'),
-   P('Told it is evaluated','<p>Telling the model it is being evaluated lowers uptake in every cohort, by '+num('0.13 to 0.69','s45')+'.'+chip('s45')+'</p>')]},
-  {title:'The scoring note',vis:'<p class="note">Full marks for one wrong answer.'+chip('s32')+'</p>',pages:[
-   P('The note','<p>Instead of peers, the prompt carries a scoring rule: a hidden note that awards full marks to one wrong answer. The paper calls it a hidden rubric. Each case is also run without the note.'+chip('s32')+'</p>'),
-   P('Drift, not intent','<p>The paper calls the result drift toward the rewarded answer, not reward-hacking, because the design does not establish intent.</p>')]},
-  {title:'Who says so',vis:state.filt==='names'?'<p class="big">'+num('1 of '+p.n,'s45','1/'+p.n)+'</p><p>'+p.label+' answers that moved name the note. Move the lens to find it.'+chip('s45')+'</p>':'<p class="big two">'+num('1 of 11','s45','1/11')+' <small>MedQA answers that moved</small><br>'+num('1 of 134','s45','1/134')+' <small>X-ray answers that moved</small></p><p>name the note in their explanation.'+chip('s45')+'</p>',pages:[
-   P('The check','<p>Each answer came with a one-sentence explanation. One detector checked whether it names the scoring note.</p>'),
-   P('The count','<p>Of the '+num('11','s45','11/40')+' MedQA answers that moved, '+num('1 of 11','s45','1/11')+' names it. Of the X-ray answers that moved ('+SUM134+' = 134), '+num('1 of 134','s45','1/134')+' names it. The rest give a clinical reason.'+chip('s45')+'</p>'),
-   P('More','<p>The longer story of this test is the public explainer, linked in the top bar.</p>')]}];}
- var WORDS='In the paper’s words',PLAIN='In plain words';
- return [
-  {say:true,title:'Use checkers that work differently',vis:'<p class="plain">A checker that sees the same things as the agent misses the same mistakes.</p>'+go(2,'See stage 03'),pages:[
-   P(WORDS,'<blockquote>“One principle is motivated here rather than demonstrated: mandatory pluralism, since oversight fails when overseers share a blind spot.”'+chip('s5')+'</blockquote>'),
-   P(PLAIN,'<p>Mandatory pluralism: the overseers must not all share one blind spot. The gate and the judge both only observe the discussion, so both miss what the discussion hides.</p>')]},
-  {say:true,title:'Ask again, alone, every time',vis:'<p class="plain">Make the private second question a routine check and keep its record. A judge that only reads fails on X-rays, even when shown the image.</p>'+go(2,'See it on NIH X-rays','cohR:nih'),pages:[
-   P(WORDS,'<blockquote>“Log the referee’s private re-query as a standing check, run during deliberation; do not trust the judge across modalities, and note that giving it the film does not recover recall”'+chip('s5')+'</blockquote>'),
-   P(PLAIN,'<p>Re-query: asking the agent the same question again. Deliberation: the agents’ discussion. Across modalities: on text and on images alike. Recall: the share of persuaded cases caught.</p>')]},
-  {say:true,title:'Do not trust the explanation',vis:'<p class="plain">Almost no agent admits it chased a reward ('+num('1 of 134','s45','1/134')+' on X-rays). A flag from another automated system can push it wrong like any peer.</p>'+go(3,'See who says so','filt:names,pool:imaging'),pages:[
-   P(WORDS,'<blockquote>“do not rely on an agent’s stated justification to catch reward-hacking; and treat an upstream system signal as untrusted”'+chip('s5')+'</blockquote>'),
-   P(PLAIN,'<p>Stated justification: the agent’s own explanation. Reward-hacking: moving to an answer because it is rewarded. Upstream system signal: a flag from another automated system, such as a pre-screen. A wrong one raised wrong answers by '+num('+0.26','t1')+' on MedQA.'+chip('t1')+'</p>')]}];
-}
 
 /* ---------- interface ---------- */
-var three=null,onRender=function(){},CARDS=[],lastBeat=-1,lastEx=null,cardAt=null;
-function narrOf(s,b){var n=s.narr[b];return typeof n==='function'?n():n;}
-function timed(s){return !!s.beats;}
+var three=null,onRender=function(){},lastEx=null,cardAt=null;
 var hoverK=-1;
 /* the right panel on the overview: the map's own block, or a preview of the station under the pointer */
 function mapPanel(){var k=hoverK>=0?hoverK:state.open!==null?state.open:-1,s=k>=0&&k<5?STAGES[k]:null,x=k===5;
  $('#detail-kicker').textContent=s?'0'+(k+1)+' Station':x?'Example':'Overview';$('#detail-title').textContent=s?s.title:x?EXNODE.title:'The map';$('#detail-body').innerHTML='<p>'+(s?s.lead:x?EXNODE.lead:MAPLEAD)+'</p>';}
 function nodeK(n){return !n?-1:n.dataset.view?5:+n.dataset.node;}
 function hoverStation(k){if(state.view!=='map')k=-1;if(k===hoverK)return;hoverK=k;if(three&&three.hover)three.hover(k);if(state.view==='map'){mapPanel();$$('#labels .node').forEach(function(n){n.classList.toggle('on',nodeK(n)===k);});}}
+/* Back and Next: what the next press leads to, and where in the stop the reader is */
+function navSync(){var map=state.view==='map',exm=state.view==='example',stg=state.view==='stage',st=stg?STORY[state.stage]:null,nx=state.stage+1,last=stg&&state.step>=st.length-1;
+ $('#back').hidden=map;
+ $('#next b').textContent=map?'Start':last&&nx>4?'Overview':'Next';
+ $('#next-to').textContent=map?'':exm?(state.ex>=6?'01 '+STAGES[0].nav:''):last&&nx<=4?'0'+(nx+1)+' '+STAGES[nx].nav:'';
+ $('#stepcount').textContent=stg?(state.step+1)+' / '+st.length:exm?(state.ex+1)+' / 7':'';$('#stepcount').hidden=map;}
 function render(){
- var map=state.view==='map',exm=state.view==='example',stg=state.view==='stage',s=STAGES[state.stage],gs=groupsNow(),nn='0'+(state.stage+1),nx,at;CARDS=cards();if(state.focus>=CARDS.length)state.focus=0;
- document.body.classList.toggle('map',map);document.body.classList.toggle('example',exm);var ex3=!!three&&!isPhone();document.body.classList.toggle('ex3',exm&&ex3);$('#example').hidden=!exm||ex3;
+ var map=state.view==='map',exm=state.view==='example',stg=state.view==='stage',s=STAGES[state.stage],nn='0'+(state.stage+1),at,sp=stg?STORY[state.stage][state.step]:null,flat=!(three&&!isPhone());
+ document.body.classList.toggle('map',map);document.body.classList.toggle('example',exm);document.body.classList.toggle('story',stg);var ex3=!!three&&!isPhone();document.body.classList.toggle('ex3',exm&&ex3);$('#example').hidden=!exm||ex3;
  $('#crumb').textContent=map?'Overview':exm?'Example':nn+' '+s.title;
- $('#caption').textContent=stg?(s.caption||(s.narr?narrOf(s,2):'')):exm&&ex3?EXCOPY[state.ex][0]:'';
+ $('#caption').textContent=stg?sp.cap:exm&&ex3?EXCOPY[state.ex][0]:'';
  if(map){hoverK=-1;mapPanel();}
  else if(exm)exDraw();
- else{$('#detail-kicker').textContent=nn+' '+(s.kicker||'Stage');$('#detail-title').textContent=s.title;$('#detail-body').innerHTML='<p>'+s.lead+'</p>'+(state.stage===0&&!(three&&!isPhone())?caseHTML():'');}
- $('#stepper').hidden=!stg||!timed(s);
- $('#beats').innerHTML=stg&&timed(s)?s.beats.map(function(b,i){return '<li><button type="button" data-b="'+i+'"><i aria-hidden="true"></i><span>'+b+'</span></button></li>';}).join(''):'';
+ else{/* a station: the panel says the step on show, and nothing else */
+  $('#detail-kicker').textContent=nn+' '+s.nav;$('#detail-title').textContent=sp.p<0?s.title:PARTS[state.stage][sp.p];$('#detail-body').innerHTML=stepHTML()+(flat&&sp.kase?caseHTML():'');}
  $('#ex-tag').hidden=!stg||state.stage!==2;
- $('#controls').innerHTML=gs.filter(function(g){return g.lane==null;}).map(groupHTML).join('');
  $('#legend').innerHTML=legend();
- $('#cols').innerHTML=CARDS.map(function(c,i){var ch=gs.filter(function(g){return g.lane===i;}).map(groupHTML).join('');
-  return '<div class="col'+(c.tag?' focus':'')+(c.say?' say':'')+(i===state.focus?' sel':'')+'" data-i="'+i+'"><h3><button type="button" class="open" data-open="'+i+'" title="Read more in the panel"><i>'+mk(i)+'</i>'+c.title+(c.tag?' <em>'+c.tag+'</em>':'')+'<span aria-hidden="true">›</span></button></h3>'+(ch?'<div class="chips">'+ch+'</div>':'')+c.vis+'</div>';}).join('');
- $('#coltabs').innerHTML=CARDS.map(function(c,i){return '<button type="button" role="tab" data-focus="'+i+'" aria-selected="'+(i===state.focus)+'"><i>'+mk(i)+'</i>'+c.title+'</button>';}).join('');
- /* the path: Overview, the example, 01 to 05, and back to the Overview. Back is hidden on the overview; Next always leads somewhere */
- $('#back').hidden=map;nx=stg?state.stage+1:0;at=map?0:exm?1:state.stage+2;
- $('#next b').textContent=map?'Start':stg&&nx>4?'Overview':'Next';
- $('#next-to').textContent=map?'':exm?'01 '+STAGES[0].nav:nx>4?'':'0'+(nx+1)+' '+STAGES[nx].nav;
+ /* on a phone (and without the 3D scene) the step is one card under the scene; the real case of station 01 shows there with its step */
+ $('#cols').innerHTML=stg?'<div class="col step"><p class="kicker">'+stepKicker()+'<em>'+(state.step+1)+' / '+STORY[state.stage].length+'</em></p>'+stepHTML()+'</div>'+(flat&&sp.kase?caseHTML():''):'';
+ /* the path: Overview, the example, 01 to 05, and back to the Overview. Back and Next move one step along it */
+ at=map?0:exm?1:state.stage+2;navSync();
  $('#progress').style.width=(at/6*100)+'%';$('.progress').setAttribute('aria-valuenow',at);
- /* the bar shows where on the path the reader is, and each step is a button. Back and Next walk the path from stop to stop */
- $('#stepbtns').hidden=false;$('#step-prev').disabled=map;$('#step-next').disabled=false;
  $$('#nav .step').forEach(function(b,i){if(i===at)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');b.classList.toggle('done',i<at);});
  $('#nav').setAttribute('aria-label','Step '+(at+1)+' of 7: '+(map?'Overview':exm?'Example':nn+' '+s.title));
- lastBeat=-1;lastEx=null;syncBeat();syncScrub();
- if(stg&&state.stage===0&&state.example==='on')openCard(0,0);
+ lastEx=null;syncBeat();
  if(!three)map2d();
  onRender();
 }
@@ -3335,67 +3249,40 @@ function render(){
 function map2d(){var box=$('#map2d'),on=state.view==='map',K=window.BWMap,O=window.BWObjects;box.hidden=!on;if(!on||box.firstChild)return;
  box.innerHTML='<div class="hub">'+hubHTML()+'</div>'+[0,1,2,3,4].map(function(k){return '<div class="cell n'+k+'"><canvas width="160" height="200" aria-hidden="true"></canvas><div class="node" data-node="'+k+'" data-goto="'+k+'" role="button" tabindex="0" aria-label="0'+(k+1)+' '+STAGES[k].title+'">'+nodeHTML(k)+'</div></div>';}).join('');
  $$('canvas',box).forEach(function(c,k){try{K.draw2D(k,c,PAL,O);}catch(e){}});}
-function syncBeat(){
- var s=STAGES[state.stage];if(state.view!=='stage'||!timed(s))return;var b=beatIndex(),ex=exPersuaded();
- if(b===lastBeat&&ex===lastEx)return;lastBeat=b;lastEx=ex;
- $$('#beats li').forEach(function(li,i){li.classList.toggle('on',i===b);});
- $('#caption').textContent=narrOf(s,b);
- if(state.stage===2)$('#ex-tag').innerHTML='Ringed case: <b>'+(ex?'persuaded':'honest')+'</b>';
-}
+function syncBeat(){if(state.view!=='stage'||state.stage!==2)return;var ex=exPersuaded();if(ex===lastEx)return;lastEx=ex;$('#ex-tag').innerHTML='Ringed case: <b>'+(ex?'persuaded':'honest')+'</b>';}
 /* the top edge of the tags and controls: the 3D camera keeps the scene above it */
 function dockTop(){return $('.dock').getBoundingClientRect().top;}
 /* the right panel: the stage block, or one page of a card, or one case (a clicked dot) */
 function sheet(v){var s=$('.side');s.classList.toggle('open',!!v&&isPhone());$('#sheet-toggle').setAttribute('aria-expanded',s.classList.contains('open')?'true':'false');}
 function panel(kind,title,page,body){var c=$('#card'),bd=$('#card-body');c.className=kind;$('#card-title').textContent=title;$('#card-page').textContent=page||'';$('#card-page').hidden=!page;
  bd.innerHTML=body;bd.classList.remove('fade');void bd.offsetWidth;bd.classList.add('fade');c.hidden=false;$('.side').classList.add('has-card');$('.side').scrollTop=0;}
-function showCase(t,b){cardAt=null;$('#pager').hidden=true;$$('.col.on').forEach(function(x){x.classList.remove('on');});panel('case',t,null,b);}
-/* the pager is a guided visit: after the last page of a marker it goes on to the next marker of the stage */
-function openCard(i,p,quiet){var c=CARDS[i],n,pg;if(!c)return;n=c.pages.length;p=clamp(p||0,0,n-1);pg=c.pages[p];cardAt={i:i,p:p};state.sel=null;
- $('#pager').hidden=false;$('#pager-at').textContent=(p+1)+'/'+n;$('#pager [data-page="-1"]').disabled=p===0&&i===0;$('#pager [data-page="1"]').disabled=p===n-1&&i===CARDS.length-1;
- $$('.col').forEach(function(x,j){x.classList.toggle('on',j===i);});$$('#nav .mk').forEach(function(x,j){x.classList.toggle('on',j===i);});$$('#labels .pin').forEach(function(x){x.classList.toggle('on',+x.dataset.open===i);});
- panel('',mk(i)+' · '+c.title,pg.t,pg.b);if(!quiet)sheet(true);}
-function pageBy(d){var i,p,n;if(!cardAt)return;i=cardAt.i;p=cardAt.p+d;n=CARDS[i].pages.length;if(p>=n){if(i>=CARDS.length-1)return;i++;p=0;}else if(p<0){if(i<=0)return;i--;p=CARDS[i].pages.length-1;}
- if(i!==state.focus&&isPhone()){state.focus=i;$$('#coltabs button').forEach(function(x,j){x.setAttribute('aria-selected',j===i);});$$('.col').forEach(function(x,j){x.classList.toggle('sel',j===i);});onRender(true);}openCard(i,p,true);}
-function hideCard(){$('#card').hidden=true;state.sel=null;cardAt=null;$('.side').classList.remove('has-card');$$('.col.on,#nav .mk.on,#labels .pin.on').forEach(function(x){x.classList.remove('on');});sheet(false);}
+function showCase(t,b){cardAt=null;panel('case',t,null,b);}
+function hideCard(){$('#card').hidden=true;state.sel=null;cardAt=null;$('.side').classList.remove('has-card');sheet(false);}
 function setHash(h){h='#'+h;if(location.hash!==h){try{history.replaceState(null,'',h);}catch(e){location.hash=h;}}}
-function setStage(k){flushMod();state.open=null;k=clamp(k,0,STAGES.length-1);if(k!==state.stage||state.view!=='stage'){state.stage=k;state.view='stage';state.focus=0;if(!keepPause&&(state.pausedBy==='step'||state.pausedBy==='scrub'))setPaused(false);/* in the 3D world the flight keeps the stage that is left as it was, and sets the clock of the next one on arrival */if(!three)state.time=0;}hideCard();if(k!==0)state.example='off';
- setHash(STAGES[k].id);render();}
-function setView(v,keep){flushMod();state.open=null;if(v==='stage'){setStage(state.stage);return;}if(state.view!==v){if(v==='example'&&!keep){state.ex=0;exStopType();}exClock=0;exHeld=false;state.view=v;if(!keepPause&&(state.pausedBy==='step'||state.pausedBy==='scrub'))setPaused(false);state.example='off';}hideCard();setHash(v==='map'?'overview':'example');render();}
-/* one path through the page: Overview, the example (six reveals), 01 to 05, Overview */
-function stepNext(){if(state.view==='map')setView('example');else if(state.view==='example')setStage(0);else if(state.stage>=STAGES.length-1)setView('map');else setStage(state.stage+1);}
-function stepBack(){if(state.view==='map')return;if(state.view==='example')setView('map');else if(state.stage===0)setView('example',true);else setStage(state.stage-1);}
-/* after an option is picked the dots glide to their new places instead of snapping: softT is that moment, in seconds */
+/* a station is entered at one of its steps: the first, the last (coming back from the next stop), or the first step of a part */
+function setStage(k,i){state.open=null;k=clamp(k,0,STAGES.length-1);var fresh=k!==state.stage||state.view!=='stage',n=STORY[k].length;
+ if(fresh){state.stage=k;state.view='stage';if(!three)state.time=0;}
+ state.step=i==='last'?n-1:clamp(i||0,0,n-1);hideCard();applyStep(fresh);setHash(STAGES[k].id);render();}
+function setView(v,keep){state.open=null;if(v==='stage'){setStage(state.stage);return;}if(state.view!==v){if(v==='example'&&!keep){state.ex=0;exStopType();}exClock=0;exHeld=false;state.view=v;}hideCard();setHash(v==='map'?'overview':'example');render();}
+/* one path through the page: Overview, the example (seven steps), 01 to 05 (their steps), Overview. Next and Back move one step along it.
+   While the camera flies from stop to stop a press only hurries it */
+function flyingNow(){return !!(three&&three.flightKind&&three.flightKind()==='move');}
+function stepNext(){var n;if(flyingNow())return;
+ if(state.view==='map'){setView('example');return;}
+ if(state.view==='example'){if(state.ex<6){exHeld=false;exSet(state.ex+1);}else setStage(0);return;}
+ n=STORY[state.stage].length;
+ if(state.step<n-1){state.step++;hideCard();applyStep(false);render();}
+ else if(state.stage>=STAGES.length-1)setView('map');else setStage(state.stage+1);}
+function stepBack(){if(flyingNow()||state.view==='map')return;
+ if(state.view==='example'){if(state.ex>0){exStopType();exHeld=true;exSet(state.ex-1);}else setView('map');return;}
+ if(state.step>0){state.step--;hideCard();applyStep(false);render();}
+ else if(state.stage===0){setView('example',true);}else setStage(state.stage-1,'last');}
+/* after a step changes what the dots show, they glide to their new places instead of snapping: softT is that moment, in seconds */
 var softT=0,T_SET=8.4;
-/* the timeline goes back to t (seconds into the loop) in view when the scene can show it, at once when it cannot */
-function rewindTo(t,then){if(three&&three.glide)three.glide(t,then);else{state.time=t;if(then)then();}}
-/* a new data type picked while the stage plays: first the cohort runs back into its one case, then that case gives way to the next data type's (on a laptop the sheet slides over to the next sheet).
-   modNext is the data type on its way in; the buttons show it at once */
-var modNext=null;
-function flushMod(){if(modNext){state.mod=modNext;modNext=null;state.example='off';}}
-function modLater(v){var first=!modNext;modNext=v;$$('#controls button[data-k="mod"]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.v===v);});hideCard();
- if(first)rewindTo(isPhone()?T_GO:0,function(){var w=modNext;modNext=null;if(w&&w!==state.mod)setKey('mod',w,true);});}
-function setKey(k,v,now){
- if(k==='mod'&&now!==true&&state.view==='stage'&&state.stage===0&&three&&three.glide&&!state.paused&&!REDUCED&&(modNext||v!==state.mod)){modLater(v);return;}
- if(k==='mod')modNext=null;
- softT=1.3;var keep=(k==='mod'||k==='example')?null:cardAt,af=document.activeElement,back=af&&af.dataset&&af.dataset.k===k&&af.dataset.v===v;state[k]=v;
- if(k==='filt'&&v==='names'){state.pool=RUB[state.cohH].pool;state.reveal='off';state.focus=2;}
- if(k==='pool')state.reveal='off';
- if(k==='mod')state.example='off';
- if(k==='tier')state.focus=0;if(k==='varB')state.focus=1;if(k==='cohC')state.focus=2;
- if(!(k==='example'&&v==='on')&&!keep)hideCard();
- if(state.view==='stage'&&state.stage>0&&!state.paused&&tau()>T_SET)state.time=loopIndex()*LOOP+T_SET;
- /* stage 01: a new data type shows its drawn case docking and its cohort filling in; "One case" needs the dots on stage */
- /* on a laptop the case is a real sheet in the scene, so the new data type starts again from its case */
- if(state.stage===0&&k==='mod'&&!state.paused){if(three&&!isPhone())state.time=Math.min(tau(),0.01);else rewindTo(T_GO);}
- if(state.stage===0&&k==='example'&&v==='on'&&tau()<T_GO+1.5)rewindTo(HOLD);
- render();
- if(keep)openCard(keep.i,keep.p,true);
- if(back){af=$('#controls button[data-k="'+k+'"][data-v="'+v+'"]')||$('#cols button[data-k="'+k+'"][data-v="'+v+'"]');if(af)af.focus();}}
-function setPaused(v,by){document.body.classList.toggle('paused',!!v);state.paused=v;state.pausedBy=v?(by||'pill'):null;var b=$('#motion-toggle');b.setAttribute('aria-pressed',v?'false':'true');b.querySelector('span').textContent=v?'Paused':'Live';}
-/* a step of the timeline: the scene runs there in view (it is not set there in one frame) */
-function gotoBeat(b){b=clamp(b,0,2);beatGoal=b;setPaused(true,state.pausedBy==='pill'?'pill':'step');rewindTo(BEAT_T[b]);syncBeat();syncScrub();}
+/* Live: the story goes on by itself. Off: every step waits for Next */
+function setPaused(v){document.body.classList.toggle('paused',!!v);state.paused=!!v;var b=$('#motion-toggle');b.setAttribute('aria-pressed',v?'false':'true');b.querySelector('span').textContent=v?'Live off':'Live';}
 /* sources open in the right panel (on a phone: the sheet), never in a window over the page. One entry when a chip is clicked, the whole list from the top bar */
-function srcShow(title,page,body){cardAt=null;state.sel=null;$('#pager').hidden=true;$$('.col.on,#labels .pin.on').forEach(function(x){x.classList.remove('on');});panel('source',title,page,body);sheet(true);}
+function srcShow(title,page,body){cardAt=null;state.sel=null;panel('source',title,page,body);sheet(true);}
 /* a chip opens a yellow note right under it with the paper's own words. The right panel keeps its text. A second click, a click elsewhere or Escape closes the note */
 var srcPop=null,srcAt=null;
 function srcClose(){if(srcAt)srcAt.setAttribute('aria-expanded','false');srcAt=null;if(srcPop)srcPop.hidden=true;}
@@ -3408,27 +3295,11 @@ function openSource(id,at){var el=$('#src-'+id);if(!el){openSources();return;}if
  srcAt=at||$('.cite[data-src="'+id+'"]');srcPop.innerHTML='<p class="k">In the paper, '+srcName(id)+'</p><p>'+el.innerHTML.replace(/^<b>[^<]*<\/b>/,'')+'</p>';srcPop.hidden=false;if(srcAt)srcAt.setAttribute('aria-expanded','true');srcPlace();}
 function openSources(){var d=$('#sources').cloneNode(true),x;['#sources-close','.kicker','#sources-title'].forEach(function(q){x=d.querySelector(q);if(x)x.remove();});
  srcShow('Sources',$('#sources-title').textContent,d.innerHTML.replace(/ id="src-/g,' data-src="'));}
-function closeCard(){if(state.view==='stage'&&state.stage===0&&state.example==='on')setKey('example','off');else hideCard();}
+function closeCard(){hideCard();}
 
 $('#nav').innerHTML=['<button type="button" class="step ov" data-view="map" aria-label="Overview"><em>Overview</em></button>','<button type="button" class="step ov" data-view="example" aria-label="Example"><em>Example</em></button>'].concat(STAGES.map(function(s,i){return '<button type="button" class="step" data-stage="'+i+'"><span>0'+(i+1)+'</span><em>'+s.nav+'</em></button>';})).join('<i class="arr" aria-hidden="true">›</i>');
 $('#nav').addEventListener('click',function(e){var b=e.target.closest('.step');if(!b)return;if(b.dataset.view)setView(b.dataset.view);else setStage(+b.dataset.stage);});
-/* Step: one reveal of the example or one step of a stage's timeline, back or forward. It pauses; the play button goes on from there */
-/* the Step buttons walk the whole path one part at a time: the parts of the example, the three steps of a stage, and on to the next stop. They switch Live off, and it stays off */
-var keepPause=false;
-function stepStop(d){keepPause=true;if(d>0)stepNext();else stepBack();keepPause=false;}
-var beatGoal=null;
-function stepBy(d){var n,fk=three&&three.flightKind?three.flightKind():null;if(!state.paused)setPaused(true,'step');
- /* while the camera is on its way the press only hurries it (every press does); a step counts from where the scene is heading */
- if(fk==='move')return;
- if(state.view==='map'){if(d>0)stepStop(1);return;}
- if(state.view==='example'){n=state.ex+d;if(n<0||n>6)stepStop(d);else exSet(n);return;}
- if(timed(STAGES[state.stage])){n=(fk==='arrive'?0:fk==='time'&&beatGoal!=null?beatGoal:beatIndex())+d;if(n<0||n>2)stepStop(d);else gotoBeat(n);return;}
- stepStop(d);}
-$('#step-prev').addEventListener('click',function(){stepBy(-1);});$('#step-next').addEventListener('click',function(){stepBy(1);});
-/* the scrub bar: drag, click or arrow keys move through the timeline of the stage */
-(function(){var s=$('#scrub');s.addEventListener('input',function(){scrub(+s.value/1000);});
- s.addEventListener('pointerdown',function(){scrubHeld=true;});['pointerup','pointercancel','blur','change'].forEach(function(t){s.addEventListener(t,function(){scrubHeld=false;scrubAt=performance.now();});});})();
-$('#ex-next').addEventListener('click',function(){exHeld=false;exSet(state.ex+1);});
+$('#ex-next').addEventListener('click',stepNext);
 $('#ex-restart').addEventListener('click',function(){exStopType();exHeld=false;exSet(0);});
 /* scrolling out over the example leaves it for the map, unless the conversation under the pointer still has room to scroll */
 var exWheel=0;
@@ -3442,21 +3313,16 @@ $('#labels').addEventListener('mouseleave',function(){hoverStation(-1);});
 $('#labels').addEventListener('focusin',function(e){var n=e.target.closest('.node');if(n)hoverStation(nodeK(n));});
 document.addEventListener('keydown',function(e){var n=e.target&&e.target.closest?e.target.closest('.node'):null;var c=e.target&&e.target.closest?e.target.closest('.nc'):null;if(c&&e.target===c&&(e.key==='Enter'||e.key===' ')){e.preventDefault();e.stopPropagation();setStage(+c.dataset.enter);return;}
  if(n&&e.target===n&&(e.key==='Enter'||e.key===' ')){e.preventDefault();e.stopPropagation();if(n.dataset.view)setView(n.dataset.view);else if(three&&n.closest('#labels'))openNode(+n.dataset.node);else setStage(+n.dataset.node);}},true);
-$('#beats').addEventListener('click',function(e){var b=e.target.closest('button');if(b)gotoBeat(+b.dataset.b);});
-$('#coltabs').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;state.focus=+b.dataset.focus;$$('#coltabs button').forEach(function(x,i){x.setAttribute('aria-selected',i===state.focus);});$$('.col').forEach(function(x,i){x.classList.toggle('sel',i===state.focus);});onRender(true);});
 document.addEventListener('click',function(e){
  var c=e.target.closest('.cite');if(c){e.preventDefault();openSource(c.dataset.src,c);return;}
  if(srcAt&&!e.target.closest('#srcpop'))srcClose();
  var vw=e.target.closest('#labels [data-view],#map2d [data-view]');if(vw){setView(vw.dataset.view);return;}
- var pt=e.target.closest('[data-part]');if(pt){pt=pt.dataset.part.split(':');setStage(+pt[0]);state.focus=+pt[1];if(isPhone())render();else openCard(+pt[1],0);return;}
+ var pt=e.target.closest('[data-part]');if(pt){pt=pt.dataset.part.split(':');setStage(+pt[0],partStep(+pt[0],+pt[1]));return;}
  var en=e.target.closest('[data-enter]');if(en){setStage(+en.dataset.enter);return;}
  var g=e.target.closest('[data-goto]');if(g&&three&&g.classList.contains('node')&&g.closest('#labels')){openNode(+g.dataset.goto);return;}
- if(g){if(g.dataset.set)g.dataset.set.split(',').forEach(function(kv){var p=kv.split(':');state[p[0]]=p[1];});if(g.dataset.set&&/filt:names/.test(g.dataset.set)){state.reveal='off';}setStage(+g.dataset.goto);if(g.dataset.set&&/filt:names/.test(g.dataset.set)){state.focus=2;render();}return;}
- var k=e.target.closest('button[data-k]');if(k){setKey(k.dataset.k,k.dataset.v);return;}
- var pg=e.target.closest('[data-page]');if(pg){if(cardAt&&!pg.disabled)pageBy(+pg.dataset.page);return;}
- var o=e.target.closest('[data-open]');if(o){openCard(+o.dataset.open,0);}});
-/* play at the end of a timeline starts it again */
-$('#motion-toggle').addEventListener('click',function(){var on=state.paused;if(on&&state.view==='example'&&state.ex>=6){exSet(0);}if(on&&state.view==='stage'&&tau()>=HOLD-0.01)rewindTo(0);setPaused(!on);syncBeat();});
+ if(g){setStage(+g.dataset.goto);return;}});
+/* the Live pill: on, the story goes on by itself from where it is; at the end of the example it starts the example again */
+$('#motion-toggle').addEventListener('click',function(){var on=state.paused;if(on&&state.view==='example'&&state.ex>=6){exSet(0);}setPaused(!on);});
 $('#sheet-toggle').addEventListener('click',function(){sheet(!$('.side').classList.contains('open'));});
 $('#sources-open').addEventListener('click',openSources);
 $('#card-close').addEventListener('click',closeCard);
@@ -3474,6 +3340,115 @@ window.addEventListener('hashchange',function(){var h=(location.hash||'').replac
  for(var i=0;i<STAGES.length;i++)if(STAGES[i].id===h&&(i!==state.stage||state.view!=='stage'))setStage(i);});
 window.addEventListener('resize',function(){if(!isPhone())sheet(false);onRender(true);});
 if(/[?&]poster=1/.test(location.search))document.body.classList.add('poster');
+
+/* ---------- the story (round 8): stations 01 to 05 are told one step at a time, like the example.
+   Back and Next are the only controls. Each step shows one new thing: the camera goes to it, the scene plays it,
+   and the panel says it in one short block. What used to be option buttons (data type, model, peers, cohort) are steps.
+   A step: p = the part it belongs to (-1 = the whole station), f = where the camera looks (default p; fp = the same on a phone, where the scene is small),
+   kase = the real case shows with the step where there is no 3D sheet, cap = the headline,
+   big = the result of the step (a number of the paper), txt = one or two sentences, more = a small table,
+   set = options that change with this step, on = things that enter with this step,
+   t = where each timeline rests after the step (seconds; one value, or one per lane), r = how fast it plays ---------- */
+var T_AL=2.5,T_IN=4.3,T_SH=6.0,T_END=8.4;
+var DEFOPT={mod:'text',example:'off',tier:'flash',varB:'two',cohC:'nih',cohR:'nih',cohH:'medqa',filt:'all',aware:'off',pool:'text',reveal:'off'};
+var OPTKEYS=[['mod','example'],['tier','varB','cohC'],['cohR'],['cohH','filt','aware','pool','reveal'],[]];
+var PARTS=[['The cases','A planted cue','The models'],['Alone, with a planted cue','Wrong peers, text','Wrong peers, chest X-rays'],['Gate','Judge','Referee'],['The scoring note','Who moved','Who says so'],['Checkers that differ','Ask again, alone','The explanation']];
+function bigHTML(n,what){return '<p class="big">'+n+(what?' <small>'+what+'</small>':'')+'</p>';}
+function cohList(m){return MOD[m].cohorts.map(function(c){return num(c.n,'s31')+' '+c.name+' '+c.what;}).join(', ')+'.'+chip('s31');}
+/* station 03: the three detectors on one cohort, as one small table */
+function detRows(coh){var t=TAB2[coh];return '<table class="t2 mini"><tr><th></th><th>flags right</th><th>caught</th><th>honest flagged</th></tr>'+DET.map(function(d,i){return '<tr><td>'+DETNAME[i]+'</td>'+t[d].map(function(x){return '<td>'+num(pct(x),'t2',x)+'</td>';}).join('')+'</tr>';}).join('')+'</table>';}
+var STORY=[
+ /* 01 What we tested */
+ [{p:0,f:-1,fp:3,kase:1,t:T_AL,cap:'This is one case: an exam question.',txt:'A public question from MedQA. The model picks one option. A cue or a peer never changes the right answer. The test: does the model’s answer move anyway?'},
+  {p:0,f:-1,fp:0,t:T_IN,cap:'One case becomes one dot.',txt:'From here on, every dot is one case that a model answered.'},
+  {p:0,f:0,t:T_END,cap:'Text: three cohorts.',txt:cohList('text')+' MedQA is also used in sets of '+num('50','s31')+', '+num('40','s31')+', '+num('20','s31')+' and '+num('120','s31')+' cases for the other tests.'},
+  {p:0,f:-1,fp:3,kase:1,t:T_AL,set:{mod:'imaging'},cap:'Now a chest X-ray.',txt:'The model sees one radiograph and answers yes or no: is the finding present?'},
+  {p:0,f:0,t:T_END,r:1.5,cap:'Imaging: three cohorts.',txt:cohList('imaging')},
+  {p:0,f:-1,fp:3,t:T_AL,set:{mod:'tabular'},cap:'And an ICU record.',txt:'The model reads one structured record and answers: does the patient survive to hospital discharge? The record shown is made up.'},
+  {p:0,f:0,t:T_END,r:1.5,cap:'Tabular: one cohort.',txt:cohList('tabular')},
+  {p:1,f:-1,fp:3,kase:1,t:T_AL,cue:1,set:{mod:'imaging'},cap:'A planted cue.',txt:'A detail that a benchmark might reward and a clinician would ignore. It never changes the right answer. On films: a cable-like overlay, a corner tag, a laterality marker or a watermark.'+chip('s32')},
+  {p:2,f:2,t:T_END,on:{models:1},cap:'Two models answer every case.',txt:'Gemini 2.5 Flash and Flash-Lite, two tiers of one family, at '+num('temperature 0','s31')+'. With one family, the claim that checkers must differ is argued, not yet shown.'+chip('lim')},
+  {p:-1,t:T_END,on:{models:1},cap:'Seven cohorts, six public datasets, two models.',txt:'Does the answer move when it should not? Runs on other model families are in the repository, not in the paper, so they show no number here.'+chip('abs')+chip('repo')}],
+ /* 02 The shortcut cascade */
+ [{p:0,t:[T_AL,T_AL,T_AL],cap:'Each agent first answers alone.',txt:num('100','s41')+' MedQA questions, answered by Flash. Every dot is one question. Follow the ringed one: it answers C.'},
+  {p:0,t:[T_IN,T_AL,T_AL],cap:'A cue is planted.',txt:'The same question again, with a cue that changes nothing clinically: a wrong option that echoes the question’s words.'},
+  {p:0,t:[T_END,T_AL,T_AL],cap:'The cue barely matters.',big:bigHTML(num('6 of 100','s41','0.06',100),'change their answer'),txt:'About as often as with no cue at all. The three cues change '+num('5','s41','0.05',100)+', '+num('5','s41','0.05',100)+' and '+num('6','s41','0.06',100)+' answers.'+chip('s41')},
+  {p:0,t:[T_END,T_AL,T_AL],set:{tier:'lite'},cap:'Flash-Lite, the smaller model, moves more.',big:bigHTML(num('16 of 100','s41','0.16',100),'change their answer'),txt:'Its three cues change '+num('12','s41','0.12',100)+', '+num('9','s41','0.09',100)+' and '+num('16','s41','0.16',100)+' answers: more than background wobble.'+chip('s41')},
+  {p:1,t:[T_END,T_IN,T_AL],set:{tier:'flash'},cap:'Now two peers speak first.',txt:'On a shared board two peers commit to the same wrong answer, B. Then the agent answers. Alone it never gives B: the wrong answer was chosen that way.'},
+  {p:1,t:[T_END,T_END,T_AL],cap:'The agent follows the peers.',big:bigHTML(num('15 of 40','s42'),'take the peers’ wrong answer'),txt:'Alone: '+num('0','s42','0 by construction')+', by design. The peers only state their answer, so what spreads is agreement, not argument.'+chip('s42')},
+  {p:1,t:[T_END,T_END,T_AL],set:{varB:'one'},cap:'One wrong peer moves nobody.',big:bigHTML(num('0 of 20','s42','0.0 over 20 cases'),'follow'),txt:'A single peer asserting a wrong answer is not enough.'+chip('s42')},
+  {p:1,t:[T_END,T_END,T_AL],set:{varB:'confident'},cap:'Said with confidence, it spreads.',big:bigHTML(num('42 of 100','s42','0.42 of 100 cases'),'follow'),txt:'One peer, the same wrong answer, stated with confidence.'+chip('s42')},
+  {p:1,t:[T_END,T_END,T_AL],set:{varB:'hedged'},cap:'Hedged, it spreads less.',big:bigHTML(num('14 of 100','s42','0.14',100),'follow'),txt:'The same wrong answer, hedged: “Perhaps B?”'+chip('s42')},
+  {p:1,t:[T_END,T_END,T_AL],set:{varB:'two'},cap:'Not only peers.',txt:'A wrong flag from another system, with no peer, raises wrong answers by '+num('+0.26','t1')+' (Flash) and '+num('0.22','t1')+' (Flash-Lite). On ICU records, '+num('0 of 115','s42','zero resisters of 115')+' agents resist two senior peers.'+chip('t1')},
+  {p:2,t:[T_END,T_END,T_IN],cap:'The same with chest X-rays.',txt:'Two peer radiologists assert the wrong read of a film. Alone, the model already gives that read on some films (grey).'},
+  {p:2,t:[T_END,T_END,T_END],cap:'On X-rays almost every read follows.',big:bigHTML(num('+19 to 20 of 35','t3','+0.54 to +0.57',35),'more than alone'),txt:'NIH films. Alone '+num('14–16 of 35','t3','0.40–0.46',35)+', with two peers '+num('34–35 of 35','t3','0.97–1.0',35)+'.'+chip('t3')},
+  {p:2,t:[T_END,T_END,T_END],set:{cohC:'mimic'},cap:'MIMIC-CXR images: the same pull.',big:bigHTML(num('+17 of 42','t3','+0.40',42),'more than alone'),txt:'Alone '+num('22 of 42','t3','0.52',42)+', with two peers '+num('39 of 42','t3','0.93',42)+'.'+chip('t3')},
+  {p:2,t:[T_END,T_END,T_END],set:{cohC:'chex'},cap:'CheXpert: nothing was added to the film.',big:bigHTML(num('92 of 150','s44','92/150'),'take the wrong read'),txt:'Alone it reads '+num('143 of 150','s44','143')+' correctly. '+num('85 of 143','s44','85/143')+' of the films it had right go wrong.'+chip('s44')},
+  {p:-1,t:[T_END,T_END,T_END],set:{cohC:'nih'},cap:'The cue barely matters. Agreeing peers pull the agent along.',txt:'A shortcut cascade: a wrong answer spreads once peers assert it. The pull is strongest on chest X-rays.'}],
+ /* 03 Three referees */
+ [{p:0,t:[T_AL,T_AL,T_AL],cap:'After the discussion: the board.',txt:'Red: the peers persuaded the agent. Blue: it agrees honestly. On the board both look the same: the agent agrees. NIH X-rays.'},
+  {p:0,t:[T_IN+0.1,T_AL,T_AL],cap:'The gate reads who agrees with whom.',txt:'It flags every case where the agent ends on the peers’ answer.'+chip('s32')},
+  {p:0,t:[T_END,T_AL,T_AL],cap:'The gate flags agreement itself, honest or not.',more:bars(TAB2.nih.gate),txt:'It catches every persuaded case, by definition. Nearly every honest agreement becomes a false alarm.'},
+  {p:1,t:[T_END,T_IN+0.1,T_AL],cap:'The judge reads the written discussion.',txt:'A model of the same family reads what was said. It never asks the agent again.'+chip('s32')},
+  {p:1,t:[T_END,T_END,T_AL],cap:'On X-rays the judge flags like the gate.',more:bars(TAB2.nih.judge),txt:'Given the film as well, it catches only '+num('7%','s44','0.07')+' of persuaded cases.'+chip('s44')},
+  {p:2,t:[T_END,T_END,T_IN+0.1],cap:'The referee asks the agent again, alone.',txt:'The same question, with no discussion in view. Then it compares. A red line joins two answers that differ. That is the flag.'+chip('s32')},
+  {p:2,t:[T_END,T_END,T_END],cap:'Only the private answer tells them apart.',more:bars(TAB2.nih.ref),txt:'Across cohorts it still flags '+num('0.11 to 0.36','lim')+' of honest cases.'+chip('lim')},
+  {p:-1,t:[T_END,T_END,T_END],set:{cohR:'medqa'},cap:'MedQA: on text the judge raises no false alarms.',more:detRows('medqa'),txt:'Caught '+num('100%','t2','1.0')+' on text and ICU records is by construction. Read the last column.'+chip('t2')},
+  {p:-1,t:[T_END,T_END,T_END],set:{cohR:'mimictext'},cap:'MIMIC-CXR reports: the same picture.',more:detRows('mimictext'),txt:'Text again: the judge is clean, the gate flags every honest case.'+chip('t2')},
+  {p:-1,t:[T_END,T_END,T_END],set:{cohR:'mimicimg'},cap:'MIMIC-CXR images: the judge fails again.',more:detRows('mimicimg'),txt:'On images the judge flags like the gate.'+chip('t2')},
+  {p:-1,t:[T_END,T_END,T_END],set:{cohR:'support2'},cap:'ICU records: the judge flags most honest agreement.',more:detRows('support2'),txt:'The referee keeps false alarms lowest.'+chip('t2')},
+  {p:-1,t:[T_END,T_END,T_END],set:{cohR:'nih'},cap:'Only the referee works on text and on X-rays.',txt:'Gate and judge only observe. The referee asks the same question again, alone, and compares. A persuaded and an honest agent leave the same agreement on the board.'+chip('t2')}],
+ /* 04 The hidden scoring note */
+ [{p:0,f:-1,fp:0,t:T_AL,cap:'Each case is first answered with no scoring note.',txt:'This test changes the prompt instead of adding peers. First the case is run as it is. The model answers C.'},
+  {p:0,f:-1,fp:0,t:T_IN,cap:'A hidden scoring note appears.',txt:'The prompt now carries a scoring rule: full marks for B, a wrong answer. The paper calls it a hidden rubric.'+chip('s32')},
+  {p:0,f:-1,fp:2,t:T_SH,cap:'The answer moves to B.',txt:'The explanation gives a clinical reason and leaves the note out. The paper calls this drift, not reward-hacking: the design does not establish intent.'},
+  {p:1,f:0,t:T_END,cap:'Many answers move to the rewarded answer.',big:bigHTML(num('11 of 40','s45','11/40'),'MedQA answers move'),txt:'Blue keeps its answer. Red moved to the answer the note rewards.'+chip('s45')},
+  {p:1,f:0,t:T_END,set:{cohH:'nih'},cap:'On X-rays, more.',big:bigHTML(num('29 of 35','s45','29/35'),'NIH reads move'),txt:'The same hidden note, on chest films.'+chip('s45')},
+  {p:1,f:0,t:T_END,set:{cohH:'mimic'},cap:'MIMIC-CXR.',big:bigHTML(num('75 of 141','s45','75/141'),'MIMIC-CXR reads move'),txt:'About half.'+chip('s45')},
+  {p:1,f:0,t:T_END,set:{cohH:'chex'},cap:'CheXpert.',big:bigHTML(num('30 of 35','s45','30/35'),'CheXpert reads move'),txt:'Most of them.'+chip('s45')},
+  {p:1,f:0,t:T_END,set:{aware:'on'},cap:'Told it is being evaluated, fewer move.',txt:'Telling the model it is being evaluated lowers uptake in every cohort, by '+num('0.13 to 0.69','s45')+'.'+chip('s45')},
+  {p:2,f:0,t:T_END,set:{aware:'off',cohH:'medqa',filt:'moved'},cap:'Look only at the answers that moved.',txt:'Each answer came with a one-sentence explanation. One detector checked whether it names the scoring note.'},
+  {p:2,f:1,t:T_END,set:{filt:'names',pool:'text',reveal:'off'},cap:'Which explanation names the note?',txt:'These are the '+num('11','s45','11/40')+' MedQA answers that moved. The lens reads their explanations.'},
+  {p:2,f:1,t:T_END,set:{reveal:'on'},cap:'One.',big:bigHTML(num('1 of 11','s45','1/11'),'names the note'),txt:'The rest give a clinical reason.'+chip('s45')},
+  {p:2,f:1,t:T_END,set:{pool:'imaging',reveal:'off'},cap:'And the X-ray answers that moved?',big:bigHTML(num('134','s45','1/134'),'X-ray answers moved'),txt:SUM134+' across NIH, MIMIC-CXR and CheXpert.'},
+  {p:2,f:1,t:T_END,set:{reveal:'on'},cap:'Again one.',big:bigHTML(num('1 of 134','s45','1/134'),'names the note'),txt:'Almost no explanation admits the note.'+chip('s45')},
+  {p:-1,t:T_END,set:{filt:'all',pool:'text',reveal:'off'},cap:'Answers drift to the rewarded answer, and stay silent about it.',txt:'More on X-rays than on text. The longer story of this test is the public explainer, linked in the top bar.'}],
+ /* 05 How to catch it */
+ [{p:0,cap:'Use checkers that work differently.',txt:'A checker that sees the same things as the agent misses the same mistakes. Gate and judge both only observe the discussion, so both miss what it hides.'},
+  {p:1,cap:'Ask again, alone, every time.',txt:'Make the private second question a routine check and keep its record. A judge that only reads fails on X-rays, even when shown the image.'},
+  {p:2,cap:'Do not trust the explanation.',txt:'Almost no agent admits it chased a reward: '+num('1 of 134','s45','1/134')+' on X-rays. A wrong flag from another system pushes it like a peer: '+num('+0.26','t1')+' on MedQA.'+chip('t1')},
+  {p:-1,cap:'Limits of the study.',txt:STAGES[4].lead},
+  {p:-1,cap:'Yes, and quietly.',txt:'Answers drift to a hidden reward without saying so, and peers spread wrong answers. Critical review helps: wrong answers on hard MedQA cases fall from '+num('0.64','t1')+' to '+num('0.12','t1')+'.'+chip('t1')}]
+];
+/* the clocks of the station on show: one per lane (stations 02 and 03 have three lanes, the others use the first).
+   A clock runs forward at the speed of the scene and back quickly; it rests where the step says */
+var LANE=[T_END,T_END,T_END],LGOAL=[T_END,T_END,T_END],LRATE=1,ONNOW={},laneThen=null,dwellT=0;
+function stepNow(){return state.view==='stage'?STORY[state.stage][state.step]:null;}
+function laneGoals(s){return s.t===undefined?[T_END,T_END,T_END]:typeof s.t==='number'?[s.t,s.t,s.t]:s.t.slice();}
+/* the options and the things on show at step i of station k: the station's defaults, then every change up to that step */
+function optAt(k,i){var o={},on={},j,s,q;OPTKEYS[k].forEach(function(q){o[q]=DEFOPT[q];});for(j=0;j<=i;j++){s=STORY[k][j];if(s.set)for(q in s.set)o[q]=s.set[q];if(s.on)on=s.on;else on={};}return {o:o,on:on};}
+/* the first step of part p of station k */
+function partStep(k,p){for(var i=0;i<STORY[k].length;i++)if(STORY[k][i].p===p)return i;return 0;}
+/* put the page into the state of the step on show. fresh = the station was just entered (its clocks are set on arrival) */
+function applyStep(fresh){var k=state.stage,s=STORY[k][state.step],a=optAt(k,state.step),g=laneGoals(s),q,ch=false,mod=a.o.mod;
+ ONNOW=a.on;state.focus=isPhone()&&s.fp!==undefined?s.fp:s.f===undefined?s.p:s.f;LRATE=s.r||1;dwellT=0;laneThen=null;
+ for(q in a.o)if(q!=='mod'&&state[q]!==a.o[q]){state[q]=a.o[q];ch=true;}
+ if(ch)softT=1.3;
+ if(mod!==undefined&&mod!==state.mod){
+  /* a new data type: the cohort first runs back into its one case, then the next case takes its place */
+  if(fresh||!three||REDUCED||LANE[0]<=T_AL+0.05){state.mod=mod;LGOAL=g;}
+  else{LGOAL=[T_AL,T_AL,T_AL];laneThen=function(){state.mod=mod;LGOAL=g;softT=1.3;render();};}}
+ else LGOAL=g;
+ if(!three||REDUCED)LANE=LGOAL.slice();}
+/* the text of the step: the kicker (which part), the headline, the result, one or two sentences */
+function stepKicker(){var k=state.stage,s=STORY[k][state.step];return s.p<0?'0'+(k+1)+' '+STAGES[k].nav:(k+1)+'.'+(s.p+1)+' '+PARTS[k][s.p];}
+function stepHTML(){var s=stepNow();return (s.big||'')+'<p>'+s.txt+'</p>'+(s.more||'');}
+/* Live: when the scene has come to rest the story waits long enough to read the step, then goes on by itself. It rests on the last step of a station */
+function storyTick(dt,moving){var s=stepNow(),n,w;if(!s)return;
+ if(laneThen&&!moving){var f=laneThen;laneThen=null;f();return;}
+ if(state.paused||moving){dwellT=0;return;}
+ n=STORY[state.stage].length;if(state.step>=n-1)return;
+ w=2.6+0.055*(s.txt.replace(/<[^>]*>/g,' ').split(/\s+/).length+(s.more?12:0));dwellT+=dt;if(dwellT>=Math.min(w,6.5)){dwellT=0;state.step++;applyStep(false);render();}}
 
 /* ---------- colour: one source, the tokens of style.css ---------- */
 var PAL=(function(){var cs=getComputedStyle(document.documentElement),o={};
@@ -3564,24 +3539,24 @@ function init3D(){
   if(state.example==='on')put(0,tx[0],ty[0]+1.0,tz[0],INK,0.26,2.4);
   exIdx[0]=state.example==='on'?0:-1;exIdx[1]=exIdx[2]=-1;return k;}
  function laneCfg(){var a=TIER[state.tier],b=VARB[state.varB],c=COHC[state.cohC];return [{n:100,alone:0,after:a.k,folds:false,noise:a.noise},{n:b.n,alone:0,after:b.after,folds:b.folds},{n:c.n,alone:c.alone,after:c.after,folds:true}];}
- function L1(t,ta){var cfg=laneCfg(),k=0,l,q,X,s,Rp,nTop,nBot,P,j,i,bx,bz,ax,az,u,r,th,bob,g,x,y,z,jt,ex,MC;
-  for(l=0;l<3;l++){q=cfg[l];X=LX[l];s=q.n>120?0.1:q.n>60?0.125:0.16;Rp=q.n>120?2.35:q.n>60?2.15:1.75;nTop=q.n-q.alone;nBot=Math.max(q.after,1);P=perm('L'+l,nTop);MC=q.noise?NOISE:MOVE;
+ function L1(t,ta){var cfg=laneCfg(),k=0,la,l,q,X,s,Rp,nTop,nBot,P,j,i,bx,bz,ax,az,u,r,th,bob,g,x,y,z,jt,ex,MC;
+  for(l=0;l<3;l++){q=cfg[l];X=LX[l];la=ghosting?ta:LANE[l];s=q.n>120?0.1:q.n>60?0.125:0.16;Rp=q.n>120?2.35:q.n>60?2.15:1.75;nTop=q.n-q.alone;nBot=Math.max(q.after,1);P=perm('L'+l,nTop);MC=q.noise?NOISE:MOVE;
    ex=k+(q.folds&&q.after>q.alone?q.alone:q.n-1);exIdx[l]=ex;
    for(j=0;j<q.n;j++){i=k++;bob=0.05*Math.sin(t*1.3+rb[i]*6.283);
     if(j<q.after){u=(j+0.5)/nBot;r=Rp*Math.sqrt(u);th=j*2.39996;bx=X+r*Math.cos(th);bz=r*Math.sin(th);}
     if(j>=q.alone){jt=P[j-q.alone];u=(jt+0.5)/nTop;r=Rp*Math.sqrt(u);th=jt*2.39996+1.1;ax=X+r*Math.cos(th);az=r*Math.sin(th);}
     if(j<q.alone)put(i,bx,YB+0.18+bob,bz,PRE,s,0.75);
-    else if(j<q.after){g=smooth((ta-T_GO-(i===ex?0.15:rd[i]*2.3))/1.6);u=1-g;x=u*u*ax+2*u*g*X+g*g*bx;y=u*u*(YT+0.18)+2*u*g*(YI+0.2)+g*g*(YB+0.18);z=u*u*az+g*g*bz;
+    else if(j<q.after){g=smooth((la-T_GO-(i===ex?0.15:rd[i]*2.3))/1.6);u=1-g;x=u*u*ax+2*u*g*X+g*g*bx;y=u*u*(YT+0.18)+2*u*g*(YI+0.2)+g*g*(YB+0.18);z=u*u*az+g*g*bz;
      tmpc.copy(KEEP).lerp(MC,smooth((g-0.3)/0.4));put(i,x,y+bob,z,tmpc,s*(1+0.45*Math.sin(Math.PI*g)),1+1.3*Math.sin(Math.PI*g));}
     else put(i,ax,YT+0.18+bob,az,KEEP,s,1);}}
   return k;}
- function L2(t,ta){var p,j,i,pers,jj,u,r,th,dx,x,z,fl,lift,bob,v,it,g,e,kd=0,q,fx,fz;
-  for(p=0;p<3;p++){v=TAB2[state.cohR][DET[p]];
+ function L2(t,ta){var la,p,j,i,pers,jj,u,r,th,dx,x,z,fl,lift,bob,v,it,g,e,kd=0,q,fx,fz;
+  for(p=0;p<3;p++){v=TAB2[state.cohR][DET[p]];la=ghosting?ta:LANE[p];
    for(j=0;j<40;j++){i=p*80+j;pers=j<20;jj=pers?j:j-20;u=(jj+0.5)/20;r=2.25*Math.sqrt(u);th=jj*2.39996+0.4;dx=Math.abs(r*Math.cos(th))*0.9+0.2;z=r*Math.sin(th)*0.95;x=LX[p]+(pers?-dx:dx);
-    fl=flagged(DET[p],j);lift=fl?1.3*smooth((ta-T_GO-rd[i]*1.5)/0.8):0;bob=0.04*Math.sin(t*1.2+rb[i]*6.283);
+    fl=flagged(DET[p],j);lift=fl?1.3*smooth((la-T_GO-rd[i]*1.5)/0.8):0;bob=0.04*Math.sin(t*1.2+rb[i]*6.283);
     put(i,x,YBD+0.18+lift+bob,z,pers?MOVE:KEEP,0.155,fl?1+0.6*lift:0.9);
     if(fl)put(i+40,x,YBD+0.18+lift+0.42+bob,z,FLAG,0.1*smooth(lift/0.5),1.8);else put(i+40,x,YBD+0.2,z,FLAG,0,0);
-    if(p===2){it=240+j;g=smooth((ta-T_INF-rd[it]*0.9)/1.1);
+    if(p===2){it=240+j;g=smooth((la-T_INF-rd[it]*0.9)/1.1);
      if(fl){q=kd++;u=(q+0.5)/26;r=1.5*Math.sqrt(u);th=q*2.39996;fx=XD+r*Math.cos(th);fz=r*Math.sin(th);}else{fx=x;fz=z;}
      put(it,x+(fx-x)*g,YBD+0.18+(YTW-YBD)*g+bob,z+(fz-z)*g,fl?FLAG:(pers?MOVE:KEEP),0.13*Math.min(1,g*5),(fl?1.2:0.6)*Math.min(1,g*5));}}}
   e=exPersuaded()?EXP:EXH;exIdx[0]=e;exIdx[1]=80+e;exIdx[2]=160+e;return 280;}
@@ -3694,18 +3669,22 @@ function init3D(){
     the prop still changes in view. pace(key, goal, dt, s) = the value on show, at most 1/s nearer to its goal per second; dt = 0 poses a still copy and leaves the live value alone */
  var PACED={},paceDt=0,paceAcc=0;   /* paceDt = the time since the props were last placed (frames that are not drawn still count) */
  function pace(key,goal,dt,s){var v=PACED[key],m;if(!dt)return goal;if(v===undefined)v=goal;m=(paceDt||dt)/s;v+=clamp(goal-v,-m,m);PACED[key]=v;return v;}
- function animProps(k,t,ta,dt){var inf=pace('inf'+k,smooth((ta-T_INF)/0.7),dt,0.45),o,r,p,m,b,one,pr;
+ function animProps(k,t,ta,dt){var lv=!!dt&&k===shown,o,r,p,m,b,one,pr,la;
+  /* the station on show has one clock per lane; a still copy on the map is posed at one time */
+  function lt(l){return lv?LANE[l]:ta;}
   if(k===0){m=state.mod;o=OBJ0[m];p=dt&&k===shown?poseLive():objPose(ta);['text','imaging','tabular'].forEach(function(q){OBJ0[q].visible=q===m&&!SB0.length;});
    o.position.set(p.x,p.y,p.z);o.scale.setScalar(p.s);o.rotation.y=0.06*Math.sin(t*0.5)*(1-p.g)-0.16*p.g;
    r=Math.round(pace('o0',smooth((ta-0.35)/1.7),dt,0.5)*40)/40;if(r!==obj0r[m]){obj0r[m]=r;o.setR(r);}
-   r=pace('f1',smooth((ta-T_GO-0.1)/0.6),dt,0.38);fFlash.visible=r>0.002;fFlash.update(dt,r);r=pace('f2',smooth((ta-T_GO-0.35)/0.6),dt,0.38);fLite.visible=r>0.002;fLite.update(dt,r);
+   /* the two models come in with their own step */m=lv&&!ONNOW.models?0:1;
+   r=pace('f1',m*smooth((ta-T_GO-0.1)/0.6),dt,0.38);fFlash.visible=r>0.002;fFlash.update(dt,r);r=pace('f2',m*smooth((ta-T_GO-0.35)/0.6),dt,0.38);fLite.visible=r>0.002;fLite.update(dt,r);
    r=pace('pl',smooth((ta-T_GO)/0.5),dt,0.3);cplates.forEach(function(pl){pl.children[0].material.opacity=0.1*r;pl.children[1].material.opacity=0.45*r;});}
   if(k===1){b=VARB[state.varB];one=b.orbs!==2;
-   infl.forEach(function(gp){gp.scale.setScalar(Math.max(0.001,inf));});
-   r=Math.round(pace('cA',smooth((ta-T_INF-0.3)/1.2),dt,0.5)*20)/20;if(cardA._r!==r){cardA._r=r;cardA.setR(r);}cardA.rotation.y=0.25*Math.sin(t*0.6);
+   infl.forEach(function(gp,l){gp.scale.setScalar(Math.max(0.001,pace('in'+l,smooth((lt(l)-T_INF)/0.7),dt,0.45)));});
+   r=Math.round(pace('cA',smooth((lt(0)-T_INF-0.3)/1.2),dt,0.5)*20)/20;if(cardA._r!==r){cardA._r=r;cardA.setR(r);}cardA.rotation.y=0.25*Math.sin(t*0.6);
    peersB[1].visible=!one;peersB[0].position.x=one?0:-0.62;
-   peersB.concat(peersC).forEach(function(f,j){f.update(dt);f.nod(ta>T_INF+0.4&&ta<T_GO+2.4?(ta-T_INF-0.4+j*0.2):null);});}
-  if(k===2){pr=clamp((ta-T_INF)/(T_GO-T_INF),0,1);sweeps.forEach(function(sw){sw.scale.setScalar(0.3+2.4*pr);sw.material.opacity=Math.sin(Math.PI*pr)*0.7;});fRef.update(dt);}
+   peersB.concat(peersC).forEach(function(f,j){la=lt(j<2?1:2);f.update(dt);f.nod(la>T_INF+0.4&&la<T_GO+2.4?(la-T_INF-0.4+j*0.2):null);});}
+  if(k===2){sweeps.forEach(function(sw,l){pr=clamp((lt(l)-T_INF)/(T_GO-T_INF),0,1);sw.scale.setScalar(0.3+2.4*pr);sw.material.opacity=Math.sin(Math.PI*pr)*0.7;});
+   /* the referee steps in with its own part */r=pace('fr',!lv||state.focus<0||state.focus===2||LANE[2]>T_AL+0.01?1:0,dt,0.4);fRef.visible=r>0.002;fRef.update(dt,r);}
   if(k===3){r=pace('n3',state.filt==='names'?1:clamp((ta-T_INF)/1.5,0,1),dt,0.5);note.visible=r>0.001;note.setR(Math.round(r*60)/60);note.rotation.y=Math.sin(t*0.5)*0.22;
    expl.visible=state.filt!=='names';expl.scale.setScalar(Math.max(0.001,pace('e3',smooth((ta-T_GO-1.2)/0.7),dt,0.4)));expl.rotation.y=Math.sin(t*0.6+1)*0.3;}
   if(k===4){sPeers.forEach(function(f,j){f.update(dt);f.nod(((t+j*0.5)%4)<1.1?(t+j*0.5)%4:null);});sNote.rotation.y=Math.sin(t*0.8)*0.35;torus.rotation.z=t*0.4;torus2.rotation.z=-t*0.7;fRef5.update(dt);}}
@@ -3847,42 +3826,45 @@ function init3D(){
     mapCaps().forEach(function(c){L('cap3d',[ORG[c[0]][0]+c[1],ORG[c[0]][1]+c[2],c[3]||0],c[4],null,{world:true,prio:3});});
     ROUTECAP.forEach(function(t,k){L('cap3d route',routeMid[k],t,null,{world:true,prio:4});});
     if(WL.figs)L('cap3d fig',[(WL.figs[0][0]+WL.figs[1][0])/2,WL.figs[0][1]-0.4,0.5],'Gemini 2.5 Flash<br>Flash-Lite',null,{world:true,anchor:'t',prio:1});}}
-  if(st===0){m=MOD[state.mod];m.cohorts.forEach(function(c,j){L('label3d',[c.pos[0],c.pos[1]-0.75-(ph&&j%2?1.3:0),c.pos[2]+c.R+0.75],'<b>'+c.name+'</b><small>'+num(c.n,'s31')+' '+c.what+chip('s31')+'</small>',function(){return beatIndex()>=2&&(!isPhone()||state.focus===0);});});
-   L('label3d sm',[FIG1[0],FIG1[1]+4.1,FIG1[2]],'Gemini 2.5 Flash',function(){return beatIndex()>=2&&(!isPhone()||state.focus===2);});L('label3d sm',[FIG2[0]+0.3,FIG2[1]-0.75,FIG2[2]+0.6],'Flash-Lite',function(){return beatIndex()>=2&&(!isPhone()||state.focus===2);});
-   /* on a laptop the case is a real sheet: only the X-ray shows its planted cue (the corner tag), so only there the label points at it */
-   L('label3d sm gold',function(){var p=poseLive();return [p.x,p.y-(SB0.length?3.5*(p.s-0.5)+0.75:2.3*p.s),p.z];},SB0.length?'a planted cue: the corner tag':'a planted cue '+ILLB,function(){return tau()>1.2&&(SB0.length?state.mod==='imaging'&&poseLive().g<0.4:(!isPhone()||state.focus!==2||beatIndex()<2));});
-   L('bubble white',function(){return [px[0],py[0]+0.55,pz[0]];},'one case',function(){return state.example==='on'||(beatIndex()===1&&cs[0]>0.03);});}
+  /* inside a station a label belongs to one part: it shows while the camera is on that part (or on the whole station), and once its lane has got that far */
+  /* on a phone the whole station is small: there the labels show with their own part only */
+  var at=function(f){return state.focus===f||(state.focus<0&&!ph);},fo=function(f){return function(){return at(f);};},S=stepNow()||{},fx=function(){return LX[Math.max(0,state.focus)];},roomy=function(){return sceneEl.clientHeight>=230;};
+  if(st===0){m=MOD[state.mod];m.cohorts.forEach(function(c,j){L('label3d',function(){/* on a phone every second name sits lower, so two names do not meet; on a very short scene it sits above its cohort instead */
+    return ph&&j%2&&sceneEl.clientHeight<230?[c.pos[0],c.pos[1]+1.0,c.pos[2]-c.R-0.6]:[c.pos[0],c.pos[1]-0.75-(ph&&j%2?1.3:0),c.pos[2]+c.R+0.75];},'<b>'+c.name+'</b><small>'+num(c.n,'s31')+' '+c.what+'</small>',function(){return LANE[0]>T_GO+0.3&&state.focus!==2;});});
+   L('label3d sm',[FIG1[0],FIG1[1]+4.1,FIG1[2]],'Gemini 2.5 Flash',function(){return !!ONNOW.models&&LANE[0]>T_GO+0.3&&!(ph&&state.focus<0);});L('label3d sm',[FIG2[0]+0.3,FIG2[1]-0.75,FIG2[2]+0.6],'Flash-Lite',function(){return !!ONNOW.models&&LANE[0]>T_GO+0.3&&!(ph&&state.focus<0);});
+   /* on a laptop the case is a real sheet: the X-ray shows its planted cue (the corner tag), and the label points at it */
+   L('label3d sm gold',function(){var p=poseLive();return [p.x,p.y-(SB0.length?3.5*(p.s-0.5)+0.75:2.3*p.s),p.z];},SB0.length?'a planted cue: the corner tag':'a planted cue '+ILLB,function(){return !!S.cue&&tau()>1.2&&poseLive().g<0.4;});
+   L('bubble white',function(){return [px[0],py[0]+0.55,pz[0]];},'one case',function(){return LANE[0]>=T_INF&&LANE[0]<T_GO+0.3&&cs[0]>0.03;});}
   if(st===1){b=VARB[state.varB];
-   L('label3d sm keep',[-11.4,ph?YT-0.45:YT,0],'keeps<br>its answer');L('label3d sm move',[-11.4,YB,0],'changes<br>its answer');
-   L('bubble gold',[LX[0],YI+1.15,0],'planted cue',ge1);
-   L('label3d sm pre',[LX[2]+3.9,YB,0],'already wrong<br>when alone');
-   L('bubble gold',[LX[1],YI+1.15,0],b.say+ILLB,ge1);
-   L('bubble gold',[LX[2],YI+1.15,0],'Two peers: \u201cNo finding.\u201d'+ILLB,ge1);
-   L('bubble ans',function(){var e=exIdx[0];return e<0?null:[px[e],py[e]+0.55,pz[e]];},function(){var e=exIdx[0];return (e>=0&&py[e]<YI-0.4?'now: A':'answers C')+ILLB;});
-   L('bubble ans',function(){var e=exIdx[1];return e<0?null:[px[e],py[e]+0.55,pz[e]];},function(){var e=exIdx[1];return (e>=0&&py[e]<YI-0.4?'now: B':'answers C')+ILLB;});
-   L('bubble ans',function(){var e=exIdx[2];return e<0?null:[px[e],py[e]+0.55,pz[e]];},function(){var e=exIdx[2];return (e>=0&&py[e]<YI-0.4?'now: no finding':'reads: finding')+ILLB;});}
+   /* on a very short scene the colour key under it says this instead */
+   var side=function(){return (!ph||state.focus===0)&&roomy();};
+   L('label3d sm keep',function(){return [fx()-4.2,ph?YT-0.45:YT,0];},'keeps<br>its answer',side);L('label3d sm move',function(){return [fx()-4.2,YB,0];},'changes<br>its answer',side);
+   L('label3d sm pre',[LX[2]+3.9,YB,0],'already wrong<br>when alone',function(){return at(2)&&roomy();});
+   [0,1,2].forEach(function(l){var was=l===2?'reads: finding':'answers C',now=l===0?'now: A':l===1?'now: B':'now: no finding';
+    L('label3d sm lane',[LX[l],YT+1.55,0],PARTS[1][l],function(){return state.focus<0&&!ph;});
+    L('bubble gold',[LX[l],YI+1.15,0],l===0?'planted cue':l===1?b.say+ILLB:'Two peers: \u201cNo finding.\u201d'+ILLB,function(){return LANE[l]>=T_INF&&at(l);});
+    L('bubble ans',function(){var e=exIdx[l];return e<0?null:[px[e],py[e]+0.55,pz[e]];},function(){var e=exIdx[l];return (e>=0&&py[e]<YI-0.4?now:was)+ILLB;},function(){return state.focus===l;});});}
   if(st===2){
-   L('bubble gold',[LX[1],YBD+1.75,-1.2],'on every board, all three agree',function(){return beatIndex()<2;});
+   L('bubble gold',function(){return [fx(),YBD+1.75,-1.2];},'on every board, all three agree',function(){return LANE[0]<T_INF;});
    [0,1,2].forEach(function(p){
-    L('bubble verdict',function(){var e=exIdx[p];return e<0?null:[px[e],py[e]+0.66,pz[e]];},function(){return (flagged(DET[p],exIdx[p]%80)?'FLAG':'no flag')+ILLB;},ge2);});
-   L('label3d sm keep',[LX[2]-4.9,YTW+0.9,0],'asked again, alone:<br>same answer',tab2);
-   L('label3d sm move',[XD,YTW-1.25,2.2],'different alone = flag',tab2);
-   L('bubble ans',function(){var e=240+(exIdx[0]>=0?exIdx[0]:0);return cs[e]<0.03?null:[px[e],py[e]+0.62,pz[e]];},function(){return flagged('ref',exIdx[0])?'alone: a different answer':'alone: the same answer';},ge1);}
-  if(st===3){
-   L('label3d sm keep',[HX,HY-0.5,3.2],'answers before the note',function(){return state.filt!=='names';});
+    L('label3d sm lane',[LX[p]+(p===2?2.4:0),YBD+4.0,0],DETNAME[p],function(){return state.focus<0&&!ph;});
+    L('bubble verdict',function(){var e=exIdx[p];return e<0?null:[px[e],py[e]+0.66,pz[e]];},function(){return (flagged(DET[p],exIdx[p]%80)?'FLAG':'no flag')+ILLB;},function(){return LANE[p]>=T_GO+0.3&&at(p);});});
+   var r2=function(){return LANE[2]>=T_INF&&at(2);};
+   L('label3d sm keep',[LX[2]-4.9,YTW+0.9,0],'asked again, alone:<br>same answer',function(){return r2()&&roomy();});
+   L('label3d sm move',[XD,YTW-1.25,2.2],'different alone = flag',r2);
+   L('bubble ans',function(){var e=240+(exIdx[0]>=0?exIdx[0]:0);return cs[e]<0.03?null:[px[e],py[e]+0.62,pz[e]];},function(){return flagged('ref',exIdx[0])?'alone: a different answer':'alone: the same answer';},r2);}
+  if(st===3){var sm=ph&&S.p<0;
+   L('label3d sm keep',[HX,HY-0.5,3.2],'answers before the note',function(){return state.filt!=='names'&&(!SB3||sb3G>0.7);});
    /* on a laptop the large sheet says these three things itself; the bubbles return once it has docked */
-   L('bubble gold',[BX,BY+2.35,0],'Scoring note: \u201cfull marks for B\u201d'+ILLB,function(){return (!SB3||sb3G>0.7)&&(state.filt==='names'||beatIndex()>=1);});
-   L('bubble ans',function(){return state.filt==='names'||(SB3&&sb3G<0.7)?null:[px[0],py[0]+0.55,pz[0]];},function(){return (px[0]>(HX+BX)/2?'now: B':'answers C')+ILLB;});
-   L('bubble white',[EXX,EXY-2.6,0],'Explanation: a clinical reason.<br>The note is not mentioned.'+ILLB,function(){return (!SB3||sb3G>0.7)&&state.filt!=='names'&&beatIndex()>=2&&tau()>T_GO+1.6;});
+   L('bubble gold',[BX,BY+2.35,0],'Scoring note: \u201cfull marks for B\u201d'+ILLB,function(){return !sm&&(!SB3||sb3G>0.7)&&(state.filt==='names'||(tau()>=T_INF&&!(ph&&tau()>T_GO+0.4)));});
+   L('bubble ans',function(){return sm||state.filt==='names'||(SB3&&sb3G<0.7)?null:[px[0],py[0]+0.55,pz[0]];},function(){return (px[0]>(HX+BX)/2?'now: B':'answers C')+ILLB;});
+   L('bubble white',[EXX,EXY-2.6,0],'Explanation: a clinical reason.<br>The note is not mentioned.'+ILLB,function(){return !sm&&(!SB3||sb3G>0.7)&&state.filt!=='names'&&tau()>=T_GO+1.6;});
    L('bubble white',function(){return nameLit&&nameIdx>=0?[px[nameIdx],py[nameIdx]+0.7,pz[nameIdx]]:null;},'names the note',function(){return state.filt==='names'&&state.reveal==='on';});}
   if(st===4){
-   L('label3d jump',[SA,-4.5,0.8],'<button type="button" data-goto="1"><i>02</i>wrong peers</button>');
-   L('label3d jump',[SB,-4.5,0.8],'<button type="button" data-goto="3"><i>04</i>hidden note</button>');
-   L('label3d jump',[SC,4.1,0],'<button type="button" data-goto="2" data-set="cohR:nih"><i>03</i>the referee</button>');}
-  /* museum markers: a numbered button on the thing each tag is about. It opens that tag's pages in the panel */
-  if(st>=0)PINS[st].forEach(function(p,j){L('pin',p,(st+1)+'.'+(j+1),function(){/* a marker waits while a large sheet is on stage (stage 01 and 04 on a laptop) */
-    if((st===0&&SB0.length&&poseLive().g<0.6)||(st===3&&SB3&&sb3G<0.6))return false;return !isPhone()||state.focus===j;},{pin:true,attr:{'data-open':j,role:'button',tabindex:'0','aria-label':(st+1)+'.'+(j+1)+' '+(CARDS[j]?CARDS[j].title:'')}});});
-  /* labels are placed in order of priority (pins last), so the important ones get their place first */
+   L('label3d sm',[SA,-4.5,0.8],'two wrong peers',fo(0));
+   L('label3d sm',[SC,4.1,0],'the referee asks again, alone',fo(1));
+   L('label3d sm',[SB,-4.5,0.8],'the hidden scoring note',fo(2));}
+  /* labels are placed in order of priority, so the important ones get their place first */
   LABELS.forEach(function(l,j){l.ord=j;});LABELS.sort(function(a,b){return (a.prio-b.prio)||(a.ord-b.ord);});
   LABELS.forEach(function(l){var el=document.createElement(l.pin?'button':'div'),k;if(l.pin)el.type='button';el.className=l.cls;el.style.display='none';if(l.attr)for(k in l.attr)el.setAttribute(k,l.attr[k]);labelBox.appendChild(el);l.el=el;});}
  /* captions of the map: what stands in each station, in that station's coordinates */
@@ -3892,30 +3874,26 @@ function init3D(){
   o.push([2,LX[0],YBD-1.3,0,'gate'],[2,LX[1],YBD-1.3,0,'judge'],[2,LX[2]+2.6,YBD+2.6,0,'referee: asks again, alone']);
   o.push([3,HX,HY-1.5,0,'no note'],[3,BX,BY+2.6,0,'hidden scoring note'],[3,EXX-0.6,EXY+0.6,0,'moved']);
   o.push([4,SA,-4.45,0.8,'different checkers'],[4,SC,4.25,0,'ask again, alone'],[4,SB+1.2,-4.45,0.8,'do not trust the explanation']);return o;}
- /* where each marker sits, per stage, in station coordinates: on the tray, the drawn case, the figures, the boards, the note */
- var PINS=[
-  [function(){var c=MOD[state.mod].cohorts[0];return [c.pos[0],c.pos[1]+2.7,c.pos[2]];},function(){var p=poseLive();return [p.x+1.1*p.s,p.y+1.85*p.s,p.z];},[FIG1[0]-1.7,FIG1[1]+2.0,FIG1[2]]],
-  [[LX[0]+2.8,YT+1.6,0],[LX[1]+2.8,YT+1.6,0],[LX[2]+2.8,YT+1.6,0]],
-  [[LX[0]-2.9,YBD-1.0,0],[LX[1]-2.9,YBD-1.0,0],[LX[2]+3.3,YBD+1.4,0]],
-  [[HX-2.6,HY+1.5,0],[BX,BY-2.3,0],[EXX+1.2,EXY-0.4,0]],
-  [[SA-2.2,-2.2,0.8],[SC+3.6,-2.0,0.8],[SB+1.6,-2.2,0.8]]];
  var ROUTECAP=['what was tested','how it spreads','who catches it','why it stays hidden','what to do about it'];
 
  /* ---------- camera ---------- */
  var DEF=[{az:0,pol:1.2},{az:0,pol:1.2},{az:0,pol:1.2},{az:0,pol:1.22},{az:0,pol:1.3}],MAPPOL=1.25;
  /* on a laptop station 01 and station 04 carry a row of sheets above the dots: their boxes reach up to them */
  var BOX=[{x0:PH?-13.9:-14.7,x1:13.9,y0:-5.4,y1:5.2},{x0:-12.8,x1:12.9,y0:-3.5,y1:5.0},{x0:-11.0,x1:XD+2.6,y0:-3.7,y1:5.2},{x0:-9.8,x1:9.6,y0:-3.2,y1:2.9},{x0:-13.2,x1:13.2,y0:-5.0,y1:5.3}];
+ /* the part of a station that a step is about: the camera frames this box (a phone frames it tighter than a laptop) */
  function fbox(k,f){
-  if(k===0)return f===1?{x0:-13.9,x1:-3.4,y0:-4.4,y1:4.4}:f===2?{x0:3.4,x1:13.9,y0:-4.4,y1:4.4}:{x0:-10.4,x1:10.4,y0:-5.4,y1:5.2};
-  if(k===1)return {x0:LX[f]-3.4,x1:LX[f]+(f===2?5.6:3.4),y0:-3.7,y1:4.3};
-  if(k===2)return f===2?{x0:LX[2]-4.9,x1:XD+2.6,y0:-4.5,y1:4.3}:{x0:LX[f]-3.4,x1:LX[f]+3.4,y0:-1.0,y1:4.3};
-  if(k===3)return state.filt==='names'?{x0:BX-4.0,x1:BX+4.0,y0:-3.2,y1:3.2}:f===0?{x0:-9.6,x1:3.6,y0:-3.2,y1:3.2}:f===1?{x0:-3.8,x1:4.6,y0:-3.2,y1:3.2}:{x0:-3.4,x1:9.6,y0:-3.4,y1:3.2};
+  if(k===0)return f===3?{x0:-4.4,x1:4.4,y0:-6.0,y1:4.2}:f===2?{x0:3.4,x1:13.9,y0:-4.4,y1:4.4}:PH?{x0:-10.4,x1:10.4,y0:-5.4,y1:5.2}:{x0:-14.7,x1:10.6,y0:-5.4,y1:5.2};
+  if(k===1)return {x0:LX[f]-(PH?3.4:5.6),x1:LX[f]+(f===2?5.6:PH?3.4:4.2),y0:-3.7,y1:PH?4.3:5.4};
+  if(k===2)return f===2?{x0:LX[2]-4.9,x1:XD+2.6,y0:-4.5,y1:4.3}:{x0:LX[f]-(PH?3.4:4.6),x1:LX[f]+(PH?3.4:4.6),y0:PH?-1.0:-1.6,y1:4.3};
+  if(k===3)return state.filt==='names'?{x0:BX-4.0,x1:BX+4.0,y0:-3.2,y1:3.2}:f===0?(PH?{x0:-9.6,x1:3.6,y0:-3.2,y1:3.2}:BOX[3]):f===1?{x0:-3.8,x1:4.6,y0:-3.2,y1:3.2}:{x0:-3.4,x1:9.6,y0:-3.4,y1:3.2};
+  if(k===4)return f===0?{x0:SA-5.2,x1:SA+5.2,y0:-5.0,y1:5.3}:f===1?{x0:SC-5.6,x1:SC+5.6,y0:-5.0,y1:5.3}:{x0:SB-5.2,x1:SB+5.2,y0:-5.0,y1:5.3};
   return BOX[k];}
  var cam={az:0,pol:MAPPOL,r:120,tx:0,ty:0},goal=null,mapFit=null;
  /* the pose that frames station k in the free band between the caption and the tags */
  function stageGoal(k){var W=sceneEl.clientWidth,H=sceneEl.clientHeight,sr=sceneEl.getBoundingClientRect(),top,bot,bx;if(!W||!H)return null;
-  if(isPhone()){top=8+($('#ex-tag').hidden?0:30);bot=H-8-$('#controls').offsetHeight;bx=fbox(k,state.focus);}
-  else{top=$('.head').getBoundingClientRect().bottom-sr.top+8;bot=dockTop()-12-sr.top;bx=BOX[k];if(!(bot>top+80)){top=70;bot=H-200;}}
+  bx=state.focus>=0&&k===state.stage?fbox(k,state.focus):BOX[k];
+  if(isPhone()){top=8+($('#ex-tag').hidden?0:30);bot=H-8;}
+  else{top=$('.head').getBoundingClientRect().bottom-sr.top+8;bot=dockTop()-12-sr.top;if(!(bot>top+80)){top=70;bot=H-200;}}
   var tn=Math.tan(19*Math.PI/180),sp=Math.sin(DEF[k].pol),bh=Math.max(120,bot-top),r=Math.max((bx.y1-bx.y0)*sp*H/(2*tn*bh),(bx.x1-bx.x0)*H/(2*tn*W*0.96)),ppu=H/(2*r*tn);
   return {az:DEF[k].az,pol:DEF[k].pol,r:r,tx:ORG[k][0]+(bx.x0+bx.x1)/2,ty:ORG[k][1]+(bx.y0+bx.y1)/2-(H/2-(top+bot)/2)/(ppu*sp)};}
  /* the pose that shows the whole map, centred in the pane, with room for the station cards above and below */
@@ -3949,42 +3927,40 @@ function init3D(){
  function ease(t){t=clamp(t,0,1);return t<0.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;}
 
  /* ---------- flights: the map is the macro scale, a stage is a dive into one of its points.
-    dive: map to station. pull: station to map. journey: station to station. Then the timeline rewinds and replays.
+    dive: map to station. pull: station to map. journey: station to station. On arrival the station's clocks run to where the step on show rests.
     Everything runs on the frame clock, so stepping frames plays it the same way every time ---------- */
  var fl=null,FS=PH?0.8:1,optKey=[null,null,null,null,null],direct=false;
  function keyOf(k){return k===0?state.mod+state.example:k===1?state.tier+state.varB+state.cohC:k===2?state.cohR:k===3?state.cohH+state.filt+state.aware+state.pool+state.reveal:'';}
- function timedStage(k){return k>=0&&k<4;}
  function poseStation(k){syncProps(k);animProps(k,LT[k],HOLD,0);if(optKey[k]!==keyOf(k)){optKey[k]=keyOf(k);buildGhost(k);}}
  function target(){return state.view==='stage'?state.stage:-1;}
  function flying(on){document.body.classList.toggle('flying',!!on);}
  var flOut=false;
  function labelsOut(on){flOut=!!on;labelBox.classList.toggle('out',flOut||state.view==='example');}
+ /* on a phone the stops stand close together: while one is on show the others are not drawn */
+ function others(v){for(var j=0;j<5;j++)if(j!==shown){G[j].visible=v;ghost[j].visible=v;}}
  function arrive(k){clearLive();shown=k;live.position.set(ORG[k][0],ORG[k][1],0);ghostToLive(k);setMapAmt(0);guide.visible=false;goal=null;buildLabels();labelsOut(false);flying(false);trails.visible=k>=1;
-  if(timedStage(k)){state.time=HOLD;fl={kind:'rewind',from:k,to:k,t:0,dur:0.9*FS,arr:true};}else{fl=null;}}
+  /* the station arrives as it stood on the map (everything done); its clocks then run to the step on show */
+  LANE=[T_END,T_END,T_END];state.time=T_END;fl=null;others(!PH);}
  function leave(k){liveToGhost(k);optKey[k]=keyOf(k);clearLive();shown=-1;live.position.set(0,0,0);trails.visible=false;selRing.visible=false;rings.forEach(function(r){r.visible=false;});}
  function startFlight(to){var from=shown,c1;if(fl)finishFlight(true);from=shown;if(to===from){goal=viewGoal();return;}
+  others(true);if(from>=0)G[from].visible=true;
   if(to>=0){poseStation(to);ghost[to].visible=true;}
   c1=to<0?restGoal():stageGoal(to);if(!c1){cut(to);return;}
   if(REDUCED||!sceneEl.clientWidth){cut(to);return;}
   goal=null;labelsOut(true);state.sel=null;
-  if(from<0){fl={kind:'dive',from:-1,to:to,t:0,dur:1.4*FS,c0:mix(cam,cam,0),c1:c1};flying(true);state.time=timedStage(to)?HOLD:0;}
-  else if(to<0){fl={kind:'pull',from:from,to:-1,t:0,dur:1.3*FS,c0:mix(cam,cam,0),c1:c1,tau0:tau(),left:false};}
-  else{mapGoal();fl={kind:'journey',from:from,to:to,t:0,dur:2.2*FS,c0:mix(cam,cam,0),cA:pairGoal(from,to,0.16),cB:pairGoal(to,from,0.16),c1:c1,tau0:tau(),left:false};flying(true);}}
+  if(from<0){fl={kind:'dive',from:-1,to:to,t:0,dur:1.4*FS,c0:mix(cam,cam,0),c1:c1};flying(true);}
+  else if(to<0){fl={kind:'pull',from:from,to:-1,t:0,dur:1.3*FS,c0:mix(cam,cam,0),c1:c1,l0:LANE.slice(),left:false};}
+  else{mapGoal();fl={kind:'journey',from:from,to:to,t:0,dur:2.2*FS,c0:mix(cam,cam,0),cA:pairGoal(from,to,0.16),cB:pairGoal(to,from,0.16),c1:c1,l0:LANE.slice(),left:false};flying(true);}}
  /* a cut: the end state at once. Used when the system asks for reduced motion and when a flight is skipped */
  function cut(to,keep){var from=shown,c1;
   if(from>=0&&from!==to){buildGhost(from);optKey[from]=keyOf(from);ghost[from].visible=true;animProps(from,LT[from],HOLD,0);}
   clearLive();shown=to;fl=null;guide.visible=false;flying(false);
-  if(to>=0){poseStation(to);ghost[to].visible=false;live.position.set(ORG[to][0],ORG[to][1],0);state.time=0;setMapAmt(0);}else{live.position.set(0,0,0);travOn=1;setMapAmt(1);}
-  trails.visible=to>=1;snapLive();buildLabels();labelsOut(false);c1=viewGoal();if(c1&&!keep){setCam(c1);}goal=null;}
+  if(to>=0){poseStation(to);ghost[to].visible=false;live.position.set(ORG[to][0],ORG[to][1],0);LANE=LGOAL.slice();state.time=LANE[0];setMapAmt(0);}else{live.position.set(0,0,0);travOn=1;setMapAmt(1);}
+  trails.visible=to>=1;others(shown<0||!PH);if(shown>=0)G[shown].visible=true;snapLive();buildLabels();labelsOut(false);c1=viewGoal();if(c1&&!keep){setCam(c1);}goal=null;}
  /* keep = the camera stays where it is (a new flight takes over from there); without it the flight ends at its last frame */
  function finishFlight(keep){var f=fl;if(!f)return;
-  if(f.kind==='rewind'||f.kind==='hold'){fl=null;if(f.then)f.then();if(keep)return;state.time=f.tau1||0;snapLive();return;}
   if(f.kind==='glide'){fl=null;if(!keep){setCam(f.c1);}return;}
   cut(f.to,keep);}
- /* an option picked inside a stage: the timeline runs back to its start (or to t1) in view, it is not reset in one frame */
- function glideTime(t1,then){var t0=Math.min(tau(),HOLD);if(t1===null){if(fl&&(fl.kind==='rewind'||fl.kind==='hold')&&!fl.arr){fl=null;direct=false;}return;}t1=t1||0;if(shown<0||REDUCED||(fl&&fl.kind!=='rewind'&&fl.kind!=='hold')){state.time=t1;if(then)then();return;}
-  if(Math.abs(t0-t1)<0.05){state.time=t1;fl={kind:'hold',from:shown,to:shown,t:0,dur:then?0.9:0.3,tau1:t1};if(then)then();return;}
-  state.time=t0;fl={kind:'rewind',from:shown,to:shown,t:0,dur:clamp(0.45+0.8*Math.abs(t0-t1)/HOLD,0.45,1.25)*FS,tau0:t0,tau1:t1,then:then};}
  /* map to example and back: one eased move of the camera */
  var lastRest=restKey();
  function restGlide(){var c1=restGoal();lastRest=restKey();if(!c1||REDUCED||!sceneEl.clientWidth){goal=c1;return;}goal=null;fl={kind:'glide',from:-1,to:-1,t:0,dur:1.25*FS,c0:mix(cam,cam,0),c1:c1};}
@@ -3993,20 +3969,20 @@ function init3D(){
  function guideAt(a,b,s){var ox=ORG[a][0],oy=ORG[a][1],dx=ORG[b][0]-ox,dy=ORG[b][1]-oy,len=Math.hypot(dx,dy),mx=ox+dx/2-WL.hub[0],my=oy+dy/2-WL.hub[1],ml=Math.hypot(mx,my)||1,bulge=0.14*len*Math.sin(Math.PI*s);
   return [ox+dx*s+mx/ml*bulge,oy+dy*s+my/ml*bulge,1.2];}
  var gm4=new T.Matrix4();
+ function laneOut(f,v){var l,e=smooth(v);for(l=0;l<3;l++)LANE[l]=f.l0[l]+(T_END-f.l0[l])*e;state.time=LANE[0];}
  function flightStep(dt){var f=fl,u,e,k,j,s,p;f.t+=dt*(f.rate||1);u=Math.min(1,f.t/f.dur);direct=true;
   if(f.kind==='glide'){setCam(mix(f.c0,f.c1,ease(u)));if(u>=1){fl=null;direct=false;}return;}
   if(f.kind==='dive'){e=ease(clamp((u-0.14)/0.86,0,1));setCam(mix(f.c0,f.c1,e));cam.r+=0.06*f.c0.r*Math.sin(Math.PI*clamp(u/0.2,0,1))*(1-e);
    travOn=Math.min(travOn,1-smooth(u/0.25));mapEase(1-smooth((u-0.2)/0.55),dt);if(u>=1)arrive(f.to);return;}
-  if(f.kind==='rewind'){k=f.tau0==null?HOLD:f.tau0;j=f.tau1||0;state.time=k+(j-k)*ease(u);if(u>=1){state.time=j;fl={kind:'hold',from:f.to,to:f.to,t:0,dur:f.then?0.9:0.3,tau1:j,arr:f.arr};if(f.then)f.then();}return;}
-  if(f.kind==='hold'){state.time=f.tau1||0;if(u>=1){fl=null;direct=false;}return;}
   if(f.kind==='pull'){setCam(mix(f.c0,f.c1,ease(u)));
-   if(!f.left){if(timedStage(f.from)&&f.tau0<HOLD)state.time=f.tau0+(HOLD-f.tau0)*smooth(u/0.33);if(u>=0.35){leave(f.from);f.left=true;travOn=0;state.time=0;buildLabels();}}
+   /* the station that is left plays to its end on the way out: that is how it stands on the map */
+   if(!f.left){laneOut(f,u/0.33);if(u>=0.35){leave(f.from);f.left=true;travOn=0;buildLabels();}}
    else{travOn=smooth((u-0.45)/0.5);if(u>=0.55)labelsOut(false);}
    mapEase(smooth((u-0.2)/0.6),dt);if(u>=1){fl=null;direct=false;travOn=1;setMapAmt(1);labelsOut(false);}return;}
   if(f.kind==='journey'){
    /* one move, with one gentle start and one gentle stop: the camera goes straight from one station to the next and rises on the way so far that both are in view at the middle */
    e=ease(u);setCam(mix(f.c0,f.c1,e));k=Math.sin(Math.PI*e);cam.r+=(Math.max(f.cA.r,cam.r)-cam.r)*k;cam.pol+=(MAPPOL-cam.pol)*k;cam.az*=1-k;
-   if(!f.left){if(timedStage(f.from)&&f.tau0<HOLD)state.time=f.tau0+(HOLD-f.tau0)*smooth(u/0.2);if(u>=0.22){leave(f.from);f.left=true;travOn=0;state.time=timedStage(f.to)?HOLD:0;}}
+   if(!f.left){laneOut(f,u/0.2);if(u>=0.22){leave(f.from);f.left=true;travOn=0;}}
    mapEase(u<0.35?0.85*smooth(u/0.35):u<0.65?0.85:0.85*(1-smooth((u-0.65)/0.3)),dt);
    s=smooth((u-0.28)/0.42);guide.visible=u>0.26&&u<0.74;
    if(guide.visible){k=Math.sin(Math.PI*clamp((u-0.26)/0.48,0,1));for(j=0;j<9;j++){p=guideAt(f.from,f.to,Math.max(0,s-j*0.014));e=0.36*k*(1-j/10);gm4.makeScale(e,e,e);gm4.setPosition(p[0],p[1],p[2]);guide.setMatrixAt(j,gm4);}guide.instanceMatrix.needsUpdate=true;}
@@ -4072,27 +4048,28 @@ function init3D(){
   if(!booted){booted=true;placeStations();[0,1,2,3,4].forEach(poseStation);cut(tg);
    /* first load on the map: the camera starts a quarter farther out and settles (skipped by any input, by a stage link and by share captures) */
    if(tg<0&&state.view==='map'&&!REDUCED&&!document.body.classList.contains('poster')){goal=viewGoal();if(goal){cam.r=goal.r*1.25;cam.ty=goal.ty+goal.r*0.03;}}}
-  else{if(fl&&fl.to!==tg&&fl.kind!=='rewind'&&fl.kind!=='hold')finishFlight(true);
+  else{if(fl&&fl.to!==tg)finishFlight(true);
    if(tg!==shown){if(!(fl&&fl.to===tg))startFlight(tg);}
    else if(shown<0&&restKey()!==lastRest&&(!fl||fl.kind==='glide')){if(only!==true)buildLabels();restGlide();}
-   else if(!fl||fl.kind==='rewind'||fl.kind==='hold'){if(shown>=0)syncProps(shown);goal=viewGoal();if(only!==true)buildLabels();}}
+   else if(!fl){if(shown>=0)syncProps(shown);goal=viewGoal();if(only!==true)buildLabels();}}
   if(tg<0)lastRest=restKey();
   labelsOut(flOut);
   lensEl.hidden=!(state.view==='stage'&&state.stage===3&&state.filt==='names');};
 
  var PINOFF=[0,0,0,-32,0,32,-46,0,46,0,-46,-32,46,-32,0,-64,-46,32,46,32,0,64,-92,0,92,0,-92,-32,92,-32,0,-96,0,96];
- var CAMK=['az','pol','r','tx','ty'],camV={az:0,pol:0,r:0,tx:0,ty:0},skipGL=false,last=performance.now(),prevTau=0,manual=false,s0x=F(MAXN),s0y=F(MAXN),s0z=F(MAXN),s0loop=-1,TAN=Math.tan(19*Math.PI/180),acc=[];
+ var CAMK=['az','pol','r','tx','ty'],camV={az:0,pol:0,r:0,tx:0,ty:0},skipGL=false,last=performance.now(),manual=false,TAN=Math.tan(19*Math.PI/180),acc=[];
  function tick(dt,draw){
-  var i,i3,n,st,ta,wrapped,dx,dy,dz,d2,k,s,g,h,b,W=sceneEl.clientWidth,H=sceneEl.clientHeight,t,ppu,len,mx,fade,j;
+  var i,i3,n,st,ta,dx,dy,dz,d2,k,s,g,h,b,W=sceneEl.clientWidth,H=sceneEl.clientHeight,t,ppu,len,mx,j,mv=false;
   direct=false;paceAcc+=dt;
   if(fl)flightStep(dt);
-  else if(!state.paused){state.time+=dt;if(state.view==='stage'&&STAGES[state.stage].once&&tau()>HOLD)state.time=loopIndex()*LOOP+HOLD;}
+  /* the station on show: each lane's clock runs to where the step on show rests. Forward at the speed of the scene, back quickly (the dots then follow their places directly) */
+  else if(shown>=0&&shown===state.stage&&state.view==='stage'){for(j=0;j<3;j++){g=LGOAL[j]-LANE[j];if(g>0.0005){LANE[j]=Math.min(LGOAL[j],LANE[j]+dt*LRATE);mv=true;}else if(g<-0.0005){LANE[j]=Math.max(LGOAL[j],LANE[j]-dt*Math.min(14,3+5*(-g)));mv=true;direct=true;}else LANE[j]=LGOAL[j];}
+   state.time=LANE[0];storyTick(dt,mv);}
   st=shown;
-  if(!state.paused||fl){if(st>=0)LT[st]+=dt;else mapT+=dt;}
-  ta=tau();wrapped=!fl&&ta<prevTau-1;prevTau=ta;if(draw){syncBeat();syncScrub();}
-  if(!fl&&scrubbing())direct=true;
+  if(st>=0)LT[st]+=dt;else mapT+=dt;
+  ta=tau();if(draw)syncBeat();
   /* the camera follows its goal like a damped spring: it sets off gently and comes to rest gently (no start at full speed) */
-  if(goal&&(!fl||fl.kind==='rewind'||fl.kind==='hold')){h=Math.min(dt,0.034);for(j=0;j<5;j++){k=CAMK[j];camV[k]+=(36*(goal[k]-cam[k])-12*camV[k])*h;cam[k]+=camV[k]*h;}}
+  if(goal&&!fl){h=Math.min(dt,0.034);for(j=0;j<5;j++){k=CAMK[j];camV[k]+=(25*(goal[k]-cam[k])-10*camV[k])*h;cam[k]+=camV[k]*h;}}
   else camV.az=camV.pol=camV.r=camV.tx=camV.ty=0;
   placeCamera();poseStep(dt);exStep(dt);sbStep(dt);
   /* far away every dot keeps a least size on screen; close up it has its true size */
@@ -4100,10 +4077,7 @@ function init3D(){
   if(st===3&&state.filt==='names'){var c0=toScreen(BX,BY,0),e0=toScreen(BX+3.3,BY,0),R0=Math.abs(e0.x-c0.x);lens.r=clamp(R0*0.34,34,96);
    if(lens.hover>performance.now()){lens.x=lens.hx;lens.y=lens.hy;}else{lens.x=c0.x+R0*0.8*Math.sin(LT[3]*0.45);lens.y=c0.y+R0*0.42*Math.sin(LT[3]*0.72+1.1);}}
   t=st<0?mapT:LT[st];
-  /* before the loop starts again, every dot that would have to jump back shrinks away first */
-  fade=1;if(st>=1&&st<=3&&!fl&&!state.paused&&ta>LOOP-0.55){if(s0loop!==loopIndex()){s0loop=loopIndex();n=layoutOf(st,t,0);for(i=0;i<n;i++){s0x[i]=tx[i];s0y[i]=ty[i];s0z[i]=tz[i];}}fade=1-smooth((ta-(LOOP-0.55))/0.3);}
   n=layoutOf(st,t,ta);count=n;
-  if(fade<1)for(i=0;i<n;i++){dx=tx[i]-s0x[i];dy=ty[i]-s0y[i];dz=tz[i]-s0z[i];if(dx*dx+dy*dy+dz*dz>0.36)ts[i]*=fade;}
   for(i=n;i<MAXN;i++){ts[i]=0;tg[i]=0;}
   k=Math.min(1,20*dt);mx=60*dt;
   /* just after an option was picked the springs are loose, so the dots drift over to their new places */
@@ -4111,10 +4085,10 @@ function init3D(){
   for(i=0;i<MAXN;i++){i3=3*i;
    if(ts[i]===0&&cs[i]<0.003){cs[i]=0;IM[16*i]=IM[16*i+5]=IM[16*i+10]=0;continue;}
    dx=tx[i]-px[i];dy=ty[i]-py[i];dz=tz[i]-pz[i];d2=dx*dx+dy*dy+dz*dz;
-   if((wrapped||cs[i]<0.012)&&d2>2.2){px[i]=tx[i];py[i]=ty[i];pz[i]=tz[i];vx[i]=vy[i]=vz[i]=0;cs[i]=0;resetTrail(i);dx=dy=dz=d2=0;}
+   if(cs[i]<0.012&&d2>2.2){px[i]=tx[i];py[i]=ty[i];pz[i]=tz[i];vx[i]=vy[i]=vz[i]=0;cs[i]=0;resetTrail(i);dx=dy=dz=d2=0;}
    if(direct){/* the timeline is being driven: a dot follows its target directly, at no more than one unit per frame */
     len=Math.sqrt(d2)*k;s=len>mx?mx/len*k:k;px[i]+=dx*s;py[i]+=dy*s;pz[i]+=dz*s;vx[i]=vy[i]=vz[i]=0;b=Math.min(1,dt*12);}
-   else{g=(17+12*rc[i])*soft;vx[i]+=(dx*g-vx[i]*7.6)*dt;vy[i]+=(dy*g-vy[i]*7.6)*dt;vz[i]+=(dz*g-vz[i]*7.6)*dt;px[i]+=vx[i]*dt;py[i]+=vy[i]*dt;pz[i]+=vz[i]*dt;b=Math.min(1,dt*(fade<1?16:7));}
+   else{g=(17+12*rc[i])*soft;vx[i]+=(dx*g-vx[i]*7.6)*dt;vy[i]+=(dy*g-vy[i]*7.6)*dt;vz[i]+=(dz*g-vz[i]*7.6)*dt;px[i]+=vx[i]*dt;py[i]+=vy[i]*dt;pz[i]+=vz[i]*dt;b=Math.min(1,dt*7);}
    cs[i]+=(ts[i]-cs[i])*b;cg[i]+=(tg[i]-cg[i])*b;cc[i3]+=(tc[i3]-cc[i3])*b;cc[i3+1]+=(tc[i3+1]-cc[i3+1])*b;cc[i3+2]+=(tc[i3+2]-cc[i3+2])*b;
    s=cs[i];g=16*i;IM[g]=s;IM[g+5]=s;IM[g+10]=s;IM[g+12]=px[i];IM[g+13]=py[i];IM[g+14]=pz[i];IM[g+15]=1;
    IC[i3]=cc[i3];IC[i3+1]=cc[i3+1];IC[i3+2]=cc[i3+2];}
@@ -4139,7 +4113,7 @@ function init3D(){
   /* on the map a caption gives way to the legend strip at the top */
   if(onMap){var lg=$('#legend'),lr,sr1;if(lg&&lg.getClientRects().length){lr=lg.getBoundingClientRect();sr1=sceneEl.getBoundingClientRect();acc.push(lr.left-sr1.left,lr.top-sr1.top,lr.right-sr1.left,lr.bottom-sr1.top);}}
   /* a marker gives way to any label or bubble it would touch, and to the tags and the caption */
-  if(!onMap){var sr0=sceneEl.getBoundingClientRect();$$('.col,#caption,#controls,#ex-tag').forEach(function(e){var r;if(!e.getClientRects().length)return;r=e.getBoundingClientRect();acc.push(r.left-sr0.left,r.top-sr0.top,r.right-sr0.left,r.bottom-sr0.top);});}
+  if(!onMap){var sr0=sceneEl.getBoundingClientRect();$$('.col,#caption,#ex-tag').forEach(function(e){var r;if(!e.getClientRects().length)return;r=e.getBoundingClientRect();acc.push(r.left-sr0.left,r.top-sr0.top,r.right-sr0.left,r.bottom-sr0.top);});}
   for(j=0;j<LABELS.length;j++){Lb=LABELS[j];on=labelView===st&&Lb.show();pp=on?(typeof Lb.pos==='function'?Lb.pos():Lb.pos):null;if(!pp){Lb.el.style.display='none';continue;}
    sc=Lb.world?toWorldScreen(pp[0],pp[1],pp[2]):toScreen(pp[0],pp[1],pp[2]);if(!sc.ok||sc.x<-12||sc.x>W+12||sc.y<-12||sc.y>H+12){Lb.el.style.display='none';continue;}
    txt=typeof Lb.html==='function'?Lb.html():Lb.html;if(txt!==Lb.last){Lb.el.innerHTML=txt;Lb.last=txt;Lb.w=0;}
@@ -4164,13 +4138,15 @@ function init3D(){
  three={toScreen:toScreen,px:px,py:py,pz:pz,cs:cs,count:function(){return count;},ex:function(){return exIdx.slice();},cam:cam,
   manual:function(v){manual=v;},/* for the checks: one whole frame (objects and labels placed) without the drawing itself */step0:function(dt){skipGL=true;tick(dt,true);skipGL=false;},step:function(dt,n){for(var k=0;k<(n||1);k++)tick(dt,k===(n||1)-1);},
   settle:function(n){var p=state.paused;state.paused=true;for(var k=0;k<(n||90);k++)tick(1/30,k===(n||90)-1);state.paused=p;},
+  /* for the checks: is anything of the step still on its way (a flight, a clock, a data type about to change) */
+  busy:function(){var on=shown>=0&&shown===state.stage&&state.view==='stage';return !!fl||softT>0||(on&&(!!laneThen||LANE.some(function(v,l){return Math.abs(v-LGOAL[l])>0.001;})));},lanes:function(){return LANE.slice();},
   name:function(){return {idx:nameIdx,lit:nameLit,hit:lens.hit};},lens:function(x,y){lens.hx=x;lens.hy=y;lens.hover=performance.now()+1e7;},lensAuto:function(){lens.hover=0;},
   /* the view on screen (-1 the map), the flight in progress, the still copies of each station's dots, where a station is on screen */
-  shown:function(){return shown;},glide:glideTime,
+  shown:function(){return shown;},
   /* for the checks: every drawn thing of the station on show (not the dots): where its centre is on screen, null when hidden or nearly clear */
   things:function(){var o=[],w=new T.Vector3();if(shown<0)return o;G[shown].traverse(function(m){var v=m,p,ok=!!(m.isMesh||m.isSprite||m.isLine);if(!ok)return;while(v&&ok){ok=v.visible;v=v.parent;}if(ok&&m.material&&m.material.transparent&&m.material.opacity<0.2)ok=false;if(!ok){o.push(null);return;}m.getWorldPosition(w);p=toWorldScreen(w.x,w.y,w.z);o.push([+p.x.toFixed(1),+p.y.toFixed(1)]);});return o;},
   /* for the checks: where each sheet of the scene is on screen (x, y of its centre, its width in px, its opacity), null when it is not drawn */
-  sheets:function(){var a=SB0.map(function(o){return o.m;});if(SB3)a.push(SB3.m);return a.map(function(m){var w=new T.Vector3(),e=new T.Vector3(),p,q;if(!m.visible||!m.parent.visible)return null;m.getWorldPosition(w);e.set(1,0,0).applyMatrix4(m.matrixWorld);p=toWorldScreen(w.x,w.y,w.z);q=toWorldScreen(e.x,e.y,e.z);return [+p.x.toFixed(1),+p.y.toFixed(1),+(Math.hypot(q.x-p.x,q.y-p.y)).toFixed(2),+m.material.opacity.toFixed(2)];});},flightKind:function(){return !fl?null:fl.kind==='rewind'||fl.kind==='hold'?(fl.arr?'arrive':'time'):'move';},hover:linkHover,exMsgs:function(){return exMsgs.map(function(o){return +o.a.toFixed(2);});},boards:function(){return {s0:SB0.map(function(o){return +o.a.toFixed(2);}),s3:SB3?+(1-sb3G).toFixed(2):0,s3step:sb3At,s0x:SB0.map(function(o){return +o.xo.toFixed(1);}),s0s:SB0.map(function(o){return +o.m.scale.x.toFixed(2);})};},exScreen:function(){var b=exBox(),a=toWorldScreen(WL.ex[0]+b.x0,WL.ex[1]+b.y1,0),c=toWorldScreen(WL.ex[0]+b.x1,WL.ex[1]+b.y0,0);return {x0:a.x,y0:a.y,x1:c.x,y1:c.y};},flight:function(){return fl?{from:fl.from,to:fl.to,e:Math.min(1,fl.t/fl.dur),kind:fl.kind}:null;},skipIntro:function(){var g;if(fl)finishFlight();g=viewGoal();if(g)setCam(g);goal=null;},
+  sheets:function(){var a=SB0.map(function(o){return o.m;});if(SB3)a.push(SB3.m);return a.map(function(m){var w=new T.Vector3(),e=new T.Vector3(),p,q;if(!m.visible||!m.parent.visible)return null;m.getWorldPosition(w);e.set(1,0,0).applyMatrix4(m.matrixWorld);p=toWorldScreen(w.x,w.y,w.z);q=toWorldScreen(e.x,e.y,e.z);return [+p.x.toFixed(1),+p.y.toFixed(1),+(Math.hypot(q.x-p.x,q.y-p.y)).toFixed(2),+m.material.opacity.toFixed(2)];});},flightKind:function(){return !fl?null:fl.kind==='glide'?'glide':'move';},hover:linkHover,exMsgs:function(){return exMsgs.map(function(o){return +o.a.toFixed(2);});},boards:function(){return {s0:SB0.map(function(o){return +o.a.toFixed(2);}),s3:SB3?+(1-sb3G).toFixed(2):0,s3step:sb3At,s0x:SB0.map(function(o){return +o.xo.toFixed(1);}),s0s:SB0.map(function(o){return +o.m.scale.x.toFixed(2);})};},exScreen:function(){var b=exBox(),a=toWorldScreen(WL.ex[0]+b.x0,WL.ex[1]+b.y1,0),c=toWorldScreen(WL.ex[0]+b.x1,WL.ex[1]+b.y0,0);return {x0:a.x,y0:a.y,x1:c.x,y1:c.y};},flight:function(){return fl?{from:fl.from,to:fl.to,e:Math.min(1,fl.t/fl.dur),kind:fl.kind}:null;},skipIntro:function(){var g;if(fl)finishFlight();g=viewGoal();if(g)setCam(g);goal=null;},
   ghosts:function(){var o={stations:[],visible:[],seen:[],ring:RINGN,total:RINGN},k,j,v;for(k=0;k<5;k++){v=0;for(j=0;j<ghostN[k];j++)if(gs[k][j]>0.03)v++;o.stations.push(ghostN[k]);o.visible.push(v);o.seen.push(!!ghost[k].visible);o.total+=v;}return o;},
   stationScreen:function(k){var m=MBOX[k];return toWorldScreen(ORG[k][0]+(m.x0+m.x1)/2,ORG[k][1]+(m.y0+m.y1)/2,0);},
   routes:function(){return ROUTE.map(function(r){return r.slice();});},targets:function(n){var o=[],i;for(i=0;i<n;i++)o.push([tx[i],ty[i],ts[i]]);return o;},
@@ -4181,11 +4157,12 @@ function init3D(){
 }
 
 /* ---------- start ---------- */
-(function(){var h0=(location.hash||'').replace('#',''),k0;for(k0=0;k0<STAGES.length;k0++)if(STAGES[k0].id===h0){state.stage=k0;state.view='stage';}})();
+(function(){var h0=(location.hash||'').replace('#',''),k0;for(k0=0;k0<STAGES.length;k0++)if(STAGES[k0].id===h0){state.stage=k0;state.view='stage';}if(state.view==='stage')applyStep(true);})();
 try{init3D();}catch(err){three=null;$('#world-error').hidden=false;document.body.classList.add('nogl');if(window.console)console.error(err);}
+if(REDUCED)setPaused(true);
 render();
-window.BW={state:state,setStage:setStage,set:function(k,v){setKey(k,v,true);},pause:setPaused,tau:tau,beat:beatIndex,jump:function(t){state.time=t;},openCard:openCard,card:function(){return cardAt;},pages:function(i){return CARDS[i]?CARDS[i].pages.length:0;},three:function(){return three;},
- scrub:scrub,u:uNow,view:function(){return state.view;},map:function(){setView('map');},enter:function(i){setStage(i);},next:stepNext,back:stepBack,exSet:exSet,exAuto:exAuto,
+window.BW={state:state,setStage:setStage,pause:setPaused,tau:tau,three:function(){return three;},steps:function(k){return STORY[k].length;},step:function(){return state.step;},stepOf:function(k,i){var s=STORY[k][i];return {p:s.p,f:s.f===undefined?s.p:s.f,cap:s.cap};},parts:function(k){return PARTS[k].slice();},
+ view:function(){return state.view;},map:function(){setView('map');},enter:function(i){setStage(i);},next:stepNext,back:stepBack,exSet:exSet,exAuto:exAuto,
  count:function(){return three?three.count():0;},ex:function(){return three?three.ex():[];},screenOf:function(i){return three?three.toScreen(three.px[i],three.py[i],three.pz[i]):null;},size:function(i){return three?three.cs[i]:0;},y:function(i){return three?three.py[i]:0;},x:function(i){return three?three.px[i]:0;}};
 })();
 

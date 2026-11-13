@@ -1,26 +1,26 @@
-Benchmaxxing world: credits (round 4)
-====================================
+Benchmaxxing world: credits
+===========================
 
 What this is
   A single-page interactive view of the paper "Agents Catching Agents: Shortcut Cascades
   and Benchmark Gaming in Clinical Multi-Agent Systems". index.html is one self-contained
   file: it opens with no server and makes no network calls. It opens on an overview map,
   then an example conversation, then five stages: what was tested, the shortcut cascade,
-  three referees, the hidden scoring note, how to catch it.
-  The earlier version of the page is kept at round3/ next to this file.
+  three referees, the hidden scoring note, how to catch it. Each stage is told one step
+  at a time with Back and Next.
+  Earlier versions of the page are kept in the folders round3/ to round7/ next to this file.
 
 Where the numbers come from
   Every number on the page that carries a gold chip is printed in the published MICCAI 2026
   MedAgent workshop version of the paper (the camera-ready):
     https://papers.miccai.org/miccai-2026-sat/paper/MedAgent_040.pdf
-  The chip names the section or table and opens the Sources dialog at that entry.
+  The chip names the section or table and opens a note with the paper's own words.
   The arXiv posting (2608.03744, version 2 of 17 August 2026, CC BY 4.0) prints older
   MIMIC-CXR imaging cells; where the two differ, this page follows the published version.
     https://arxiv.org/abs/2608.03744
   Headline numbers are written as "x of n" and detector rates as percentages. Where the
   paper prints a rate, "x of n" is that rate times the paper's n, rounded; the paper's own
   form is given in the Sources dialog and by hovering the number.
-  The three quoted sentences in stage 05 are from the paper's section 5.
 
 What is simulated or drawn
   Each dot stands for one case. Which dot is which case, where it sits, how it moves, and
