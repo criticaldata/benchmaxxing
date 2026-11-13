@@ -14,7 +14,15 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 # a branch tests the lineages whose ablation outputs it carries (the two gpt-oss PRs land independently)
-MODELS = [m for m in ("openai/gpt-oss-120b", "openai/gpt-oss-20b")
+_CANDIDATES = (
+    "openai/gpt-oss-120b",
+    "openai/gpt-oss-20b",
+    "nvidia/nemotron-3-super-120b-a12b",
+    "Qwen/Qwen2.5-VL-72B-Instruct",
+)
+MODELS = [m for m in _CANDIDATES
+          if (ROOT / "experiments/medqa/results" / m.replace("/", "_") / "stats_reconciliation_summary.json").exists()]
+REASONING_MODELS = [m for m in _CANDIDATES
           if (ROOT / "experiments/medqa/results" / m.replace("/", "_") / "reasoning_effort_sensitivity_summary.json").exists()]
 MANIFEST = Path(os.environ.get("BENCHMAXXING_MEDQA_MANIFEST", str(Path.home() / "Documents/DATASET/medqa/manifest_test.csv")))
 
@@ -59,6 +67,8 @@ def _run(script, args):
 def test_derived_output_recomputes_from_committed_rows(model, script, rel, extra, tmp_path):
     slug = model.replace("/", "_")
     out = ROOT / "experiments" / rel.format(slug=slug)
+    if not out.exists():
+        pytest.skip(f"{out.relative_to(ROOT)} is not committed for {model}")
     before = _strip(json.loads(out.read_text()))
     saved = out.read_bytes()
     try:
@@ -70,7 +80,7 @@ def test_derived_output_recomputes_from_committed_rows(model, script, rel, extra
 
 
 @pytest.mark.skipif(not MANIFEST.exists(), reason="MedQA manifest not on this machine")
-@pytest.mark.parametrize("model", MODELS)
+@pytest.mark.parametrize("model", REASONING_MODELS)
 def test_reasoning_effort_ladder_replays_from_its_cache(model):
     slug = model.replace("/", "_")
     d = ROOT / "experiments/medqa/results" / slug
@@ -91,7 +101,7 @@ def test_reasoning_effort_ladder_replays_from_its_cache(model):
 
 
 @pytest.mark.skipif(not MANIFEST.exists(), reason="MedQA manifest not on this machine")
-@pytest.mark.parametrize("model", MODELS)
+@pytest.mark.parametrize("model", REASONING_MODELS)
 def test_empty_answer_split_replays_keyless(model):
     slug = model.replace("/", "_")
     out = ROOT / "experiments/medqa/results" / slug / "empty_content_by_condition.json"
