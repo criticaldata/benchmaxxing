@@ -31,14 +31,17 @@ What is simulated or drawn
   given in the paper.
   The chest X-ray in the 3D scene, the exam card, the ICU table, the folded note, the model
   figures and the overview map are drawn in code. No report text and no patient record is
-  on the page. One real chest X-ray is shown in the panel of stage 01 (credit below).
+  on the page. One real chest X-ray is shown in stage 01 (credit below). The ICU record on
+  the sheet of stage 01 is made up. On the sheet of stage 04, which option the model picks
+  and which one the note rewards are an illustration.
   The conversation in the Example step (a question about fever, neck stiffness and altered
   mental status, two peer reviewers, a referee) is written for this page to show the idea.
   It is not a case from the paper's data and it carries no number.
 
 Data on the page
-  MIMIC-CXR, CheXpert, NIH ChestX-ray14 and SUPPORT2 cases appear only as dots and counts.
-  One question is quoted in stage 01, with its five answer options:
+  MIMIC-CXR, CheXpert and SUPPORT2 cases appear only as dots and counts. So do the NIH
+  ChestX-ray14 cases, except the one film credited below.
+  One question is quoted in stages 01 and 04, with its five answer options:
     MedQA-USMLE, test split, item medqa-56 in the project's manifest.
     Jin D, Pan E, Oufattole N, Weng W-H, Fang H, Szolovits P. What disease does this
     patient have? A large-scale open domain question answering dataset from medical exams.

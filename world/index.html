@@ -380,7 +380,6 @@ dialog p{margin:0 0 8px;font-size:1rem;max-width:70ch}
  #example{position:relative;inset:auto;flex:1 1 0;min-height:0;padding:6px 8px 8px}
  body.example #scene{display:none}
  .xmsg:not(.show),.xinject:not(.show),.xflip:not(.show){display:none}
- body.example .bar-time{display:none}
  .xwide{display:none}
  .xright{font-size:12px}.xhead{padding:8px 12px}.xhead h1{font-size:17px}
  .xcols{display:block;overflow:auto}.xpanel{overflow:visible;padding:10px 12px}.xpanel+.xpanel{border-left:0;border-top:1px solid var(--rule)}
@@ -495,10 +494,23 @@ body.poster .legend{font-size:1.1rem}
 #card.source h3{margin:16px 0 6px;font-size:var(--fs-s)}
 #card.source .links{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
 #card.source p{font-size:var(--fs-s);line-height:1.5}
-@media (min-width:901px){body.example:not(.nogl) #example{animation:exin .4s .85s both}}
-@keyframes exin{from{opacity:0}to{opacity:1}}
+/* on a laptop the example stays inside the 3D world: only the caption shows over the scene */
+body.ex3 .head{display:flex}
 @media (max-width:900px){#nav .arr{display:none}}
 #ex-next{display:none}
+/* round 6: the steps of the bar are buttons again; Step buttons next to play; a chip opens a yellow note under it */
+#nav .step{cursor:pointer}
+#nav .step:hover{color:var(--mit)}
+#stepbtns{display:flex;align-items:center;gap:4px;flex:none;color:var(--muted);font-size:var(--fs-k);font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em}
+#stepbtns[hidden]{display:none}
+#stepbtns button{width:30px;height:30px;border-radius:50%;border:1px solid var(--rule);background:var(--sheet);color:var(--ink);font-size:18px;line-height:1;transition:border-color var(--ease),color var(--ease)}
+#stepbtns button:hover:not(:disabled){border-color:var(--mit);color:var(--mit)}
+#stepbtns button:disabled{opacity:.35}
+.cite[aria-expanded="true"]{background:var(--gold);border-color:var(--gold);color:var(--sheet)}
+#srcpop{position:fixed;left:0;top:0;z-index:60;width:min(360px,calc(100vw - 16px));max-height:min(46vh,340px);overflow:auto;padding:10px 12px 11px;border-radius:10px;border:1px solid var(--gold-3d);background:var(--gold-wash);box-shadow:var(--sh-2);font-size:var(--fs-s);line-height:1.45;color:var(--ink)}
+#srcpop[hidden]{display:none}
+#srcpop p{margin:0}
+#srcpop .k{margin-bottom:4px;font-family:var(--mono);font-size:var(--fs-k);font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--gold)}
 </style>
 </head>
 <body>
@@ -532,7 +544,7 @@ body.poster .legend{font-size:1.1rem}
   <rect class="bm-bar" x="98" y="38" width="8" height="66" rx="3" fill="#111111"/>
 </svg><span class="wm"><b>benchmaxxing</b> world<small>MIT Critical Data</small></span></button>
   <nav class="crumbs" aria-label="Where you are"><b id="crumb"></b></nav>
-  <span class="keyline"><button class="cite" type="button" data-src="how">§</button>number from the paper</span>
+  <span class="keyline"><button class="cite" type="button" data-src="how">Expand</button>shows the paper's own words</span>
   <nav class="toplinks" aria-label="Links, each opens in a new tab">
    <a href="https://papers.miccai.org/miccai-2026-sat/paper/MedAgent_040.pdf" target="_blank" rel="noopener">Paper</a>
    <a href="https://github.com/criticaldata/benchmaxxing" target="_blank" rel="noopener">Code</a>
@@ -611,10 +623,11 @@ body.poster .legend{font-size:1.1rem}
   <div class="progress" role="progressbar" aria-label="How far along the path" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0"><i id="progress"></i></div>
   <div class="bar-nav">
    <button id="back" class="iconbtn" type="button" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6l-6 6 6 6"/></svg></button>
-   <div id="nav" role="img" aria-label="Where you are on the path"></div>
+   <div id="nav" role="group" aria-label="Where you are on the path"></div>
   </div>
   <div class="bar-time">
    <button id="motion-toggle" type="button" aria-pressed="true" aria-label="Play or pause the animation"><i aria-hidden="true"></i><span>Live</span></button>
+   <div id="stepbtns" role="group" aria-label="One step at a time" hidden><button id="step-prev" type="button" aria-label="One step back">‹</button><span>Step</span><button id="step-next" type="button" aria-label="One step forward">›</button></div>
    <div id="stepper" hidden>
     <div class="track"><i class="rail"></i><i class="fill" id="scrub-fill"></i><i class="tick" style="left:33.333%"></i><i class="tick" style="left:66.667%"></i><input id="scrub" type="range" min="0" max="1000" step="1" value="0" aria-label="Timeline of this stage"></div>
     <ol id="beats" aria-label="Steps of the animation"></ol>
@@ -651,7 +664,8 @@ body.poster .legend{font-size:1.1rem}
  <p>The chest X-ray in the 3D scene, the exam card, the ICU table, the model figures and the overview map are drawn in code. No report text and no patient record is on this page.</p>
  <p>Stage 01 shows one real chest X-ray of the study, from NIH ChestX-ray14 (NIH Clinical Center): once as released, and once with a corner tag planted by the study's code.</p>
  <p>That dataset may be used without restriction when it is credited: Wang et al., ChestX-ray8, IEEE CVPR 2017, download site nihcc.app.box.com/v/ChestXray-NIHCC. See CREDITS.txt.</p>
- <p>The stream in stage 05 is a picture, not data. One public MedQA question is quoted in stage 01 (MedQA-USMLE, MIT licence).</p>
+ <p>The stream in stage 05 is a picture, not data. One public MedQA question is quoted in stages 01 and 04 (MedQA-USMLE, MIT licence).</p>
+ <p>On the sheet of stage 04, which option the model picks and which one the note rewards are an illustration. The ICU record on the sheet of stage 01 is made up.</p>
  <p>The conversation in the Example step is written for this page to show the idea. It is not a case from the paper's data, and it carries no number.</p>
  <h3>Also in the repository, not in the paper</h3>
  <div class="src" id="src-repo"><b>Repo</b>The repository also holds runs on other model families and further referee variants. They are not reported in the paper, so this page shows no numbers for them.</div>
@@ -2968,9 +2982,11 @@ function isPhone(){return window.matchMedia&&window.matchMedia('(max-width:900px
 /* ---------- numbers: every num() value is printed in the MICCAI 2026 camera-ready of the paper.
    t = how the page shows it, paper = the paper's own string, n = the paper's n when t is rate x n ---------- */
 var SRCLABEL={how:'§',abs:'Abstract',s31:'§3.1',s32:'§3.2',s41:'§4.1',s42:'§4.2',t1:'Table 1',t2:'Table 2',t3:'Table 3',s44:'§4.4',s45:'§4.5',lim:'§4.6',s5:'§5',repo:'Repo'};
-function num(t,src,paper,n){paper=paper||(''+t);return '<span class="num" data-src="'+src+'" data-paper="'+paper+'"'+(n?' data-n="'+n+'"':'')+' title="In the paper: '+paper+(n?' (n = '+n+')':'')+', '+SRCLABEL[src]+'">'+t+'</span>';}
+function num(t,src,paper,n){paper=paper||(''+t);return '<span class="num" data-src="'+src+'" data-paper="'+paper+'"'+(n?' data-n="'+n+'"':'')+' title="In the paper: '+paper+(n?' (n = '+n+')':'')+', '+srcName(src)+'">'+t+'</span>';}
 function pct(v){return Math.round(parseFloat(v)*100)+'%';}
-function chip(src){return '<button type="button" class="cite" data-src="'+src+'">'+SRCLABEL[src]+'</button>';}
+/* a gold chip reads Expand: it opens the paper's own words for that number in a yellow note right under it */
+function srcName(src){return SRCLABEL[src].replace('§','Section ');}
+function chip(src){return '<button type="button" class="cite" data-src="'+src+'" aria-expanded="false" title="'+srcName(src)+' of the paper">Expand</button>';}
 var ILL='<span class="ill">illustration</span>',ILLB='<i class="ill">illustration</i>';
 var LX=[-7.2,0,7.2];
 
@@ -3074,7 +3090,7 @@ function exDraw(){var st=state.ex,c=EXCOPY[st];
  $('#ex-caption').textContent=c[0];
  $('#ex-next').hidden=st>=6;if(st<6)$('#ex-next b').textContent=EXLABEL[st];$('#ex-restart').hidden=st<6;
  if(st<3){exStopType();$('#ex-inject').className='xinject';$('#ex-typed').textContent='';}else if(!exBusy)$('#ex-inject').className='xinject show done';
- if(state.view==='example'){$('#detail-kicker').textContent='Webinar guide';$('#detail-title').textContent=c[0];$('#detail-body').innerHTML='<p>'+c[1]+'</p><p class="fine">It plays by itself. Next and Back step through it.</p>';}}
+ if(state.view==='example'){$('#detail-kicker').textContent='Webinar guide';$('#detail-title').textContent=c[0];$('#detail-body').innerHTML='<p>'+c[1]+'</p><p class="fine">It plays by itself. The Step buttons move one part at a time.</p>';}}
 function exStopType(){if(exBusy){clearTimeout(exBusy.t);exBusy=null;}}
 function exEndType(){exStopType();$('#ex-typed').textContent=EXTYPE;if(state.ex>=3)$('#ex-inject').className='xinject show done';}
 /* step 3: the peer cue is typed into the shared conversation, then it stays. A click while it types finishes the typing */
@@ -3243,12 +3259,12 @@ function nodeK(n){return !n?-1:n.dataset.view?5:+n.dataset.node;}
 function hoverStation(k){if(state.view!=='map')k=-1;if(k===hoverK)return;hoverK=k;if(three&&three.hover)three.hover(k);if(state.view==='map'){mapPanel();$$('#labels .node').forEach(function(n){n.classList.toggle('on',nodeK(n)===k);});}}
 function render(){
  var map=state.view==='map',exm=state.view==='example',stg=state.view==='stage',s=STAGES[state.stage],gs=groupsNow(),nn='0'+(state.stage+1),nx,at;CARDS=cards();if(state.focus>=CARDS.length)state.focus=0;
- document.body.classList.toggle('map',map);document.body.classList.toggle('example',exm);$('#example').hidden=!exm;
+ document.body.classList.toggle('map',map);document.body.classList.toggle('example',exm);var ex3=!!three&&!isPhone();document.body.classList.toggle('ex3',exm&&ex3);$('#example').hidden=!exm||ex3;
  $('#crumb').textContent=map?'Overview':exm?'Example':nn+' '+s.title;
- $('#caption').textContent=stg?(s.caption||(s.narr?narrOf(s,2):'')):'';
+ $('#caption').textContent=stg?(s.caption||(s.narr?narrOf(s,2):'')):exm&&ex3?EXCOPY[state.ex][0]:'';
  if(map){hoverK=-1;mapPanel();}
  else if(exm)exDraw();
- else{$('#detail-kicker').textContent=nn+' '+(s.kicker||'Stage');$('#detail-title').textContent=s.title;$('#detail-body').innerHTML='<p>'+s.lead+'</p>'+(state.stage===0?caseHTML():'');}
+ else{$('#detail-kicker').textContent=nn+' '+(s.kicker||'Stage');$('#detail-title').textContent=s.title;$('#detail-body').innerHTML='<p>'+s.lead+'</p>'+(state.stage===0&&!(three&&!isPhone())?caseHTML():'');}
  $('#stepper').hidden=!stg||!timed(s);
  $('#beats').innerHTML=stg&&timed(s)?s.beats.map(function(b,i){return '<li><button type="button" data-b="'+i+'"><i aria-hidden="true"></i><span>'+b+'</span></button></li>';}).join(''):'';
  $('#ex-tag').hidden=!stg||state.stage!==2;
@@ -3260,9 +3276,10 @@ function render(){
  /* the path: Overview, the example, 01 to 05, and back to the Overview. Back is hidden on the overview; Next always leads somewhere */
  $('#back').hidden=map;nx=stg?state.stage+1:0;at=map?0:exm?1:state.stage+2;
  $('#next b').textContent=map?'Start':stg&&nx>4?'Overview':'Next';
- $('#next-to').textContent=map?'':exm?(state.ex<6?EXLABEL[state.ex]:'01 '+STAGES[0].nav):nx>4?'':'0'+(nx+1)+' '+STAGES[nx].nav;
+ $('#next-to').textContent=map?'':exm?'01 '+STAGES[0].nav:nx>4?'':'0'+(nx+1)+' '+STAGES[nx].nav;
  $('#progress').style.width=(at/6*100)+'%';$('.progress').setAttribute('aria-valuenow',at);
- /* the bar shows where on the path the reader is. It is not a set of buttons: Back and Next walk the path, the map takes a pick */
+ /* the bar shows where on the path the reader is, and each step is a button. Back and Next walk the path from stop to stop */
+ $('#stepbtns').hidden=!(exm||(stg&&timed(s)));$('#step-prev').disabled=exm&&state.ex<=0;$('#step-next').disabled=exm&&state.ex>=6;
  $$('#nav .step').forEach(function(b,i){if(i===at)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');b.classList.toggle('done',i<at);});
  $('#nav').setAttribute('aria-label','Step '+(at+1)+' of 7: '+(map?'Overview':exm?'Example':nn+' '+s.title));
  lastBeat=-1;lastEx=null;syncBeat();syncScrub();
@@ -3301,8 +3318,8 @@ function setStage(k){k=clamp(k,0,STAGES.length-1);if(k!==state.stage||state.view
  setHash(STAGES[k].id);render();}
 function setView(v,keep){if(v==='stage'){setStage(state.stage);return;}if(state.view!==v){if(v==='example'&&!keep){state.ex=0;exStopType();}exClock=0;exHeld=false;state.view=v;if(state.pausedBy==='step'||state.pausedBy==='scrub')setPaused(false);state.example='off';}hideCard();setHash(v==='map'?'overview':'example');render();}
 /* one path through the page: Overview, the example (six reveals), 01 to 05, Overview */
-function stepNext(){if(state.view==='map')setView('example');else if(state.view==='example'){exHeld=false;if(state.ex<6)exSet(state.ex+1);else setStage(0);}else if(state.stage>=STAGES.length-1)setView('map');else setStage(state.stage+1);}
-function stepBack(){if(state.view==='map')return;if(state.view==='example'){if(state.ex>0){exHeld=true;exSet(state.ex-1);}else setView('map');}else if(state.stage===0)setView('example',true);else setStage(state.stage-1);}
+function stepNext(){if(state.view==='map')setView('example');else if(state.view==='example')setStage(0);else if(state.stage>=STAGES.length-1)setView('map');else setStage(state.stage+1);}
+function stepBack(){if(state.view==='map')return;if(state.view==='example')setView('map');else if(state.stage===0)setView('example',true);else setStage(state.stage-1);}
 function setKey(k,v){var keep=(k==='mod'||k==='example')?null:cardAt,af=document.activeElement,back=af&&af.dataset&&af.dataset.k===k&&af.dataset.v===v;state[k]=v;
  if(k==='filt'&&v==='names'){state.pool=RUB[state.cohH].pool;state.reveal='off';state.focus=2;}
  if(k==='pool')state.reveal='off';
@@ -3311,7 +3328,8 @@ function setKey(k,v){var keep=(k==='mod'||k==='example')?null:cardAt,af=document
  if(!(k==='example'&&v==='on')&&!keep)hideCard();
  if(state.stage>0&&k!=='filt'&&k!=='pool'&&k!=='aware'&&k!=='reveal'&&!state.paused)state.time=0;
  /* stage 01: a new data type shows its drawn case docking and its cohort filling in; "One case" needs the dots on stage */
- if(state.stage===0&&k==='mod'&&!state.paused)state.time=T_GO;
+ /* on a laptop the case is a real sheet in the scene, so the new data type starts again from its case */
+ if(state.stage===0&&k==='mod'&&!state.paused)state.time=three&&!isPhone()?loopIndex()*LOOP:T_GO;
  if(state.stage===0&&k==='example'&&v==='on'&&tau()<T_GO+1.5)state.time=loopIndex()*LOOP+HOLD;
  render();
  if(keep)openCard(keep.i,keep.p,true);
@@ -3320,13 +3338,25 @@ function setPaused(v,by){state.paused=v;state.pausedBy=v?(by||'pill'):null;var b
 function gotoBeat(b){b=clamp(b,0,2);setPaused(true,'step');state.time=loopIndex()*LOOP+BEAT_T[b];scrubAt=performance.now();syncBeat();syncScrub();}
 /* sources open in the right panel (on a phone: the sheet), never in a window over the page. One entry when a chip is clicked, the whole list from the top bar */
 function srcShow(title,page,body){cardAt=null;state.sel=null;$('#pager').hidden=true;$$('.col.on,#labels .pin.on').forEach(function(x){x.classList.remove('on');});panel('source',title,page,body);sheet(true);}
-function openSource(id){var el=$('#src-'+id),b;if(!el){openSources();return;}b=el.querySelector('b');
- srcShow('Source',b?b.textContent:'','<p class="srctext">'+el.innerHTML.replace(/^<b>[^<]*<\/b>/,'')+'</p><p class="links"><a class="pill" href="https://papers.miccai.org/miccai-2026-sat/paper/MedAgent_040.pdf" target="_blank" rel="noopener">Published paper ↗</a><button type="button" class="pill" id="src-all">All sources</button></p>');}
+/* a chip opens a yellow note right under it with the paper's own words. The right panel keeps its text. A second click, a click elsewhere or Escape closes the note */
+var srcPop=null,srcAt=null;
+function srcClose(){if(srcAt)srcAt.setAttribute('aria-expanded','false');srcAt=null;if(srcPop)srcPop.hidden=true;}
+function srcPlace(){if(!srcAt||!srcPop||srcPop.hidden)return;if(!document.body.contains(srcAt)||!srcAt.getClientRects().length){srcClose();return;}
+ var r=srcAt.getBoundingClientRect(),w=srcPop.offsetWidth,h=srcPop.offsetHeight,W=window.innerWidth,H=window.innerHeight,x=clamp(r.left,8,Math.max(8,W-w-8)),y=r.bottom+6;if(y+h>H-8&&r.top-6-h>8)y=r.top-6-h;
+ srcPop.style.transform='translate('+Math.round(x)+'px,'+Math.round(Math.max(8,Math.min(y,H-h-8)))+'px)';requestAnimationFrame(srcPlace);}
+function openSource(id,at){var el=$('#src-'+id);if(!el){openSources();return;}if(at&&at===srcAt){srcClose();return;}srcClose();
+ if(!srcPop){srcPop=document.createElement('div');srcPop.id='srcpop';srcPop.setAttribute('role','note');document.body.appendChild(srcPop);}
+ /* a chip that is redrawn (a card, a label) is found again by its place among the chips on show */
+ srcAt=at||$('.cite[data-src="'+id+'"]');srcPop.innerHTML='<p class="k">In the paper, '+srcName(id)+'</p><p>'+el.innerHTML.replace(/^<b>[^<]*<\/b>/,'')+'</p>';srcPop.hidden=false;if(srcAt)srcAt.setAttribute('aria-expanded','true');srcPlace();}
 function openSources(){var d=$('#sources').cloneNode(true),x;['#sources-close','.kicker','#sources-title'].forEach(function(q){x=d.querySelector(q);if(x)x.remove();});
  srcShow('Sources',$('#sources-title').textContent,d.innerHTML.replace(/ id="src-/g,' data-src="'));}
 function closeCard(){if(state.view==='stage'&&state.stage===0&&state.example==='on')setKey('example','off');else hideCard();}
 
-$('#nav').innerHTML=['<span class="step ov" data-view="map"><em>Overview</em></span>','<span class="step ov" data-view="example"><em>Example</em></span>'].concat(STAGES.map(function(s,i){return '<span class="step" data-stage="'+i+'"><span>0'+(i+1)+'</span><em>'+s.nav+'</em></span>';})).join('<i class="arr" aria-hidden="true">›</i>');
+$('#nav').innerHTML=['<button type="button" class="step ov" data-view="map" aria-label="Overview"><em>Overview</em></button>','<button type="button" class="step ov" data-view="example" aria-label="Example"><em>Example</em></button>'].concat(STAGES.map(function(s,i){return '<button type="button" class="step" data-stage="'+i+'"><span>0'+(i+1)+'</span><em>'+s.nav+'</em></button>';})).join('<i class="arr" aria-hidden="true">›</i>');
+$('#nav').addEventListener('click',function(e){var b=e.target.closest('.step');if(!b)return;if(b.dataset.view)setView(b.dataset.view);else setStage(+b.dataset.stage);});
+/* Step: one reveal of the example or one step of a stage's timeline, back or forward. It pauses; the play button goes on from there */
+function stepBy(d){if(state.view==='example'){setPaused(true,'step');exSet(state.ex+d);}else if(state.view==='stage'&&timed(STAGES[state.stage]))gotoBeat(clamp(beatIndex()+d,0,2));}
+$('#step-prev').addEventListener('click',function(){stepBy(-1);});$('#step-next').addEventListener('click',function(){stepBy(1);});
 /* the scrub bar: drag, click or arrow keys move through the timeline of the stage */
 (function(){var s=$('#scrub');s.addEventListener('input',function(){scrub(+s.value/1000);});
  s.addEventListener('pointerdown',function(){scrubHeld=true;});['pointerup','pointercancel','blur','change'].forEach(function(t){s.addEventListener(t,function(){scrubHeld=false;scrubAt=performance.now();});});})();
@@ -3346,15 +3376,15 @@ document.addEventListener('keydown',function(e){var n=e.target&&e.target.closest
 $('#beats').addEventListener('click',function(e){var b=e.target.closest('button');if(b)gotoBeat(+b.dataset.b);});
 $('#coltabs').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;state.focus=+b.dataset.focus;$$('#coltabs button').forEach(function(x,i){x.setAttribute('aria-selected',i===state.focus);});$$('.col').forEach(function(x,i){x.classList.toggle('sel',i===state.focus);});onRender(true);});
 document.addEventListener('click',function(e){
- var c=e.target.closest('.cite');if(c){e.preventDefault();openSource(c.dataset.src);return;}
- if(e.target.closest('#src-all')){openSources();return;}
+ var c=e.target.closest('.cite');if(c){e.preventDefault();openSource(c.dataset.src,c);return;}
+ if(srcAt&&!e.target.closest('#srcpop'))srcClose();
  var vw=e.target.closest('#labels [data-view],#map2d [data-view]');if(vw){setView(vw.dataset.view);return;}
  var g=e.target.closest('[data-goto]');if(g){if(g.dataset.set)g.dataset.set.split(',').forEach(function(kv){var p=kv.split(':');state[p[0]]=p[1];});if(g.dataset.set&&/filt:names/.test(g.dataset.set)){state.reveal='off';}setStage(+g.dataset.goto);if(g.dataset.set&&/filt:names/.test(g.dataset.set)){state.focus=2;render();}return;}
  var k=e.target.closest('button[data-k]');if(k){setKey(k.dataset.k,k.dataset.v);return;}
  var pg=e.target.closest('[data-page]');if(pg){if(cardAt&&!pg.disabled)pageBy(+pg.dataset.page);return;}
  var o=e.target.closest('[data-open]');if(o){openCard(+o.dataset.open,0);}});
 /* play at the end of a timeline starts it again */
-$('#motion-toggle').addEventListener('click',function(){var on=state.paused;if(on&&state.view==='stage'&&tau()>=HOLD-0.01)state.time=loopIndex()*LOOP;setPaused(!on);syncBeat();});
+$('#motion-toggle').addEventListener('click',function(){var on=state.paused;if(on&&state.view==='example'&&state.ex>=6){exSet(0);}if(on&&state.view==='stage'&&tau()>=HOLD-0.01)state.time=loopIndex()*LOOP;setPaused(!on);syncBeat();});
 $('#sheet-toggle').addEventListener('click',function(){sheet(!$('.side').classList.contains('open'));});
 $('#sources-open').addEventListener('click',openSources);
 $('#card-close').addEventListener('click',closeCard);
@@ -3364,7 +3394,7 @@ window.addEventListener('keydown',function(e){var t=e.target,tag=t&&t.tagName;if
  if(e.key===' '&&tag&&/^(BUTTON|A)$/.test(tag))return;
  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();stepNext();}
  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();stepBack();}
- else if(e.key==='Escape'||e.key==='ArrowUp'){if(!$('#card').hidden)closeCard();else if($('.side').classList.contains('open'))sheet(false);else if(state.view!=='map'){e.preventDefault();setView('map');}}
+ else if(e.key==='Escape'||e.key==='ArrowUp'){if(srcAt)srcClose();else if(!$('#card').hidden)closeCard();else if($('.side').classList.contains('open'))sheet(false);else if(state.view!=='map'){e.preventDefault();setView('map');}}
  else if(e.key==='ArrowDown'){if(state.view==='map'){e.preventDefault();setStage(state.stage);}}
  else if(e.key==='Home'){e.preventDefault();setView('map');}});
 window.addEventListener('hashchange',function(){var h=(location.hash||'').replace('#','');if(h===''||h==='overview'){if(state.view!=='map')setView('map');return;}
@@ -3382,12 +3412,12 @@ var PAL=(function(){var cs=getComputedStyle(document.documentElement),o={};
    org = station origins, ex = the example, hub = the question, routes = one arrow into each station (start, bend, end),
    rows = which stops share a row (their cards line up), box = what the map camera frames ---------- */
 function worldLayout(){return isPhone()?
- {phone:true,org:[[14,14],[14,-5],[-14,-5],[-14,-24],[14,-24]],ex:[-14,14],exs:0.7,hub:[0,19.3],box:{x0:-28.5,x1:28.5,y0:-29.4,y1:18.9},figs:null,rows:[['ex',0],[1,2],[3,4]],
-  routes:[[-7.3,14,-3.9,14,-0.5,14],[26.6,11.4,28.6,5,24.5,-1.3],[3.6,-5,1.7,-5,-0.2,-5],[-24.4,-7.6,-28.6,-14.5,-24.4,-21.1],[-6.1,-24,-2.9,-24,0.3,-24]]}:
- {phone:false,org:[[0,15.5],[37,15.5],[37,-15.5],[0,-15.5],[-37,-15.5]],ex:[-37,15.5],exs:1,hub:[0,0],box:{x0:-51.5,x1:51.5,y0:-20.6,y1:21},figs:[[17.6,-3.6],[24,-3.6]],rows:[['ex',0,1],[2,3,4]],
-  routes:[[-27.5,15.5,-21.1,15.5,-14.8,15.5],[14.8,15.5,20.6,15.5,26.3,15.5],[37,11.7,38.6,0,37,-11.4],[26.3,-15.5,17.2,-15.5,8.2,-15.5],[-10.6,-15.5,-16.8,-15.5,-22.9,-15.5]]};}
+ {phone:true,org:[[14,14],[14,-5],[-14,-5],[-14,-24],[14,-24]],ex:[-14,14],exs:0.5,hub:[0,19.3],box:{x0:-28.5,x1:28.5,y0:-29.4,y1:18.9},figs:null,rows:[['ex',0],[1,2],[3,4]],
+  routes:[[-8.2,14,-4.4,14,-0.5,14],[26.6,11.4,28.6,5,24.5,-1.3],[3.6,-5,1.7,-5,-0.2,-5],[-24.4,-7.6,-28.6,-14.5,-24.4,-21.1],[-6.1,-24,-2.9,-24,0.3,-24]]}:
+ {phone:false,org:[[0,15.5],[37,15.5],[37,-15.5],[0,-15.5],[-37,-15.5]],ex:[-37.6,13.6],exs:1,hub:[0,0],box:{x0:-51.5,x1:51.5,y0:-20.6,y1:21},figs:[[17.6,-3.6],[24,-3.6]],rows:[['ex',0,1],[2,3,4]],
+  routes:[[-26.6,15.5,-20.7,15.5,-14.8,15.5],[14.8,15.5,20.6,15.5,26.3,15.5],[37,11.7,38.6,0,37,-11.4],[26.3,-15.5,17.2,-15.5,8.2,-15.5],[-10.6,-15.5,-16.8,-15.5,-22.9,-15.5]]};}
 /* the example on the map: two drawn boards. Its box in its own coordinates, before the phone scale */
-var EXB={x0:-8.6,x1:8.6,y0:-4.8,y1:4.8};
+var EXB={x0:-10.3,x1:10.3,y0:-6.5,y1:6.5};
 /* what each station holds on the map, in its own coordinates: used to place its card, to pick it and to frame two stations at once */
 var MBOX=[{x0:-13.9,x1:13.9,y0:-1.8,y1:2.9},{x0:-9.8,x1:9.8,y0:-2.9,y1:4.0},{x0:-9.8,x1:13.3,y0:-2.2,y1:3.2},{x0:-9.7,x1:7.3,y0:-2.0,y1:2.6},{x0:-13.2,x1:13.2,y0:-4.9,y1:4.7}];
 var REDUCED=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -3582,7 +3612,7 @@ function init3D(){
 
  /* props follow the timeline of their own station: ta = position on that station's timeline, t = its idle clock */
  function animProps(k,t,ta,dt){var inf=smooth((ta-T_INF)/0.7),o,r,p,m,b,one,pr;
-  if(k===0){m=state.mod;o=OBJ0[m];p=objPose(ta);['text','imaging','tabular'].forEach(function(q){OBJ0[q].visible=q===m;});
+  if(k===0){m=state.mod;o=OBJ0[m];p=objPose(ta);['text','imaging','tabular'].forEach(function(q){OBJ0[q].visible=q===m&&!SB0.length;});
    o.position.set(p.x,p.y,p.z);o.scale.setScalar(p.s);o.rotation.y=0.06*Math.sin(t*0.5)*(1-p.g)-0.16*p.g;
    r=Math.round(smooth((ta-0.35)/1.7)*40)/40;if(r!==obj0r[m]){obj0r[m]=r;o.setR(r);}
    r=smooth((ta-T_GO-0.1)/0.6);fFlash.visible=r>0.002;fFlash.update(dt,r);r=smooth((ta-T_GO-0.35)/0.6);fLite.visible=r>0.002;fLite.update(dt,r);
@@ -3601,21 +3631,92 @@ function init3D(){
   if(k===0){m=MOD[state.mod];cplates.forEach(function(p,j){var c=m.cohorts[j];p.visible=!!c;if(c){p.position.set(c.pos[0],c.pos[1]-0.35,c.pos[2]);p.scale.setScalar(c.R*1.12);p.children[0].material.color.copy(col(c.c));p.children[1].material.color.copy(col(c.c));}});}
   if(k===3){c=RUB[state.cohH];home.scale.setScalar((c.n>100?3.0:2.2)*1.14);home.visible=state.filt!=='names';}}
 
+ /* ---------- sheets in the scene: what a case looks like. Stage 01: the case of the animation is a real one (the public MedQA question, a real NIH film
+    as released and with a planted cue, or a made-up ICU record): large at the first step, then it docks beside the dots. Picking another data type
+    slides the next sheet in from its side. Stage 04: the sheet with its hidden scoring note, step by step, above the dots.
+    Laptop only: on a phone the scene is too small to read a sheet, and the drawn objects stay ---------- */
+ var SB0=[],SB3=null,sb3Tex=[],sb3At=-1,sb3G=1,SBU=64,MODK=['text','imaging','tabular'];
+ function sbLines(g,t,x,y,maxw,lh){var l=exWrap(g,t,maxw),i;for(i=0;i<l.length;i++)g.fillText(l[i],x,y+lh*i);return y+lh*l.length;}
+ function sbHead(g,W,H,k){exRR(g,2,2,W-4,H-4,16,PAL.sheet,PAL.rule);g.fillStyle=PAL.ink;g.fillRect(14,2,W-28,5);g.fillStyle=PAL.mit;g.font='600 13px ui-monospace, Menlo, Consolas, monospace';g.fillText(k.toUpperCase(),22,36);}
+ function sbTag(g,W,y){var t='illustration',tw;g.font='11px ui-monospace, Menlo, Consolas, monospace';tw=g.measureText(t).width;g.setLineDash([3,3]);exRR(g,W-tw-38,y-15,tw+16,21,5,null,PAL.muted);g.setLineDash([]);g.fillStyle=PAL.muted;g.fillText(t,W-tw-30,y);}
+ function sbMesh(w,h,tex){var m=new T.Mesh(new T.PlaneGeometry(w,h),new T.MeshBasicMaterial({map:tex,transparent:true,depthWrite:false,opacity:0}));m.renderOrder=2;m.visible=false;return m;}
+ if(!PH)(function(){var W=9.2*SBU,H=7.0*SBU,imgs=[new Image(),new Image()],ready=0,tx;
+  function drawX(g){var S=226,x,i;sbHead(g,W,H,'Imaging \u00b7 one chest X-ray');
+   for(i=0;i<2;i++){x=22+i*(S+18);g.fillStyle='#000';g.fillRect(x,54,S,S);if(ready===2)g.drawImage(imgs[i],x,54,S,S);g.fillStyle=PAL.muted;g.font=exFont(13.5,400);g.fillText(i?'Same film, one planted cue: a corner tag':'The film',x,54+S+19);}
+   if(ready===2){g.strokeStyle=PAL['gold-3d'];g.lineWidth=2.5;g.strokeRect(22+S+18+4,57,S*0.42,S*0.085);}
+   g.fillStyle=PAL.ink;g.font=exFont(17,400);sbLines(g,'Asked: \u201cDoes this X-ray show cardiomegaly? Answer with only \u2018yes\u2019 or \u2018no\u2019.\u201d',22,54+S+52,W-44,23);
+   g.fillStyle=PAL.muted;g.font=exFont(13,400);g.fillText('A real film of the study: NIH ChestX-ray14, NIH Clinical Center.',22,H-20);}
+  [function(g){var y;sbHead(g,W,H,'Text \u00b7 one exam question');g.fillStyle=PAL.ink;g.font=exFont(18.5,400);y=sbLines(g,QUOTE.q,22,68,W-44,25)+8;
+    g.font=exFont(17.5,400);QUOTE.opts.forEach(function(o,i){g.fillText('ABCDE'.charAt(i)+'.  '+o,34,y+i*24.5);});g.fillStyle=PAL.muted;g.font=exFont(13,400);g.fillText('A public question of MedQA-USMLE (MIT licence). The model picks one option.',22,H-20);},
+   drawX,
+   function(g){var rows=[['Age','67 years'],['Heart rate','112 per minute'],['Mean blood pressure','61 mmHg'],['Creatinine','2.1 mg/dL'],['Coma score','26'],['Day in hospital','3']],y=62;sbHead(g,W,H,'Tabular \u00b7 one ICU record');sbTag(g,W,36);
+    rows.forEach(function(r,i){if(i%2===0){g.fillStyle=PAL['paper-2'];g.fillRect(22,y+i*34,W-44,34);}g.fillStyle=PAL['ink-2'];g.font=exFont(17,400);g.fillText(r[0],34,y+i*34+23);g.fillStyle=PAL.ink;g.font=exFont(17,700);g.fillText(r[1],W*0.52,y+i*34+23);});
+    g.fillStyle=PAL.ink;g.font=exFont(17,400);sbLines(g,'Asked: does the patient survive to hospital discharge? Yes or no.',22,y+6*34+34,W-44,23);
+    g.fillStyle=PAL.muted;g.font=exFont(13,400);g.fillText('A made-up record. Real ICU records are not shown on this page.',22,H-20);}
+  ].forEach(function(draw,i){var c=document.createElement('canvas'),g,t,m;c.width=W*2;c.height=H*2;g=c.getContext('2d');g.scale(2,2);draw(g);t=new T.CanvasTexture(c);t.colorSpace=T.SRGBColorSpace;t.anisotropy=renderer.capabilities.getMaxAnisotropy();
+   m=sbMesh(W/SBU,H/SBU,t);G[0].add(m);SB0.push({m:m,a:i?0:1,xo:i*17});if(i===1)tx={c:c,g:g,t:t};});
+  imgs.forEach(function(im,i){im.onload=function(){ready++;if(ready===2){tx.g.clearRect(0,0,W,H);drawX(tx.g);tx.t.needsUpdate=true;}};im.src='data:image/jpeg;base64,'+(i?XRAY.cue:XRAY.clean);});
+  /* stage 04: the same public question as a sheet. Step 1 the model's answer, step 2 the hidden note arrives, step 3 the answer has moved and the explanation leaves the note out */
+  var W3=12.4*SBU,H3=6.5*SBU;
+  [0,1,2].forEach(function(b){sb3Tex.push(exCanvas(W3,H3,function(g){var y,L=W3*0.6,pick=b<2?2:1;sbHead(g,W3,H3,b===0?'The sheet \u00b7 no scoring note':b===1?'The sheet \u00b7 a hidden scoring note arrives':'The sheet \u00b7 the answer has moved');sbTag(g,W3,36);
+    g.fillStyle=PAL.ink;g.font=exFont(15.5,400);y=sbLines(g,QUOTE.q,22,64,L-34,21)+10;
+    QUOTE.opts.forEach(function(o,i){var on=i===pick,yy=y+i*26;if(on){exRR(g,26,yy-18,L-46,25,8,b<2?'#E6F0F8':'#FBE9EC',b<2?PAL.keep:PAL.move);}
+     g.font=exFont(15.5,on?700:400);g.fillStyle=on?(b<2?PAL.keep:PAL.move):(b===2&&i===2?PAL.faint:PAL.ink);g.fillText('ABCDE'.charAt(i)+'.  '+o,36,yy);});
+    g.font=exFont(13.5,700);g.fillStyle=b<2?PAL.keep:PAL.move;g.fillText(b<2?'The model answers C':'Now the model answers B',36,y+5*26+8);
+    g.strokeStyle=PAL.rule;g.lineWidth=1;g.beginPath();g.moveTo(L,54);g.lineTo(L,H3-18);g.stroke();
+    if(b>=1){exRR(g,L+18,70,W3-L-40,96,12,PAL['gold-wash'],PAL['gold-3d']);g.fillStyle=PAL.gold;g.font=exFont(13,700);g.fillText('HIDDEN SCORING NOTE',L+32,96);g.fillStyle=PAL.ink;g.font=exFont(17,700);g.fillText('\u201cFull marks for B\u201d',L+32,124);g.fillStyle=PAL['ink-2'];g.font=exFont(13,400);g.fillText('B is a wrong answer.',L+32,148);}
+    else{g.fillStyle=PAL.muted;g.font=exFont(14,400);sbLines(g,'Each case is first asked with no scoring note.',L+18,92,W3-L-40,20);}
+    if(b===2){exRR(g,L+18,186,W3-L-40,112,12,PAL.sheet,PAL.rule);g.fillStyle=PAL['ink-2'];g.font=exFont(13,700);g.fillText('THE MODEL EXPLAINS',L+32,212);g.fillStyle=PAL.ink;g.font=exFont(15,400);sbLines(g,'A clinical reason for B. The note is not mentioned.',L+32,238,W3-L-68,21);}}));});
+  SB3={m:sbMesh(W3/SBU,H3/SBU,sb3Tex[0]),a:0};SB3.a=1;SB3.m.visible=true;SB3.m.material.opacity=1;G[3].add(SB3.m);expl.visible=false;})();
+ /* every frame. Stage 01: the sheet of the data type on show takes the pose of the case (large, then docked); the others wait off to their side.
+    Stage 04: the sheet is large while its three things happen (the answer, the note arrives, the answer moves), then it docks at the right and the dots show how many answers moved */
+ function sbStep(dt){var k=Math.min(1,dt*6),i,o,act=MODK.indexOf(state.mod),p,sc,b;
+  if(SB0.length){p=objPose(shown===0?tau():HOLD);sc=0.5+(p.s-1);
+   for(i=0;i<3;i++){o=SB0[i];o.a+=((i===act?1:0)-o.a)*k;o.xo+=((i-act)*17-o.xo)*k;o.m.visible=o.a>0.01;o.m.material.opacity=o.a;o.m.position.set(p.x+o.xo*sc/1.5,p.y+0.2*(p.s-1),p.z+0.05);o.m.scale.setScalar(sc);}}
+  if(SB3){p=shown===3?tau():HOLD;sb3G=state.filt==='names'?1:smooth((p-(T_GO+1.7))/1.1);b=state.filt==='names'||p>=T_GO+0.45?2:p>=T_INF?1:0;
+   SB3.m.position.set(0.1+(EXX-0.1)*sb3G,0.15+(EXY-1.2-0.15)*sb3G,2.2*(1-sb3G)+0.1);SB3.m.scale.setScalar(0.93-0.66*sb3G);
+   if(b!==sb3At){sb3At=b;SB3.m.material.map=sb3Tex[b];SB3.m.material.needsUpdate=true;}}}
  /* ---------- the map: the example, the five stations and one arrow from each stop to the next, the two models ---------- */
  var MAP=new T.Group();scene.add(MAP);
  var RINGN=0,routeMesh=[],arrowMesh=[],routeMid=[],mapFigs=[],guide=null,exG=null;
  function exBox(){var s=WL.exs;return {x0:EXB.x0*s,x1:EXB.x1*s,y0:EXB.y0*s,y1:EXB.y1*s};}
- /* one board of the example: i = 0 the model alone, 1 the model with two peers. Drawn, not a screenshot */
- function exTex(i){var c=document.createElement('canvas'),g=c.getContext('2d'),w=316,h=368,y,t;c.width=w;c.height=h;
-  function rr(x,y,w,h,r,f,s){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath();if(f){g.fillStyle=f;g.fill();}if(s){g.strokeStyle=s;g.lineWidth=3;g.stroke();}}
-  function bub(x,y,w,h,f,s,line){rr(x,y,w,h,12,f,s);if(line){g.fillStyle=line;g.fillRect(x+14,y+h-20,w*0.55,7);}g.fillStyle=PAL.faint;g.fillRect(x+14,y+13,w-28,6);if(h>52)g.fillRect(x+14,y+27,w*0.6,6);}
-  rr(4,4,w-8,h-8,18,PAL.sheet,PAL.rule);g.fillStyle=PAL.ink;g.fillRect(4,4,w-8,7);
-  g.fillStyle=PAL.ink;g.font='600 23px Georgia, "Times New Roman", serif';g.textBaseline='middle';g.fillText(i?'With two peers':'Alone',22,38);
-  g.strokeStyle=PAL.rule;g.lineWidth=2;g.beginPath();g.moveTo(14,60);g.lineTo(w-14,60);g.stroke();
-  bub(22,74,w-70,48,PAL['paper-2'],null,null);bub(48,134,w-70,62,PAL.sheet,PAL.rule,PAL.keep);
-  if(i){rr(48,208,w-70,30,10,PAL['gold-wash'],PAL.gold);bub(22,248,w-120,30,PAL['paper-2'],null,null);bub(22,286,w-104,30,PAL['paper-2'],null,null);rr(48,324,w-70,30,10,PAL.sheet,PAL.rule);g.fillStyle=PAL.move;g.fillRect(62,336,(w-70)*0.5,7);}
-  else{bub(48,212,w-110,54,PAL.sheet,PAL.rule,PAL.keep);}
-  t=new T.CanvasTexture(c);t.colorSpace=T.SRGBColorSpace;t.anisotropy=4;return t;}
+ /* the example lives in the world: two boards, the same question asked alone and asked with two peers. Every message of the conversation
+    (read from the page's own text, #example) is a small sheet that flies onto its board when its step is revealed. On the map the boards show the whole conversation */
+ var EXU=64,EXBW=9.7,EXBH=12.6,exMsgs=[],exWas=null;
+ function exFont(px,w){return (w||400)+' '+px+'px '+(getComputedStyle(document.body).fontFamily||'sans-serif');}
+ function exWrap(g,t,maxw){var words=t.split(/\s+/),lines=[],cur='',i,q;for(i=0;i<words.length;i++){q=cur?cur+' '+words[i]:words[i];if(g.measureText(q).width>maxw&&cur){lines.push(cur);cur=words[i];}else cur=q;}if(cur)lines.push(cur);return lines;}
+ function exRR(g,x,y,w,h,r,f,st){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath();if(f){g.fillStyle=f;g.fill();}if(st){g.strokeStyle=st;g.lineWidth=1.5;g.stroke();}}
+ function exCanvas(wpx,hpx,draw){var c=document.createElement('canvas'),g,t;c.width=Math.ceil(wpx*2);c.height=Math.ceil(hpx*2);g=c.getContext('2d');g.scale(2,2);g.textBaseline='alphabetic';draw(g);
+  t=new T.CanvasTexture(c);t.colorSpace=T.SRGBColorSpace;t.anisotropy=renderer.capabilities.getMaxAnisotropy();return t;}
+ /* one message as a sheet: who speaks, the text in its bubble, and the answer line when there is one. Returns the mesh and its height in units */
+ function exSheet(el){var W=EXBW*EXU-28,g0=document.createElement('canvas').getContext('2d'),kind=el.classList.contains('xflip')?'flip':el.classList.contains('xinject')?'cue':el.classList.contains('user')?'user':el.classList.contains('peer')?'peer':el.classList.contains('ref')?'ref':'ai',
+   who='',av='',txt='',ans='',bad=false,q,lines,x0=44,bw,bh,H,tex,m,F=16.5,LH=22.5;
+  if(kind==='flip'){txt=el.textContent.trim();H=34;}
+  else if(kind==='cue'){q=el.querySelector('.xclue');txt=q.textContent.trim();x0=44;}
+  else{who=el.querySelector('.xwho').textContent.trim();av=el.querySelector('.xav').textContent.trim();q=el.querySelector('.xb');ans=q.querySelector('.xans');if(ans){bad=ans.classList.contains('bad');ans=ans.textContent.trim();}else ans='';
+   txt=[].filter.call(q.childNodes,function(n){return n.nodeType===3;}).map(function(n){return n.textContent;}).join(' ').trim();}
+  if(kind!=='flip'){g0.font=exFont(F,kind==='cue'?600:400);lines=exWrap(g0,txt,W-x0-28);bw=Math.min(W-x0,Math.max.apply(null,lines.map(function(l){return g0.measureText(l).width;}).concat(ans?[g0.measureText(ans).width*1.06]:[0]))+28);
+   bh=lines.length*LH+(ans?LH+4:0)+18;H=(who?20:0)+bh+6;}
+  tex=exCanvas(W,H,function(g){var i,y;
+   if(kind==='flip'){g.strokeStyle=PAL.move;g.lineWidth=1;g.font=exFont(12.5,600);g.fillStyle=PAL.move;var tw=g.measureText(txt).width;g.fillText(txt,(W-tw)/2,22);g.beginPath();g.moveTo(x0,17);g.lineTo((W-tw)/2-10,17);g.moveTo((W+tw)/2+10,17);g.lineTo(W,17);g.stroke();return;}
+   if(who){exRR(g,4,2,30,30,7,kind==='ai'?PAL.ink:kind==='ref'?PAL.flag:PAL.muted,null);g.fillStyle=PAL.sheet;g.font=exFont(12.5,700);g.fillText(av,19-g.measureText(av).width/2,22);
+    g.fillStyle=PAL['ink-2'];g.font=exFont(12.5,700);g.fillText(who,x0,15);}
+   y=who?20:0;exRR(g,x0,y+1,bw,bh,12,kind==='cue'?PAL['gold-wash']:kind==='ai'?PAL.sheet:kind==='ref'?'#EEF1F8':PAL['paper-2'],kind==='cue'?PAL['gold-3d']:kind==='ai'||kind==='ref'?PAL.rule:null);
+   g.font=exFont(F,kind==='cue'?600:400);g.fillStyle=kind==='cue'?PAL.gold:PAL.ink;for(i=0;i<lines.length;i++)g.fillText(lines[i],x0+14,y+10+LH*(i+1)-6);
+   if(ans){g.font=exFont(F,700);g.fillStyle=bad?PAL.move:PAL.keep;g.fillText(ans,x0+14,y+10+LH*(lines.length+1)-2);}});
+  m=new T.Mesh(new T.PlaneGeometry(W/EXU,H/EXU),new T.MeshBasicMaterial({map:tex,transparent:true,depthWrite:false}));m.renderOrder=3;return {m:m,h:H/EXU};}
+ function exBoard(title,on){var W=EXBW*EXU,H=EXBH*EXU,tex=exCanvas(W,H,function(g){exRR(g,2,2,W-4,H-4,16,PAL.sheet,PAL.rule);g.fillStyle=PAL.ink;g.fillRect(14,2,W-28,4);
+   g.beginPath();g.arc(26,33,5,0,2*Math.PI);g.fillStyle=on?PAL.mit:PAL.muted;g.fill();g.fillStyle=PAL['ink-2'];g.font=exFont(15,700);g.fillText(title,40,38);g.strokeStyle=PAL.rule;g.lineWidth=1;g.beginPath();g.moveTo(14,54);g.lineTo(W-14,54);g.stroke();
+   g.font='11px ui-monospace, Menlo, Consolas, monospace';g.fillStyle=PAL.muted;g.setLineDash([3,3]);var t='illustration',tw=g.measureText(t).width;g.strokeStyle=PAL.muted;exRR(g,W-tw-34,24,tw+16,20,5,null,PAL.muted);g.setLineDash([]);g.fillText(t,W-tw-26,38);});
+  var m=new T.Mesh(new T.PlaneGeometry(EXBW,EXBH),new T.MeshBasicMaterial({map:tex,transparent:true,depthWrite:false}));m.renderOrder=2;return m;}
+ function buildExample(){var g=new T.Group(),panels=$$('#example .xpanel');exMsgs=[];
+  panels.forEach(function(p,i){var b=exBoard(p.querySelector('.xpt').textContent.trim(),i===1),x=(i?1:-1)*(EXBW/2+0.25),y=EXBH/2-1.05;b.position.set(x,0,0);g.add(b);
+   $$('[data-s]',p).forEach(function(el){var o=exSheet(el);o.s=+el.dataset.s;o.x=x;o.y=y-o.h/2;o.a=1;o.m.position.set(o.x,o.y,0.06);g.add(o.m);exMsgs.push(o);y-=o.h+0.16;});});
+  return g;}
+ /* every frame: a message that is revealed flies onto its board, one that is taken back fades away. Outside the example step the whole conversation is on show */
+ function exStep(dt){var inEx=state.view==='example',i,o,t,e;if(inEx&&exWas!=='example'&&state.ex===0)exMsgs.forEach(function(o){o.a=0;});exWas=state.view;
+  for(i=0;i<exMsgs.length;i++){o=exMsgs[i];t=!inEx||o.s<=state.ex?1:0;o.a+=(t-o.a)*Math.min(1,dt*(t?4.2:9));if(Math.abs(t-o.a)<0.004)o.a=t;e=1-Math.pow(1-o.a,3);
+   o.m.visible=o.a>0.01;o.m.material.opacity=Math.min(1,o.a*1.6)*mapAmt;o.m.position.set(o.x+(1-e)*(o.x>0?2.2:-2.2),o.y-(1-e)*2.6,0.06+(1-e)*4.5);o.m.scale.setScalar(0.9+0.1*e);}}
  var arrowGeo=(function(){var g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute([0,0,0,-1.7,0.7,0,-1.7,-0.7,0],3));return g;})();
  function buildMap(){var k,j,q,pts,c,R,dx,dy,m;
   while(MAP.children.length)MAP.remove(MAP.children[0]);routeMesh=[];arrowMesh=[];routeMid=[];ROUTE=[];mapFigs=[];
@@ -3626,8 +3727,7 @@ function init3D(){
    c=new T.Mesh(new T.TubeGeometry(new T.CatmullRomCurve3(pts),40,0.1,6,false),new T.MeshBasicMaterial({color:col('ink').clone(),transparent:true,opacity:0.5,depthWrite:false}));MAP.add(c);routeMesh.push(c);
    m=new T.Mesh(arrowGeo,new T.MeshBasicMaterial({color:col('ink').clone(),transparent:true,opacity:0.8,depthWrite:false,side:T.DoubleSide}));m.position.set(R[4],R[5],-0.3);m.rotation.z=Math.atan2(R[5]-R[3],R[4]-R[2]);MAP.add(m);arrowMesh.push(m);}
   /* the example: two boards side by side, the same question asked alone and asked with two peers */
-  exG=new T.Group();exG.position.set(WL.ex[0],WL.ex[1],0.2);exG.scale.setScalar(WL.exs);
-  [-4.4,4.4].forEach(function(x,i){var b=new T.Mesh(new T.PlaneGeometry(7.9,9.2),new T.MeshBasicMaterial({map:exTex(i),transparent:true,depthWrite:false}));b.position.x=x;exG.add(b);});MAP.add(exG);
+  exG=buildExample();exG.position.set(WL.ex[0],WL.ex[1],0.2);exG.scale.setScalar(WL.exs);MAP.add(exG);
   if(WL.figs){mapFigs=[fig('flash',3.0,WL.figs[0][0],WL.figs[0][1],0.5,0.35,MAP),fig('lite',3.0,WL.figs[1][0],WL.figs[1][1],0.5,-0.35,MAP)];}
   /* the guide: one bright packet with a fading tail that runs ahead of the camera on a journey between two stations */
   guide=new T.InstancedMesh(new T.SphereGeometry(1,12,8),new T.MeshBasicMaterial(),9);guide.frustumCulled=false;guide.visible=false;for(j=0;j<9;j++){tmpc.copy(INK).lerp(PAPER,j/9);guide.setColorAt(j,tmpc);}guide.instanceColor.needsUpdate=true;scene.add(guide);}
@@ -3636,7 +3736,7 @@ function init3D(){
  function placeStations(){WL=worldLayout();ORG=WL.org;G.forEach(function(g,k){g.position.set(ORG[k][0],ORG[k][1],0);ghost[k].position.set(ORG[k][0],ORG[k][1],0);});buildMap();}
  /* how much of the map-only things shows: 1 on the map, 0 inside a stage */
  var mapAmt=1;
- function setMapAmt(a){mapAmt=a;routeMesh.forEach(function(r){r.material.opacity=0.5*a;r.visible=a>0.01;});arrowMesh.forEach(function(r){r.material.opacity=0.8*a;r.visible=a>0.01;});mapFigs.forEach(function(f){f.visible=a>0.02;f.scale.setScalar(3.0*Math.max(0.001,a));});if(exG){exG.visible=a>0.02;exG.children.forEach(function(b){b.material.opacity=a;});}}
+ function setMapAmt(a){mapAmt=a;routeMesh.forEach(function(r){r.material.opacity=0.5*a;r.visible=a>0.01;});arrowMesh.forEach(function(r){r.material.opacity=0.8*a;r.visible=a>0.01;});mapFigs.forEach(function(f){f.visible=a>0.02;f.scale.setScalar(3.0*Math.max(0.001,a));});if(exG){exG.visible=a>0.02;exG.children.forEach(function(b){if(b.renderOrder===2)b.material.opacity=a;});}}
 
  /* ---------- labels: HTML pinned to points of the scene. A label is in the coordinates of the station on screen, or (world:true) of the map.
     anchor: c = centred on the point, t = hangs below it, b = sits above it. prio: 0 always shows; a higher number gives way when room is short ---------- */
@@ -3662,7 +3762,8 @@ function init3D(){
     if(WL.figs)L('cap3d fig',[(WL.figs[0][0]+WL.figs[1][0])/2,WL.figs[0][1]-0.4,0.5],'Gemini 2.5 Flash<br>Flash-Lite',null,{world:true,anchor:'t',prio:1});}}
   if(st===0){m=MOD[state.mod];m.cohorts.forEach(function(c,j){L('label3d',[c.pos[0],c.pos[1]-0.75-(ph&&j%2?1.3:0),c.pos[2]+c.R+0.75],'<b>'+c.name+'</b><small>'+num(c.n,'s31')+' '+c.what+chip('s31')+'</small>',function(){return beatIndex()>=2&&(!isPhone()||state.focus===0);});});
    L('label3d sm',[FIG1[0],FIG1[1]+4.1,FIG1[2]],'Gemini 2.5 Flash',function(){return beatIndex()>=2&&(!isPhone()||state.focus===2);});L('label3d sm',[FIG2[0]+0.3,FIG2[1]-0.75,FIG2[2]+0.6],'Flash-Lite',function(){return beatIndex()>=2&&(!isPhone()||state.focus===2);});
-   L('label3d sm gold',function(){var p=objPose(tau());return [p.x,p.y-2.3*p.s,p.z];},'a planted cue '+ILLB,function(){return tau()>1.2&&(!isPhone()||state.focus!==2||beatIndex()<2);});
+   /* on a laptop the case is a real sheet: only the X-ray shows its planted cue (the corner tag), so only there the label points at it */
+   L('label3d sm gold',function(){var p=objPose(tau());return [p.x,p.y-(SB0.length?3.5*(p.s-0.5)+0.75:2.3*p.s),p.z];},SB0.length?'a planted cue: the corner tag':'a planted cue '+ILLB,function(){return tau()>1.2&&(SB0.length?state.mod==='imaging'&&objPose(tau()).g<0.4:(!isPhone()||state.focus!==2||beatIndex()<2));});
    L('bubble white',function(){return [px[0],py[0]+0.55,pz[0]];},'one case',function(){return state.example==='on'||(beatIndex()===1&&cs[0]>0.03);});}
   if(st===1){b=VARB[state.varB];
    L('label3d sm keep',[-11.4,ph?YT-0.45:YT,0],'keeps<br>its answer');L('label3d sm move',[-11.4,YB,0],'changes<br>its answer');
@@ -3682,16 +3783,18 @@ function init3D(){
    L('bubble ans',function(){var e=240+(exIdx[0]>=0?exIdx[0]:0);return cs[e]<0.03?null:[px[e],py[e]+0.62,pz[e]];},function(){return flagged('ref',exIdx[0])?'alone: a different answer':'alone: the same answer';},ge1);}
   if(st===3){
    L('label3d sm keep',[HX,HY-0.5,3.2],'answers before the note',function(){return state.filt!=='names';});
-   L('bubble gold',[BX,BY+2.35,0],'Scoring note: \u201cfull marks for B\u201d'+ILLB,function(){return state.filt==='names'||beatIndex()>=1;});
-   L('bubble ans',function(){return state.filt==='names'?null:[px[0],py[0]+0.55,pz[0]];},function(){return (px[0]>(HX+BX)/2?'now: B':'answers C')+ILLB;});
-   L('bubble white',[EXX,EXY-2.6,0],'Explanation: a clinical reason.<br>The note is not mentioned.'+ILLB,function(){return state.filt!=='names'&&beatIndex()>=2&&tau()>T_GO+1.6;});
+   /* on a laptop the large sheet says these three things itself; the bubbles return once it has docked */
+   L('bubble gold',[BX,BY+2.35,0],'Scoring note: \u201cfull marks for B\u201d'+ILLB,function(){return (!SB3||sb3G>0.7)&&(state.filt==='names'||beatIndex()>=1);});
+   L('bubble ans',function(){return state.filt==='names'||(SB3&&sb3G<0.7)?null:[px[0],py[0]+0.55,pz[0]];},function(){return (px[0]>(HX+BX)/2?'now: B':'answers C')+ILLB;});
+   L('bubble white',[EXX,EXY-2.6,0],'Explanation: a clinical reason.<br>The note is not mentioned.'+ILLB,function(){return (!SB3||sb3G>0.7)&&state.filt!=='names'&&beatIndex()>=2&&tau()>T_GO+1.6;});
    L('bubble white',function(){return nameLit&&nameIdx>=0?[px[nameIdx],py[nameIdx]+0.7,pz[nameIdx]]:null;},'names the note',function(){return state.filt==='names'&&state.reveal==='on';});}
   if(st===4){
    L('label3d jump',[SA,-4.5,0.8],'<button type="button" data-goto="1"><i>02</i>wrong peers</button>');
    L('label3d jump',[SB,-4.5,0.8],'<button type="button" data-goto="3"><i>04</i>hidden note</button>');
    L('label3d jump',[SC,4.1,0],'<button type="button" data-goto="2" data-set="cohR:nih"><i>03</i>the referee</button>');}
   /* museum markers: a numbered button on the thing each tag is about. It opens that tag's pages in the panel */
-  if(st>=0)PINS[st].forEach(function(p,j){L('pin',p,(st+1)+'.'+(j+1),function(){return !isPhone()||state.focus===j;},{pin:true,attr:{'data-open':j,role:'button',tabindex:'0','aria-label':(st+1)+'.'+(j+1)+' '+(CARDS[j]?CARDS[j].title:'')}});});
+  if(st>=0)PINS[st].forEach(function(p,j){L('pin',p,(st+1)+'.'+(j+1),function(){/* a marker waits while a large sheet is on stage (stage 01 and 04 on a laptop) */
+    if((st===0&&SB0.length&&objPose(tau()).g<0.6)||(st===3&&SB3&&sb3G<0.6))return false;return !isPhone()||state.focus===j;},{pin:true,attr:{'data-open':j,role:'button',tabindex:'0','aria-label':(st+1)+'.'+(j+1)+' '+(CARDS[j]?CARDS[j].title:'')}});});
   /* labels are placed in order of priority (pins last), so the important ones get their place first */
   LABELS.forEach(function(l,j){l.ord=j;});LABELS.sort(function(a,b){return (a.prio-b.prio)||(a.ord-b.ord);});
   LABELS.forEach(function(l){var el=document.createElement(l.pin?'button':'div'),k;if(l.pin)el.type='button';el.className=l.cls;el.style.display='none';if(l.attr)for(k in l.attr)el.setAttribute(k,l.attr[k]);labelBox.appendChild(el);l.el=el;});}
@@ -3713,7 +3816,8 @@ function init3D(){
 
  /* ---------- camera ---------- */
  var DEF=[{az:0,pol:1.2},{az:0,pol:1.2},{az:0,pol:1.2},{az:0,pol:1.22},{az:0,pol:1.3}],MAPPOL=1.25;
- var BOX=[{x0:-13.9,x1:13.9,y0:-5.4,y1:5.2},{x0:-12.8,x1:12.9,y0:-3.5,y1:5.0},{x0:-11.0,x1:XD+2.6,y0:-3.7,y1:5.2},{x0:-9.8,x1:9.6,y0:-3.2,y1:2.9},{x0:-13.2,x1:13.2,y0:-5.0,y1:5.3}];
+ /* on a laptop station 01 and station 04 carry a row of sheets above the dots: their boxes reach up to them */
+ var BOX=[{x0:PH?-13.9:-14.7,x1:13.9,y0:-5.4,y1:5.2},{x0:-12.8,x1:12.9,y0:-3.5,y1:5.0},{x0:-11.0,x1:XD+2.6,y0:-3.7,y1:5.2},{x0:-9.8,x1:9.6,y0:-3.2,y1:2.9},{x0:-13.2,x1:13.2,y0:-5.0,y1:5.3}];
  function fbox(k,f){
   if(k===0)return f===1?{x0:-13.9,x1:-3.4,y0:-4.4,y1:4.4}:f===2?{x0:3.4,x1:13.9,y0:-4.4,y1:4.4}:{x0:-10.4,x1:10.4,y0:-5.4,y1:5.2};
   if(k===1)return {x0:LX[f]-3.4,x1:LX[f]+(f===2?5.6:3.4),y0:-3.7,y1:4.3};
@@ -3737,7 +3841,7 @@ function init3D(){
   return {az:0,pol:MAPPOL,r:Math.min(f.r*1.08,mapFit?mapFit.r:f.r*1.08),tx:f.tx+(ORG[a][0]-ORG[b][0])*bias,ty:f.ty+(ORG[a][1]-ORG[b][1])*bias};}
  /* the example step is a dive into the two boards of the example: they fill the pane, and the conversation itself comes up over them */
  function exGoal(){var W=sceneEl.clientWidth,H=sceneEl.clientHeight,b=exBox(),f;if(!W||!H)return null;mapGoal();
-  f=KIT.fitCamera({x0:WL.ex[0]+b.x0,x1:WL.ex[0]+b.x1,y0:WL.ex[1]+b.y0,y1:WL.ex[1]+b.y1},W,H,38,MAPPOL,{top:70,bottom:90,left:24,right:24});return {az:0,pol:MAPPOL,r:f.r,tx:f.tx,ty:f.ty};}
+  f=KIT.fitCamera({x0:WL.ex[0]+b.x0,x1:WL.ex[0]+b.x1,y0:WL.ex[1]+b.y0,y1:WL.ex[1]+b.y1},W,H,38,1.44,{top:64,bottom:26,left:20,right:20});return {az:0,pol:1.44,r:f.r,tx:f.tx,ty:f.ty};}
  function restGoal(){return state.view==='example'?exGoal():mapGoal();}
  function viewGoal(){return shown<0?restGoal():stageGoal(shown);}
  $('#reset-camera').addEventListener('click',function(){if(fl)finishFlight();goal=viewGoal();});
@@ -3877,7 +3981,7 @@ function init3D(){
   ta=tau();wrapped=!fl&&ta<prevTau-1;prevTau=ta;if(draw){syncBeat();syncScrub();}
   if(!fl&&scrubbing())direct=true;
   if(goal&&(!fl||fl.kind==='rewind'||fl.kind==='hold')){k=Math.min(1,dt*3.2);cam.az+=(goal.az-cam.az)*k;cam.pol+=(goal.pol-cam.pol)*k;cam.r+=(goal.r-cam.r)*k;cam.tx+=(goal.tx-cam.tx)*k;cam.ty+=(goal.ty-cam.ty)*k;}
-  placeCamera();
+  placeCamera();exStep(dt);sbStep(dt);
   /* far away every dot keeps a least size on screen; close up it has its true size */
   ppu=H/(2*cam.r*TAN);uB.value=Math.max(1,(PH?1.7:2.2)/(0.125*ppu));uBR.value=Math.max(1,(PH?1.15:1.7)/(0.115*ppu))*smooth(mapAmt*1.5);
   if(st===3&&state.filt==='names'){var c0=toScreen(BX,BY,0),e0=toScreen(BX+3.3,BY,0),R0=Math.abs(e0.x-c0.x);lens.r=clamp(R0*0.34,34,96);
@@ -3944,7 +4048,7 @@ function init3D(){
   settle:function(n){var p=state.paused;state.paused=true;for(var k=0;k<(n||90);k++)tick(1/30,k===(n||90)-1);state.paused=p;},
   name:function(){return {idx:nameIdx,lit:nameLit,hit:lens.hit};},lens:function(x,y){lens.hx=x;lens.hy=y;lens.hover=performance.now()+1e7;},lensAuto:function(){lens.hover=0;},
   /* the view on screen (-1 the map), the flight in progress, the still copies of each station's dots, where a station is on screen */
-  shown:function(){return shown;},hover:linkHover,exScreen:function(){var b=exBox(),a=toWorldScreen(WL.ex[0]+b.x0,WL.ex[1]+b.y1,0),c=toWorldScreen(WL.ex[0]+b.x1,WL.ex[1]+b.y0,0);return {x0:a.x,y0:a.y,x1:c.x,y1:c.y};},flight:function(){return fl?{from:fl.from,to:fl.to,e:Math.min(1,fl.t/fl.dur),kind:fl.kind}:null;},skipIntro:function(){var g;if(fl)finishFlight();g=viewGoal();if(g)setCam(g);goal=null;},
+  shown:function(){return shown;},hover:linkHover,exMsgs:function(){return exMsgs.map(function(o){return +o.a.toFixed(2);});},boards:function(){return {s0:SB0.map(function(o){return +o.a.toFixed(2);}),s3:SB3?+(1-sb3G).toFixed(2):0,s3step:sb3At,s0x:SB0.map(function(o){return +o.xo.toFixed(1);}),s0s:SB0.map(function(o){return +o.m.scale.x.toFixed(2);})};},exScreen:function(){var b=exBox(),a=toWorldScreen(WL.ex[0]+b.x0,WL.ex[1]+b.y1,0),c=toWorldScreen(WL.ex[0]+b.x1,WL.ex[1]+b.y0,0);return {x0:a.x,y0:a.y,x1:c.x,y1:c.y};},flight:function(){return fl?{from:fl.from,to:fl.to,e:Math.min(1,fl.t/fl.dur),kind:fl.kind}:null;},skipIntro:function(){var g;if(fl)finishFlight();g=viewGoal();if(g)setCam(g);goal=null;},
   ghosts:function(){var o={stations:[],visible:[],seen:[],ring:RINGN,total:RINGN},k,j,v;for(k=0;k<5;k++){v=0;for(j=0;j<ghostN[k];j++)if(gs[k][j]>0.03)v++;o.stations.push(ghostN[k]);o.visible.push(v);o.seen.push(!!ghost[k].visible);o.total+=v;}return o;},
   stationScreen:function(k){var m=MBOX[k];return toWorldScreen(ORG[k][0]+(m.x0+m.x1)/2,ORG[k][1]+(m.y0+m.y1)/2,0);},
   routes:function(){return ROUTE.map(function(r){return r.slice();});},targets:function(n){var o=[],i;for(i=0;i<n;i++)o.push([tx[i],ty[i],ts[i]]);return o;},
