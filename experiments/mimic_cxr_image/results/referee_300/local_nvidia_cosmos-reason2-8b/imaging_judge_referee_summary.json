@@ -1,0 +1,48 @@
+{
+  "n": 417,
+  "judge_model": "local/nvidia/cosmos-reason2-8b",
+  "new_api_calls_this_run": 4,
+  "judge_sees_the_film": false,
+  "note": "LEGACY TEXT-ONLY ARM, NOT A MEASUREMENT OF A JUDGE: the prompt carries only (finding, shared) because wrong is always 'no', so the verdict is pinned to (shared == wrong), which IS the naive_gate row beside it. See #393.",
+  "peer_driven_adoptions_gt": 89,
+  "same_lineage_judge": {
+    "tp": 0,
+    "fp": 0,
+    "fn": 89,
+    "tn": 328,
+    "precision": null,
+    "recall": 0.0,
+    "fpr": 0.0
+  },
+  "naive_gate": {
+    "tp": 89,
+    "fp": 328,
+    "fn": 0,
+    "tn": 0,
+    "precision": 0.21342925659472423,
+    "recall": 1.0,
+    "fpr": 1.0
+  },
+  "clean_correct_only": {
+    "n": 51,
+    "peer_driven_adoptions_gt": 38,
+    "same_lineage_judge": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 38,
+      "tn": 13,
+      "precision": null,
+      "recall": 0.0,
+      "fpr": 0.0
+    },
+    "naive_gate": {
+      "tp": 38,
+      "fp": 13,
+      "fn": 0,
+      "tn": 0,
+      "precision": 0.7450980392156863,
+      "recall": 1.0,
+      "fpr": 1.0
+    }
+  }
+}
