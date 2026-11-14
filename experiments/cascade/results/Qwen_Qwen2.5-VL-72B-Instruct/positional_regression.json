@@ -1,0 +1,48 @@
+{
+  "k_rounds": 5,
+  "shared_arm": {
+    "n_observations": 200,
+    "n_cases": 40,
+    "intercept": -4.4297,
+    "round_index_coef": -0.0384,
+    "fitted_predicted_probability_by_round": [
+      0.0118,
+      0.0113,
+      0.0109,
+      0.0105,
+      0.0101
+    ]
+  },
+  "isolated_arm": {
+    "n_observations": 200,
+    "n_cases": 40,
+    "intercept": -5.3012,
+    "round_index_coef": -0.1482,
+    "fitted_predicted_probability_by_round": [
+      0.005,
+      0.0043,
+      0.0037,
+      0.0032,
+      0.0027
+    ]
+  },
+  "empirical_adoption_by_round": {
+    "shared": [
+      0.175,
+      0.175,
+      0.175,
+      0.175,
+      0.2
+    ],
+    "isolated": [
+      0.0,
+      0.025,
+      0.025,
+      0.025,
+      0.025
+    ]
+  },
+  "position_confounded_caveat": "Round order was fixed, not randomized or counterbalanced across cases, so any round_index coefficient reflects position in a fixed sequence, not a validated 'repeated exposure' effect - it cannot rule out fatigue, drift, or other position-correlated confounds. Descriptive only.",
+  "read": "Shared-arm round_index coefficient = -0.0384 (small), but its fitted probabilities ([0.0118, 0.0113, 0.0109, 0.0105, 0.0101]) sit consistently ~0.17-0.21 below the actual empirical shared adoption ([0.175, 0.175, 0.175, 0.175, 0.2], roughly flat around 0.28-0.33) - a real, checked offset, not a rounding artifact. This is the expected signature of a random-intercept logistic mixed model on heavily heterogeneous per-case data (40 cases x 5 rounds each): the population-average-conditional-on-zero-random-effect prediction understates the raw empirical mean when between-case variance is large (a known non-collapsibility property of mixed logit models), not evidence that the round_index coefficient itself is wrong. Isolated-arm coefficient = -0.1482 (intercept -5.3012) fits much better (gaps under 0.02 every round) since isolated adoption is already at floor ([0.0, 0.025, 0.025, 0.025, 0.025], matching the multi-round README's already-reported near-floor values) with little between-case variance to cause the same offset. Both arms' round_index coefficients are small in absolute terms either way; the position-confounded caveat applies regardless.",
+  "lineage_note": "Recomputed from the committed Qwen/Qwen2.5-VL-72B-Instruct rows in the model-scoped results directory. The prose fields (read, notes, caveats) were written for the Gemini run and are reproduced verbatim; their qualitative characterisations and any literal figures they quote describe that run, not this one. The numeric fields are this lineage's own."
+}
