@@ -38,6 +38,10 @@ DECLARED_GAPS = {
         "experiments/medqa/reasoning_effort_sensitivity.py sweeps the reasoning_effort field of the chat API, a gpt-oss "
         "setting; this lineage is served without a reasoning parser and in its default non-reasoning mode, so the field "
         "has no effect, and the entry closes if the lineage is ever run in a mode that exposes such a knob.",
+    ("local_nvidia_cosmos-reason2-8b", "medmcqa", "results", "push_c_summary.json"):
+        "experiments/medqa/push_c.py on the MedMCQA hard cases was run by the two Nemotron lineages only; Gemini, Qwen and the "
+        "gpt-oss lineages have no MedMCQA push_c either, so this arm has no other lineage to be read beside yet. It needs new "
+        "model calls, not a replay: one served run of push_c.py on the MedMCQA manifest for this lineage closes the entry.",
     # hidden-note arms run self-hosted under the fp8-local lineage
     ("nvidia_nemotron-3-super-120b-a12b", "blind_metric", "results", "matched_baseline_reason_repeats_summary.json"):
         "The hosted endpoint for this model id has been withdrawn, so this hidden-note arm cannot be run under the hosted id. It is run on the same FP8 weights served locally and committed under the separate lineage nemotron-3-super-120b-a12b-fp8-local, so hosted and self-hosted answers keep separate ids and caches; this entry closes if the hosted id is served again.",
@@ -58,59 +62,22 @@ DECLARED_GAPS = {
         "lost), so the declared-only rescore of the deployable referee cannot be replayed from the "
         "repository; closing it means re-running that arm, which replaces committed numbers and needs "
         "the owner's decision. The plausible-distractor audit for the same lineage is committed.",
-    ("nvidia_nemotron-3-super-120b-a12b", "blind_metric", "results", "counterfactual_referee.json"):
-        "the derived analysis experiments/blind_metric/counterfactual_referee.py gained a --model flag on the gpt-oss branches "
-        "after this lineage merged; it makes no model call, so one run with --model nvidia/nemotron-3-super-120b-a12b "
-        "on this lineage's committed rows closes the gap, which belongs to that lineage's own pass.",
-    ("nvidia_nemotron-3-super-120b-a12b", "cascade", "results", "positional_regression.json"):
-        "the derived analysis experiments/cascade/positional_regression.py gained a --model flag on the gpt-oss branches "
-        "after this lineage merged; it makes no model call, so one run with --model nvidia/nemotron-3-super-120b-a12b "
-        "on this lineage's committed rows closes the gap, which belongs to that lineage's own pass.",
-    ("nvidia_nemotron-3-super-120b-a12b", "contamination", "results", "misaligned_proxy.json"):
-        "the derived analysis experiments/contamination/misaligned_proxy.py gained a --model flag on the gpt-oss branches "
-        "after this lineage merged; it makes no model call, so one run with --model nvidia/nemotron-3-super-120b-a12b "
-        "on this lineage's committed rows closes the gap, which belongs to that lineage's own pass.",
-    ("nvidia_nemotron-3-super-120b-a12b", "medqa", "results", "deference_reanalysis.json"):
-        "the derived analysis experiments/medqa/deference_reanalysis.py gained a --model flag on the gpt-oss branches "
-        "after this lineage merged; it makes no model call, so one run with --model nvidia/nemotron-3-super-120b-a12b "
-        "on this lineage's committed rows closes the gap, which belongs to that lineage's own pass.",
     ("nvidia_nemotron-3-super-120b-a12b", "medqa", "results", "onset_distribution.json"):
-        "the derived analysis experiments/medqa/onset_distribution.py gained a --model flag on the gpt-oss branches "
-        "after this lineage merged; it makes no model call, so one run with --model nvidia/nemotron-3-super-120b-a12b "
-        "on this lineage's committed rows closes the gap, which belongs to that lineage's own pass.",
-    ("nvidia_nemotron-3-super-120b-a12b", "medqa", "results", "stats_reconciliation_summary.json"):
-        "the derived analysis experiments/medqa/stats_reconciliation.py gained a --model flag on the gpt-oss branches "
-        "after this lineage merged; it makes no model call, so one run with --model nvidia/nemotron-3-super-120b-a12b "
-        "on this lineage's committed rows closes the gap, which belongs to that lineage's own pass.",
-    ("nvidia_nemotron-3-super-120b-a12b", "referee", "results", "net_harm.json"):
-        "the derived analysis experiments/referee/net_harm.py gained a --model flag on the gpt-oss branches "
-        "after this lineage merged; it makes no model call, so one run with --model nvidia/nemotron-3-super-120b-a12b "
-        "on this lineage's committed rows closes the gap, which belongs to that lineage's own pass.",
-    ("nvidia_nemotron-3-super-120b-a12b", "referee", "results", "panel_vote.json"):
-        "the derived analysis experiments/referee/panel_vote.py gained a --model flag on the gpt-oss branches "
-        "after this lineage merged; it makes no model call, so one run with --model nvidia/nemotron-3-super-120b-a12b "
-        "on this lineage's committed rows closes the gap, which belongs to that lineage's own pass.",
+        "experiments/medqa/onset_distribution.py --model nvidia/nemotron-3-super-120b-a12b reads the cascade "
+        "transcripts at results/<slug>/transcripts/<id>_repro_shared.jsonl; this lineage never committed those "
+        "jsonl files, so the derived onset file cannot be produced from the repository. Closing it means "
+        "committing the cascade transcripts (or re-running the arm), which belongs to that lineage's own pass.",
     ("nvidia_nemotron-3-super-120b-a12b", "medqa", "results", "empty_content_by_condition.json"):
         "the keyless replay experiments/medqa/empty_content_by_condition.py classifies a model's empty completions "
         "by prompt condition from its committed caches; it was written for the gpt-oss lineages, whose completions come "
         "back empty when the hidden-reasoning budget is exhausted, and whether this lineage produces empty completions "
         "has not been checked, so running it belongs to that lineage's own pass.",
-    ("nvidia_nemotron-3-super-120b-a12b", "blind_metric", "results", "blind_metric_ci.json"):
-        "the derived analysis experiments/blind_metric/reanalysis.py gained a --model flag on the gpt-oss branches after this lineage merged; "
-        "it makes no model call, so one run with --model nvidia/nemotron-3-super-120b-a12b on this lineage's committed rows "
-        "closes the gap, which belongs to that lineage's own pass.",
-    ("nvidia_nemotron-3-super-120b-a12b", "referee", "results", "referee_agreement.json"):
-        "the derived analysis experiments/referee/agreement.py gained a --model flag on the gpt-oss branches after this lineage merged; "
-        "it makes no model call, so one run with --model nvidia/nemotron-3-super-120b-a12b on this lineage's committed rows "
-        "closes the gap, which belongs to that lineage's own pass.",
     ("nvidia_nemotron-3-super-120b-a12b", "medmcqa", "results", "onset_distribution.json"):
-        "the derived analysis experiments/medqa/onset_distribution.py --results-dir experiments/medmcqa/results --label MedMCQA gained a --model flag on the gpt-oss branches after this lineage merged; "
-        "it makes no model call, so one run with --model nvidia/nemotron-3-super-120b-a12b on this lineage's committed rows "
-        "closes the gap, which belongs to that lineage's own pass.",
-    ("nvidia_nemotron-3-super-120b-a12b", "medmcqa", "results", "stats_reconciliation_summary.json"):
-        "the derived analysis experiments/medqa/stats_reconciliation.py --results-dir experiments/medmcqa/results --out experiments/medmcqa/results gained a --model flag on the gpt-oss branches after this lineage merged; "
-        "it makes no model call, so one run with --model nvidia/nemotron-3-super-120b-a12b on this lineage's committed rows "
-        "closes the gap, which belongs to that lineage's own pass.",
+        "experiments/medqa/onset_distribution.py --results-dir experiments/medmcqa/results --label MedMCQA "
+        "--model nvidia/nemotron-3-super-120b-a12b reads results/<slug>/transcripts/<id>_repro_shared.jsonl; "
+        "this lineage never committed those MedMCQA cascade transcripts, so the derived onset file cannot be "
+        "produced from the repository. Closing it means committing those jsonl files, which belongs to that "
+        "lineage's own pass.",
     ("nvidia_nemotron-3-super-120b-a12b", "medqa", "results", "empty_content_tally.json"):
         "the per-arm tally of empty completions is written by the gpt-oss-20b lineage because that model exhausts "
         "its hidden-reasoning budget on some calls and returns no answer; whether this lineage ever returns an "

@@ -1,0 +1,358 @@
+{"k": "b6c65676f667c1259dba989557a898c9bbce260c72332c04e1e86c050586b645", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "dd76977d2c5561101c6bc2fc79b87222306172ba34d1233d2f1abb6aea13a28b", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "4a821ec4c6ae37bfa5eb2333c7f705802bd023170136bc3a9bda1c7ce5caa0ba", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "0e41bcde406ab9fd443a3d20160cd542d433efb20132fb04fefb9523361f81f1", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "7800bcb3400ace816005f4ff3d708d54007187bf85f82b7fa57098af57e14de8", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "ec33e49a02e922ea41dc428d38e04369b569f3e98e148905b5ab1df8a7044d9e", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "9f447506e39e0ac9243e94a7c93e670fea0f2ecf6a0d3598b5e6d12c11df5d83", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "7b5ca0695a0e172d8276503f3f1a8f90e317bcaaee3b13d9ed02822e60bff988", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "072dc229fb799f4de9bad18913d94109af452fb62b999ded907926646ab58b5d", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "66e799b04b3e03036a1d588db5b390f9e6b9b3d24a128f31a131e1b2dc702ff0", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "477895e3fc9a813a14196e043ce98bd38e119729bce34bbccd4784e7dd844abe", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "192b5a52d35535c3183284f55a29905c67d0988258c52785966958fa6303625f", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "dce4c8fd9a6e56ed88ecde81e98c31e491ca50b3edc0d4fad5ec89fef8c7e2aa", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "d640f48e24e1f826c089abbc238c90a9b48cda6fef6e7a4713076b87a7581ec6", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "4d60e56c7f95d6d095f0e0133f3412846a4f6d7c10e7452d9d0cb95a3bdc8eba", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "5833e7f63c80bc260cbb75b7c7d2c8b8ca78dcb33350484ef39fe03d9178e4a7", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "51321a2060c1a146fc9b49424294b70a30581a041c078f9b1d3507c7248419b5", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "17e9cfebbf279b00c3a0b9819bb379308d4269016b211ff5beb2cf5605d815c8", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "e6004fd4ecdd138c284285d1d2cf21ea160cb53ee058b6c07a291719f6d1c1b7", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "84a82f7b1b022a0b3c9626254e47d59146a8adfdabc77f5f7dd07544be0cfb07", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "6911028f9b46703a68a7982abf410da6c553d1fcf90023295b0406f36613ba60", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "aef7e1e600fbaea3975e83f2cd363c721a002f4dde415b99dd7d70e3ed543c3b", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "0960c59b4f2c1cac3ed9a6910d37fc44079b976c03eeb05330f72e3c0d4c2cfd", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "26d29d1cb775f68a96a3dd9c661e49209def6607935bd2322f302eda319f1ef4", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "60c52646729c1dce390d3f54258d945bc6b48feb5d8f1e34420d09b8f8fb728b", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "54bfde53e588c7ec43a1e7451e6b3790a115bbc3a8e77ab7c1a5ab032d519cbd", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "909a228e6e223d110c337a3dfb653dcbf4dc110825f82a86d3ed26d92dd2c00c", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "d79f4b0fee88524f1803e505f566b885300ddb46b907c925474bd33a58e1a936", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "e24977396777a6648dfc491fb4b2d7a2f42238ff7c240272972f7aa88740c5a7", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "dbbe8e3dd6c165a96d34b81758e379087bf51484999f341f02429306af9738d0", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "ed7aec80a8ddabc4f41b99483bd531db52aeb8d8724d22bf0bd87d63e8c02625", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "5871e8cd19f4387ed2a899db935641ad546e6d0c8f83cc3e9607c634760c1705", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "67d46d2d80b2809a5e17928e7bfabb3741ce039ef8241eb58fe82f3cac356989", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "729372a835d076f4142cc273ca042e91d2108e40d7f79f193ba02afcf98e8a1b", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "6a0ae23acda41cdaf5a8b9188638e2752f589e91ff32997ce1c6f72bb4f490a7", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "6dab0c68418fb60fb90e91ab38a8b2deeffab53176e4ca7ac28a50fc3b202dac", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "15c5d5400c0ef755570c5bb5ad33587c3c0b46917cb30aff48060ba76054b607", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "a0f8a4ee0c3bca621824808d4e387dd424db78565154feeeafa9e68cd0de599f", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "c0db44c82de1ce0958a68cd5f5f93941ddeef60b7a57992ec0e787698ce6eaab", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "c01c88c23691abbeef0442b94e539c005e37cbe4f5201bfedf4dab661326b7cc", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "dd224dbafefe6c8e14114ac12fb579339433db425ea2ea5be630826510593f42", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "366e7b48f2cdfdedc98333eda7dbd922cbd369f8fd0fba423aefe60e4475e344", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "224dca9e19dfeadf9954ba080d7722ccf4d3699bb09a088ea8740c8ab24c7698", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "f269012f45a65a53613f41ada42b31d328c86ee29c3627771dbcd00de535746f", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "47da497ce0c7c16701a3909bdaab82d586bdd8f9d9fb18040d275a0891e881a3", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "18fe77eddfdef4aa8b74773bcf64777471020ace7a7ebf461ee093ae4c9efa4b", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "7a13692a175b83ac86db18febe0df0507610d7799be87f9f545165266d450f6b", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "2b47a6894d82f62eadc1a2e1317e91464352c30cffbc874a49d305d36db72330", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "871febac0552f164809ad4aac26025b6d8c351ac8b9c7dc3316ce20ae5e3cc81", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "7c0955bc04f4029c4777655c7049968d0d5354caa46f614d881534064d15f53e", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "ccd5a80efa30ed331762e6b6c3f96000615755d8b7c9dea0f0d611ee5c0a4a4f", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "2117a51f33b3f383dd0214a791fa7b8eddf0421d8a8e8942559dcefc12596049", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "1abbaaf4e799a04a94dbdb6a1f74600782be8afc28700f6b293cc0b0f92ebefd", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "06f025a1f0d86ebe4299f317b913c0da2bc696e4fe8f3e064fc14a3523843fb7", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "5e7fbcd9b467f87a0c847950c6742713efbe10bd06be719c087963e46061e07e", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "4bd047a2179b6b0796e2599b5f87316a5a00f09488a4983a6a1689c387ea2a03", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "158042e88ce81ba0b4efc784e7c93699b63e3bab2ec2bbe67f83c015c5268ecf", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "7315f508eea3c5cd250714c898bab4e42a07015720bbd28f8d1ea36b7f0c35e5", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "3ad48893e070777834aed79a7869f7fb3f12b53bfc36dbe88a268f8259753460", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "69864d387dcd6613cdcca3547b515127017b5a66dd9816d71b8c67b6322ec192", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "e644c4564d50364d22be99995c7b15c22f7e13d1fb3f481baf2d6c0cd3909005", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "f3775fcd652008fe4da79987dffe484a3fea2b03c4a68fcbee89ccd5633f7180", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "cf933c2394e715b7ff8759db55f4214a097314c795c9ff9ffbf2f454bb513da3", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "5aee588faebfc9d13ccc56c43a7f050a3f69e1cee09c2d08d8a33972298b1703", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "d486a7a4b9f8018fb9eac4955dfae2e2c61c3f54dc20a7ca45ab1f78ade40ac0", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "b479e9facbaf15484d9022dab7386070b62576ac804596af4bb055aebf64eced", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "72d8839e5aeb4f275e75b81b9e0e009745c74e53de56cd7147fe3ab75f89bf80", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "82a7cb5841ad5fe06e8422a4d9dc8206183731240a3644142da8ed0af7347a45", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "47713ecdd9122bf13050a1104fe4482d5ee950f10eb46a484da61f405ee02fa3", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "373d9bfc38dc08e9cb776fd26a40bc732f77abadb40954a699c408bb77ebd8ba", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "768f68a01c3c5bf851c3a1ec37955f0de8be4a0ac746f47493a6a4069186fc18", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "027db9bb806d56c5ecba841f39c876a3d160be267aa1cb2a0f91256598ff97b1", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "896092052a2ea73194386fd3013f10e6c10cd878e599f694840a3603bcd1f5be", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "63e49a1a53fa99c5941094c61a618e98be79477908c26395d50ea394d43556e8", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "97c0f81e90c9e57732ef28ad30eec12618ceba99d12cd49539179f6a93d82cd1", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "020d8e6cf1f6f4ee0958ca33d81ce89f32d537dbcc3213075fe74842e262d6e9", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "41c0fb86bacabe2f3cb4ffe7da05099fa5aa83e2beb088b4c33849c55ad8020f", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "07070e92606336a06c796aea20c0827aed11b252ff9bc0408b8c7cb710926f22", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "389092af460c7003a5a924ad2d5670b9eec6d87d34d9ac9111108a71f5e3ce73", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "87dc0e2d0e8e5de759e63020d808d51cabc37d3712a46a13269cea08ff91e4cd", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "30cf92ab9cfd611888915d01331baf75a0a0d5f97bbf43d649460b45073908a2", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "34fbbd61478374c9712a9d3a11b0ea5889e4a216795d9ed943e26ab45d606fcd", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "7719cf56cdf20b23d98360a051a2620b6708e530e2fcb84f53f77d5627f6706c", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "5298bd07360b0416750f978e12842e829acc9b99cdbe95f8d88e62b21e374254", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "27f7bdab538faa22cfd337c6e53b247a44ac87fc53a71406131eae32541f31c4", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "b4343f63b7329365bcac2a88dd1d339c890f757f791d44b5920edf8c21c2e54d", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "23baea895594fd16f0a47710cee9441faed2a55389d01d41a83f5c6c05ac41ae", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "1da970a0229384d90f398f7aceef0d599ac18e0583c4a21dff40d78a710f03e8", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "8e559bcaaccb1675b1a05dbea5798cfa41acddc1659287cc4cc739aa5b016b67", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "39657ea6408d34bc738dffea3293a0c102412cc83f3d516a38ebf7ada206e7e3", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "177c6d0b394b2938d27ecd702db506945a7deea9ab9d2eb6c223ffbf0c0dca4a", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "c9f6ca4900f9cb6d9edc15c098f9adb792cdd1adaa1673fb4e821fac575e93a8", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "797447830364352d22a9394ddf39750bea7f1792c0cb64b797088d83ff67869a", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "7d8821b3a0d83d95932b60cfc8e14c00ac7a011bfe2a425d25cb2bc0fa4e2c7d", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "f4f746c9dae042e8a8583a719d25b36a9b24cbae9ef89562d53f6d35d4f938be", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "43a84ebf241332a06ec08b86146eb30e52eebecf9b87a6993142a33257961732", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "88211785b01453a0e899610e52229e50dfaeb433f31cfb66766eab5188f2d857", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "91f0937b1e06bea2962b1efec696a9c102376e8375cbcf4850568a98f8382ca6", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "88b864b344ebfe4da698da3040bd2bcbe68ddc172ec33a30044de67ac9861031", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "d6c0d39803a9d8877b84d16a97ec9696c3e7c32f5f3e16327434d6ea2f60bf1f", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "e366a381dce7a5467faf12ab95213df359d351b8912fdd618848ee807d7368e0", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "7d3d86de104039decadaf73ed5461757cbd8030bfea77d8f3114a37938448cd0", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "b45616864f82e9f16203b8f529eddb332b883a5cc8bd12de50a748acc6590753", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "b4887b4ca2c30895c9ed828921bd90e25133e5baa5cfe8be886bfaa5fb692428", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "91711f0f0e1d0258a0f43e601e521ce2a2ad3c48b941f74375110f7363dfabc8", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "75d2954bb12425ac97ec1a57e5c665e1d2de1d161f9fae0c3ade1e482ccb0135", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "c3cec89efd0675109ee5c9b6bc4a09a134d6f522b199b59ea2df9918bfcb3730", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "739089a60d20b32863836462ca3fc7fae6e7e1e94627c540070eb05f5f330ef0", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "2b0aba6b82a701a6865fc78f74e57050f7e6b0540045fbaa46c32aa861f004e6", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "839543b0344ff94e1b727194449876c2c44f06eec8fd8d3efa97c12bc34452e9", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "5303aa0deea9168333c3fa3c8c8b37c533a950a8bc4b77625c60e415fe391886", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "f1ff09bfa250c28afa2c6c2d39f1af5ffdc89a4b46201f202aa53378bd88a86e", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "acea4d81f3db47da0bcf4e94ecebb4879f923a42b16ce96f086b152cc51729d5", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "0a7111449572d4f32ef312a15c9377b9b4430dc9de3f37f3aad1de79676e0b42", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "0e475fcfb6d1a17d26a0786ab9dbc2ca0af14ca7e0b6ae8cda517a16556f4997", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "2e7aa761405d4dc7db0e5159504ae4eaa6321591d3da5f00e5169fb5e0d71172", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "10f0842b752983c8066c94957f8c08ad6a1f8e7ba982451fb863933a0e64881d", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "3e2c3f447c89f65e3149cf2c66cd9ab1fe9c0771d9dd2cf45614c9c0ec15f203", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "a8f8d5a43a94a549b0916bc0d8e09727a1b659b5bd2c1b6b8508cbccc5c590ce", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "10a2214cacab2854a79c13a31e528e9651e48dccb1a334e0ad79dd065d377663", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "e6ed1a46dc06288666b22f5b058e314159b8207bb28442075506e7faa74f53df", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "ab04445ca1ea592dbf6bddb1fb68bcb6ec5ee708dca5cf0ee47234d7110c174c", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "c5c39110a7ba2cea96f5921abd84dfefdaf095022a6ab690d667a49ffa399052", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "3c66771e5f021403bc4f4974037cbcf62a1b97e4a032247a418ec9eff097157a", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "b1d3ade8fd68f8fe59b846b59060c095b57f70eba733d42e9386a4a5fb196ea6", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "7b7ba8cf6a899ce1a1e226ae837a476f240f45529fb76a713337bf395f6feff0", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "44ec841390c4e70496d8eb59cd3ac5123dcce7e3f4eac0f744491fe1ae92525c", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "2a85d654a03124bf64e6fc5e3f30ddf73cc9dd25f440100482650b6281ed4651", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "417693517d361b5e287a708081c1421ebeeb564e327a4ff01fe51de062ccf131", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "7e6a4c8e0a238eaabdd11376860d8f5783638e5a7eb4c28125c0d2fabc6ff410", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "270addb480185de565f6cb7b06cb29a129e4b4fd12b031149b2851805b22776e", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "8ae10d004d6a61060babf5de3168cb359ed27e442a2b2db11a1bedc057d50ae5", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "2fee628bcbaba9be8baa29f60e362f6a40495416560ae2fb4b137011c8380ba2", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "85ff3a6bbd809370a85b31b91b103f7794f2b7467cae648195933a724a060c65", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "e8b215c8c8c558126117726474611d0508e6791efd2d4f94e06b232504e2be6e", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "b23d32c1531d958dbd3f623f3726cdfd332093f553c663bd0f36717ece4dc206", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "25d9abd55cef0629014bd4e300ed55cb82051bde5a5b03ab1068680cac490ce0", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "1b937d378c9ab2c1da8b67b6cb3c3b7d897c9c8a801ee41c0c1a67b20ab2eb44", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "b53d2ab9541eda93d180c9a75ae5ade25f56c02691215cd470d3e7628a2ab553", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "50e18e5048525b050bbba6ca5f5ee852bd46e82f7eb565f5ca088a3b8cadcf02", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "bb12718be922eb854a9a30c6ffb67dac77fb71e924be8bee3dce9189621cbe8e", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "faf6f87d34eb001ab46093ea0319d0c7933c95e19fe335e9de2d3622064f9af6", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "D"}
+{"k": "114f933b111f9f74ff034faca0fc06e37e762d4f29ecd41abc3944d33aa82043", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "e71e35ec88ba18c184de2c78dc45626f802555fa0d0ddb88bc118155f32a581f", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "56e44c51c504f0530fd0108be09b910212c12102d5879745ac0fcd015e938a80", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "97642858430fb925449df9a12eca61ea580bb1b0110eecdb5f72dc2242958d39", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "a7816afb8a1ce5e2af10616780c4c7dac4825553d17d354f16502d3c548c0562", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "f3d621d1d29cec1ad4e5a1e98f53c3b7ad0731e531e026a5693e02d80d2f568f", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "be2ae70c9fb5f08f7acc1d64e67cd3af3f6cb6562866ce345de78e22103b32d2", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "ee44fe530e1714ddc8be8475e2235583e6fc06808098e6af617952f9575632f0", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "c63e4f5d9ac07915f022d0a06722094908e53323c690d86b9d9f4fa663780212", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "79ebb4c8da54ebb3247a1bb8aec8e0ea9543bb5c51745a07049faa4e04623744", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "6f2fcf0c1aef9592dfb1d6293d435d1500bc6d5f5ca1c7be87a0c836a83ceec2", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "f29d5d66f4aa62510cf9905e9ea2cdd322f73d9929933ba2ff92fdb9378833ea", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "2bf65e014c764265a67e800972577e6b77cc8e42c02194be7d1e7d1b39a0bc2d", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "0aae40c0f9c5dcaddc061edac170330a0435abe4e8c4a5346f41b9d6bd436977", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "8231d00cfdd6e3d09bb6a8d886c86b1f3dc60219d552be15591dce24854ab432", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "95b5e57f7ee39f07fe0ea6c7d2f470f9c5584123f572c61f8be148a79dd206ec", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "70db1c2568fa4c31fdccba6946143c24d7ca93dc0211c0a4306b30bf6564c6b1", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "d31415e184866cf32e66226c4ad81a0c8224c51c5fd26a21385b1f2bdda317fe", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "8bfcd9bae9f7a947378575474c1ec8400c3b861cd3c875f85bb70807a9d0feb4", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "7851a3e3815f6fbeec89abf28f20fcbbc6ddef179dd2f46fe33176a86499c97f", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "299ca7caa3940642596526960705bb755dc8a493f1e1e4134d4571698afcd970", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "0db08ed89129a6f8a86ea47b2314a2495e12c2c2dde0106f3acb76383729969d", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "1afe0c7ffd3416925ee043499303c263a193cda57b1c38f27f6d01a312d9924f", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "6f7c737a4596f89ad5fed85f1cfafb21cb6733188ae2a68331431a33aade4ac0", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "b143cd4a32d8a64f3430dc4290a7abf0d1588fabc27a97049ec3c968c4d2a436", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "617f857e361c69df7f851197b11e32f0a779c31e58691ce8aa1ddb6fdb8feb83", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "6f584d4f01d4d0d1a6938dc799e5f0b90440e9642adabf68d56daa414f795e27", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "c6ddd1f118f3bacd0d8af099b0630c750de2fc98837318371f5ea87397685a77", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "fac404a635b593f07a1c6cc5b8d5071a39203d7a7a0ba631a9d2209ddab98a37", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "b6ab269ea78c46b5976bac05dd76b7f000c317ce3142afb218672e0febdb7102", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "7ac5900193a3ebb9f9d85db68d48bdead533b222eeb5aaf3f196c04bc5d5e13a", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "5d6ea869be7e0cda5aa7c5c786aba1005bc177f6f512c9be6be633ec16b7b702", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "b785b9013b63da8a435809f48758f0c0552debd294ec5b5f5c6b904822e74563", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "e7432700365199507be5d43422a3d1863a7749971440c0dbbf3d0df10e509c8d", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "b5857f6691b8d5084a16ab1305f4a1de16a307b52f2549a28a148fe8787fdb88", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "6352566a39a4c5757f362623145df58d1566bbaadfd45d6e4c8bef414d1947ab", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "6ad35048dffbd3c2d71ee8438ed3c73200cfee90db17d6e4493d98237c5cf998", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "36394d9b448952b5835b981f8793bdda3b071451e6ce467d52604f6c08564c78", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "7cf8a2daaa14a08e3efba2a550f1e9917ac7ca140fc8b460c9a1a617dd5fcf98", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "8d2cb0f67929521c71115c60a27080324c7da0a75011a01250dc3c1022f93313", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "b5bed45b43e4ce5d694958f5a0e93125c92f4d7d5278e839086a89a51b22ff4c", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "3338bbb55e7a7d9d87965848756288c02b0178a7b39d5d613495c97e63e1e9fd", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "8440e43b85be6e0304d3a9917504411630c0300f8eb7a73deb8f956697f4378a", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "2675936d7c05f66eea1c35d3b2f95d4a822a7557850eb71060623ae2594d7c3b", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "2471212e35c1b5b9540e4f8d31a0a889a08e1000c9ba61101f75f587ca309128", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "cf8b5eeb9fbd691bef074d38286c950028e482f81c37ce4104a86ee9f1417c6d", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "2c57241acdea18d0c10556f5687b17f1f821ea03e06f59fb00dd9187bd83e2bd", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "da078cc06894471666c4bd32d4f6971b0ec1369df78214173fe4772eec9f8657", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "da8e019919a132c2be8d7b09c22787f774c0db6248a0225b9bed6ada9bdb5149", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "bba3154008bff8041b81dac87a8b40eaed2376bb3e0ab0aa9d67df703b27d1f2", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "2727390ecac46521f6ca2a5e18a4b3279820f4b4ac51169fc7bf27338e11c745", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "0f3cf88ad4b82b38af89dd94081d45572775bbf60ce5cd1eab2bec07eac492a1", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "3e4c21e7ef65c0ce05f63955fc5857b98e00a3317586e5bf2c93127d1854f1ec", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "E"}
+{"k": "139d4a1853e0d0a065da0a9becc9a52e0219ab3117d0078ff698d7210308e8aa", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "8a8a14dc429db7ec1d3b8084c5d382346ddc0bf627626f926cc8ac6cf5107ec5", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "0a7483794f452d747932a41862934d435e3ed0b03e47f6f558aa919178bfaa8b", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "f3ae23cc71860d5c8fc438c3782e00538932c9274b6ad8925cf29679a74431c5", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "9bcb51800221e4f969e931cbc112ec62fcec91966cf324175e6722ca4b6becde", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "f7ee52e362beeb7c3795df992a0ea16738c230af08da3e2485fdf23cb821afcc", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "865e1d6f71a1bd5d0e5d8eabd40a0030aa95d8ec88442ad726a7111b48fa7bdb", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "0f720301452ccbc99fe79dc90f89ccba86af4f86d825e3544bd3c31ef8c8eb3b", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "fb3a67c9e11e45bf56a9e92de483852a96d95ed34b254ec17eb761c27df89c59", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "0a3db021974e37f484881cfc05b368b84bc7308ce0303a3f78fc8f6658486ab7", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "7d1bed5b79a9cdab07238c718f5a975e5f83355fadc3fe222bca7260a5c17241", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "4990755964eff112884aec9ed61a75158bd3ac93f257ed27d7a609e8c2f734b8", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "c6e8dbe2e63aac98fcec86cbdf620970c72edc09e53d444006425d569e234b16", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "f0624c5e69c4f69d6f925e979f368905e8380979692869d543a9882913c0eeec", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "a132b757cb69cf76799cb0ff48299e8263b14946921fd076791800727a1481cc", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "852e5f08a09ec4e8f827227d08659913f11f9d6df4eb6b7d10a4c888e1f1ff1f", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "4d704082a8cefdef7dee009d11b18bb892d020a5f30865be482b2bb93b64d48b", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "7967d980dbb06d87d36cd564b6e6a5f602f04656545f0fcf43268218d5f0d3f4", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "c684694ef385a26f99df6e82f8d9fe7c38e44be19767b903a7c952c424078adc", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "ed376bb01d6b750bdd139a709d617275231aed37531bd54d9ced2f0a8401def8", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "109b2cb6fd755b1d415fdd25567e4a2e43a2ed8d2821ac5f98d890871e64c8d2", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "9767625a1fe3c6959ef4f9ed333e3024f800d9bdc4998e634eec670bf53cf3ec", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "1ec38383db0924adb962d7f06adf34aecffd704262a45ae836d1b8e400b44a14", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "d3d58e3162757be7ca6ec2deb15dda2838e1415135a86e9aa3e7639eac64f370", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "b02b91d02b5d5120920bd80fb3e5725b623119e04eb1369b3f4569971a14a051", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "b54691b24c63ffeef07f0fe8fe95f45a817ed8497e574288dcd0c86aabba3424", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "d009c19a4d00ec12f7964a8cd1e9c9f3af86a314dcadaff98b4f40bed4cd1092", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "bb4555e3f641d715d5d72b08d2df766c55770f1c3868c7135d7433749ac566a0", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "3497f832ff5da8b7f511cccf65faaaf5205c6623d15b61e9a489735de83dd504", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "6e2ae8dfaf94bcae3f7adfba5576d69e4d9101ceb3991541a6d7b3024829312f", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "6f9f384b9ee749dc1b5166a84312fe46db9ccebf587c2722356cd710c27614c0", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "77961e303c3ee52e16cf9ff772a6a2d68a45986d37c23df446a245ba32ee47b6", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "63ce6a85380937dc979fb38924deb10540bc2aa886015ab61d2fa57544055652", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "e86a7e76013024842d11b93eaf651d9657cb6ea48eafd0965bc0428ca2bdd822", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "6e3d05ff8bc1757c3296a51df6b168691208ecfe783c2aac2cc4ecbb3e2dda50", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "FLAG"}
+{"k": "30ed2cbe041e871adcaf4af7c71d9702d7c80df04b2663f98b934b4b12ab0283", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "dcf9b1ae2a3e300971f4ae4477a48f48d43eceee8c906b78e6ed92bc61094a9f", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "cc213631a106f4e2903e5496a5ba6ca5c28e892f80888a7ea8a31395ba4bfd90", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "cb3ee0d4374e169dc044f7aa3c5e986b25e209a8c6b4197c6a0aa794c1871750", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "OK"}
+{"k": "d11c5bec94a64607cbbd04e2ebc56f55260651ae13f3ff03a8c245128c2981b1", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "C"}
+{"k": "2b9f61205d2573b306f067e39426f9aaec2307b72ec7ff522ad8ea849920bf16", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "bbe5f80d33826a0050cb49743d53f6493e8621ff3c81187f0e303d1fdc67f9ca", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "8d2d218412a5b99e150718b7646d08c94847a6ef91f9087ebe313f6f3874e246", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "FLAG"}
+{"k": "6b78fe6d71cadf161cf2c73c48b6091baee84e4553306354417397bc3d1ba5f2", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "B"}
+{"k": "bdf0545c3fba0ad45c2e796ec33ced79b9ef47053e5b7c8bb272714cce78b0a7", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "09e70abb0146bd75382dcb8c51f369770ff35334cf7e2b03c33b510c431f8a29", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "C"}
+{"k": "ae4c31150ffe6bcf2cee62b2353912624d5170847e46ee64426b02025ad5865c", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "B"}
+{"k": "853eeb5cfa803b72ca67ccb034e4ebe457f85548c7bbf32adb3ce84b413ad907", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "09d06d001c8eeb633e3acdcb35993724462461bcf5ddd79aa64f4c43bb3d89b9", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "B"}
+{"k": "897256951c1ad324e06285c0f74ae3e78548af00f73665f79182b824f6f65d89", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "C"}
+{"k": "64965e60c0f0d0aa5f4b983d490049698f485b94db96732d90341848e7377c9e", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "7dc10adf1504a9573fa07d21b12d56dc66a49b0908fc754236102df8922c12a6", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "C"}
+{"k": "13ad933707e58af59b11717c37d535b782d322d1bd1c4aa4098073259b56f561", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "B"}
+{"k": "44db093e42cb4f6dff3c7b2cee4bef38ed289e7639c360bd9c818d800df7781a", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "B"}
+{"k": "9c5d24f4f19e64d926766d325755e89f5b9c73bf4592abaaec2f3f4b79aa1da4", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "B"}
+{"k": "27b857b5858cac219c3dd3f19ad82664d8edf973756414468d0c0616d3128b52", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "D"}
+{"k": "8efd6d0b097cc7472cc632dc0f7e7540de4ce3e49c9173263e7dd4ee01a8ede0", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "C"}
+{"k": "5f7dc35ef54bd89102cc0f73ddff4eb853c14822769ead7fb770a2b7d2cb81df", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "D"}
+{"k": "32b43d40075fd6337297418e1ec9f1b2aa4fad50018f115dba446ded1c1f9b50", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "C"}
+{"k": "6e0dfbe9f2b20a90d5900242fb13985a0631596dca58224337a7cc794d63f909", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "D"}
+{"k": "9330b861475112c7cf03c79f2019961ceb2098efe7b2bfc6d09641e32b2348bb", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "C"}
+{"k": "6bfd833fb04e32063ce2635c9c057fa2973fa7214ba3fecef60bdb6db3e0a00c", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "C"}
+{"k": "6d5fc5a5af28d1d7d69b1cca52c0bf5440c87bd29c4e31c49d6aac8c7fff5497", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "C"}
+{"k": "b9d5d577670bac0d2fc086dd97ac4d127925cd59b376dc3d7de2a0da49db5eb3", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "C"}
+{"k": "28dc771d1877943e501f43bb6b3d0a189711f8592eb0fd821f9b44bfb9e1a2de", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "C"}
+{"k": "3b7c2589f546d6486aeffc02798b86812bc6ff555643c5f3833c4f4793f639f6", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "C"}
+{"k": "02504ceefc4c1ed1d38e9638b313c9cd349426c28353ba717aa011ddf464cee2", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "C"}
+{"k": "c8befb8586e96b0a909176020b174a7adcaad9e0a4a3951b2ec4c0cb33479282", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "63a037885b054de04c49e9434d35e1f9edb5c2b9ddb93c88928746ff58e48c75", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "D"}
+{"k": "1f3486c7dc2751ee34ed64ed79e355718be5b9782e2a0bb4f19a2f31525a074e", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "852100c5f25bcf2265e09a928c51fe7c48da9e9823cdef29420313477c2fa623", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "D"}
+{"k": "798d03178332d4c0aed28cc46632c470f7ad9a247795c5b6da6676db24f8629c", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "D"}
+{"k": "e7e785fba7f62b1f298717488d3a8bc7f3807f4b13fc74bc49c60f1d2f63cd94", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "e6a20dcd37dc9e9460c6e85b03a3d18c530b80cf5a291265c865c8fb82e137f2", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "D"}
+{"k": "b08c25478d4fa577789fb061dea8158a93cd4c3f80b3afade6046a822ac65465", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "A"}
+{"k": "26981f728f2a8ef5fbe49883448e83fa608b510afcb1c23effb832ecfe01897a", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "B"}
+{"k": "1ed514edc8f37152ebfc20419e667dfb10a079e5c1b1dba0b8e29f18eb1d970e", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "B"}
+{"k": "c084ca8b8e84c78405061f1e148cdf972841cacc095be2c3cfbf1fe8c95de2de", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "B"}
+{"k": "bdd85c14402088c3300c4c7f576c025bf1122de3116614117782bc53f9af5bd6", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "289a419790ccf202d122dd22d0290abb958f06ae0d730a54f48682bb2d6c15d5", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "3dc85b6f80493b4e5702477e172547d62c9d6b186dc7a36a8d26e0ed25f3d675", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "D"}
+{"k": "cc4e8722e41cc0648262b7337330da63ba823515af40c7ba9bdf2bec7e5eea49", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "f91340cccd5cc5e2a8ba4c90a847922748d3d99e6b765341b02155fc23de26e2", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "D"}
+{"k": "5f73c5ce259157c727dbb5010a3355ec266ca5bbb5dd925447ae576d7712b0b4", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "D"}
+{"k": "0b38b57692bea38f151d7d99bfd4a48ae608b88f66cd30e3549d20bd8b4b355d", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "B"}
+{"k": "e4bb9437636f9d319aedf9b848a839435b1348f23d7a2fda4e5f092128025105", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "D"}
+{"k": "b09df89078e4457ebc81758fa4f07531d578d033d81d6e2566ee37bf0b9cc2d0", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "D"}
+{"k": "4f180566dec02505c8190b6c72571eb513608c406e770e39f9121df021fb6f37", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "29b2c538b51e158bf0b3e98c714aa78e7c7af1caaebaa31bc1d36f1c62654d7b", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "444013db4e59ef7878647ef18e1125c2c5983f07a264457704205df420ec950c", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "4daa1cb9c43c50915cfd4c0c8eeea094ef128bddf67966709e56ef638653455b", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "a5dbc8b2b1a058a5abe3d31a90a2861a0f8068236e414b1aa7202e201c75bd99", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "782a87574e198891fe5ef5c6345d01b76e7d87347763dd69e90b6354c3562ad6", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "B"}
+{"k": "6e63d023a2485b43fba21681503e049470e990bcbd9fed200e947a9af02f8de9", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "252a97d9bdda971e0489c337c21e06fc708299686888a5e2799988fe3bdbb7fe", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "A"}
+{"k": "303d332e333c6a507919fedbf6b4faa6b8b92c4ceee49de3c76499f1ed4cda9b", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "B"}
+{"k": "6c3d79f3526464e294e07f3a8e9d8b922d22f8f283275f6e36466e7c1d88c557", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "B"}
+{"k": "efcbf54f60e39a90a6afb2c3dc5268844ceae2b69ea014674dd663dd7d7cedc0", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "B"}
+{"k": "fda42f63f45f72395373347627bfde52f2a16332c5183b5deba217cee0913815", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "B"}
+{"k": "1834eaa23e69599d200acade8d794667bc08173ad1fd356ecf93e7bce4877012", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "B"}
+{"k": "70cc0bf8097fd9fdedc8ae2fc4560445b3f7ed26c6c411842958ba55c79ae617", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "C"}
+{"k": "138973d6e244dbf8747385cbee738b5dcef67ae889d3bbbf149ad088331657ca", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "C"}
+{"k": "5aa730782e51f645a6ae411897847838a277296c898b8a8e4d1d5a3a5b5aeaf3", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "A"}
+{"k": "6b79662bf8ed14e252392a14e9a15707f8f798a094b9b7eeac92288d23a503f0", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "C"}
+{"k": "5430dc39371d864fec6458f72e56d8bbe88e87ebff667ce609886b9d89ad7f0a", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "C"}
+{"k": "e7b1d57e0a31d2ef22fc6e475238b4134b74014ab250b93573f1493249ead3fb", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "C"}
+{"k": "875d13efa49dfb6bb0214013ba6993ffc4a7a368663774d2d939cfea04e18e90", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "D"}
+{"k": "1f8db74aea5eb04d85998a0a1dd112f78a46f5221e94ab5bf89f19319ba4bc79", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "D"}
+{"k": "ec61b8276bc8322d45acbe06d62be6d3f44dddb73f3b4b3241e7516845641d99", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "D"}
+{"k": "8cb2da5139ff09f22f7f026ef6782270c2e6cb5281c001e3bd3928b62c597362", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "D"}
+{"k": "85c44c0a741e53a26109c722c7e779c7ce70e95291d22f56603898c1c6077202", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "D"}
+{"k": "163eb8f079eedc0e83839ff754d73388e58bd4bb1d7733dd970d2eb989097f07", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "D"}
+{"k": "0dfdeabce939541849cbdc76b9650d6b24edf68db1215759c2953fa242dae451", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "A"}
+{"k": "78c72d650e5c230519b43878143d48ff2decee40cd89f66548525cfe669dcba6", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "A"}
+{"k": "5a9452b4209d8670d88f325f8ff8d1068088099378cfd47d37cc8fcaee7b84f1", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "A"}
+{"k": "eba1b62cd3c282cc6143e91a6f02a5a219621a5e585c6b2dcacbb6527a406149", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "829a422336d2be03f6941fcb758010bfb867a7a550ae11b4f4028aaec902c8b8", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "b307c1ca635048fe416d73dc2964ee52c09f336badeb28210d40a7f68893c4c5", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "d82ac28ae76abf2fb1b5d159ccf118dd6dfb60ff07ac0978fb98557b39e073b1", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "A"}
+{"k": "9c7d0433e5c3c4eabd5a31ba9356323dde91f94930fd0f5d38d0a297e7421ed4", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "230b41f14272be69699426355b23ed5ab4bf0c49a4d7e1882d6c5d7943189a7f", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "A"}
+{"k": "3aee4d2a39627d7f7f5f60d129c725b81da53054e7c254b5b80756daf8900dfd", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "618ddc4dfc3d9d372f37060b16f1d2d9580109614572ccff5b1f50c20b60e29f", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "A"}
+{"k": "70380df3483ce660661da01cf5fd2b5018e0d9de38a11739aad49b9503f17896", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "3963353ab3a8355646799740197707d54fbadc511abf1864c226b03f1e0a349f", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "D"}
+{"k": "c063ee3faeebfe798515d7ba94d152f3a5a6e1f5d20a137d6d76a2247fcb680c", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "D"}
+{"k": "303e14451dc617b9b25687cb6af2bdf2b667b51ead87a4f760a515bbccb4fd12", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "D"}
+{"k": "d18d02fd2d39f1663f4bfd77135474e7aaaa8a87774b39a8bc9ecc0ffe5376bc", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "288c061577bd4b75cb9fb7d9978617a5308189a315122ad1829bd387b3993c5e", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "D"}
+{"k": "b62cd8d2c64cb779f1d8c9193209dc3ac2a204a446e59a89de38559f0150de57", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "D"}
+{"k": "f5f168153f9fbbea33784d0f2a93a9debc0458aa61a90b0c64180a4b3c05bdb0", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "D"}
+{"k": "391c021988c54cc4f2d43f096854a405c5921ca3b5a5041964212063392d0f21", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "68bcf12d70cec7846f63208302f2f589dfd4553bfc829d5af9695f846ed9d707", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "7e7b93229e3cfc64abc6be0ea2ddf03059c1f087df13219964bfe8ff0b2a5fc8", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "e6671a0c11d3de7fea38d6fdd0ef8fc5e5ee31c48768fe631a4818911b5686b1", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "B"}
+{"k": "49de92071736f69b260c4b55214cd274976f12f2ac5f733640e77bccaab7033c", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "B"}
+{"k": "6059f7cf0462ad5e82d48994ec6d36a041996932ab4c27fc19ca11a5175142ed", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "B"}
+{"k": "ef1011a1c6eb0b5ba87c3c887de610b55ff087e4fb004bb9091f4974767441df", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "01c14f17a0ddc512d16479350efa47199b8ad95bea8120a746ff6250e39f220e", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "805f01fddc50042a8b0b01d1d764ae603402447797d1acba3a7f3dbd6c0538dd", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "B"}
+{"k": "6f7114676a3bb9784398d3fb383ae3737ba4296d8d44f090faaad4a6939bf3a6", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "A"}
+{"k": "379911c959190f5c4621ff8fc13b2c1042f318bf27e3dbfd137a4f950fe9dc62", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "A"}
+{"k": "992bbfd327ffd551d92634ae703902f32513b75a374a57e5e7dac84f72343847", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "3e2c201864ae7ec4cd918a318b03a7567cb038600addb8f492944f1ca96c45ad", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "b690eb23c190bcf5ddadb09e6cf45f96152f286f9d5c543067aeb380e4758cbb", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "15ad75f93cbef89c25b4d77ae1319131aa614e9512fe1682cac6e383a8529e27", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "A"}
+{"k": "22094229103e11f44e774ee123f9739334664bba8db67442b55e75eb70f98d19", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "A"}
+{"k": "d38d4e323595dfbd88f5714cb88a48f206c90c4ad3d078da90c89afee8c731d5", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "A"}
+{"k": "2d9c6ae43619e1e3343647c6d9350a021c2178df29d7ad2af2a03f649f3b0a3f", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "4de05fb581f9d1b32ad2444bbc0de3d618e90ca1551937c7fad3ae05107bfd6d", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "1a4669b9aea3a43bf1c623f5d5cafdca1df14027e4ee7120339ecf67f3c9dde4", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "b4a7df920b8f92a136d7817db2f02e30501bbdb15ee029c826d671a60967968a", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "A"}
+{"k": "d32216c7aa407420f51075f285e2516433b5d1d56dd62d96d9235f9ee6a0fdc8", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "A"}
+{"k": "b9361da527bbc75da938c98c2e3be3a53fcfffea72805b5394f1e10e1ff5bafd", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "A"}
+{"k": "3b8a8e4294adea546e1e33cb988fe8ff3102854f7d7e9ad2276845b36cad0567", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "6a2fbffebf991bbd2c14296aa44bdb3fdc867dea00a96c496fd413b1b35e0a89", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "4d6875ea8d2d21b0239f5761a89eccd77c27bfa2b7c3e9de290acf6c25485452", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "E"}
+{"k": "79507aa047f6a3dade5cf14f9c1cb8989337a8a9c77e51b7e1d60685becae64f", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "A"}
+{"k": "9e299698aa8f4e8807c181af0ed32fefcfb86744856a34ca91263a5fa346c527", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "A"}
+{"k": "78fa48d58c41993fe7706f07b75cbbe0751abfa7eb6f01f051eb9a19f7def321", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "A"}
+{"k": "b6fab34a0d24a91ff3a199a2e4ab9561917c5c9ab92c437728a636e51a1b57e1", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "C"}
+{"k": "c95c78a2eea9f17d39917974e6b5ab043a4192f739fb60413d6c11e789ccd907", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "A"}
+{"k": "f5ce0c877e2b7c2b883c2339f4ed3f096bb9f29d8c9f97118b95d22fd99c88eb", "model": "nvidia/nemotron-3-super-120b-a12b", "temperature": 0.0, "resp": "A"}

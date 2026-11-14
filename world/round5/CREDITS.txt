@@ -1,0 +1,110 @@
+Benchmaxxing world: credits (round 4)
+====================================
+
+What this is
+  A single-page interactive view of the paper "Agents Catching Agents: Shortcut Cascades
+  and Benchmark Gaming in Clinical Multi-Agent Systems". index.html is one self-contained
+  file: it opens with no server and makes no network calls. It opens on an overview map,
+  then an example conversation, then five stages: what was tested, the shortcut cascade,
+  three referees, the hidden scoring note, how to catch it.
+  The earlier version of the page is kept at round3/ next to this file.
+
+Where the numbers come from
+  Every number on the page that carries a gold chip is printed in the published MICCAI 2026
+  MedAgent workshop version of the paper (the camera-ready):
+    https://papers.miccai.org/miccai-2026-sat/paper/MedAgent_040.pdf
+  The chip names the section or table and opens the Sources dialog at that entry.
+  The arXiv posting (2608.03744, version 2 of 17 August 2026, CC BY 4.0) prints older
+  MIMIC-CXR imaging cells; where the two differ, this page follows the published version.
+    https://arxiv.org/abs/2608.03744
+  Headline numbers are written as "x of n" and detector rates as percentages. Where the
+  paper prints a rate, "x of n" is that rate times the paper's n, rounded; the paper's own
+  form is given in the Sources dialog and by hovering the number.
+  The three quoted sentences in stage 05 are from the paper's section 5.
+
+What is simulated or drawn
+  Each dot stands for one case. Which dot is which case, where it sits, how it moves, and
+  the speech bubbles are schematic and tagged "illustration". The stage-03 boards (20
+  persuaded and 20 honest cases per detector) and the stage-05 stream are illustrations.
+  In stage 04, the number of dots that return when the agent is told it is evaluated is
+  taken from the summary files in the code repository; the page prints only the range
+  given in the paper.
+  The chest X-ray in the 3D scene, the exam card, the ICU table, the folded note, the model
+  figures and the overview map are drawn in code. No report text and no patient record is
+  on the page. One real chest X-ray is shown in the panel of stage 01 (credit below).
+  The conversation in the Example step (a question about fever, neck stiffness and altered
+  mental status, two peer reviewers, a referee) is written for this page to show the idea.
+  It is not a case from the paper's data and it carries no number.
+
+Data on the page
+  MIMIC-CXR, CheXpert, NIH ChestX-ray14 and SUPPORT2 cases appear only as dots and counts.
+  One question is quoted in stage 01, with its five answer options:
+    MedQA-USMLE, test split, item medqa-56 in the project's manifest.
+    Jin D, Pan E, Oufattole N, Weng W-H, Fang H, Szolovits P. What disease does this
+    patient have? A large-scale open domain question answering dataset from medical exams.
+    Applied Sciences 11(14):6421, 2021. https://github.com/jind11/MedQA
+    Licence: MIT (Copyright (c) 2022 Di Jin).
+
+Links on the page (each checked, HTTP 200, on 12 November 2026)
+  Paper      https://papers.miccai.org/miccai-2026-sat/paper/MedAgent_040.pdf
+  Code       https://github.com/criticaldata/benchmaxxing (MIT)
+  Data       https://github.com/criticaldata/benchmaxxing/blob/main/docs/DATASETS.md
+  Explainer  https://criticaldata.github.io/benchmaxxing/ ("Honest, or just careful?")
+  MIT Critical Data  https://criticaldata.mit.edu/
+
+Logos
+  The MIT logo is a mark of the Massachusetts Institute of Technology, shown as on the
+  project's explainer page. The benchmaxxing logo is the project's own, from the
+  repository's assets/logo-animated.svg. The favicon is the same mark.
+
+Preview images
+  og-image.jpg (1200 x 630) is the picture shown when the link is shared: a drawn chest
+  X-ray and the headline, composed for this page. preview.gif is a short loop for sending
+  as a picture next to the link; its frames are rendered from index.html.
+
+Layout
+  The overview map and the way of moving through the page (one canvas, a path, a camera
+  that dives into each station) are inspired by the task-world pages of Science's Last
+  Exam, proton task: https://sciences-last-exam.org/assets/proton/
+  No code, text, data or image from that site is included; the markup, styles and script
+  here were written for this page.
+
+Software included in index.html
+  three.js r160 (three.min.js), unmodified. Copyright 2010-2023 Three.js Authors. MIT licence:
+
+The MIT License
+
+Copyright © 2010-2023 three.js authors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+Chest X-ray shown in stage 01
+  One real film of the study, shown once as released and once with a corner
+  tag ("PORTABLE") planted by the study's code: NIH ChestX-ray14, image
+  00000001_000.png, labelled cardiomegaly, scaled down to 336 pixels.
+  Data provided by the NIH Clinical Center. Use of the dataset is
+  unrestricted when it is credited as follows.
+  Download site: https://nihcc.app.box.com/v/ChestXray-NIHCC
+  Citation: X. Wang, Y. Peng, L. Lu, Z. Lu, M. Bagheri, R. M. Summers.
+  ChestX-ray8: Hospital-scale Chest X-ray Database and Benchmarks on
+  Weakly-Supervised Classification and Localization of Common Thorax
+  Diseases. IEEE CVPR 2017.
+
+Fonts
+  System fonts only. No font files are bundled or fetched.

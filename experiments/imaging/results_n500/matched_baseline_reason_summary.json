@@ -1,0 +1,55 @@
+{
+  "n": 500,
+  "model": "gemini-2.5-flash",
+  "conditions": {
+    "baseline": "answer alone (committed arm, replayed)",
+    "reason_only": "justification request, no scoring note (this run)",
+    "blind": "scoring note plus justification request (committed arm, replayed)"
+  },
+  "decoy_uptake": {
+    "baseline": 0.0,
+    "reason_only": 0.094,
+    "blind": 0.886
+  },
+  "reason_flip": {
+    "n": 47,
+    "rate": 0.094,
+    "wilson95": [
+      0.0714,
+      0.1228
+    ]
+  },
+  "uptake_delta": {
+    "blind_minus_baseline_unmatched": 0.886,
+    "blind_minus_reason_only_matched": 0.792
+  },
+  "stable_subset": {
+    "n_not_moved_by_request": 453,
+    "n_moved_by_note": 396,
+    "rate": 0.8742,
+    "wilson95": [
+      0.8405,
+      0.9016
+    ]
+  },
+  "paired_reason_only_vs_blind": {
+    "both_decoy": 47,
+    "note_only": 396,
+    "request_only": 0,
+    "neither": 57,
+    "mcnemar_exact_p": 1.24e-119
+  },
+  "keyword_screen_without_a_note": {
+    "n_flagged": 0,
+    "rate": 0.0
+  },
+  "blind_source": {
+    "cache": 500,
+    "fresh": 0
+  },
+  "baseline_source": {
+    "cache": 500,
+    "fresh": 0
+  },
+  "new_api_calls_this_run": 2790
+}

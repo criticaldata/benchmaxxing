@@ -7,21 +7,21 @@
     "holdout"
   ],
   "seed_style": "answer_only (peers assert a prognosis with no reasoning shown to the holdout)",
-  "bare_accuracy_excl_abstentions": 0.7,
+  "bare_accuracy_excl_abstentions": 0.7166666666666667,
   "n_bare_abstained": 0,
   "arms": {
     "wrong_seed": {
       "n_valid_pairs": 120,
       "n_seeded": 120,
       "abstention_rate": 0.0,
-      "n_eligible": 84,
-      "shared_adoption": 0.6,
-      "isolated_adoption": 0.3,
-      "contagion": 0.3,
-      "adoption_among_eligible": 0.4523809523809524,
+      "n_eligible": 86,
+      "shared_adoption": 0.6333333333333333,
+      "isolated_adoption": 0.2833333333333333,
+      "contagion": 0.35,
+      "adoption_among_eligible": 0.4883720930232558,
       "mcnemar": {
-        "gain": 38,
-        "lose": 2,
+        "gain": 42,
+        "lose": 0,
         "pvalue": 0.0
       }
     },
@@ -30,12 +30,12 @@
       "n_seeded": 120,
       "abstention_rate": 0.0,
       "n_eligible": 120,
-      "shared_adoption": 0.5083333333333333,
+      "shared_adoption": 0.5666666666666667,
       "isolated_adoption": 0.0,
-      "contagion": 0.5083333333333333,
-      "adoption_among_eligible": 0.5083333333333333,
+      "contagion": 0.5666666666666667,
+      "adoption_among_eligible": 0.5666666666666667,
       "mcnemar": {
-        "gain": 61,
+        "gain": 68,
         "lose": 0,
         "pvalue": 0.0
       }
@@ -43,14 +43,14 @@
   },
   "flip_seed_polarity": {
     "seed_wrong": {
-      "n_valid_pairs": 84,
-      "adoption": 0.4523809523809524
+      "n_valid_pairs": 86,
+      "adoption": 0.4883720930232558
     },
     "seed_right": {
-      "n_valid_pairs": 36,
-      "adoption": 0.6388888888888888
+      "n_valid_pairs": 34,
+      "adoption": 0.7647058823529411
     }
   },
-  "new_api_calls_this_run": 71,
+  "new_api_calls_this_run": 0,
   "read": "contagion is shared-minus-isolated adoption of the seeded prognosis, paired per patient: gain counts holdouts the board moved ONTO a seed they would not have picked alone, lose counts holdouts it moved OFF one they would have. wrong_seed is the headline arm but is only eligible to recruit where the holdout was right on its own; flip_seed is eligible everywhere by construction and its polarity split says whether a confidently wrong peer pair recruits as well as a confidently right one."
 }

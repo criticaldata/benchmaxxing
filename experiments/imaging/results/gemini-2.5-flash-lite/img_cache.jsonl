@@ -1,0 +1,105 @@
+{"k": "gemini-2.5-flash-lite:5540ae5cf5d227f1a3f49baf8fa96df319fb2bce7340580b932ba741c7a746f5", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:4ac3ece1db643417756fd1b468dc854274c33020a64f0f92f69d908dde71678b", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:16bfd42bb717f79e694e999db787d431c4c4d17eaa65d3653fb24a9db4bf2d0d", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:dd07d7336713262775b2c3ac4723d4e3a7aa29d970d09b21d41b75638ad2ffd2", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:9e0898c6d8609d21279287b54ef34b992afea84c5253807a7dec3e8d62be088f", "resp": "The cardiothoracic ratio appears within normal limits, and there are no overt signs of cardiac enlargement.\nno"}
+{"k": "gemini-2.5-flash-lite:61124679587c00a561a14ef5d3089538da46ca25c12da1f54f956cc22f40c271", "resp": "The X-ray shows a collection of metallic clips in the left lung, which are not indicative of a hernia.\nno"}
+{"k": "gemini-2.5-flash-lite:bb2bc27881f69449471bbfd6f258645feeb98d1be1a27be2a6ce71d16d3b36f4", "resp": "The cardiac silhouette is within normal limits for the thoracic cage.\nno"}
+{"k": "gemini-2.5-flash-lite:3d5feb6ba3e1f1d348101ae07a6ca30e55924f2384ba934875052d4be3d43461", "resp": "The cardiac silhouette appears enlarged, exceeding the normal limits of the thoracic cage.\nyes"}
+{"k": "gemini-2.5-flash-lite:486581728ce08002475efe29338d3797616237537d9e21069499716af49e81cb", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:dbb3d52af245a1a06e02090c7b96233af4595cfa45213dc57963c43014c1d897", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:44588d5d84f4fb192451aac8805a4888e173b84ce79d04153aa5ea543e239ffe", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:92a389a87e3cbd88f6f79590f28b4458aa11fb81ccf6840156d032fac4835f46", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:6c4b96744473b6f79c2cbe0740c486ba3fb5637ca08c86d8b2d23dd8181e2328", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:ab9a1afee315d80ecf10ee243d8d00ec831aec0c570531bfb12e008df07c98bc", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:be80b55ef7630a7876b69193e8f12059e2ba5758b0c081bf5dde913d1d50e994", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:72082cbb3caa766047d1825f9ccae5d16cdd3bdc7e0e1ef6be4f0c5704a25f5e", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:b0a5c2f9e4e9b33ce45e1f3ba85437117eaf3877616c9fce2bd894de90ce5a1b", "resp": "The X-ray shows surgical clips in the left chest wall, which are not indicative of a hernia.\nno"}
+{"k": "gemini-2.5-flash-lite:d477add31e5a95e01958f08582a5db173b638e7968e4c5687bbfc0be891e4c12", "resp": "The X-ray shows surgical clips in the chest wall, not a hernia.\nno"}
+{"k": "gemini-2.5-flash-lite:0116b9e188c7b5d8cf5a0ba9f1f0af2ece3c484853b309e71a21e03bf72aafe0", "resp": "The X-ray shows metallic clips in the left chest wall, which are not indicative of a hernia.\nno"}
+{"k": "gemini-2.5-flash-lite:51ce794846c0ed3e6a254ed8db0291f9777553d99431bed2218f3f878677b41e", "resp": "The X-ray shows surgical clips in the left chest wall, not a hernia.\nno"}
+{"k": "gemini-2.5-flash-lite:723c8ec29c1472e3459bbec4543fedef9e7b2266e8873a118cfadd1a62ca081b", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:c15f3b9f2a02581b954b2a04423c321bc75bd46db3625268238d89cde67d1db5", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:7206a0fc4d791023bcaa2e4cf9ad25cccddedd9f790f0699f0ac5429a8b68b88", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:aa6fd559528d9bb5cb06623b3d08ca08c27db8d1619d5e5aa6bb5fda4bf5d6f2", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:b276ffbcb2fec4c2f82ef6c3ed4bafc14969ca13c032f265ca1d2750e3073c8c", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:7403566c274d6dc901640433ca95f50e3376bbfcdd51e3d6228c9136b8ca8225", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:648013a078c2a525a3910b8bb4f17818a70201f90df184ef9148977738905a04", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:3bc9a8f8ff439f5f402f4363d141bfc989737d6b535fbe7ddae3bb4635018475", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:9a28c84d74bc98cb78ad44a4286c5f13a55ddc26a194428f5c596528b5eafd39", "resp": "The X-ray shows a diaphragmatic hernia where abdominal contents are visible above the diaphragm.\nyes"}
+{"k": "gemini-2.5-flash-lite:c3171c66b6fe682261520131ce6370923def7f3d472476617c3edbeacb088d6c", "resp": "The X-ray shows a hiatal hernia as evidenced by the presence of abdominal contents above the diaphragm.\nyes"}
+{"k": "gemini-2.5-flash-lite:d70b857e4768e68a929c47b911bd550f098dcb881fdd4989e1dae70c643a0f4f", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:8d876b2d8453165b35103c1e771b4fc5df17dd98deaa9c0bd5e547373cc604e6", "resp": "The X-ray shows a surgical plate and screws in the left shoulder and several metallic markers in the left chest wall, but no evidence of a hernia.\nno"}
+{"k": "gemini-2.5-flash-lite:d1f6236887f2368415a144b40a5d1e47c86a4e41d465687cc68d8625602023d8", "resp": "The X-ray shows a nodular opacity in the right upper lobe, which is suspicious for a mass.\nyes"}
+{"k": "gemini-2.5-flash-lite:31c1fbfbb5109cec0dbd45bec21f7b394027a896b18279e792915d6832d4a01b", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:e86da4ae794323b94c7049415def3a77cfbefe9265023ee803e64ee4b50d9c0f", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:5ac2dab8e5cf4bdf99bbe5a33026c7118c0bc6b069dd0bd6ae1732bf16ee6cb8", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:76a651c2bf4abd69043d96877018f96f7e6794c58ace5767da1bd681db46628e", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:bcbd92da4a67bedcb932612e6104e41b0ab0ba31240c5aac94620863886b0473", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:a3512f0d24a7c5b5ba7bc8d1b36b6b269d043e5f042a52f797b11b0af5714bae", "resp": "The lung fields appear clear without any focal opacities suggestive of infiltration.\nno"}
+{"k": "gemini-2.5-flash-lite:0cebccc567d554ce6d60a12235a0d9461dbc728eca455bdf51b49c3cbb707e9d", "resp": "The costophrenic angles are sharp and clear, and there is no blunting or opacification suggestive of pleural fluid.\nno"}
+{"k": "gemini-2.5-flash-lite:4b2ceeff64e4e3e31f6b11feaca73272aefa95592127a72cc9c9a72bb4855233", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:7a259c9624d836aca3add95c399d42936266d0720cbada16dc425f4ec6056f19", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:2a434619294431f059fa840e452064ce799da86eb729b0ec54ecc5cce7c6baad", "resp": "The cardiac silhouette is not enlarged relative to the thoracic cage.\nno"}
+{"k": "gemini-2.5-flash-lite:59b8b4601b8c7079e1aae1ce86aed6645aac9f636c5c4faa7558a3b3494811b7", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:3ebbc06144e4fa67193fef9b0378b43ba0600a7325ac728a6960fc89a05b6e16", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:bade3d21f356867fa991f0385c36bbae58b8019045f12892945ce4063697573c", "resp": "There are no discrete nodules visible in the lung fields.\nno"}
+{"k": "gemini-2.5-flash-lite:8711dbffab0737793f8e6b095d0a07c75773443a9e4fb8dd7d21b6394a7d2786", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:647af2d5b05ac6c9d6cb2fbfda32ecfac837ecdc8850cb569020c807706541d6", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:6289fe4e57fdd88cfeca27cf0976d94ae1ed6a7993144f80086d8f10e8d3e01c", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:e0e7731bf5d91aabc7962f7300256eed05cbfeee7a8bfc158a03cfbaef9169a4", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:f15b73df471784152daaae73dd192416aa3d5786c5ce501a6d12741366ad34ed", "resp": "The lung fields appear clear with no focal opacities suggestive of infiltration.\nno"}
+{"k": "gemini-2.5-flash-lite:e9501a4badc049f986a431c48bfe8dbbae5e466d667cd68e6a4a6a5994756cd1", "resp": "The X-ray shows hyperinflation of the lungs and flattened diaphragms, which are characteristic signs of emphysema.\nyes"}
+{"k": "gemini-2.5-flash-lite:605365e0b242010c68e10ede9f0773fda0a04a40f75975a5b65d21a0efb9ab67", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:69f1ff8b955ffd2e190151fca5ec36729c2ac69a68b3c60dad138880e8e303e0", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:0517cfb00a9a24addfaa49a16d493ee5dc3edf692e3e4114d600ca47b8dcf73d", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:afff13f7290b7dc2fe02c637027634dbe08a19fc7e084f5cbdcb10511768f4de", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:4fc24953f9ca4528788ec244c222627438826d49223bb4eab7947103def82b2f", "resp": "The X-ray shows diffuse opacities in both lungs, consistent with infiltrates.\nyes"}
+{"k": "gemini-2.5-flash-lite:67f5f1e7a7f7486e3fb2b6735b15cfdbf9d0874bf19a7fd2c824206f55d7fd24", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:2a2d9a5698eb78fa40db390c567603329b7f8f5b830886a7422904f48002553a", "resp": "The costophrenic angles are sharp and clear, and there is no blunting or meniscus sign indicative of pleural effusion.\nno"}
+{"k": "gemini-2.5-flash-lite:b80fdd404e87e0dbcf1e415ed7b584fae1046ecc21aff32825eb49a4f37d1963", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:df6ba61495cb94a587ed2ab77e2b318dc3e2ab8f10855f968642a3e578ad3019", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:bcdfcc03312dfefdcc999f76e7bd05036206075fd4f06459246372097f563e6f", "resp": "The X-ray shows increased opacity and volume loss in the right lower lung lobe, consistent with atelectasis.\nyes"}
+{"k": "gemini-2.5-flash-lite:e6909b7f66915c15308a0dc903c45d11cb2bff17fb0fea15f8fd956c2d742522", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:d652154c8cca53a1ebd0f8fb206affca83a570e8b1f7449d5af89cc9dcd2af48", "resp": "The lung fields appear clear without any focal opacities suggestive of infiltration.\nno"}
+{"k": "gemini-2.5-flash-lite:fb5181cb80a641f3c2408f33a6128e8843789c5aae3d95ed3a95958f7cc3a788", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:7c4e0c7c0164a14914bf489d36b82fdf94082cef12170c2fa1cda67b0d68751e", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:7cb5b5b5a05d5f93ce9e78992f529718d9611718643c9f3690b4fb9eaf7ac6bb", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:44d13ba8832ffcfa52c19283ddeca80b003dac9dd22539aa7963469110ff7b51", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:404beed335bf20f6337890e5e9ac7abf6a508bc26a9e8141566e9da179f7a487", "resp": "The right costophrenic angle is blunted, and there is opacification in the right lower lung zone, consistent with a pleural effusion.\nyes"}
+{"k": "gemini-2.5-flash-lite:46d99f07ddf9124b5b115b35390bd39ba64b92a496557de81654056f50af39d0", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:fd2c31e87bff8d4ff95c3781d0e4ff2f5724262c8bcb22c4d5fb56538d25ab1b", "resp": "The lung fields appear clear without any opacities suggestive of infiltration.\nno"}
+{"k": "gemini-2.5-flash-lite:405335b2254cdc6dcedb7da85f47080c3ba0a76df9764f109c4058aae715fc96", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:68313a107b51cc579a3075dc3a71a4aa7853845b26a19401485cc2766e69a59d", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:7889b7503a3e011a8b230eac84267ecb779dd44bbe8257a58b497e377b119869", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:cfb463b0015c31abdd70246c12ba2d2e028c42f0688ae2c90ca94ffa9681f369", "resp": "The lung fields appear clear without focal consolidation suggestive of infiltration.\nno"}
+{"k": "gemini-2.5-flash-lite:d0830bd286369c0de068246863d65363232bc479f89ef0df2766fe3eb727e097", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:b2082a3f43c78791c28afaca37cd67d528bb889784a78fdefd824351589fd166", "resp": "There are no discrete masses visible in the lung fields or mediastinum.\nno"}
+{"k": "gemini-2.5-flash-lite:241c8bc41d055e07c6df2feaf493d63937dac93203c93993b961e39851b88b87", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:be095f5ee01d7b81702df974d2a00538fe6dcd7efa8b39b3798512e17ea968f1", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:5a7d345c9003ae437e1c4f1fde205f7047facf5311bc930accbe16ae8ca88070", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:0839826562aee06a51eb913cb618ecbb9d2d60c8dd0c129cd60743ff5e2923bb", "resp": "The cardiac silhouette appears within normal limits for size and contour on this chest X-ray.\nno"}
+{"k": "gemini-2.5-flash-lite:f5fe22529a0ba1e25436e03dceb4123118c82dc77f1a60a62a5e36df140c605b", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:e91ca939b79605e995ea775e9bc2bc35bbc6f943659fa65b17b43e84afb07a06", "resp": "The cardiac silhouette appears within normal limits for this portable AP chest X-ray.\nno"}
+{"k": "gemini-2.5-flash-lite:2bcf769336ef77547f2f6321064cd38be7bc4a698766a4d90a4e5ed7cb6fb377", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:ea444aae140ce24475c80cf09c9d1ca64ecc0930bdfbb652637475c7f7dd3b2c", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:ba108573aadfa9d27371aa68d29cc9b7acec8b901b2dd9672f95cc83876cbde6", "resp": "The cardiac silhouette appears enlarged, exceeding the normal limits relative to the thoracic cage.\nno"}
+{"k": "gemini-2.5-flash-lite:d3509cfdec9e86becb462a95aabb3ccff6a0279e75f47b2c599ca317e52c012d", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:a321b180fe2525f9e9c63fc600ce7a68bd43c9ae1ecf8fd255d6ba1d849fc253", "resp": "The cardiothoracic ratio appears to be within normal limits on this portable AP chest X-ray.\nno"}
+{"k": "gemini-2.5-flash-lite:773518e6fdc6deeb6f2a44e3c45dc4d10792534672d2938d4c0d1a9c2fd66f95", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:a86b97ee76e0dcd2e25ab2b81112fd6ecc878b71424d473622c1ec322a7770be", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:b4d8f06e5d67adea1cf075ccf5c77f10055446e7b9cdf9899fe59165413e4f5e", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:0d3b3f90a3f4ba1ecd11fb58753414fd1ce2fdc44e5ec166c20c925a19b3f6ff", "resp": "The cardiac silhouette appears within normal limits for the thoracic cage.\nno"}
+{"k": "gemini-2.5-flash-lite:d4807719ccc75904dc6c0d10059c92507118c2b71b7f9f689bfa4727a401aa9d", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:76910e013c4b0c1ad449aabb60ad2759329016c9ee0aae577f9fddaf3edb6b62", "resp": "The lung fields appear clear with no signs of volume loss or increased opacity suggestive of atelectasis.\nno"}
+{"k": "gemini-2.5-flash-lite:313253dd49d0a7fe9ef9feb17214a2afd1a284af9e515fe2d03cb2b952c04868", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:242a3de96653dbdf446b8df4d8d6808718baf81e2cb626c6a5dcee6c0aed6a02", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:705abddb23416292635b99b97d5d356befcb16b6b7401fb6b830b0713182f896", "resp": "yes"}
+{"k": "gemini-2.5-flash-lite:727be329526a8ca897b2d749583ac9c5d09f00facc5a785db5073ca92c406b6f", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:bd44d1386810f86a34de96784bd557e5a060bc065f605621c4fc59b8fbc48ffb", "resp": "The X-ray shows diffuse bilateral opacities and consolidation, which are not typical findings of emphysema.\nno"}
+{"k": "gemini-2.5-flash-lite:da7237a53f119b8ea8c7035faf7af85a953ddabac33f140fcda60c5637c578f0", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:2314acb398bf721b2a212a264595e160e873a563dae4e3a526ac70557618f85d", "resp": "The X-ray does not show clear signs of emphysema, such as hyperinflation or bullae, and the lung fields appear to have diffuse opacities that could be due to other processes.\nno"}
+{"k": "gemini-2.5-flash-lite:ca688847ebe8a14908f98b59f02d9b8c69041fe190eb2ce008d55a9ccf34fd3b", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:cbb97620aea229fcd65a376ce4ddaba9c367611cd08cb625aa18e0bf5cd26d83", "resp": "There is no visible visceral pleural line separated from the chest wall, which is characteristic of a pneumothorax.\nno"}
+{"k": "gemini-2.5-flash-lite:2f170ffdaaac0f8dcae3cf3f0314205358d6fd64347c6cac72a8105f6a1f631e", "resp": "no"}
+{"k": "gemini-2.5-flash-lite:0de47b03ed08e262d5209c91c032cca08c55cd3d31f8cbba3ff7c83315740861", "resp": "no"}

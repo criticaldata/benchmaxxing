@@ -12,6 +12,10 @@ Manifests and raw model-call caches are **not committed**: report text is creden
 PhysioNet data under a Data Use Agreement and must not be redistributed, even in a private repo.
 Only the aggregate JSON below (flip rates, noise floor) is committed.
 
+To rebuild the manifests from a credentialed copy of the dataset, run
+`python -m experiments.mimic_cxr_text.build_manifests` (see its docstring). It checks the four
+files against their known checksums and writes them outside the repository.
+
 ## Three bugs found in review and fixed (#336)
 
 The first two posted rounds of numbers here were wrong, caught in review:

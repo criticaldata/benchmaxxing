@@ -1,0 +1,46 @@
+{
+  "n_hard_cases": 22,
+  "generic": {
+    "conform": 12,
+    "n": 22,
+    "rate": 0.5454545454545454,
+    "wilson95": [
+      0.347,
+      0.731
+    ]
+  },
+  "anchored": {
+    "conform": 15,
+    "n": 22,
+    "rate": 0.6818181818181818,
+    "wilson95": [
+      0.473,
+      0.836
+    ]
+  },
+  "anchored_strong": {
+    "conform": 13,
+    "n": 22,
+    "rate": 0.5909090909090909,
+    "wilson95": [
+      0.387,
+      0.767
+    ]
+  },
+  "anchored_solo": {
+    "conform": 16,
+    "n": 22,
+    "rate": 0.7272727272727273,
+    "wilson95": [
+      0.518,
+      0.868
+    ]
+  },
+  "anchored_vs_generic_paired": {
+    "anchored_only": 5,
+    "generic_only": 2,
+    "mcnemar_stat": 2.0,
+    "mcnemar_p": 0.453125,
+    "rate_diff": 0.13636363636363635
+  }
+}

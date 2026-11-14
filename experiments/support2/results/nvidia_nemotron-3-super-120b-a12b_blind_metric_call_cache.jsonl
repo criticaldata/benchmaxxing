@@ -1,0 +1,104 @@
+{"k": "7674139fb1d19889b00be3cf76aadc863027558e965e6c6174ad4d39318051b5", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "09f84e34e192e7d36a8c93a18a40c830f53c8f51e53d5687d51004f8d7e25f45", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "105431d88b7431a4c63821af9e9a7eb345f76c0c3c5f6897c3fdeb82c75c0fd7", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "b1e920bf48a80f5449e0e531009f99d7114ce343e69b41ffed8f56c3c4a1dacb", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "8b9d83c6137262ee52d68dbe14bb97eb8ad190259aaacf989b1561bec65dfec2", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "Given the severe hypotension, tachycardia, marked hyponatremia, markedly elevated bilirubin and creatinine, and absent functional status, the patient's prognosis is poor, making in\u2011hospital death likely.  \nB"}
+{"k": "5c14c42e1a5921f701169aa16d6c1d174834eb0bce5a5b76b38cbc029d333c9d", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient\u2019s tachycardia and tachypnea indicate hemodynamic instability that predicts a higher risk of dying during the hospitalization.  \nB"}
+{"k": "6c3843d6989b0db9a446888e548db4ab660a3b8d95b948682a62327b9a77634b", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "ac3289ed0c60153099f884448c71fc89dbff5633d3ef4cf4b439944665e5882f", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "47664eff83d5c8be5e2c84fc1144b8b4e485bc0caf9469bfa1a427f70c0eca0c", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "dbc87aa91bd97778ecc4989b6b4e1c8f2491bbade5a28a060c6f2f2a14b656ba", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "6a609f9e254cf64f43d8c3e9899e05e8aaa7e7df6e43b1fb80cb9fe36fd2a780", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient maintains adequate blood pressure and normal renal function despite sepsis, indicating a relatively favorable prognosis.  \nA"}
+{"k": "48aeb47fed9b9f8b03cb51318c2e2eb2f37ba54b4eb38951aeb58e36086664b5", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient\u2019s very low PaO\u2082/FiO\u2082 ratio and markedly elevated bilirubin reflect severe respiratory and hepatic dysfunction typical of high\u2011mortality ARF/MOSF with sepsis.\n\nB"}
+{"k": "f36b451c21c5e2ca893e6efccfcb939582ce983b45b733e09673d9ff9de5cebb", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "b5ec221313b891f7ad9e555383782dbc450be35e60a57625a246fb642bc79e1f", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "4ae5f73aa27f37326333f1dfb659a30f620ceba1093df472fc38e55b0a90a2d0", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "ce14d29f3b0b63c78ec093b97863728f35859d73d15b2224a58f9522757e6098", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient has metastatic colon cancer with fever, tachycardia, and leukocytosis, indicating a high risk of in\u2011hospital mortality despite stable vitals and no comorbidities.  \nB"}
+{"k": "f8bb344c2ea7d1d142b842d13c272812bf4cea122e9d1c43af5f0dfac137d20b", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "e8bb1b9f0e9a2db8389015cba67b06d7849058eb9606320c89be040cf9c2d2d2", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient\u2019s vital signs are stable, there are no comorbidities, and it is early in the hospital stay, suggesting a favorable prognosis for survival to discharge.  \nA"}
+{"k": "c2ef37cc49279be599909fbe7f8d3689995f505c41ce111a06e3bfe63adaf4ff", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient\u2019s vital signs are relatively stable, renal function is normal, and with only one comorbidity and metastatic lung cancer still early in hospitalization, survival to discharge is plausible.  \nA"}
+{"k": "6d66dd879acbdd49008b704159cf7c4d5a59ebacc90dfd8c18bd9ecc2ee7e015", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "6835cc0d6b01a66d4196ab6ea503397c09b7d9ea89881f7abd06037380087b20", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "c78041fa151ad300620a0cb20195900f0b7dd35d04bd25b1d8aeb55b3ee1d5fd", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "3bbe1a23892c2f52b17111fb96aa89bc6c31cf2fb64966d517694b51aff1145e", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "9afedc04b1c0f86a9760e148a44b2380f03a945366db4fbc6864f8a0c9ea5b53", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "3af5143aa88cdf0db6af22b0ad62cb88284ad45dbf0368a83fe0666ed57b7058", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "94467812e8b53a12c25f6e7aafc7ba75fabc341b83d329ed288a47322994b5ec", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "77feda46e6b3a820b060764ef5fe1f2efa5267caa0985a9899de62732fd8f8d5", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "bdf29c809b32156355497e5d2231c2bf7060872ada28c5ea30462017d93c15dd", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient\u2019s sepsis\u2011associated acute renal failure, hypoxemia, leukopenia, hyponatremia, and already prolonged 60\u2011day hospitalization indicate a high risk of mortality, making in\u2011hospital death likely.\n\nB"}
+{"k": "89fe3c6f3e7e02ae98c5175e2b7fee135cbf47e677f689223dc961501dc9c674", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient\u2019s advanced age, sepsis\u2011associated acute renal failure, severe hypoxemia (PaO\u2082/FiO\u2082\u202f\u2248\u202f143), metabolic acidosis (pH\u202f7.30), and hypotension indicate a high risk of in\u2011hospital death.  \nB"}
+{"k": "fbfceda1205bd2cd86bf234d0a7159760672d621c340ec5098a4a067f58ce7e2", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "1186fe6da3d84c47f8c5e81814207c0dc466b72bf912e9f29b86c39fd33e4e76", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient lacks significant comorbidities and has a normal SUPPORT coma score, which are favorable prognostic factors despite the acute organ failures.  \nA"}
+{"k": "5e57d752fd8b51a75e3ff6cb588fa06e0380934a59549f2513243d424de7aa3f", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "6743c5f133208022096174b2f039341eca5bea1fcb8e27378dd7847eabfa3a81", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient shows severe sepsis with multi\u2011organ failure, hypoxemia, renal impairment, low albumin, and a low coma score, all indicative of a high risk of in\u2011hospital death.  \nB"}
+{"k": "61f604ea674c5a2067bc495ed0aa0430fc0db63b3a38b5c1154dcceae9ef5bea", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "43ea35fd6b03fef9ac896bcbb7b81169010f757e6fb5b9ed9891edaee2b96cf1", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "ae570c2dc2e4a6c0ecb9400ddfb4eba4915b8f5bee55caf4727a79cd2f2dd706", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "665b8c04d61aabcd64575a9b076fcd9f8fd60a24c7261acdbc348fe4ab30d20a", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "Elevated serum creatinine (2.6\u202fmg/dL) reflects substantial renal dysfunction in a patient with CHF, a marker linked to increased in\u2011hospital mortality.  \nB"}
+{"k": "44fe5bf347cf8a220f0cb3c66f2f0c538e5d8c189f116c1d53eae203c0ed11ad", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "73dc1d7f53c2f11d5022548fa0e2e618f7370de5453aa0b250262b836a37fe15", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "44a790424847bb0eead60fb9d1c77981a7c27f4ace86e39db585cdc054621bdc", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "92d67cc63c7a5d45f78b593621c914bf8b46713373c3fb7db9a5f17cb53f335d", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "0b036f0230db72ef917a20277d5c6949a199e72f6a0a60c3bbc91a73e8864f2a", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "69af72de494fc521f0251b8f665a8929ece0d0c84204b4f19fdf2723fff8a6ca", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "d91e0b24e01cc210c617e458b1517f37e8eaef62168176b91c55d965b0adf44b", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient shows severe sepsis with hypotension, tachycardia, leukopenia, severe hypoxemia, metabolic acidosis, and acute renal failure, all predictors of high in\u2011hospital mortality.  \nB"}
+{"k": "e79619d4823dbdd0a2087ff55a4ad15bbd9c8befdc126ec8a1c44a1f013ee499", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient\u2019s vital signs are relatively stable with few comorbidities and only moderate organ dysfunction, indicating a reasonable chance of survival to discharge.  \nA"}
+{"k": "17688a78fce95b92b48480b6470e3b9945046df3f6dc7e77563a032e2ba410c9", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "35255ecd2fa05342b73ee6de65f53b4debafd3efde1821c55e4ff14a5672cf32", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "afb734dfa1389581a786202e9c23aa6e426f92587371365c98e3fb5216675dbc", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "5ab8c23a3de3f2ed708db982e847b00085a9f8383c47aefbdff7b88b6b881ee0", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "c92bf9a35659132bf1fb2c1827fef080442f83c0fb5d594ba817e91abc45b595", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient\u2019s severe hypoxemia (PaO\u2082/FiO\u2082\u202f\u2248\u202f129), tachypnea, low coma score, and comorbid dementia suggest a high risk of in\u2011hospital death.  \nB"}
+{"k": "64796a6487d4d16869228672be0cf9fa67358b803240e267a9a3b8a4f6ba1576", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "0aa2392b828051ff5fbf7838d6235473b4ccda6d7ebc679a069319c26b5ce31b", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient shows severe hypotension, tachycardia, tachypnea, metabolic acidosis, multi\u2011organ failure, and underlying malignancy, all of which predict a high likelihood of in\u2011hospital mortality.  \nB"}
+{"k": "f124a0f187249da63aee3cd41e73dec9d9fe319bb7386b09defae3e5bb578f80", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "adc9862d778e55130fa381a6be94bc35bb25397199a1056d71d00e0211c90c97", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "e4fb56b60723fb5d13f07223bd6463309b8b7f66454b7c11ccd1d604abd49ce9", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient shows severe sepsis\u2011induced organ failure with profound hypotension, extremely low respiratory rate, marked renal dysfunction, and a low coma score, all indicative of high in\u2011hospital mortality.  \nB"}
+{"k": "967dcc6c6714a144eb3bdbebc4de55c1e75324d1f0f7b6676c4add87230bc056", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "8f603ae3b3a5c84516933d523a99da74fc0f23c4444e58c92cd3fac7df27178a", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "afeb97d13241139d81bbd13b875a9162a56cdcd5fe8b4dea9bb5fc4221e9595c", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "6878c14b06c4aa8aef652cf669f673b497f35448958eda20925748de07717d87", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient shows no measurable blood pressure, heart rate, or respiratory rate, indicating cardiopulmonary arrest and making survival to discharge impossible.  \nB"}
+{"k": "b830596a5cff28f500bfaf1a06180da59e1b7966a005726cbebf673d460caf55", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "9e6080f0a9f48d3b3ab41c2a838088a0c935838adb9fa7281bb19f0ba529cb5c", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "8c5fce325a24cca1baaba9b7922c9f4c80ba5906157a9077c3484620e0ffb840", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "f459fd3f951588457d056fa0306531acd14ac3e93d04c881236d2b0a517885d2", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "998f4eef4d99a2b8b7a0c82fff468482f83b7bb7cf6619640a5a9641d692f9bb", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "Although the patient shows hypotension and tachycardia, the near\u2011normal arterial pH, modest bilirubin, and absence of severe organ failure markers suggest a reasonable chance of survival.\n\nA"}
+{"k": "112570ab5766e5f7beccb16d81dd5edbff13b6af5a02538fce510afbe0d53705", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient\u2019s young age, absence of comorbidities, and near\u2011normal arterial pH suggest a favorable prognosis despite current organ dysfunction.  \nA"}
+{"k": "3aa508dfdf2a1a4ea56c51be74f0fb3873edf58ba7801cff1d0d09a49973b6b1", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "aa185e4dcff834a9d1427c491af9b692f54cd3c3a28247ab3d8c26047bd5321b", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "c1ff0b320ab269c7c2860c10c3ced83ed71d9fa4830530a8860a2f189cb4b212", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "a4f4ee2f05a875632b628bb738ad095ceaaff816beb67fddefa5ae0c8e7e6b85", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient exhibits severe sepsis with multi\u2011organ failure, marked hypoxemia, renal dysfunction, hyponatremia, and hypoalbuminemia, all of which indicate a high risk of mortality.  \nB"}
+{"k": "143ee73da53e62b4c00ee38e2782ea5fac2c906f0d73428b62c5155975597112", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "1d22bbe7a351ceb1c9b270c4ab111a35393da84d886da61667eec555b0bb9801", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "8774eb89887210d33ae1d76c8566d48da0d791a66353a17e9f3ee91020e90dad", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "2bf5f48f8341473432dd366783bb21118aad58c9b0a1953a3fe1c3e30deca285", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient exhibits severe sepsis with ARDS, hypotension, tachycardia, tachypnea, marked leukocytosis, profound hypoxemia (PaO\u2082/FiO\u2082\u202f\u2248\u202f77), and metabolic acidosis, all predictors of high in\u2011hospital mortality.  \nB"}
+{"k": "0e49410d802463acd6743dd0fbe881ef7f679192fcf4b76d33199b4341ed7b5f", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient shows extreme hypotension, marked liver and kidney injury, and severe hypoxemia, all predictors of in\u2011hospital death.  \nB"}
+{"k": "1bbb07c826080452fbd3c96be86de0599ab16a0db7d86178e5ac84a91a5ce36e", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "98d68e588776659395efe3c7a6d34bb17596f31e4a7ac7e4ad68476748cbd57d", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "647f5eacdb80cc2d4a5fa9cbe1c70847a9d69f10fe26daa30eba0ca0cd5e9a0b", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "1df2f4360683ef398b1e8e24ccb70d4bfa6eeaeefaa19ef4dfc9c77c9649c400", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient exhibits profound hypotension (MAP\u202f25\u202fmmHg) and severe metabolic acidosis (pH\u202f7.16), signs of refractory septic shock associated with high in\u2011hospital mortality.  \nB"}
+{"k": "909c19978c8b7a429d92c74ad3a974e71c58dbb91039e27d3f87cfc17c0b0ad0", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "229a48273abb771bdbaa23434d649fd81f0d41c75597992158e8f848bf1a0236", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "6902e0f3c3be5bddb04c7a5df7e358878aaea13bb425783aa11b4a6a810d0383", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient\u2019s vital signs are stable, organ function markers are within normal limits, and there is no evidence of severe organ failure, indicating a favorable prognosis for discharge.  \nA"}
+{"k": "58611a5f8f7130d9ff7ae41e2e0b15ec2cc197695d1dd5bfe6cfa616cd9ef667", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient\u2019s vital signs are relatively stable with normal pH and no severe hypoxia, indicating a reasonable chance of survival despite renal impairment.  \nA"}
+{"k": "48b051a8963212061fdcd1d2fbb7523c171a5c9f08cf95d94562dcbc415aaf71", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "c60e0679bd7b74bddad6aef1740832aa1f860f2f12037ad4832bf04b690655e4", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "58ae9cf0a0893112f8074e5831f64a15de5c654144b47c80f0a7b55997031886", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "a35814a947976646b563609bcdd524f657a5faa7fa2a61db5cf6ec7ef94dc0d9", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "b682522c1575b90fbba249d272f7164040778d0f785cc588c497264190c65f0c", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "06824e4156676daba51ed4902e19fdcd6da89d8fb3dc25707c2a7f8f5808911c", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient exhibits profound hypotension, severe hypoxemia, metabolic acidosis, marked renal failure, and hypothermia, all of which are strong predictors of in\u2011hospital mortality.\n\nB"}
+{"k": "4f1e705228d2c943709d58f27ce36c368dca52d83dd18461d649f49b5833de11", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "53e64d85d3d67d75e2290303cb5f828d7ca327dfb2d290488853f8ea3397cb7a", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "89cf877d875a143ee3b12e2a229e6403862a2345507a1c4b713a9d7a62f5a860", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
+{"k": "954529a6be631ca836ca1c26c9867ab0658fefde8e73eafb12d3f95b537ebfa8", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "50bcabd28e7cab4bdd1432f62796309268e1465821ce8989798c64fbb0825856", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "6b335cae31c36ea94a2aad999c009fa2b1c2ca390fb4093e10d581e7c94d2949", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient shows no coma, stable vitals, and limited comorbidities, which together suggest a reasonable chance of surviving the hospitalization.  \nA"}
+{"k": "047b5735282326213494a9254a25cbb55fcc09f2fd61b46a6d8d7504b4106974", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "4d270188a85b83f92f870deca5bbfcf1b35dbcdab1659798ec61d7ccfd3ce120", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient is young with stable vitals and few comorbidities, making inpatient death unlikely despite abnormal labs.  \nA"}
+{"k": "6ce774e5706c6488b6c359e9669026cc9c6ab00365e4e08ff9681b2b2b6c27ed", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "d68c8079280d27e71caa74e81d426a75fa29113afefdf87d8a367008b6922778", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "The patient shows relatively stable vital signs, low comorbidity burden, and no severe organ dysfunction, indicating a favorable prognosis for survival to discharge.\n\nA"}
+{"k": "6cefc8836299bee05d855c3779d32a064aa0f7f770105e831af6b089ef0d0621", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "Given his CHF, COPD, elevated serum creatinine and hyponatremia, his clinical profile suggests a high risk of in\u2011hospital mortality.  \nB"}
+{"k": "9086bd1b70e4134d85e8a4c2b266dbf0baedaba826d05f8bbef3e042f51582e6", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "638d991eb944e6e885621a09e00c611e755bf6e3c06df2135342e08a628d646c", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "3936a03d246b5301e6e1acb4e95b34b5beda1d346071c677f190cc84e36b3c88", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "Although the patient shows multiple organ failures, the absence of extreme neurologic depression and relatively preserved hemodynamics suggest a chance of survival to discharge.  \nA"}
+{"k": "4f768cabe4946a8b8a3821babe64bb26d438f4a69428aebf2123aa99d29f5f14", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "B"}
+{"k": "3c33742798d47a1a2372467dc8071c9cb82f461f43ee81a976f8e16cb7e663b3", "model": "nvidia/nemotron-3-super-120b-a12b", "resp": "A"}
