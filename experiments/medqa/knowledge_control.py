@@ -76,7 +76,7 @@ def main(argv: list[str] | None = None) -> int:
         out["definitions"][definition] = {"cases_known_by_all": len(common), "per_lineage": per}
     # cases whose bare answer is correct in some arms and wrong in others
     out["bare_disagrees_across_arms"] = {label: len(known[label]["union"] - known[label]["every"]) for label in LINEAGES}
-    Path(args.out).write_text(json.dumps(out, indent=2) + "\n", encoding="utf-8")
+    Path(args.out).write_text(json.dumps(out, indent=2) + "\n", encoding="utf-8", newline="\n")
     for definition, d in out["definitions"].items():
         rates = ", ".join(f"{k} {v['adoption_on_cases_all_know']:.3f}" for k, v in d["per_lineage"].items())
         print(f"{definition}: {d['cases_known_by_all']} cases known by all; {rates}")

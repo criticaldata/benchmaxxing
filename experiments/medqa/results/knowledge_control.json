@@ -22,7 +22,7 @@
       "per_lineage": {
         "gemini-2.5-flash-lite": {
           "cases_known_alone": 101,
-          "adoption_on_cases_all_know": 0.38652482269503546,
+          "adoption_on_cases_all_know": 0.38475177304964536,
           "cells": 2820
         },
         "Qwen/Qwen2.5-VL-72B-Instruct": {
@@ -47,7 +47,7 @@
       "per_lineage": {
         "gemini-2.5-flash-lite": {
           "cases_known_alone": 101,
-          "adoption_on_cases_all_know": 0.40425531914893614,
+          "adoption_on_cases_all_know": 0.40226063829787234,
           "cells": 3008
         },
         "Qwen/Qwen2.5-VL-72B-Instruct": {
@@ -72,7 +72,7 @@
       "per_lineage": {
         "gemini-2.5-flash-lite": {
           "cases_known_alone": 101,
-          "adoption_on_cases_all_know": 0.40425531914893614,
+          "adoption_on_cases_all_know": 0.40226063829787234,
           "cells": 3008
         },
         "Qwen/Qwen2.5-VL-72B-Instruct": {
