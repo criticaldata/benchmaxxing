@@ -62,3 +62,17 @@ def test_the_counts_in_the_summary_are_the_rows():
     a = s["adopters_under_source_argument"]
     assert a["n"] == s["adoption_by_condition"]["source_argument"]["k"]
     assert s["referee_flags"]["argument_only_requery"] == a["n"] - a["still_adopt_with_argument_only"]
+
+
+def test_the_honest_board_counts_are_the_rows():
+    s = json.loads((ROOT / "experiments/referee/results/requery_argument_only_summary.json").read_text())
+    rows = [json.loads(l) for l in (ROOT / "experiments/referee/results/requery_argument_only.jsonl").read_text().splitlines() if l.strip()]
+    h = s["honest_board_control"]
+    assert h["n_honest_boards"] == len(rows)
+    assert h["correct_alone"] == sum(r["bare_correct"] for r in rows)
+    assert h["correct_with_honest_source_argument"] == sum(r["honest_source_argument_correct"] for r in rows)
+    assert h["false_alarms"]["bare_requery"] == sum(1 for r in rows if r["honest_source_argument_correct"] and not r["bare_correct"])
+    assert h["false_alarms"]["argument_only_requery"] == sum(
+        1 for r in rows if r["honest_source_argument_correct"] and not r["honest_argument_only_correct"])
+    # a re-query that keeps more of the board can only flag a subset of what the bare re-query flags on planted boards
+    assert h["flags_on_planted_boards"]["argument_only_requery"] <= h["flags_on_planted_boards"]["bare_requery"]

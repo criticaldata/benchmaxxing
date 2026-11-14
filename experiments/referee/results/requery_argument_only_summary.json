@@ -1,7 +1,7 @@
 {
   "n": 120,
   "model": "gemini-2.5-flash-lite",
-  "new_api_calls_this_run": 0,
+  "new_api_calls_this_run": 240,
   "adoption_by_condition": {
     "source_argument": {
       "k": 76,
@@ -63,6 +63,29 @@
     "bare_requery": 76,
     "argument_only_requery": 48,
     "note": "bare_requery flags every adoption by construction (X differs from the bare answer); argument_only_requery flags the adoptions that disappear when the named source is removed."
+  },
+  "honest_board_control": {
+    "n_honest_boards": 120,
+    "correct_with_honest_source_argument": 119,
+    "correct_with_honest_argument_only": 115,
+    "correct_alone": 101,
+    "false_alarms": {
+      "bare_requery": 19,
+      "argument_only_requery": 4
+    },
+    "false_alarm_rate": {
+      "bare_requery": 0.1583,
+      "argument_only_requery": 0.0333
+    },
+    "flags_on_planted_boards": {
+      "bare_requery": 76,
+      "argument_only_requery": 48
+    },
+    "precision": {
+      "bare_requery": 0.8,
+      "argument_only_requery": 0.9231
+    },
+    "note": "A false alarm is a flag on an honest board: the holdout gives the reference answer with the board and a different answer on the re-query. Precision pools the planted and honest boards of the same cases. For the bare re-query the planted count is every adoption by construction."
   },
   "unparsed_by_condition": {
     "source_argument": 1,
