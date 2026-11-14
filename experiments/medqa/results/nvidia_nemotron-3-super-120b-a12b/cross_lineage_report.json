@@ -221,7 +221,7 @@
      "p_raw": 4.628673195838928e-07,
      "gain": 29,
      "lose": 2,
-     "q_bh": 9.046952155503359e-07,
+     "q_bh": 9.47775940100352e-07,
      "survives": true
     },
     {
@@ -239,7 +239,7 @@
      "p_raw": 4.628673195838928e-07,
      "gain": 2,
      "lose": 29,
-     "q_bh": 9.046952155503359e-07,
+     "q_bh": 9.47775940100352e-07,
      "survives": true
     },
     {
@@ -290,19 +290,19 @@
     {
      "arm": "pre_emptive_referee",
      "contrast": "no_vs_soft",
-     "p_raw": 2.4995097192004323e-07,
+     "p_raw": 7.84157236921601e-07,
      "gain": 5,
-     "lose": 38,
-     "q_bh": 5.373945896280929e-07,
+     "lose": 36,
+     "q_bh": 1.5326709630740383e-06,
      "survives": true
     },
     {
      "arm": "pre_emptive_referee",
      "contrast": "no_vs_hard",
-     "p_raw": 4.649162292480469e-06,
+     "p_raw": 1.5236437320709229e-05,
      "gain": 3,
-     "lose": 28,
-     "q_bh": 7.996559143066406e-06,
+     "lose": 26,
+     "q_bh": 2.620667219161987e-05,
      "survives": true
     },
     {
@@ -541,7 +541,7 @@
      "p_raw": 0.454498291015625,
      "gain": 10,
      "lose": 6,
-     "q_bh": 0.5922250458688447,
+     "q_bh": 0.6107320785522461,
      "survives": false
     },
     {
@@ -586,7 +586,7 @@
      "p_raw": 0.375,
      "gain": 1,
      "lose": 4,
-     "q_bh": 0.50390625,
+     "q_bh": 0.5201612903225806,
      "survives": false
     },
     {
@@ -736,10 +736,10 @@
     {
      "arm": "seed_timing",
      "contrast": "last_vs_first",
-     "p_raw": 0.25,
+     "p_raw": 0.5,
      "gain": 0,
-     "lose": 3,
-     "q_bh": 0.35833333333333334,
+     "lose": 2,
+     "q_bh": 0.6422334558823529,
      "survives": false
     },
     {
@@ -757,7 +757,7 @@
      "p_raw": 0.266845703125,
      "gain": 4,
      "lose": 9,
-     "q_bh": 0.3701408140120968,
+     "q_bh": 0.3824788411458333,
      "survives": false
     },
     {
@@ -826,9 +826,9 @@
   },
   "nvidia/nemotron-3-super-120b-a12b": {
    "repeated_prompts": 242,
-   "disagree_any_text": 58,
+   "disagree_any_text": 59,
    "repeated_prompts_letter_only": 215,
-   "answer_changed": 31
+   "answer_changed": 32
   }
  }
 }
