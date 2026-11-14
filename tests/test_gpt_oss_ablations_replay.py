@@ -19,6 +19,7 @@ _CANDIDATES = (
     "openai/gpt-oss-20b",
     "nvidia/nemotron-3-super-120b-a12b",
     "Qwen/Qwen2.5-VL-72B-Instruct",
+    "nemotron-3-super-120b-a12b-fp8-local",
 )
 MODELS = [m for m in _CANDIDATES
           if (ROOT / "experiments/medqa/results" / m.replace("/", "_") / "stats_reconciliation_summary.json").exists()]
