@@ -57,3 +57,18 @@ def test_the_first_120_cases_are_the_committed_arm():
     for k, r in old.items():
         for field in ("board", "peer_answers", "consensus", "follows_consensus", "net_harm"):
             assert new[k][field] == r[field], (k, field)
+
+
+def test_the_strata_file_recomputes_from_the_rows(tmp_path):
+    out = tmp_path / "strata.json"
+    r = subprocess.run([sys.executable, "experiments/medqa/live_peer_strata.py", "--rows", str(OUT / "live_peer_organic.jsonl"),
+                        "--out", str(out)], cwd=ROOT, env={**os.environ, "PYTHONPATH": str(ROOT)}, capture_output=True, text=True)
+    assert r.returncode == 0, r.stderr[-400:]
+    fresh, kept = json.loads(out.read_text()), json.loads((OUT / "live_peer_strata.json").read_text())
+    assert fresh == kept
+    w = kept["wrong_consensus"]
+    parts = ("holdout_correct_alone", "holdout_alone_gave_the_same_wrong_answer", "holdout_alone_gave_another_wrong_answer")
+    assert sum(w[p]["n"] for p in parts) == w["n"]
+    assert sum(w[p]["ends_on_consensus"] for p in parts) == w["ends_on_consensus"]
+    assert kept["net_harm_cases"] == w["holdout_correct_alone"]["ends_on_consensus"]
+

@@ -1,0 +1,42 @@
+{
+  "n": 600,
+  "peers_disagree": 19,
+  "wrong_consensus": {
+    "n": 49,
+    "ends_on_consensus": 44,
+    "wilson95": [
+      0.7824,
+      0.9556
+    ],
+    "holdout_correct_alone": {
+      "n": 9,
+      "ends_on_consensus": 8
+    },
+    "holdout_alone_gave_the_same_wrong_answer": {
+      "n": 25,
+      "ends_on_consensus": 25
+    },
+    "holdout_alone_gave_another_wrong_answer": {
+      "n": 15,
+      "ends_on_consensus": 11
+    }
+  },
+  "right_consensus": {
+    "n": 532,
+    "ends_on_consensus": 489,
+    "wilson95": [
+      0.8929,
+      0.9394
+    ],
+    "holdout_correct_alone": {
+      "n": 460,
+      "ends_on_consensus": 434
+    },
+    "holdout_wrong_alone": {
+      "n": 72,
+      "ends_on_consensus": 55
+    }
+  },
+  "wrong_vs_right_follow_fisher_pvalue": 0.5865276142525725,
+  "net_harm_cases": 8
+}
