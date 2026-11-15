@@ -82,9 +82,10 @@ def _result_files():
     return out
 
 
-# results subdirectories that are cohorts or arms, not model slugs: n100 (the 100-case blind cohort)
-# and matched (the matched-conditions arm, whose lineage runs sit one level below it)
-NOT_A_LINEAGE = ("n100", "matched")
+# results subdirectories that are cohorts or arms, not model slugs: n100 (the 100-case blind cohort),
+# matched (the matched-conditions arm, whose lineage runs sit one level below it) and live_peer_n600
+# (the Gemini live-peer arm at 600 cases)
+NOT_A_LINEAGE = ("n100", "matched", "live_peer_n600")
 
 
 def _siblings(files):
