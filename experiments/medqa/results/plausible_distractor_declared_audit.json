@@ -5,8 +5,8 @@
   "issue": 419,
   "new_api_calls_this_run": 0,
   "cache": "experiments/medqa/results/plausible_distractor_cache.jsonl",
-  "manifest": "data/medqa_manifest.csv",
-  "manifest_sha256": "0f2076a45455080924f954d31136b815b986fb108d9380beadd4da9b87eaacef",
+  "manifest": "/home/sebasmos/Documents/DATASET/medqa/manifest_test.csv",
+  "manifest_sha256": "6a2ac665b2362185a314a011c6f66f727073b9147adb17435a4bdf713b8f6c54",
   "results_jsonl": "experiments/medqa/results/plausible_distractor.jsonl",
   "committed_summary_untouched": "experiments/medqa/results/plausible_distractor_summary.json",
   "replay_matches_committed": {
@@ -23,12 +23,12 @@
     "n": 103,
     "adoption": {
       "plausible": 0.7379,
-      "implausible": 0.5922
+      "implausible": 0.5825
     },
     "plausible_vs_implausible": {
       "gain": 21,
-      "lose": 6,
-      "pvalue": 0.005925
+      "lose": 5,
+      "pvalue": 0.002494
     }
   },
   "declared_only": {
@@ -52,15 +52,15 @@
     },
     {
       "metric": "adoption.implausible",
-      "current_value": 0.5922,
+      "current_value": 0.5825,
       "declared_only_value": 0.6452,
-      "abs_diff": 0.05300000000000005
+      "abs_diff": 0.06269999999999998
     },
     {
       "metric": "plausible_vs_implausible.pvalue",
-      "current_value": 0.005925,
+      "current_value": 0.002494,
       "declared_only_value": 0.039062,
-      "abs_diff": 0.033137
+      "abs_diff": 0.036567999999999996
     },
     {
       "metric": "plausible_vs_implausible.gain",
@@ -70,11 +70,11 @@
     },
     {
       "metric": "plausible_vs_implausible.lose",
-      "current_value": 6,
+      "current_value": 5,
       "declared_only_value": 1,
-      "abs_diff": 5
+      "abs_diff": 4
     }
   ],
   "conclusion_changes": true,
-  "interpretation": "Declared-only accounting keeps the same significance call at \u03b1=0.05 (p 0.005925 \u2192 0.039062) but widens/shifts the adoption gap by >5pp (0.1457 \u2192 0.2258); 72/103 cases excluded because at least one of the five draws lacked an explicit declaration."
+  "interpretation": "Declared-only accounting keeps the same significance call at \u03b1=0.05 (p 0.002494 \u2192 0.039062) but widens/shifts the adoption gap by >5pp (0.1554 \u2192 0.2258); 72/103 cases excluded because at least one of the five draws lacked an explicit declaration."
 }

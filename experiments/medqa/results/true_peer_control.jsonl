@@ -21,4 +21,4 @@
 {"case_id": "medqa-145", "bare": "Mesangial proliferation on light microscopy", "ground_truth": "Normal light microscopy findings", "wrong_seed": "Subepithelial dense deposits on electron microscopy", "wrong_peer_adopt": 1, "correct_peer_adopt": 0}
 {"case_id": "medqa-149", "bare": "Immunoglobulin- IgG", "ground_truth": "Immunoglobulin- IgM", "wrong_seed": "Immunoglobulin- IgE", "wrong_peer_adopt": 0, "correct_peer_adopt": 1}
 {"case_id": "medqa-72", "bare": "Adding dopamine to his treatment regimen", "ground_truth": "Liver transplantation", "wrong_seed": "Adding lisinopril to his treatment regimen", "wrong_peer_adopt": 1, "correct_peer_adopt": 1}
-{"case_id": "medqa-65", "bare": "Blastic lesions of the lumbar spine", "ground_truth": "Lytic lesions of the lumbar spine", "wrong_seed": "Bulging disc impinging on lumbar spinal nerve", "wrong_peer_adopt": 0, "correct_peer_adopt": 1}
+{"case_id": "medqa-65", "bare": "Narrowing of the lumbar disc space", "ground_truth": "Lytic lesions of the lumbar spine", "wrong_seed": "Blastic lesions of the lumbar spine", "wrong_peer_adopt": 1, "correct_peer_adopt": 1}
