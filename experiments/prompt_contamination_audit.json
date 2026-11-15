@@ -85,12 +85,12 @@
         {
           "case_id": "medqa-65",
           "holdout_last_adopt": 1,
-          "holdout_first_adopt": 0
+          "holdout_first_adopt": 1
         }
       ],
       "committed": {
         "holdout_last": 0.45,
-        "holdout_first": 0.1333
+        "holdout_first": 0.1417
       },
       "excluded_view": {
         "holdout_last": 0.4492,
