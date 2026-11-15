@@ -82,7 +82,8 @@ def test_the_default_model_path_is_unchanged(runner):
 
 
 @pytest.mark.parametrize("model, n_survive", [("openai/gpt-oss-120b", 4), ("openai/gpt-oss-20b", 4),
-                                              ("Qwen/Qwen2.5-VL-72B-Instruct", 30)])
+                                              ("Qwen/Qwen2.5-VL-72B-Instruct", 30),
+                                              ("nvidia/nemotron-3-super-120b-a12b", 18)])
 def test_cross_lineage_report_reproduces_the_committed_report(tmp_path, model, n_survive):
     """The family and repeat-prompt integers in a lineage PR body come from a committed script, not a
     hand count; one pin per lineage that has committed a report."""

@@ -84,14 +84,14 @@
       "survives_holm": true
     },
     {
-      "label": "pre-emptive referee: none vs soft warning",
+      "label": "paraphrase robustness: template t0 vs t2",
       "lane": "text",
-      "pvalue": 0.0,
+      "pvalue": 1e-06,
       "survives_bh": true,
       "survives_holm": true
     },
     {
-      "label": "paraphrase robustness: template t0 vs t2",
+      "label": "pre-emptive referee: none vs soft warning",
       "lane": "text",
       "pvalue": 1e-06,
       "survives_bh": true,
