@@ -1,0 +1,24 @@
+{
+  "family_size": 1,
+  "correction": "BH and Holm at alpha=0.05 over the committee-structure headline family",
+  "contrasts": [
+    {
+      "n": 13,
+      "rate_a": 0.1538,
+      "rate_b": 0.2308,
+      "delta": 0.0769,
+      "delta_ci95": [
+        0.0,
+        0.2308
+      ],
+      "mcnemar_gain": 1,
+      "mcnemar_lose": 0,
+      "pvalue": 1.0,
+      "label": "unanimity: unanimous vs with-dissenter",
+      "survives_bh": false,
+      "survives_holm": false
+    }
+  ],
+  "read": "One consistent multiple-comparison scope over the committee-structure battery, each headline contrast reported as an adoption-rate delta with a paired bootstrap 95% CI and a paired McNemar p, then BH- and Holm-corrected together. Findings that survive Holm (the strictest) are the robust ones to foreground; those surviving only BH or neither are real but correction-sensitive and should be stated as such.",
+  "lineage_note": "Recomputed from the committed nemotron-3-super-120b-a12b-fp8-local rows in the model-scoped results directory. The prose fields (read, notes, caveats) were written for the Gemini run and are reproduced verbatim; their qualitative characterisations and any literal figures they quote describe that run, not this one. The numeric fields are this lineage's own."
+}
