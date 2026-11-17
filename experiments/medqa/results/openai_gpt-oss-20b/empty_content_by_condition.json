@@ -1,175 +1,259 @@
 {
   "model": "openai/gpt-oss-20b",
   "new_api_calls_this_run": 0,
-  "definition": "A completion is bare when its prompt is the plain MCQ with no board or preamble; everything else is seeded. Empty means the stored completion is the empty string.",
+  "definition": "A completion is bare when its prompt is exactly the plain MCQ rendering of a manifest case (stem, options, answer instruction), with no preamble and no board; everything else is seeded. Empty means the stored completion is the empty string. Counts are completions requested by the runners, so a repeated prompt is counted each time.",
   "overall": {
     "bare": {
-      "calls": 1330,
-      "empty": 17,
-      "rate": 0.0128
+      "calls": 2582,
+      "empty": 42,
+      "rate": 0.0163
     },
     "seeded": {
-      "calls": 5100,
-      "empty": 79,
-      "rate": 0.0155
+      "calls": 6757,
+      "empty": 88,
+      "rate": 0.013
     }
   },
-  "fisher_bare_vs_seeded": 0.527116,
+  "fisher_bare_vs_seeded": 0.236563,
   "per_runner": {
     "text_cue_types": {
       "bare": {
-        "calls": 108,
+        "calls": 120,
         "empty": 1,
-        "rate": 0.0093
+        "rate": 0.0083
       },
       "seeded": {
-        "calls": 492,
+        "calls": 480,
         "empty": 3,
-        "rate": 0.0061
+        "rate": 0.0063
       }
     },
     "dose_response": {
       "bare": {
-        "calls": 108,
+        "calls": 120,
         "empty": 1,
-        "rate": 0.0093
+        "rate": 0.0083
       },
       "seeded": {
-        "calls": 492,
+        "calls": 480,
         "empty": 7,
-        "rate": 0.0142
+        "rate": 0.0146
       }
     },
     "authority_ladder": {
       "bare": {
-        "calls": 52,
+        "calls": 60,
         "empty": 1,
-        "rate": 0.0192
+        "rate": 0.0167
       },
       "seeded": {
-        "calls": 248,
+        "calls": 240,
         "empty": 1,
-        "rate": 0.004
+        "rate": 0.0042
       }
     },
     "test_awareness": {
       "bare": {
-        "calls": 108,
+        "calls": 120,
         "empty": 1,
-        "rate": 0.0093
+        "rate": 0.0083
       },
       "seeded": {
-        "calls": 372,
+        "calls": 360,
         "empty": 6,
-        "rate": 0.0161
+        "rate": 0.0167
       }
     },
     "committee_size_sweep": {
       "bare": {
-        "calls": 108,
-        "empty": 1,
-        "rate": 0.0093
+        "calls": 120,
+        "empty": 2,
+        "rate": 0.0167
       },
       "seeded": {
-        "calls": 492,
-        "empty": 8,
-        "rate": 0.0163
+        "calls": 480,
+        "empty": 7,
+        "rate": 0.0146
       }
     },
     "plausible_distractor": {
       "bare": {
-        "calls": 108,
+        "calls": 120,
         "empty": 0,
         "rate": 0.0
       },
       "seeded": {
-        "calls": 442,
+        "calls": 430,
         "empty": 23,
-        "rate": 0.052
+        "rate": 0.0535
       }
     },
     "attributed_tier": {
       "bare": {
-        "calls": 108,
+        "calls": 120,
         "empty": 1,
-        "rate": 0.0093
+        "rate": 0.0083
       },
       "seeded": {
-        "calls": 492,
+        "calls": 480,
         "empty": 10,
-        "rate": 0.0203
+        "rate": 0.0208
       }
     },
     "deliberation_framing": {
       "bare": {
-        "calls": 108,
+        "calls": 120,
         "empty": 1,
-        "rate": 0.0093
+        "rate": 0.0083
       },
       "seeded": {
-        "calls": 492,
+        "calls": 480,
         "empty": 7,
-        "rate": 0.0142
+        "rate": 0.0146
       }
     },
     "rationale_validity": {
       "bare": {
-        "calls": 108,
+        "calls": 120,
         "empty": 2,
-        "rate": 0.0185
+        "rate": 0.0167
       },
       "seeded": {
-        "calls": 372,
+        "calls": 360,
         "empty": 3,
-        "rate": 0.0081
+        "rate": 0.0083
       }
     },
     "seed_confidence": {
       "bare": {
-        "calls": 90,
+        "calls": 100,
         "empty": 1,
-        "rate": 0.0111
+        "rate": 0.01
       },
       "seeded": {
-        "calls": 210,
+        "calls": 200,
         "empty": 1,
-        "rate": 0.0048
+        "rate": 0.005
       }
     },
     "paraphrase_robustness": {
       "bare": {
-        "calls": 108,
+        "calls": 120,
         "empty": 2,
-        "rate": 0.0185
+        "rate": 0.0167
       },
       "seeded": {
-        "calls": 372,
+        "calls": 360,
         "empty": 5,
-        "rate": 0.0134
+        "rate": 0.0139
       }
     },
     "contamination_cascade": {
       "bare": {
-        "calls": 108,
+        "calls": 120,
         "empty": 3,
-        "rate": 0.0278
+        "rate": 0.025
       },
       "seeded": {
-        "calls": 252,
+        "calls": 240,
         "empty": 2,
-        "rate": 0.0079
+        "rate": 0.0083
       }
     },
     "leader_as_auditor": {
       "bare": {
-        "calls": 108,
+        "calls": 120,
         "empty": 2,
-        "rate": 0.0185
+        "rate": 0.0167
       },
       "seeded": {
-        "calls": 372,
+        "calls": 360,
         "empty": 3,
-        "rate": 0.0081
+        "rate": 0.0083
+      }
+    },
+    "hierarchy_dominance": {
+      "bare": {
+        "calls": 240,
+        "empty": 12,
+        "rate": 0.05
+      },
+      "seeded": {
+        "calls": 480,
+        "empty": 1,
+        "rate": 0.0021
+      }
+    },
+    "hierarchy_temp": {
+      "bare": {
+        "calls": 240,
+        "empty": 0,
+        "rate": 0.0
+      },
+      "seeded": {
+        "calls": 480,
+        "empty": 0,
+        "rate": 0.0
+      }
+    },
+    "majority_pressure": {
+      "bare": {
+        "calls": 25,
+        "empty": 0,
+        "rate": 0.0
+      },
+      "seeded": {
+        "calls": 50,
+        "empty": 1,
+        "rate": 0.02
+      }
+    },
+    "orchestrator_failure": {
+      "bare": {
+        "calls": 147,
+        "empty": 2,
+        "rate": 0.0136
+      },
+      "seeded": {
+        "calls": 495,
+        "empty": 3,
+        "rate": 0.0061
+      }
+    },
+    "seed_timing": {
+      "bare": {
+        "calls": 240,
+        "empty": 6,
+        "rate": 0.025
+      },
+      "seeded": {
+        "calls": 240,
+        "empty": 3,
+        "rate": 0.0125
+      }
+    },
+    "true_peer_control": {
+      "bare": {
+        "calls": 60,
+        "empty": 2,
+        "rate": 0.0333
+      },
+      "seeded": {
+        "calls": 22,
+        "empty": 0,
+        "rate": 0.0
+      }
+    },
+    "unanimity_break": {
+      "bare": {
+        "calls": 150,
+        "empty": 2,
+        "rate": 0.0133
+      },
+      "seeded": {
+        "calls": 40,
+        "empty": 2,
+        "rate": 0.05
       }
     }
   },
@@ -195,5 +279,18 @@
     "true_peer_control": "replayed",
     "unanimity_break": "replayed"
   },
-  "read": "Empty answers on bare prompts 17/1330 (0.0128) against seeded prompts 79/5100 (0.0155), Fisher p=0.5271. A seeded rate above the bare one means the committed adoption rates are biased downward in the seeded conditions by the no-answer rows."
+  "not_replayed": {
+    "clean_a": "needs --solo-records (the hard-case arguments); not replayed with the wrong flags",
+    "push_c": "needs --solo-records (the hard-case arguments); not replayed with the wrong flags",
+    "break_it": "needs --solo-records (the hard-case arguments); not replayed with the wrong flags",
+    "scale_c": "runs at its own n; not in the default list, can be added with --runners",
+    "live_peer_organic": "not in the default list, can be added with --runners",
+    "pre_emptive_referee": "not in the default list, can be added with --runners",
+    "super_additivity": "not in the default list, can be added with --runners",
+    "temperature_sensitivity": "sampled completions keyed on temperature and draw, through its own cache",
+    "reasoning_effort_sensitivity": "completions keyed on reasoning effort, through its own cache",
+    "deliberation_channel": "its own store, keyed on condition; not instrumented",
+    "reproduce": "the base cascade, through its own backend cache; not instrumented"
+  },
+  "read": "Empty answers on bare prompts 42/2582 (0.0163) against seeded prompts 88/6757 (0.013), Fisher p=0.2366. A seeded rate above the bare one means the committed adoption rates are biased downward in the seeded conditions by the no-answer rows."
 }
