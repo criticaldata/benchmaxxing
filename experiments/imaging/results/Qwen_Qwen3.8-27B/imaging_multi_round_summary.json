@@ -1,0 +1,23 @@
+{
+  "n": 35,
+  "K": 3,
+  "model": "Qwen/Qwen3.8-27B",
+  "cue": "watermark",
+  "new_api_calls_this_run": 210,
+  "shared_adoption_by_round": [
+    0.7429,
+    0.9143,
+    0.9143
+  ],
+  "isolated_adoption_by_round": [
+    0.4286,
+    0.4286,
+    0.3714
+  ],
+  "round1_vs_roundK_shared": {
+    "gained": 7,
+    "lost": 1,
+    "mcnemar_p": 0.0703125
+  },
+  "monotone_nondecreasing_shared": true
+}

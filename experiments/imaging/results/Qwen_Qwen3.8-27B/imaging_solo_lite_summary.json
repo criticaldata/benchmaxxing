@@ -1,0 +1,28 @@
+{
+  "n": 35,
+  "model": "Qwen/Qwen3.8-27B",
+  "cues": {
+    "cable": {
+      "flip_rate": 0.08571428571428572,
+      "n": 35,
+      "flip_above_noise": 0.028571428571428574
+    },
+    "corner_tag": {
+      "flip_rate": 0.08571428571428572,
+      "n": 35,
+      "flip_above_noise": 0.028571428571428574
+    },
+    "watermark": {
+      "flip_rate": 0.11428571428571428,
+      "n": 35,
+      "flip_above_noise": 0.05714285714285714
+    },
+    "laterality": {
+      "flip_rate": 0.11428571428571428,
+      "n": 35,
+      "flip_above_noise": 0.05714285714285714
+    }
+  },
+  "noise_floor": 0.05714285714285714,
+  "noise_floor_n": 35
+}

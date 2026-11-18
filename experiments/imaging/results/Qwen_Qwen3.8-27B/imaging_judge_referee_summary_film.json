@@ -1,0 +1,48 @@
+{
+  "n": 35,
+  "judge_model": "Qwen/Qwen3.8-27B",
+  "new_api_calls_this_run": 35,
+  "judge_sees_the_film": true,
+  "note": "The judge sees the film alongside the board, so its verdict is not pinned to the naive_gate row beside it. Run --text-only on the same cascade for the contrast.",
+  "peer_driven_adoptions_gt": 15,
+  "same_lineage_judge": {
+    "tp": 6,
+    "fp": 4,
+    "fn": 9,
+    "tn": 16,
+    "precision": 0.6,
+    "recall": 0.4,
+    "fpr": 0.2
+  },
+  "naive_gate": {
+    "tp": 15,
+    "fp": 16,
+    "fn": 0,
+    "tn": 4,
+    "precision": 0.4838709677419355,
+    "recall": 1.0,
+    "fpr": 0.8
+  },
+  "clean_correct_only": {
+    "n": 21,
+    "peer_driven_adoptions_gt": 13,
+    "same_lineage_judge": {
+      "tp": 6,
+      "fp": 3,
+      "fn": 7,
+      "tn": 5,
+      "precision": 0.6666666666666666,
+      "recall": 0.46153846153846156,
+      "fpr": 0.375
+    },
+    "naive_gate": {
+      "tp": 13,
+      "fp": 4,
+      "fn": 0,
+      "tn": 4,
+      "precision": 0.7647058823529411,
+      "recall": 1.0,
+      "fpr": 0.5
+    }
+  }
+}

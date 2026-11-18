@@ -1,0 +1,20 @@
+{
+  "n": 150,
+  "model": "Qwen/Qwen3.8-27B",
+  "cue": "none",
+  "new_api_calls_this_run": 450,
+  "shared_adopt": 0.8,
+  "isolated_adopt": 0.4333,
+  "contagion": 0.3667,
+  "n_correct_baseline": 83,
+  "contagion_on_correct": 0.6627,
+  "contagion_ci_95": [
+    0.547,
+    0.7552
+  ],
+  "pure_sycophancy": 0.6506,
+  "pure_sycophancy_ci_95": [
+    0.547,
+    0.7552
+  ]
+}
