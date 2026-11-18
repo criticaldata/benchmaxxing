@@ -1,0 +1,41 @@
+{
+  "repeats": 5,
+  "n": 35,
+  "reads_per_case": 6,
+  "cases_with_any_disagreement": {
+    "n": 2,
+    "rate": 0.0571,
+    "wilson95": [
+      0.0158,
+      0.1861
+    ]
+  },
+  "mean_pairwise_disagreement": 0.0305,
+  "flip_vs_baseline_per_read": [
+    0.0571,
+    0.0571,
+    0.0857,
+    0.1143,
+    0.1143,
+    0.0857
+  ],
+  "flip_vs_baseline_band": [
+    0.0571,
+    0.1143
+  ],
+  "decoy_per_read": [
+    0.0571,
+    0.0571,
+    0.0857,
+    0.1143,
+    0.1143,
+    0.0857
+  ],
+  "decoy_band": [
+    0.0571,
+    0.1143
+  ],
+  "note": "read 0 is the main control run; reads 1.. are the same prompt re-asked at the same settings with a salted cache key, so every read is a real call and replays keyless",
+  "model": "Qwen/Qwen3.8-27B",
+  "new_api_calls_this_run": 210
+}

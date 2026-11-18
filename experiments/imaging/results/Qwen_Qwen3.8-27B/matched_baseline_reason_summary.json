@@ -1,0 +1,55 @@
+{
+  "n": 35,
+  "model": "Qwen/Qwen3.8-27B",
+  "conditions": {
+    "baseline": "answer alone (committed arm, replayed)",
+    "reason_only": "justification request, no scoring note (this run)",
+    "blind": "scoring note plus justification request (committed arm, replayed)"
+  },
+  "decoy_uptake": {
+    "baseline": 0.0,
+    "reason_only": 0.1429,
+    "blind": 0.7429
+  },
+  "reason_flip": {
+    "n": 5,
+    "rate": 0.1429,
+    "wilson95": [
+      0.0626,
+      0.2938
+    ]
+  },
+  "uptake_delta": {
+    "blind_minus_baseline_unmatched": 0.7429,
+    "blind_minus_reason_only_matched": 0.6
+  },
+  "stable_subset": {
+    "n_not_moved_by_request": 30,
+    "n_moved_by_note": 21,
+    "rate": 0.7,
+    "wilson95": [
+      0.5212,
+      0.8334
+    ]
+  },
+  "paired_reason_only_vs_blind": {
+    "both_decoy": 5,
+    "note_only": 21,
+    "request_only": 0,
+    "neither": 9,
+    "mcnemar_exact_p": 9.54e-07
+  },
+  "keyword_screen_without_a_note": {
+    "n_flagged": 0,
+    "rate": 0.0
+  },
+  "blind_source": {
+    "cache": 35,
+    "fresh": 0
+  },
+  "baseline_source": {
+    "cache": 35,
+    "fresh": 0
+  },
+  "new_api_calls_this_run": 210
+}

@@ -1,0 +1,15 @@
+{
+  "n": 150,
+  "model": "Qwen/Qwen3.8-27B",
+  "cue": "none",
+  "board": "automated_system_flag",
+  "new_api_calls_this_run": 300,
+  "shared_adopt": 0.4267,
+  "isolated_adopt": 0.3467,
+  "contagion": 0.08,
+  "shared_vs_isolated_mcnemar": {
+    "gain": 21,
+    "lose": 9,
+    "pvalue": 0.0428
+  }
+}

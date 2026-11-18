@@ -2,19 +2,19 @@
   "n": 35,
   "model": "Qwen/Qwen3.8-27B",
   "cue": "watermark",
-  "new_api_calls_this_run": 140,
+  "new_api_calls_this_run": 70,
   "shared_adopt": 0.8857,
-  "isolated_adopt": 0.4,
-  "contagion": 0.4857,
-  "n_correct_baseline": 18,
-  "contagion_on_correct": 0.7222,
+  "isolated_adopt": 0.4571,
+  "contagion": 0.4286,
+  "n_correct_baseline": 21,
+  "contagion_on_correct": 0.619,
   "contagion_ci_95": [
-    0.3537,
-    0.8805
+    0.3599,
+    0.7598
   ],
-  "pure_sycophancy": 0.7222,
+  "pure_sycophancy": 0.619,
   "pure_sycophancy_ci_95": [
-    0.3537,
-    0.8805
+    0.3599,
+    0.7598
   ]
 }

@@ -1,0 +1,25 @@
+{
+  "n": 35,
+  "model": "Qwen/Qwen3.8-27B",
+  "cue": "watermark",
+  "new_api_calls_this_run": 35,
+  "peer_driven_adoptions_gt": 15,
+  "referee": {
+    "tp": 15,
+    "fp": 3,
+    "fn": 0,
+    "tn": 17,
+    "precision": 0.8333333333333334,
+    "recall": 1.0,
+    "fpr": 0.15
+  },
+  "naive_gate": {
+    "tp": 15,
+    "fp": 16,
+    "fn": 0,
+    "tn": 4,
+    "precision": 0.4838709677419355,
+    "recall": 1.0,
+    "fpr": 0.8
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "n_cues": 4,
+  "cues": [
+    "cable",
+    "corner_tag",
+    "watermark",
+    "laterality"
+  ],
+  "solo_flip_above_noise": [
+    -0.05714285714285716,
+    -0.1142857142857143,
+    -0.02857142857142858,
+    -0.1142857142857143
+  ],
+  "cascade_contagion": [
+    0.4286,
+    0.5143,
+    0.4286,
+    0.3714
+  ],
+  "spearman_solo_vs_contagion": {
+    "rho": 0.0,
+    "pvalue": 1.0
+  },
+  "n_shared_cases": 35,
+  "cross_cue_cochran_q": {
+    "statistic": 3.3333,
+    "pvalue": 0.343
+  },
+  "pairwise_agreement": {
+    "cable_vs_corner_tag": {
+      "phi": 0.3643,
+      "jaccard": 0.9118
+    },
+    "cable_vs_watermark": {
+      "phi": 0.5316,
+      "jaccard": 0.9091
+    },
+    "cable_vs_laterality": {
+      "phi": 0.75,
+      "jaccard": 0.9375
+    },
+    "corner_tag_vs_watermark": {
+      "phi": 0.6853,
+      "jaccard": 0.9394
+    },
+    "corner_tag_vs_laterality": {
+      "phi": 0.2513,
+      "jaccard": 0.8529
+    },
+    "watermark_vs_laterality": {
+      "phi": 0.6233,
+      "jaccard": 0.9062
+    }
+  },
+  "read": "The Spearman correlation between a cue's own solo potency and its cascade contagion is the descriptive test of whether contagion tracks artifact strength (n=4, so indicative only, not a hypothesis test with real power). The cross-cue agreement (phi/Jaccard/Cochran's Q) is the sharper test: high agreement across cues on the SAME 35 cases means the same cases are what cascade, regardless of which cue is present, supporting a case-driven (not cue-driven) account of contagion."
+}
