@@ -1,0 +1,450 @@
+{"k": "meta/llama-3.2-11b-vision-instruct:c9f2da1cfb6e47e6ec895ebe3d2940a00bb935c47f5049c9b41f02119a49847e", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:bfe8f6d52ed742a004caf3963ad729a4d8dad428c8aecadb28f5f2c1de88fa13", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:3be2dc6ba58a5af2d93ed5718634033377ddbca410bd271d41934819c14a317a", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:1e24816d535f93c8f12bf928494f0c83aed46243799486eec10b0c151e2962ce", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:b1cd0974c68fb8ad5dd9ff1d9a86dd7c13be7782fd534fd2c8383413bf3ca3c6", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:701725811dc034635c5bcfbcfd66c4c390d52fb9e3cdbd0e967ab5ac54a9427c", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:882efadd00d47e35db17a134c6af477a9b6229cdbd1e67b6f5f89af91207d8c9", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:7e1543489bbe412ccf1f84491cc73fc56e4fe22cba7091047f7b49bdf53a939b", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:376b5ad45fd282b0d11bfc5c1fa57f09fa0bf63188f7a0a252050792b3ad5d3b", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:a2f0a31e60dac8c5aa4f51fd06b08486af9a6d7601936c42d73bd6e7c1ec69a0", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:eb6b82057e95880af17b235b964db30b37726b018c1248c1b31af38f4154f3a8", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:2c8df74779c0ac1731ef71bda608dec4c7da98e1066ad6c7d2e8ea22812284b7", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:692089b9cbd54a4990b3db844532f794145c801de3cf4d20cc4a99f799e2271d", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:88ba6e67f8272f78f69075d0c72ec4e4b0b599e4b25675a9b3ec9afb4632fbf5", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:014436a310e86c67e5050b06edcb20f7ae21a83e04d314e83201b43a83904366", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:97f633603d8f22d12e051c152fa3aa8400403f8183afc96de84081ddf313b912", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:9218136d6fc2f54dd73adec3478a53a0468e9845054660bf9da087c14fb7ea79", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:094fb9760b566946434cf3ca42199ee322e115a061367d94d2b213b236522fea", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:b003878b6146ab5b17efe8b933217a68f44fa7f46957fc1753e916c9c14f4290", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:f882a20261791d1751a7b7435af8cabe432900f65387b3bbc045eb649101facb", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:98b6210e34791d25d422a1888f491886d40a4fe6c5f92bb37778747b48f8bb31", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:2af90e76f7524a13c89295ed1debdc43a60e054fa0917d64a4cde8ef886dc341", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:c89637651b661163d426bfe9522e1511458733fa11bc2f327b7a28890a61deef", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:7d1f7de4395007c537311551cdbb5c3618dd8f10433b5d375239f4bce9e636fd", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:14086aa2b6b4bef9afd30dc5a8fd0d8653e3871ae5c225d8e9f2b498bfe823bb", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:e7af64d6cf0bd3a681190d1e9d53b1a045554db8b76f267e17412da182fbb9a5", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:ad341e01c383edba7a4aed1d7742843883788eebd2c3016181a6d336afa55a5f", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:99deacb6507645abffb08f26ba2c4ccb720200f42b92ef5ba42b3afa828b26a8", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:32b8ea0fba87949d0b40cbb34ef82692b9452508935cc341db3d4f9631134e38", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:7798e1ce6b401d3ce84893918e22e1260eab18c2f8f8fbde2888ab7108340d05", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:8e96a67da681347fde59e195506e47e1b788ef3beff50c77cbaed24466abf23d", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:117c25d2ff8c3cf0bf99b07280850bc81bab0007cc116a6e3b9b7948f6435edc", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:66dc3a0bc7eb8a6317c37bfa415256fc94dbab12709975ac3ca53dbd1ef3c313", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:4cc0f0bd7b9ebb1e3c313b7784f1bc2c47e45ae9386c9bd2ae76f0533c0409da", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:9e6b88601c3f75e64df047cc0b9f9d33fe578d57017c637563ba806465a8362f", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:f90ad0348b85d9748bcf667b45adb0da0e04875fe79a80a40a01d53fc9e05214", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:4b8e35013e21f566719026e244123bae523a42c3cb6b881ae4852a5f96675412", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:6a5ab16df91aeba3e6be179d26904a8057d1ae6165b0446ce197eb6682fe45fa", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:3ac0abdc373db0c3c21b0d7130a5de1c0b5023484f58bfee2d8ea260fd4004ab", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:5ade583a0c9a6ad6ed925fec9ea9507fc22c15ff4a1741be592acd8f95c48d2b", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:956c5d40d8991528741612256915910885a521aebae162ed2d1f9792cc2f4389", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:017627fe471053eb0605b94ed124b332abd09c2e058dc7c74c85e7aa67ad54f2", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:c997bdbf6d7680865823ad8064e8157d1526e94a39035ff615cee86d082c41dc", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:796ee98d05f9fbe280f616be0a4877b4a2aaa04d64d4d4ad23986c7ca72bc040", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:1d2cfc16cdd6cd307c7e01d1f0498ccb37a80b66355420d8b5c0412f414d5b2f", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:657323bbfb84a319289aa73ffc95cb65791bc66947a15770a37bb0c5b9573fcf", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:3c02e79daba207b4a4863cddc409a20734be89b5ec1f9ae754d72dc7d34f1399", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:c7af97ee2783d5f6763725707e17fec22a0707c6b6e54cd58fc1f44b13116f90", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:801db75825aca7174c145a771e330953dccecb3ffec6f849098616f0b08f3234", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:e8340b592d620c70eb78e065a1b8f3fccd9a4ebaca0fd32a162c3371fa7ba42f", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:c61174ae623928e51f65405fe28c2db89ca5883760b3a0900951d8ee3c168275", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:6801cd17451b1ae94ba5b46a7a7286b5aba01e39a9769eafa7a3d63039f5f0f3", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:607d459eed04bc4270ef9adc440543199b969d2cdcdd2058782522660203e27a", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:812a1143d3e6ebc58401bb5dc757563a7bd5692b51fb190f31929551a2c66810", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:b981168732fb0e5f292c4c7d5178494e27a50051b2e65fec86913abec1a14c1c", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:beaea6fded0bf319282794ae1fb4aa93bdcbe175a70289bc40d44700f5360ea0", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:375d89757544ccd56ca01f70fe00e0b766cc03cb4c76b2f1ea21799b17bd5ad9", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:6b4605992042ec87572ca19830f512dfa38335ee735f5533a7f9ed7addb28b80", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:f861f9c483d3023582d4f7dd3b4d1ae4a94909ad7eb00e73190c17d5d73b6413", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:369e9c9174ff0838aad9668a51d65171b133f35721fff2db883abd8dc314eb54", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:2601c2af4352e03b77159d1db65dc601f2c33840fa9226b3ef3bab767a393c44", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:585d9019dbcd7fbfc12ae6ee5202451f96ef04add71737b1ac40dc187b8d0c9d", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:1bb01e73eecd65a8e4bf2f4177e4cea71fb782bd7bf5380c6f98a696a3ebf54c", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:a37fd42bc5e09298cd33f941e93ad70636217a1a9928ba603ce209fb0580dddd", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:323015a4e453bc343d266e842d6c5ae251a42a2369aa7c02c8b52a17fcbdf833", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:c070e1612c3232763ecaafc9cd088135fc58ed1b073fbae6b3dbd4ca758ac29d", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:0646a60e21225c23273da720fdc8e3fcf2720b58e9bd8ae72176f4d1f29fd64e", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:6e173be4c56ab9d61768013ab710284e21754ca7f81e55bb7cb77c6d0b4da654", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:f7153f578046d98a0bcc72ea4ae13c9e8c45af579013bb37fbaa048346aa1503", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:ead074f72dd6f97a551134497df2a588593568c22aceb77067dd035cfb7477d4", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:6d9a71d811b2467ccb3fb4204d7592ac8f2cefb5308bd45526e4f9aa618f3e09", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:643d3a9b3045c8def343e057ded41c2d3e8874a74ca69eee6d67538f5e6de95f", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:784099bddcf907f1d29c396276d19d0ab55dcf5f6c75bb4ca45b23f53a0bf6b1", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:8b26eefb6d76f1e3915bd3370c2294c293acf54bc47c475382fa5d062bca3c06", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:bc33035e143e0db14987773f810936aaefb446d51034530446490bbd0ac0e1db", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:144d18930835b18f315766fed2dfeb7cf4c25d86e7c438a65ce5e43c07ed6798", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:bcfd41896f045746f798ecfe8dfddaa9d648909c0286e31742d24f3d36a42eb1", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:70d1c572a32dfeeba04c1825bee81717d5f740a50b169650ae1219ecce229270", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:d255bc235583a431f05feebc39479421e4438b53363fd0de44033c274c143c74", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:9aa8701529a3d4b3bc59c3d308a1dce48e72261599ace790e582dbea31971e02", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:60e690ebc170cd7abc643c3bac4ae52c5e434b8ff02747c320dd94dede1ad158", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:40cfeb31f68fab11309073c30c47ba7b40a4ec89418e1aa2f7d8de06510cf59f", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:75cab32f61cb5a2bd902bd0b4554fcb16bbb8175644a18374d144d28512b9b1a", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:90975532e6e5e242366780a7761b53ec933a09a76c20169b2c68de989a9f15d3", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:c3ef1ea7b177b5d656fb854f010627bbd74770deb7816bf78a4cb3049acd708d", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:31d3a99ff1f83bfde148163af38faf7206fc5b64d9fbf66e02fc451d00a7b1d1", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:f92b25a50c8942b6981a9e2835981a3e43ac4bc0ef3aa39bb24f1ec7a5cfcb99", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:f1adedfe3f5dfd6cc82f1c337776d6fccbc6ab6c90a9b51274d08d095beea246", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:c53ebad0e532e01c1dd8a1063c64e9d3fbe5dcc281f9155c89d1dfae910aafcc", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:aa0e98262ca750d22668f55d769199ebdc44b9d2f24213c97f1231fc2bf64c3c", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:d4a94bb3afdf9d9832beee90cc5c72061391ef7c08fe6d92a1e46c843cd6187d", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:dfe5b3ef4b1ca99f55172c00ff5263d188f2903f569439d0737e2088195e23fd", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:baaed661502be0ef5f0e6d366289fc3ef9e901a8e73085e23465b2e278ec5af4", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:67811b76dfaeab450ec8bb32a0fe89a389da7733e7bd264951c584fbe524604e", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:501b79afbc9fe1b7d889db9f54bb8e02dfa5dd4f19e8f553ba99d9252e7c4f06", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:229c8c37987aae3cdaf0188902441c58d50efb7e8aad006d667148b9a55ea2eb", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:93f5c997732298cae9f185ff00db2e69b45ba70984e651b133115822fe4e8a72", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:de08d904cf76c8178dc619d5c02db6ddecda21531b8c9a52ef26435980fe76d7", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:99b7839caa955e513dfb252115b2276d028dfa0100b3fa8f0cf228f33be31f69", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:f9b68833174794b820aec378750a5dbdf3cc2231a6854d2a33cfda9ee41d34e3", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:4dea742b860c23e9bb1495a501f01c8cb07b0dec1f978c2ba2b319f9ddbf1a9a", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:ad4bef2b784c7662078b1cdfd8cf235a063db2e94a2ecea927b96fba8f7c4c3b", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:d39f234b4fb44ceb66f2a9bb46e4b407e08ba4ee2da57650da19b816d28e3d8b", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:c0294459fd2f655457682305369c53f27a1dc3fc6bbe7d1a509a0a0220b9192f", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:b406cd020b04dada298bb96a7ff11da3c14c808c29cc98c194bec19546cedb93", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:cb40a1e5380dc773e4b442f3e400010b4fbd3859a6ba22b595a79a663eb6a11b", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:71dd535bf5f0e891bab50af5627a5473ae3dc272e58509d51762faca14246a8f", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:fde8d182959cf3b6b18fc2c4f5a1b1c757e2e13e3610c80650c5e7d417bc2220", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:c0a83cd64e98e371d07a07290b7c58611ed30050fd27e0af6109644ddf91a863", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:0ddec93d20917cb69a99342abfc212a14b22a7f436b108c5489bedac1dc1d579", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:33c88bdf85ec64f5a1f957a60c8c6d66d03215c03d24c6879861ab2047b2d2a1", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:6544603926f1a14359f2bfa3cdd4299238d1eb9a0bf87dd293b57dc608aa33a0", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:0cbbe473bfe58dbfda452fdcbef2b0f724ae17282dfb78994c8af91eff66c47c", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:14e1a008abb1daf73633df72d9ed466d2d9b8e996601a427d082e74d1d193d0c", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:4cbc56757089ef3e26e808af8e2cc16862f064065855ec5510964faa3f78078f", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:2eb59a54446690ab99c99543bdbc38606b016c1cbf91e1fd73d1f13266a2d306", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:9894705ad2b57a749ee7bec3060a34028d92598e715edee445f7599c43fcb09b", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:0e1eacbaaf5cca51a1f98f3806d899f15ccc4f729d65dda0fe744644cbf816dd", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:88caf6851ed8e3cc3a76d857d5ee2f605c964e0336e264b27c7a74ab1c6c7aed", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:9d5e7c9e570993b38032bcff2f39988fde858e2c03a01dc9bf934356beaafa35", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:0809999ca342c88d35845ec538764259c711133eaa758bc6eda4a88c2631b453", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:1960f67749af8e604ed2c9bcbfedb1fb4d169ee4196b5b3b66b4ded92c5517d1", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:6789b9dda85498114ed8ff58fb83237fe9fc8de4bd01b0974490dd4cf5ca4add", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:bdb14432c37f00da504a9793c91fa6c75f199d303d35e9c3a61b2275c4bbecc5", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:b65099f93307ad3b31af14bcc9f8561fff5c2ca2de43e5bc13c16599acbf24e2", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:c66abdaef1f3d2e58300967047d3930fc642e8fe7ae442f4ef2a17b41ab3a4c0", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:214e3a564ad6a14a09b2a7089aa9c3e6eeb64ddd153b96febb2229434d978156", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:47ca336285d9c9260513bcac01700c60f056323e7949300b285de90dbfa14a0e", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:58bb230ad6261498d87bd0b8cf3adc91b20215cc4a2317e0b34b674691ab6263", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:3d939cf99249dfc4308ccad86dea808973908215ff5e8a605f99c1fe3da65e20", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:2fb7f9db67291098ae2e8c94f7800b512529a82ed3dda8d576307b33ba16e75d", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:1394f525e48211526db9d5b11ebc182ebbbc365cb70031dd691cfde6f8ea8999", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:122d6dad28842de09d4a857a88fbd34fee0dc32457ab459d53f589a29170fddf", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:55de4ac374a844747d5d439507a5bbf6a34fc63442f40932c7f95d0ea3c1e5e3", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:30f08b3ff3fd0b62908c4449063c434fa600e14cc24ecc30dcc482ba60431eef", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:78cf8b807613fa19fd62ab9677279fe44a87839427ec4bd4a578f2309128ef8c", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:16571d94ee34306d3c18196f56d19f86906751dcfa59838e914f0b45f019f256", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:3821eb3b31c226cff77a4ace6d60d52a5e557e2fc30a5350ec948ae307ddc6e3", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:bb957a3ac82e26301774262909251d5bac4295b3029ec0c1fbaca3cb2f075292", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:47985920204e0a52c05a33a54a92a02270cc0acd91ddaebc982bc07ae2bd7d57", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:13ecc0bfec77de9e91ffe27ac19d25ed82ff3735edd8840094da9e8b3f2ada7a", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:2e46ca4014593e0ce432b1254ab19fb4e25d50c2047dcd22c312b498c01e9dde", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:3ddb5504a4836288c9f028da485908c3236b9df5edd254cbe5c0db85b31e5c4e", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:37bc05ffdace7dcf44b25d25f3fe9114900e01a479c738b1eafab683c46bb4a0", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:d99e88704289a10ea2b5bfe9dc9a819bbad8d914148ff5a30777eb7e6d5fef59", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:cc27951798f6e28985f1143110a55dea38d092acc0a883646242f502a64cf915", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:7e28b1f05d53e97bf59413c97422d4d406e30fb4d199b72dd53ad8c0a9ae9cbf", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:240d6e445cbb7bd534fb4ace9ccfef32cd1dfdde651213a9708dce520abf7e72", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:5d48ac15ffe62d24bc64819668dccc8665ee5609192a2b5dd603ec8b9c31bcbe", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:9ae630bb23341feb37fe0da7797651465bd5e1f86b4bf72561634e2210ec650c", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:d6a6ae35e8c0da70ff8fa9105da77f822e1779055826e693414c74594d27b518", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:70083da6d0327960db685702d2aa462962ba79b7399732fc86b61bf686f4895c", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:4065077387ba07867d0363f4aa2bf875ea90830af233d25bce38a9bfecf44a2c", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:5d6dc2c8c60f592a199581229d4c401de18fccd18d02d36ccd97993830319e0f", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:c8673addf44ae66abbbfdbe4fe5a5f3da9ac4c21e7c0d3c7f972bf038e798a69", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:59cdab4e3188d93f25108949656483583bfe2dda9e30830ab7d752675c32e09a", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:147e15b57a53284e77191651deb0f03b0beb92f55970b28525be6aa3b234850c", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:d94dc33b74866671c22fe1ed1b250e48e8520d1c95c64e93a52958bc7f93d646", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:93b9b57e5d91b868a49ecd485b7eaf71a2a15e907e5749b59ac79359d718f96a", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:02510abc996514b346111667265c0b32a6fd2ae249394e5b6f87e5dbbf74973c", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:a81c05e473b466de6dd6b8af31ab8d229bce475baaebf9b1eb95e98bfe89c1e5", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:20e8419860e67f13f70abf08fbb836a1d85021f347df60f200408bd5c50f2788", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:589425aa4770e7d7343897bd95288b7bfc61f7298bf0eb392a58aa998965c4bb", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:1d6e4d97635e81aa79abdac27e7aed195649ca9f6dcbde79e762e87728099128", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:997b20f888b31ca18bb54a03cb4f65cef4c7402152f14d5d47f1978a74255f25", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:c84e1b7b530a3a2df26d61c93ea9e4b924091332dac59b51a0ee90f488ac41b1", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:35454494d4fe3dfc9cf88f7cf40349b859a85c6a1f685598056d975259eee3b4", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:25954d9ea7e060f66ec4e6f6b3f9b4ddf3232d9731de5e72e9c9267bc7d24cac", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:a16a3c3eaff860e75e944bda5d7ce67558ed218cc762bb420c71a9590981a309", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:f4ac2adad90247e72f3d3aa55075fe6529c2ab2710b36b8096fe44c80c7580d2", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:ba62451d89c881af2db9b5fe4d63698f025b5b265525a076b693911ccb68d477", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:acee77d4c9b1206b8a613bd407257e1b28991673eb772269d22a6514e56776a7", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:1f1e444e659ec828bbe63730341174cd3af75045b83d1ee23642e0e32651510f", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:3fced27d567f4d462a6bcf5caff772e336baa69d7d13917b6e1e294e7959126e", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:571fa5c21734cec49ca67c55f4a2eb74c3c55cf1e23afc999c8a0d2158c33d26", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:27f261d21a78e8b6f315ca430830dbaa8ac7d7db8381d84b3cf9390a80405bc7", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:1f7974182a15983cb1baefceb7293f9aacf97c56cdda6023a32bde7f890aabe8", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:f8ada34ec3dd630bcb703bf4ede81ed7186874d2fbf4991e027f66ba472ca5c7", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:92273c6765c7e2ac0acf4082ef22bb5b94fcb325c8f02c1802460bcc1bf0402f", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:4c1316faffdad741296b95121f8897d023eba96373e1891786310f4a351cff3d", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:16014633ac628319f9d5e385ddbe41f26e293e1ced1f3c5e428604d82a2ebf25", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:d7a718dec325f88a5e9c4ad81cd9ee2acbce346bdff1e96bf2a5e1b5d52ee5a2", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:bb1f11919f55048bcf868230d9fc7d180cb3da52c124ab1c472d78aab7641716", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:329d74355933356796dc68074400e4df9ced9bd4e31c31a36cf35ed4e31f780c", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:f6f1587052642ef8ea05019251aab7f6abd77ef8805a056125ad212006925084", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:ac330a35f5725cedb706fd3dd44f1385c380cefc8128ba2979c3cfe3754e32df", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:693c717bd9afb231bd49016840d1d5129d33ffa250b956f46a2276d401a59570", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:bcd93c762baebeca1ebf68e42ba05a3138d3e50e19915ad5d194c6271697c1ac", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:1a9a81041e82a1b8027f854759edf8ccc5f9b3a24e27ee526887a7c3f9f1536f", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:73faa45a8c73a882c4fc19e9596ea12d6dd5025e910979fa9d06386f3a9cb860", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:e40ffbd7de4d9f6a6cc6e3dfe3752ed7b4c3bf69fc5b1402f055f99a8b776b27", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:dd4b2448e06518e7984162d57839f55c29ee5050040e9be07ce43e961a91f0bb", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:231ebcece74930fa87578b1f72ba2730893199ced6eba2cada73318aaec87497", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:98d20c8c95aa4b8894496b04b97e50868ac80ca40ab8590eed98e5299ace4c18", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:d3b43a8a200a5670c1cb5399fbbc5c24993f7c197e6dd4eabdf8cbd862a68f50", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:2be9948c84f4722307fe30f006feadbc943c6ce1b52ef8c1f5b59039992d4f9b", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:3e41a3a217da9db32c3918d4a9a2a577d74c3e7e29446b3ac35f1e92830f4503", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:89cda44e684e0d5d16c5bf4aea343ff7d3a988d8a76822c5458f5efdeb17c17a", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:aa7fde6a928608fd7ff86b53bfbac777e709cc35d3eaa36c36b8210b93aff75b", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:037f6e8bae9c29f3a58197c2626e033f52dab7f45d715bd6ce2d5ece7f3c0a0f", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:6d0b595fbc154996884a41b65df6741f8adc2738adfd499f8c1060cfc84425d2", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:58590c5822ba3a9a353e4cb40122f030aeccccbd12b0f2d36678a0a5c0b7a90f", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:e1a0b2b97d6a2958870ae60ec17fc95da2f6b293a20b6e45a2b77774d074a9b5", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:e50f6ff749ae8aade3778d2a1680286a8807dd7841b5ecfa139d4eddf7c98711", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:e1bfae0a3ba3f810875f0bea418321284936b5d2736a82cedafe725b27f06ded", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:97158f364ca0b12efbb146e80ffcb508b04a785d06abf2918bdfe48758ed1175", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:d26f6ff0188cdfd86fe461b0334f43d6e0bae983b4f369a79d43cc76bf018758", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:a631ab015346c7d048c4090d9680a440862fbfe4b8ac9c1b027be1bb49c9fa3d", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:ea138fa3463fc741eef71684abf81083a7351414e0d58b474db34e4aa0ad02b3", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:b4256187b456f743e361e22e4ad42628a88a483b064206cd3a5dc4ce61885cb8", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:36cf8d304884c650a02650cd5a112fa646551aba91b9d1e360e5d7c916833e53", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:3d8c9e80b9559ff970642b9d49fab4595d619b6e461d6a9cfa63341a6ba1e2c6", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:dd2694d56b1391b0d84299e104a2d026f9d7b1ef4749c1e161e8f25e689ac096", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:c6c0c8771091e7b6d26f6aab26a79d2697ac2401bfe59c75f841c1819c419920", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:ced51a118372c0a8c6c73dcff13905cd0feaaab0a34c145e0907e9b4df07e2d2", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:cf7a20667edd87a54169e73636f524bc41164b34e34ce7d5f3b529fe4cbb9fb5", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:14abbdd6b80042f7c4cbc1b6010b75d6bf4f9a8a4272603ef61a89a5b3518b2b", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:8dac48eaf332cafb7730336d0c3947b694abeba8b1a220326e6cff7eb3fd6d2d", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:b25ab26eb05ebe107378b7bdb8fbadd0d41ca3251ecc88e0c78ac051d16149a7", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:e73163adaa3ffbef72880bd7e4c8292dc545756c67582561dc7c9f611bc1016d", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:8dac88eb67290931df8442d0309af76eb689ac23e8fc69b6b4462740a31e971a", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:f55af27b70d49e6e9306c9c14c009b534e82d07e55fba63f3fe8b5ddd5332402", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:bf68d8d62b4cf778eaeeaefdf5a86b79ae9b7ca5e46d6c467647bcd5143614f1", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:e62440f2f965445f322e7691d8c5dd7a7afb425b3c5496bb355c58e72367fb6c", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:d66d174f672280d9aafe207ef067139bf825c323126fa4f0fbfab38f45cbad44", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:63cddceaf30d59e332fb69941b7df35ae17bc0701379fa18ac08b8b47a1b05ae", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:76f29120e41246f1c949c01745735bd7f39bb3bc2cb2dc2af2eda17ed9bdea1c", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:4e77d018c83cf24ca905d65a5631465bf17856c822edfc88c6b8d190e3a0c15c", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:3d4d42136cd608441e323941dd40d283fb6ded0d38306f8dd66dd3da9f4daf89", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:64b8dc779c9263f73d62e28dcd03bca7cb214f90e1d2bf22e638595b31d55930", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:d6a7c8a0f9d2af6a71c0facb4c088d073bb9dc6be5ff5b0c559dfd0edd83dad0", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:33ad5b671e84383ff6ae4d57fb6256e2a8dfcd22a3f08c2a446f0b453071e496", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:9404e69cd8979b09d1a19e5b3aa3a810a1d502540229130459b664bc9e85934c", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:3db7ae93e9897ab59c68caca07a5c9feec8107eadcd1f4a4ad37f934d1609952", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:e01542f606974cfc274e55b68800ecdb2a2f62d8f599c778e58277fce0287ca9", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:2ed156df7868ef7f30b4d466e3537975ed262f908152259cd6c3eb20db357c8b", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:e35175343534ad92d26dd516680d270dbd1651c6c6ba1d76986c280212409666", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:b2b5a1eedc95b8a2c9372b1c734d79848fc91b99ca8048bfbd785b7106719a8a", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:ecc6fb90c36cadd83c24f492da791f2d54eac5049476fc3ea8e85589812d63dc", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:29b8d6ce30e96790f377c60db1655a9a920561e942032669c54ee80dacbf58c1", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:c7af75f6a6acb092669023a6c636a98c19eec8c51c7aafc27bf6f6b81ca0d20d", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:381323f3490b087feebaaebb60b17e1f4499a66374d6886138a3d64a15bfc2ae", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:d6c840ce7670ef2207cae302ff2fb49c95d8823db174687d048c0bbd9d96fbaf", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:d05914cae1663b5ce44f274e309db227e93d621fa626daeeb2fdc734cc1dcca7", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:c4573d8d4bfdf3aad92b05aa8bfa8ca53b538392ce13a655e2c9ca270365a3fb", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:ed8225866a4b3e4b92392b8256f9095c260559e0cf842ff1408f32116f90b229", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:2996af3400b90d465c3db2d0daf391a9004655bcb91ed056101dce7e982a071a", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:1bdf3b4b9a68df035d8999beec090c00c62515ff7e91f54307ff2bf878124244", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:165dfe9dad4143451003d92251d3ae5b756598c3c2a0bd1273577b8712603681", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:99d44f15dd3fa35a3d69adb80bd5a967db5dbb91e9cefd5e4d3336787ce2a666", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:84a56aec6daabc033726f99ca09fff1c87d1705c4db34de77215fe6fa0ed65e8", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:7d9894b5c44dac9a0dd696f0605b025c01f7532a80dfddaa809c06fc4555e4d2", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:cdd80012f1994086bc5ec6e0181f40464986f4d2223b31cbf78eaaaff92db258", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:7086911588e4fff2e6c44268ee9f688f444bc3c71277b7f2ec593e8e83f1657c", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:a7a1cc69fc2672cac426ffeafebbffd8f48027984a1e50cdabbdd5b19d18d877", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:c2861f05b44c1615320272f2a1e49daa9b93ede413b9dca32901b1258ae761e0", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:de23170b05ab2f6d3b5cdda4928ea4a9774a313c2dd133e9c139df19aed9e158", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:d91b326780aa9f4e1d4a94aae8580081ac3d5867ed178c3bea2f10545f446d03", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:a699a8968e64ff519bb42226deb91b6af7056246b1cebcb7b2f54fad956b34e5", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:99d76312518fa72b4a019a898a3ab2e929e112dfd14feddc040b8f175708eee4", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:b938590998f1fbea66866bb43c892184bbb5534003c4dcf788c28b4fee5c656c", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:7941823f28efeec9f5268e033dfd1aab464953014b16348b952f33635973bec8", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:22bfc75849e21c3617dce008a7c48b2c4fc1522638dd01c6bf009af21c7ea640", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:d6b4d34d4a44454dec91185f8a14566d3af547b1491d5c25635ce1e3cfd1638a", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:96424d84de1dd7eda70e32467f5652059a0d4fe3f6de352ce270fd4ac810fabd", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:60caa27d464b3f9906a9343f6d1ffde4af85c260fd785dcf11b426dd3363f964", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:0e60eb9c2fd59ab9aa6fb4b63bb86b95e7f4d28bea475234aba19e6d54b407ed", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:9058553b61410712d2cb4a0308fde02c0d5e17f543914a22e3893f7e43207660", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:85a5b28c3cb061382b8d25d416ca96fc46ed5f6e8b8ca54c3630dc971ccca840", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:92397c71ac1e69ba2b4e2d297b34cc9510c1a6aae6edd0d8262c662a28bc2c5e", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:50d3f24262ba57c79b838060d819fdceed797b315b8fc4aa5737e3b409775833", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:633c56b4e7b75c0777cc6d3ef8c37ad38db6d8279b55399d6136873646e00db0", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:ec7a49e1ee727638a03cbaef54da9722a09de0dcb5c4cf3aed9f398103317dd1", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:1cccbbbed1bf17e3f4c3c0c237a765053503010bdc11b8de590cc0d5229f7c30", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:752576659190b4586b80b4390facae581aff5a4f0792230dd6fb986aa8358db1", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:e075d5a55dfba68e3456b12679437e4ab1081ceccf275c60bc7bf3a34a4c322a", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:2670a30bd47686bb9c9e4ad8231585edd5ee4334771b39a953f2e87b80f7c788", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:c3b28c246669f4cf8fa658afd4cad26bd2570fe602368b1614e5574487ec4c43", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:9307b60b298eebc06c4c1eda35d6a4a8e820700d0d403efc165e58dbd686750b", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:656fe2191437c77d14f9225d7d1778085514cdf8731d284b9099c7723cbc4d29", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:e863c285e764cd05fc22eaeef6cac15641c3a1f942a0446d0dbf816c693ccc51", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:bc017ad89e8de2d6371b6bfbc4be8c0f58d82bd63669c415e6f923339f016971", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:c9040489d9c05a9d66f5a1f9f7558df97d885182ed1bbf5f0a6d214206a112be", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:5f4c3dae895bf12e041467c24bdee6b1b1c8c66f3b49864e5748143778884236", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:dbb6f8586f8c38a263e6c74570bcbb427b904f53dfe0044156565d7a4f40bd96", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:34be06e24fdf6dd7877711346af61631d712f010dbacd203065bb2a5f17ef973", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:7f214a1dee72f266fe29a54155385061ac3f9488a1a0c08bcef5f1a8d3aca1cf", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:521e4b10f316dadb6e06cb3beb6e5a684ad000daff1faa20f4a8e1bc524a6e87", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:85b1fbeb9e2671926b03a9a228f75798c15312df00f93b0f434215a9048e6901", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:72f9a506c491f33460370b49880a101dddfe230719bf1b0321a0b2c9276d6c6c", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:a2fb340bde6f61524151d8d9ac961f49007401ab5726cce547583110945421d6", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:afe4aab9fda1a375d9cbb02ffcab86c98033f0fe73b2a264ba9ae58c2c5fccd1", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:84bbc385a8aa21e88e8bffdc476e828467bef9968ef7cc637df609d974bebe93", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:293797b941868cb7b25fbb2ddd15b574cf0ed742489f2b83b0b4a2c37f559242", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:75c73aed057ece266eb70196b763289d3b2981e3e7bf3f6b4ef7354d9b8849c2", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:434e65abeccdf396d271aeec7dfc2ca75e110c63abf3c0a2713c57d10e2744fb", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:6e4f9665a88df26e3213a4c41c6dc38b29f612c55a37dd2e70aa5e375f10608f", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:649ead988f8a508e74cda12255c5b8a59c801a2c19574378e95fd999e6af4cbc", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:4da8c9af6ef54b7069205b37025eb28c8de0da5f49afecfc92079a2b5e8907fa", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:f068fd5dcc22bfb9a655c4228bf8246943cfd3e3a428e7e986f06a892db0aafb", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:4fb6b736f08655c00849986f53bcd0403e4f6e4dac691d03706faee0309e502c", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:2b12458f04c7efe9f36f5c29df11defcfe89fc27050ecfee6483fea8c45bcdd3", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:59e55b3dd7425b92426f63aae0e390627b94e04446182a058e65c14d3a088fb0", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:c74eb6bb077295cb0df7b9be8aa1bb22d251efc21ab03bf215b6412ec30830d5", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:f40ebf9a90e66745a7b77d48ba3330b2af08ffce828f5cc3486ef0f8331bbe84", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:19499e5363e61bbe0345e2fa9297071508c08ee1a69befa9ec1cb140df1dc79b", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:3dec52be3f9d4bb6ec1564c0a80d3fd765461ef486a510022e542120116d6f20", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:98e8246686270166a3bbe2de6b51b174b91563dc3a973acbd30af35e1d435f35", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:917e037738d55b5f2614e3bc90aa4118993d0b4be5bbc866e393ffcf4578c24d", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:a4b05effd9c3e7f152129bd7312ddc8f9136096021688eeadda7e40a689903fe", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:ffc1e03b7e474cf7a2a07739ed70070d3a5481ad004e24176883753c09c71c38", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:fe931d2fe0c7706e0be184ed8a2d5816fef06768ebef40f0b4c1a792093e6053", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:d5f1eff7ff868ffcd0ee6d96aa59796b8aa4f23c23fa2c1cfd9f88a46bacd614", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:f32271fb1feac5e346264382970df9f9b67128936569ec3392373bc46e5a960c", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:9d264b5061e718deeda48b0ef68e397cc79ca055dc43a05f83e9472fed95f487", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:e5d386af0c1bbcec178f5278ff6e913a11cc9f1ec4305a8379e00e3257bcfa1e", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:5259fd7c17b759798528dbe5549b536272a959684ecf395696368723b7799307", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:3142fd4623bc9b0e1b1e774968fcf2c69c5e497e8912a86329169333d035d140", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:ae2f70e7a4d1d1f32793c8e2af282833c18771390b7717c11058172086cfe1d7", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:59b78ea3aaad1dbc8ae8b81b9c48877154c1e7fa5c3ebbf1f90f757e190cedf8", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:ed92c6b0a9cd5d279a31cd03891f500723522b82bd0b57716664049331aada0b", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:fe6fad72059dab6149333f9944b8426f2f09ca2867137100bc1e25b709e4ab53", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:e42875460ed400a71201e15ec1e01caf7b53b91e44ef01e8d07e40f82e8567ce", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:d1f6496f8fe8d35ab22ec84191083d0eed83ff53b25ed5ef3c9045afd28b2fe4", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:7eaa872997a9c6fadf3f98210254cb7a3f922154671f342f8df89fe4701e44ee", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:f0eda2df7dc8d1dc84fe723b5aa52ec0e14d7508e41b0ec093432608ff1292b6", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:3a62b60dfaa6a71fa4c4a6dfd1322466461187251c66570304287c285dd333c6", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:4132d4b86cda5094f9dc24109cee789082802fd7305f4cfca5336402650f3f12", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:3bee2910ab32cc841d0f6bd93aa9eb6e734a9d97f1001f58c94c8f9f9741c9de", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:1c729b0ada0483f866c3315545b6b1e9f1874e67981cff13d2fd400585cb4bc7", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:30b17999d7efad79bc96658ba349b6e2efaa87e834f5e26748a75f130f410a2e", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:928644178b5d5fbfd85d213dbee174fd72f1f98e58f34548f8e48924edb1a414", "resp": "**Answer:** No"}
+{"k": "meta/llama-3.2-11b-vision-instruct:76a6ff9488aa8e0391cc0c2daa8e24fcad9590bee7ac6ea4e10d15974cc7efff", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:bf6cecbcba17fe2fd5e8f07f4f76ae59e0a72cfd4d9fba60901a84761940aec3", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:ebf5dc7186e8e168217f50bebc3418042ce053f546388ee48b295fb0ac84a1b1", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:89fecde9ce8a6b8367bff19b1dccaf53c68b306aced13c01c1736be1c49ca66a", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:0f0df7aebfe9ac7ba13b4aaae0e0ee38dc98104c6e0357b54c9b4324aa24c759", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:f450ade3269edbb61cddcdefb534f15173d105b3e1c9c0afc17b751bf92a2902", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:1d2dbf51a2de1ab5d2fa0d8af9b050584742b1c7c53e83fbaab6223cdaeac5b4", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:72c78fe87a6a5913e3669d9d3a415bdfda2154012f1a8619ffcec456d658fa1e", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:45b5f25f84253345a791f19cdf0502cdda3fb027ef077097a131830994564366", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:8169e3218dd39892f18854124ee59b4efcc62afd9da6ae4b7b3aea6af28e6bff", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:6ce495f8aeae25a7b3c1eed9de919d5b86210e97cf619cedafc9333ba3ef488a", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:845d89f80f5247e9b7ebdaffc83d2fda88d6af4a6dbe4c8a91c2745710e779ce", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:c7f854242ab96910b9a363ca9957c824b968886dbdc7d885f5562b6152e33a43", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:b2211c02227eb528bf7ebe9e375e3e54fbed4d336ed8c59ce827c4059700674c", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:9566a765ed0fda89a8a90a09bf39a51bed3aff2796be5b43e64d7fac6d06aab6", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:112709ca81a293ea463286ba90f0733fdf34f5d0744464f096ed5409a71ad603", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:28bd0a52c5cb7da8e923e50fd4217bb436da2e0e10eb2e7515c2d50e36bc998c", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:2c9e3486c3b9b0138c700f0f30b8be3e3ac5f1b1ba759f6b24cf04a447f6c0b6", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:05da30787a60ce6586589b4fa249ca2d718970148ae668d1f324db8972aa59af", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:201d84f4598429f183c87b78326c3d8950d34905862582db7d813c22954ffb10", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:a5d35739fb41b0f142cc12691eeeb71b469d92043397283fe0af3e9d9e4ef248", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:6d2f7737640fe7e60595cd5c96240b6035442aea4fb60f7f08c65801a03c248a", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:af3eb5579b90973f083b1c4b35041316de7cfa86c84a1d160c41206f0d21170a", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:50cc12610a5dde373e1c25470eff0729949b501bce3ea60c2356b74738d3ae65", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:43e1c30f17cb2a9d97470381de44652fa47aec1375437bd71cfe2257c443ef51", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:4d47b1e00017756801a76b12239177fe59e1fec6e8e09285440a347898e5f2fe", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:5b2bc97a5790d157d0a2cd0b84e39dbc55b9e9f14dab25feba926bce9759e8b9", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:b54e635076cecc3e4c51b58ab207634ab25d5415bfc13a369a695751138ce532", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:4b502aa612776096d19096949b1a32155ed9afe77877d44c87ef88013a421ad1", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:582586123d89b1a8adb172831bef7695601098d9dba8ddeb199d6c83c981c9f6", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:c1e78e5712fb8c110abdcdc9548e5473ba14798ae59e40c5a0a60d6f9f4635cf", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:a6b6cff8802563a9e2aee797edc60ae486081e9f79af18bb18e8e3bd95a64c53", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:10e6b000b1ee59392a488cb1671fe03320cf15a1c4cc1c7344873751422546b8", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:d8c8ebbe308133e0dac49dc33f6c772651a6e31da4013b8a5c762358dd10c28e", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:b6a571a656a2d9c757307306add2b57d4b92d524de9d2290f231b0afe0b92a11", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:fc4bc4dd16c44d971d6ea6493514af8907e559037bb1b2f99d5e4023b2a198e1", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:ad9aac8662172bc3009f97eee7d42193335b33d70850f5c2c1450afd3cb9d53e", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:96247a9a3fce15b1f6bcfe9fe195e30cbe8ed17e2d9997774f65ab50d16ba123", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:fa08c39ac102371d3630ca55e8de24e796f70ac1639298fcf1dced8beec7d45f", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:4f8e49e0bc7624982755fd73f59fb2e0354a1ce8beb3a91e3f51632750d62217", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:4f4ee463a51db4c7523f061ed25e015573b714de4d4e1c5e64c5d389f9c1c754", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:27d391f41a10e209558cd4d75ae6923d84f7b4c680133ae3fb934b74f663ec17", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:015d7bb22b2fa7fabfb98ca89af9024b62f5b9219a7bde2b691e3cad1956e7a0", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:5057352a0a02d6abae0811b6ec79de00e36bd2707e6120c3e97f153b6753aa76", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:69816148bb14752a506fd72ed4d50ab4a6244553cf579b12889cd32e0d03e8cb", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:2a0edde7cad299f7dead367ad50ce0402c2957dd9e47dee8d6809399d2e8c4ef", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:52b43e6da06a06032c314c893bc5ce839e4aa047b4966bcfaa725fe9d701aaeb", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:3cf465435f4cce7d334129ebc1d9454ed94f2413f0196e0c52223dfbad37dfb8", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:70b5dec88c3f5261a99f04794407deb6ab776fd538373b0def1f2889ce970fd5", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:f045d1a29cb409a9531efeab47aacb04b5a327a421ec533e2a9580fa8a983877", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:9ad42f83ee3591e7ca03fc653abeef8c6dc018a562b2360d8938370b7cbd1996", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:1d748863b58416e4e6535bd40d5c2f0db3160cb62b1a35ca0fd8cdf48ee5b005", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:17016471beb3a51571f1af4c6cb550673df576a4f29fb680ed3d198fa5e71077", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:4850706a3e4f38a8915ee7f61feb092a4e4999788f86bce1ef436d694560cf98", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:7f716a258c57c0ad6d1d984b27c6370556bec07200ec1bf4a6be49e692e28650", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:d443a694f2d81417bade9880804acb8dc6f7755718e931d3da2e85823873359b", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:a626e7ad73fa09615146ef8e4720ff34c17f7b01a42a68e1fad5f3f8a6335c0c", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:9e0c6b9f33df06ba4a376283cc7fa3036604c55e519d4d9517303f856a03d6fa", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:962a08729cf63c7210c6f67d4347e379c885d576ff20e3903b5e2c51509fc2e9", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:b0038fa7e23726606dca1520dc91f4f48953cb34f2de7a7273bc0fa6de75d6fe", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:380caf44fa560d9c4133664138bd2e919fea19d35e57c535fbdde609ac977286", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:8d51ff3029be06dc27764564f116fd4505f0a435bc821f997ba0630868830600", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:81f6b0b2eeccbd6dd3d62f8a726637392895f93fa4e2b45a3af07e42aa6de6c3", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:40fffab24c74b1e5bdaf2736920523d62d8056a4f99dc4a5125548e67f578487", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:bda54f24ceecf7f641695909977fb60e20cbecebe2adc5ee0afc5b6b17eac751", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:e33bdf4737a15cdcca1e0f20b52006b331be37499c16a4983b36d9a39a2ea911", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:0f74c0e078c29289f0d6a2883d62ca236a69bd38fdf14f277baee63615a57839", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:b147b91d07bc557330d87f7a20eedaec003d98cda1d63f5bcdd300e37cfd6e29", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:5820561b793d835c140db2ec6584c81634b9043b915d3ec610d5107db9756454", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:fce42caa3aa949b788c531d43cc1e55740b91e32c9afe51645257c5ca8a6425d", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:aa7177e6d399168341d4a00f303a5e3c59ec1239fed9919268d92417b3944ea1", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:8107053e35b3c53444426768ea5b291184f766b00e446fa29b07031c0c8bcb6b", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:9e873a51dc26aff16dc50d96bab40fa1bc06222c89556f7480f1cd9f472458b6", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:a532d2a47919bcff077d7d8c0f79af12b8f5101a2ca0c6f23ff1120370e2ba71", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:bdb53c833c40ae57555eb59458aaf91828f5ded33218c34c0a6729bf7289d4ef", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:5cfec80f0b06dec260d32d8e311ff3ee2b7c3c222c0be3bf947461bbe3f6da11", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:31b23dc2fab925f3eddf68c036f4fee05ed4b05e6f9b552c0fdf319e2dd9119e", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:ed3a8d9a5ad495d8d3df97627ce5f499f77fa83e716ce81284c958c1ac2fa05a", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:9022dc0ba8846fad47f80e4530cecae5017a401a4e962edca45ec0d464870886", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:c3311eb99941ce34691464db66db568d7f6145460bb81c705c1118356f292b7b", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:c2e81738ba9c5eb92d24b803c4a323b822981f1f19c39413382ad5dc81d8b244", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:7136eea2f7fbdc7e8519c9eee7bea23a023d66a23fb3cca1ac7ff3e29d773d4f", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:1613c00e3a1a3c3d2ff0eecaa66d5378afe4c48b028b7cb525fa705abb121303", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:559624f70f3dfb8b2821235fcb6ec809d191f14ef1f39ad890cd5cae10ce9ed0", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:570790d5ddb319680750e43a87c4dbf6a5a2ff78e96746a88e2f87d3b60afa31", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:3535f05cb698a9f043fac27f2cfa7babb1c122040d0d58d28142f0621c6b07ea", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:0c455751f875b1a19fac725ac14dff4a3d4d48ac02b94f807086bff0ee897e12", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:72bdf2805846fff1b1e89618c5242c0189406c4d26333dfbfc297413784d730d", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:e10478790151dbe29b9e543b2f7e1c4e4e9cfa3a18028e61e5c5ebda29c85fe8", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:eaa089b484899736173e931703723cf73455916a1dfc37999fda28f51a67370d", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:810d210724450a8850340700657c6828e16df1bfa0c26f318336114df4286c90", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:3c7c9b5141a4be06f9c8b631f1d017c39e506589e112185375fed43fdcf62f4d", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:f9937661a60e0f8c7441983450e51136b59b2fd672147a71db43681b459d4a4c", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:90f6f4acad3d6c70ae8290cc6d3fffcc9779f2828c6806221f70a0b1422bd2a2", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:d345fa1048dc84f5e78441b5cc4254c54d9f28fbebfb38b43078e622e7112693", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:966456cbfeef00962ade900230cb9176c37125084a7b6e7a1910f28f490041d2", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:3e3df7439d55c7c5f6c850f735df0efe8a35a0a1bf514b8312538917ab530d63", "resp": "**Answer:** Yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:908b96fbd363cab31f695c419dae9a9adef3d19c8a8c711d7d77a86d8c6e3d0b", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:dd68439b1a165de619eab203f31cffeabe5ab9ead8662abb96477424ac162a5b", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:b1b68d85e66c96a4cfdb02419f81c6a08a3359b5cf34e66a304842915b21afcf", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:c2fb129e31cc8abf4e2ba5c7c65ad951c7df53129f9df7791ae2f4658a0c7d32", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:7fe9916bbc29ca7730a9f555a0884535c2773417de4c7ac62ee95a07577e0bd1", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:88184fbee3957662e40400c2bb577037678c2d5c904b7366d576eaef3b25e4f0", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:34579346b3202d3c042a3f6e22646352f13e2aa5fe57d6ad1c4c57d9e53af9ef", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:bcb4b3972d17b0781b01521ec4ec3d7ba663ecda96d5f7ba81b74eac1907b4cd", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:844211b4d2c676a7747fef90da85220256851c78be3c375f2f9998119021688e", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:cc4c87bd77fab2201efe80d7c46f16c088eda6209c0fe9658d4b1aef567551b0", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:24a5c13527ca70ece475a11b4e0abb3018ad34f7b86bf7667a8481c65c336dab", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:3250b476c9a791282d0f69bcf7b0ef00fa76b599791ef6c1eb8f716beab137e4", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:b9cd3d56c9eda546d1313a0ea6a634a8ff38f91d8ff8d59ee7c9be4696e06274", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:8419b4dff35ede3b9c8df026c7f9ca23cfd82b16b66f24c15ae8cca1e3393bf2", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:962715f83bca250ceceef5538d76f9c492fe48f625fd71dbc02f7d90a62b1cf6", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:eea0e6fd1d8c2b1c635c2e19a392db74d0ad5748e0b613122234274bbffa7b34", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:0b0eb69247a06c0a7709439d49d53f8c91f3865e9389f527b77fac6a6eb79ff7", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:92e81e33ac2676c41cf827e3337ade693b4e4993a85af09415e4a4f84cdd59a2", "resp": "Yes."}
+{"k": "meta/llama-3.2-11b-vision-instruct:9c32fabcb6ee9246642dc092746c4aacaeaad4af41bbb0e10d6edd2eca187763", "resp": "No."}
+{"k": "meta/llama-3.2-11b-vision-instruct:70a9bc119c72ebe29f5c0b4c29ee6f030412bd86fb762858eb5714804e2ac516", "resp": "**Answer:** yes"}
+{"k": "meta/llama-3.2-11b-vision-instruct:813d2ecd5fdd06de685bed2cca35a5a5b1044344bf0f343829d13153617eef68", "resp": "Yes."}

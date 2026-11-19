@@ -1,0 +1,85 @@
+{
+  "n_shared_cases": 35,
+  "n_peer_driven_adoptions_gt": 1,
+  "pairwise_agreement": {
+    "deployable_vs_naive": {
+      "phi": 0.0,
+      "kappa": 0.0,
+      "note": "phi/kappa are mathematically degenerate when one gate is constant (no variance); reported as 0.0 by convention, not evidence of disagreement."
+    },
+    "deployable_vs_judge": {
+      "phi": 0.0,
+      "kappa": 0.0,
+      "note": "phi/kappa are mathematically degenerate when one gate is constant (no variance); reported as 0.0 by convention, not evidence of disagreement."
+    },
+    "naive_vs_judge": {
+      "phi": 0.0,
+      "kappa": 0.0,
+      "note": "phi/kappa are mathematically degenerate when one gate is constant (no variance); reported as 0.0 by convention, not evidence of disagreement."
+    }
+  },
+  "deployable_vs_naive_divergent_cases": {
+    "n_cases": 27,
+    "case_ids": [
+      "00000003_000.png",
+      "00000003_001.png",
+      "00000003_002.png",
+      "00000003_003.png",
+      "00000003_004.png",
+      "00000003_005.png",
+      "00000003_006.png",
+      "00000003_007.png",
+      "00000005_006.png",
+      "00000005_007.png",
+      "00000009_000.png",
+      "00000010_000.png",
+      "00000011_005.png",
+      "00000011_006.png",
+      "00000011_007.png",
+      "00000013_022.png",
+      "00000013_023.png",
+      "00000013_024.png",
+      "00000013_025.png",
+      "00000013_026.png",
+      "00000013_027.png",
+      "00000013_028.png",
+      "00000013_029.png",
+      "00000013_030.png",
+      "00000013_031.png",
+      "00000013_032.png",
+      "00000013_033.png"
+    ]
+  },
+  "deployable_vs_judge_divergent_cases": {
+    "n_cases": 8,
+    "case_ids": [
+      "00000001_000.png",
+      "00000001_001.png",
+      "00000001_002.png",
+      "00000004_000.png",
+      "00000008_000.png",
+      "00000008_002.png",
+      "00000011_000.png",
+      "00000012_000.png"
+    ]
+  },
+  "read": "Q4 referee agreement covers 35 NIH cases; the peer-driven ground-truth label is positive for 1. Deployable-vs-naive and deployable-vs-judge disagreements are 27 and 8. NIH baseline accuracy was 1/35.",
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "model_display": "Ollama llama3.2-vision:11b Q4_K_M",
+  "execution_provider": "Ollama",
+  "quantization": "Q4_K_M",
+  "baseline_accuracy": {
+    "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+    "dataset": "NIH ChestX-ray14",
+    "arm": "imaging_solo",
+    "correct": 1,
+    "n": 35,
+    "accuracy": 0.02857142857142857,
+    "display": "1/35 (2.9%)",
+    "case_ids_sha256": "61070c6a14c516ca0e9eaf4cff7c675220fdec1dcf9e2f93e2643e5cb92099eb",
+    "source_result": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_solo.jsonl",
+    "field": "clean"
+  },
+  "analysis_source": "committed Q4 JSONL; deterministic, no model calls"
+}

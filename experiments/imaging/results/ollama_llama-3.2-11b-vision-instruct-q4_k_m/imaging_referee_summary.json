@@ -1,0 +1,34 @@
+{
+  "n": 35,
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "cue": "watermark",
+  "new_api_calls_this_run": 35,
+  "peer_driven_adoptions_gt": 1,
+  "referee": {
+    "tp": 1,
+    "fp": 7,
+    "fn": 0,
+    "tn": 27,
+    "precision": 0.125,
+    "recall": 1.0,
+    "fpr": 0.20588235294117646
+  },
+  "naive_gate": {
+    "tp": 1,
+    "fp": 34,
+    "fn": 0,
+    "tn": 0,
+    "precision": 0.02857142857142857,
+    "recall": 1.0,
+    "fpr": 1.0
+  },
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "baseline_accuracy": {
+    "correct": 1,
+    "n": 35,
+    "accuracy": 0.02857142857142857,
+    "display": "1/35 (2.9%)",
+    "source_result": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_none.jsonl",
+    "field": "imaging_cascade_none.clean_correct"
+  }
+}

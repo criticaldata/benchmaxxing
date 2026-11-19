@@ -1,0 +1,105 @@
+{
+  "n_cues": 4,
+  "cues": [
+    "cable",
+    "corner_tag",
+    "watermark",
+    "laterality"
+  ],
+  "solo_flip_above_noise": [
+    -0.2,
+    -0.2,
+    -0.1714,
+    -0.2
+  ],
+  "cascade_contagion": [
+    0.0286,
+    0.0286,
+    0.0,
+    0.0286
+  ],
+  "spearman_solo_vs_contagion": {
+    "rho": -1.0,
+    "pvalue": 0.25,
+    "method": "two-sided exact permutation over four cue-level rates",
+    "permutations": 24
+  },
+  "n_shared_cases": 35,
+  "cross_cue_cochran_q": {
+    "statistic": 0.0,
+    "pvalue": 1.0
+  },
+  "pairwise_agreement": {
+    "cable_vs_corner_tag": {
+      "phi": 0.0,
+      "jaccard": 1.0,
+      "note": "phi is mathematically undefined when one cue's adoption is constant across all cases (no variance); reported as 0.0 by convention, not evidence of no relationship. Jaccard remains meaningful (overlap of the adopted cases)."
+    },
+    "cable_vs_watermark": {
+      "phi": 0.0,
+      "jaccard": 1.0,
+      "note": "phi is mathematically undefined when one cue's adoption is constant across all cases (no variance); reported as 0.0 by convention, not evidence of no relationship. Jaccard remains meaningful (overlap of the adopted cases)."
+    },
+    "cable_vs_laterality": {
+      "phi": 0.0,
+      "jaccard": 1.0,
+      "note": "phi is mathematically undefined when one cue's adoption is constant across all cases (no variance); reported as 0.0 by convention, not evidence of no relationship. Jaccard remains meaningful (overlap of the adopted cases)."
+    },
+    "corner_tag_vs_watermark": {
+      "phi": 0.0,
+      "jaccard": 1.0,
+      "note": "phi is mathematically undefined when one cue's adoption is constant across all cases (no variance); reported as 0.0 by convention, not evidence of no relationship. Jaccard remains meaningful (overlap of the adopted cases)."
+    },
+    "corner_tag_vs_laterality": {
+      "phi": 0.0,
+      "jaccard": 1.0,
+      "note": "phi is mathematically undefined when one cue's adoption is constant across all cases (no variance); reported as 0.0 by convention, not evidence of no relationship. Jaccard remains meaningful (overlap of the adopted cases)."
+    },
+    "watermark_vs_laterality": {
+      "phi": 0.0,
+      "jaccard": 1.0,
+      "note": "phi is mathematically undefined when one cue's adoption is constant across all cases (no variance); reported as 0.0 by convention, not evidence of no relationship. Jaccard remains meaningful (overlap of the adopted cases)."
+    }
+  },
+  "read": "Four-condition NIH comparison on 35 shared cases. The primary watermark cascade uses Q4 opacity 0.30, the nearest saved level to the standard 0.25 setting; this is an approximate protocol match. The saved 0.15/0.30/0.45 sweep is also reported separately. Baseline accuracy was 1/35 (2.9%).",
+  "watermark_opacity_used": 0.3,
+  "watermark_opacity_default": 0.25,
+  "watermark_strength_sweep": {
+    "opacity_0.15": {
+      "solo_flip": 0.0286,
+      "iso_adopt": 1.0,
+      "shared_adopt": 1.0,
+      "contagion": 0.0
+    },
+    "opacity_0.3": {
+      "solo_flip": 0.0286,
+      "iso_adopt": 1.0,
+      "shared_adopt": 1.0,
+      "contagion": 0.0
+    },
+    "opacity_0.45": {
+      "solo_flip": 0.0571,
+      "iso_adopt": 0.9714,
+      "shared_adopt": 1.0,
+      "contagion": 0.0286
+    }
+  },
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "model_display": "Ollama llama3.2-vision:11b Q4_K_M",
+  "execution_provider": "Ollama",
+  "quantization": "Q4_K_M",
+  "baseline_accuracy": {
+    "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+    "dataset": "NIH ChestX-ray14",
+    "arm": "imaging_solo",
+    "correct": 1,
+    "n": 35,
+    "accuracy": 0.02857142857142857,
+    "display": "1/35 (2.9%)",
+    "case_ids_sha256": "61070c6a14c516ca0e9eaf4cff7c675220fdec1dcf9e2f93e2643e5cb92099eb",
+    "source_result": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_solo.jsonl",
+    "field": "clean"
+  },
+  "analysis_source": "committed Q4 JSONL; deterministic, no model calls"
+}

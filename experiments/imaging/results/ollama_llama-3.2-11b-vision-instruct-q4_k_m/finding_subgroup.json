@@ -1,0 +1,97 @@
+{
+  "n": 35,
+  "cue": "watermark_opacity_0.30",
+  "per_finding": {
+    "cardiomegaly": {
+      "n": 9,
+      "shared_adopt_rate": 1.0,
+      "wilson95": [
+        0.7008,
+        1.0
+      ]
+    },
+    "hernia": {
+      "n": 8,
+      "shared_adopt_rate": 1.0,
+      "wilson95": [
+        0.6756,
+        1.0
+      ]
+    },
+    "infiltration": {
+      "n": 6,
+      "shared_adopt_rate": 1.0,
+      "wilson95": [
+        0.6097,
+        1.0
+      ]
+    },
+    "effusion": {
+      "n": 3,
+      "shared_adopt_rate": 1.0,
+      "wilson95": [
+        0.4385,
+        1.0
+      ]
+    },
+    "emphysema": {
+      "n": 3,
+      "shared_adopt_rate": 1.0,
+      "wilson95": [
+        0.4385,
+        1.0
+      ]
+    },
+    "mass": {
+      "n": 2,
+      "shared_adopt_rate": 1.0,
+      "wilson95": [
+        0.3424,
+        1.0
+      ]
+    },
+    "atelectasis": {
+      "n": 2,
+      "shared_adopt_rate": 1.0,
+      "wilson95": [
+        0.3424,
+        1.0
+      ]
+    },
+    "nodule": {
+      "n": 1,
+      "shared_adopt_rate": 1.0,
+      "wilson95": [
+        0.2065,
+        1.0
+      ]
+    },
+    "pneumothorax": {
+      "n": 1,
+      "shared_adopt_rate": 1.0,
+      "wilson95": [
+        0.2065,
+        1.0
+      ]
+    }
+  },
+  "read": "Exploratory per-finding breakdown for the Q4 watermark at opacity 0.30, the nearest saved value to the standard 0.25. Cells are small; NIH baseline accuracy was 1/35 (2.9%).",
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "model_display": "Ollama llama3.2-vision:11b Q4_K_M",
+  "execution_provider": "Ollama",
+  "quantization": "Q4_K_M",
+  "baseline_accuracy": {
+    "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+    "dataset": "NIH ChestX-ray14",
+    "arm": "imaging_solo",
+    "correct": 1,
+    "n": 35,
+    "accuracy": 0.02857142857142857,
+    "display": "1/35 (2.9%)",
+    "case_ids_sha256": "61070c6a14c516ca0e9eaf4cff7c675220fdec1dcf9e2f93e2643e5cb92099eb",
+    "source_result": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_solo.jsonl",
+    "field": "clean"
+  },
+  "analysis_source": "committed Q4 JSONL; deterministic, no model calls"
+}

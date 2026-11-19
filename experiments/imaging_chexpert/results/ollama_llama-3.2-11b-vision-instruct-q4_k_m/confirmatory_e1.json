@@ -1,0 +1,54 @@
+{
+  "endpoint": "E1",
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "description": "Solo flip rate: device-present versus device-absent",
+  "table_2x2": {
+    "device_present": {
+      "flips": 0,
+      "no_flips": 150,
+      "n": 150
+    },
+    "device_absent": {
+      "flips": 0,
+      "no_flips": 150,
+      "n": 150
+    }
+  },
+  "rates": {
+    "device_present": 0.0,
+    "device_absent": 0.0
+  },
+  "fisher_pvalue": 1.0,
+  "baseline_accuracy": {
+    "device_present": {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "dataset": "CheXpert",
+      "arm": "natural_independent_cascade",
+      "correct": 120,
+      "n": 150,
+      "accuracy": 0.8,
+      "display": "120/150 (80.0%)",
+      "case_ids_sha256": "26d24e52dd439cebda144c637ca99bc75907f6deb646fcfee2ace034bb6091d8",
+      "source_result": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_natural_independent.jsonl",
+      "field": "clean_correct"
+    },
+    "device_absent": {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "dataset": "CheXpert",
+      "arm": "device_absent_cascade",
+      "correct": 5,
+      "n": 150,
+      "accuracy": 0.03333333333333333,
+      "display": "5/150 (3.3%)",
+      "case_ids_sha256": "37c5fae2c778003bf62129fc6bb6ed754242b9a32bca2f0d1ad515f9573ca57f",
+      "source_result": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_device_absent.jsonl",
+      "field": "clean_correct"
+    }
+  },
+  "case_ids_sha256": {
+    "device_present": "ea632a6c30de6f7fd5bf929dd4f041bad317932ecbae85a14f828dba3531c4a2",
+    "device_absent": "7bdd11e967f7ea41d7b5f394b65ae7d8a6e2ce06ca7396a70172b814c0eacc3e"
+  },
+  "new_model_calls": 0
+}

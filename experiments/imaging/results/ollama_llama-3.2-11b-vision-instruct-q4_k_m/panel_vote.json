@@ -1,0 +1,39 @@
+{
+  "n": 35,
+  "detectors": [
+    "deployable (shared-vs-reread re-read)",
+    "naive (shared matches peer read)",
+    "same-lineage Q4 judge, no re-read"
+  ],
+  "single_deployable_alone": {
+    "precision": 0.125,
+    "recall": 1.0,
+    "f1": 0.2222222222222222
+  },
+  "panel_majority_vote": {
+    "precision": 0.125,
+    "recall": 1.0,
+    "f1": 0.2222222222222222
+  },
+  "n_panel_flags": 8,
+  "n_single_flags": 8,
+  "read": "Q4 panel and single deployable referee flagged 8 and 8 of 35 cases. Single-referee precision/recall/F1: {'precision': 0.125, 'recall': 1.0, 'f1': 0.2222222222222222}; panel: {'precision': 0.125, 'recall': 1.0, 'f1': 0.2222222222222222}. The judge is the same-lineage Q4 output. NIH baseline accuracy was 1/35 (2.9%).",
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "model_display": "Ollama llama3.2-vision:11b Q4_K_M",
+  "execution_provider": "Ollama",
+  "quantization": "Q4_K_M",
+  "baseline_accuracy": {
+    "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+    "dataset": "NIH ChestX-ray14",
+    "arm": "imaging_solo",
+    "correct": 1,
+    "n": 35,
+    "accuracy": 0.02857142857142857,
+    "display": "1/35 (2.9%)",
+    "case_ids_sha256": "61070c6a14c516ca0e9eaf4cff7c675220fdec1dcf9e2f93e2643e5cb92099eb",
+    "source_result": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_solo.jsonl",
+    "field": "clean"
+  },
+  "analysis_source": "committed Q4 JSONL; deterministic, no model calls"
+}

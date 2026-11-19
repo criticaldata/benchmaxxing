@@ -1,0 +1,251 @@
+{
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "model_display": "Ollama llama3.2-vision:11b Q4_K_M",
+  "lane": "NIH imaging",
+  "ground_truth_convention": "all NIH cases are finding-positive; ground truth is yes",
+  "transition_definition": {
+    "harm": "clean yes to shared no",
+    "spurious_rescue": "clean no to shared yes"
+  },
+  "per_cue": {
+    "no_cue": {
+      "harm_rate_correct_to_wrong": {
+        "n": 1,
+        "events": 1,
+        "rate": 1.0,
+        "wilson95": [
+          0.2065,
+          1.0
+        ],
+        "bootstrap95": [
+          1.0,
+          1.0
+        ]
+      },
+      "spurious_rescue_rate_wrong_to_correct": {
+        "n": 34,
+        "events": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.1015
+        ],
+        "bootstrap95": [
+          0.0,
+          0.0
+        ]
+      },
+      "harm_vs_rescue_fisher": {
+        "pvalue": 0.028571,
+        "oddsratio": null
+      }
+    },
+    "cable": {
+      "harm_rate_correct_to_wrong": {
+        "n": 1,
+        "events": 1,
+        "rate": 1.0,
+        "wilson95": [
+          0.2065,
+          1.0
+        ],
+        "bootstrap95": [
+          1.0,
+          1.0
+        ]
+      },
+      "spurious_rescue_rate_wrong_to_correct": {
+        "n": 34,
+        "events": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.1015
+        ],
+        "bootstrap95": [
+          0.0,
+          0.0
+        ]
+      },
+      "harm_vs_rescue_fisher": {
+        "pvalue": 0.028571,
+        "oddsratio": null
+      }
+    },
+    "corner_tag": {
+      "harm_rate_correct_to_wrong": {
+        "n": 1,
+        "events": 1,
+        "rate": 1.0,
+        "wilson95": [
+          0.2065,
+          1.0
+        ],
+        "bootstrap95": [
+          1.0,
+          1.0
+        ]
+      },
+      "spurious_rescue_rate_wrong_to_correct": {
+        "n": 34,
+        "events": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.1015
+        ],
+        "bootstrap95": [
+          0.0,
+          0.0
+        ]
+      },
+      "harm_vs_rescue_fisher": {
+        "pvalue": 0.028571,
+        "oddsratio": null
+      }
+    },
+    "laterality": {
+      "harm_rate_correct_to_wrong": {
+        "n": 1,
+        "events": 1,
+        "rate": 1.0,
+        "wilson95": [
+          0.2065,
+          1.0
+        ],
+        "bootstrap95": [
+          1.0,
+          1.0
+        ]
+      },
+      "spurious_rescue_rate_wrong_to_correct": {
+        "n": 34,
+        "events": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.1015
+        ],
+        "bootstrap95": [
+          0.0,
+          0.0
+        ]
+      },
+      "harm_vs_rescue_fisher": {
+        "pvalue": 0.028571,
+        "oddsratio": null
+      }
+    },
+    "watermark_opacity_0.15": {
+      "harm_rate_correct_to_wrong": {
+        "n": 1,
+        "events": 1,
+        "rate": 1.0,
+        "wilson95": [
+          0.2065,
+          1.0
+        ],
+        "bootstrap95": [
+          1.0,
+          1.0
+        ]
+      },
+      "spurious_rescue_rate_wrong_to_correct": {
+        "n": 34,
+        "events": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.1015
+        ],
+        "bootstrap95": [
+          0.0,
+          0.0
+        ]
+      },
+      "harm_vs_rescue_fisher": {
+        "pvalue": 0.028571,
+        "oddsratio": null
+      }
+    },
+    "watermark_opacity_0.3": {
+      "harm_rate_correct_to_wrong": {
+        "n": 1,
+        "events": 1,
+        "rate": 1.0,
+        "wilson95": [
+          0.2065,
+          1.0
+        ],
+        "bootstrap95": [
+          1.0,
+          1.0
+        ]
+      },
+      "spurious_rescue_rate_wrong_to_correct": {
+        "n": 34,
+        "events": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.1015
+        ],
+        "bootstrap95": [
+          0.0,
+          0.0
+        ]
+      },
+      "harm_vs_rescue_fisher": {
+        "pvalue": 0.028571,
+        "oddsratio": null
+      }
+    },
+    "watermark_opacity_0.45": {
+      "harm_rate_correct_to_wrong": {
+        "n": 1,
+        "events": 1,
+        "rate": 1.0,
+        "wilson95": [
+          0.2065,
+          1.0
+        ],
+        "bootstrap95": [
+          1.0,
+          1.0
+        ]
+      },
+      "spurious_rescue_rate_wrong_to_correct": {
+        "n": 34,
+        "events": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.1015
+        ],
+        "bootstrap95": [
+          0.0,
+          0.0
+        ]
+      },
+      "harm_vs_rescue_fisher": {
+        "pvalue": 0.028571,
+        "oddsratio": null
+      }
+    }
+  },
+  "baseline_accuracy": {
+    "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+    "dataset": "NIH ChestX-ray14",
+    "arm": "imaging_solo",
+    "correct": 1,
+    "n": 35,
+    "accuracy": 0.02857142857142857,
+    "display": "1/35 (2.9%)",
+    "case_ids_sha256": "61070c6a14c516ca0e9eaf4cff7c675220fdec1dcf9e2f93e2643e5cb92099eb",
+    "source_result": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_solo.jsonl",
+    "field": "clean"
+  },
+  "analysis_source": "actual clean/shared answer transitions from committed Q4 rows",
+  "read": "Harm and rescue are classified by observed clean-to-shared answer transitions against NIH ground truth. The no-cue and injected-cue arms use 35 cases; watermark sweep levels are 0.15, 0.30, and 0.45. Baseline accuracy was 1/35 (2.9%)."
+}

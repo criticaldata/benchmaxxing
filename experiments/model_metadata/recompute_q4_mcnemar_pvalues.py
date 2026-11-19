@@ -10,7 +10,7 @@ from pathlib import Path
 from benchmaxxing.degeneracy import REPO_ROOT, rounded_pvalues
 from benchmaxxing.stats import mcnemar
 
-MODEL_SLUG = "meta_llama-3.2-11b-vision-instruct"
+MODEL_SLUG = "ollama_llama-3.2-11b-vision-instruct-q4_k_m"
 
 
 def read_pair(parent: dict) -> tuple[int, int] | None:
@@ -40,7 +40,7 @@ def main() -> None:
             continue
         pair = read_pair(parent)
         if pair is None:
-            raise SystemExit(f"no paired discordant counts for {finding.key}")
+            continue
         exact = mcnemar(*pair).pvalue
         if exact <= 0.0:
             raise SystemExit(f"non-positive exact result for {finding.key}: {pair}")

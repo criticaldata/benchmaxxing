@@ -1,0 +1,65 @@
+{
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "model_display": "Ollama llama3.2-vision:11b Q4_K_M",
+  "n": 120,
+  "state": "complete",
+  "arms": {
+    "support2_solo": {
+      "state": "complete",
+      "attempts": null,
+      "result": {
+        "summary_n": 120,
+        "row_count": 120,
+        "new_api_calls": 1080,
+        "result_sha256": "bdfb219b17997c7c7486f129bf5eaef69cdd4718a2fa4573c1dbe886eb715002"
+      }
+    },
+    "support2_cascade": {
+      "state": "complete",
+      "attempts": null,
+      "result": {
+        "summary_n": 120,
+        "row_count": 120,
+        "new_api_calls": 360,
+        "result_sha256": "024a21b2b7d15e674264aa25aa61cfa92a6555dbc81addc194ab602b25d4f889"
+      }
+    },
+    "support2_cascade_strength": {
+      "state": "complete",
+      "attempts": null,
+      "result": {
+        "summary_n": 120,
+        "row_count": 120,
+        "new_api_calls": 1200,
+        "result_sha256": "1747fcce132b54f546e3025780ca19849ec753e9037c94292bae13ad348aef93"
+      }
+    },
+    "support2_referee": {
+      "state": "complete",
+      "attempts": null,
+      "result": {
+        "summary_n": 120,
+        "row_count": 240,
+        "new_api_calls": 120,
+        "result_sha256": "b021fcdd067edc36dc9dfec50061c8f698cdc79b06c97c64a0e2857fd5eea0d6"
+      }
+    },
+    "support2_referee_judge": {
+      "state": "complete",
+      "attempts": null,
+      "result": {
+        "summary_n": 120,
+        "row_count": 120,
+        "new_api_calls": 120,
+        "result_sha256": "d3d94b18300290bf479ad72aa93e03ad228c9446c7ea82da981a2c346f81db08"
+      }
+    }
+  },
+  "validation_source": "committed Q4 summaries/JSONL; final audit reports five of five complete",
+  "timestamps": "not included in audited import",
+  "source_branch": "experiments/llama32-vision-q4km-parity",
+  "source_head": "6ace8cc5ba2363a4c6fbbe325c3f8cfa583f722f",
+  "source_result_commit": "1bb6828a750e15a91043dd2f2432ef5d93f83d2f",
+  "new_model_calls_during_status_generation": 0
+}

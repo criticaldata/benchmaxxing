@@ -1,0 +1,106 @@
+{
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "cohorts": {
+    "natural_cues": {
+      "source_selection": {
+        "seed": 20240724,
+        "arms": {
+          "solo": {
+            "manifest": "experiments/chexpert/results/natural_cues/solo_600.csv",
+            "images": 600
+          },
+          "referee": {
+            "manifest": "experiments/chexpert/results/natural_cues/referee_300.csv",
+            "images": 300
+          },
+          "cascade": {
+            "manifest": "experiments/chexpert/results/natural_cues/cascade_150.csv",
+            "images": 150
+          },
+          "nih_match": {
+            "manifest": "experiments/chexpert/results/natural_cues/nih_match_35.csv",
+            "images": 35
+          }
+        },
+        "label_distribution_solo": {
+          "Support Devices": 600
+        },
+        "recommended_commands": {
+          "solo": "python experiments/imaging/imaging_solo.py --manifest experiments/chexpert/results/natural_cues/solo_600.csv --n 600",
+          "referee": "python experiments/imaging/imaging_referee.py --manifest experiments/chexpert/results/natural_cues/referee_300.csv --n 300",
+          "cascade": "python experiments/imaging/imaging_cascade.py --manifest experiments/chexpert/results/natural_cues/cascade_150.csv --n 150",
+          "nih_match": "python experiments/imaging/imaging_nih.py --manifest experiments/chexpert/results/natural_cues/nih_match_35.csv --n 35"
+        }
+      },
+      "observed_q4_cascade": {
+        "n": 150,
+        "case_ids_sha256": "6306c61104055133beb41cb0d7a05636e7651b34c6320255c6390c9bc67182b6",
+        "result_file": "imaging_cascade_natural_cues.jsonl",
+        "baseline_accuracy": {
+          "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+          "dataset": "CheXpert",
+          "arm": "natural_cues_cascade",
+          "correct": 117,
+          "n": 150,
+          "accuracy": 0.78,
+          "display": "117/150 (78.0%)",
+          "case_ids_sha256": "821677fabcd75e090886fbdf25a58e76e4370cba3452b98fb63cc57d7d060270",
+          "source_result": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_natural_cues.jsonl",
+          "field": "clean_correct"
+        }
+      }
+    },
+    "natural_independent": {
+      "source_selection": {
+        "seed": 20240724,
+        "arms": {
+          "solo": {
+            "manifest": "experiments/chexpert/results/natural_independent/solo_600.csv",
+            "images": 600
+          },
+          "referee": {
+            "manifest": "experiments/chexpert/results/natural_independent/referee_300.csv",
+            "images": 300
+          },
+          "cascade": {
+            "manifest": "experiments/chexpert/results/natural_independent/cascade_150.csv",
+            "images": 150
+          },
+          "nih_match": {
+            "manifest": "experiments/chexpert/results/natural_independent/nih_match_35.csv",
+            "images": 35
+          }
+        },
+        "label_distribution_solo": {
+          "Support Devices": 600
+        },
+        "recommended_commands": {
+          "solo": "python experiments/imaging/imaging_solo.py --manifest experiments/chexpert/results/natural_independent/solo_600.csv --n 600",
+          "referee": "python experiments/imaging/imaging_referee.py --manifest experiments/chexpert/results/natural_independent/referee_300.csv --n 300",
+          "cascade": "python experiments/imaging/imaging_cascade.py --manifest experiments/chexpert/results/natural_independent/cascade_150.csv --n 150",
+          "nih_match": "python experiments/imaging/imaging_nih.py --manifest experiments/chexpert/results/natural_independent/nih_match_35.csv --n 35"
+        }
+      },
+      "observed_q4_cascade": {
+        "n": 150,
+        "case_ids_sha256": "ea632a6c30de6f7fd5bf929dd4f041bad317932ecbae85a14f828dba3531c4a2",
+        "result_file": "imaging_cascade_natural_independent.jsonl",
+        "baseline_accuracy": {
+          "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+          "dataset": "CheXpert",
+          "arm": "natural_independent_cascade",
+          "correct": 120,
+          "n": 150,
+          "accuracy": 0.8,
+          "display": "120/150 (80.0%)",
+          "case_ids_sha256": "26d24e52dd439cebda144c637ca99bc75907f6deb646fcfee2ace034bb6091d8",
+          "source_result": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_natural_independent.jsonl",
+          "field": "clean_correct"
+        }
+      }
+    }
+  },
+  "note": "Selection is model-independent; each Q4 result cohort and baseline is recorded.",
+  "new_model_calls": 0
+}

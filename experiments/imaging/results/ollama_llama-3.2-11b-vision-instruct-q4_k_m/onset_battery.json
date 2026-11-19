@@ -1,0 +1,74 @@
+{
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "model_display": "Ollama llama3.2-vision:11b Q4_K_M",
+  "conditions": {
+    "no_cue": {
+      "n": 35,
+      "contagion_index": 0.0286,
+      "deference_rate": 1.0,
+      "n_shared_wrong_answers": 35,
+      "n_solo_correct": 1
+    },
+    "cable": {
+      "n": 35,
+      "contagion_index": 0.0286,
+      "deference_rate": 1.0,
+      "n_shared_wrong_answers": 35,
+      "n_solo_correct": 1
+    },
+    "corner_tag": {
+      "n": 35,
+      "contagion_index": 0.0286,
+      "deference_rate": 1.0,
+      "n_shared_wrong_answers": 35,
+      "n_solo_correct": 1
+    },
+    "laterality": {
+      "n": 35,
+      "contagion_index": 0.0286,
+      "deference_rate": 1.0,
+      "n_shared_wrong_answers": 35,
+      "n_solo_correct": 1
+    },
+    "watermark_opacity_0.15": {
+      "n": 35,
+      "contagion_index": 0.0,
+      "deference_rate": 0.0,
+      "n_shared_wrong_answers": 35,
+      "n_solo_correct": 0
+    },
+    "watermark_opacity_0.3": {
+      "n": 35,
+      "contagion_index": 0.0,
+      "deference_rate": 0.0,
+      "n_shared_wrong_answers": 35,
+      "n_solo_correct": 0
+    },
+    "watermark_opacity_0.45": {
+      "n": 35,
+      "contagion_index": 0.0286,
+      "deference_rate": 1.0,
+      "n_shared_wrong_answers": 35,
+      "n_solo_correct": 1
+    }
+  },
+  "watermark_opacities": [
+    0.15,
+    0.3,
+    0.45
+  ],
+  "baseline_accuracy": {
+    "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+    "dataset": "NIH ChestX-ray14",
+    "arm": "imaging_solo",
+    "correct": 1,
+    "n": 35,
+    "accuracy": 0.02857142857142857,
+    "display": "1/35 (2.9%)",
+    "case_ids_sha256": "61070c6a14c516ca0e9eaf4cff7c675220fdec1dcf9e2f93e2643e5cb92099eb",
+    "source_result": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_solo.jsonl",
+    "field": "clean"
+  },
+  "read": "Onset metrics use the committed Q4 answer/adoption fields, with the watermark reported as its three-level sweep and no-cue shown as a control. NIH baseline accuracy was 1/35."
+}

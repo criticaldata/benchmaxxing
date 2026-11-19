@@ -1,0 +1,2754 @@
+{
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "hosted_results_slug": "meta_llama-3.2-11b-vision-instruct",
+  "bundle_path": "/private/tmp/llama32-vision-q4km-parity.bundle",
+  "bundle_sha256": "0a0c4c71b88b061d568873b8a2aa24eba5db749d3527ababb64ed4bc61329dc9",
+  "source_branch": "experiments/llama32-vision-q4km-parity",
+  "source_base": "0eb8f23d9a62c32f3b0eac52914aac9b32382d4a",
+  "source_result_commit": "1bb6828a750e15a91043dd2f2432ef5d93f83d2f",
+  "source_head": "6ace8cc5ba2363a4c6fbbe325c3f8cfa583f722f",
+  "result_cache_files_imported": 382,
+  "audit_and_cohort_files_imported": 8,
+  "mimic_paths_imported": 0,
+  "result_path_mapping": "meta_llama-3.2-11b-vision-instruct -> ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "results": [
+    {
+      "source_path": "experiments/blind_metric/results/matched/meta_llama-3.2-11b-vision-instruct/blind_metric_calibrated.jsonl",
+      "target_path": "experiments/blind_metric/results/matched/ollama_llama-3.2-11b-vision-instruct-q4_k_m/blind_metric_calibrated.jsonl",
+      "source_sha256": "fa73d5f5b617010f48fd895a4b398468e72789ebe6221d0443e2a29afe86fff6",
+      "import_sha256": "fa73d5f5b617010f48fd895a4b398468e72789ebe6221d0443e2a29afe86fff6",
+      "bytes": 5966
+    },
+    {
+      "source_path": "experiments/blind_metric/results/matched/meta_llama-3.2-11b-vision-instruct/matched_conditions.jsonl",
+      "target_path": "experiments/blind_metric/results/matched/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_conditions.jsonl",
+      "source_sha256": "883f636aa1a09d0d3155d07e66fb59bf2480267ed156c2ad2bb7445712a36e16",
+      "import_sha256": "883f636aa1a09d0d3155d07e66fb59bf2480267ed156c2ad2bb7445712a36e16",
+      "bytes": 109420
+    },
+    {
+      "source_path": "experiments/blind_metric/results/matched/meta_llama-3.2-11b-vision-instruct/matched_conditions_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/blind_metric/results/matched/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_conditions_call_cache_q4_k_m.jsonl",
+      "source_sha256": "803bd3d108673a8d8201493b299c841def2bad59ecfd643647908c7918ef6263",
+      "import_sha256": "803bd3d108673a8d8201493b299c841def2bad59ecfd643647908c7918ef6263",
+      "bytes": 595928
+    },
+    {
+      "source_path": "experiments/blind_metric/results/matched/meta_llama-3.2-11b-vision-instruct/matched_conditions_calls.jsonl",
+      "target_path": "experiments/blind_metric/results/matched/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_conditions_calls.jsonl",
+      "source_sha256": "a7bcef222f840ee3f12d1edf0d21383f21ee4ce3cc9dbc64426a8600eee61e23",
+      "import_sha256": "a7bcef222f840ee3f12d1edf0d21383f21ee4ce3cc9dbc64426a8600eee61e23",
+      "bytes": 683920
+    },
+    {
+      "source_path": "experiments/blind_metric/results/matched/meta_llama-3.2-11b-vision-instruct/matched_conditions_report.json",
+      "target_path": "experiments/blind_metric/results/matched/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_conditions_report.json",
+      "source_sha256": "a88ff4c27701f08dde4c462548fd5732ce126ae1bd3c7d2914844ad6b459e96e",
+      "import_sha256": "a88ff4c27701f08dde4c462548fd5732ce126ae1bd3c7d2914844ad6b459e96e",
+      "bytes": 22021
+    },
+    {
+      "source_path": "experiments/blind_metric/results/matched/meta_llama-3.2-11b-vision-instruct/matched_conditions_summary.json",
+      "target_path": "experiments/blind_metric/results/matched/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_conditions_summary.json",
+      "source_sha256": "933d35aa7affc4d84c4b52a9ffe8b95ef038d03e27b4d669ed673d2a271ecbe7",
+      "import_sha256": "933d35aa7affc4d84c4b52a9ffe8b95ef038d03e27b4d669ed673d2a271ecbe7",
+      "bytes": 7392
+    },
+    {
+      "source_path": "experiments/blind_metric/results/meta_llama-3.2-11b-vision-instruct/blind_metric.jsonl",
+      "target_path": "experiments/blind_metric/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/blind_metric.jsonl",
+      "source_sha256": "8b6a3ea110c8c8828f7cd90dda366aeb26d93fa255c27f88292f97bdd78dae3e",
+      "import_sha256": "8b6a3ea110c8c8828f7cd90dda366aeb26d93fa255c27f88292f97bdd78dae3e",
+      "bytes": 10678
+    },
+    {
+      "source_path": "experiments/blind_metric/results/meta_llama-3.2-11b-vision-instruct/blind_metric_summary.json",
+      "target_path": "experiments/blind_metric/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/blind_metric_summary.json",
+      "source_sha256": "71ccb7b521939cb7e00d90f76e5cc4233ddc7fe89f6015d1a0a7e9891b0093bb",
+      "import_sha256": "71ccb7b521939cb7e00d90f76e5cc4233ddc7fe89f6015d1a0a7e9891b0093bb",
+      "bytes": 729
+    },
+    {
+      "source_path": "experiments/blind_metric/results/meta_llama-3.2-11b-vision-instruct/call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/blind_metric/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/call_cache_q4_k_m.jsonl",
+      "source_sha256": "8d27a90c68174be43086b638c72bafec2ce7f76e8aefb346adb55a694d879dd7",
+      "import_sha256": "8d27a90c68174be43086b638c72bafec2ce7f76e8aefb346adb55a694d879dd7",
+      "bytes": 192561
+    },
+    {
+      "source_path": "experiments/blind_metric/results/meta_llama-3.2-11b-vision-instruct/matched_baseline_reason.jsonl",
+      "target_path": "experiments/blind_metric/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_baseline_reason.jsonl",
+      "source_sha256": "ae1ba4b888be7438547ccf792cbbeb17add44453fb7ece2854b1056d735eb5ce",
+      "import_sha256": "ae1ba4b888be7438547ccf792cbbeb17add44453fb7ece2854b1056d735eb5ce",
+      "bytes": 12641
+    },
+    {
+      "source_path": "experiments/blind_metric/results/meta_llama-3.2-11b-vision-instruct/matched_baseline_reason_repeats.jsonl",
+      "target_path": "experiments/blind_metric/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_baseline_reason_repeats.jsonl",
+      "source_sha256": "ffdca046dc2bb268e66eb97b830c278124840d3e5dcb1ff8a0b4acbae90c2dac",
+      "import_sha256": "ffdca046dc2bb268e66eb97b830c278124840d3e5dcb1ff8a0b4acbae90c2dac",
+      "bytes": 10382
+    },
+    {
+      "source_path": "experiments/blind_metric/results/meta_llama-3.2-11b-vision-instruct/matched_baseline_reason_repeats_summary.json",
+      "target_path": "experiments/blind_metric/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_baseline_reason_repeats_summary.json",
+      "source_sha256": "42a638d34154a06fa868577b102d04290e6016d63ea46264cbfdfd02b8193792",
+      "import_sha256": "42a638d34154a06fa868577b102d04290e6016d63ea46264cbfdfd02b8193792",
+      "bytes": 759
+    },
+    {
+      "source_path": "experiments/blind_metric/results/meta_llama-3.2-11b-vision-instruct/matched_baseline_reason_summary.json",
+      "target_path": "experiments/blind_metric/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_baseline_reason_summary.json",
+      "source_sha256": "2dd12288e6431f64d69960e9237636900c3761a5e08a6636daade5a55758816c",
+      "import_sha256": "2dd12288e6431f64d69960e9237636900c3761a5e08a6636daade5a55758816c",
+      "bytes": 1146
+    },
+    {
+      "source_path": "experiments/blind_metric/results/n100/meta_llama-3.2-11b-vision-instruct/blind_metric.jsonl",
+      "target_path": "experiments/blind_metric/results/n100/ollama_llama-3.2-11b-vision-instruct-q4_k_m/blind_metric.jsonl",
+      "source_sha256": "30aa128985e3a3faec85958ceb7628b8f1fbe7db8e5138213377e6b6ad6c755a",
+      "import_sha256": "30aa128985e3a3faec85958ceb7628b8f1fbe7db8e5138213377e6b6ad6c755a",
+      "bytes": 26731
+    },
+    {
+      "source_path": "experiments/blind_metric/results/n100/meta_llama-3.2-11b-vision-instruct/blind_metric_summary.json",
+      "target_path": "experiments/blind_metric/results/n100/ollama_llama-3.2-11b-vision-instruct-q4_k_m/blind_metric_summary.json",
+      "source_sha256": "420ac5705262ad352f7b66c0e524287c8e2a9ad3d07dee14216654514906ec99",
+      "import_sha256": "420ac5705262ad352f7b66c0e524287c8e2a9ad3d07dee14216654514906ec99",
+      "bytes": 731
+    },
+    {
+      "source_path": "experiments/cascade/results/meta_llama-3.2-11b-vision-instruct/multi_round.jsonl",
+      "target_path": "experiments/cascade/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/multi_round.jsonl",
+      "source_sha256": "a715467c847f4b9d6f5d637391d62f16e2e550a8dc214db42616b78e341bb19a",
+      "import_sha256": "a715467c847f4b9d6f5d637391d62f16e2e550a8dc214db42616b78e341bb19a",
+      "bytes": 8240
+    },
+    {
+      "source_path": "experiments/cascade/results/meta_llama-3.2-11b-vision-instruct/multi_round_n120.jsonl",
+      "target_path": "experiments/cascade/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/multi_round_n120.jsonl",
+      "source_sha256": "29a90cf0ac4972b0804c8981e115213596fdfb767328d6ce3fdcf93aec2c2048",
+      "import_sha256": "29a90cf0ac4972b0804c8981e115213596fdfb767328d6ce3fdcf93aec2c2048",
+      "bytes": 24154
+    },
+    {
+      "source_path": "experiments/cascade/results/meta_llama-3.2-11b-vision-instruct/multi_round_n120_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/cascade/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/multi_round_n120_call_cache_q4_k_m.jsonl",
+      "source_sha256": "773ca6944d9aa9aeb16235e179e125fa4e747c0c9e99b38091c07eb9a93edadf",
+      "import_sha256": "773ca6944d9aa9aeb16235e179e125fa4e747c0c9e99b38091c07eb9a93edadf",
+      "bytes": 114045
+    },
+    {
+      "source_path": "experiments/cascade/results/meta_llama-3.2-11b-vision-instruct/multi_round_n40.jsonl",
+      "target_path": "experiments/cascade/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/multi_round_n40.jsonl",
+      "source_sha256": "a715467c847f4b9d6f5d637391d62f16e2e550a8dc214db42616b78e341bb19a",
+      "import_sha256": "a715467c847f4b9d6f5d637391d62f16e2e550a8dc214db42616b78e341bb19a",
+      "bytes": 8240
+    },
+    {
+      "source_path": "experiments/cascade/results/meta_llama-3.2-11b-vision-instruct/multi_round_n40_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/cascade/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/multi_round_n40_call_cache_q4_k_m.jsonl",
+      "source_sha256": "4df0cc1f880754c5a59f0a87ed14e5ebf0469c39cf22ca6a4798cf02567761d0",
+      "import_sha256": "4df0cc1f880754c5a59f0a87ed14e5ebf0469c39cf22ca6a4798cf02567761d0",
+      "bytes": 38468
+    },
+    {
+      "source_path": "experiments/cascade/results/meta_llama-3.2-11b-vision-instruct/multi_round_summary.json",
+      "target_path": "experiments/cascade/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/multi_round_summary.json",
+      "source_sha256": "610922106ae29a3731e6d96f6ee4973a33871035e7a2582283bd330f0ef21f00",
+      "import_sha256": "610922106ae29a3731e6d96f6ee4973a33871035e7a2582283bd330f0ef21f00",
+      "bytes": 359
+    },
+    {
+      "source_path": "experiments/cascade/results/meta_llama-3.2-11b-vision-instruct/multi_round_summary_n120.json",
+      "target_path": "experiments/cascade/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/multi_round_summary_n120.json",
+      "source_sha256": "1fbf30b1c30c52c14556f3d9c6460dab82b03df706a57e98baded87616dc1dd0",
+      "import_sha256": "1fbf30b1c30c52c14556f3d9c6460dab82b03df706a57e98baded87616dc1dd0",
+      "bytes": 383
+    },
+    {
+      "source_path": "experiments/chexpert/results/matched/meta_llama-3.2-11b-vision-instruct/blind_metric_calibrated.jsonl",
+      "target_path": "experiments/chexpert/results/matched/ollama_llama-3.2-11b-vision-instruct-q4_k_m/blind_metric_calibrated.jsonl",
+      "source_sha256": "e4c5b8543c0b545139e49635c65bff1b6e3c563b9172c53572d62304843584ae",
+      "import_sha256": "e4c5b8543c0b545139e49635c65bff1b6e3c563b9172c53572d62304843584ae",
+      "bytes": 7119
+    },
+    {
+      "source_path": "experiments/chexpert/results/matched/meta_llama-3.2-11b-vision-instruct/matched_conditions.jsonl",
+      "target_path": "experiments/chexpert/results/matched/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_conditions.jsonl",
+      "source_sha256": "ba6083c834f279b113739b81c3c27d835bd4d1ec06f8709467245ba4ad14a0dc",
+      "import_sha256": "ba6083c834f279b113739b81c3c27d835bd4d1ec06f8709467245ba4ad14a0dc",
+      "bytes": 79073
+    },
+    {
+      "source_path": "experiments/chexpert/results/matched/meta_llama-3.2-11b-vision-instruct/matched_conditions_calls.jsonl",
+      "target_path": "experiments/chexpert/results/matched/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_conditions_calls.jsonl",
+      "source_sha256": "c6035a408b4c6f4cef07319f940855aedaeb0f41df312447bbff4270ac80a260",
+      "import_sha256": "c6035a408b4c6f4cef07319f940855aedaeb0f41df312447bbff4270ac80a260",
+      "bytes": 6022811
+    },
+    {
+      "source_path": "experiments/chexpert/results/matched/meta_llama-3.2-11b-vision-instruct/matched_conditions_report.json",
+      "target_path": "experiments/chexpert/results/matched/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_conditions_report.json",
+      "source_sha256": "6fe8c61355db0b00539b95a51a4afb3b9cfc5dfad7853002882b2f96c5adb711",
+      "import_sha256": "6fe8c61355db0b00539b95a51a4afb3b9cfc5dfad7853002882b2f96c5adb711",
+      "bytes": 25682
+    },
+    {
+      "source_path": "experiments/chexpert/results/matched/meta_llama-3.2-11b-vision-instruct/matched_conditions_summary.json",
+      "target_path": "experiments/chexpert/results/matched/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_conditions_summary.json",
+      "source_sha256": "cad7a5a9c0bbbf886ecbaebd89adda6982aa4a814cc3108532ade9515af5cdcf",
+      "import_sha256": "cad7a5a9c0bbbf886ecbaebd89adda6982aa4a814cc3108532ade9515af5cdcf",
+      "bytes": 8486
+    },
+    {
+      "source_path": "experiments/chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_blind_metric.jsonl",
+      "target_path": "experiments/chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_blind_metric.jsonl",
+      "source_sha256": "1b98c081bba8466c780c62acf1ad0b7ae45c4af5c7d0df01dd87e06e48933ef2",
+      "import_sha256": "1b98c081bba8466c780c62acf1ad0b7ae45c4af5c7d0df01dd87e06e48933ef2",
+      "bytes": 10098
+    },
+    {
+      "source_path": "experiments/chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_blind_metric_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_blind_metric_call_cache_q4_k_m.jsonl",
+      "source_sha256": "41d65c3f8633cfee5cb703d30a1363ced6ee04dae78128c3aed64b74df3422bb",
+      "import_sha256": "41d65c3f8633cfee5cb703d30a1363ced6ee04dae78128c3aed64b74df3422bb",
+      "bytes": 6678906
+    },
+    {
+      "source_path": "experiments/chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_blind_metric_summary.json",
+      "target_path": "experiments/chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_blind_metric_summary.json",
+      "source_sha256": "4c4db0bde997614d5516ca81b4c3afd287e88c3beff33bfe37eaa11eb569e5ff",
+      "import_sha256": "4c4db0bde997614d5516ca81b4c3afd287e88c3beff33bfe37eaa11eb569e5ff",
+      "bytes": 477
+    },
+    {
+      "source_path": "experiments/chexpert/results/meta_llama-3.2-11b-vision-instruct/matched_baseline_reason.jsonl",
+      "target_path": "experiments/chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_baseline_reason.jsonl",
+      "source_sha256": "e7c73637b284c7e2d928c878618ff3c601dec1637b342d85c8e1362e81eb41c3",
+      "import_sha256": "e7c73637b284c7e2d928c878618ff3c601dec1637b342d85c8e1362e81eb41c3",
+      "bytes": 13039
+    },
+    {
+      "source_path": "experiments/chexpert/results/meta_llama-3.2-11b-vision-instruct/matched_baseline_reason_repeats.jsonl",
+      "target_path": "experiments/chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_baseline_reason_repeats.jsonl",
+      "source_sha256": "a68c39837a556b5428f1bb88f706990a85237561994130590c5680e76127dcdb",
+      "import_sha256": "a68c39837a556b5428f1bb88f706990a85237561994130590c5680e76127dcdb",
+      "bytes": 11043
+    },
+    {
+      "source_path": "experiments/chexpert/results/meta_llama-3.2-11b-vision-instruct/matched_baseline_reason_repeats_summary.json",
+      "target_path": "experiments/chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_baseline_reason_repeats_summary.json",
+      "source_sha256": "5c6897e50a8e9a2b6f2aa3eef0ab2fece599e5e07d487251a18a6636b890efa2",
+      "import_sha256": "5c6897e50a8e9a2b6f2aa3eef0ab2fece599e5e07d487251a18a6636b890efa2",
+      "bytes": 765
+    },
+    {
+      "source_path": "experiments/chexpert/results/meta_llama-3.2-11b-vision-instruct/matched_baseline_reason_summary.json",
+      "target_path": "experiments/chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_baseline_reason_summary.json",
+      "source_sha256": "e866f5195c63b7eedf53f019dc90baf434f114cfe2ae170a4a13a1d211756dc5",
+      "import_sha256": "e866f5195c63b7eedf53f019dc90baf434f114cfe2ae170a4a13a1d211756dc5",
+      "bytes": 1146
+    },
+    {
+      "source_path": "experiments/contamination/results/meta_llama-3.2-11b-vision-instruct/contamination_audit.jsonl",
+      "target_path": "experiments/contamination/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/contamination_audit.jsonl",
+      "source_sha256": "57570d930bd9b6cf0f3abf8d5bb409f8862b837e130a662a1431f128fdab20bb",
+      "import_sha256": "57570d930bd9b6cf0f3abf8d5bb409f8862b837e130a662a1431f128fdab20bb",
+      "bytes": 14090
+    },
+    {
+      "source_path": "experiments/contamination/results/meta_llama-3.2-11b-vision-instruct/contamination_audit_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/contamination/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/contamination_audit_call_cache_q4_k_m.jsonl",
+      "source_sha256": "7057b077f9025bfd7bb0d3b35503b9d1caa90a77e5a4b1b522e12da91d226ebb",
+      "import_sha256": "7057b077f9025bfd7bb0d3b35503b9d1caa90a77e5a4b1b522e12da91d226ebb",
+      "bytes": 29559
+    },
+    {
+      "source_path": "experiments/contamination/results/meta_llama-3.2-11b-vision-instruct/contamination_audit_summary.json",
+      "target_path": "experiments/contamination/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/contamination_audit_summary.json",
+      "source_sha256": "e2d138abc29182b7520a91b192b8b39545163ad2d83b1c466789bcb7ddf245bf",
+      "import_sha256": "e2d138abc29182b7520a91b192b8b39545163ad2d83b1c466789bcb7ddf245bf",
+      "bytes": 576
+    },
+    {
+      "source_path": "experiments/imaging/results/matched/meta_llama-3.2-11b-vision-instruct/blind_metric_calibrated.jsonl",
+      "target_path": "experiments/imaging/results/matched/ollama_llama-3.2-11b-vision-instruct-q4_k_m/blind_metric_calibrated.jsonl",
+      "source_sha256": "a1eec3deedfd5c9cca585ef16a4d8e63647e6a9b5d3fd1b34fca5b4e6717ea4a",
+      "import_sha256": "a1eec3deedfd5c9cca585ef16a4d8e63647e6a9b5d3fd1b34fca5b4e6717ea4a",
+      "bytes": 5483
+    },
+    {
+      "source_path": "experiments/imaging/results/matched/meta_llama-3.2-11b-vision-instruct/matched_conditions.jsonl",
+      "target_path": "experiments/imaging/results/matched/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_conditions.jsonl",
+      "source_sha256": "1d8f4aa8f4ecc77124fef6aa303db2c799c9266fed2dbea566c0754265809634",
+      "import_sha256": "1d8f4aa8f4ecc77124fef6aa303db2c799c9266fed2dbea566c0754265809634",
+      "bytes": 77006
+    },
+    {
+      "source_path": "experiments/imaging/results/matched/meta_llama-3.2-11b-vision-instruct/matched_conditions_calls.jsonl",
+      "target_path": "experiments/imaging/results/matched/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_conditions_calls.jsonl",
+      "source_sha256": "ae4c6fb6e48282c73a4db862ec84c0f39317ec4ea5c6860f272864e3899ab42a",
+      "import_sha256": "ae4c6fb6e48282c73a4db862ec84c0f39317ec4ea5c6860f272864e3899ab42a",
+      "bytes": 6772589
+    },
+    {
+      "source_path": "experiments/imaging/results/matched/meta_llama-3.2-11b-vision-instruct/matched_conditions_report.json",
+      "target_path": "experiments/imaging/results/matched/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_conditions_report.json",
+      "source_sha256": "172a2aacc11a799f0b5dc063467b44991048b50e4a870196eaea5d76942e0fa3",
+      "import_sha256": "172a2aacc11a799f0b5dc063467b44991048b50e4a870196eaea5d76942e0fa3",
+      "bytes": 25670
+    },
+    {
+      "source_path": "experiments/imaging/results/matched/meta_llama-3.2-11b-vision-instruct/matched_conditions_summary.json",
+      "target_path": "experiments/imaging/results/matched/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_conditions_summary.json",
+      "source_sha256": "002298b28cc9ebb56bb219a799cdbb65510a5d02ab7b8d54aee46567461f2035",
+      "import_sha256": "002298b28cc9ebb56bb219a799cdbb65510a5d02ab7b8d54aee46567461f2035",
+      "bytes": 8485
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_blind_metric.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_blind_metric.jsonl",
+      "source_sha256": "9d639947297ba1cce4bd2949ad9ced23bac6f30edd9512f4797b11cf657b5b79",
+      "import_sha256": "9d639947297ba1cce4bd2949ad9ced23bac6f30edd9512f4797b11cf657b5b79",
+      "bytes": 6361
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_blind_metric_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_blind_metric_call_cache_q4_k_m.jsonl",
+      "source_sha256": "83d74454efccb15ff1e5738d63a7c8f5a0cb367c01b0fa594ccedbd54709b4fb",
+      "import_sha256": "83d74454efccb15ff1e5738d63a7c8f5a0cb367c01b0fa594ccedbd54709b4fb",
+      "bytes": 8161652
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_blind_metric_summary.json",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_blind_metric_summary.json",
+      "source_sha256": "00dc020542c87c0ab3d7e730b95048b133a2aecb1330839cbf40367209d4e7d7",
+      "import_sha256": "00dc020542c87c0ab3d7e730b95048b133a2aecb1330839cbf40367209d4e7d7",
+      "bytes": 407
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_cable.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_cable.jsonl",
+      "source_sha256": "c9794a6392a7a32b93917af00be2d2931a5989aefbd874b7dc6668a24fbe4a3c",
+      "import_sha256": "c9794a6392a7a32b93917af00be2d2931a5989aefbd874b7dc6668a24fbe4a3c",
+      "bytes": 7504
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_cable_summary.json",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_cable_summary.json",
+      "source_sha256": "2e8a3c3dd9a5301ebd81759128a0f80294d52461a95212833bc1774c7c6f2ce1",
+      "import_sha256": "2e8a3c3dd9a5301ebd81759128a0f80294d52461a95212833bc1774c7c6f2ce1",
+      "bytes": 373
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_call_cache_q4_k_m.jsonl",
+      "source_sha256": "04ae9318e934a748a13817c8d06fd8041f4ba8c30234742b8da5adbb5b6cec2b",
+      "import_sha256": "04ae9318e934a748a13817c8d06fd8041f4ba8c30234742b8da5adbb5b6cec2b",
+      "bytes": 51957
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_corner_tag.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_corner_tag.jsonl",
+      "source_sha256": "66cc7be1e65aeb590c1c6f2073b7c2aee44b1a9bfd6ccac09e1a8801742151e1",
+      "import_sha256": "66cc7be1e65aeb590c1c6f2073b7c2aee44b1a9bfd6ccac09e1a8801742151e1",
+      "bytes": 7504
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_corner_tag_summary.json",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_corner_tag_summary.json",
+      "source_sha256": "4e3e5484f05dfdad9fa3fec2e46f9671766824f8c03f801b50aa5185ea99523e",
+      "import_sha256": "4e3e5484f05dfdad9fa3fec2e46f9671766824f8c03f801b50aa5185ea99523e",
+      "bytes": 378
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_laterality.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_laterality.jsonl",
+      "source_sha256": "1405c10160919986da7ab24f46a6e1d3176bcd21071b8642f4fec15427112880",
+      "import_sha256": "1405c10160919986da7ab24f46a6e1d3176bcd21071b8642f4fec15427112880",
+      "bytes": 7504
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_laterality_summary.json",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_laterality_summary.json",
+      "source_sha256": "218d7a7244568a2b8a4500771040b90b82a9fa2f956800bdef84237ccd36c972",
+      "import_sha256": "218d7a7244568a2b8a4500771040b90b82a9fa2f956800bdef84237ccd36c972",
+      "bytes": 378
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_none.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_none.jsonl",
+      "source_sha256": "f7ffafb5757d86762b2b50111aa52120e6ab4ede2c58f2bf6cd3c5427893f1a0",
+      "import_sha256": "f7ffafb5757d86762b2b50111aa52120e6ab4ede2c58f2bf6cd3c5427893f1a0",
+      "bytes": 7504
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_none_summary.json",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_none_summary.json",
+      "source_sha256": "8b6e131a54ff60d85f2f3b1d920e6ca75288f078df83ab27da47a0509a407d8d",
+      "import_sha256": "8b6e131a54ff60d85f2f3b1d920e6ca75288f078df83ab27da47a0509a407d8d",
+      "bytes": 372
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_scale.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_scale.jsonl",
+      "source_sha256": "2ed5cbae60cb9845c9a7c21445466855e22561807b898451a709cdb7422fea69",
+      "import_sha256": "2ed5cbae60cb9845c9a7c21445466855e22561807b898451a709cdb7422fea69",
+      "bytes": 22731
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_scale_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_scale_call_cache_q4_k_m.jsonl",
+      "source_sha256": "f3154ef641b55cb579a22941780490deaaf3216ae77284fb771c9a88cd5fc773",
+      "import_sha256": "f3154ef641b55cb579a22941780490deaaf3216ae77284fb771c9a88cd5fc773",
+      "bytes": 55616
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_scale_summary.json",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_scale_summary.json",
+      "source_sha256": "71528c9be4c66ecac2d0eed2c1013b4567e885ae5f464bea38ba91cc469c1903",
+      "import_sha256": "71528c9be4c66ecac2d0eed2c1013b4567e885ae5f464bea38ba91cc469c1903",
+      "bytes": 368
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_cue_combo.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cue_combo.jsonl",
+      "source_sha256": "6e5695689fa8f453c7d8a79f3d4fe800aa509f87426e52d30d4be6c3b535189c",
+      "import_sha256": "6e5695689fa8f453c7d8a79f3d4fe800aa509f87426e52d30d4be6c3b535189c",
+      "bytes": 5088
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_cue_combo_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cue_combo_call_cache_q4_k_m.jsonl",
+      "source_sha256": "141f45eb665dd78a3bedb78a93d59d78ef9324da582e0f40fd7f7c61bc275933",
+      "import_sha256": "141f45eb665dd78a3bedb78a93d59d78ef9324da582e0f40fd7f7c61bc275933",
+      "bytes": 17261
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_cue_combo_summary.json",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cue_combo_summary.json",
+      "source_sha256": "9fc1ab3711298111d303ffa6fd44a69fb02cbe2bacbe0723ec1f0c9032fd05de",
+      "import_sha256": "9fc1ab3711298111d303ffa6fd44a69fb02cbe2bacbe0723ec1f0c9032fd05de",
+      "bytes": 841
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_cue_families.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cue_families.jsonl",
+      "source_sha256": "56308d387ec7d97885b3af1c39a1cf05954b099264d786a8c4e1ecd33abedef5",
+      "import_sha256": "56308d387ec7d97885b3af1c39a1cf05954b099264d786a8c4e1ecd33abedef5",
+      "bytes": 8938
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_cue_families_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cue_families_call_cache_q4_k_m.jsonl",
+      "source_sha256": "8a954adedb90b3cb007067659150b4a3d6c7675aeb90bdf979714aab5eb1caea",
+      "import_sha256": "8a954adedb90b3cb007067659150b4a3d6c7675aeb90bdf979714aab5eb1caea",
+      "bytes": 21609
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_cue_families_noise.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cue_families_noise.jsonl",
+      "source_sha256": "76ff6a5ab3c1352b47f6200afdb9506bac8b32415092cd1934fd80385ca3e13a",
+      "import_sha256": "76ff6a5ab3c1352b47f6200afdb9506bac8b32415092cd1934fd80385ca3e13a",
+      "bytes": 4284
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_cue_families_summary.json",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cue_families_summary.json",
+      "source_sha256": "92a3e0fada616855725e50326422dfaceeb2ef24b9e3328c84c746728bf92c31",
+      "import_sha256": "92a3e0fada616855725e50326422dfaceeb2ef24b9e3328c84c746728bf92c31",
+      "bytes": 624
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_judge_referee.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_judge_referee.jsonl",
+      "source_sha256": "89b4f0c43671282866f59b5c12ecc8e8baf3406f73655117633680f581d00156",
+      "import_sha256": "89b4f0c43671282866f59b5c12ecc8e8baf3406f73655117633680f581d00156",
+      "bytes": 6768
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_judge_referee_film.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_judge_referee_film.jsonl",
+      "source_sha256": "c592ee20ae51b05eeb55cbf62e8f27a862e3bbb522c2381e1f96f1e0956b34fa",
+      "import_sha256": "c592ee20ae51b05eeb55cbf62e8f27a862e3bbb522c2381e1f96f1e0956b34fa",
+      "bytes": 6802
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_judge_referee_film_cache_q4_k_m.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_judge_referee_film_cache_q4_k_m.jsonl",
+      "source_sha256": "b37d357b2836fa5dfc643b342bc60560d65add9fad9eccbbe1d864f48e535605",
+      "import_sha256": "b37d357b2836fa5dfc643b342bc60560d65add9fad9eccbbe1d864f48e535605",
+      "bytes": 5984
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_judge_referee_summary.json",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_judge_referee_summary.json",
+      "source_sha256": "09f5126e4ff518ff2e4f3b99e7c18da14a07acd388b523c9934e6aad961748eb",
+      "import_sha256": "09f5126e4ff518ff2e4f3b99e7c18da14a07acd388b523c9934e6aad961748eb",
+      "bytes": 1073
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_judge_referee_summary_film.json",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_judge_referee_summary_film.json",
+      "source_sha256": "67af36628134dba9da3b77848d3a3478dbca46a8c81c6b2fc1b1471a0e02ed24",
+      "import_sha256": "67af36628134dba9da3b77848d3a3478dbca46a8c81c6b2fc1b1471a0e02ed24",
+      "bytes": 1013
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_judge_referee_summary_text_only.json",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_judge_referee_summary_text_only.json",
+      "source_sha256": "09f5126e4ff518ff2e4f3b99e7c18da14a07acd388b523c9934e6aad961748eb",
+      "import_sha256": "09f5126e4ff518ff2e4f3b99e7c18da14a07acd388b523c9934e6aad961748eb",
+      "bytes": 1073
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_judge_referee_text_only.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_judge_referee_text_only.jsonl",
+      "source_sha256": "89b4f0c43671282866f59b5c12ecc8e8baf3406f73655117633680f581d00156",
+      "import_sha256": "89b4f0c43671282866f59b5c12ecc8e8baf3406f73655117633680f581d00156",
+      "bytes": 6768
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_judge_referee_text_only_cache_q4_k_m.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_judge_referee_text_only_cache_q4_k_m.jsonl",
+      "source_sha256": "dbe1cc907a4a69b4602f7a25d61a1faa5b8f063aa05021b103cbc9ec37767a1f",
+      "import_sha256": "dbe1cc907a4a69b4602f7a25d61a1faa5b8f063aa05021b103cbc9ec37767a1f",
+      "bytes": 1890
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_majority_pressure.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_majority_pressure.jsonl",
+      "source_sha256": "2c3ed9a08b4720468f8445bc978bb8aaf14006f1516700c831a54aaeb1a05a2a",
+      "import_sha256": "2c3ed9a08b4720468f8445bc978bb8aaf14006f1516700c831a54aaeb1a05a2a",
+      "bytes": 4318
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_majority_pressure_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_majority_pressure_call_cache_q4_k_m.jsonl",
+      "source_sha256": "12d44d4cfbb98e99ac3fea12e464219447a0f5a5d41c65e85cff0feeb8f545c3",
+      "import_sha256": "12d44d4cfbb98e99ac3fea12e464219447a0f5a5d41c65e85cff0feeb8f545c3",
+      "bytes": 8736
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_majority_pressure_summary.json",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_majority_pressure_summary.json",
+      "source_sha256": "f2ba69cb059cfbbd601ab9eddc084840d9f33edc4b07205e40c65267d907323b",
+      "import_sha256": "f2ba69cb059cfbbd601ab9eddc084840d9f33edc4b07205e40c65267d907323b",
+      "bytes": 392
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_matched_temp.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_matched_temp.jsonl",
+      "source_sha256": "f131073fd9db721360c247559e0e8db1fc7a2a2a164eb2c80e19cb78ad39476f",
+      "import_sha256": "f131073fd9db721360c247559e0e8db1fc7a2a2a164eb2c80e19cb78ad39476f",
+      "bytes": 4383
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_matched_temp_summary.json",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_matched_temp_summary.json",
+      "source_sha256": "a400148863ed237920c46b61a106fbd2d35cc2f8ce99a1893e28c01852239e47",
+      "import_sha256": "a400148863ed237920c46b61a106fbd2d35cc2f8ce99a1893e28c01852239e47",
+      "bytes": 963
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_multi_round.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_multi_round.jsonl",
+      "source_sha256": "c54e3da466f9e12f58e0138c9b264910294e1722cbdad3857dc1772571f02674",
+      "import_sha256": "c54e3da466f9e12f58e0138c9b264910294e1722cbdad3857dc1772571f02674",
+      "bytes": 7563
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_multi_round_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_multi_round_call_cache_q4_k_m.jsonl",
+      "source_sha256": "a4ff386b8d63364c2003daee53980faee94bb73dced3ccb5f642af4bbd18715e",
+      "import_sha256": "a4ff386b8d63364c2003daee53980faee94bb73dced3ccb5f642af4bbd18715e",
+      "bytes": 26036
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_multi_round_summary.json",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_multi_round_summary.json",
+      "source_sha256": "9e7089212d08c0e489f6916127f166ab7801702be34d0d391c6b3ea59098dd83",
+      "import_sha256": "9e7089212d08c0e489f6916127f166ab7801702be34d0d391c6b3ea59098dd83",
+      "bytes": 388
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_noise_floor.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_noise_floor.jsonl",
+      "source_sha256": "3adb7aef813b401b3ef664861a6051fa37225ebb259da8c159946be3002e8a22",
+      "import_sha256": "3adb7aef813b401b3ef664861a6051fa37225ebb259da8c159946be3002e8a22",
+      "bytes": 4282
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_noise_floor_lite.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_noise_floor_lite.jsonl",
+      "source_sha256": "81029d660028de3b08b7ecead4044954da46740d93d8f39173acf80c3119e790",
+      "import_sha256": "81029d660028de3b08b7ecead4044954da46740d93d8f39173acf80c3119e790",
+      "bytes": 4282
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_peer_size_curve.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_peer_size_curve.jsonl",
+      "source_sha256": "f739244db9a5a1204f607372285fc4d6900fa83c43f2e6ea9fa7717d9ae529bc",
+      "import_sha256": "f739244db9a5a1204f607372285fc4d6900fa83c43f2e6ea9fa7717d9ae529bc",
+      "bytes": 5857
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_peer_size_curve_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_peer_size_curve_call_cache_q4_k_m.jsonl",
+      "source_sha256": "4616ca9b51f5534bc0ada55c239495d2f02e11ab2b1cc22ed50dbdc41e4aeb4f",
+      "import_sha256": "4616ca9b51f5534bc0ada55c239495d2f02e11ab2b1cc22ed50dbdc41e4aeb4f",
+      "bytes": 17330
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_peer_size_curve_summary.json",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_peer_size_curve_summary.json",
+      "source_sha256": "69dd13712409ca131b858bd573d558f66f6155be98a0b41c5735adb7b0ebb97f",
+      "import_sha256": "69dd13712409ca131b858bd573d558f66f6155be98a0b41c5735adb7b0ebb97f",
+      "bytes": 784
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_polarity.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_polarity.jsonl",
+      "source_sha256": "cbb1e7cf7b55ee85c6a68082a179dd9e8fcfda3f65f477174ffb99abdc8b281d",
+      "import_sha256": "cbb1e7cf7b55ee85c6a68082a179dd9e8fcfda3f65f477174ffb99abdc8b281d",
+      "bytes": 21107
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_polarity_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_polarity_call_cache_q4_k_m.jsonl",
+      "source_sha256": "7e4c40185f6cf410e70dc0941643041a3dc176e5330cad3f0d1e8119a06589ca",
+      "import_sha256": "7e4c40185f6cf410e70dc0941643041a3dc176e5330cad3f0d1e8119a06589ca",
+      "bytes": 43364
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_polarity_summary.json",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_polarity_summary.json",
+      "source_sha256": "2c0673c06213da033132819b0556f1b21d1333890f1573302e94c5e561798966",
+      "import_sha256": "2c0673c06213da033132819b0556f1b21d1333890f1573302e94c5e561798966",
+      "bytes": 1175
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_referee.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_referee.jsonl",
+      "source_sha256": "515ffc733db8af6fb4c8456124149683d0fbd69a0fb5d695a43e3673c6b8fd6f",
+      "import_sha256": "515ffc733db8af6fb4c8456124149683d0fbd69a0fb5d695a43e3673c6b8fd6f",
+      "bytes": 5516
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_referee_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_referee_call_cache_q4_k_m.jsonl",
+      "source_sha256": "bfb160d5a9c29443f23dabf9daf1132b9681a1ca3d6dcd2fdeec4492225f1abe",
+      "import_sha256": "bfb160d5a9c29443f23dabf9daf1132b9681a1ca3d6dcd2fdeec4492225f1abe",
+      "bytes": 4347
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_referee_summary.json",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_referee_summary.json",
+      "source_sha256": "4529f1d8451054591396ea8d331d19451a78a98585c91841c1ac314da87a51dd",
+      "import_sha256": "4529f1d8451054591396ea8d331d19451a78a98585c91841c1ac314da87a51dd",
+      "bytes": 444
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_solo.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_solo.jsonl",
+      "source_sha256": "3f78dc300bfa05c44d80d8a966086656f0c6af2a8600359fb881a2fddff1c8b7",
+      "import_sha256": "3f78dc300bfa05c44d80d8a966086656f0c6af2a8600359fb881a2fddff1c8b7",
+      "bytes": 8520
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_solo_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_solo_call_cache_q4_k_m.jsonl",
+      "source_sha256": "4f4a5d7ccfd6f1f6af6bc5507e6ef1030d886cc99ccec275fb25be57a1808972",
+      "import_sha256": "4f4a5d7ccfd6f1f6af6bc5507e6ef1030d886cc99ccec275fb25be57a1808972",
+      "bytes": 21586
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_solo_lite.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_solo_lite.jsonl",
+      "source_sha256": "284c990a726210bcacccd27016e20134a654ad7eebe3b5d4d0d316fced643bb6",
+      "import_sha256": "284c990a726210bcacccd27016e20134a654ad7eebe3b5d4d0d316fced643bb6",
+      "bytes": 8520
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_solo_lite_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_solo_lite_call_cache_q4_k_m.jsonl",
+      "source_sha256": "4ae8fefd2c28e9e60328bef1777bf9c8b38d27523efa0c8b32e19e4c2cb169b6",
+      "import_sha256": "4ae8fefd2c28e9e60328bef1777bf9c8b38d27523efa0c8b32e19e4c2cb169b6",
+      "bytes": 21586
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_solo_lite_summary.json",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_solo_lite_summary.json",
+      "source_sha256": "3355a45919b5f5f81c28d6ab61062ee9b6767ee0c5ca44b99e9a8974aca94526",
+      "import_sha256": "3355a45919b5f5f81c28d6ab61062ee9b6767ee0c5ca44b99e9a8974aca94526",
+      "bytes": 601
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_solo_summary.json",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_solo_summary.json",
+      "source_sha256": "765320058538cde99a4f3764f3a26bf1078e5df34581551d2af25b8771113bc5",
+      "import_sha256": "765320058538cde99a4f3764f3a26bf1078e5df34581551d2af25b8771113bc5",
+      "bytes": 537
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_strength_cascade.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_strength_cascade.jsonl",
+      "source_sha256": "57dfe93ea3b23c48f74738f5db9e4302a592b931e00e4baaf52589f8d6f2817a",
+      "import_sha256": "57dfe93ea3b23c48f74738f5db9e4302a592b931e00e4baaf52589f8d6f2817a",
+      "bytes": 10758
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_strength_cascade_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_strength_cascade_call_cache_q4_k_m.jsonl",
+      "source_sha256": "a4bbee73f9534f182a6f07486b81befb9be530e1539cedfb146070cac686a063",
+      "import_sha256": "a4bbee73f9534f182a6f07486b81befb9be530e1539cedfb146070cac686a063",
+      "bytes": 30365
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_strength_cascade_summary.json",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_strength_cascade_summary.json",
+      "source_sha256": "390d81b4db007ab36854260eb53f7499e8b1ec47ee2cb4285b3cd96939960a69",
+      "import_sha256": "390d81b4db007ab36854260eb53f7499e8b1ec47ee2cb4285b3cd96939960a69",
+      "bytes": 1260
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_system_flag.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_system_flag.jsonl",
+      "source_sha256": "1c593f5bf9bbea976152f8319b1b31c9816b7ad4d96c457a8bc45d1cf4425c6a",
+      "import_sha256": "1c593f5bf9bbea976152f8319b1b31c9816b7ad4d96c457a8bc45d1cf4425c6a",
+      "bytes": 5262
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_system_flag_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_system_flag_call_cache_q4_k_m.jsonl",
+      "source_sha256": "1558158eec276be8ad1a1cc6018e347119c11a4a401d3da035c12af8fa7ded5b",
+      "import_sha256": "1558158eec276be8ad1a1cc6018e347119c11a4a401d3da035c12af8fa7ded5b",
+      "bytes": 8670
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/imaging_system_flag_summary.json",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_system_flag_summary.json",
+      "source_sha256": "034531e6d0c39729d5ef9aaf19bd38e929b64bbaa4cf3e4bc3e4f0b85e6af40a",
+      "import_sha256": "034531e6d0c39729d5ef9aaf19bd38e929b64bbaa4cf3e4bc3e4f0b85e6af40a",
+      "bytes": 531
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/matched_baseline_reason.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_baseline_reason.jsonl",
+      "source_sha256": "3b66fef45b42686412b85cde01e7940343b35ed2ff9214c0a056a10f688f6de0",
+      "import_sha256": "3b66fef45b42686412b85cde01e7940343b35ed2ff9214c0a056a10f688f6de0",
+      "bytes": 11301
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/matched_baseline_reason_repeats.jsonl",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_baseline_reason_repeats.jsonl",
+      "source_sha256": "f5599083baed6cdfbc6b74f1709fe125f9205a9eb3960d2670f2c6843fa8dc76",
+      "import_sha256": "f5599083baed6cdfbc6b74f1709fe125f9205a9eb3960d2670f2c6843fa8dc76",
+      "bytes": 9551
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/matched_baseline_reason_repeats_summary.json",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_baseline_reason_repeats_summary.json",
+      "source_sha256": "7a4309c6b12b75ec9e2415e307f8d57ebd010bb5ad4c68d970483eab8d2b92fc",
+      "import_sha256": "7a4309c6b12b75ec9e2415e307f8d57ebd010bb5ad4c68d970483eab8d2b92fc",
+      "bytes": 771
+    },
+    {
+      "source_path": "experiments/imaging/results/meta_llama-3.2-11b-vision-instruct/matched_baseline_reason_summary.json",
+      "target_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_baseline_reason_summary.json",
+      "source_sha256": "7e3433725967b8a2914794e7225e96092cd03f831e8ac63e09a94913eeffc1ed",
+      "import_sha256": "7e3433725967b8a2914794e7225e96092cd03f831e8ac63e09a94913eeffc1ed",
+      "bytes": 1155
+    },
+    {
+      "source_path": "experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade.jsonl",
+      "target_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade.jsonl",
+      "source_sha256": "0d1247959aeec0186505a45062f05d921567a19cd6c8daf745a49a4b14946a70",
+      "import_sha256": "0d1247959aeec0186505a45062f05d921567a19cd6c8daf745a49a4b14946a70",
+      "bytes": 9300
+    },
+    {
+      "source_path": "experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_call_cache_q4_k_m.jsonl",
+      "source_sha256": "9124f10567afef58b5c23376ff27aed59a86fc4d80d1b90b0292b7a0c47f9825",
+      "import_sha256": "9124f10567afef58b5c23376ff27aed59a86fc4d80d1b90b0292b7a0c47f9825",
+      "bytes": 13051
+    },
+    {
+      "source_path": "experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_device_absent.jsonl",
+      "target_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_device_absent.jsonl",
+      "source_sha256": "d852d708c1e1e89d3f0f6d95da23230f72db3c4e987b16eeab07537cfbf7e643",
+      "import_sha256": "d852d708c1e1e89d3f0f6d95da23230f72db3c4e987b16eeab07537cfbf7e643",
+      "bytes": 39866
+    },
+    {
+      "source_path": "experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_device_absent_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_device_absent_call_cache_q4_k_m.jsonl",
+      "source_sha256": "91d0ca68345744f04d7548acfebd7fb4e68e60ffe4f39164c73ba3529ae5dbac",
+      "import_sha256": "91d0ca68345744f04d7548acfebd7fb4e68e60ffe4f39164c73ba3529ae5dbac",
+      "bytes": 55888
+    },
+    {
+      "source_path": "experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_device_absent_summary.json",
+      "target_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_device_absent_summary.json",
+      "source_sha256": "c3cd554fe3ba246d24799becf878e8cc11b3169fa4b8f5f37bccce0e7bcd3329",
+      "import_sha256": "c3cd554fe3ba246d24799becf878e8cc11b3169fa4b8f5f37bccce0e7bcd3329",
+      "bytes": 373
+    },
+    {
+      "source_path": "experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_natural_cues.jsonl",
+      "target_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_natural_cues.jsonl",
+      "source_sha256": "631c13d259575d69d566903b65321fd3dae53b8fa7d1de13db1e9a5e26a727fb",
+      "import_sha256": "631c13d259575d69d566903b65321fd3dae53b8fa7d1de13db1e9a5e26a727fb",
+      "bytes": 40471
+    },
+    {
+      "source_path": "experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_natural_cues_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_natural_cues_call_cache_q4_k_m.jsonl",
+      "source_sha256": "af2493ce95cd8c31669225dc85df01640805ab58ef1580668ff81773ebebfde7",
+      "import_sha256": "af2493ce95cd8c31669225dc85df01640805ab58ef1580668ff81773ebebfde7",
+      "bytes": 57911
+    },
+    {
+      "source_path": "experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_natural_cues_summary.json",
+      "target_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_natural_cues_summary.json",
+      "source_sha256": "4799eabc7477b3f6049eb7a1f37ef603feaa1c251b359025d08b6c040078b5fb",
+      "import_sha256": "4799eabc7477b3f6049eb7a1f37ef603feaa1c251b359025d08b6c040078b5fb",
+      "bytes": 388
+    },
+    {
+      "source_path": "experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_natural_independent.jsonl",
+      "target_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_natural_independent.jsonl",
+      "source_sha256": "18620f5d0929ff9b1565315532afbb02436d47cda85dde295aa0d5aa2a3d831b",
+      "import_sha256": "18620f5d0929ff9b1565315532afbb02436d47cda85dde295aa0d5aa2a3d831b",
+      "bytes": 40468
+    },
+    {
+      "source_path": "experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_natural_independent_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_natural_independent_call_cache_q4_k_m.jsonl",
+      "source_sha256": "ac0b1c206ffe92228346d7593226d004c49907f66fc4850e3f435eb0e45cf887",
+      "import_sha256": "ac0b1c206ffe92228346d7593226d004c49907f66fc4850e3f435eb0e45cf887",
+      "bytes": 56127
+    },
+    {
+      "source_path": "experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_natural_independent_summary.json",
+      "target_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_natural_independent_summary.json",
+      "source_sha256": "5f08568946f22c131da4a5628715fbe39f71e1f192f0b9592644cc953e00f505",
+      "import_sha256": "5f08568946f22c131da4a5628715fbe39f71e1f192f0b9592644cc953e00f505",
+      "bytes": 387
+    },
+    {
+      "source_path": "experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_none.jsonl",
+      "target_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_none.jsonl",
+      "source_sha256": "18620f5d0929ff9b1565315532afbb02436d47cda85dde295aa0d5aa2a3d831b",
+      "import_sha256": "18620f5d0929ff9b1565315532afbb02436d47cda85dde295aa0d5aa2a3d831b",
+      "bytes": 40468
+    },
+    {
+      "source_path": "experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_none_summary.json",
+      "target_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_none_summary.json",
+      "source_sha256": "5f08568946f22c131da4a5628715fbe39f71e1f192f0b9592644cc953e00f505",
+      "import_sha256": "5f08568946f22c131da4a5628715fbe39f71e1f192f0b9592644cc953e00f505",
+      "bytes": 387
+    },
+    {
+      "source_path": "experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_cascade_summary.json",
+      "target_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_summary.json",
+      "source_sha256": "a0830b734bb98550e059e551b6db0996ea0cb46cd5ea4a67b2968660c457ac1c",
+      "import_sha256": "a0830b734bb98550e059e551b6db0996ea0cb46cd5ea4a67b2968660c457ac1c",
+      "bytes": 370
+    },
+    {
+      "source_path": "experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_matched_temp.jsonl",
+      "target_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_matched_temp.jsonl",
+      "source_sha256": "42d010fb525b363575d03bac571a51d2d16cb1f9e6f48b1b0ef027d4fbb6dff3",
+      "import_sha256": "42d010fb525b363575d03bac571a51d2d16cb1f9e6f48b1b0ef027d4fbb6dff3",
+      "bytes": 6155
+    },
+    {
+      "source_path": "experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_matched_temp_summary.json",
+      "target_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_matched_temp_summary.json",
+      "source_sha256": "66f7eedbf2570c59a7d60ff6f37f155e520f81fea805e904a921d991ebfa0a07",
+      "import_sha256": "66f7eedbf2570c59a7d60ff6f37f155e520f81fea805e904a921d991ebfa0a07",
+      "bytes": 962
+    },
+    {
+      "source_path": "experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_noise_floor.jsonl",
+      "target_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_noise_floor.jsonl",
+      "source_sha256": "ecfb51cdee5bec37e79735bec74ee1070496dc1f873ab74e239ad8a1e34b0820",
+      "import_sha256": "ecfb51cdee5bec37e79735bec74ee1070496dc1f873ab74e239ad8a1e34b0820",
+      "bytes": 6046
+    },
+    {
+      "source_path": "experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_solo.jsonl",
+      "target_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_solo.jsonl",
+      "source_sha256": "0ffae868d4d636f6b2d110879f09d74c50c8d3d6b0c019db09e484bd226c795c",
+      "import_sha256": "0ffae868d4d636f6b2d110879f09d74c50c8d3d6b0c019db09e484bd226c795c",
+      "bytes": 10291
+    },
+    {
+      "source_path": "experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_solo_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_solo_call_cache_q4_k_m.jsonl",
+      "source_sha256": "2df3d2d93bff5f5bec9ab833fa48fd5e36ce8197eb085d9aa9fe160c0250a904",
+      "import_sha256": "2df3d2d93bff5f5bec9ab833fa48fd5e36ce8197eb085d9aa9fe160c0250a904",
+      "bytes": 21713
+    },
+    {
+      "source_path": "experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_solo_summary.json",
+      "target_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_solo_summary.json",
+      "source_sha256": "f68d2e6045ac5cfb7bdd220ab548e4ac83bee1c87d35acc112cb311ea6d9c5ad",
+      "import_sha256": "f68d2e6045ac5cfb7bdd220ab548e4ac83bee1c87d35acc112cb311ea6d9c5ad",
+      "bytes": 630
+    },
+    {
+      "source_path": "experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_system_flag.jsonl",
+      "target_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_system_flag.jsonl",
+      "source_sha256": "ce364f6610b79e5b2d50804ef2e1c248d62da8f98c626595ec400cd168f945f2",
+      "import_sha256": "ce364f6610b79e5b2d50804ef2e1c248d62da8f98c626595ec400cd168f945f2",
+      "bytes": 30733
+    },
+    {
+      "source_path": "experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_system_flag_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_system_flag_call_cache_q4_k_m.jsonl",
+      "source_sha256": "025897552525cad2a9b43c759948c9a3489825c2b63a98093ca45b98b198334d",
+      "import_sha256": "025897552525cad2a9b43c759948c9a3489825c2b63a98093ca45b98b198334d",
+      "bytes": 37331
+    },
+    {
+      "source_path": "experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/imaging_system_flag_summary.json",
+      "target_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_system_flag_summary.json",
+      "source_sha256": "07a33f92bb3dbd7d79bac998177b90eccb4a3ab08cbf0cf03dda23a11a9cab80",
+      "import_sha256": "07a33f92bb3dbd7d79bac998177b90eccb4a3ab08cbf0cf03dda23a11a9cab80",
+      "bytes": 556
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/attributed_tier.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/attributed_tier.jsonl",
+      "source_sha256": "c561040442b7945825aaeb0edb6facc8cd7793257d518d44a64b9def2f64e450",
+      "import_sha256": "c561040442b7945825aaeb0edb6facc8cd7793257d518d44a64b9def2f64e450",
+      "bytes": 31640
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/attributed_tier_summary.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/attributed_tier_summary.json",
+      "source_sha256": "869b4dfbe2e727e85f2362fc62adc74aaa22ae184d413f4e1ecadeff6b2327e9",
+      "import_sha256": "869b4dfbe2e727e85f2362fc62adc74aaa22ae184d413f4e1ecadeff6b2327e9",
+      "bytes": 1217
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/authority_ladder.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/authority_ladder.jsonl",
+      "source_sha256": "38ba832860a8afefac5ef8c4d8ae1c0c9c4fe9bddd820fc16a28a13389ae3dbf",
+      "import_sha256": "38ba832860a8afefac5ef8c4d8ae1c0c9c4fe9bddd820fc16a28a13389ae3dbf",
+      "bytes": 18127
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/authority_ladder_summary.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/authority_ladder_summary.json",
+      "source_sha256": "64e8210687d4ff51c8eea8badde0b7825e094d956e56eb0cdc02772e2d43b7f7",
+      "import_sha256": "64e8210687d4ff51c8eea8badde0b7825e094d956e56eb0cdc02772e2d43b7f7",
+      "bytes": 1552
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/break_it_A_per_case.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/break_it_A_per_case.jsonl",
+      "source_sha256": "1794a450f553a5cc4bd688c7a4b209443b2e8cec031be48c9c816a220317057b",
+      "import_sha256": "1794a450f553a5cc4bd688c7a4b209443b2e8cec031be48c9c816a220317057b",
+      "bytes": 2480
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/break_it_C_per_case.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/break_it_C_per_case.jsonl",
+      "source_sha256": "24fd7bb1a247df0dc02eb29631c9416d948a464dcda1eddfd6bf129d7dd02f72",
+      "import_sha256": "24fd7bb1a247df0dc02eb29631c9416d948a464dcda1eddfd6bf129d7dd02f72",
+      "bytes": 1620
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/break_it_D_per_case.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/break_it_D_per_case.jsonl",
+      "source_sha256": "6aa0d04a38b991f7e1d9887f9766eaebc9b68b79f487afd44f7c4cbd97974a19",
+      "import_sha256": "6aa0d04a38b991f7e1d9887f9766eaebc9b68b79f487afd44f7c4cbd97974a19",
+      "bytes": 1742
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/break_it_summary.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/break_it_summary.json",
+      "source_sha256": "545e9d2ee85606f050626abbd449a4bd8c572966eb070a87233be8d383906953",
+      "import_sha256": "545e9d2ee85606f050626abbd449a4bd8c572966eb070a87233be8d383906953",
+      "bytes": 1255
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/cascade_results.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/cascade_results.json",
+      "source_sha256": "5e58eb954edccd24c2d94773b9430a182db0516c500e857179fa312f97d27632",
+      "import_sha256": "5e58eb954edccd24c2d94773b9430a182db0516c500e857179fa312f97d27632",
+      "bytes": 3474
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/clean_a_summary.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/clean_a_summary.json",
+      "source_sha256": "e2b437cbc4633fe5156007f79a23e3dbd560d48c362405282d144116930beeed",
+      "import_sha256": "e2b437cbc4633fe5156007f79a23e3dbd560d48c362405282d144116930beeed",
+      "bytes": 712
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/committee_size_sweep.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/committee_size_sweep.jsonl",
+      "source_sha256": "aaf72ebdf2def0f7d3316e7b4966b059f0044e70dfbd9d25ddd908cab2ffa755",
+      "import_sha256": "aaf72ebdf2def0f7d3316e7b4966b059f0044e70dfbd9d25ddd908cab2ffa755",
+      "bytes": 27235
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/committee_size_sweep_summary.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/committee_size_sweep_summary.json",
+      "source_sha256": "7933c081e17d5ca581316dfdc99804d590546757b03c651ecab6a7adc13d8cc6",
+      "import_sha256": "7933c081e17d5ca581316dfdc99804d590546757b03c651ecab6a7adc13d8cc6",
+      "bytes": 888
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/deliberation_framing.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/deliberation_framing.jsonl",
+      "source_sha256": "e560d68f764a826e7325280c6a1269f96d1c69aacbba681d69251f0d6bde3083",
+      "import_sha256": "e560d68f764a826e7325280c6a1269f96d1c69aacbba681d69251f0d6bde3083",
+      "bytes": 30595
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/deliberation_framing_summary.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/deliberation_framing_summary.json",
+      "source_sha256": "12019e4a616f8413f98afa626437e794debaf73d3ba9bed3818ec65ebf144d39",
+      "import_sha256": "12019e4a616f8413f98afa626437e794debaf73d3ba9bed3818ec65ebf144d39",
+      "bytes": 1118
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/dose_response.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/dose_response.jsonl",
+      "source_sha256": "06a146f3337eada9c025a94d7ed44a119deb885b6f0831a707ddca90166e2529",
+      "import_sha256": "06a146f3337eada9c025a94d7ed44a119deb885b6f0831a707ddca90166e2529",
+      "bytes": 30475
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/dose_response_summary.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/dose_response_summary.json",
+      "source_sha256": "c1d51f90bbbca8e992d599b63fb42979d00b2466ee4329e217869f28bd676737",
+      "import_sha256": "c1d51f90bbbca8e992d599b63fb42979d00b2466ee4329e217869f28bd676737",
+      "bytes": 901
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/hierarchy_dominance.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/hierarchy_dominance.jsonl",
+      "source_sha256": "eb5ea11c912ae3a6f19e0e5d0fcb620755352102289c48a5aaee1153d988018f",
+      "import_sha256": "eb5ea11c912ae3a6f19e0e5d0fcb620755352102289c48a5aaee1153d988018f",
+      "bytes": 9372
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/hierarchy_dominance_summary.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/hierarchy_dominance_summary.json",
+      "source_sha256": "a1a8f180964d710e5730b578754596ef90e0b3cb36a76a87152e5f634bbe9d5b",
+      "import_sha256": "a1a8f180964d710e5730b578754596ef90e0b3cb36a76a87152e5f634bbe9d5b",
+      "bytes": 1270
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/leader_as_auditor.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/leader_as_auditor.jsonl",
+      "source_sha256": "15cb568c4a79becd56928b43cda0c683a3b81acb2fc369482966adc75d943cba",
+      "import_sha256": "15cb568c4a79becd56928b43cda0c683a3b81acb2fc369482966adc75d943cba",
+      "bytes": 26875
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/leader_as_auditor_summary.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/leader_as_auditor_summary.json",
+      "source_sha256": "cf9e2a63463417832d8c3defb3f73edeff667aafacbd90558916288c59bfd9ec",
+      "import_sha256": "cf9e2a63463417832d8c3defb3f73edeff667aafacbd90558916288c59bfd9ec",
+      "bytes": 966
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/majority_pressure.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/majority_pressure.jsonl",
+      "source_sha256": "639c55923649cb5b512de78b8e0e80ae97260b3b79260f28512cf8ab16d998a4",
+      "import_sha256": "639c55923649cb5b512de78b8e0e80ae97260b3b79260f28512cf8ab16d998a4",
+      "bytes": 4770
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/majority_pressure_summary.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/majority_pressure_summary.json",
+      "source_sha256": "4d43087a5f716c83155943d9178bd2b2a28c096b4e0ad63a0872fd98f493401b",
+      "import_sha256": "4d43087a5f716c83155943d9178bd2b2a28c096b4e0ad63a0872fd98f493401b",
+      "bytes": 1311
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/orchestrator_failure.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/orchestrator_failure.jsonl",
+      "source_sha256": "ebe4979a359633cbfb76ef4f828bdeaf9189066284484fcf5e11da8f3ca6d582",
+      "import_sha256": "ebe4979a359633cbfb76ef4f828bdeaf9189066284484fcf5e11da8f3ca6d582",
+      "bytes": 15115
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/orchestrator_failure_summary.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/orchestrator_failure_summary.json",
+      "source_sha256": "7c2edf1cb1103a5d80f560b521becae98e7b91290ec45ac2e7226714cef0ea61",
+      "import_sha256": "7c2edf1cb1103a5d80f560b521becae98e7b91290ec45ac2e7226714cef0ea61",
+      "bytes": 1161
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/plausible_distractor.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/plausible_distractor.jsonl",
+      "source_sha256": "c7432d76a98a03f2f8f977cea1dd94ba041aedc86386cd2ed03aae916f41d39b",
+      "import_sha256": "c7432d76a98a03f2f8f977cea1dd94ba041aedc86386cd2ed03aae916f41d39b",
+      "bytes": 9836
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/plausible_distractor_coverage.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/plausible_distractor_coverage.jsonl",
+      "source_sha256": "8c7a6e3dd6900ca37d1879069a71fd8d3fdb15b178c939caad5dbffbf815902d",
+      "import_sha256": "8c7a6e3dd6900ca37d1879069a71fd8d3fdb15b178c939caad5dbffbf815902d",
+      "bytes": 18042
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/plausible_distractor_summary.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/plausible_distractor_summary.json",
+      "source_sha256": "fe5604ee14bf3c9a5569287f6d0e1b04a9864767c1e92665a597bde859e39114",
+      "import_sha256": "eb0a34791eb4bc5809f0e78002cacc4f37ce4480b7174b1d1a62dea6a37ee15b",
+      "bytes": 1488
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/rationale_validity.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/rationale_validity.jsonl",
+      "source_sha256": "b17b734b885bd764b6cbcd456df1ee4af42426c28fd8aa029cc450aef37f28f2",
+      "import_sha256": "b17b734b885bd764b6cbcd456df1ee4af42426c28fd8aa029cc450aef37f28f2",
+      "bytes": 28075
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/rationale_validity_summary.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/rationale_validity_summary.json",
+      "source_sha256": "2a4615f1f6cfb079dca5edca39655c5ee4fc496400be50de74201726bcf5c2d7",
+      "import_sha256": "2a4615f1f6cfb079dca5edca39655c5ee4fc496400be50de74201726bcf5c2d7",
+      "bytes": 1675
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/referee_deployable.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/referee_deployable.jsonl",
+      "source_sha256": "5f052c623bb51e188e33d88c7501401273fe7c7de23b6b31066a6eda88fa42ba",
+      "import_sha256": "5f052c623bb51e188e33d88c7501401273fe7c7de23b6b31066a6eda88fa42ba",
+      "bytes": 24237
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/referee_deployable_summary.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/referee_deployable_summary.json",
+      "source_sha256": "fe377a5697089398092fea73da7890830baafd79cb95c8f59a6f5ee482dc140e",
+      "import_sha256": "fe377a5697089398092fea73da7890830baafd79cb95c8f59a6f5ee482dc140e",
+      "bytes": 2031
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/referee_judge.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/referee_judge.jsonl",
+      "source_sha256": "deb7d638fed55af70af3fd11f714ba014b9dc443f68896e358fd16bdc520a048",
+      "import_sha256": "deb7d638fed55af70af3fd11f714ba014b9dc443f68896e358fd16bdc520a048",
+      "bytes": 8918
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/referee_judge_summary.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/referee_judge_summary.json",
+      "source_sha256": "dbfd038df46410e67d663aa3266fcb05f7350d8f80c4ba56892cbb9a5b69dfa9",
+      "import_sha256": "dbfd038df46410e67d663aa3266fcb05f7350d8f80c4ba56892cbb9a5b69dfa9",
+      "bytes": 359
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/scale_c_per_case.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/scale_c_per_case.jsonl",
+      "source_sha256": "8b89c05f79235ab883ade609acae4a65285efbf2b6f4e4d23c0e22dc4f5893f6",
+      "import_sha256": "8b89c05f79235ab883ade609acae4a65285efbf2b6f4e4d23c0e22dc4f5893f6",
+      "bytes": 15463
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/scale_c_summary.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/scale_c_summary.json",
+      "source_sha256": "d7b1739250428c16528854a544553f94e591b14fba90df1981df154f039b6ee3",
+      "import_sha256": "d7b1739250428c16528854a544553f94e591b14fba90df1981df154f039b6ee3",
+      "bytes": 1003
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/seed_confidence.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/seed_confidence.jsonl",
+      "source_sha256": "a72e63363d0be00d551d02604538722ed561a2a27af509341bf1727580ddf79b",
+      "import_sha256": "a72e63363d0be00d551d02604538722ed561a2a27af509341bf1727580ddf79b",
+      "bytes": 21076
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/seed_confidence_summary.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/seed_confidence_summary.json",
+      "source_sha256": "d125c74431702fd78ff901c4c94c8494b2724d7888982630e0c81319910d603b",
+      "import_sha256": "d125c74431702fd78ff901c4c94c8494b2724d7888982630e0c81319910d603b",
+      "bytes": 816
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/solo_records.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/solo_records.jsonl",
+      "source_sha256": "81232dd65751e1bd60fbd4f23bb5d062644ff3e938b3abdf56d8ca6aedb65104",
+      "import_sha256": "81232dd65751e1bd60fbd4f23bb5d062644ff3e938b3abdf56d8ca6aedb65104",
+      "bytes": 82084
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/solo_results.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/solo_results.json",
+      "source_sha256": "6cd1f2ace1a7d3212ec0093af6bc566f2212d722042465f41d7046916eeb6b78",
+      "import_sha256": "6cd1f2ace1a7d3212ec0093af6bc566f2212d722042465f41d7046916eeb6b78",
+      "bytes": 721
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/super_additivity.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/super_additivity.jsonl",
+      "source_sha256": "a37670c84411ba9afca7c5dd10fef1d4f53a3ec445b1edfef725abf1c59e1f1c",
+      "import_sha256": "a37670c84411ba9afca7c5dd10fef1d4f53a3ec445b1edfef725abf1c59e1f1c",
+      "bytes": 28795
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/super_additivity_summary.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/super_additivity_summary.json",
+      "source_sha256": "28925dc14b38fe6525eeb4dc22d577826fe2f6cdf4f154cb9f8ec566bb37c736",
+      "import_sha256": "28925dc14b38fe6525eeb4dc22d577826fe2f6cdf4f154cb9f8ec566bb37c736",
+      "bytes": 989
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/temperature_sensitivity.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/temperature_sensitivity.jsonl",
+      "source_sha256": "f5f66de54d770df35ae625199ff477163b6ba257d1d7899c64b3e6649b31f5c1",
+      "import_sha256": "f5f66de54d770df35ae625199ff477163b6ba257d1d7899c64b3e6649b31f5c1",
+      "bytes": 44695
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/temperature_sensitivity_summary.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/temperature_sensitivity_summary.json",
+      "source_sha256": "47dad17ddf212226a7aa9572d4b9880542ab93469bf802fab2c39425bee5a023",
+      "import_sha256": "47dad17ddf212226a7aa9572d4b9880542ab93469bf802fab2c39425bee5a023",
+      "bytes": 934
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/test_awareness.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/test_awareness.jsonl",
+      "source_sha256": "44d22069ef3da908c4fcb25f1d4dd30a6f02e09f6cb3c07d12391a340db27cbf",
+      "import_sha256": "44d22069ef3da908c4fcb25f1d4dd30a6f02e09f6cb3c07d12391a340db27cbf",
+      "bytes": 28795
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/test_awareness_summary.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/test_awareness_summary.json",
+      "source_sha256": "23b43e71c244d8f6790ee1387507ae113c96d7d5e64851849057c575efc1b441",
+      "import_sha256": "23b43e71c244d8f6790ee1387507ae113c96d7d5e64851849057c575efc1b441",
+      "bytes": 1059
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/text_cue_types.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/text_cue_types.jsonl",
+      "source_sha256": "773f72dc79963852d6972d85d80c074926177a25b6268d833c2a24ece4ae7e4b",
+      "import_sha256": "773f72dc79963852d6972d85d80c074926177a25b6268d833c2a24ece4ae7e4b",
+      "bytes": 30163
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/text_cue_types_summary.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/text_cue_types_summary.json",
+      "source_sha256": "37b2324e9811e7a74ad4437d9bd09bd4ccb9ac650341cc42f93b364c3564de69",
+      "import_sha256": "37b2324e9811e7a74ad4437d9bd09bd4ccb9ac650341cc42f93b364c3564de69",
+      "bytes": 999
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/0ada062a-c400-4012-af5e-31144ba41401_repro_isolated.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/0ada062a-c400-4012-af5e-31144ba41401_repro_isolated.jsonl",
+      "source_sha256": "13f4cf76479a1fe08a53070c3093bdeeda77f130644540b69c2a6d56e2cace74",
+      "import_sha256": "13f4cf76479a1fe08a53070c3093bdeeda77f130644540b69c2a6d56e2cace74",
+      "bytes": 1994
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/0ada062a-c400-4012-af5e-31144ba41401_repro_shared.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/0ada062a-c400-4012-af5e-31144ba41401_repro_shared.jsonl",
+      "source_sha256": "ab39d1659a4de0c7fda075872634c43ed28eba727f3f98ffc1333d6311eb533e",
+      "import_sha256": "ab39d1659a4de0c7fda075872634c43ed28eba727f3f98ffc1333d6311eb533e",
+      "bytes": 2185
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/1cecd58f-d0c8-446a-adf8-d07dd796ec0e_repro_isolated.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/1cecd58f-d0c8-446a-adf8-d07dd796ec0e_repro_isolated.jsonl",
+      "source_sha256": "f81cc6bf40417be11b360d0adb131e6d1349021243fc0c7a6f3640722247a9a3",
+      "import_sha256": "f81cc6bf40417be11b360d0adb131e6d1349021243fc0c7a6f3640722247a9a3",
+      "bytes": 1547
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/1cecd58f-d0c8-446a-adf8-d07dd796ec0e_repro_shared.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/1cecd58f-d0c8-446a-adf8-d07dd796ec0e_repro_shared.jsonl",
+      "source_sha256": "336dac127ccebca67b2b4ac532b518fa7e00547b2e71eaea3a471c758508e322",
+      "import_sha256": "336dac127ccebca67b2b4ac532b518fa7e00547b2e71eaea3a471c758508e322",
+      "bytes": 1527
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/2ab8b27b-1646-4886-8378-f2f11f84a79e_repro_isolated.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/2ab8b27b-1646-4886-8378-f2f11f84a79e_repro_isolated.jsonl",
+      "source_sha256": "bc164d1cd32baa0a8f320ee7329d992867c395b942aa2ac8152c897f7c0470a8",
+      "import_sha256": "bc164d1cd32baa0a8f320ee7329d992867c395b942aa2ac8152c897f7c0470a8",
+      "bytes": 1498
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/2ab8b27b-1646-4886-8378-f2f11f84a79e_repro_shared.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/2ab8b27b-1646-4886-8378-f2f11f84a79e_repro_shared.jsonl",
+      "source_sha256": "65304598fcda35f72103e94baf4a69ac6b984ffc989375b30c71ad30ce197a4f",
+      "import_sha256": "65304598fcda35f72103e94baf4a69ac6b984ffc989375b30c71ad30ce197a4f",
+      "bytes": 1496
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/33a697bc-627a-4a24-b381-19c181fcdded_repro_isolated.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/33a697bc-627a-4a24-b381-19c181fcdded_repro_isolated.jsonl",
+      "source_sha256": "c146a8cf0a4e24ea47fb92886d1d044d385c6959ac2e8fbe3ced8a998bdec953",
+      "import_sha256": "c146a8cf0a4e24ea47fb92886d1d044d385c6959ac2e8fbe3ced8a998bdec953",
+      "bytes": 1809
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/33a697bc-627a-4a24-b381-19c181fcdded_repro_shared.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/33a697bc-627a-4a24-b381-19c181fcdded_repro_shared.jsonl",
+      "source_sha256": "4c925ce6a50f2fbafd3db7c1b6f607cef25ae53508c2f8a9b313d3b52a81c349",
+      "import_sha256": "4c925ce6a50f2fbafd3db7c1b6f607cef25ae53508c2f8a9b313d3b52a81c349",
+      "bytes": 1808
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/4032c899-2223-435f-a007-c513fd59a065_repro_isolated.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/4032c899-2223-435f-a007-c513fd59a065_repro_isolated.jsonl",
+      "source_sha256": "fb33b91be7a0c08502d4ce5d949fda5815c902d628ca09ea2d0119eb3a240d12",
+      "import_sha256": "fb33b91be7a0c08502d4ce5d949fda5815c902d628ca09ea2d0119eb3a240d12",
+      "bytes": 1690
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/4032c899-2223-435f-a007-c513fd59a065_repro_shared.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/4032c899-2223-435f-a007-c513fd59a065_repro_shared.jsonl",
+      "source_sha256": "734b3e7b8b4a4df9e1c4cc4d8b7ede5f93ba491ee2159c2c451bf009fee7a847",
+      "import_sha256": "734b3e7b8b4a4df9e1c4cc4d8b7ede5f93ba491ee2159c2c451bf009fee7a847",
+      "bytes": 1689
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/4e8f5ba7-452a-464f-a328-d8b96eafade6_repro_isolated.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/4e8f5ba7-452a-464f-a328-d8b96eafade6_repro_isolated.jsonl",
+      "source_sha256": "df8e0e01d389e5583c1181b1c949af678b2f2bdc86bb1277a99ffcd4cfb525c0",
+      "import_sha256": "df8e0e01d389e5583c1181b1c949af678b2f2bdc86bb1277a99ffcd4cfb525c0",
+      "bytes": 1826
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/4e8f5ba7-452a-464f-a328-d8b96eafade6_repro_shared.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/4e8f5ba7-452a-464f-a328-d8b96eafade6_repro_shared.jsonl",
+      "source_sha256": "92ef721694d4ddbd8e6d91eafb23431e12437bfea9ef2cb7006f95503317a321",
+      "import_sha256": "92ef721694d4ddbd8e6d91eafb23431e12437bfea9ef2cb7006f95503317a321",
+      "bytes": 1825
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/7111d7b2-7e80-4e23-b5d0-9f42595c6a80_repro_isolated.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/7111d7b2-7e80-4e23-b5d0-9f42595c6a80_repro_isolated.jsonl",
+      "source_sha256": "bcaae97e311bc4ecdc041117e52afb65e6eb9290c5a9d0851e1aba90a1bec62e",
+      "import_sha256": "bcaae97e311bc4ecdc041117e52afb65e6eb9290c5a9d0851e1aba90a1bec62e",
+      "bytes": 1616
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/7111d7b2-7e80-4e23-b5d0-9f42595c6a80_repro_shared.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/7111d7b2-7e80-4e23-b5d0-9f42595c6a80_repro_shared.jsonl",
+      "source_sha256": "7c576dae8c7b1608b5d20c6e42da7c0a023539014a9f5586b776179f1d2392fd",
+      "import_sha256": "7c576dae8c7b1608b5d20c6e42da7c0a023539014a9f5586b776179f1d2392fd",
+      "bytes": 1615
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/83935f21-0298-409f-aabc-ac42dc4c0e00_repro_isolated.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/83935f21-0298-409f-aabc-ac42dc4c0e00_repro_isolated.jsonl",
+      "source_sha256": "b6251ca44104e156079865b359754a75680d8d27cf5f66ca6f4496868cb2e2b7",
+      "import_sha256": "b6251ca44104e156079865b359754a75680d8d27cf5f66ca6f4496868cb2e2b7",
+      "bytes": 2044
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/83935f21-0298-409f-aabc-ac42dc4c0e00_repro_shared.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/83935f21-0298-409f-aabc-ac42dc4c0e00_repro_shared.jsonl",
+      "source_sha256": "ce7adf83fd5c9018fce70a1844d01b718a1d646446d33e8f89870553d2fd2311",
+      "import_sha256": "ce7adf83fd5c9018fce70a1844d01b718a1d646446d33e8f89870553d2fd2311",
+      "bytes": 2043
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/87311a9e-97ac-43de-8964-55eb7ced00a9_repro_isolated.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/87311a9e-97ac-43de-8964-55eb7ced00a9_repro_isolated.jsonl",
+      "source_sha256": "2956e448ab0f4a807c87f55f9836df9d2c6cef05f4b72144a744736fe8c81c1a",
+      "import_sha256": "2956e448ab0f4a807c87f55f9836df9d2c6cef05f4b72144a744736fe8c81c1a",
+      "bytes": 1799
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/87311a9e-97ac-43de-8964-55eb7ced00a9_repro_shared.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/87311a9e-97ac-43de-8964-55eb7ced00a9_repro_shared.jsonl",
+      "source_sha256": "977e34f342d99b117573eb3e1ec09720aac92a5a205ab53e216d26a72e457237",
+      "import_sha256": "977e34f342d99b117573eb3e1ec09720aac92a5a205ab53e216d26a72e457237",
+      "bytes": 1798
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/8d0b854f-93fb-43ae-a1b9-d489ea68103b_repro_isolated.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/8d0b854f-93fb-43ae-a1b9-d489ea68103b_repro_isolated.jsonl",
+      "source_sha256": "b2c6355db63ff82016fa49a498b9b54907a0a221e3bd67ad605864a537c75361",
+      "import_sha256": "b2c6355db63ff82016fa49a498b9b54907a0a221e3bd67ad605864a537c75361",
+      "bytes": 1716
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/8d0b854f-93fb-43ae-a1b9-d489ea68103b_repro_shared.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/8d0b854f-93fb-43ae-a1b9-d489ea68103b_repro_shared.jsonl",
+      "source_sha256": "f45e8c7d8affc554237f025542ec44abaafce9ddb53f07a49d8930fe33b7b56c",
+      "import_sha256": "f45e8c7d8affc554237f025542ec44abaafce9ddb53f07a49d8930fe33b7b56c",
+      "bytes": 1676
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/9a292f87-6a2d-4bba-bcee-f11ca9a94c73_repro_isolated.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/9a292f87-6a2d-4bba-bcee-f11ca9a94c73_repro_isolated.jsonl",
+      "source_sha256": "8095712614fc8856c1ca5eb70c2dbdf4004902199fc4f2403d4330bc1229dbc3",
+      "import_sha256": "8095712614fc8856c1ca5eb70c2dbdf4004902199fc4f2403d4330bc1229dbc3",
+      "bytes": 1772
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/9a292f87-6a2d-4bba-bcee-f11ca9a94c73_repro_shared.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/9a292f87-6a2d-4bba-bcee-f11ca9a94c73_repro_shared.jsonl",
+      "source_sha256": "b48a562aa914678c4d526be0e582c35f325b12e68ee212aafbd3e1cd504d5cca",
+      "import_sha256": "b48a562aa914678c4d526be0e582c35f325b12e68ee212aafbd3e1cd504d5cca",
+      "bytes": 1753
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/c953149a-a76d-47a2-8d08-35614f87217a_repro_isolated.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/c953149a-a76d-47a2-8d08-35614f87217a_repro_isolated.jsonl",
+      "source_sha256": "0e2e1d4b561839cfd6530e01438fda7fe5b8595a1cef80e57a81c7708ea1cf03",
+      "import_sha256": "0e2e1d4b561839cfd6530e01438fda7fe5b8595a1cef80e57a81c7708ea1cf03",
+      "bytes": 1676
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/c953149a-a76d-47a2-8d08-35614f87217a_repro_shared.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/c953149a-a76d-47a2-8d08-35614f87217a_repro_shared.jsonl",
+      "source_sha256": "8f16975b43b93f287147c3b1bd2d62f63edf358ad32812b1b79a78adca80a07d",
+      "import_sha256": "8f16975b43b93f287147c3b1bd2d62f63edf358ad32812b1b79a78adca80a07d",
+      "bytes": 1675
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/cc0d09f8-564d-4fe5-8b22-4b7d3e4ed586_repro_isolated.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/cc0d09f8-564d-4fe5-8b22-4b7d3e4ed586_repro_isolated.jsonl",
+      "source_sha256": "e9448d037aaf283c8ca8e169ed3e32259d740d414a609b0fecb80e96be619c35",
+      "import_sha256": "e9448d037aaf283c8ca8e169ed3e32259d740d414a609b0fecb80e96be619c35",
+      "bytes": 1863
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/cc0d09f8-564d-4fe5-8b22-4b7d3e4ed586_repro_shared.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/cc0d09f8-564d-4fe5-8b22-4b7d3e4ed586_repro_shared.jsonl",
+      "source_sha256": "7dd46568af5832e6496fe0fd1b426fec4fd1519b04457bd8e6ad151b0c3e283a",
+      "import_sha256": "7dd46568af5832e6496fe0fd1b426fec4fd1519b04457bd8e6ad151b0c3e283a",
+      "bytes": 1862
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/d2a908d2-59df-4591-9a9c-1212a0ce7347_repro_isolated.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/d2a908d2-59df-4591-9a9c-1212a0ce7347_repro_isolated.jsonl",
+      "source_sha256": "5b9dfd92144e41ec8be175602a807f95f4e61f01dfa18b41873070921a871123",
+      "import_sha256": "5b9dfd92144e41ec8be175602a807f95f4e61f01dfa18b41873070921a871123",
+      "bytes": 1688
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/d2a908d2-59df-4591-9a9c-1212a0ce7347_repro_shared.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/d2a908d2-59df-4591-9a9c-1212a0ce7347_repro_shared.jsonl",
+      "source_sha256": "988fe9850f7827f7603f28b202bf8a045f70989e96b72d2b2a395dfa614d36d7",
+      "import_sha256": "988fe9850f7827f7603f28b202bf8a045f70989e96b72d2b2a395dfa614d36d7",
+      "bytes": 1687
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/d321d320-c06f-4d18-9aa2-dae718851dfd_repro_isolated.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/d321d320-c06f-4d18-9aa2-dae718851dfd_repro_isolated.jsonl",
+      "source_sha256": "55df1415ecf4ded5d2a743e81c6c757cb4a8d7f877fd6c495c446b263a4e7e76",
+      "import_sha256": "55df1415ecf4ded5d2a743e81c6c757cb4a8d7f877fd6c495c446b263a4e7e76",
+      "bytes": 1556
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/d321d320-c06f-4d18-9aa2-dae718851dfd_repro_shared.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/d321d320-c06f-4d18-9aa2-dae718851dfd_repro_shared.jsonl",
+      "source_sha256": "c6cf7ace5c03d615b5102378aa7b69215107dc2253c82cace9cbf955b327cc7d",
+      "import_sha256": "c6cf7ace5c03d615b5102378aa7b69215107dc2253c82cace9cbf955b327cc7d",
+      "bytes": 1624
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/da2078b0-6ce5-4ba3-82f2-7b145665be2b_repro_isolated.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/da2078b0-6ce5-4ba3-82f2-7b145665be2b_repro_isolated.jsonl",
+      "source_sha256": "d2159a8876362de286fdc99d769c3e68961a1bfcfa8940c06f1451b06b9dcf32",
+      "import_sha256": "d2159a8876362de286fdc99d769c3e68961a1bfcfa8940c06f1451b06b9dcf32",
+      "bytes": 1620
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/da2078b0-6ce5-4ba3-82f2-7b145665be2b_repro_shared.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/da2078b0-6ce5-4ba3-82f2-7b145665be2b_repro_shared.jsonl",
+      "source_sha256": "b9d3192567da698f000eed1c115875812b3d0b9a64d0aa3d198d782981f220c4",
+      "import_sha256": "b9d3192567da698f000eed1c115875812b3d0b9a64d0aa3d198d782981f220c4",
+      "bytes": 1719
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/da27e783-4c0b-4621-bc3d-938a109d8425_repro_isolated.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/da27e783-4c0b-4621-bc3d-938a109d8425_repro_isolated.jsonl",
+      "source_sha256": "0e0367291f7b3554ac7711b8dd70e52976d5b068185f7798604a8b9424a55be9",
+      "import_sha256": "0e0367291f7b3554ac7711b8dd70e52976d5b068185f7798604a8b9424a55be9",
+      "bytes": 1660
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/da27e783-4c0b-4621-bc3d-938a109d8425_repro_shared.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/da27e783-4c0b-4621-bc3d-938a109d8425_repro_shared.jsonl",
+      "source_sha256": "e987874018b865cf77d50251d0d2749ee5cf3fc9592b6cac935454dfa02ea7a0",
+      "import_sha256": "e987874018b865cf77d50251d0d2749ee5cf3fc9592b6cac935454dfa02ea7a0",
+      "bytes": 1644
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/e4610f09-b587-47c8-99ff-c8967f481322_repro_isolated.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/e4610f09-b587-47c8-99ff-c8967f481322_repro_isolated.jsonl",
+      "source_sha256": "aa152bc8fc95d6dfd9ad7688d4d8d07af6802c5fedec1e888a67a8998b0dd6d0",
+      "import_sha256": "aa152bc8fc95d6dfd9ad7688d4d8d07af6802c5fedec1e888a67a8998b0dd6d0",
+      "bytes": 1747
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/e4610f09-b587-47c8-99ff-c8967f481322_repro_shared.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/e4610f09-b587-47c8-99ff-c8967f481322_repro_shared.jsonl",
+      "source_sha256": "b534ad9379d11c9e43461c882598f9af0ef3c29e378de3bbee0581c64aefe2be",
+      "import_sha256": "b534ad9379d11c9e43461c882598f9af0ef3c29e378de3bbee0581c64aefe2be",
+      "bytes": 1746
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/ee904a2e-7494-46ef-b976-22be596ed44f_repro_isolated.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/ee904a2e-7494-46ef-b976-22be596ed44f_repro_isolated.jsonl",
+      "source_sha256": "2c865c2e191cce61e05616e0dcfee29ea1d1d3c00d553b5cc3a4e12bf7dd2604",
+      "import_sha256": "2c865c2e191cce61e05616e0dcfee29ea1d1d3c00d553b5cc3a4e12bf7dd2604",
+      "bytes": 1676
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/ee904a2e-7494-46ef-b976-22be596ed44f_repro_shared.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/ee904a2e-7494-46ef-b976-22be596ed44f_repro_shared.jsonl",
+      "source_sha256": "a88a3d2c6a9d044f5823f9ee691d9364dd6c45a646df8de50560a73fffeb44f4",
+      "import_sha256": "a88a3d2c6a9d044f5823f9ee691d9364dd6c45a646df8de50560a73fffeb44f4",
+      "bytes": 1675
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/fd315adc-df4b-4a81-895b-6f093eeb71b2_repro_isolated.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/fd315adc-df4b-4a81-895b-6f093eeb71b2_repro_isolated.jsonl",
+      "source_sha256": "b1e73e3fb5581f89f0b54c8c5b62f7bde84813fe8e1484efe943265dfc535a45",
+      "import_sha256": "b1e73e3fb5581f89f0b54c8c5b62f7bde84813fe8e1484efe943265dfc535a45",
+      "bytes": 1565
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/fd315adc-df4b-4a81-895b-6f093eeb71b2_repro_shared.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/fd315adc-df4b-4a81-895b-6f093eeb71b2_repro_shared.jsonl",
+      "source_sha256": "40ce1c09f999cb171cac20c41fe90368a4a862d18d1b5d8a44d55f37a42dba30",
+      "import_sha256": "40ce1c09f999cb171cac20c41fe90368a4a862d18d1b5d8a44d55f37a42dba30",
+      "bytes": 1664
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/true_peer_control.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/true_peer_control.jsonl",
+      "source_sha256": "6e4486cc2ecf82d05c83082798199dcd8a06bec594194d28d81066e66d9e5c30",
+      "import_sha256": "6e4486cc2ecf82d05c83082798199dcd8a06bec594194d28d81066e66d9e5c30",
+      "bytes": 3897
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/true_peer_control_summary.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/true_peer_control_summary.json",
+      "source_sha256": "7471bfb8d97ee59bfc5ddf602039783931921a26384bb07672bdaab30dba684b",
+      "import_sha256": "7471bfb8d97ee59bfc5ddf602039783931921a26384bb07672bdaab30dba684b",
+      "bytes": 878
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/unanimity_break.jsonl",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/unanimity_break.jsonl",
+      "source_sha256": "dc6ab147c90caf3ab65b415665e072366a3b0d59e0d8d6b7526ae133ed4e5c98",
+      "import_sha256": "dc6ab147c90caf3ab65b415665e072366a3b0d59e0d8d6b7526ae133ed4e5c98",
+      "bytes": 8443
+    },
+    {
+      "source_path": "experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/unanimity_break_summary.json",
+      "target_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/unanimity_break_summary.json",
+      "source_sha256": "c5d4651122f72d2ba958c7343a0d283add740ffb96d50225f4261e4b2e38dd60",
+      "import_sha256": "c5d4651122f72d2ba958c7343a0d283add740ffb96d50225f4261e4b2e38dd60",
+      "bytes": 1037
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/attributed_tier.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/attributed_tier.jsonl",
+      "source_sha256": "50556c0d2ae179a413436175e6588d41a47d1665b589ab37a94c3b236a27875e",
+      "import_sha256": "50556c0d2ae179a413436175e6588d41a47d1665b589ab37a94c3b236a27875e",
+      "bytes": 30523
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/attributed_tier_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/attributed_tier_summary.json",
+      "source_sha256": "61188023c774cece5b57c332ad18fd352ee961e1b3c332551931dffd5fdb80b1",
+      "import_sha256": "61188023c774cece5b57c332ad18fd352ee961e1b3c332551931dffd5fdb80b1",
+      "bytes": 1212
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/authority_ladder.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/authority_ladder.jsonl",
+      "source_sha256": "1e96264e8d8e852f17f61ffc39ce31a077060eda0241380687b487c668213505",
+      "import_sha256": "1e96264e8d8e852f17f61ffc39ce31a077060eda0241380687b487c668213505",
+      "bytes": 34597
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/authority_ladder_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/authority_ladder_summary.json",
+      "source_sha256": "608e7b1407b28a5f2b121ad47969125699ca582f9aebaae980e9780583e6ebb3",
+      "import_sha256": "608e7b1407b28a5f2b121ad47969125699ca582f9aebaae980e9780583e6ebb3",
+      "bytes": 1549
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/break_it_A_per_case.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/break_it_A_per_case.jsonl",
+      "source_sha256": "5368318b5ba28384ebf38373a2cc29259df871e6b388a83297a901fc4d0eb484",
+      "import_sha256": "5368318b5ba28384ebf38373a2cc29259df871e6b388a83297a901fc4d0eb484",
+      "bytes": 1942
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/break_it_C_per_case.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/break_it_C_per_case.jsonl",
+      "source_sha256": "97a138366def6d5cb0510ce5270f11ddc3750b3caa16c5579fd11fd2f2f36a01",
+      "import_sha256": "97a138366def6d5cb0510ce5270f11ddc3750b3caa16c5579fd11fd2f2f36a01",
+      "bytes": 1082
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/break_it_D_per_case.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/break_it_D_per_case.jsonl",
+      "source_sha256": "316fb45e972cb6d01d78bf822cec3d45bd0cc4f5b90ce28d259c721621dc1605",
+      "import_sha256": "316fb45e972cb6d01d78bf822cec3d45bd0cc4f5b90ce28d259c721621dc1605",
+      "bytes": 1821
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/break_it_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/break_it_summary.json",
+      "source_sha256": "7410051a61e934eb2eb8a4b63fd259e51eee5175911a76e494524c3f4bcae9cd",
+      "import_sha256": "7410051a61e934eb2eb8a4b63fd259e51eee5175911a76e494524c3f4bcae9cd",
+      "bytes": 1255
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/cascade_results.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/cascade_results.json",
+      "source_sha256": "a143bd2641908987b51e644a1c434353ec0548d6c98a885f84d84780a4d7d3d5",
+      "import_sha256": "a143bd2641908987b51e644a1c434353ec0548d6c98a885f84d84780a4d7d3d5",
+      "bytes": 2941
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/clean_a_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/clean_a_summary.json",
+      "source_sha256": "6293935eb8b05394e78e87b5834b2c891282f0e957d733e2af3897b1623a674e",
+      "import_sha256": "6293935eb8b05394e78e87b5834b2c891282f0e957d733e2af3897b1623a674e",
+      "bytes": 712
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/committee_size_sweep.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/committee_size_sweep.jsonl",
+      "source_sha256": "ddaa92707fc9cd43676ee3609e8b256e6af660c622d89633a9c1fb270c6b3ec3",
+      "import_sha256": "ddaa92707fc9cd43676ee3609e8b256e6af660c622d89633a9c1fb270c6b3ec3",
+      "bytes": 26064
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/committee_size_sweep_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/committee_size_sweep_summary.json",
+      "source_sha256": "61dce49ec9b65c8a7ef6771e1fac9141303630d5480a942ad01edad859d86c62",
+      "import_sha256": "61dce49ec9b65c8a7ef6771e1fac9141303630d5480a942ad01edad859d86c62",
+      "bytes": 888
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/contamination_cascade.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/contamination_cascade.jsonl",
+      "source_sha256": "edc7ed4be18982c35683fc201603d359455a6e16af1c92083cf7aacfb040900c",
+      "import_sha256": "edc7ed4be18982c35683fc201603d359455a6e16af1c92083cf7aacfb040900c",
+      "bytes": 22571
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/contamination_cascade_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/contamination_cascade_summary.json",
+      "source_sha256": "69db686635910b9bc3c296456bc2e364e4632c0120d6ec839e6e3deb470e1ff1",
+      "import_sha256": "69db686635910b9bc3c296456bc2e364e4632c0120d6ec839e6e3deb470e1ff1",
+      "bytes": 886
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/deliberation_channel.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/deliberation_channel.jsonl",
+      "source_sha256": "b1f368cc4cb5259be50f1c0effb4d71b086cf866136884fef3ebe9dd7afb50fb",
+      "import_sha256": "b1f368cc4cb5259be50f1c0effb4d71b086cf866136884fef3ebe9dd7afb50fb",
+      "bytes": 86336
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/deliberation_channel_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/deliberation_channel_summary.json",
+      "source_sha256": "97933d5c6cf25ba3303c6be8d7534629f60f0c6e8c73b6f6413a8d58d439e83b",
+      "import_sha256": "97933d5c6cf25ba3303c6be8d7534629f60f0c6e8c73b6f6413a8d58d439e83b",
+      "bytes": 1626
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/deliberation_framing.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/deliberation_framing.jsonl",
+      "source_sha256": "68dca84290a8a7141d0a78971750183eea9bf14d7228265a0d036bf3a391022c",
+      "import_sha256": "68dca84290a8a7141d0a78971750183eea9bf14d7228265a0d036bf3a391022c",
+      "bytes": 29417
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/deliberation_framing_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/deliberation_framing_summary.json",
+      "source_sha256": "023f7d13b3dd1dd25ed2bf45014f91c23c6771adb6dc2bf24105edefdf301098",
+      "import_sha256": "023f7d13b3dd1dd25ed2bf45014f91c23c6771adb6dc2bf24105edefdf301098",
+      "bytes": 1116
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/dose_response.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/dose_response.jsonl",
+      "source_sha256": "a19c3622373f0b6450658a2d167512194e89c0b38a0c7532aff87a3c5931c1f2",
+      "import_sha256": "a19c3622373f0b6450658a2d167512194e89c0b38a0c7532aff87a3c5931c1f2",
+      "bytes": 29280
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/dose_response_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/dose_response_summary.json",
+      "source_sha256": "2487370e3ae7a28cf5bed7c1177cf9ad6db520f1656e1d1f55439f83b3c2dc3f",
+      "import_sha256": "2487370e3ae7a28cf5bed7c1177cf9ad6db520f1656e1d1f55439f83b3c2dc3f",
+      "bytes": 893
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/hierarchy_dominance.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/hierarchy_dominance.jsonl",
+      "source_sha256": "52724e8de02f677a32c493bd955bd76d9dc2c23ee91ce45b30fa56bf12824a54",
+      "import_sha256": "52724e8de02f677a32c493bd955bd76d9dc2c23ee91ce45b30fa56bf12824a54",
+      "bytes": 8551
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/hierarchy_dominance_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/hierarchy_dominance_summary.json",
+      "source_sha256": "6bdb5723059d136a1c0ac88862101787ae23665d50c649b2f605b25ed58c583b",
+      "import_sha256": "6bdb5723059d136a1c0ac88862101787ae23665d50c649b2f605b25ed58c583b",
+      "bytes": 1268
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/hierarchy_temp.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/hierarchy_temp.jsonl",
+      "source_sha256": "dfb1be774efe32f90519d16f4b55ecaf6266d0d0b817745c7b57da269f530760",
+      "import_sha256": "dfb1be774efe32f90519d16f4b55ecaf6266d0d0b817745c7b57da269f530760",
+      "bytes": 8534
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/hierarchy_temp_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/hierarchy_temp_summary.json",
+      "source_sha256": "1c27da42fe78e348552feaaf7251181b4c63081102566e0bffaf1fdfa7f8b4ea",
+      "import_sha256": "1c27da42fe78e348552feaaf7251181b4c63081102566e0bffaf1fdfa7f8b4ea",
+      "bytes": 969
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/leader_as_auditor.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/leader_as_auditor.jsonl",
+      "source_sha256": "f3d785cb428897ab7142322c09bd335e29784dc867d86b7d911bcc82f6ce32bb",
+      "import_sha256": "f3d785cb428897ab7142322c09bd335e29784dc867d86b7d911bcc82f6ce32bb",
+      "bytes": 25684
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/leader_as_auditor_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/leader_as_auditor_summary.json",
+      "source_sha256": "1df4a4542fc16166ee066df2206c4efc4501a4987db21208d08ba4c74235cea1",
+      "import_sha256": "1df4a4542fc16166ee066df2206c4efc4501a4987db21208d08ba4c74235cea1",
+      "bytes": 974
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/live_peer_organic.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/live_peer_organic.jsonl",
+      "source_sha256": "00a76a9e271e3d8b52404592cd5d1bab806d9182de7ec50debe23aeaa5ac2445",
+      "import_sha256": "00a76a9e271e3d8b52404592cd5d1bab806d9182de7ec50debe23aeaa5ac2445",
+      "bytes": 44801
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/live_peer_organic_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/live_peer_organic_summary.json",
+      "source_sha256": "ecc29c0ae8721c5f4e1ded1b3e65605df80de02254b7bca3c235751c9df437af",
+      "import_sha256": "ecc29c0ae8721c5f4e1ded1b3e65605df80de02254b7bca3c235751c9df437af",
+      "bytes": 976
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/majority_pressure.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/majority_pressure.jsonl",
+      "source_sha256": "10efad33bcba894e25d42af05801d6edb88ac57686f94497d421a9711758bfcd",
+      "import_sha256": "10efad33bcba894e25d42af05801d6edb88ac57686f94497d421a9711758bfcd",
+      "bytes": 6646
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/majority_pressure_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/majority_pressure_summary.json",
+      "source_sha256": "66af0d0bb30c94f242a577c1333eb4181f8e8872d2506ec3bce9734b2aa476ce",
+      "import_sha256": "66af0d0bb30c94f242a577c1333eb4181f8e8872d2506ec3bce9734b2aa476ce",
+      "bytes": 1312
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/orchestrator_failure.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/orchestrator_failure.jsonl",
+      "source_sha256": "8776ef7c493fed692af8de9adf69ea41a8befdf4749b7e174dddf06d60edae85",
+      "import_sha256": "8776ef7c493fed692af8de9adf69ea41a8befdf4749b7e174dddf06d60edae85",
+      "bytes": 21873
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/orchestrator_failure_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/orchestrator_failure_summary.json",
+      "source_sha256": "2b806df51b30b862f68f342ce99a86e51ded1d4088e4e54e3927d3139415e5bb",
+      "import_sha256": "2b806df51b30b862f68f342ce99a86e51ded1d4088e4e54e3927d3139415e5bb",
+      "bytes": 1160
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/paraphrase_robustness.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/paraphrase_robustness.jsonl",
+      "source_sha256": "4afe97f591c1a124268edf61b3cf2d0c1501e4407ded6f4c6ac4ca5a66c8dc0f",
+      "import_sha256": "4afe97f591c1a124268edf61b3cf2d0c1501e4407ded6f4c6ac4ca5a66c8dc0f",
+      "bytes": 27955
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/paraphrase_robustness_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/paraphrase_robustness_summary.json",
+      "source_sha256": "9d7812f1fb0baf704d310c3c65c93d94f4335ed68a6236214abf689e3bbb6fd3",
+      "import_sha256": "9d7812f1fb0baf704d310c3c65c93d94f4335ed68a6236214abf689e3bbb6fd3",
+      "bytes": 918
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/plausible_distractor.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/plausible_distractor.jsonl",
+      "source_sha256": "75bfdfcbf55f61683adb870634e494143b27b914adde07596251b57397c95b13",
+      "import_sha256": "75bfdfcbf55f61683adb870634e494143b27b914adde07596251b57397c95b13",
+      "bytes": 19940
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/plausible_distractor_coverage.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/plausible_distractor_coverage.jsonl",
+      "source_sha256": "69cf1bc0c98e215ceb76b84e665dff7d1e15436d60e353719cf86f6574b29724",
+      "import_sha256": "69cf1bc0c98e215ceb76b84e665dff7d1e15436d60e353719cf86f6574b29724",
+      "bytes": 16260
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/plausible_distractor_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/plausible_distractor_summary.json",
+      "source_sha256": "ec98364e53f613594462b617b40adfaa11c1c1fd0806176d64c31de1cdf2c545",
+      "import_sha256": "8e911b0f5aa45b19ed364dc59752c6c1b5873e9d0e9795bc7e2c143dad10cacd",
+      "bytes": 1485
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/pre_emptive_referee.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/pre_emptive_referee.jsonl",
+      "source_sha256": "69506483c3819018e59df96b1536b0e22bda0d9523015b20041022904ce8c4a2",
+      "import_sha256": "69506483c3819018e59df96b1536b0e22bda0d9523015b20041022904ce8c4a2",
+      "bytes": 28458
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/pre_emptive_referee_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/pre_emptive_referee_summary.json",
+      "source_sha256": "a96a8dedd2cfde514765ac42beda18a5bf011a9b9210f3014f31699e0a844cf5",
+      "import_sha256": "a96a8dedd2cfde514765ac42beda18a5bf011a9b9210f3014f31699e0a844cf5",
+      "bytes": 1020
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/push_c_per_case.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/push_c_per_case.jsonl",
+      "source_sha256": "de66775f2c7f81fce3fd4ec28cf561f540e659337644e90cc23f2bb900d2cb7a",
+      "import_sha256": "de66775f2c7f81fce3fd4ec28cf561f540e659337644e90cc23f2bb900d2cb7a",
+      "bytes": 4238
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/push_c_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/push_c_summary.json",
+      "source_sha256": "03b11f1808ac04f531ec21abba180530f9d67fe49917ef8a54da7a8bca3406bd",
+      "import_sha256": "03b11f1808ac04f531ec21abba180530f9d67fe49917ef8a54da7a8bca3406bd",
+      "bytes": 725
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/rationale_validity.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/rationale_validity.jsonl",
+      "source_sha256": "df320bcaed62a61200cbb16e6321d2e51d22fb7c198b3e7df2e88c5299c583c3",
+      "import_sha256": "df320bcaed62a61200cbb16e6321d2e51d22fb7c198b3e7df2e88c5299c583c3",
+      "bytes": 26924
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/rationale_validity_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/rationale_validity_summary.json",
+      "source_sha256": "4fa3e06797bd9b9c5a1fc28d47d81b704edf57c07907ff6cae455230e68907b7",
+      "import_sha256": "4fa3e06797bd9b9c5a1fc28d47d81b704edf57c07907ff6cae455230e68907b7",
+      "bytes": 1674
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/scale_c_per_case.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/scale_c_per_case.jsonl",
+      "source_sha256": "d647d1a48c33a3ff78cedf95108e4d22bb5d3c8ef05d1b48706b1f13d4cef8ab",
+      "import_sha256": "d647d1a48c33a3ff78cedf95108e4d22bb5d3c8ef05d1b48706b1f13d4cef8ab",
+      "bytes": 5977
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/scale_c_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/scale_c_summary.json",
+      "source_sha256": "39e64032ea9f7e7394411990a9fc50d483bafad1ad27c91fb4477212c4aac9c2",
+      "import_sha256": "39e64032ea9f7e7394411990a9fc50d483bafad1ad27c91fb4477212c4aac9c2",
+      "bytes": 979
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/seed_confidence.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/seed_confidence.jsonl",
+      "source_sha256": "f07422d66b11d9c5b035426738162bab90a4784f5870174be97b843f08d5e67d",
+      "import_sha256": "f07422d66b11d9c5b035426738162bab90a4784f5870174be97b843f08d5e67d",
+      "bytes": 20002
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/seed_confidence_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/seed_confidence_summary.json",
+      "source_sha256": "294d6b4bcb1e2e39cc7444e921d486693c7546872262edd34ac2d70cc308df65",
+      "import_sha256": "294d6b4bcb1e2e39cc7444e921d486693c7546872262edd34ac2d70cc308df65",
+      "bytes": 818
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/seed_timing.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/seed_timing.jsonl",
+      "source_sha256": "fbb56d41ede79843df2e41f97e62cdbe3afb580edd3fb25c24bd2862220c2441",
+      "import_sha256": "fbb56d41ede79843df2e41f97e62cdbe3afb580edd3fb25c24bd2862220c2441",
+      "bytes": 24978
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/seed_timing_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/seed_timing_summary.json",
+      "source_sha256": "04673d2202025363d3ab8693dbaaf74187f830d1f2e0b93fb0a14187264b15f3",
+      "import_sha256": "04673d2202025363d3ab8693dbaaf74187f830d1f2e0b93fb0a14187264b15f3",
+      "bytes": 715
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/solo_records.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/solo_records.jsonl",
+      "source_sha256": "5f65100aabc4e0ac38df32f8fc12af5a374cba0347113b66aeb8d485ccb87c08",
+      "import_sha256": "5f65100aabc4e0ac38df32f8fc12af5a374cba0347113b66aeb8d485ccb87c08",
+      "bytes": 78530
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/solo_results.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/solo_results.json",
+      "source_sha256": "a22fea9733b19769dd824b8db3da9aa3564d041f086cebca346aec2b6b73ea49",
+      "import_sha256": "a22fea9733b19769dd824b8db3da9aa3564d041f086cebca346aec2b6b73ea49",
+      "bytes": 703
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/super_additivity.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/super_additivity.jsonl",
+      "source_sha256": "b3dcbe0fb9fb9104d93db9eca140b9cafceb417566710af97ba415a3041fb3d3",
+      "import_sha256": "b3dcbe0fb9fb9104d93db9eca140b9cafceb417566710af97ba415a3041fb3d3",
+      "bytes": 27645
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/super_additivity_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/super_additivity_summary.json",
+      "source_sha256": "0765c8e24bdfe18c3d4c68e509c996e6abfb7c7f865e5f43c2d24ffa59bd7afb",
+      "import_sha256": "0765c8e24bdfe18c3d4c68e509c996e6abfb7c7f865e5f43c2d24ffa59bd7afb",
+      "bytes": 979
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/temperature_sensitivity.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/temperature_sensitivity.jsonl",
+      "source_sha256": "e771734d94fd0b8c39934205064fe6d8e98e6f1c201839b0ff483e8586c578a4",
+      "import_sha256": "e771734d94fd0b8c39934205064fe6d8e98e6f1c201839b0ff483e8586c578a4",
+      "bytes": 42811
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/temperature_sensitivity_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/temperature_sensitivity_summary.json",
+      "source_sha256": "791c842e5fcbe6e6b8844c68636e13aed7928aa176e0ea656e33253bbc4eb741",
+      "import_sha256": "791c842e5fcbe6e6b8844c68636e13aed7928aa176e0ea656e33253bbc4eb741",
+      "bytes": 942
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/test_awareness.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/test_awareness.jsonl",
+      "source_sha256": "d8d9cd2470a70a43f0ab24d7ba0100d997ed8f8cdc684a10414198a6b0769a35",
+      "import_sha256": "d8d9cd2470a70a43f0ab24d7ba0100d997ed8f8cdc684a10414198a6b0769a35",
+      "bytes": 27645
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/test_awareness_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/test_awareness_summary.json",
+      "source_sha256": "ad50fb31393eacde556ab87dd981451e1aa416587d189c3360ecd7c75a2c2abd",
+      "import_sha256": "ad50fb31393eacde556ab87dd981451e1aa416587d189c3360ecd7c75a2c2abd",
+      "bytes": 1054
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/text_cue_types.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/text_cue_types.jsonl",
+      "source_sha256": "e59fd9f93b419ecee21df7a0e8aed3394072784e3497e014f0f92e85f28bb846",
+      "import_sha256": "e59fd9f93b419ecee21df7a0e8aed3394072784e3497e014f0f92e85f28bb846",
+      "bytes": 28964
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/text_cue_types_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/text_cue_types_summary.json",
+      "source_sha256": "216ad2e40e9db6beac2138dc17cf93df6fa59e58e669c13afcebd78a21ce7878",
+      "import_sha256": "216ad2e40e9db6beac2138dc17cf93df6fa59e58e669c13afcebd78a21ce7878",
+      "bytes": 996
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-1033_repro_isolated.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-1033_repro_isolated.jsonl",
+      "source_sha256": "c5a3fe7cd073c9b549087b7772df3fc358cbb71147fc04ce1422aeca874eb6a6",
+      "import_sha256": "c5a3fe7cd073c9b549087b7772df3fc358cbb71147fc04ce1422aeca874eb6a6",
+      "bytes": 1573
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-1033_repro_shared.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-1033_repro_shared.jsonl",
+      "source_sha256": "24ffd2a5e90ba052112c5c9d1e64971beb5f58fdbe070828f2363e230bbe3bae",
+      "import_sha256": "24ffd2a5e90ba052112c5c9d1e64971beb5f58fdbe070828f2363e230bbe3bae",
+      "bytes": 1573
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-1047_repro_isolated.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-1047_repro_isolated.jsonl",
+      "source_sha256": "4dd19566c5281330fa9b899f0cd155b21a2af604901c3350956a5f998cd8dc28",
+      "import_sha256": "4dd19566c5281330fa9b899f0cd155b21a2af604901c3350956a5f998cd8dc28",
+      "bytes": 1758
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-1047_repro_shared.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-1047_repro_shared.jsonl",
+      "source_sha256": "5afdbbf9007e2e552d8091dda490f1927ff718e04d2886f303bd99c64214a6b6",
+      "import_sha256": "5afdbbf9007e2e552d8091dda490f1927ff718e04d2886f303bd99c64214a6b6",
+      "bytes": 1762
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-1090_repro_isolated.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-1090_repro_isolated.jsonl",
+      "source_sha256": "6c40706c3bfc89e357370ef964bd3c53f3950b70a35be18707c8db110aec6210",
+      "import_sha256": "6c40706c3bfc89e357370ef964bd3c53f3950b70a35be18707c8db110aec6210",
+      "bytes": 1668
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-1090_repro_shared.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-1090_repro_shared.jsonl",
+      "source_sha256": "373fa24fc835f6fa11e18ffd1681d9f10c22715c513a5507d8b3928710404fa0",
+      "import_sha256": "373fa24fc835f6fa11e18ffd1681d9f10c22715c513a5507d8b3928710404fa0",
+      "bytes": 1667
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-1194_repro_isolated.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-1194_repro_isolated.jsonl",
+      "source_sha256": "c89e7b3fb3bc523111814e5153bf34c64f58754cd06504efe94279c5703213ad",
+      "import_sha256": "c89e7b3fb3bc523111814e5153bf34c64f58754cd06504efe94279c5703213ad",
+      "bytes": 1726
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-1194_repro_shared.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-1194_repro_shared.jsonl",
+      "source_sha256": "07a629cb9871e25179e659fb617afd0d67bab593f20b5ad8c7b5a44ef4fc6e19",
+      "import_sha256": "07a629cb9871e25179e659fb617afd0d67bab593f20b5ad8c7b5a44ef4fc6e19",
+      "bytes": 1691
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-1266_repro_isolated.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-1266_repro_isolated.jsonl",
+      "source_sha256": "d7b2e2076fdd042ed8ef86a7f13f3e0489324cb9414c2d6318a6ab55effed021",
+      "import_sha256": "d7b2e2076fdd042ed8ef86a7f13f3e0489324cb9414c2d6318a6ab55effed021",
+      "bytes": 1628
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-1266_repro_shared.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-1266_repro_shared.jsonl",
+      "source_sha256": "32e57997426942fc9c2381f132b24cc2451af40d88dfc2c7312a173ff154ad4c",
+      "import_sha256": "32e57997426942fc9c2381f132b24cc2451af40d88dfc2c7312a173ff154ad4c",
+      "bytes": 1627
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-194_repro_isolated.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-194_repro_isolated.jsonl",
+      "source_sha256": "245a22d8610e0f3c7df78afce92082824847b28ed0699880679c2a92622a8d87",
+      "import_sha256": "245a22d8610e0f3c7df78afce92082824847b28ed0699880679c2a92622a8d87",
+      "bytes": 2031
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-194_repro_shared.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-194_repro_shared.jsonl",
+      "source_sha256": "7dfb4a2a493eabb87c6f6b41f5c4870dc2fa7e658030646160d8933f57b999bc",
+      "import_sha256": "7dfb4a2a493eabb87c6f6b41f5c4870dc2fa7e658030646160d8933f57b999bc",
+      "bytes": 2030
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-285_repro_isolated.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-285_repro_isolated.jsonl",
+      "source_sha256": "812f95056f3cda1029bfff155d682aab6f92a5565ef25a5087fc9af8c12752b9",
+      "import_sha256": "812f95056f3cda1029bfff155d682aab6f92a5565ef25a5087fc9af8c12752b9",
+      "bytes": 1792
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-285_repro_shared.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-285_repro_shared.jsonl",
+      "source_sha256": "81fcdc8e4b0507dbbe78716f674c04ef71d5ba3831ee23dc510b242c2b62b035",
+      "import_sha256": "81fcdc8e4b0507dbbe78716f674c04ef71d5ba3831ee23dc510b242c2b62b035",
+      "bytes": 1784
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-286_repro_isolated.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-286_repro_isolated.jsonl",
+      "source_sha256": "25ac70bd2790ed968789b4ff8a2fa2fa6d982398dfa746e5ab0c98e14f748ae7",
+      "import_sha256": "25ac70bd2790ed968789b4ff8a2fa2fa6d982398dfa746e5ab0c98e14f748ae7",
+      "bytes": 1734
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-286_repro_shared.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-286_repro_shared.jsonl",
+      "source_sha256": "32bae48bee67bbd9dab4a351c38575e0b405d0899b33e1adaec8fb8eb678b8f8",
+      "import_sha256": "32bae48bee67bbd9dab4a351c38575e0b405d0899b33e1adaec8fb8eb678b8f8",
+      "bytes": 1733
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-447_repro_isolated.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-447_repro_isolated.jsonl",
+      "source_sha256": "8e5da6d4a24b56c787f220116f83a157eaac32d1a2048188880274278508f3e8",
+      "import_sha256": "8e5da6d4a24b56c787f220116f83a157eaac32d1a2048188880274278508f3e8",
+      "bytes": 1761
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-447_repro_shared.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-447_repro_shared.jsonl",
+      "source_sha256": "fb3350647ab8e962166e987ded541c07f689d47e821d8a9451942a2ad560d358",
+      "import_sha256": "fb3350647ab8e962166e987ded541c07f689d47e821d8a9451942a2ad560d358",
+      "bytes": 1760
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-513_repro_isolated.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-513_repro_isolated.jsonl",
+      "source_sha256": "0811e040715300a8d064b3e949678d04eae39eb2d77daaf0ba3c1edacda88c3f",
+      "import_sha256": "0811e040715300a8d064b3e949678d04eae39eb2d77daaf0ba3c1edacda88c3f",
+      "bytes": 1603
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-513_repro_shared.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-513_repro_shared.jsonl",
+      "source_sha256": "b7e77fbf70217cf03f518e5ef208cd1fcea4db7392b22af719ec34d961d00286",
+      "import_sha256": "b7e77fbf70217cf03f518e5ef208cd1fcea4db7392b22af719ec34d961d00286",
+      "bytes": 1602
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-530_repro_isolated.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-530_repro_isolated.jsonl",
+      "source_sha256": "20d0cb0c02964ed95fb386a6907f2d169dabc7d268efeb555c026793c9d55e4a",
+      "import_sha256": "20d0cb0c02964ed95fb386a6907f2d169dabc7d268efeb555c026793c9d55e4a",
+      "bytes": 1657
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-530_repro_shared.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-530_repro_shared.jsonl",
+      "source_sha256": "3a58c5d5d85dae489f7f35fb674a0272a7f652b3b91a4ddfbec277e983ced1e7",
+      "import_sha256": "3a58c5d5d85dae489f7f35fb674a0272a7f652b3b91a4ddfbec277e983ced1e7",
+      "bytes": 1659
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-577_repro_isolated.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-577_repro_isolated.jsonl",
+      "source_sha256": "ec1717ff6a85702a5765be8fd96765d1bc5d33391fbd17d0126b50f6ec31a586",
+      "import_sha256": "ec1717ff6a85702a5765be8fd96765d1bc5d33391fbd17d0126b50f6ec31a586",
+      "bytes": 1886
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-577_repro_shared.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-577_repro_shared.jsonl",
+      "source_sha256": "b26f463026d4bec3c0adad06e7d867a06db4f6b4d41dd29a48297b3fb12762f4",
+      "import_sha256": "b26f463026d4bec3c0adad06e7d867a06db4f6b4d41dd29a48297b3fb12762f4",
+      "bytes": 1894
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-621_repro_isolated.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-621_repro_isolated.jsonl",
+      "source_sha256": "539d497710a5945d994c6533e5b0c063bc19c647b1ed6bdf96b55ea58311d291",
+      "import_sha256": "539d497710a5945d994c6533e5b0c063bc19c647b1ed6bdf96b55ea58311d291",
+      "bytes": 1516
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-621_repro_shared.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-621_repro_shared.jsonl",
+      "source_sha256": "4fb660f146379aedc92a20c5abdfada518f319cecc30249f8145396dfa35dbf0",
+      "import_sha256": "4fb660f146379aedc92a20c5abdfada518f319cecc30249f8145396dfa35dbf0",
+      "bytes": 2079
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-733_repro_isolated.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-733_repro_isolated.jsonl",
+      "source_sha256": "0a08fb2133429cd7d540cb6495e46ac98c0507a1d31df655d427b1b8001dfb91",
+      "import_sha256": "0a08fb2133429cd7d540cb6495e46ac98c0507a1d31df655d427b1b8001dfb91",
+      "bytes": 1648
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-733_repro_shared.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-733_repro_shared.jsonl",
+      "source_sha256": "76d5e5a4851ae4ec7cc62a89c1c6440fa58a6185968dccab1f51c3cae6ba7d0f",
+      "import_sha256": "76d5e5a4851ae4ec7cc62a89c1c6440fa58a6185968dccab1f51c3cae6ba7d0f",
+      "bytes": 1647
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-788_repro_isolated.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-788_repro_isolated.jsonl",
+      "source_sha256": "6d74154f909dd4cba7708e223cb8b5533f89286092be8434fbf450cafb335af5",
+      "import_sha256": "6d74154f909dd4cba7708e223cb8b5533f89286092be8434fbf450cafb335af5",
+      "bytes": 1645
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-788_repro_shared.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-788_repro_shared.jsonl",
+      "source_sha256": "c7ec0d80860ce493fb972a72bd6abbdc9dd4865b9c877b08d6b400131796329f",
+      "import_sha256": "c7ec0d80860ce493fb972a72bd6abbdc9dd4865b9c877b08d6b400131796329f",
+      "bytes": 1644
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-829_repro_isolated.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-829_repro_isolated.jsonl",
+      "source_sha256": "37858ce3f30630709025f0b4b7c020db1d96bf4aab4607ea8f3701734961c105",
+      "import_sha256": "37858ce3f30630709025f0b4b7c020db1d96bf4aab4607ea8f3701734961c105",
+      "bytes": 1961
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-829_repro_shared.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-829_repro_shared.jsonl",
+      "source_sha256": "292cfa1653457c7ac31e3158165d81fb6d9d9a763754c64b6e42b408d9183471",
+      "import_sha256": "292cfa1653457c7ac31e3158165d81fb6d9d9a763754c64b6e42b408d9183471",
+      "bytes": 1963
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-82_repro_isolated.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-82_repro_isolated.jsonl",
+      "source_sha256": "ccb7d7cd55626089ad031a552fc17d10663cd69ab3efbecf80b9b8bbf322214a",
+      "import_sha256": "ccb7d7cd55626089ad031a552fc17d10663cd69ab3efbecf80b9b8bbf322214a",
+      "bytes": 1615
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-82_repro_shared.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-82_repro_shared.jsonl",
+      "source_sha256": "953340325d1c96aa9e1c7b9a5a485e31e2397b9c5479c9add2b65e1e930a3964",
+      "import_sha256": "953340325d1c96aa9e1c7b9a5a485e31e2397b9c5479c9add2b65e1e930a3964",
+      "bytes": 1614
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-861_repro_isolated.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-861_repro_isolated.jsonl",
+      "source_sha256": "1378f2da99626e129fc0ccbd7d69b6c81d5d2e04b27a2fc022be2cf864dffdd4",
+      "import_sha256": "1378f2da99626e129fc0ccbd7d69b6c81d5d2e04b27a2fc022be2cf864dffdd4",
+      "bytes": 1701
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-861_repro_shared.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-861_repro_shared.jsonl",
+      "source_sha256": "e66f5fd9a23c2e8e6d040ef1538a3790ce16ebeb95f038db8272f9ef17e7e9a1",
+      "import_sha256": "e66f5fd9a23c2e8e6d040ef1538a3790ce16ebeb95f038db8272f9ef17e7e9a1",
+      "bytes": 1688
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-976_repro_isolated.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-976_repro_isolated.jsonl",
+      "source_sha256": "74a6caf80f3afa0ae6986f5c53267995ee9a115db7ed385ecbbee1a9553a0bf4",
+      "import_sha256": "74a6caf80f3afa0ae6986f5c53267995ee9a115db7ed385ecbbee1a9553a0bf4",
+      "bytes": 1790
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-976_repro_shared.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-976_repro_shared.jsonl",
+      "source_sha256": "ffaae55641a7f7e8a9dfa623fa95779421196f0d7a81bed1d42c9f558b91eb6b",
+      "import_sha256": "ffaae55641a7f7e8a9dfa623fa95779421196f0d7a81bed1d42c9f558b91eb6b",
+      "bytes": 1790
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-995_repro_isolated.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-995_repro_isolated.jsonl",
+      "source_sha256": "469b7158ba9ae40d186be2a2b0314d5188aaa19ec499825cd346ecef9cb0213b",
+      "import_sha256": "469b7158ba9ae40d186be2a2b0314d5188aaa19ec499825cd346ecef9cb0213b",
+      "bytes": 1641
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/transcripts/medqa-995_repro_shared.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/transcripts/medqa-995_repro_shared.jsonl",
+      "source_sha256": "2e9cf42dbdfd095025928fb7601850e9d2f5fe93ede43e0753a2694e79e6c996",
+      "import_sha256": "2e9cf42dbdfd095025928fb7601850e9d2f5fe93ede43e0753a2694e79e6c996",
+      "bytes": 1640
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/true_peer_control.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/true_peer_control.jsonl",
+      "source_sha256": "f7dc19980c5dfd5395c07590785502f844b4cd2f5f9e154946179bc2790c4a89",
+      "import_sha256": "f7dc19980c5dfd5395c07590785502f844b4cd2f5f9e154946179bc2790c4a89",
+      "bytes": 1338
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/true_peer_control_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/true_peer_control_summary.json",
+      "source_sha256": "7d36013a993c6196dc041cbb4c3e3e52f867d7fee5ed7e0c28a0374f75466e25",
+      "import_sha256": "7d36013a993c6196dc041cbb4c3e3e52f867d7fee5ed7e0c28a0374f75466e25",
+      "bytes": 856
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/unanimity_break.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/unanimity_break.jsonl",
+      "source_sha256": "7fb03c14d845f522e93c19e4fae5d30d7a36079f554228016c8829a3bc2eb118",
+      "import_sha256": "7fb03c14d845f522e93c19e4fae5d30d7a36079f554228016c8829a3bc2eb118",
+      "bytes": 3052
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct/unanimity_break_summary.json",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/unanimity_break_summary.json",
+      "source_sha256": "2dc760089175f723019e94b7a2df02de1fae8ef6f4f9e8ec65898e78d8fc0217",
+      "import_sha256": "2dc760089175f723019e94b7a2df02de1fae8ef6f4f9e8ec65898e78d8fc0217",
+      "bytes": 1026
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_attributed_tier_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_attributed_tier_cache.jsonl",
+      "source_sha256": "ddc9d9d7171707ad5ea7d45797398a75724710cf7ce5bbfe70fc6b76e7ac9826",
+      "import_sha256": "ddc9d9d7171707ad5ea7d45797398a75724710cf7ce5bbfe70fc6b76e7ac9826",
+      "bytes": 169924
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_authority_ladder_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_authority_ladder_cache.jsonl",
+      "source_sha256": "67ba6297e636f3320abe24cb6939802f944e5401589d7cb1fb66257ec5707feb",
+      "import_sha256": "67ba6297e636f3320abe24cb6939802f944e5401589d7cb1fb66257ec5707feb",
+      "bytes": 298121
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_call_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_call_cache.jsonl",
+      "source_sha256": "68a031aad825315a6e25ecd12f1be08504cb1e4a162f7a2190171010f546f8b7",
+      "import_sha256": "68a031aad825315a6e25ecd12f1be08504cb1e4a162f7a2190171010f546f8b7",
+      "bytes": 310818
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_committee_size_sweep_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_committee_size_sweep_cache.jsonl",
+      "source_sha256": "51f412d3e6a3b8873a6646cd66e0183f9ce3a3f80b853821a8bb6b3207ebcf65",
+      "import_sha256": "51f412d3e6a3b8873a6646cd66e0183f9ce3a3f80b853821a8bb6b3207ebcf65",
+      "bytes": 173500
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_contamination_cascade_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_contamination_cascade_cache.jsonl",
+      "source_sha256": "ad61932cc72568a13d9b01b1bf8cd4b2405fcd781aa958b679b4ca38b75f3ae9",
+      "import_sha256": "ad61932cc72568a13d9b01b1bf8cd4b2405fcd781aa958b679b4ca38b75f3ae9",
+      "bytes": 54513
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_deliberation_channel_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_deliberation_channel_cache.jsonl",
+      "source_sha256": "ff09ddccbd727a653e1e1c20ffb10771c0194b0c49f827be1bc06c4503d0b396",
+      "import_sha256": "ff09ddccbd727a653e1e1c20ffb10771c0194b0c49f827be1bc06c4503d0b396",
+      "bytes": 783635
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_deliberation_framing_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_deliberation_framing_cache.jsonl",
+      "source_sha256": "3faf845fcaef24cf0ecb66b3e00b197fa284257c437d0ff57168e27bb11b854e",
+      "import_sha256": "3faf845fcaef24cf0ecb66b3e00b197fa284257c437d0ff57168e27bb11b854e",
+      "bytes": 273641
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_dose_response_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_dose_response_cache.jsonl",
+      "source_sha256": "6a03f160955db71ff7f0e597036082a01b312b5c88a70c8d559343f1483dc101",
+      "import_sha256": "6a03f160955db71ff7f0e597036082a01b312b5c88a70c8d559343f1483dc101",
+      "bytes": 230600
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_hierarchy_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_hierarchy_cache.jsonl",
+      "source_sha256": "656ee4f510c9214496e4061207849fe7ad20d3974623eb81c5f5d8c38654f59d",
+      "import_sha256": "656ee4f510c9214496e4061207849fe7ad20d3974623eb81c5f5d8c38654f59d",
+      "bytes": 107463
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_hierarchy_temp_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_hierarchy_temp_cache.jsonl",
+      "source_sha256": "491ad9c5bdcb50b3672012288ef77d7ffa3b905d1b30ea00a1a5eafa5bbc565d",
+      "import_sha256": "491ad9c5bdcb50b3672012288ef77d7ffa3b905d1b30ea00a1a5eafa5bbc565d",
+      "bytes": 64370
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_leader_as_auditor_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_leader_as_auditor_cache.jsonl",
+      "source_sha256": "1daa85ec27b7ca5970bdbddefb5befd8a96a569a477188b5aefdeebafb26c59e",
+      "import_sha256": "1daa85ec27b7ca5970bdbddefb5befd8a96a569a477188b5aefdeebafb26c59e",
+      "bytes": 364641
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_live_peer_organic_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_live_peer_organic_cache.jsonl",
+      "source_sha256": "28b184ed391d8329c23e6710301168698ab3115292b87edb28e0f552e41fb291",
+      "import_sha256": "28b184ed391d8329c23e6710301168698ab3115292b87edb28e0f552e41fb291",
+      "bytes": 32934
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_majority_pressure_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_majority_pressure_cache.jsonl",
+      "source_sha256": "f10bd467b1dd5d6085f3749b4270a718f53b8ec7ad81cc6b27ff5eab28ac18e4",
+      "import_sha256": "f10bd467b1dd5d6085f3749b4270a718f53b8ec7ad81cc6b27ff5eab28ac18e4",
+      "bytes": 27323
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_orchestrator_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_orchestrator_cache.jsonl",
+      "source_sha256": "f15083d6973c67f48aa439cc93146b677bc68689d6b337830ec20ac96789ca30",
+      "import_sha256": "f15083d6973c67f48aa439cc93146b677bc68689d6b337830ec20ac96789ca30",
+      "bytes": 175115
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_paraphrase_robustness_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_paraphrase_robustness_cache.jsonl",
+      "source_sha256": "95901286bd8c0f3b65bf34a08af82070a0ac7627c2f60c42fb4b113338e7460e",
+      "import_sha256": "95901286bd8c0f3b65bf34a08af82070a0ac7627c2f60c42fb4b113338e7460e",
+      "bytes": 68147
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_plausible_distractor_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_plausible_distractor_cache.jsonl",
+      "source_sha256": "13abcafca61173af3288559554c37c7cd97a609ea3ae749555dfca1613c043fc",
+      "import_sha256": "13abcafca61173af3288559554c37c7cd97a609ea3ae749555dfca1613c043fc",
+      "bytes": 131743
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_pre_emptive_referee_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_pre_emptive_referee_cache.jsonl",
+      "source_sha256": "00a2cc85552a03996fe38642767ea93f4f6729c54cf32d179206e2337c95c70f",
+      "import_sha256": "00a2cc85552a03996fe38642767ea93f4f6729c54cf32d179206e2337c95c70f",
+      "bytes": 102353
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_rationale_validity_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_rationale_validity_cache.jsonl",
+      "source_sha256": "30d1cb61f0772acac0e8936dbb5fc5917c5d7418142e02bd3450e0aab2ce070f",
+      "import_sha256": "30d1cb61f0772acac0e8936dbb5fc5917c5d7418142e02bd3450e0aab2ce070f",
+      "bytes": 201568
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_seed_confidence_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_seed_confidence_cache.jsonl",
+      "source_sha256": "9311ea3cfd689195f8d8ee034e05f102fba16f6d275eb57be6e9b1ecc5d230ac",
+      "import_sha256": "9311ea3cfd689195f8d8ee034e05f102fba16f6d275eb57be6e9b1ecc5d230ac",
+      "bytes": 111583
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_seed_timing_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_seed_timing_cache.jsonl",
+      "source_sha256": "9db9694e87a059bf5d8e49675f4c2a517882f8809e14e45a17e31d39825a148a",
+      "import_sha256": "9db9694e87a059bf5d8e49675f4c2a517882f8809e14e45a17e31d39825a148a",
+      "bytes": 50371
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_super_additivity_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_super_additivity_cache.jsonl",
+      "source_sha256": "d2ee94f0e874e0d5067feed43fdbbdb5f6e4aff43daad0e35d1ab09801fbda80",
+      "import_sha256": "d2ee94f0e874e0d5067feed43fdbbdb5f6e4aff43daad0e35d1ab09801fbda80",
+      "bytes": 173282
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_temperature_sensitivity_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_temperature_sensitivity_cache.jsonl",
+      "source_sha256": "ab4bb5982d8a1fa83dac5bb42dd6ea042eacd5ce6d42225459aa9b216767cef9",
+      "import_sha256": "ab4bb5982d8a1fa83dac5bb42dd6ea042eacd5ce6d42225459aa9b216767cef9",
+      "bytes": 488757
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_test_awareness_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_test_awareness_cache.jsonl",
+      "source_sha256": "8b2c7d071cdf24763d7dbcba01c2b6484500f64a53c57c6d331aef523ea4b8ac",
+      "import_sha256": "8b2c7d071cdf24763d7dbcba01c2b6484500f64a53c57c6d331aef523ea4b8ac",
+      "bytes": 138391
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_text_cue_types_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_text_cue_types_cache.jsonl",
+      "source_sha256": "3a97457c30ef6ad1fda97ebb7569061da86b6f600177196310ca5be4cb05fd35",
+      "import_sha256": "3a97457c30ef6ad1fda97ebb7569061da86b6f600177196310ca5be4cb05fd35",
+      "bytes": 227496
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_true_peer_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_true_peer_cache.jsonl",
+      "source_sha256": "1dfe97186defffad800005d802f94e9f2002b1ddaa4f9471418611c0297e9a22",
+      "import_sha256": "1dfe97186defffad800005d802f94e9f2002b1ddaa4f9471418611c0297e9a22",
+      "bytes": 8514
+    },
+    {
+      "source_path": "experiments/medqa/results/meta_llama-3.2-11b-vision-instruct_unanimity_cache.jsonl",
+      "target_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_unanimity_cache.jsonl",
+      "source_sha256": "89560b540b16d79f97c6161392020a6510557ab30805f2bf586193c98ff6a876",
+      "import_sha256": "89560b540b16d79f97c6161392020a6510557ab30805f2bf586193c98ff6a876",
+      "bytes": 18967
+    },
+    {
+      "source_path": "experiments/model_dependence/results/meta_llama-3.2-11b-vision-instruct/cascade_C_flash.jsonl",
+      "target_path": "experiments/model_dependence/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/cascade_C_flash.jsonl",
+      "source_sha256": "0e34bb22458b129419b464d17defaae4a8a13ae69f6cffd471f268fe754aad25",
+      "import_sha256": "0e34bb22458b129419b464d17defaae4a8a13ae69f6cffd471f268fe754aad25",
+      "bytes": 1921
+    },
+    {
+      "source_path": "experiments/model_dependence/results/meta_llama-3.2-11b-vision-instruct/cascade_C_flash_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/model_dependence/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/cascade_C_flash_call_cache_q4_k_m.jsonl",
+      "source_sha256": "7396ec69eb8c3a20ce0e4d589e0a8daeab4f2a818772ddbfa415f54af3a52570",
+      "import_sha256": "7396ec69eb8c3a20ce0e4d589e0a8daeab4f2a818772ddbfa415f54af3a52570",
+      "bytes": 8847
+    },
+    {
+      "source_path": "experiments/model_dependence/results/meta_llama-3.2-11b-vision-instruct/cascade_C_flash_summary.json",
+      "target_path": "experiments/model_dependence/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/cascade_C_flash_summary.json",
+      "source_sha256": "7940b0d349633c49e6a04484bb0d89f929e36809f368d3184c546d550e357fa7",
+      "import_sha256": "57157b9fe3f7662ae6d24553a583c66d6f945f82e2a1388f9a17c6c1c12fdff0",
+      "bytes": 1016
+    },
+    {
+      "source_path": "experiments/referee/results/meta_llama-3.2-11b-vision-instruct/referee_deployable.jsonl",
+      "target_path": "experiments/referee/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/referee_deployable.jsonl",
+      "source_sha256": "4c3d689f48d9d19481b408a6c88f576b1600f662a21415c084ee8ed2205d894f",
+      "import_sha256": "4c3d689f48d9d19481b408a6c88f576b1600f662a21415c084ee8ed2205d894f",
+      "bytes": 23365
+    },
+    {
+      "source_path": "experiments/referee/results/meta_llama-3.2-11b-vision-instruct/referee_deployable_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/referee/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/referee_deployable_call_cache_q4_k_m.jsonl",
+      "source_sha256": "e3292e048c5692cb424a64e6383ec85f9fe1e912f654e8f463bb08f5a4b4cb53",
+      "import_sha256": "e3292e048c5692cb424a64e6383ec85f9fe1e912f654e8f463bb08f5a4b4cb53",
+      "bytes": 27748
+    },
+    {
+      "source_path": "experiments/referee/results/meta_llama-3.2-11b-vision-instruct/referee_deployable_summary.json",
+      "target_path": "experiments/referee/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/referee_deployable_summary.json",
+      "source_sha256": "acb918809b2a9b1c2ba71c1ade76b7ce1ba6e945a91ef7a17c2013d026aec6d2",
+      "import_sha256": "acb918809b2a9b1c2ba71c1ade76b7ce1ba6e945a91ef7a17c2013d026aec6d2",
+      "bytes": 2030
+    },
+    {
+      "source_path": "experiments/referee/results/meta_llama-3.2-11b-vision-instruct/referee_judge.jsonl",
+      "target_path": "experiments/referee/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/referee_judge.jsonl",
+      "source_sha256": "ef5d913773e0dbb9b838ab0a0058f6770cbb9bce64e1388eee654633dec8aa65",
+      "import_sha256": "ef5d913773e0dbb9b838ab0a0058f6770cbb9bce64e1388eee654633dec8aa65",
+      "bytes": 8378
+    },
+    {
+      "source_path": "experiments/referee/results/meta_llama-3.2-11b-vision-instruct/referee_judge_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/referee/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/referee_judge_call_cache_q4_k_m.jsonl",
+      "source_sha256": "420fffb78cbbccc17b356b0bb55118d894ee149f81e40a3c4f330fe8a06eb0c9",
+      "import_sha256": "420fffb78cbbccc17b356b0bb55118d894ee149f81e40a3c4f330fe8a06eb0c9",
+      "bytes": 22803
+    },
+    {
+      "source_path": "experiments/referee/results/meta_llama-3.2-11b-vision-instruct/referee_judge_summary.json",
+      "target_path": "experiments/referee/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/referee_judge_summary.json",
+      "source_sha256": "6ff280cac56eecefb5279c45d2866655cd6945814dfab9e3c0d4ce5b868a6461",
+      "import_sha256": "6ff280cac56eecefb5279c45d2866655cd6945814dfab9e3c0d4ce5b868a6461",
+      "bytes": 330
+    },
+    {
+      "source_path": "experiments/referee/results/meta_llama-3.2-11b-vision-instruct/referee_requery_board_cache_q4_k_m.jsonl",
+      "target_path": "experiments/referee/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/referee_requery_board_cache_q4_k_m.jsonl",
+      "source_sha256": "fc0848dcda56c5e51eec377ae79b10949fe1a32f1245483e5f0ff68ccf0161a0",
+      "import_sha256": "fc0848dcda56c5e51eec377ae79b10949fe1a32f1245483e5f0ff68ccf0161a0",
+      "bytes": 18481
+    },
+    {
+      "source_path": "experiments/referee/results/meta_llama-3.2-11b-vision-instruct/referee_requery_cache_q4_k_m.jsonl",
+      "target_path": "experiments/referee/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/referee_requery_cache_q4_k_m.jsonl",
+      "source_sha256": "6e913aa0a72fb07f4f762251ac478b63e936c79c083eec818745e67f0862a8ac",
+      "import_sha256": "6e913aa0a72fb07f4f762251ac478b63e936c79c083eec818745e67f0862a8ac",
+      "bytes": 25856
+    },
+    {
+      "source_path": "experiments/referee/results/meta_llama-3.2-11b-vision-instruct/referee_requery_design.jsonl",
+      "target_path": "experiments/referee/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/referee_requery_design.jsonl",
+      "source_sha256": "a1f657b37a8eddc0689eb5dd799aa991805b9138e9084ed6a7d111d1bd9c9bfd",
+      "import_sha256": "a1f657b37a8eddc0689eb5dd799aa991805b9138e9084ed6a7d111d1bd9c9bfd",
+      "bytes": 16231
+    },
+    {
+      "source_path": "experiments/referee/results/meta_llama-3.2-11b-vision-instruct/referee_requery_design_summary.json",
+      "target_path": "experiments/referee/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/referee_requery_design_summary.json",
+      "source_sha256": "3ede17799663ce38651e372810dd2abc6f1e363a1352ab09815104dee0e3d66b",
+      "import_sha256": "3ede17799663ce38651e372810dd2abc6f1e363a1352ab09815104dee0e3d66b",
+      "bytes": 1125
+    },
+    {
+      "source_path": "experiments/referee/results/meta_llama-3.2-11b-vision-instruct/referee_self_inconsistency.jsonl",
+      "target_path": "experiments/referee/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/referee_self_inconsistency.jsonl",
+      "source_sha256": "ff6cbec7c2b32b89ce8b46e35c164a92dae72f979b50b70eb7f6c5d496adf51c",
+      "import_sha256": "ff6cbec7c2b32b89ce8b46e35c164a92dae72f979b50b70eb7f6c5d496adf51c",
+      "bytes": 4750
+    },
+    {
+      "source_path": "experiments/referee/results/meta_llama-3.2-11b-vision-instruct/referee_self_inconsistency_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/referee/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/referee_self_inconsistency_call_cache_q4_k_m.jsonl",
+      "source_sha256": "8ff8071f5ac6058852b564bf3df213d0ada07140753434f65936ea6113dfcf1a",
+      "import_sha256": "8ff8071f5ac6058852b564bf3df213d0ada07140753434f65936ea6113dfcf1a",
+      "bytes": 13043
+    },
+    {
+      "source_path": "experiments/referee/results/meta_llama-3.2-11b-vision-instruct/referee_self_inconsistency_summary.json",
+      "target_path": "experiments/referee/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/referee_self_inconsistency_summary.json",
+      "source_sha256": "32e4fecb044361076a04cd72e9860c70aaeda472b7907c644ab67bc8f6e7a7e5",
+      "import_sha256": "32e4fecb044361076a04cd72e9860c70aaeda472b7907c644ab67bc8f6e7a7e5",
+      "bytes": 274
+    },
+    {
+      "source_path": "experiments/referee/results/meta_llama-3.2-11b-vision-instruct/referee_threshold.jsonl",
+      "target_path": "experiments/referee/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/referee_threshold.jsonl",
+      "source_sha256": "2c36e45a31aa8bb5172a87d78397635f2afc4669e8401de3522702f6de31de49",
+      "import_sha256": "2c36e45a31aa8bb5172a87d78397635f2afc4669e8401de3522702f6de31de49",
+      "bytes": 17821
+    },
+    {
+      "source_path": "experiments/referee/results/meta_llama-3.2-11b-vision-instruct/referee_threshold_board_cache_q4_k_m.jsonl",
+      "target_path": "experiments/referee/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/referee_threshold_board_cache_q4_k_m.jsonl",
+      "source_sha256": "52437b16d36cbfe4f534f070bdead653e3c14a0b08a405c1c8d5c5d2c617cabe",
+      "import_sha256": "52437b16d36cbfe4f534f070bdead653e3c14a0b08a405c1c8d5c5d2c617cabe",
+      "bytes": 18481
+    },
+    {
+      "source_path": "experiments/referee/results/meta_llama-3.2-11b-vision-instruct/referee_threshold_requery_cache_q4_k_m.jsonl",
+      "target_path": "experiments/referee/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/referee_threshold_requery_cache_q4_k_m.jsonl",
+      "source_sha256": "c591e55607c7089aff67eb9db6cc5b4fb620e6ded79e8b938d481900eef635a1",
+      "import_sha256": "c591e55607c7089aff67eb9db6cc5b4fb620e6ded79e8b938d481900eef635a1",
+      "bytes": 34866
+    },
+    {
+      "source_path": "experiments/referee/results/meta_llama-3.2-11b-vision-instruct/referee_threshold_summary.json",
+      "target_path": "experiments/referee/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/referee_threshold_summary.json",
+      "source_sha256": "6932a717a1a40384d032f521c49ae65ea03f308b183193c7cc6c2cf028d762ca",
+      "import_sha256": "6932a717a1a40384d032f521c49ae65ea03f308b183193c7cc6c2cf028d762ca",
+      "bytes": 1442
+    },
+    {
+      "source_path": "experiments/support2/results/meta_llama-3.2-11b-vision-instruct/support2_call_cache_q4_k_m.jsonl",
+      "target_path": "experiments/support2/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/support2_call_cache_q4_k_m.jsonl",
+      "source_sha256": "0742c31159a9732f53b5305fe48f4c244b7625319c4b51d6283323ac8f6dffb9",
+      "import_sha256": "0742c31159a9732f53b5305fe48f4c244b7625319c4b51d6283323ac8f6dffb9",
+      "bytes": 370061
+    },
+    {
+      "source_path": "experiments/support2/results/meta_llama-3.2-11b-vision-instruct/support2_cascade.jsonl",
+      "target_path": "experiments/support2/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/support2_cascade.jsonl",
+      "source_sha256": "024a21b2b7d15e674264aa25aa61cfa92a6555dbc81addc194ab602b25d4f889",
+      "import_sha256": "024a21b2b7d15e674264aa25aa61cfa92a6555dbc81addc194ab602b25d4f889",
+      "bytes": 52708
+    },
+    {
+      "source_path": "experiments/support2/results/meta_llama-3.2-11b-vision-instruct/support2_cascade_strength.jsonl",
+      "target_path": "experiments/support2/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/support2_cascade_strength.jsonl",
+      "source_sha256": "1747fcce132b54f546e3025780ca19849ec753e9037c94292bae13ad348aef93",
+      "import_sha256": "1747fcce132b54f546e3025780ca19849ec753e9037c94292bae13ad348aef93",
+      "bytes": 82022
+    },
+    {
+      "source_path": "experiments/support2/results/meta_llama-3.2-11b-vision-instruct/support2_cascade_strength_summary.json",
+      "target_path": "experiments/support2/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/support2_cascade_strength_summary.json",
+      "source_sha256": "0b11c89514be10cbdc3f473605d8e25e32d1ac3970453d7d9216d96959d8f01f",
+      "import_sha256": "0b11c89514be10cbdc3f473605d8e25e32d1ac3970453d7d9216d96959d8f01f",
+      "bytes": 5596
+    },
+    {
+      "source_path": "experiments/support2/results/meta_llama-3.2-11b-vision-instruct/support2_cascade_summary.json",
+      "target_path": "experiments/support2/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/support2_cascade_summary.json",
+      "source_sha256": "353b45c4a77d53e641cdc676a520b36c9f78220a7f091b7298f18dd1e3ee0f63",
+      "import_sha256": "353b45c4a77d53e641cdc676a520b36c9f78220a7f091b7298f18dd1e3ee0f63",
+      "bytes": 1710
+    },
+    {
+      "source_path": "experiments/support2/results/meta_llama-3.2-11b-vision-instruct/support2_noise_resamples_q4_k_m.jsonl",
+      "target_path": "experiments/support2/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/support2_noise_resamples_q4_k_m.jsonl",
+      "source_sha256": "d1afc93a75e42e019e81366aa8184b1f5321ac0f77c715c17602b56400cb72c1",
+      "import_sha256": "d1afc93a75e42e019e81366aa8184b1f5321ac0f77c715c17602b56400cb72c1",
+      "bytes": 19130
+    },
+    {
+      "source_path": "experiments/support2/results/meta_llama-3.2-11b-vision-instruct/support2_referee.jsonl",
+      "target_path": "experiments/support2/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/support2_referee.jsonl",
+      "source_sha256": "b021fcdd067edc36dc9dfec50061c8f698cdc79b06c97c64a0e2857fd5eea0d6",
+      "import_sha256": "b021fcdd067edc36dc9dfec50061c8f698cdc79b06c97c64a0e2857fd5eea0d6",
+      "bytes": 89096
+    },
+    {
+      "source_path": "experiments/support2/results/meta_llama-3.2-11b-vision-instruct/support2_referee_judge.jsonl",
+      "target_path": "experiments/support2/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/support2_referee_judge.jsonl",
+      "source_sha256": "d3d94b18300290bf479ad72aa93e03ad228c9446c7ea82da981a2c346f81db08",
+      "import_sha256": "d3d94b18300290bf479ad72aa93e03ad228c9446c7ea82da981a2c346f81db08",
+      "bytes": 34829
+    },
+    {
+      "source_path": "experiments/support2/results/meta_llama-3.2-11b-vision-instruct/support2_referee_judge_summary.json",
+      "target_path": "experiments/support2/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/support2_referee_judge_summary.json",
+      "source_sha256": "0633e1ebbbabc91675c0da6c142c958337f5f43cd17f52385dbcacc2058ac219",
+      "import_sha256": "0633e1ebbbabc91675c0da6c142c958337f5f43cd17f52385dbcacc2058ac219",
+      "bytes": 2576
+    },
+    {
+      "source_path": "experiments/support2/results/meta_llama-3.2-11b-vision-instruct/support2_referee_summary.json",
+      "target_path": "experiments/support2/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/support2_referee_summary.json",
+      "source_sha256": "cb8162a1bfc8b841e3c582afcb5f91449a0f5826151169a9b935a1ccdb6d872c",
+      "import_sha256": "cb8162a1bfc8b841e3c582afcb5f91449a0f5826151169a9b935a1ccdb6d872c",
+      "bytes": 4731
+    },
+    {
+      "source_path": "experiments/support2/results/meta_llama-3.2-11b-vision-instruct/support2_solo.jsonl",
+      "target_path": "experiments/support2/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/support2_solo.jsonl",
+      "source_sha256": "bdfb219b17997c7c7486f129bf5eaef69cdd4718a2fa4573c1dbe886eb715002",
+      "import_sha256": "bdfb219b17997c7c7486f129bf5eaef69cdd4718a2fa4573c1dbe886eb715002",
+      "bytes": 93795
+    },
+    {
+      "source_path": "experiments/support2/results/meta_llama-3.2-11b-vision-instruct/support2_solo_summary.json",
+      "target_path": "experiments/support2/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/support2_solo_summary.json",
+      "source_sha256": "ee6d8046eeb2394103f0869e10e13a07a18ecfddae225fd88c886c498be68984",
+      "import_sha256": "ee6d8046eeb2394103f0869e10e13a07a18ecfddae225fd88c886c498be68984",
+      "bytes": 3477
+    }
+  ],
+  "audit_files": [
+    {
+      "source_path": "experiments/model_metadata/audit_q4_plausible_distractor.py",
+      "target_path": "experiments/model_metadata/audit_q4_plausible_distractor.py",
+      "source_sha256": "17551dea22cf6215acbdd458338d61a1898a85d2ea1b78a6ba07c20dcff8a4c6",
+      "import_sha256": "3b872e088fbe65319a4160482d50bd1d36c62ae56afe3b3c6859d5d218b0a893",
+      "bytes": 11669
+    },
+    {
+      "source_path": "experiments/model_metadata/q4_additional_case_sets.json",
+      "target_path": "experiments/model_metadata/q4_additional_case_sets.json",
+      "source_sha256": "f0e5012cf60fb7b43fe9cfc22eef01fb4c1346c2c9492f374b33f252ffe98d7b",
+      "import_sha256": "f0e5012cf60fb7b43fe9cfc22eef01fb4c1346c2c9492f374b33f252ffe98d7b",
+      "bytes": 16247
+    },
+    {
+      "source_path": "experiments/model_metadata/q4_final_audit.md",
+      "target_path": "experiments/model_metadata/q4_final_audit.md",
+      "source_sha256": "c5afed4274c9b4e137360de11707a6cc4351cb6b1946582b2efcfec0fa34a85e",
+      "import_sha256": "4da03ec06f089e9922db00f0291bac06d8fb5f1189643daf49961fbe04a5cb4b",
+      "bytes": 8173
+    },
+    {
+      "source_path": "experiments/model_metadata/q4_image_case_sets.json",
+      "target_path": "experiments/model_metadata/q4_image_case_sets.json",
+      "source_sha256": "b2ab880925fc9d2e23637b87016f29f2136b2cb8dd64ecb7637ccbacb4cecbbe",
+      "import_sha256": "b2ab880925fc9d2e23637b87016f29f2136b2cb8dd64ecb7637ccbacb4cecbbe",
+      "bytes": 91414
+    },
+    {
+      "source_path": "experiments/model_metadata/q4_plausible_distractor_common_cohort.json",
+      "target_path": "experiments/model_metadata/q4_plausible_distractor_common_cohort.json",
+      "source_sha256": "5f4e769e400c59b668939a3259a2b090a4638e8cf8e79a3e430a7139e66f3584",
+      "import_sha256": "5f4e769e400c59b668939a3259a2b090a4638e8cf8e79a3e430a7139e66f3584",
+      "bytes": 4411
+    },
+    {
+      "source_path": "experiments/model_metadata/q4_plausible_distractor_common_cohort.md",
+      "target_path": "experiments/model_metadata/q4_plausible_distractor_common_cohort.md",
+      "source_sha256": "feb0072857452b72984c2d2d15559b93de745f9095fef6cc90e95c1ba6045c9b",
+      "import_sha256": "feb0072857452b72984c2d2d15559b93de745f9095fef6cc90e95c1ba6045c9b",
+      "bytes": 804
+    },
+    {
+      "source_path": "experiments/model_metadata/q4_text_case_sets.json",
+      "target_path": "experiments/model_metadata/q4_text_case_sets.json",
+      "source_sha256": "e0a1db46d95f8a17a9ec23372efc8ad6ba4696f9f346ec78b7eaf2d6c16b9965",
+      "import_sha256": "e0a1db46d95f8a17a9ec23372efc8ad6ba4696f9f346ec78b7eaf2d6c16b9965",
+      "bytes": 157639
+    },
+    {
+      "source_path": "experiments/chexpert/results/chexpert_cross_model_rates.md",
+      "target_path": "docs/ollama_q4_chexpert_cross_model_rates.md",
+      "source_sha256": "7542f68b3f781700baefb3f8ffe3e5dc9ff436ac0c69c037da701d97a5023ae0",
+      "import_sha256": "b5195555fbd0c989a4b504bc8f8c36305737b008306deaf22258cab375177add",
+      "bytes": 3296
+    }
+  ],
+  "added_import_files": [
+    "experiments/model_metadata/ollama_llama-3.2-11b-vision-instruct-q4_k_m.json",
+    "experiments/model_metadata/q4_image_baseline_accuracy.json",
+    "docs/ollama_q4_imaging_results.md"
+  ],
+  "note": "Raw result rows and model responses were preserved. Only result-directory/path references were remapped; summary JSONs received additive lineage_id and baseline_accuracy metadata."
+}

@@ -1,0 +1,57 @@
+{
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "model": "pooled logistic; repeated-case random effects not fitted",
+  "model_display": "Ollama llama3.2-vision:11b Q4_K_M",
+  "k_rounds": 3,
+  "shared_arm": {
+    "status": "saturated",
+    "intercept": null,
+    "round_index_coef": null,
+    "predicted_probability_by_round": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "n_observations": 105,
+    "n_cases": 35
+  },
+  "isolated_arm": {
+    "status": "fit",
+    "intercept": 3.2677,
+    "round_index_coef": -1.0484,
+    "predicted_probability_by_round": [
+      0.9633,
+      0.902,
+      0.7633
+    ],
+    "n_observations": 105,
+    "n_cases": 35
+  },
+  "empirical_adoption_by_round": {
+    "shared_adopt": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "iso_adopt": [
+      1.0,
+      0.8286,
+      0.8
+    ]
+  },
+  "method_note": "The mixed-effects implementation requires the optional statsmodels dependency, absent here. This is an unadjusted pooled logistic slope; repeated-case clustering is not modeled and no inferential p-value is reported.",
+  "position_confounded_caveat": "Round order was fixed rather than randomized; this association is descriptive and not causal.",
+  "baseline_accuracy": {
+    "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+    "dataset": "NIH ChestX-ray14",
+    "arm": "imaging_multi_round",
+    "correct": 1,
+    "n": 35,
+    "accuracy": 0.02857142857142857,
+    "display": "1/35 (2.9%)",
+    "case_ids_sha256": "61070c6a14c516ca0e9eaf4cff7c675220fdec1dcf9e2f93e2643e5cb92099eb",
+    "source_result": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_solo.jsonl",
+    "field": "clean"
+  },
+  "read": "Pooled descriptive fit only: inspect empirical adoption by round and the method caveat. No mixed-effects inference is reported. NIH baseline accuracy was 1/35 (2.9%)."
+}

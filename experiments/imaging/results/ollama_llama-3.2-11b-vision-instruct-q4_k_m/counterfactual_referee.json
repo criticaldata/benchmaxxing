@@ -1,0 +1,42 @@
+{
+  "n": 35,
+  "n_drifted": 20,
+  "n_base_is_decoy": 0,
+  "f1_naive_vs_drift": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+  },
+  "f1_counterfactual_vs_drift": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+  },
+  "f1_note": "naive and counterfactual are identical detectors in this committed data (base_is_decoy is True on 0 of 35 cases), so both score P/R 1.0/1.0 against the drift definition trivially, the same limitation as the text lane - not a general claim that naive and counterfactual referees are interchangeable.",
+  "f2_reasoning_reader": {
+    "recall": 0.0,
+    "precision": "not independently verifiable from committed data (see f2_note)",
+    "n_named_rubric": 0,
+    "n_drifted": 20
+  },
+  "f2_note": "named_rubric_when_drifted is stored already conditioned on drift, so recall is directly computable but precision cannot be independently verified from committed data alone - see the text-lane script's docstring for the full reasoning, which applies identically here.",
+  "read": "On 35 NIH cases, 20 were labeled as blind-condition drift. Reasoning-reader recall is 0.0; precision is not identifiable from the committed conditional field. NIH baseline accuracy was 1/35.",
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "model_display": "Ollama llama3.2-vision:11b Q4_K_M",
+  "execution_provider": "Ollama",
+  "quantization": "Q4_K_M",
+  "baseline_accuracy": {
+    "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+    "dataset": "NIH ChestX-ray14",
+    "arm": "imaging_solo",
+    "correct": 1,
+    "n": 35,
+    "accuracy": 0.02857142857142857,
+    "display": "1/35 (2.9%)",
+    "case_ids_sha256": "61070c6a14c516ca0e9eaf4cff7c675220fdec1dcf9e2f93e2643e5cb92099eb",
+    "source_result": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_solo.jsonl",
+    "field": "clean"
+  },
+  "analysis_source": "committed Q4 JSONL; deterministic, no model calls"
+}

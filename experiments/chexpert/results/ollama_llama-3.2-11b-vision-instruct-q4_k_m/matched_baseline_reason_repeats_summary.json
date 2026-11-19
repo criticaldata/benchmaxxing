@@ -1,0 +1,55 @@
+{
+  "repeats": 5,
+  "n": 35,
+  "reads_per_case": 6,
+  "cases_with_any_disagreement": {
+    "n": 8,
+    "rate": 0.2286,
+    "wilson95": [
+      0.1207,
+      0.3902
+    ]
+  },
+  "mean_pairwise_disagreement": 0.0952,
+  "flip_vs_baseline_per_read": [
+    0.7714,
+    0.8,
+    0.8,
+    0.7714,
+    0.7714,
+    0.7714
+  ],
+  "flip_vs_baseline_band": [
+    0.7714,
+    0.8
+  ],
+  "decoy_per_read": [
+    0.4571,
+    0.4286,
+    0.4,
+    0.4,
+    0.4,
+    0.4286
+  ],
+  "decoy_band": [
+    0.4,
+    0.4571
+  ],
+  "note": "read 0 is the main control run; reads 1.. are the same prompt re-asked at the same settings with a salted cache key, so every read is a real call and replays keyless",
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "new_api_calls_this_run": 210,
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "baseline_accuracy": {
+    "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+    "dataset": "CheXpert",
+    "arm": "matched_baseline_reason_repeats",
+    "correct": 16,
+    "n": 35,
+    "accuracy": 0.45714285714285713,
+    "display": "16/35 (45.7%)",
+    "case_ids_sha256": "26d2756b9974326d0b3db07c5d496353cfc3219ef75904a6dad18b4c8926c849",
+    "source_result": "experiments/chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_baseline_reason_repeats.jsonl",
+    "field": "answers[0]"
+  },
+  "baseline_accuracy_basis": "clean answer on the matched cohort, verified in q4_image_baseline_accuracy.json"
+}

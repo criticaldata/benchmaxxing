@@ -1,0 +1,126 @@
+{
+  "solo_flip_rates": {
+    "cable": {
+      "flip_rate": 0.0,
+      "bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "n": 35
+    },
+    "corner_tag": {
+      "flip_rate": 0.0,
+      "bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "n": 35
+    },
+    "watermark": {
+      "flip_rate": 0.0571,
+      "bootstrap95": [
+        0.0,
+        0.1429
+      ],
+      "n": 35
+    },
+    "laterality": {
+      "flip_rate": 0.0,
+      "bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "n": 35
+    }
+  },
+  "cascade_contagion_delta": {
+    "watermark": {
+      "cue": "watermark",
+      "risk_difference": 0.0,
+      "bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "achieved_power": null,
+      "required_pairs_for_power_0.8": null,
+      "n": 35,
+      "note": "paired bootstrap (shared_adopt - iso_adopt over the same cases)"
+    },
+    "cable": {
+      "cue": "cable",
+      "risk_difference": 0.0286,
+      "bootstrap95": [
+        0.0,
+        0.0857
+      ],
+      "achieved_power": 0.165,
+      "required_pairs_for_power_0.8": 273,
+      "n": 35,
+      "note": "paired bootstrap (shared_adopt - iso_adopt over the same cases)"
+    },
+    "corner_tag": {
+      "cue": "corner_tag",
+      "risk_difference": 0.0286,
+      "bootstrap95": [
+        0.0,
+        0.0857
+      ],
+      "achieved_power": 0.165,
+      "required_pairs_for_power_0.8": 273,
+      "n": 35,
+      "note": "paired bootstrap (shared_adopt - iso_adopt over the same cases)"
+    },
+    "laterality": {
+      "cue": "laterality",
+      "risk_difference": 0.0286,
+      "bootstrap95": [
+        0.0,
+        0.0857
+      ],
+      "achieved_power": 0.165,
+      "required_pairs_for_power_0.8": 273,
+      "n": 35,
+      "note": "paired bootstrap (shared_adopt - iso_adopt over the same cases)"
+    }
+  },
+  "referee_vs_naive": {
+    "risk_difference": 0.7714,
+    "bootstrap95": [
+      0.6286,
+      0.8864
+    ],
+    "mcnemar_b_gt_c": {
+      "b": 27,
+      "c": 0,
+      "n": 35
+    },
+    "achieved_power": 1.0,
+    "required_pairs_for_power_0.8": 8,
+    "note": "paired bootstrap on (ref_flag==gt) - (naive_flag==gt), same 35 cases, post-#338."
+  },
+  "read": "Deterministic Q4 effect-size reanalysis. Baseline accuracy was 1/35 (2.9%). The solo watermark arm uses opacity 0.25 and the cascade uses the nearest saved value, 0.30; do not interpret them as an intensity-matched pair.",
+  "watermark_opacity_mapping": {
+    "solo_arm_opacity": 0.25,
+    "cascade_arm_opacity": 0.3,
+    "default_opacity": 0.25,
+    "note": "The Q4 solo and cascade watermark arms are not intensity-matched."
+  },
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "model_display": "Ollama llama3.2-vision:11b Q4_K_M",
+  "execution_provider": "Ollama",
+  "quantization": "Q4_K_M",
+  "baseline_accuracy": {
+    "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+    "dataset": "NIH ChestX-ray14",
+    "arm": "imaging_solo",
+    "correct": 1,
+    "n": 35,
+    "accuracy": 0.02857142857142857,
+    "display": "1/35 (2.9%)",
+    "case_ids_sha256": "61070c6a14c516ca0e9eaf4cff7c675220fdec1dcf9e2f93e2643e5cb92099eb",
+    "source_result": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_solo.jsonl",
+    "field": "clean"
+  },
+  "analysis_source": "committed Q4 JSONL; deterministic, no model calls"
+}

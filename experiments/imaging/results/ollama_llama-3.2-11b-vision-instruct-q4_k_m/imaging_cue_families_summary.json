@@ -1,0 +1,37 @@
+{
+  "n": 35,
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "cues": {
+    "rotation": {
+      "flip_rate": 0.05714285714285714,
+      "n": 35,
+      "flip_above_noise": -0.028571428571428574
+    },
+    "compression": {
+      "flip_rate": 0.02857142857142857,
+      "n": 35,
+      "flip_above_noise": -0.05714285714285715
+    },
+    "brightness": {
+      "flip_rate": 0.0,
+      "n": 35,
+      "flip_above_noise": -0.08571428571428572
+    },
+    "soft_tissue": {
+      "flip_rate": 0.0,
+      "n": 35,
+      "flip_above_noise": -0.08571428571428572
+    }
+  },
+  "noise_floor": 0.08571428571428572,
+  "noise_floor_n": 35,
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "baseline_accuracy": {
+    "correct": 1,
+    "n": 35,
+    "accuracy": 0.02857142857142857,
+    "display": "1/35 (2.9%)",
+    "source_result": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cue_families.jsonl",
+    "field": "clean"
+  }
+}

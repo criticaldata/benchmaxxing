@@ -1,0 +1,37 @@
+{
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "results_slug": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "hosted_results_slug": "meta_llama-3.2-11b-vision-instruct",
+  "source_results_slug": "meta_llama-3.2-11b-vision-instruct",
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "backend": "Ollama",
+  "ollama_tag": "llama3.2-vision:11b",
+  "quantization": "Q4_K_M",
+  "ollama_manifest_digest": "sha256:6f2f9757ae97e8a3f8ea33d6adb2b11d93d9a35bef277cd2c0b1b5af8e8d0b1e",
+  "weight_layer_digest": "sha256:9999d473417a8e179d993498195be5f42cab963acc75f4a6b15d981e8b68abed",
+  "ollama_version": "0.23.2",
+  "server_endpoint": "http://127.0.0.1:11437/v1",
+  "gpu_index": 1,
+  "gpu_uuid": "GPU-53baf38a-4a3c-673d-52d9-e0febededa32",
+  "recorded_at_utc": "2026-11-02T22:18:22Z",
+  "source_branch": "experiments/llama32-vision-q4km-parity",
+  "source_base": "0eb8f23d9a62c32f3b0eac52914aac9b32382d4a",
+  "audited_result_commit": "1bb6828a750e15a91043dd2f2432ef5d93f83d2f",
+  "post_audit_head": "6ace8cc5ba2363a4c6fbbe325c3f8cfa583f722f",
+  "audited_arms": 113,
+  "local_artifact_status": "imported from verified H100 bundle under the Q4-specific result slug",
+  "mimic_cxr_in_scope": false,
+  "baseline_accuracy_reference": {
+    "nih_chestxray14_n35": {
+      "baseline_correct": 1,
+      "n": 35,
+      "baseline_accuracy": 0.02857142857142857
+    },
+    "chexpert_hidden_note_n35": {
+      "baseline_correct": 6,
+      "n": 35,
+      "baseline_accuracy": 0.17142857142857143
+    },
+    "per_arm_baselines_file": "experiments/model_metadata/q4_image_baseline_accuracy.json"
+  }
+}

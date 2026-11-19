@@ -1,0 +1,37 @@
+{
+  "n_records": 300,
+  "noise_floor_by_model": {
+    "meta/llama-3.2-11b-vision-instruct": 0.0
+  },
+  "flip_rate_by_model": {
+    "meta/llama-3.2-11b-vision-instruct": {
+      "overall": 0.2633333333333333,
+      "per_cue": {
+        "lexical_overlap": 0.3,
+        "longest_option": 0.23,
+        "option_order": 0.26
+      },
+      "n": 300
+    }
+  },
+  "susceptibility_matrix": {
+    "models": [
+      "meta/llama-3.2-11b-vision-instruct"
+    ],
+    "cues": [
+      "lexical_overlap",
+      "longest_option",
+      "option_order"
+    ],
+    "matrix": [
+      [
+        0.3,
+        0.23,
+        0.26
+      ]
+    ]
+  },
+  "overlap": {
+    "error": "Need at least 2 models for an overlap test."
+  }
+}

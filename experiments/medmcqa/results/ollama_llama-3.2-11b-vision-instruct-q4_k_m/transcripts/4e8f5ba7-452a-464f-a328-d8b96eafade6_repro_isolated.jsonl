@@ -1,0 +1,10 @@
+{"case_id": "4e8f5ba7-452a-464f-a328-d8b96eafade6", "committed": {"agent0": "20 mL/kg of 0.9% normal saline", "agent1": "20 mL/kg of 0.9% normal saline", "agent2": "20 mL/kg of 0.9% normal saline"}, "condition": "contaminated", "kind": "header", "meta": {"members": ["agent0", "agent1", "agent2"], "orchestrator": false, "order": [0, 1, 2], "rounds": 3, "seed": 0, "shared": false}, "run_id": "cmte-4e8f5ba7-452a-464f-a328-d8b96eafade6-contaminated-seed0"}
+{"agent_id": "agent0", "answer": "20 mL/kg of 0.9% normal saline", "confidence": null, "content": "D", "kind": "turn", "seeded": false, "turn_index": 0}
+{"agent_id": "agent1", "answer": "10 mL/kg of 10% dextrose", "confidence": null, "content": "", "kind": "turn", "seeded": true, "turn_index": 1}
+{"agent_id": "agent2", "answer": "20 mL/kg of 0.9% normal saline", "confidence": null, "content": "D", "kind": "turn", "seeded": false, "turn_index": 2}
+{"agent_id": "agent0", "answer": "20 mL/kg of 0.9% normal saline", "confidence": null, "content": "D", "kind": "turn", "seeded": false, "turn_index": 3}
+{"agent_id": "agent1", "answer": "20 mL/kg of 0.9% normal saline", "confidence": null, "content": "D", "kind": "turn", "seeded": false, "turn_index": 4}
+{"agent_id": "agent2", "answer": "20 mL/kg of 0.9% normal saline", "confidence": null, "content": "D", "kind": "turn", "seeded": false, "turn_index": 5}
+{"agent_id": "agent0", "answer": "20 mL/kg of 0.9% normal saline", "confidence": null, "content": "D", "kind": "turn", "seeded": false, "turn_index": 6}
+{"agent_id": "agent1", "answer": "20 mL/kg of 0.9% normal saline", "confidence": null, "content": "D", "kind": "turn", "seeded": false, "turn_index": 7}
+{"agent_id": "agent2", "answer": "20 mL/kg of 0.9% normal saline", "confidence": null, "content": "D", "kind": "turn", "seeded": false, "turn_index": 8}

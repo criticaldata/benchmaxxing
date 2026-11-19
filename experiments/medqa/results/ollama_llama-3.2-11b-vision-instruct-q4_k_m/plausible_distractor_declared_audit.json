@@ -1,0 +1,86 @@
+{
+  "arm": "plausible_distractor",
+  "dataset": "medqa",
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "issue": 419,
+  "new_api_calls_this_run": 0,
+  "cache": "/private/tmp/benchmaxxing-q4-30-gaps/experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_plausible_distractor_cache.jsonl",
+  "manifest": "/private/tmp/benchmaxxing-q4-30-gaps/data/medqa/staged/test/medqa_manifest.csv",
+  "manifest_sha256": "0f2076a45455080924f954d31136b815b986fb108d9380beadd4da9b87eaacef",
+  "results_jsonl": "/private/tmp/benchmaxxing-q4-30-gaps/experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/plausible_distractor.jsonl",
+  "committed_summary_untouched": "/private/tmp/benchmaxxing-q4-30-gaps/experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/plausible_distractor_summary.json",
+  "replay_matches_committed": {
+    "n": true,
+    "adoption": true,
+    "plausible_vs_implausible": true
+  },
+  "n_cases": 76,
+  "n_declared": 37,
+  "n_undeclared": 39,
+  "undeclared_draws": 48,
+  "eligibility": "A case is declared-only eligible when bare, second-most, least-likely, and both seeded board draws each match declared_mcq_choice; adoption metrics use the committed (legacy-parsed) answers on that subset.",
+  "current": {
+    "n": 76,
+    "adoption": {
+      "plausible": 0.8158,
+      "implausible": 0.75
+    },
+    "plausible_vs_implausible": {
+      "gain": 11,
+      "lose": 6,
+      "pvalue": 0.332306
+    }
+  },
+  "declared_only": {
+    "n": 37,
+    "adoption": {
+      "plausible": 0.8378,
+      "implausible": 0.8378
+    },
+    "plausible_vs_implausible": {
+      "gain": 2,
+      "lose": 2,
+      "pvalue": 1.0
+    }
+  },
+  "comparisons": [
+    {
+      "metric": "adoption.plausible",
+      "current_value": 0.8158,
+      "declared_only_value": 0.8378,
+      "abs_diff": 0.02200000000000002
+    },
+    {
+      "metric": "adoption.implausible",
+      "current_value": 0.75,
+      "declared_only_value": 0.8378,
+      "abs_diff": 0.08779999999999999
+    },
+    {
+      "metric": "plausible_vs_implausible.pvalue",
+      "current_value": 0.332306,
+      "declared_only_value": 1.0,
+      "abs_diff": 0.667694
+    },
+    {
+      "metric": "plausible_vs_implausible.gain",
+      "current_value": 11,
+      "declared_only_value": 2,
+      "abs_diff": 9
+    },
+    {
+      "metric": "plausible_vs_implausible.lose",
+      "current_value": 6,
+      "declared_only_value": 2,
+      "abs_diff": 4
+    }
+  ],
+  "conclusion_changes": true,
+  "interpretation": "Declared-only accounting keeps the same significance call at α=0.05 (p 0.332306 → 1.0) but widens/shifts the adoption gap by >5pp (0.0658 → 0.0000); 39/76 cases excluded because at least one of the five draws lacked an explicit declaration.",
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "model_display": "Ollama llama3.2-vision:11b Q4_K_M",
+  "new_model_calls": 0,
+  "source_branch": "experiments/llama32-vision-q4km-parity",
+  "source_head": "6ace8cc5ba2363a4c6fbbe325c3f8cfa583f722f",
+  "source_result_commit": "1bb6828a750e15a91043dd2f2432ef5d93f83d2f"
+}

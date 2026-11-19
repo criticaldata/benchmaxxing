@@ -1,0 +1,37 @@
+{
+  "endpoint": "E2",
+  "description": "Contagion = shared_adopt - isolated_adopt (paired McNemar)",
+  "n": 150,
+  "table_2x2": {
+    "both_adopt": 30,
+    "only_shared_b": 118,
+    "only_iso_c": 0,
+    "neither": 2
+  },
+  "shared_adopt_rate": 0.9867,
+  "isolated_adopt_rate": 0.2,
+  "contagion": 0.7867,
+  "mcnemar_statistic": 0.0,
+  "mcnemar_pvalue": 6.018531076210112e-36,
+  "bootstrap_ci_95": [
+    0.72,
+    0.8467
+  ],
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "arm": "natural_independent",
+  "baseline_accuracy": {
+    "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+    "dataset": "CheXpert",
+    "arm": "natural_independent_cascade",
+    "correct": 120,
+    "n": 150,
+    "accuracy": 0.8,
+    "display": "120/150 (80.0%)",
+    "case_ids_sha256": "26d24e52dd439cebda144c637ca99bc75907f6deb646fcfee2ace034bb6091d8",
+    "source_result": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_natural_independent.jsonl",
+    "field": "clean_correct"
+  },
+  "case_ids_sha256": "ea632a6c30de6f7fd5bf929dd4f041bad317932ecbae85a14f828dba3531c4a2",
+  "new_model_calls": 0
+}

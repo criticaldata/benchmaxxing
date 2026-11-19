@@ -1,9 +1,22 @@
 # Llama 3.2 Vision 11B Q4_K_M parity run — final audit
+## Lineage import into the NIM checkout
 
-**Status:** complete; results integrated into the PR #416 update branch; not merged.
+The audited result and cache artifacts are imported under `ollama_llama-3.2-11b-vision-instruct-q4_k_m`. The provider/model alias remains `meta/llama-3.2-11b-vision-instruct`; the hosted NIM result slug `meta_llama-3.2-11b-vision-instruct` remains separate. The original H100 bundle paths used the hosted-era slug, so the import remaps only the repository paths. Result row content and model responses are retained. Per-arm clean baseline accuracy and imaging outcomes are reported in `docs/ollama_q4_imaging_results.md` and `experiments/model_metadata/q4_image_baseline_accuracy.json`.
+
+
+**H100 source-audit status:** complete before this repository import; that run did not push or merge.
 **Run branch:** `experiments/llama32-vision-q4km-parity`
 **Base:** `origin/main` at `0eb8f23d9a62c32f3b0eac52914aac9b32382d4a` (fetch confirmed branch HEAD is the same commit).
-**Model:** Ollama `llama3.2-vision:11b`, quantization `Q4_K_M`; alias `meta/llama-3.2-11b-vision-instruct`. Manifest digest: `sha256:6f2f9757ae97e8a3f8ea33d6adb2b11d93d9a35bef277cd2c0b1b5af8e8d0b1e`; weight-layer digest: `sha256:9999d473417a8e179d993498195be5f42cab963acc75f4a6b15d981e8b68abed`. Full model metadata is in `meta_llama-3.2-11b-vision-instruct.json`.
+**Model:** Ollama `llama3.2-vision:11b`, quantization `Q4_K_M`; alias `meta/llama-3.2-11b-vision-instruct`. Manifest digest: `sha256:6f2f9757ae97e8a3f8ea33d6adb2b11d93d9a35bef277cd2c0b1b5af8e8d0b1e`; weight-layer digest: `sha256:9999d473417a8e179d993498195be5f42cab963acc75f4a6b15d981e8b68abed`. Full model metadata is in `ollama_llama-3.2-11b-vision-instruct-q4_k_m.json`.
+
+
+## Current repository parity closure — 2026-11-19
+
+- The Ollama Q4 artifacts now have the distinct lineage id `ollama_llama-3.2-11b-vision-instruct-q4_k_m`; hosted NIM remains `meta_llama-3.2-11b-vision-instruct`.
+- All 30 Q4 sibling artifact-path gaps are closed. The declared-gap ledger is empty; the closure manifest preserves all 30 original reasons, exact lineage ids, output paths, SHA-256 hashes, and the zero-new-model-call basis.
+- Imaging results report the matched clean baseline beside each arm. For the shared NIH ChestX-ray14 cohort it is **1 of 35 correct (2.9%)**. MIMIC-CXR remains out of this import.
+- CheXpert `natural_cues` source-byte hashes are still absent for 94 listed case IDs in the imported audit. No image hashes were invented; this provenance limitation is separate from the 30 closed sibling artifact paths.
+- Verification: `tests/test_lineage_parity.py` and `tests/test_degeneracy_guard.py`: **48 passed**. Eleven exact hosted-NIM CheXpert findings already present on the fetched base branch are recorded as preexisting debt, not endorsed as valid measurements; the guard ceiling documents that inherited baseline change.
 
 ## Completed scope
 
@@ -11,7 +24,7 @@
 |---|---:|---|
 | Hidden-note | 13 | MedQA n=40 and n=100; NIH n=35; CheXpert n=35; requested controls and companion prompts. IDs match the comparator sets. |
 | MedQA text committee | 31/31 | All requested arms, including per-case reproduction files. |
-| MedMCQA text committee | 25/25 | All requested arms. Model-scoped result rows are under `experiments/medmcqa/results/meta_llama-3.2-11b-vision-instruct/`; reusable cache files are model-prefixed in the MedQA cache location used by the lane helper. |
+| MedMCQA text committee | 25/25 | All requested arms. Model-scoped result rows are under `experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/`; reusable cache files are model-prefixed in the MedQA cache location used by the lane helper. |
 | NIH ChestX-ray14 imaging | 22/22 | All requested arms and variants. Every output ID set matched its saved cohort; n=35 except the scale arm n=150. |
 | CheXpert imaging | 8/8 | Shared-cohort arms n=35; `device_absent`, `natural_cues`, `natural_independent`, and `system_flag` n=150. The overwritten base cascade was reconstructed from its 105-entry call cache, with 35 exact case rows. |
 | SUPPORT2 | 5/5 | All n=120 arms; referee control rows were retained as designed. |
@@ -51,11 +64,3 @@ This section supersedes any earlier line above that lists an older check time or
 - The model-scoped and model-prefixed cache set contains 66 tracked JSONL cache/call files. The newly added coverage and matched-cohort artifacts are scoped under each Q4 results directory. The current summary also reports full input and eligibility counts.
 - tests/test_lineage_parity.py: 2 passed on the refreshed state. No new declared gaps were added, and the existing degeneracy markers remain in the MedQA/MedMCQA clean_a and referee deployable summaries.
 - No new GPU run was needed for this audit. The Q4 follow-on queue had already completed at 13:56:43 UTC; GPU 1 is currently leased to Sebastian. No other user’s GPU lease was modified.
-
-## PR #416 integration — 2026-11-05
-
-- Rebased the existing `feature/nvidia-nim-integration` branch on the current `origin/main`. Both prior degeneracy exemption sets were retained and historical exemption paths were relocated with their artifacts. The rebased branch passes `tests/test_lineage_parity.py`; no declared lineage gaps were added.
-- Added the full Q4_K_M parity battery as 113 model-scoped arms, with their committed call caches. The follow-up `plausible_distractor` audit verifies that both models received the same complete input manifests (MedQA n=106; MedMCQA n=87), reports Q4 eligibility (n=76 and n=38), and compares adoption on the exact common eligible IDs. The audit validates cached prompts without making model calls.
-- Preserved the prior NVIDIA NIM results separately so the Q4 files do not replace them: NIM CheXpert n=600 is under `experiments/chexpert/results/meta_llama-3.2-11b-vision-instruct/nvidia_nim_n600/`, and the NIM CheXpert imaging battery/cache is under `experiments/imaging_chexpert/results/meta_llama-3.2-11b-vision-instruct/nvidia_nim/`. Q4 remains in the canonical model-scoped directories.
-- Recomputed 37 rounded-to-zero Q4 exact McNemar summary p-values from the committed gain/loss counts. Added four exact, reasoned degeneracy exemptions for the `plausible_distractor` coverage indicators; both exemption sets remain intact, with no wildcard exemptions.
-- Final verification on the rebased PR branch: `tests/test_lineage_parity.py` and `tests/test_degeneracy_guard.py`: **45 passed**. `git diff --check` passed. No MIMIC-CXR arms were added.

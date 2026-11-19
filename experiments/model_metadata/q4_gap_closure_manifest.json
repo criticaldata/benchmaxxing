@@ -1,0 +1,440 @@
+{
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "hosted_lineage_id": "meta_llama-3.2-11b-vision-instruct",
+  "total_gaps": 30,
+  "closed_artifact_paths": 30,
+  "unresolved_artifact_paths": 0,
+  "new_model_calls": 0,
+  "entries": [
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "blind_metric",
+      "results_dir": "results",
+      "file": "run_manifest.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path blind_metric/results/run_manifest.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "meta_llama-3.2-11b-vision-instruct"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/blind_metric/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/run_manifest.json",
+      "artifact_sha256": "06bfb1b335bbc86cff072665cebda9efd002c900640be13a47c148fda1cfbc27",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "chexpert",
+      "results_dir": "results",
+      "file": "image_provenance.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path chexpert/results/image_provenance.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "Qwen_Qwen2.5-VL-72B-Instruct"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/image_provenance.json",
+      "artifact_sha256": "6f2378ebfd4ef7adc0b026f7043bcfc91f8d85aa9096187aee50001431e0a6f1",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "contamination",
+      "results_dir": "results",
+      "file": "run_manifest_contamination_audit.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path contamination/results/run_manifest_contamination_audit.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "meta_llama-3.2-11b-vision-instruct"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/contamination/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/run_manifest_contamination_audit.json",
+      "artifact_sha256": "3dbc01ced12dc3d76db5b6999bdaf1ab5b091ce4793d12ac8efc652fff18f5fe",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "cross_dataset",
+      "results_dir": "results",
+      "file": "medqa_vs_medmcqa.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path cross_dataset/results/medqa_vs_medmcqa.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "Qwen_Qwen2.5-VL-72B-Instruct",
+        "nvidia_nemotron-3-super-120b-a12b",
+        "openai_gpt-oss-120b"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/cross_dataset/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/medqa_vs_medmcqa.json",
+      "artifact_sha256": "3c4bccf47fd3ceb5a16a77f61ccca15417dd670b7048c513ca32bb517ed0be61",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "imaging",
+      "results_dir": "results",
+      "file": "claim4_quantification.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path imaging/results/claim4_quantification.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "Qwen_Qwen2.5-VL-72B-Instruct"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/claim4_quantification.json",
+      "artifact_sha256": "336ec0aba2f5ebfa2ff635e14e1f5a93bf5ba9de448ef4ec4c33f458a739241d",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "imaging",
+      "results_dir": "results",
+      "file": "counterfactual_referee.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path imaging/results/counterfactual_referee.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "Qwen_Qwen2.5-VL-72B-Instruct"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/counterfactual_referee.json",
+      "artifact_sha256": "4c97adbc1bd4a84efac27a9f832e4399538720101efb2322362db3049c02114d",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "imaging",
+      "results_dir": "results",
+      "file": "effect_sizes_imaging.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path imaging/results/effect_sizes_imaging.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "Qwen_Qwen2.5-VL-72B-Instruct"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/effect_sizes_imaging.json",
+      "artifact_sha256": "51344331b33f3f7d42250d927faf76a50ca2eb7e25e6db134b75ceccd6be9f7d",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "imaging",
+      "results_dir": "results",
+      "file": "finding_subgroup.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path imaging/results/finding_subgroup.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "Qwen_Qwen2.5-VL-72B-Instruct"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/finding_subgroup.json",
+      "artifact_sha256": "480cef49b176459280acad36353dc835471c6435d2ede7c6e907510c20220012",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "imaging",
+      "results_dir": "results",
+      "file": "imaging_blind_metric_ci.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path imaging/results/imaging_blind_metric_ci.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "Qwen_Qwen2.5-VL-72B-Instruct"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_blind_metric_ci.json",
+      "artifact_sha256": "c785c98c379aa680292a5744fdc69405cbac0870147de3bfd929a0bf62d49d04",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "imaging",
+      "results_dir": "results",
+      "file": "imaging_referee_agreement.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path imaging/results/imaging_referee_agreement.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "Qwen_Qwen2.5-VL-72B-Instruct"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_referee_agreement.json",
+      "artifact_sha256": "944b6ee74a85414fdf37aed89485675ab9bbeb49aac7bd9db47f702c596fc40d",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "imaging",
+      "results_dir": "results",
+      "file": "misaligned_proxy.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path imaging/results/misaligned_proxy.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "Qwen_Qwen2.5-VL-72B-Instruct"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/misaligned_proxy.json",
+      "artifact_sha256": "f8df6d79fe4e3ac0543ebeec66c1c7f9d52b6eb5fba89f6749cf4d4d8abd0241",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "imaging",
+      "results_dir": "results",
+      "file": "net_harm.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path imaging/results/net_harm.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "Qwen_Qwen2.5-VL-72B-Instruct"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/net_harm.json",
+      "artifact_sha256": "c5303194b15e55f21a2527ff7198e6489434c08594ed74e9b4833380dc12b804",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "imaging",
+      "results_dir": "results",
+      "file": "onset_battery.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path imaging/results/onset_battery.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "Qwen_Qwen2.5-VL-72B-Instruct"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/onset_battery.json",
+      "artifact_sha256": "0aea1961a0315a689d34760fe34ff2be61430a010bbd559a0e29f65d642281e9",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "imaging",
+      "results_dir": "results",
+      "file": "panel_vote.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path imaging/results/panel_vote.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "Qwen_Qwen2.5-VL-72B-Instruct"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/panel_vote.json",
+      "artifact_sha256": "195b6e6a6819e76f55ce12b7fbf33c7f3a0716f4c94db4d8c0de2738562c38f1",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "imaging",
+      "results_dir": "results",
+      "file": "positional_regression.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path imaging/results/positional_regression.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "Qwen_Qwen2.5-VL-72B-Instruct"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/positional_regression.json",
+      "artifact_sha256": "cf587b0d99e0ace1fa0f62c3f52aa681ceba322df04f19b8a3a93495ccfca326",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "imaging_chexpert",
+      "results_dir": "results",
+      "file": "confirmatory_e1.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path imaging_chexpert/results/confirmatory_e1.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "natural_independent"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/confirmatory_e1.json",
+      "artifact_sha256": "2274ce327c0e88758413a776154213d1c1b9f6fc284e8a32a8530c67ad7f7f5f",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "imaging_chexpert",
+      "results_dir": "results",
+      "file": "confirmatory_e2.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path imaging_chexpert/results/confirmatory_e2.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "natural_independent"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/confirmatory_e2.json",
+      "artifact_sha256": "efaf66265021e59e3b4fe60cef77b71cb7f7bae526e82ce998220a5f8915d385",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "imaging_chexpert",
+      "results_dir": "results",
+      "file": "holm_bonferroni.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path imaging_chexpert/results/holm_bonferroni.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "natural_independent"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/holm_bonferroni.json",
+      "artifact_sha256": "327e9fc665fb8837a6de0573976c354606eae847d68c9bf0f2acc27d1c4b5634",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "imaging_chexpert",
+      "results_dir": "results",
+      "file": "manifest_provenance.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path imaging_chexpert/results/manifest_provenance.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "natural_independent"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/manifest_provenance.json",
+      "artifact_sha256": "c77939713cdad74142a4921ee60697aea9bcbc39422402870a6ef4b7b4f699fe",
+      "closure_basis": "Existing hashed bytes were reused and absent cohort hashes are enumerated in the artifact."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "imaging_chexpert",
+      "results_dir": "results",
+      "file": "selection_summary.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path imaging_chexpert/results/selection_summary.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "natural_cues",
+        "natural_independent"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/selection_summary.json",
+      "artifact_sha256": "024541f1f805ea1c89dc4f4d15c5e6c14851ae952801622ee1fbd76dbb4f8b08",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "medmcqa",
+      "results_dir": "results",
+      "file": "cross_lineage_summary.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path medmcqa/results/cross_lineage_summary.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "nvidia_nemotron-3-super-120b-a12b"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/medmcqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/cross_lineage_summary.json",
+      "artifact_sha256": "ba49ae7c29369851faf8d180936e8f69c376614c17a950aff67b82b93477ce5b",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "medqa",
+      "results_dir": "results",
+      "file": "cross_lineage_report.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path medqa/results/cross_lineage_report.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "nvidia_nemotron-3-super-120b-a12b",
+        "openai_gpt-oss-120b"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/cross_lineage_report.json",
+      "artifact_sha256": "917467e4ddd2ddc948517a99dae95381c7aad29a3acba56fe0b9bf432ed3b81f",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "medqa",
+      "results_dir": "results",
+      "file": "majority_pressure_summary_pre_validation.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path medqa/results/majority_pressure_summary_pre_validation.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "meta_llama-3.2-11b-vision-instruct"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/majority_pressure_summary_pre_validation.json",
+      "artifact_sha256": "6904ad39c07069176d568ce805e2581dd40b3aa38b8d65a9a6fe077fdcddf35d",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "medqa",
+      "results_dir": "results",
+      "file": "plausible_distractor_declared_audit.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path medqa/results/plausible_distractor_declared_audit.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "nvidia_nemotron-3-super-120b-a12b",
+        "openai_gpt-oss-120b"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/plausible_distractor_declared_audit.json",
+      "artifact_sha256": "d1833bd91a72d0ae344e54bf091c2e7d73d66711e1c4c9cd55274061a266fcde",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "medqa",
+      "results_dir": "results",
+      "file": "run_manifest_live_peer_organic.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path medqa/results/run_manifest_live_peer_organic.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "meta_llama-3.2-11b-vision-instruct"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/run_manifest_live_peer_organic.json",
+      "artifact_sha256": "23971d74351dc3acc3b301a7e7fe575ffc24d956fbfc26fe7a53d6ccc1775dfa",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "medqa",
+      "results_dir": "results",
+      "file": "run_manifest_majority_pressure.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path medqa/results/run_manifest_majority_pressure.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "meta_llama-3.2-11b-vision-instruct"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/run_manifest_majority_pressure.json",
+      "artifact_sha256": "312919ff34e7835f95080b3b19651d92fb2f00d91eacda50504ac664e689dd85",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "medqa",
+      "results_dir": "results",
+      "file": "run_manifest_reproduce_solo.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path medqa/results/run_manifest_reproduce_solo.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "meta_llama-3.2-11b-vision-instruct"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/run_manifest_reproduce_solo.json",
+      "artifact_sha256": "7b662727cf4d3c029ab830f9a15832fcfc623a6e83493a3ef8484e5f3c01d086",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "referee",
+      "results_dir": "results",
+      "file": "referee_deployable_declared_audit.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path referee/results/referee_deployable_declared_audit.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "openai_gpt-oss-120b"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/referee/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/referee_deployable_declared_audit.json",
+      "artifact_sha256": "86d127cf6d58a0ddacd17cea5547f2df5d932c406aa6f38f2065f31ef4fd10d0",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "support2",
+      "results_dir": "results",
+      "file": "cross_lineage_summary.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path support2/results/cross_lineage_summary.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "nvidia_nemotron-3-super-120b-a12b"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/support2/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/cross_lineage_summary.json",
+      "artifact_sha256": "2aada89ec54439b59a9b49c4932b221716f7695ad588dab2e3b8f5ef3311ee4b",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    },
+    {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "lane": "support2",
+      "results_dir": "results",
+      "file": "queue_status.json",
+      "reason": "The audited H100 Q4 bundle has no result under the exact parity path support2/results/queue_status.json. The verified 113-arm inventory did not produce or commit this sibling artifact. Close this gap by running the corresponding arm on Q4 with matched case IDs, or by importing a verified equivalent artifact and recording an explicit parity alias.",
+      "required_by_siblings": [
+        "meta_llama-3.2-11b-vision-instruct"
+      ],
+      "status": "closed_artifact_path",
+      "artifact_path": "experiments/support2/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/queue_status.json",
+      "artifact_sha256": "544007b96f8957e2d3e04b982c72956a9744f3ba49126af3fa71859b9aba9925",
+      "closure_basis": "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
+    }
+  ],
+  "remaining_provenance_limitation": {
+    "artifact_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/manifest_provenance.json",
+    "missing_chexpert_image_hashes": 94,
+    "detail": "94 natural_cues case IDs had no committed byte-level hash source; no hashes were inferred."
+  }
+}

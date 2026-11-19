@@ -1,0 +1,125 @@
+{
+  "datasets": [
+    "medqa",
+    "medmcqa"
+  ],
+  "cue_types": [
+    "option_order",
+    "longest_option",
+    "lexical_overlap"
+  ],
+  "per_cue": {
+    "option_order": {
+      "rate": {
+        "medqa": 0.26,
+        "medmcqa": 0.31
+      },
+      "ci": {
+        "medqa": [
+          0.26,
+          0.18,
+          0.34024999999999866
+        ],
+        "medmcqa": [
+          0.31,
+          0.22,
+          0.4
+        ]
+      },
+      "counts": {
+        "medqa": [
+          26,
+          100
+        ],
+        "medmcqa": [
+          31,
+          100
+        ]
+      },
+      "spread": 0.04999999999999999,
+      "fisher": {
+        "oddsratio": 0.7820401046207498,
+        "pvalue": 0.5311529852365838
+      }
+    },
+    "longest_option": {
+      "rate": {
+        "medqa": 0.23,
+        "medmcqa": 0.41
+      },
+      "ci": {
+        "medqa": [
+          0.23,
+          0.15,
+          0.31
+        ],
+        "medmcqa": [
+          0.41,
+          0.32,
+          0.5002499999999986
+        ]
+      },
+      "counts": {
+        "medqa": [
+          23,
+          100
+        ],
+        "medmcqa": [
+          41,
+          100
+        ]
+      },
+      "spread": 0.17999999999999997,
+      "fisher": {
+        "oddsratio": 0.42983845422869815,
+        "pvalue": 0.009687594965427409
+      }
+    },
+    "lexical_overlap": {
+      "rate": {
+        "medqa": 0.3,
+        "medmcqa": 0.46
+      },
+      "ci": {
+        "medqa": [
+          0.3,
+          0.22,
+          0.39
+        ],
+        "medmcqa": [
+          0.46,
+          0.36,
+          0.56
+        ]
+      },
+      "counts": {
+        "medqa": [
+          30,
+          100
+        ],
+        "medmcqa": [
+          46,
+          100
+        ]
+      },
+      "spread": 0.16000000000000003,
+      "fisher": {
+        "oddsratio": 0.5031055900621118,
+        "pvalue": 0.028562009741803247
+      }
+    }
+  },
+  "agreement": {
+    "mean_spread": 0.13,
+    "n_cues_compared": 3
+  },
+  "n_twins": {
+    "medqa": 100,
+    "medmcqa": 100
+  },
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "model_display": "Ollama llama3.2-vision:11b Q4_K_M",
+  "source": "committed solo_records.jsonl; 100 unique cases per dataset and cue",
+  "new_model_calls": 0
+}

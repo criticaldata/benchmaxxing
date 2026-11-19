@@ -1,0 +1,37 @@
+{
+  "n": 35,
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "cues": {
+    "cable": {
+      "flip_rate": 0.02857142857142857,
+      "n": 35,
+      "flip_above_noise": -0.3142857142857143
+    },
+    "corner_tag": {
+      "flip_rate": 0.02857142857142857,
+      "n": 35,
+      "flip_above_noise": -0.3142857142857143
+    },
+    "watermark": {
+      "flip_rate": 0.0,
+      "n": 35,
+      "flip_above_noise": -0.34285714285714286
+    },
+    "laterality": {
+      "flip_rate": 0.02857142857142857,
+      "n": 35,
+      "flip_above_noise": -0.3142857142857143
+    }
+  },
+  "noise_floor": 0.34285714285714286,
+  "noise_floor_n": 35,
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "baseline_accuracy": {
+    "correct": 2,
+    "n": 35,
+    "accuracy": 0.05714285714285714,
+    "display": "2/35 (5.7%)",
+    "source_result": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_solo.jsonl",
+    "field": "clean"
+  }
+}

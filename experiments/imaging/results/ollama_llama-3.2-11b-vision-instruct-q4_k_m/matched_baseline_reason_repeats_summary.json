@@ -1,0 +1,55 @@
+{
+  "repeats": 5,
+  "n": 35,
+  "reads_per_case": 6,
+  "cases_with_any_disagreement": {
+    "n": 9,
+    "rate": 0.2571,
+    "wilson95": [
+      0.1416,
+      0.4207
+    ]
+  },
+  "mean_pairwise_disagreement": 0.0971,
+  "flip_vs_baseline_per_read": [
+    0.2571,
+    0.2857,
+    0.3429,
+    0.3429,
+    0.3429,
+    0.3429
+  ],
+  "flip_vs_baseline_band": [
+    0.2571,
+    0.3429
+  ],
+  "decoy_per_read": [
+    0.0571,
+    0.1714,
+    0.2,
+    0.2,
+    0.2,
+    0.2
+  ],
+  "decoy_band": [
+    0.0571,
+    0.2
+  ],
+  "note": "read 0 is the main control run; reads 1.. are the same prompt re-asked at the same settings with a salted cache key, so every read is a real call and replays keyless",
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "new_api_calls_this_run": 175,
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "baseline_accuracy": {
+    "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+    "dataset": "NIH ChestX-ray14",
+    "arm": "matched_baseline_reason_repeats",
+    "correct": 3,
+    "n": 35,
+    "accuracy": 0.08571428571428572,
+    "display": "3/35 (8.6%)",
+    "case_ids_sha256": "61070c6a14c516ca0e9eaf4cff7c675220fdec1dcf9e2f93e2643e5cb92099eb",
+    "source_result": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/matched_baseline_reason_repeats.jsonl",
+    "field": "answers[0]"
+  },
+  "baseline_accuracy_basis": "clean answer on the matched cohort, verified in q4_image_baseline_accuracy.json"
+}

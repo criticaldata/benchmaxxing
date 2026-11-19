@@ -1,0 +1,200 @@
+{"k": "00eaf06511e014b88e8e261272a4fe396a2db858cbffaf7139bfb7827d4a4784", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "0180b808c90bf5527d59ce02d20b56205d3c48213dec836e046152c210cd8083", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "0260dd9e63333df33c1a28852820c819dce9e1c80453c32a2651119b06c67a93", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "02830b00099a596da9c506781938ecb3ac3db467b07fbd183322a582e6f9906a", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "B"}
+{"k": "0287e5bfd6b6fb7c58b31a2a4f2c8e0b5d113970bbd0534639b02bfab734d393", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Perform echocardiogram."}
+{"k": "02cb6b7c4ba1294f4a13f3bc8e7f728a2bab98005234c1f962bf745e07d1f10f", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "E"}
+{"k": "02cff8cf44dc0fd490c6b72b2edd59b14e47e3b055afed755c874dfde229c2d2", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Vaccine-induced sciatic nerve palsy."}
+{"k": "02eeeabcc8e45788b4934f37d5eb4a255dcb17fd9aa4187743d6e7226be6795e", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "04aea91a946be927ccb004b10966054d7d935561f66f8f2c7bfb4ecd37659ae5", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Persistent Pulmonary Hypertension."}
+{"k": "05a7d95c08f9937278559867be39a817ae649168203b2fad3458ed33179e1f95", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Antiphospholipid syndrome."}
+{"k": "06b1e630c8bd3e6892b311aee4f10712688412ef3e373b3fbd10be03b60fa594", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Order iron studies."}
+{"k": "08e19083cb14b98ae1b3c8037ec2d385c17de03ea5b2e2ddbb8c49288ed1aa4a", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "D"}
+{"k": "08f47e36beec3d9014124efdce9b31280bced19e8e86be8211aeefd8a1829e8f", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Bipolar II Disorder."}
+{"k": "09a7c7bba588edcec11c4eb146cbe61794341ba620d48443004da8a033d158e9", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "0ba80b1000a6124e85166f56ce6f48c905b815077de851c3c5c20ed2827e473c", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Lungs."}
+{"k": "0f1835e001faad609bb4a0f3ca3cc246ec8f0f2c04e19acdbad0864c859b40b2", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "D"}
+{"k": "0f44c582d895b074478e5b542537c0ea19e15c16d250a501dcbec16e2d5f88ed", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "109aadb7ebc28b452d5563c0960b05c8178f4053fe0db106ecc468e0c86753da", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Hypocalcemia."}
+{"k": "1166f6a68f7e507844448e326f2ea97cb0bf8bba5400bf2ef8135d1458eae666", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Hemoglobin."}
+{"k": "13091753e307c07afd6895e4fe9010038f27bf9eb2a0ab9ba820bae4af342dfd", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Pulmonary edema."}
+{"k": "13ea79348041ab1649b432b39f2c9003b583bd0ba1d20c70bd970df4d3d6c0b3", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Insulinoma."}
+{"k": "14e0c5dee6dd9463b1ffce7e97743f96096aa48710fcae74e3d8f9505cc80c25", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "1713137e096b4e0308932195634549f6a1cb0df9d961b1dc594977fb2cde8225", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "E"}
+{"k": "18b74b910d0ee174f9417451730536d727bafccb9ade5ca6518c084c315b4dba", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Hypoxemia."}
+{"k": "18c77a9d7c09f6121b41a51441e5aa2a425ad472718ffd9982fbb23bef19f51f", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Order a sleep study."}
+{"k": "1b1581640ed15d778438971d07c9df0675f49615e022c6bdef8fe0ab9eb83b55", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "1f4762b1fd7e622c98c602fab07fa11758d5aa03558f89ac3b50e6c37aa869b1", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "210cd880e5415143028601939565b44e84186df647c7de608f24c21a974fff44", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Pseudomonas."}
+{"k": "21f4eedd33a3ca2a0dbeb6b4881dda1bfd631f634f94fcdf57dd24cf1b16a7bb", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Acyclovir administration."}
+{"k": "2288e0a73c55bb418d4822173ec9a7483271ffcadce55219ba5ca0b1a1b3cfe3", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "251c99a916d9917320abf789bea5732853e4c535c5dc8586dfd0ac554e102485", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "D"}
+{"k": "277c125f3c24d801a66890e5408491b4c5af175bd95c61656cb5ac154c90782e", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "29b75f20b3834fe731856c1b49e470ea439a3103d8716c1d91d1b55a9ee9746e", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "2bc29311e1f17da423e008c3255f2fa25fa251b37b2b150f86082f20d752927f", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Polycystic ovaries."}
+{"k": "3040e1436319f75bd0c12ad3dc8d05ab73a63ad2d6a3bd3cea8a068945584c70", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Explain the risks."}
+{"k": "3393e8eee0d53aa6d013ae5fe0c7b850a2e5c060651900481b1bb76d6be4b2c6", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "D"}
+{"k": "395d80527286261345f6596f34f5ff6b08413280bb3110b9a38dd00d505ee69b", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Spinal stenosis."}
+{"k": "3a5e3112730d6a8a4586e9305b865ef3ca43696be9704b8f81200fd1ade65404", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Membranoproliferative glomerulonephritis."}
+{"k": "3f44acdd7e3398b6691935f1f26cb773d4430caa0842ba0b4bc384b5c2d1392e", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "B"}
+{"k": "3fe33346e687caddfc388ca1f210cde2ddafbe58cc20068fdd7e864151e12245", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Fecal incontinence."}
+{"k": "4040d9395d2844bb66fc025d19618c208b23ba6a68e419f10f4212b4fdf79a13", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Ibuprofen overdose."}
+{"k": "407a1f4c748a8353980ff9e386ccd89a09d5ad848d49f960b89656a687b8c83e", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "4365482e034f2f7e3db225ff58567d3e2e12d4a1405d167b5b207aa50b09bc9f", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Vagus nerve."}
+{"k": "44fc0ab56bd7deb162011621fe3acdf456062eb8cd0232a940e48e78dffdee53", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "4558afd3bbe07d50c85364c4d56ebf063d606d469a288c9d9087f954abe3efdd", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Left hemisphere of brain."}
+{"k": "4c909bc809bb4c539f13d6c27e7b98ad2ebc57b521fc4b4c77016c9ba9aee2c2", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Gastroesophageal reflux."}
+{"k": "4d4e74a001732802ad8c6b6950e0fa20299e1d1cbb8e4412013e07553cb18b36", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "The results would be overstated."}
+{"k": "4db997f5ececf2ce925f2049569ae887e2eb1096c413a1c6e045d451cd07690f", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "4f22a6ef26c3dce581a2c6427b532353374c7c38fd9bb5d02fb351faf51990fa", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "B"}
+{"k": "4f5e4ccdbe00c2015f08490898ad1d2ae1a0b3c225b1abc9d34107fb39328d2a", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Projection."}
+{"k": "506debba1246ad018c9ebd0fc1b261fb7e6bc075e0fd4634a5cb4553deef7a3a", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "B"}
+{"k": "50c293f281ce519e8949fff64feddfc13561bc150e440bde38cb7ca7b6a972b6", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Vacuum aspiration."}
+{"k": "511724dc7fb49ba87317210ed72bae7225fb999c05b3b3ede30c4a096eec0e63", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Stool culture."}
+{"k": "5138d75a848e7ffcb2a24b5fbd93156eb8d02bfcd29d1298bf1f3edfdf4c4fa5", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "E"}
+{"k": "538748d77c4bd6100a334d7d6f3a6a278832ea41a70fd9f3bca55e54257c0325", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "D"}
+{"k": "570bf6b710eadb80adb270d67128af17640e08bc6ea35ea4bd8c2d7daaa379a6", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Endometrial hyperplasia."}
+{"k": "5868e2a7df883f4b6291096103646ee923b323ccdac8d48a0e864037c045f96b", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "E"}
+{"k": "59df870cf3d1e21cba017167ffed16dc6974c80470bb9245193daa8978326b98", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Anti-SSA/Ro\n\nThis patient's symptoms, including the cord-like rash and lacy mottled violaceous rash, are suggestive of lupus erythematosus, specifically the neonatal lupus variant. Anti-SSA/Ro antibodies are commonly found in patients with lupus and are associated with the condition. The patient's history of spontaneous abortions and the presence of these antibodies would also explain the fetal losses."}
+{"k": "5ad0a0f093449da249c7bee71dffd36b8cf0812bf90171e24b5627386b75dcee", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Tricuspid regurgitation."}
+{"k": "5fa299a5d86278341849e03e3af7a340fefb36d4329e6d7fe69bb6e4fa88511a", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "602ac081dd71106d92c81ee889b841c160eaa111b63686ed12e34b1e64ec2af8", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Myxoma."}
+{"k": "60db7ecf032d55622715885e2286581ed0a2bd14eb946d6d860557d5888e727c", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "635b5cbfced2adab737c009503ebfa359e11b46a673e8d70512e8e4cab8afbdc", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "B."}
+{"k": "65735e52cbd86138e072e132f76dab9bd98d0e63172b92d28f60aae740da2d59", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "B"}
+{"k": "673479a93851931dbf4017b9429f463bfdffea694dba542fb25db4f33c1cd498", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "678e147fc55e0431acec1710aec3daa1fd802432afb8f8b1a4e855b0d28daaab", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "B"}
+{"k": "68e238bb21f227cdc67f73bc0e0cc4ba7cc881855998a9ef092f4ad69db56348", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "6983ed2c5e5ae6211cabf08d55a90fa05a704932b55f8b71b4efb6d97fbd3dc9", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "B"}
+{"k": "6a2ed6c129f98480eb24533baa4bfa21c08fdca20f26d9961f383ff807fe3f61", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "D"}
+{"k": "6bc66321e9f59d9852e7d0e7c7b2d0b5660ac739d5aa7d78d84033a25805baf0", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Neutrophils."}
+{"k": "6c0b75eee857eee4508591ab3d885f1038c05dcac6c482a83ea67a9d4f0ce083", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "6c77260c52ba77633179e93053bfb73d6c47924dde3786b198842d04ece0f53f", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "B."}
+{"k": "6f23f821e8c78b46c7ce869561a181f164510d33071a9fc25868bf1a2defe182", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Heme synthesis."}
+{"k": "7088b0e9614896679f3411307d6c2ed0fcd37741a13d7295462cfb803c9480ff", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "714e10d9551a7c4653137f596dc089480f5493639297f026a229f512461aa11e", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "B"}
+{"k": "719de23072fb2ce8386c6e8c3b71768088d654fa80acf1fda16cee1c5caa5887", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Acute Tachycardia."}
+{"k": "71d96f0c6766f038423b4a73eb30df49169215af40dce98c50d193b18197d743", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "E"}
+{"k": "7585ddd760ee87b9f6eebae3117d1ec68e16e048f6abe3c9959a018944a378be", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "D"}
+{"k": "75ffeee2e272eba4cac531374ff3943b7a1b2c9effd35a50afdbc2e8a146872c", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Troponin elevation."}
+{"k": "7698332423a2ba13368a8e230b9b4d1dd3d3479b59fa019cef7fe2a90bb733e6", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Co-inheritance."}
+{"k": "77357e25e490b774f57d18f0abff2487110986a44c8d53391787d5ed9aec44a5", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "B"}
+{"k": "7812321c92d6c48a8df301b1dd1fc7540974e0c90487f9dfaaa25e65377324e7", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Steroid therapy."}
+{"k": "79a6b1b0c908f4a2d3047ccae8238fde4aecf551f903a388ca5969c2a2ec4232", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "7a2436d9f4e52c314dbbec0bf83c53dbdf45a1684d0fe7c7bcf97e4f6ee6e8da", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Deep vein thrombosis."}
+{"k": "7ad1520cfab18a14ad4f04b7582a3aaafae5f2dea65583ef18f45ac65b21f4f2", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Elevated creatinine."}
+{"k": "7b8bc8b6cc5dccbcb07156ff3b016e488cd2b1831d77b4dde0e3ca5f788e25a8", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Thyroid storm."}
+{"k": "7c129b96dfb4afa82a99aa8a9ae7633f2b762e5300ed690bffeffcbabc16e0e5", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Dose adjustment."}
+{"k": "7c4c51408103317eec746e65309f2c9caadc0fa25a6fdca81251250ef9e3a24e", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "D"}
+{"k": "7d906db20e4bfe3acdb4d0e76f69775e2e38445dd8606933d68796926793ab6e", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "E"}
+{"k": "7e5adb4e44aee09a99b50b19e07979b7546cfee9e8d160b1901a8c274dbd2f08", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "D"}
+{"k": "7ffc0245327933cbf53bfc336ad41097f79c1314bfa3a777b4213721e169b8fe", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "8132377e388a170f0221dadc492008033ecfb22005ca6ad6bc5b39a05d82287b", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "82d48d16d8176a31e4a486862ec827799c2911185858554ed7318a8ee959bb4a", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Efflux pump mechanism."}
+{"k": "84f17941a8311f0a369fc63d9507cc842d966e55319ac0772dc7a9298354ee5f", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Mild anemia."}
+{"k": "86ade1a4656c6f6a405cb1f2581839be58602236c647ce07d362afa86da7d7f5", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "875759a831a27f3054bcf78564e6353f8d0a217b637663528ad7b8a8a6b41884", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "B"}
+{"k": "882ca1cc343e0891417fb659eb5a68aed40775eebbef58d4db81c2461880a1d0", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "887213c62d458fd93847b5e0f2b174f9d2c061e6851014ff79cbee0e2fb726c0", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "PCR (Polymerase Chain Reaction)"}
+{"k": "8893ba14912a3c6f019772beb03c7b09d86eab7deedc43279344522cdca49f19", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "89466be938cbd5e6c3f74b388f16c1bde8df8f6c83ae955632615995b7d137a2", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "E"}
+{"k": "894c78ad55a1b0bd1883e3100c4067cd93869c849cb23c8af4382949060afadf", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "898dd15fae143d8dae8cc168d917f384c631e1ee9c442aa1f16cb0fea82f30ff", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "E"}
+{"k": "8d6e6cfc25be0018c90e422fd0254cf7639539272010ffebd911cde039bde910", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Genetic testing."}
+{"k": "8db518732b954da6e685dee576902f72014ed07fce76efcf87062feb83adbfd3", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Have a conversation."}
+{"k": "8e07e5fc562a2938d19d210bcb8860b4be51384a2df5598752aea2a5d580c871", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Kallmann syndrome gene."}
+{"k": "8e30871809a1c36db7229d9e81ff77cf80d56799e2c01d20d50e262ff1080028", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "917f1c2655b556ccffd338c62c90fbbe6038426f7222e93156b4887dc96ce8f1", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Emergency thoracotomy."}
+{"k": "91914ed1872884ed2edadaacca24779d2b8c292dd4015231e42b51afef3bfe13", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Social anxiety disorder."}
+{"k": "9283949af05fce8c6b6596a0e505126bcec99b14a47eb4c8c941a43e03b50f30", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Hemolytic anemia."}
+{"k": "92e640d5f5863ec16d98b71d09977c009d7a126875d192890553851a3d57d777", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Natural Killer Cells."}
+{"k": "93b4187af2c050b20801862727a638faa3bdc1b3988a6ae7a3d384d3320dda8b", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Rat bite fever."}
+{"k": "93f5fd4658a1955cff756a3756b999fd6703b8b840eb413348dbb70db1735b70", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "D"}
+{"k": "94af1de2ba3011fc90c35a3d86345f8a52ea3da814eb4f57e35e5cd54128bfb0", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "94fe9f298b88a08066223f58a6662178e2075bb39a270e7969d2b38ba72ddea2", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Hormone replacement therapy."}
+{"k": "973a5362f760b90daa8041b537058331ddd8ddabf23eaf06a541c81d2fb8b806", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "E"}
+{"k": "9af5ed6c72273ff12f993e9a0a84061dee53204287d8f5e2d0ace9620faebe61", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "9b8f67ee815c81734dd86ad7adc90d830bab3dbd3cec317929abf1b63a4cecfd", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Ketamine or Gabapentin"}
+{"k": "9c067ffea1cb09f9232e8bfac530da2d367489fd309c301e3122e5ac233e0769", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "B"}
+{"k": "9c7dff3f4bfe23634add8a22c8adb5fd72d995cc4e5e65665ed09e831de0cc4d", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "D"}
+{"k": "9eb4ea3315eac7bee4b999e1c16638f4f3cce72950d193355f6a6db68d259697", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Waterborne pathogen."}
+{"k": "9f1949331b117b61ac4d38d382215f63426fb00cec23499886c1c0568ec12886", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "a16ac206f04f06aa018dde2dba465dd356f85dc2e445297c1d0f950f71fc3874", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "a1b7977e725a43128dd8b902e7805fec6f1c422bdb8e3c675e951f22b824b881", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Hydrocele."}
+{"k": "a24fe95aa438fd507480161af4b325b43397a7500a77427b11274cd9c1aee8d1", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "1/100 chance of child inheriting disease"}
+{"k": "a405f8cf3f6a9019cbf4a40abf26467924ecb197ea3bbb5dde96960e93b71869", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Neonatal seizures."}
+{"k": "a79995a3df806354c3d78a857c26330c9a86b6e14cd6327aedf2b2fdb120d40f", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "a8c774d8808de4104538179692e3c22a340cf81c5a660128a862754c7cc21f37", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "E"}
+{"k": "a93bfe0c42ba3195010daf70150e840626beb2ce288e0f8aa93fd3bf5bfbaa87", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Procoagulant mutation."}
+{"k": "aa61b3ad2d7d0fc5544919e9163db45ffb1e010967a5b705e71e365377cfb0d0", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "ab1d5eb099955f9a9abd5b051ef050a787be00bb97b8ba12fdee3c622162e0d3", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "ab31861a3f359e143e8d99aa6c9d4935630340f9059e8801b04b5cdac2dc60ea", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "D"}
+{"k": "acf5e30bc2c263e7dc70d050946049ccb3f77b50562cd9dee7ead634f3aca9e3", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "ad7d457f5d3d080a02039798c8018d836cb308629a65cbcd1553b96e075ed92d", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "ae34fd37b1b4238f101bfe1997108b8e77b05cd692742257fbdeb71cdf8b171a", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "af232406975a063bb9bf7ae018cfafb59783713f8be61f705897fa87a6ee8df5", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "b07993022b34603f733c1c3ebfe3f30ae6ceadf5943e4312823addef4551436e", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Genital ulcers."}
+{"k": "b0a6c5ec414337da5b0947114536f7b43c3ab9b1b854583ab487d2e0625245b4", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "b1afc9c503fe593af12d8eefb7aa891c7cf79b852a289c4b47bca53ada58b24b", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "B"}
+{"k": "b1c9a977461ec47a925dfc915796b7b8661e33e33ca49cdec3f5ec5d2ce76864", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Hypercalcemia."}
+{"k": "b2b29eca6c157236dd9118338f59b811af8529886e7c5fb4063210a238327df4", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "b2f966ed82a76d2dbaef4bef978f11e5797657546703540416778c5ba7ea0af0", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Bupropion is effective."}
+{"k": "b30d46cbb6a34237e1971fa51b2b1e1ac2ed8185fc1215b6681b53030442d0b4", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Birth trauma."}
+{"k": "b38fbe3b53aae82f00f16cfd9afacf916de47cbb8386f55be2577044a39302de", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Traumatic concussion."}
+{"k": "b624bf3b9fe7593b7d3e0d72e4a7662ce423597d428efa89c4fc556ca66e590f", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "B"}
+{"k": "ba841f9737a2a35d3d13f359d03a9dbe699d775bddbcdfdda271a8b4b9dbf730", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Mifepristone."}
+{"k": "bb02418a5bb3e7bb4f1e200906c6d4d699a83669a438107af882257fadca7b6a", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "bc1153f774df411b2a2705c22fcb1db946b727ecb286eba0654af83efc52a5f4", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Greater omentum."}
+{"k": "bd55f1044ed01f74a591fba50d4f750d344777353921389d94bb35d8c0f413a7", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Losartan"}
+{"k": "bd5c13c44accb9964a5d563efe1fbc82636af1f6087a1307f32a84fd3b664510", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Atrophic Vaginitis."}
+{"k": "befcce903017df08a2c813a81bb8b04bc365f906a5a0769da9c5b2687f60a0cd", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Central obesity."}
+{"k": "bf225a125831140c79303222f1003945a34edd4bf463af0046359fa7ba10de62", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Atropine antidote."}
+{"k": "c03a4299adeafceb13f5bc75d37f4897554d6b029a30b443bb78777ef17c8e61", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Tick-borne encephalitis."}
+{"k": "c121ec08859bb0c07fbecb40ca2cf9c440d5928641b26cf073f0873eaeb8e3f7", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "c2caf7abb4ef3d7cf4bc6dfa7b481145d74ffc27a5a71b5507e14e9faa69b713", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "E"}
+{"k": "c7d88bda7bfee8dceca08da931a743e1649fff61aee03e7eaf8c7c9547f10ef6", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "E"}
+{"k": "c87acc6c4608d8c6afb34102ed50b6735e44a7f1792a678ebb68ead79e3dd92f", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Decreased FEV1."}
+{"k": "c9412fe36e9000a8eed920518cd7cefb94986ce14c9811a3785af8033c096077", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "c97a9fe1ef2b9cb40cfa24ee50baf780d99e6d49dd3c6c155e039c6acb275420", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "c9967bfe76110386bf7cc399e9f67f4c81c6c67f82b99962bd13b95efb96b4a2", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Increased risk of seizures."}
+{"k": "c9bf9b07b48cf686bbc8a8e809f512f206cad5b08fe134192dad5ce8dae1cfc9", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Osteoporosis."}
+{"k": "ca866cb4384afa7778afdc096b43119e5cf39b5d4c04d1adfc6597661730d0af", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Von Willebrand disease."}
+{"k": "cb3c9d42bf7b6f339d2a9cda0486fe82dd7f47dcc40969c09ea1b189accb1b73", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Familial Adenomatous Polyposis."}
+{"k": "cc6f398bbd466668f2b980ee38a5d14efaa4dcf25c2a414ea5b7e916e635a4f6", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "cf150edde28a31fc2d18f09d501f07699bcb925471d255a11f7967e3380fc73c", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "d1d5338213ddabbea5d67186ffe3f926771dd1ee50058dcaa409ab6bf99f4c2f", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "d24841d646f200b73c0f2032154dee115a6011448f0e3117acff0a355212aac9", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Sj\u00f6gren's syndrome."}
+{"k": "d61c85a9a2dda813dbccf693f30fd3a247e755d245212511f34fd80ebca6b0ae", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "da06cd15d87081c4d9c2662472be55338997657e28f5e6ed2f33ae24735f0071", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Staphylococcal scalded skin syndrome."}
+{"k": "da8eec39f59425b4b1f678232bbb62fd52241b5f024d2bf99e7ea518fe43466d", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Genetic mutation."}
+{"k": "e24cbea7a5972ae24730155d5b49718ef2e6895ff069641e25975fc9f74c6371", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Inferior Mesenteric."}
+{"k": "e3025d61f2e064538bcd6591990d38d83922d00d8dd7973c6083bb280ad9a8c2", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "e4de7bc48829e76d88f5a6fa2413091a02d9a44c190691b2f14a290df17b6d94", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Giant Cell Arteritis."}
+{"k": "e5ca1c00be207db25cb16f44f9b4af96060e65bc4787801383bde7fee4371928", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Diphtheria bacillus."}
+{"k": "e5d0f058c5bab20aa5b1dd98459bac1a52ab53c7d0abe02f09b23ebacb324327", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Medulla oblongata"}
+{"k": "e75d37f5cbafaee1c8fb08d1847d67ad12f3402ea70c98e30f42b7deb82db77c", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "The cell will terminate translation."}
+{"k": "ea9478a3da708e30460633bbf1fdb428ba80bb9f60b8f9c2bbaac491f0cc181e", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Decreases hemolysis."}
+{"k": "eb0fdf0360a517fc08f6772a5acda415acfc2af30b5bbae396edf05420bfbf01", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "E"}
+{"k": "eb3b1ad8b9140075f9f592267da20a30e544623d073e64327f8d5582cd81eca5", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Naloxone administration."}
+{"k": "eb5947f2efa0b9b47395c14ef3362a1d14dfcd5e77f7565896dc1c3387281b0f", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "D"}
+{"k": "ec64a8f7742a9cd14541e276214303d905caa837235b23c98101a0cd157c0080", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "ecb7fd51b10ae05cd743f59248990b4b93cc583f9f688a417ce8347da5684734", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Iron supplementation."}
+{"k": "ee2b9730b6748552a6091a550de7ced656d58228cd66c2ce9d386e1f9e9f7b50", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Deep vein thrombosis."}
+{"k": "ee43444e58b6975392dde61bf9845c1a389c57ef2304477cdcfc522c22709cd4", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "D"}
+{"k": "f0bc794336ab6dc4f67dd7ac3bc3cae48585e3745e392c6b69a2012c516899ef", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Metabolic acidosis."}
+{"k": "f22a509744088a5210a0f3ba38df27b4b18194b0dcd63312d6ee21ce00371bd2", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "D"}
+{"k": "f27973da19be5957c6e53fb642b8812b586dbf83c38dfba8a209b09a53c1f590", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "E"}
+{"k": "f511d0605eca90ed3c472983c7070c899e2fff350f0545088cecc4d06508a0dc", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "DiGeorge Syndrome."}
+{"k": "f64b9e0d54076f1257ef3114b5eada2d7f07fb948ad7ee7f93840fe24d2e3cca", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}
+{"k": "f792b1e6b10ffbf6dc1bf88a943600775350cd282be2a897e59ce4ffe009feef", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Imaging of adrenal glands."}
+{"k": "f7d149676300da417c5d876fe86e7982e52d43ba2470cb1095142a92370517c0", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Complement C5\n\nThe patient's symptoms and history are suggestive of Neisseria gonorrhoeae infection, which is a common cause of sexually transmitted infections. The patient's history of meningitis and Streptococcus pneumoniae infection also points to a defect in the innate immune system, specifically the complement system. Complement C5 is a key component of the complement system, and a deficiency in this protein can lead to increased susceptibility to Neisseria gonorrhoeae and other encapsulated bacteria."}
+{"k": "f937d8f0a6b13eaf0d1d2ff1d935c898222e514a2b71f2a0c72ad8fa55f3f151", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Primary Dysmenorrhea."}
+{"k": "f94291954414995028df1f204ee7521de9d7898c3433bae246347a99d85b9b8e", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Bupropion."}
+{"k": "f9d8ab2e8288522dc729a0099616535272a6fd43a88911fa6ce9f70d9a934c30", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "A"}
+{"k": "f9e3a0cdbbe839b6c6290b1ff1cca92f4a42a2b653fc44ceb414e066419cb99b", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Order chest X-ray."}
+{"k": "fa10483b7f0d614e3e5ee6ce94c6b5d437d1d4b81fb9af09246c536452a033a8", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Acral lentiginous melanoma."}
+{"k": "fa9c79bb15e9cebb3ef6d3b791c7edd2688de566dbc85993e3e063cbb4f74d69", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Autoimmune hepatitis."}
+{"k": "fd355260d0f110b3468cf7e98bbc12ae988014847571b0c0fde6ecc1a252fb29", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Fetal lung cells."}
+{"k": "fdf41dc079db77b10ec27a20099052bd031d00f3c094385bca3f02c52784b282", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "Viral reactivation."}
+{"k": "fec01afa6260786761a615467e14686eb7407e435aa0a6f460fc77e8b036f531", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "E"}
+{"k": "ff15ae0ce3b5aaff1b03a2ad478990f1a9c0029ba5af44d7aaeb9c69cef12ce7", "model": "meta/llama-3.2-11b-vision-instruct", "resp": "C"}

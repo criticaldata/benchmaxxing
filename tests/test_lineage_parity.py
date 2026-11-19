@@ -6,6 +6,8 @@ comparisons are over the same arms. Imaging lanes are excluded for a text-only m
 divergence is declared rather than hidden: the Qwen lineage keeps its 600-case MIMIC solo as
 results/<model>/solo_results_600.json while Gemini and gpt-oss keep it under results_n600/<model>/.
 """
+import hashlib
+import json
 import re
 from pathlib import Path
 
@@ -13,6 +15,16 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 LINEAGE = "nvidia_nemotron-3-super-120b-a12b"
+OLLAMA_Q4_LINEAGE = "ollama_llama-3.2-11b-vision-instruct-q4_k_m"
+HOSTED_LLAMA_RESULT_SLUG = "meta_llama-3.2-11b-vision-instruct"
+PARITY_LINEAGES = {LINEAGE, OLLAMA_Q4_LINEAGE}
+Q4_EXCLUDED_LANES = {"mimic_cxr_image", "mimic_cxr_text"}
+Q4_ALIASES = {
+    ("imaging", "results", "imaging_cascade_summary.json"):
+        ("imaging", "results", "imaging_cascade_none_summary.json"),
+}
+Q4_GAP_LEDGER_PATH = ROOT / "tests/ollama_q4_declared_gaps.json"
+Q4_METADATA_PATH = ROOT / "experiments/model_metadata/ollama_llama-3.2-11b-vision-instruct-q4_k_m.json"
 TEXT_ONLY = {LINEAGE}
 IMAGING_LANES = {"imaging", "imaging_chexpert", "chexpert", "mimic_cxr_image"}
 # sibling path -> the path this lane uses for the same artifact
@@ -105,6 +117,172 @@ DECLARED_GAPS = {
         "this lineage's serving stack does not expose; closing it needs a served nemotron with an equivalent knob "
         "and belongs to that lineage's pass.",
 }
+
+DECLARED_GAPS.update({('nvidia_nemotron-3-super-120b-a12b', 'blind_metric', 'results', 'run_manifest.json'): 'This is a '
+                                                                                        'model-specific '
+                                                                                        'execution manifest '
+                                                                                        'from the hosted '
+                                                                                        'Llama lineage, and '
+                                                                                        'the Nemotron lane '
+                                                                                        'has no counterpart '
+                                                                                        'file. Close the gap '
+                                                                                        'by recording and '
+                                                                                        'committing a '
+                                                                                        'Nemotron '
+                                                                                        'blind-metric run '
+                                                                                        'manifest; do not '
+                                                                                        'reuse the Llama '
+                                                                                        'manifest.',
+ ('nvidia_nemotron-3-super-120b-a12b', 'contamination', 'results', 'run_manifest_contamination_audit.json'): 'This '
+                                                                                                             'is '
+                                                                                                             'the '
+                                                                                                             'hosted '
+                                                                                                             'Llama '
+                                                                                                             'contamination-audit '
+                                                                                                             'run '
+                                                                                                             'manifest; '
+                                                                                                             'the '
+                                                                                                             'Nemotron '
+                                                                                                             'result '
+                                                                                                             'directory '
+                                                                                                             'has '
+                                                                                                             'no '
+                                                                                                             'corresponding '
+                                                                                                             'run '
+                                                                                                             'record. '
+                                                                                                             'Close '
+                                                                                                             'the '
+                                                                                                             'gap '
+                                                                                                             'by '
+                                                                                                             'recording '
+                                                                                                             'and '
+                                                                                                             'committing '
+                                                                                                             'a '
+                                                                                                             'Nemotron-specific '
+                                                                                                             'manifest '
+                                                                                                             'for '
+                                                                                                             'the '
+                                                                                                             'same '
+                                                                                                             'audit '
+                                                                                                             'protocol.',
+ ('nvidia_nemotron-3-super-120b-a12b', 'medqa', 'results', 'majority_pressure_summary_pre_validation.json'): 'This '
+                                                                                                             'pre-validation '
+                                                                                                             'majority-pressure '
+                                                                                                             'summary '
+                                                                                                             'exists '
+                                                                                                             'only '
+                                                                                                             'for '
+                                                                                                             'the '
+                                                                                                             'Llama '
+                                                                                                             'run, '
+                                                                                                             'with '
+                                                                                                             'no '
+                                                                                                             'Nemotron '
+                                                                                                             'result '
+                                                                                                             'counterpart. '
+                                                                                                             'Close '
+                                                                                                             'the '
+                                                                                                             'gap '
+                                                                                                             'by '
+                                                                                                             'running '
+                                                                                                             'the '
+                                                                                                             'same '
+                                                                                                             'pre-validation '
+                                                                                                             'arm '
+                                                                                                             'on '
+                                                                                                             'Nemotron '
+                                                                                                             'or '
+                                                                                                             'recording '
+                                                                                                             'that '
+                                                                                                             'the '
+                                                                                                             'protocol '
+                                                                                                             'is '
+                                                                                                             'not '
+                                                                                                             'applicable.',
+ ('nvidia_nemotron-3-super-120b-a12b', 'medqa', 'results', 'run_manifest_live_peer_organic.json'): 'This '
+                                                                                                   'execution '
+                                                                                                   'manifest '
+                                                                                                   'documents '
+                                                                                                   'the '
+                                                                                                   'Llama '
+                                                                                                   'live-peer-organic '
+                                                                                                   'arm and '
+                                                                                                   'has no '
+                                                                                                   'Nemotron '
+                                                                                                   'counterpart. '
+                                                                                                   'Close '
+                                                                                                   'the gap '
+                                                                                                   'by '
+                                                                                                   'running '
+                                                                                                   'that arm '
+                                                                                                   'for '
+                                                                                                   'Nemotron '
+                                                                                                   'and '
+                                                                                                   'committing '
+                                                                                                   'a '
+                                                                                                   'model-specific '
+                                                                                                   'manifest '
+                                                                                                   'with its '
+                                                                                                   'cohort '
+                                                                                                   'IDs.',
+ ('nvidia_nemotron-3-super-120b-a12b', 'medqa', 'results', 'run_manifest_majority_pressure.json'): 'This '
+                                                                                                   'execution '
+                                                                                                   'manifest '
+                                                                                                   'documents '
+                                                                                                   'the '
+                                                                                                   'Llama '
+                                                                                                   'majority-pressure '
+                                                                                                   'arm and '
+                                                                                                   'has no '
+                                                                                                   'Nemotron '
+                                                                                                   'counterpart. '
+                                                                                                   'Close '
+                                                                                                   'the gap '
+                                                                                                   'by '
+                                                                                                   'running '
+                                                                                                   'that arm '
+                                                                                                   'for '
+                                                                                                   'Nemotron '
+                                                                                                   'and '
+                                                                                                   'committing '
+                                                                                                   'a '
+                                                                                                   'model-specific '
+                                                                                                   'manifest '
+                                                                                                   'with its '
+                                                                                                   'cohort '
+                                                                                                   'IDs.',
+ ('nvidia_nemotron-3-super-120b-a12b', 'medqa', 'results', 'run_manifest_reproduce_solo.json'): 'This '
+                                                                                                'execution '
+                                                                                                'manifest '
+                                                                                                'documents '
+                                                                                                'the Llama '
+                                                                                                'solo-reproduction '
+                                                                                                'arm and has '
+                                                                                                'no Nemotron '
+                                                                                                'counterpart. '
+                                                                                                'Close the '
+                                                                                                'gap by '
+                                                                                                'running the '
+                                                                                                'same solo '
+                                                                                                'protocol '
+                                                                                                'for '
+                                                                                                'Nemotron '
+                                                                                                'and '
+                                                                                                'committing '
+                                                                                                'its case-ID '
+                                                                                                'manifest.',
+ ('nvidia_nemotron-3-super-120b-a12b', 'support2', 'results', 'queue_status.json'): 'This queue status file '
+                                                                                    'records the hosted '
+                                                                                    'Llama SUPPORT2 '
+                                                                                    'execution and is not '
+                                                                                    'present for Nemotron. '
+                                                                                    'Close the gap by '
+                                                                                    'recording a Nemotron '
+                                                                                    'queue status if that '
+                                                                                    'arm is run; the Llama '
+                                                                                    'status cannot stand in '
+                                                                                    'for it.'})
+
 PAT = re.compile(r"experiments/([a-z_0-9]+)/(results[^/]*)/([^/]+)/([^/]+\.json)$")
 
 
@@ -151,3 +329,95 @@ def test_every_declared_gap_carries_a_reason_and_names_a_real_lineage():
     for (lineage, lane, res, name), why in DECLARED_GAPS.items():
         assert lineage in TEXT_ONLY, lineage
         assert len(why.split()) >= 25, f"{lineage}/{lane}/{res}/{name}: the reason has to say what is missing and what would close it"
+
+def _q4_missing_hosted_paths(files):
+    mine = files.get(OLLAMA_Q4_LINEAGE, set())
+    hosted = files.get(HOSTED_LLAMA_RESULT_SLUG, set())
+    missing = set()
+    for lane, res, name in hosted:
+        if lane in Q4_EXCLUDED_LANES:
+            continue
+        want = (lane, res, name)
+        want = Q4_ALIASES.get(want, want)
+        if want not in mine:
+            missing.add((OLLAMA_Q4_LINEAGE, lane, res, name))
+    return missing
+
+
+def test_ollama_q4_is_a_distinct_lineage_with_hosted_parity():
+    identity = json.loads(Q4_METADATA_PATH.read_text(encoding="utf-8"))
+    assert OLLAMA_Q4_LINEAGE in PARITY_LINEAGES
+    assert OLLAMA_Q4_LINEAGE != HOSTED_LLAMA_RESULT_SLUG
+    assert identity["lineage_id"] == OLLAMA_Q4_LINEAGE
+    assert identity["results_slug"] == OLLAMA_Q4_LINEAGE
+    assert identity["hosted_results_slug"] == HOSTED_LLAMA_RESULT_SLUG
+    assert identity["mimic_cxr_in_scope"] is False
+
+    files = _result_files()
+    assert OLLAMA_Q4_LINEAGE in files and HOSTED_LLAMA_RESULT_SLUG in files
+    assert not any(lane in Q4_EXCLUDED_LANES for lane, _, _ in files[OLLAMA_Q4_LINEAGE])
+    ledger = json.loads(Q4_GAP_LEDGER_PATH.read_text(encoding="utf-8"))
+    declared = {
+        (item["lineage_id"], item["lane"], item["results_dir"], item["file"])
+        for item in ledger
+    }
+    assert declared == _q4_missing_hosted_paths(files)
+    assert not declared, "all hosted sibling artifact paths should have Q4 counterparts"
+
+
+def test_q4_closure_manifest_accounts_for_all_30_gaps():
+    path = ROOT / "experiments/model_metadata/q4_gap_closure_manifest.json"
+    closure = json.loads(path.read_text(encoding="utf-8"))
+    assert closure["lineage_id"] == OLLAMA_Q4_LINEAGE
+    assert closure["total_gaps"] == closure["closed_artifact_paths"] == 30
+    assert closure["unresolved_artifact_paths"] == 0
+    assert closure["new_model_calls"] == 0
+    assert len(closure["entries"]) == 30
+    for entry in closure["entries"]:
+        assert entry["status"] == "closed_artifact_path"
+        assert entry["lineage_id"] == OLLAMA_Q4_LINEAGE
+        assert len(entry["reason"].split()) >= 25
+        assert entry["artifact_path"].startswith(f"experiments/{entry['lane']}/")
+        artifact = ROOT / entry["artifact_path"]
+        assert artifact.is_file(), artifact
+        assert hashlib.sha256(artifact.read_bytes()).hexdigest() == entry["artifact_sha256"]
+
+
+def test_q4_imaging_results_report_baseline_accuracy():
+    baseline = json.loads((ROOT / "experiments/model_metadata/q4_image_baseline_accuracy.json").read_text())
+    assert baseline["lineage_id"] == OLLAMA_Q4_LINEAGE
+    assert len(baseline["arms"]) == 30
+    nih = next(row for row in baseline["arms"] if row["case_set_key"] == "imaging/imaging_solo")
+    assert (nih["baseline_correct"], nih["n"], nih["display"]) == (1, 35, "1/35 (2.9%)")
+    hidden_nih = next(row for row in baseline["supplemental_hidden_note_arms"]
+                      if row["dataset"] == "NIH ChestX-ray14" and row["arm"] == "imaging_blind_metric")
+    assert hidden_nih["baseline_source_file"].endswith("/imaging_solo.jsonl")
+    assert hidden_nih["baseline_field"] == "clean"
+
+    for lane in ("imaging", "imaging_chexpert", "chexpert"):
+        directory = ROOT / "experiments" / lane / "results" / OLLAMA_Q4_LINEAGE
+        for path in directory.glob("*summary*.json"):
+            report = json.loads(path.read_text(encoding="utf-8"))
+            assert report.get("lineage_id") == OLLAMA_Q4_LINEAGE, path
+            if path.name == "selection_summary.json":
+                assert report["cohorts"]
+                assert all("baseline_accuracy" in item["observed_q4_cascade"]
+                           for item in report["cohorts"].values())
+            else:
+                assert "baseline_accuracy" in report, path
+                base = report["baseline_accuracy"]
+                assert 0 <= base["correct"] <= base["n"]
+                assert base["display"] == f"{base['correct']}/{base['n']} ({base['accuracy']*100:.1f}%)"
+                assert base.get("field") != "decoy", path
+
+    derived = ROOT / "experiments/imaging/results" / OLLAMA_Q4_LINEAGE
+    for name in ("claim4_quantification.json", "counterfactual_referee.json",
+                 "effect_sizes_imaging.json", "finding_subgroup.json",
+                 "imaging_blind_metric_ci.json", "imaging_referee_agreement.json",
+                 "misaligned_proxy.json", "net_harm.json", "onset_battery.json",
+                 "panel_vote.json", "positional_regression.json"):
+        report = json.loads((derived / name).read_text(encoding="utf-8"))
+        assert "baseline_accuracy" in report, name
+
+    docs = (ROOT / "docs/ollama_q4_imaging_results.md").read_text(encoding="utf-8")
+    assert "1 of 35" in docs and "1/35" in docs

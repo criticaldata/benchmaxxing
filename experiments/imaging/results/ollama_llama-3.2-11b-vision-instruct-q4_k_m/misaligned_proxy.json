@@ -1,0 +1,28 @@
+{
+  "n": 140,
+  "proxy": "watermark-present indicator (is this row specifically the watermark cue)",
+  "truth": "resulting read == 'yes' (correct, since ground truth is always 'yes' here)",
+  "decision": "flip (did the read change from the case's own clean read under this cue)",
+  "corr_decision_vs_proxy": 0.2085,
+  "corr_decision_vs_truth": 0.3407,
+  "uptake_delta": -0.1321,
+  "read": "Across 140 Q4 NIH case-cue observations, flip/proxy correlation is 0.2085 and flip/correctness correlation is 0.3407; uptake delta is -0.1321. The solo watermark arm uses opacity 0.25. NIH baseline accuracy was 1/35 (2.9%).",
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "model_display": "Ollama llama3.2-vision:11b Q4_K_M",
+  "execution_provider": "Ollama",
+  "quantization": "Q4_K_M",
+  "baseline_accuracy": {
+    "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+    "dataset": "NIH ChestX-ray14",
+    "arm": "imaging_solo",
+    "correct": 1,
+    "n": 35,
+    "accuracy": 0.02857142857142857,
+    "display": "1/35 (2.9%)",
+    "case_ids_sha256": "61070c6a14c516ca0e9eaf4cff7c675220fdec1dcf9e2f93e2643e5cb92099eb",
+    "source_result": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_solo.jsonl",
+    "field": "clean"
+  },
+  "analysis_source": "committed Q4 JSONL; deterministic, no model calls"
+}

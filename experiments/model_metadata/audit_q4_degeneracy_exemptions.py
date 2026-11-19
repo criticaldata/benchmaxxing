@@ -10,36 +10,14 @@ from pathlib import Path
 
 from benchmaxxing.degeneracy import REPO_ROOT, scan
 
-MODEL_SLUG = "meta_llama-3.2-11b-vision-instruct"
-CHEXPERT_ROOT = f"experiments/chexpert/results/{MODEL_SLUG}/"
-IMAGING_CHEXPERT_ROOT = f"experiments/imaging_chexpert/results/{MODEL_SLUG}/"
-N600_FILES = {
-    "imaging_blind_metric.jsonl",
-    "imaging_blind_metric_phase1_baseline.jsonl",
-    "imaging_blind_metric_phase2_blind.jsonl",
-    "imaging_blind_metric_phase3_test_aware.jsonl",
-    "imaging_blind_metric_summary.json",
-}
-NIM_IMAGE_FILES = {
-    "imaging_cascade.jsonl", "imaging_cascade_summary.json",
-    "imaging_matched_temp.jsonl", "imaging_matched_temp_summary.json",
-    "imaging_noise_floor.jsonl", "imaging_solo.jsonl",
-    "imaging_solo_summary.json", "img_cache.jsonl",
-}
-
-
+Q4_MODEL_SLUG = "ollama_llama-3.2-11b-vision-instruct-q4_k_m"
+HOSTED_MODEL_SLUG = "meta_llama-3.2-11b-vision-instruct"
+CHEXPERT_ROOT = f"experiments/chexpert/results/{HOSTED_MODEL_SLUG}/"
+IMAGING_CHEXPERT_ROOT = f"experiments/imaging_chexpert/results/{HOSTED_MODEL_SLUG}/"
 def relocated_path(path: str) -> str:
-    old_phase2 = f"experiments/chexpert/results/phase2_11b/phase2_n600/{MODEL_SLUG}/"
+    old_phase2 = f"experiments/chexpert/results/phase2_11b/phase2_n600/{HOSTED_MODEL_SLUG}/"
     if path.startswith(old_phase2):
         return CHEXPERT_ROOT + "nvidia_nim_n600/" + path[len(old_phase2):]
-    if path.startswith(CHEXPERT_ROOT):
-        name = path[len(CHEXPERT_ROOT):]
-        if name in N600_FILES:
-            return CHEXPERT_ROOT + "nvidia_nim_n600/" + name
-    if path.startswith(IMAGING_CHEXPERT_ROOT):
-        name = path[len(IMAGING_CHEXPERT_ROOT):]
-        if name in NIM_IMAGE_FILES:
-            return IMAGING_CHEXPERT_ROOT + "nvidia_nim/" + name
     return path
 
 
@@ -89,9 +67,15 @@ def reason_for(finding) -> str:
             "returned the same parsed reads across this cohort, an observed invariance with no flip effect."
         )
     if finding.kind == "rounded_pvalue":
+        if "exactly 0.0" in detail:
+            return (
+                f"{detail}. Serialized zero is numerical underflow/rounding, not a probability of zero; "
+                "use exact discordant counts when the paired test supplies them and do not claim significance "
+                "from the zero-valued serialization."
+            )
         return (
-            f"{detail}. The exact test yields a null p=1.0 for this committed comparison; "
-            "report it as no detected difference, not as evidence of equivalence."
+            f"{detail}. This boundary p=1.0 reflects no detected difference for the committed comparison; "
+            "report the statistic and counts where available, and do not claim equivalence."
         )
     raise SystemExit(f"no reason template for {finding.kind}: {finding.key}")
 
@@ -101,10 +85,15 @@ def main() -> None:
     doc = json.loads(path.read_text())
     allow = relocate_table(dict(doc.get("allowlist", {})))
     preexisting = relocate_table(dict(doc.get("preexisting", {})))
+    findings = scan(REPO_ROOT)
+    current = {finding.key for finding in findings}
+    stale_removed = sum(key not in current for key in allow) + sum(key not in current for key in preexisting)
+    allow = {key: reason for key, reason in allow.items() if key in current}
+    preexisting = {key: reason for key, reason in preexisting.items() if key in current}
 
     added = 0
-    for finding in scan(REPO_ROOT):
-        if MODEL_SLUG not in finding.path or "nvidia_nim" in finding.path:
+    for finding in findings:
+        if Q4_MODEL_SLUG not in finding.path or "nvidia_nim" in finding.path:
             continue
         if finding.key in allow or finding.key in preexisting:
             continue
@@ -114,8 +103,8 @@ def main() -> None:
     doc["allowlist"] = allow
     doc["preexisting"] = preexisting
     path.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n")
-    print(f"Added {added} exact Q4_K_M reasons; retained {len(allow)} allowlist and "
-          f"{len(preexisting)} pre-existing entries after relocating historical NIM keys.")
+    print(f"Added {added} exact Q4_K_M reasons; removed {stale_removed} stale entries; "
+          f"retained {len(allow)} allowlist and {len(preexisting)} pre-existing entries.")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,106 @@
+{"case_id": "medqa-0", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-1", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-2", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-4", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-6", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-5", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-3", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-8", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-10", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-11", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-14", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-15", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-9", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-17", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-16", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-18", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-19", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-20", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-24", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-21", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-23", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-22", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-27", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-25", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-28", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-29", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-30", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-33", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-32", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-34", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-35", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-37", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-36", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-39", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-41", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-40", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-38", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-42", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-46", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-43", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-47", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-48", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-49", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-45", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-50", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-54", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-53", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-52", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-55", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-57", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-58", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-56", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-61", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-60", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-63", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-62", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-65", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-66", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-67", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-68", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-70", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-69", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-71", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-74", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-72", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-73", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-75", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-76", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-79", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-77", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-78", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-80", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-82", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-81", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-85", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-84", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-86", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-83", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-89", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-90", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-87", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-92", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-93", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-91", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-94", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-95", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-98", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-97", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-96", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-102", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-103", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-105", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-104", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-108", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-106", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-110", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-107", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-111", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-113", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-109", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-115", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-114", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-117", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-119", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}
+{"case_id": "medqa-116", "q4_scored": false, "gpt_oss_scored": true, "common_comparison_case": false, "eligibility_reason": "The Q4 model did not yield two distinct wrong distractors for the paired adoption comparison."}
+{"case_id": "medqa-118", "q4_scored": true, "gpt_oss_scored": true, "common_comparison_case": true, "eligibility_reason": null}

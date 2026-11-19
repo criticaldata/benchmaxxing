@@ -1,0 +1,46 @@
+{
+  "method": "Holm-Bonferroni",
+  "alpha": 0.05,
+  "family_size": 2,
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "results": {
+    "E1": {
+      "p_raw": 1.0,
+      "p_adjusted": 1.0,
+      "reject": false
+    },
+    "E2": {
+      "p_raw": 6.018531076210112e-36,
+      "p_adjusted": 1.2037062152420224e-35,
+      "reject": true
+    }
+  },
+  "baseline_accuracy": {
+    "device_present": {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "dataset": "CheXpert",
+      "arm": "natural_independent_cascade",
+      "correct": 120,
+      "n": 150,
+      "accuracy": 0.8,
+      "display": "120/150 (80.0%)",
+      "case_ids_sha256": "26d24e52dd439cebda144c637ca99bc75907f6deb646fcfee2ace034bb6091d8",
+      "source_result": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_natural_independent.jsonl",
+      "field": "clean_correct"
+    },
+    "device_absent": {
+      "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+      "dataset": "CheXpert",
+      "arm": "device_absent_cascade",
+      "correct": 5,
+      "n": 150,
+      "accuracy": 0.03333333333333333,
+      "display": "5/150 (3.3%)",
+      "case_ids_sha256": "37c5fae2c778003bf62129fc6bb6ed754242b9a32bca2f0d1ad515f9573ca57f",
+      "source_result": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_cascade_device_absent.jsonl",
+      "field": "clean_correct"
+    }
+  },
+  "new_model_calls": 0
+}

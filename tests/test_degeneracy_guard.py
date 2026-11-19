@@ -187,9 +187,13 @@ def test_columns_that_genuinely_vary_are_not_flagged(keys, path, column):
 # seven exact findings are three 150-row cascade files (one duplicate-column and one identical-read
 # finding each) plus the system-flag identical-read finding. They add no new failure mode; the
 # handoff restricts these arms to raw shared-adoption rates and withdraws causal comparisons. New
-# defect classes still fail the gate. Lowering this number is always fine; raising it again needs
-# the same evidence and explanation in the commit message.
-PREEXISTING_CEILING = 123
+# defect classes still fail the gate. The fetched merge base 4c4ac4b also contains 11 exact,
+# previously unrecorded findings in the hosted NVIDIA NIM 35-row CheXpert files. They are added to
+# the preexisting backlog with row-level observations and explicit non-endorsement; the source
+# artifacts predate this Q4 import. Ceiling 123 -> 134 reflects those 11 findings, not Q4 results.
+# Lowering this number is always fine; raising it again needs the same evidence and explanation in
+# the commit message.
+PREEXISTING_CEILING = 134
 
 
 def test_identical_reads_fires_on_two_reads_that_never_diverge():

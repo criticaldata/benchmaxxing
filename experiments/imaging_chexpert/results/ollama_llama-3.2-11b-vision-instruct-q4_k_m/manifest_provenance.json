@@ -1,0 +1,722 @@
+{
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "source": "committed CheXpert image-byte provenance; only IDs with an existing image hash are included",
+  "provenance_coverage": {
+    "unique_cohort_images": 244,
+    "hashed_images": 150,
+    "missing_hash_count": 94,
+    "complete": false,
+    "missing_case_ids": [
+      "CheXpert-v1.0-small/train/patient00403/study5/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient01263/study6/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient03017/study2/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient03164/study14/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient05390/study11/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient06575/study2/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient06792/study1/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient06981/study3/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient07529/study4/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient07882/study4/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient08700/study10/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient09365/study3/view2_lateral.jpg",
+      "CheXpert-v1.0-small/train/patient09483/study11/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient11132/study4/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient11436/study2/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient11751/study1/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient12865/study2/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient13011/study65/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient13162/study53/view2_lateral.jpg",
+      "CheXpert-v1.0-small/train/patient13684/study12/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient13722/study1/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient13884/study1/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient13949/study2/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient14475/study8/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient16723/study19/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient18447/study2/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient20417/study1/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient20671/study3/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient21814/study20/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient21845/study9/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient22046/study2/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient23351/study25/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient23860/study20/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient24339/study2/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient26025/study2/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient26121/study3/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient26271/study6/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient26886/study17/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient26886/study23/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient27103/study3/view2_lateral.jpg",
+      "CheXpert-v1.0-small/train/patient27680/study22/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient27743/study4/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient28104/study1/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient28412/study1/view2_lateral.jpg",
+      "CheXpert-v1.0-small/train/patient29733/study3/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient29781/study4/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient30532/study34/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient30812/study7/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient30958/study7/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient31349/study14/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient31432/study6/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient31593/study6/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient32003/study8/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient32905/study10/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient33247/study4/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient34617/study6/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient34727/study7/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient34767/study4/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient34850/study6/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient34897/study12/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient35181/study5/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient35395/study7/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient35484/study11/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient35631/study18/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient35932/study1/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient36125/study2/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient36411/study1/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient36792/study5/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient37725/study3/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient38327/study5/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient38349/study4/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient38526/study11/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient39230/study9/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient40928/study3/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient41738/study1/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient41773/study1/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient42243/study1/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient42328/study3/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient42409/study2/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient44813/study9/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient46044/study2/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient48025/study1/view3_lateral.jpg",
+      "CheXpert-v1.0-small/train/patient48648/study2/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient50399/study4/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient50814/study2/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient52610/study1/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient52959/study2/view2_lateral.jpg",
+      "CheXpert-v1.0-small/train/patient54074/study2/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient54672/study6/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient55904/study2/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient57967/study1/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient58408/study3/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient58666/study3/view1_frontal.jpg",
+      "CheXpert-v1.0-small/train/patient61492/study1/view1_frontal.jpg"
+    ],
+    "note": "No byte-level image hash is inferred from prompt-cache keys or case IDs."
+  },
+  "images": {
+    "CheXpert-v1.0-small/train/patient00270/study3/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient00270/study3/view1_frontal.jpg",
+      "sha256": "56b03d2e0f8c87242d17e1f578cf0e818a8f048d46bdf900a1037ddd21769e99"
+    },
+    "CheXpert-v1.0-small/train/patient00824/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient00824/study2/view1_frontal.jpg",
+      "sha256": "764e034354492384a0d70914b6fe38244b1c5b11ca8ffbbcf4bb0797506f874e"
+    },
+    "CheXpert-v1.0-small/train/patient00889/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient00889/study1/view1_frontal.jpg",
+      "sha256": "030ce96a53ff01816a03ca6cc9ed81a2d7fb4b84395b9111a432f1f0e416953e"
+    },
+    "CheXpert-v1.0-small/train/patient01437/study5/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient01437/study5/view1_frontal.jpg",
+      "sha256": "7116ddfd2b73f4a40d8d63414ba2c0ef49a04b390aa5e96a7bd12cde73160a1d"
+    },
+    "CheXpert-v1.0-small/train/patient01529/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient01529/study2/view1_frontal.jpg",
+      "sha256": "01e0323ef38af7881017e8ff1b8dad82d01d62a1d40968524cc55cec708daac5"
+    },
+    "CheXpert-v1.0-small/train/patient02153/study14/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient02153/study14/view1_frontal.jpg",
+      "sha256": "666840fbf8a71bb2408b3eb2c638cca10ce2e97b368e5e73e19ceb1524f84c3f"
+    },
+    "CheXpert-v1.0-small/train/patient02612/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient02612/study1/view1_frontal.jpg",
+      "sha256": "c57201b139067b5862156ada4dfb70274f08a7b3d0778a2a1328d1c24ed110c3"
+    },
+    "CheXpert-v1.0-small/train/patient02847/study16/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient02847/study16/view1_frontal.jpg",
+      "sha256": "57d4f9fda6f0bfec3370b01bb09ebe8b4a0170b112419937747df283e6309afe"
+    },
+    "CheXpert-v1.0-small/train/patient03129/study6/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient03129/study6/view1_frontal.jpg",
+      "sha256": "19121e243c599a5cd88891280aaa26f5e5a160c8c0411fd20e996e83e430dd6b"
+    },
+    "CheXpert-v1.0-small/train/patient03236/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient03236/study2/view1_frontal.jpg",
+      "sha256": "bd41f6a80c12d63df8f43c72802531c772fdd15b3f132214668acecc2b237da9"
+    },
+    "CheXpert-v1.0-small/train/patient03999/study1/view2_lateral.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient03999/study1/view2_lateral.jpg",
+      "sha256": "e313657d08fae75398e6b9638f6b0f0eb3fccb4e2fea38c7687c4d2bd2d86176"
+    },
+    "CheXpert-v1.0-small/train/patient04132/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient04132/study1/view1_frontal.jpg",
+      "sha256": "2ad72436c3b2fc068ac4e4bcc035471d87fdfe9b6faa785dc0c7da9ca494fce2"
+    },
+    "CheXpert-v1.0-small/train/patient04497/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient04497/study2/view1_frontal.jpg",
+      "sha256": "4976f72ac3c3d508e3ee26fd7b56eca7fe6f3ec627419e4b746b1a9f3700ae33"
+    },
+    "CheXpert-v1.0-small/train/patient05137/study7/view2_lateral.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient05137/study7/view2_lateral.jpg",
+      "sha256": "64707b945b83d5ca3629513cdc17e311a9d205eab05223ffb2672c9eaf30ec08"
+    },
+    "CheXpert-v1.0-small/train/patient05205/study2/view2_lateral.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient05205/study2/view2_lateral.jpg",
+      "sha256": "e246731d46cc4531bd11dbe09c5d79f72c25826a07eabe26e8907e5d9e3a4945"
+    },
+    "CheXpert-v1.0-small/train/patient05348/study3/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient05348/study3/view1_frontal.jpg",
+      "sha256": "81791d632ff7be050fc44ff601a409c5953c05aa9f26d34f13d5a2ce6168d044"
+    },
+    "CheXpert-v1.0-small/train/patient05392/study5/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient05392/study5/view1_frontal.jpg",
+      "sha256": "60bab57159d181f1bca378bf1f6a39faa70eecb6753a3e606fbaa9f9233dc63d"
+    },
+    "CheXpert-v1.0-small/train/patient05945/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient05945/study2/view1_frontal.jpg",
+      "sha256": "7df20d7b3a8e0cdb363e7f3c7241f246c44f04ab9e3d83f04c535553067b3e5a"
+    },
+    "CheXpert-v1.0-small/train/patient07213/study5/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient07213/study5/view1_frontal.jpg",
+      "sha256": "0abf06b218d43f24bc10b313b14112de31d21095207f264cfcc3d89342a140dc"
+    },
+    "CheXpert-v1.0-small/train/patient07900/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient07900/study1/view1_frontal.jpg",
+      "sha256": "b3a89fef0d3bbfbe9969253ff5c884d223eec8e09cdaf386b83cbea9aa665b8a"
+    },
+    "CheXpert-v1.0-small/train/patient08173/study43/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient08173/study43/view1_frontal.jpg",
+      "sha256": "1c42e025d690acd626a3cbcd4deea0db209905a6c394af7409e9b6b4d08b422a"
+    },
+    "CheXpert-v1.0-small/train/patient09339/study4/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient09339/study4/view1_frontal.jpg",
+      "sha256": "bc73df77ce5890683e3cc35c8defa5406808b8f8437cf27305b2e8bbf02582e2"
+    },
+    "CheXpert-v1.0-small/train/patient09613/study4/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient09613/study4/view1_frontal.jpg",
+      "sha256": "421f507c04448e13e55bfd1e9b96bef50fafc307ca1a5c55051eb7f651b2b88f"
+    },
+    "CheXpert-v1.0-small/train/patient09694/study10/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient09694/study10/view1_frontal.jpg",
+      "sha256": "d4fcc602f823878bc8946430d0df5ec6a6d20ef7b184a5db5d5a18b76fc5eadb"
+    },
+    "CheXpert-v1.0-small/train/patient10692/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient10692/study1/view1_frontal.jpg",
+      "sha256": "44a4019e6d3a4bc2e1c9c4f1aad91e2cdea306f5804b0c0d8d33f040f41ca9a1"
+    },
+    "CheXpert-v1.0-small/train/patient10780/study13/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient10780/study13/view1_frontal.jpg",
+      "sha256": "309c23ae79aad321aea3adcc7f49604c7297fa3fe22b226be044f77cc664a094"
+    },
+    "CheXpert-v1.0-small/train/patient11663/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient11663/study1/view1_frontal.jpg",
+      "sha256": "ccf61001cc5b6d7637f21d0853fa1e9b4d32fa669e5dc642cad6302ac9c6511c"
+    },
+    "CheXpert-v1.0-small/train/patient12261/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient12261/study1/view1_frontal.jpg",
+      "sha256": "0e48f3e149bef4db546cf2e63f245a78fe7d4a0c7c08377790c6b6ec29c671ce"
+    },
+    "CheXpert-v1.0-small/train/patient12470/study5/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient12470/study5/view1_frontal.jpg",
+      "sha256": "88ced13e5b4f99ef27d83b75ac5a19cf787838135a6512df8158b933b8b42d07"
+    },
+    "CheXpert-v1.0-small/train/patient13227/study11/view2_lateral.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient13227/study11/view2_lateral.jpg",
+      "sha256": "4c1b4675987b71eaa8ce14e0d4a09f0afc40f41baa57dd7ceaf69db4fcca9a14"
+    },
+    "CheXpert-v1.0-small/train/patient13270/study7/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient13270/study7/view1_frontal.jpg",
+      "sha256": "81fe7024a1945371fea2406b6da15341154fe8825e932bcb9daa7b38ac772e39"
+    },
+    "CheXpert-v1.0-small/train/patient13368/study1/view2_lateral.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient13368/study1/view2_lateral.jpg",
+      "sha256": "40d2853dc9e0930878c49fe1f6defbba844de3185acbc3f2bc5bc4f4742db405"
+    },
+    "CheXpert-v1.0-small/train/patient13570/study41/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient13570/study41/view1_frontal.jpg",
+      "sha256": "bb74f158aca4f22e234e2403d6837d2d1ae01409eef003817a663b6404ac53c8"
+    },
+    "CheXpert-v1.0-small/train/patient13745/study4/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient13745/study4/view1_frontal.jpg",
+      "sha256": "6c3f8c832c4cb915987a90bdacf547227aaed36774bd1e6db438bcf71fb2001f"
+    },
+    "CheXpert-v1.0-small/train/patient14301/study6/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient14301/study6/view1_frontal.jpg",
+      "sha256": "c2012a108248bec151f5601f742088e83db6af32cc2bc79000abab7279e9952c"
+    },
+    "CheXpert-v1.0-small/train/patient14341/study10/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient14341/study10/view1_frontal.jpg",
+      "sha256": "42b1f906562581d9484378f76788dc0c827f0b98a4308ae0b0b707971c9d9da1"
+    },
+    "CheXpert-v1.0-small/train/patient14630/study5/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient14630/study5/view1_frontal.jpg",
+      "sha256": "e289ee5eb76ffdb5cc58e1858f860e356d51f045ee3fabd51e5ff057a6b8c328"
+    },
+    "CheXpert-v1.0-small/train/patient14739/study4/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient14739/study4/view1_frontal.jpg",
+      "sha256": "fb773fbf683c111bff7bd181db60a4c5e1f9ea95d723e7561bb35fd94f72e6f0"
+    },
+    "CheXpert-v1.0-small/train/patient15069/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient15069/study1/view1_frontal.jpg",
+      "sha256": "6f084e0cf134acf8e6c7caae377801ff01a3f563a15f423055fd4d0168ad8b74"
+    },
+    "CheXpert-v1.0-small/train/patient15218/study16/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient15218/study16/view1_frontal.jpg",
+      "sha256": "c966250de99948b497401ce653b6f99b7e668724d2abaf629ff7e05679179539"
+    },
+    "CheXpert-v1.0-small/train/patient15258/study42/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient15258/study42/view1_frontal.jpg",
+      "sha256": "e1b2375fbd6626a8e48374d95880c4fa529a3ed4182460a1f667efbd357f0235"
+    },
+    "CheXpert-v1.0-small/train/patient15482/study34/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient15482/study34/view1_frontal.jpg",
+      "sha256": "7e157da084c9090eacd78374300aa249675050c3380cab07faf10059c4a42de1"
+    },
+    "CheXpert-v1.0-small/train/patient15889/study14/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient15889/study14/view1_frontal.jpg",
+      "sha256": "0997ad41e7bdd3a5f91727512a2f0c2fe6416574797b92cb7753f7d927e6ae0f"
+    },
+    "CheXpert-v1.0-small/train/patient15913/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient15913/study1/view1_frontal.jpg",
+      "sha256": "67ff048007b57293fb0047d25cf9d1962dbfd48cca4a18bfd33d2febcd7b1847"
+    },
+    "CheXpert-v1.0-small/train/patient16206/study21/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient16206/study21/view1_frontal.jpg",
+      "sha256": "28e3e7923ad35b240b471326a28b96c25cf9528c2f18aeb67dd3c491cf6d0677"
+    },
+    "CheXpert-v1.0-small/train/patient16278/study8/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient16278/study8/view1_frontal.jpg",
+      "sha256": "c0e33c6ffbd501b151fc2a5a78f1db9e639d8c1500ef5f23722ee853d9652de4"
+    },
+    "CheXpert-v1.0-small/train/patient16889/study7/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient16889/study7/view1_frontal.jpg",
+      "sha256": "bf52b40c3c94a312ce655ee45200ec296da4a0ea6e02e9cea6b683458118bc7d"
+    },
+    "CheXpert-v1.0-small/train/patient17445/study4/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient17445/study4/view1_frontal.jpg",
+      "sha256": "4b7e31b9dd90834bf70f0d6e8458c34f4e0816436a9e6b1f5fa89e60a94b278d"
+    },
+    "CheXpert-v1.0-small/train/patient17884/study7/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient17884/study7/view1_frontal.jpg",
+      "sha256": "199728698d9969442d3ff53ca0fca3c11dd6d2332033247810b6eb1933c3b4d8"
+    },
+    "CheXpert-v1.0-small/train/patient17916/study6/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient17916/study6/view1_frontal.jpg",
+      "sha256": "ee0c8910d24edaef66bef854d3dc077fcc0e3d26a039a11be453b314528fba82"
+    },
+    "CheXpert-v1.0-small/train/patient18051/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient18051/study1/view1_frontal.jpg",
+      "sha256": "cc2a8f4c01cd8d73cf7a7420ff5da6779c5ec0161c69d5cf461276f1e5d224e7"
+    },
+    "CheXpert-v1.0-small/train/patient18277/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient18277/study2/view1_frontal.jpg",
+      "sha256": "09a5444b4ced9c19d423b6d92abb545073f3c3ef8c754cdac61beb75fc9d5c5a"
+    },
+    "CheXpert-v1.0-small/train/patient18522/study5/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient18522/study5/view1_frontal.jpg",
+      "sha256": "d83a84e7aa1b203a37f26c64580dbc78cfc5880f5ca6c32cbaf664971c986402"
+    },
+    "CheXpert-v1.0-small/train/patient19343/study18/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient19343/study18/view1_frontal.jpg",
+      "sha256": "08388ee5c1e0b7c73dac37a3ba36b7bb60f919593233e81a371f5c1ad73803eb"
+    },
+    "CheXpert-v1.0-small/train/patient20274/study3/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient20274/study3/view1_frontal.jpg",
+      "sha256": "98d8b3b569b08381929b3f8f80f3c971bd5d704dbeefb83c679e085ffc323d44"
+    },
+    "CheXpert-v1.0-small/train/patient20295/study7/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient20295/study7/view1_frontal.jpg",
+      "sha256": "9934fbfd1bdc873e0af830e963914dcf2aa8aed82ab39b15b1d46dc0ee149a93"
+    },
+    "CheXpert-v1.0-small/train/patient20556/study41/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient20556/study41/view1_frontal.jpg",
+      "sha256": "bf33987ed5f4f76b5820886551f74a5de6194f2ff157befe78045d41e368df23"
+    },
+    "CheXpert-v1.0-small/train/patient21345/study5/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient21345/study5/view1_frontal.jpg",
+      "sha256": "bfc3ab9ec4fef542f0179f8ea7fabff6177eef55b890c26e8fc7d2ef19accc85"
+    },
+    "CheXpert-v1.0-small/train/patient21769/study10/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient21769/study10/view1_frontal.jpg",
+      "sha256": "43f60aaeabc52d7003c5663de8820afdef00adaafc3114ab8fca0ca07f6faf6c"
+    },
+    "CheXpert-v1.0-small/train/patient24574/study9/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient24574/study9/view1_frontal.jpg",
+      "sha256": "2b5c711a2f2e70a90c5c3886c7cf112decbf45887549c0b8e0ee945e571a68fd"
+    },
+    "CheXpert-v1.0-small/train/patient24813/study65/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient24813/study65/view1_frontal.jpg",
+      "sha256": "b4833507f40e9cbb5c9e0d464a0d93169673500604daae581a3c5ccc943679d9"
+    },
+    "CheXpert-v1.0-small/train/patient25399/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient25399/study1/view1_frontal.jpg",
+      "sha256": "4e36eca900fe10f51c84fb001d1f31b47e6106c58c3b1132668e3e0069431d7b"
+    },
+    "CheXpert-v1.0-small/train/patient25596/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient25596/study2/view1_frontal.jpg",
+      "sha256": "a2c53ac73fee039193f65960171706541b6476fb8e2c51aa32ce1a6129b27883"
+    },
+    "CheXpert-v1.0-small/train/patient26416/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient26416/study2/view1_frontal.jpg",
+      "sha256": "43aa8451523a0260d2d80e7d84d8a3db6d80500f2815de412cb5f8b33dee1b16"
+    },
+    "CheXpert-v1.0-small/train/patient26750/study4/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient26750/study4/view1_frontal.jpg",
+      "sha256": "8816a7047cdea2f465f0e23559b3189717583e3d2cb7a7ebe59a83010a182406"
+    },
+    "CheXpert-v1.0-small/train/patient26780/study5/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient26780/study5/view1_frontal.jpg",
+      "sha256": "fee4acaf0652d33fb69c10290de286c43818066ee0bc52a904f1a535cd2344e9"
+    },
+    "CheXpert-v1.0-small/train/patient26889/study5/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient26889/study5/view1_frontal.jpg",
+      "sha256": "26574622e4d19030dfbdfb386ed58da8979c8d2a9f34b7bc0e8c143fc6d05642"
+    },
+    "CheXpert-v1.0-small/train/patient26908/study3/view2_lateral.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient26908/study3/view2_lateral.jpg",
+      "sha256": "ff5bb3d908ebb3aef8fa899e4a21e119227cf4e2e4a7fb43094bf52b14dae126"
+    },
+    "CheXpert-v1.0-small/train/patient26917/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient26917/study1/view1_frontal.jpg",
+      "sha256": "c21d6f36d14be14b5f219fca7a50728dc21869133fdfda5d3a2278324631925e"
+    },
+    "CheXpert-v1.0-small/train/patient27497/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient27497/study2/view1_frontal.jpg",
+      "sha256": "5595e8fb82029444265a30cd8f69d58e9a391661084fb9e0b929d96fa41c3e7f"
+    },
+    "CheXpert-v1.0-small/train/patient27701/study7/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient27701/study7/view1_frontal.jpg",
+      "sha256": "a6507c4b9f66bc65953087ff001a374fe3a893657c12e2eab8e11b3b248c6554"
+    },
+    "CheXpert-v1.0-small/train/patient28614/study20/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient28614/study20/view1_frontal.jpg",
+      "sha256": "c12dc8001458bf36ebb02c74edee6cdc26a8ba61dad889a1053cc7c6a70365a2"
+    },
+    "CheXpert-v1.0-small/train/patient28737/study4/view2_lateral.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient28737/study4/view2_lateral.jpg",
+      "sha256": "8bd46881fa43b7a6a9e48e4eca1853e21e2f2cb5e9b04b5e845fb7d443089a4e"
+    },
+    "CheXpert-v1.0-small/train/patient29302/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient29302/study2/view1_frontal.jpg",
+      "sha256": "3149af28a2502e7d24b7c59abf86d320f7629e34e656ffbb98a5111c8cdc789d"
+    },
+    "CheXpert-v1.0-small/train/patient29435/study7/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient29435/study7/view1_frontal.jpg",
+      "sha256": "46ee817b0bdbabe5453e5b5d70b2d57578d9a2354854e246718d4d450661b1e1"
+    },
+    "CheXpert-v1.0-small/train/patient29641/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient29641/study2/view1_frontal.jpg",
+      "sha256": "0bc15c2499f3e2ed03360dcdec338f222887c6ada839a41ef94791648b45c120"
+    },
+    "CheXpert-v1.0-small/train/patient30028/study14/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient30028/study14/view1_frontal.jpg",
+      "sha256": "7ec5421efe5ced2fb13f5dc4e8af8e174811c51dd6abdeb529375681fbd41933"
+    },
+    "CheXpert-v1.0-small/train/patient30224/study1/view2_lateral.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient30224/study1/view2_lateral.jpg",
+      "sha256": "8c88f835b762539fe4beca26d3921890c04a62afac4a8c625feeb0a909beeb7c"
+    },
+    "CheXpert-v1.0-small/train/patient30718/study6/view2_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient30718/study6/view2_frontal.jpg",
+      "sha256": "b3297fb647be744012e172fe50a5df84603421bd275731acedda7033fe161f6d"
+    },
+    "CheXpert-v1.0-small/train/patient31163/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient31163/study1/view1_frontal.jpg",
+      "sha256": "39f052ac644df8ea7d851181cb209f65bfd9b72de851e22491f8ce4dcc9e2788"
+    },
+    "CheXpert-v1.0-small/train/patient31673/study14/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient31673/study14/view1_frontal.jpg",
+      "sha256": "e0f9602420241e11600efb441545912a98f597834a046142e439fb007c4d4f47"
+    },
+    "CheXpert-v1.0-small/train/patient31828/study1/view2_lateral.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient31828/study1/view2_lateral.jpg",
+      "sha256": "be7079395912539bf618a0addb5aa179c6f353eb0b1d40894ebfc15d245d67f3"
+    },
+    "CheXpert-v1.0-small/train/patient32592/study18/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient32592/study18/view1_frontal.jpg",
+      "sha256": "d5f891f5a6aa2995ac2ac04246f4068871b4fc2c6aece0e8f0d680a82c95998c"
+    },
+    "CheXpert-v1.0-small/train/patient32669/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient32669/study2/view1_frontal.jpg",
+      "sha256": "c8202531ff8c80811798c02fc8d010749849497fcbcfc9067a5fe581f56e84ef"
+    },
+    "CheXpert-v1.0-small/train/patient32832/study16/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient32832/study16/view1_frontal.jpg",
+      "sha256": "938c76e2078e3233c486e94492c958c8b64d6b7db69cc1525be1626e6158664d"
+    },
+    "CheXpert-v1.0-small/train/patient32927/study4/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient32927/study4/view1_frontal.jpg",
+      "sha256": "700f3d2d33095500a90d324396b3187e645935683a67b576466dcf78a2123170"
+    },
+    "CheXpert-v1.0-small/train/patient33041/study4/view2_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient33041/study4/view2_frontal.jpg",
+      "sha256": "e88eff0dae5cc8cf21581885bc72d430b4cab2accac877076f1967afe0c5ce73"
+    },
+    "CheXpert-v1.0-small/train/patient33671/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient33671/study1/view1_frontal.jpg",
+      "sha256": "f51b76714f203f6090e3bdc6dbc6c6700871c1b96abe5ef4f5f1ba12a2755597"
+    },
+    "CheXpert-v1.0-small/train/patient34258/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient34258/study1/view1_frontal.jpg",
+      "sha256": "51ba48926fbd014412de1c3c6f0a096235e66c9ebc48e153d0ac182255e7c539"
+    },
+    "CheXpert-v1.0-small/train/patient34425/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient34425/study1/view1_frontal.jpg",
+      "sha256": "71fe83c04deb5e636c258b8e9be07e25e07f40f8356bdc0cce6848cf011f44a9"
+    },
+    "CheXpert-v1.0-small/train/patient34832/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient34832/study1/view1_frontal.jpg",
+      "sha256": "55aa5b3a01e0a71df20ed67c4b839d3322f5385dad657bddf2fa483a6c88d0ae"
+    },
+    "CheXpert-v1.0-small/train/patient34908/study11/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient34908/study11/view1_frontal.jpg",
+      "sha256": "82853319f2c71191f68c1a626e12cc864eb4a0bffa3dc01dcb3fd4cabd12a754"
+    },
+    "CheXpert-v1.0-small/train/patient35163/study11/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient35163/study11/view1_frontal.jpg",
+      "sha256": "897a58c4ef36212fbe4510a689aa22354bb2c8106213b6024469522288f54576"
+    },
+    "CheXpert-v1.0-small/train/patient35302/study4/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient35302/study4/view1_frontal.jpg",
+      "sha256": "73329d4da80b6bad8fe85a7bba7dae25fea07ac11673d771c1cceebc8df35f0a"
+    },
+    "CheXpert-v1.0-small/train/patient36103/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient36103/study2/view1_frontal.jpg",
+      "sha256": "ee5bc8ab6b5790461cc26e262f4d9d7e86aef803309cd4dc1ad3444b8c6defde"
+    },
+    "CheXpert-v1.0-small/train/patient36409/study6/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient36409/study6/view1_frontal.jpg",
+      "sha256": "ac0f0291a9049134033b13b334fcde4127543611714be4a9782fa13196f34180"
+    },
+    "CheXpert-v1.0-small/train/patient36649/study3/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient36649/study3/view1_frontal.jpg",
+      "sha256": "81e8e9911fdd206c2452bc9fc99d4efb0baab052aa64a795893a97595d5d90fc"
+    },
+    "CheXpert-v1.0-small/train/patient36819/study7/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient36819/study7/view1_frontal.jpg",
+      "sha256": "f63a388c2e9ed8bb7309deaa328e1de155969cc689f505179cfdc606aff6e097"
+    },
+    "CheXpert-v1.0-small/train/patient36929/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient36929/study2/view1_frontal.jpg",
+      "sha256": "83172e40e3674c8b6eebe31777368616212755c12d9982a54c36f0e80dacc87f"
+    },
+    "CheXpert-v1.0-small/train/patient37241/study3/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient37241/study3/view1_frontal.jpg",
+      "sha256": "9d09b3359c9adf90dab2e961f298d3159b6ba7f2d862b1f293d7e39585acdf7b"
+    },
+    "CheXpert-v1.0-small/train/patient37406/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient37406/study2/view1_frontal.jpg",
+      "sha256": "6969672e86ef6b2c9f20a589c91d306c8fb93b0d10c2330a1b1686e40f4cb71f"
+    },
+    "CheXpert-v1.0-small/train/patient37435/study12/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient37435/study12/view1_frontal.jpg",
+      "sha256": "dc5d0c0c485132fd607aeadbe16c4c6064757e7c16160356d7f10741fbef5998"
+    },
+    "CheXpert-v1.0-small/train/patient37469/study4/view2_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient37469/study4/view2_frontal.jpg",
+      "sha256": "3347ec4d991243b2979f8156f6acf14234fd9a2bb6ed8585b96f38f6501fd45e"
+    },
+    "CheXpert-v1.0-small/train/patient37661/study5/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient37661/study5/view1_frontal.jpg",
+      "sha256": "dd426aad4f83278ccfe4555ee969a16df59ae284ed74e1ffb81dfeda1369a95c"
+    },
+    "CheXpert-v1.0-small/train/patient38023/study6/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient38023/study6/view1_frontal.jpg",
+      "sha256": "aa446a5852c3f74ca7a7bc415e72595321b37b51f4e2a4eb228ca2fdc193d660"
+    },
+    "CheXpert-v1.0-small/train/patient38168/study4/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient38168/study4/view1_frontal.jpg",
+      "sha256": "d9ebd992b29893104c4a81fc7af42bd902c0847372139feedca49fbd2bea6fa5"
+    },
+    "CheXpert-v1.0-small/train/patient39836/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient39836/study2/view1_frontal.jpg",
+      "sha256": "e90346bdfc3aa11cb966b38ac4cf6b1b62d894b4dd47cc8850106dba66a2c3c1"
+    },
+    "CheXpert-v1.0-small/train/patient39945/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient39945/study2/view1_frontal.jpg",
+      "sha256": "04e164055b5a72eb0d04ae41dc8e5070b1089c5abd9af9d1b2cfcbcfae82eaa0"
+    },
+    "CheXpert-v1.0-small/train/patient40025/study14/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient40025/study14/view1_frontal.jpg",
+      "sha256": "b107998a70054c8b371c7b61d9a696e377428b622af09408502e4d050dfccff9"
+    },
+    "CheXpert-v1.0-small/train/patient40316/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient40316/study1/view1_frontal.jpg",
+      "sha256": "1d98f21260bd4f6ddad533b60c5e5dd0f9e28f12c843cab34dc65c4434003815"
+    },
+    "CheXpert-v1.0-small/train/patient40410/study6/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient40410/study6/view1_frontal.jpg",
+      "sha256": "46db6834abbfc7d63082c1bf2b8e31afae58603d04d3317c1430d240cde173ee"
+    },
+    "CheXpert-v1.0-small/train/patient41509/study3/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient41509/study3/view1_frontal.jpg",
+      "sha256": "9d34b43a7780064fd22f38d0a3f1fd25eae0579a1ca21f3d86b937e0cc0be5a8"
+    },
+    "CheXpert-v1.0-small/train/patient41687/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient41687/study2/view1_frontal.jpg",
+      "sha256": "5d58b125db5ce60f1ae7f7c6a29b7da2d5002aa23a2f437681913d34abc02cf4"
+    },
+    "CheXpert-v1.0-small/train/patient42118/study7/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient42118/study7/view1_frontal.jpg",
+      "sha256": "75a3b80db730402e5a7fdf9e7dc469ea27c7cff9d19e1ba8f36a29f6ba0220fc"
+    },
+    "CheXpert-v1.0-small/train/patient42307/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient42307/study1/view1_frontal.jpg",
+      "sha256": "dc04e2ffdb31d9d1cb63d0f4711ac9ca2aae8b0a929d9f92dca87062a55dc718"
+    },
+    "CheXpert-v1.0-small/train/patient42535/study3/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient42535/study3/view1_frontal.jpg",
+      "sha256": "078a0a10f34150254e5c2c9937a4b3099bc608880ec0ce1725305502cbf23c78"
+    },
+    "CheXpert-v1.0-small/train/patient42575/study3/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient42575/study3/view1_frontal.jpg",
+      "sha256": "03860953ecc19d704b54bc2d6b1ad8c8172a1332ab66adcb082905715c758540"
+    },
+    "CheXpert-v1.0-small/train/patient42801/study3/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient42801/study3/view1_frontal.jpg",
+      "sha256": "1310d3ce5b1ded06a5ae9326e9b7267e4e9d0fb546068b9d6e28fac17d89f2d3"
+    },
+    "CheXpert-v1.0-small/train/patient43059/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient43059/study1/view1_frontal.jpg",
+      "sha256": "8799307e5b6c99e0618435ca4d6d8aaf880b833e95edde9bd2bb16f2f41fe2e8"
+    },
+    "CheXpert-v1.0-small/train/patient43060/study1/view2_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient43060/study1/view2_frontal.jpg",
+      "sha256": "1a7d7ae46697f7cc68ad6f270ffc49295631146b1aee15c70cba68e7c1bf8b46"
+    },
+    "CheXpert-v1.0-small/train/patient43421/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient43421/study2/view1_frontal.jpg",
+      "sha256": "c0478dc89d6a838a17d51de35988fe70eeca30dd7c03c5ea08ddb4e02fc67e72"
+    },
+    "CheXpert-v1.0-small/train/patient43485/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient43485/study2/view1_frontal.jpg",
+      "sha256": "ddd11f0a1ffdd302d18671165e4568bea7b7cf5540dfbfa613c0a0885d231b1b"
+    },
+    "CheXpert-v1.0-small/train/patient45299/study4/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient45299/study4/view1_frontal.jpg",
+      "sha256": "e8a534efe7f1b9f8f8403183ca14b2785d791f0bbb381a13cc549ee3af13525f"
+    },
+    "CheXpert-v1.0-small/train/patient45616/study6/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient45616/study6/view1_frontal.jpg",
+      "sha256": "cca2ff2c66809aa864bd6161f0dce995c1ac10f683165bc447f662615b31ab8c"
+    },
+    "CheXpert-v1.0-small/train/patient45853/study6/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient45853/study6/view1_frontal.jpg",
+      "sha256": "87ea0707695e486c26a30dcdb0e065d542d99a77a1f505c8c727ae873dcea244"
+    },
+    "CheXpert-v1.0-small/train/patient46063/study4/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient46063/study4/view1_frontal.jpg",
+      "sha256": "685ac10e32a9b899df68061f4b64119377b956fc92c2e7a343b6c43471a195c0"
+    },
+    "CheXpert-v1.0-small/train/patient46398/study6/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient46398/study6/view1_frontal.jpg",
+      "sha256": "7fada84eae31712134ea6cff9c71cd8d5eff887d2aabe1116f98311b4b5b6277"
+    },
+    "CheXpert-v1.0-small/train/patient46651/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient46651/study1/view1_frontal.jpg",
+      "sha256": "6a2e14a3e6a28d8b07bd1aa62f831bbf467b8de079da1f6d87830aa88829f0e7"
+    },
+    "CheXpert-v1.0-small/train/patient47014/study6/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient47014/study6/view1_frontal.jpg",
+      "sha256": "aec7a89b036f79280393600d336ee05a94b760af07001181c0186a955d8727f7"
+    },
+    "CheXpert-v1.0-small/train/patient47298/study1/view2_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient47298/study1/view2_frontal.jpg",
+      "sha256": "d232ed95d1a9b3cdee41e0aae9ce74b90c61888fd9317ccf5352117a914149a2"
+    },
+    "CheXpert-v1.0-small/train/patient48623/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient48623/study2/view1_frontal.jpg",
+      "sha256": "cca6d03c5822c28116d7f8507aadfc01f744d51d1de82f490f3a5bedfdcef94e"
+    },
+    "CheXpert-v1.0-small/train/patient48643/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient48643/study2/view1_frontal.jpg",
+      "sha256": "a3974e29ae1940b56563c9c47dc4f4bb207a1ed6551ed2c02d64b694a77278e8"
+    },
+    "CheXpert-v1.0-small/train/patient48654/study6/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient48654/study6/view1_frontal.jpg",
+      "sha256": "6b90a29b999f587c7cf2361deed7d951702ea83495cd01f551411e3f209f0619"
+    },
+    "CheXpert-v1.0-small/train/patient50604/study3/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient50604/study3/view1_frontal.jpg",
+      "sha256": "1dd55613ba3aefcb4f0c90ec91fde43b2632df5a5bb1f2747d9fb107741ec687"
+    },
+    "CheXpert-v1.0-small/train/patient50753/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient50753/study1/view1_frontal.jpg",
+      "sha256": "4215bf36a5d4eef08d0d2e15cd9b46160d9eebd5a8906e41c31f74adb3ddf01d"
+    },
+    "CheXpert-v1.0-small/train/patient50791/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient50791/study2/view1_frontal.jpg",
+      "sha256": "33b63d5efe3342c814a7729b9ae803b61b8694d852aea560d42a101cd6884b94"
+    },
+    "CheXpert-v1.0-small/train/patient51066/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient51066/study2/view1_frontal.jpg",
+      "sha256": "89c2b1013a198c16a28600c2fa788798ce21dae5fa3f51e8a0359cc8c1d098ac"
+    },
+    "CheXpert-v1.0-small/train/patient51095/study4/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient51095/study4/view1_frontal.jpg",
+      "sha256": "c2d51cab03990f2d1942706beec29b62ed948942fa56591a5b4ac1b66a4dd08b"
+    },
+    "CheXpert-v1.0-small/train/patient51543/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient51543/study1/view1_frontal.jpg",
+      "sha256": "815d0f16a5078a971aed7080b16bb2d6d916413bdb2267c3cf5d8bf677bd7df1"
+    },
+    "CheXpert-v1.0-small/train/patient52959/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient52959/study2/view1_frontal.jpg",
+      "sha256": "379dd06fb8859e9c59b61f0f41e699e655f39d020b3b1423f000774756dd74f1"
+    },
+    "CheXpert-v1.0-small/train/patient54381/study5/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient54381/study5/view1_frontal.jpg",
+      "sha256": "eaf41607ff773d50cfd439b49b3fc5e0de1586958632779cd7c3001c95d32eb3"
+    },
+    "CheXpert-v1.0-small/train/patient55102/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient55102/study1/view1_frontal.jpg",
+      "sha256": "da4bb2795a81f93e4cc0fd22c3e6c6ee85cfbe434ce4d496aeedde334217a384"
+    },
+    "CheXpert-v1.0-small/train/patient56615/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient56615/study1/view1_frontal.jpg",
+      "sha256": "5988638198884ce9892d583930875caa600d07d237f92b2634b1e438f76a5099"
+    },
+    "CheXpert-v1.0-small/train/patient56834/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient56834/study1/view1_frontal.jpg",
+      "sha256": "78a7f7acf5dd2bc3c126511abd528422d4326559346d18436024aa863c071c8c"
+    },
+    "CheXpert-v1.0-small/train/patient58548/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient58548/study1/view1_frontal.jpg",
+      "sha256": "dbea8b0cc5a90ea53d2457f5a0eb6c6d1533e076a4d9fe4ba456539614393229"
+    },
+    "CheXpert-v1.0-small/train/patient58666/study2/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient58666/study2/view1_frontal.jpg",
+      "sha256": "e85f2df5430ff2d7cff815787b7a461e86da1661ca6bc886c74358aeea83ac79"
+    },
+    "CheXpert-v1.0-small/train/patient62862/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient62862/study1/view1_frontal.jpg",
+      "sha256": "ad88d1722fda5f12baf93e4230ff72a55c5a52e615a563ee8aaa514b8d3a6270"
+    },
+    "CheXpert-v1.0-small/train/patient63176/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient63176/study1/view1_frontal.jpg",
+      "sha256": "f6a620739a4a4f201132de7cc011a3b055e28b965d311004bcd2b41df0617610"
+    },
+    "CheXpert-v1.0-small/train/patient63617/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient63617/study1/view1_frontal.jpg",
+      "sha256": "ad85a5206b2a1ba4d7c3782ea4a5bb0e993680d51ef5742142502233c4af5245"
+    },
+    "CheXpert-v1.0-small/train/patient64265/study1/view1_frontal.jpg": {
+      "image_ref": "CheXpert-v1.0-small/train/patient64265/study1/view1_frontal.jpg",
+      "sha256": "e8fefd4e1acc64c297ee897a419b30b3d477bf50ade6cb5147966a0ef4cb68ba"
+    }
+  },
+  "cohorts": {
+    "natural_cues": {
+      "n": 150,
+      "case_ids_sha256": "6306c61104055133beb41cb0d7a05636e7651b34c6320255c6390c9bc67182b6",
+      "result_file": "imaging_cascade_natural_cues.jsonl"
+    },
+    "natural_independent": {
+      "n": 150,
+      "case_ids_sha256": "ea632a6c30de6f7fd5bf929dd4f041bad317932ecbae85a14f828dba3531c4a2",
+      "result_file": "imaging_cascade_natural_independent.jsonl"
+    }
+  }
+}

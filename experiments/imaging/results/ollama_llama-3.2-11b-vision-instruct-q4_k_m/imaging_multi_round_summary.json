@@ -1,0 +1,32 @@
+{
+  "n": 35,
+  "K": 3,
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "cue": "watermark",
+  "new_api_calls_this_run": 210,
+  "shared_adoption_by_round": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "isolated_adoption_by_round": [
+    1.0,
+    0.8286,
+    0.8
+  ],
+  "round1_vs_roundK_shared": {
+    "gained": 0,
+    "lost": 0,
+    "mcnemar_p": 1.0
+  },
+  "monotone_nondecreasing_shared": true,
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "baseline_accuracy": {
+    "correct": 1,
+    "n": 35,
+    "accuracy": 0.02857142857142857,
+    "display": "1/35 (2.9%)",
+    "source_result": "experiments/imaging/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/imaging_solo.jsonl",
+    "field": "imaging_solo.clean"
+  }
+}

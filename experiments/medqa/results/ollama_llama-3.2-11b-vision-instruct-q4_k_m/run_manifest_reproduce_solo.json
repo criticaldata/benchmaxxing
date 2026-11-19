@@ -1,0 +1,28 @@
+{
+  "arm": "reproduce_solo",
+  "lane": "medqa",
+  "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
+  "model": "meta/llama-3.2-11b-vision-instruct",
+  "model_display": "Ollama llama3.2-vision:11b Q4_K_M",
+  "expected_n_cases": 100,
+  "unique_case_ids": 100,
+  "result_rows": 300,
+  "case_ids_sha256": "50a7c54f4c30ce6e54c50997430e8807fb5d41bd4bd5cc4778c08d19e7b3def7",
+  "case_set_source": "experiments/model_metadata/q4_text_case_sets.json#medqa/reproduce_solo",
+  "seed": 0,
+  "stage": "solo",
+  "result_files": [
+    "solo_records.jsonl",
+    "solo_results.json"
+  ],
+  "summary_n_records": 300,
+  "cache_path": "experiments/medqa/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m_call_cache.jsonl",
+  "cache_rows": 2273,
+  "comparator": "Qwen MedQA solo records; same 100 IDs",
+  "status": "complete_from_committed_per_case_records",
+  "timestamps": "not included in audited import",
+  "source_branch": "experiments/llama32-vision-q4km-parity",
+  "source_head": "6ace8cc5ba2363a4c6fbbe325c3f8cfa583f722f",
+  "source_result_commit": "1bb6828a750e15a91043dd2f2432ef5d93f83d2f",
+  "new_api_calls_during_manifest_generation": 0
+}
