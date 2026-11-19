@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Benchmaxxing · Claude Science community call</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='6 30 116 82'%3E%3Cline x1='12' y1='106' x2='116' y2='106' stroke='%23111111' stroke-width='4' stroke-linecap='round'/%3E%3Crect x='16' y='48' width='16' height='56' rx='3' fill='%238A8B8C'%3E%3CanimateTransform attributeName='transform' type='rotate' values='0 24 104;52 24 104;52 24 104;0 24 104' keyTimes='0;0.25;0.75;1' dur='2.4s' repeatCount='indefinite'/%3E%3C/rect%3E%3Crect x='46' y='48' width='16' height='56' rx='3' fill='%238A8B8C'%3E%3CanimateTransform attributeName='transform' type='rotate' values='0 54 104;26 54 104;26 54 104;0 54 104' keyTimes='0;0.35;0.8;1' dur='2.4s' repeatCount='indefinite'/%3E%3C/rect%3E%3Crect x='74' y='48' width='16' height='56' rx='3' fill='%23A31F34'%3E%3CanimateTransform attributeName='transform' type='rotate' values='0 82 104;14 82 104;14 82 104;0 82 104' keyTimes='0;0.45;0.85;1' dur='2.4s' repeatCount='indefinite'/%3E%3C/rect%3E%3Crect x='98' y='38' width='8' height='66' rx='3' fill='%23111111'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+/* Visual tokens aligned with the Benchmaxxing world page (criticaldata.github.io/benchmaxxing/world) */
+:root{
+  --paper:#FAFAF8;
+  --paper-2:#F2F2EE;
+  --sheet:#FFFFFF;
+  --ink:#181818;
+  --ink-2:#333333;
+  --muted:#5E5E5C;
+  --faint:#8A8B8C;
+  --rule:#E2E2DE;
+  --rule-soft:#ECECE7;
+
+  --mit:#A31F34;
+  --mit-wash:#FBF1F3;
+  --mit-border:#E8C2C8;
+
+  --link:#025E8D;
+  --link-hover:#01476B;
+  --link-wash:#EDF6FB;
+  --link-border:#C1DFF0;
+
+  --keep:#1B6CA8;
+  --keep-wash:#EEF5FA;
+  --move:#D1495B;
+  --move-wash:#FCF1F3;
+  --flag:#1D3461;
+  --flag-wash:#EEF2F8;
+
+  --ok:#16776C;
+  --ok-wash:#E8F6F3;
+  --ok-border:#B8E3DB;
+
+  --gold-3d:#E5A800;
+  --gold-wash:#FDF5D8;
+  --gold-border:#EBD694;
+  --gold-ink:#7A5600;
+
+  --serif:"Source Serif 4","Source Serif Pro",Georgia,"Times New Roman",serif;
+  --sans:"Inter","Helvetica Neue",Helvetica,Arial,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+
+  --sh-1:0 1px 2px rgb(24 24 24 / .04), 0 4px 12px -6px rgb(24 24 24 / .08);
+  --sh-2:0 2px 4px rgb(24 24 24 / .04), 0 14px 28px -16px rgb(24 24 24 / .18);
+  --radius:14px;
+  --topbar-h:62px;
+  --bottombar-h:58px;
+  color-scheme:light;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  height:100%;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  line-height:1.45;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow:hidden;
+}
+body{
+  background-color:var(--paper);
+  background-image:radial-gradient(rgb(24 24 24 / .065) 1px, transparent 1px);
+  background-size:24px 24px;
+}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Topbar */
+.topbar{
+  position:fixed;top:0;left:0;right:0;height:var(--topbar-h);
+  display:flex;align-items:center;gap:14px;
+  padding:0 clamp(18px,3.2vw,44px);
+  background:rgb(255 255 255 / .94);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--rule);
+  z-index:20;
+}
+.brand-div{width:1px;height:26px;background:var(--rule);flex:none}
+.brand-bm{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+.brand-bm:hover{text-decoration:none}
+.bm-mark{height:32px;width:auto;flex:none}
+.wm{font-size:18px;line-height:1.08;letter-spacing:-.01em}
+.wm b{font-weight:700}
+.wm small{
+  display:block;margin-top:2px;
+  font-size:10px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted);
+}
+.dojo-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  letter-spacing:.05em;
+  color:var(--flag);background:var(--flag-wash);
+  border:1px solid #CED9EA;
+  padding:5px 11px;border-radius:999px;
+  white-space:nowrap;
+  transition:background .15s ease, border-color .15s ease, color .15s ease;
+}
+.dojo-pill b{font-weight:700;color:var(--mit)}
+.dojo-pill:hover{
+  text-decoration:none;background:#E2EAF5;border-color:#AEBFD9;color:var(--ink);
+}
+.topbar-right{
+  margin-left:auto;
+  display:flex;align-items:center;gap:16px;
+}
+.where{
+  font-family:var(--mono);font-size:12px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--muted);
+  white-space:nowrap;
+}
+.slide-nav{
+  display:flex;align-items:center;gap:4px;
+  padding:3px;border-radius:999px;
+  background:var(--paper-2);border:1px solid var(--rule);
+}
+.slide-nav button{
+  appearance:none;border:0;background:transparent;
+  font-family:var(--mono);font-size:11px;font-weight:500;
+  letter-spacing:.04em;color:var(--muted);
+  padding:5px 11px;border-radius:999px;cursor:pointer;
+  transition:background .18s ease, color .18s ease, box-shadow .18s ease;
+  white-space:nowrap;
+}
+.slide-nav button:hover{color:var(--ink)}
+.slide-nav button.on{
+  background:var(--sheet);color:var(--ink);font-weight:600;
+  box-shadow:0 1px 3px rgb(24 24 24 / .10);
+}
+.slide-nav button span{color:var(--mit);margin-right:4px}
+.progress{
+  position:absolute;left:0;bottom:-1px;height:2.5px;
+  background:var(--mit);width:33.333%;
+  transition:width .28s cubic-bezier(.22,1,.36,1);
+}
+
+/* Slide Stage */
+.slide{
+  position:fixed;inset:var(--topbar-h) 0 var(--bottombar-h) 0;
+  display:none;flex-direction:column;
+  padding:clamp(20px,3.2vh,40px) clamp(24px,5vw,72px) clamp(12px,1.8vh,20px);
+  overflow-y:auto;
+}
+.slide.on{
+  display:flex;
+  animation:slideIn .24s cubic-bezier(.22,1,.36,1);
+}
+@keyframes slideIn{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@media (prefers-reduced-motion:reduce){
+  .slide.on{animation:none}
+  .progress{transition:none}
+}
+
+.stage{
+  width:100%;max-width:1240px;margin:auto;
+  display:flex;flex-direction:column;
+}
+
+.kicker{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);
+  font-size:clamp(11px, .95vw, 13px);
+  font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--mit);
+  margin-bottom:clamp(12px,1.8vh,20px);
+}
+.kicker::before{
+  content:"";display:inline-block;width:22px;height:2px;background:var(--mit);border-radius:2px;
+}
+
+h1{
+  font-family:var(--serif);font-weight:600;
+  font-size:clamp(30px, 3.3vw, 50px);
+  line-height:1.15;letter-spacing:-.018em;
+  color:var(--ink);max-width:34ch;
+  margin-bottom:clamp(24px,4vh,44px);
+  text-wrap:balance;
+}
+h1 em{
+  font-style:normal;
+  background:linear-gradient(transparent 74%, rgb(209 73 91 / .22) 74%);
+  padding:0 .06em;border-radius:2px;
+}
+h1 em.hl-flag{
+  background:linear-gradient(transparent 74%, rgb(29 52 97 / .18) 74%);
+}
+
+h2{
+  font-family:var(--serif);font-weight:600;
+  font-size:clamp(28px, 3vw, 44px);
+  line-height:1.15;letter-spacing:-.016em;
+  color:var(--ink);
+  margin-bottom:clamp(20px,3.4vh,34px);
+  text-wrap:balance;
+}
+
+/* Slide 1: Three Numbers */
+.nums{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(16px,2vw,26px);
+}
+.card{
+  position:relative;overflow:hidden;
+  background:var(--sheet);
+  border:1px solid var(--rule);
+  border-radius:var(--radius);
+  padding:clamp(22px,3vh,32px) clamp(20px,2vw,28px);
+  box-shadow:var(--sh-2);
+  display:flex;flex-direction:column;
+}
+.card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:4px;
+}
+.card.keep::before{background:var(--keep)}
+.card.move::before{background:var(--move)}
+.card.flag::before{background:var(--flag)}
+
+.card-top{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+}
+.card .k{
+  font-family:var(--mono);
+  font-size:clamp(11px,.9vw,12.5px);
+  font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);
+}
+.pill{
+  font-family:var(--mono);font-size:10.5px;font-weight:600;
+  letter-spacing:.04em;text-transform:uppercase;
+  padding:3px 9px;border-radius:999px;white-space:nowrap;
+}
+.card.keep .pill{background:var(--keep-wash);color:var(--keep)}
+.card.move .pill{background:var(--move-wash);color:var(--move)}
+.card.flag .pill{background:var(--flag-wash);color:var(--flag)}
+
+.stat-row{
+  display:flex;align-items:baseline;gap:10px;
+  margin:clamp(14px,2vh,22px) 0 clamp(12px,1.6vh,16px);
+}
+.card b.stat{
+  font-family:var(--serif);
+  font-size:clamp(38px, 4.1vw, 60px);
+  line-height:1;font-weight:700;
+  letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums;
+}
+.card.keep b.stat{color:var(--keep)}
+.card.move b.stat{color:var(--move)}
+.card.flag b.stat{color:var(--flag)}
+.stat-pct{
+  font-family:var(--mono);font-size:clamp(13px,1.05vw,15px);
+  font-weight:600;color:var(--move);opacity:.85;
+}
+
+.meter{
+  height:7px;width:100%;border-radius:999px;
+  background:var(--paper-2);overflow:hidden;
+  margin-bottom:clamp(14px,2vh,20px);
+}
+.meter > span{display:block;height:100%;border-radius:999px}
+.card.keep .meter > span{background:var(--keep)}
+.card.move .meter > span{background:var(--move)}
+.card.flag .meter > span{background:var(--flag)}
+
+.card p.desc{
+  font-size:clamp(16px, 1.4vw, 21px);
+  line-height:1.35;color:var(--ink-2);font-weight:500;
+}
+.card .substat{
+  margin-top:auto;padding-top:12px;
+  border-top:1px dashed var(--rule);
+  font-family:var(--mono);font-size:clamp(12px,.95vw,13.5px);
+  color:var(--muted);
+}
+.card .substat strong{color:var(--move);font-weight:600}
+.team-line{
+  margin-top:clamp(16px,2.4vh,24px);
+  padding:11px 16px;
+  background:var(--sheet);
+  border:1px solid var(--rule);
+  border-radius:12px;
+  box-shadow:var(--sh-1);
+  font-size:clamp(11.5px, .92vw, 13px);
+  line-height:1.45;
+  color:var(--muted);
+}
+.team-line strong{
+  font-family:var(--mono);font-size:10.5px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:var(--mit);margin-right:8px;
+}
+
+/* Slide 2: 6-Step Workflow */
+.steps{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(14px,1.7vw,22px);
+}
+.step{
+  background:var(--sheet);
+  border:1px solid var(--rule);
+  border-radius:var(--radius);
+  padding:clamp(20px,2.8vh,30px) clamp(18px,1.8vw,26px);
+  box-shadow:var(--sh-1);
+  display:flex;flex-direction:column;gap:12px;
+}
+.step.key{
+  border-color:var(--mit-border);
+  background:linear-gradient(180deg, var(--mit-wash) 0%, var(--sheet) 52%);
+  box-shadow:var(--sh-2);
+}
+.step-head{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+}
+.step-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:12px;font-weight:600;
+  color:var(--mit);background:var(--mit-wash);
+  border:1px solid var(--mit-border);
+  padding:3px 9px;border-radius:6px;letter-spacing:.06em;
+}
+.step.key .step-num{
+  background:var(--mit);color:#fff;border-color:var(--mit);
+}
+.key-tag{
+  font-family:var(--mono);font-size:10.5px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--mit);
+}
+.step p{
+  font-family:var(--serif);font-weight:600;
+  font-size:clamp(18px, 1.65vw, 24px);
+  line-height:1.25;color:var(--ink);
+}
+
+.note-bar{
+  margin-top:clamp(18px,3vh,28px);
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  flex-wrap:wrap;
+  background:var(--sheet);
+  border:1px solid var(--rule);
+  border-radius:var(--radius);
+  padding:clamp(12px,1.7vh,17px) clamp(16px,1.8vw,24px);
+  box-shadow:var(--sh-1);
+}
+.note-bar p{
+  font-size:clamp(13.5px, 1.08vw, 15.5px);color:var(--muted);
+}
+.note-bar p strong{color:var(--ink)}
+.rule-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:clamp(11.5px,.95vw,13px);font-weight:600;
+  color:var(--mit);background:var(--mit-wash);
+  border:1px solid var(--mit-border);
+  padding:7px 14px;border-radius:999px;white-space:nowrap;
+}
+
+/* Slide 3: Where It Stands */
+.papers{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:clamp(12px,1.5vw,18px);
+}
+.paper{
+  background:var(--sheet);
+  border:1px solid var(--rule);
+  border-radius:var(--radius);
+  padding:clamp(15px,2vh,22px) clamp(16px,1.5vw,22px);
+  box-shadow:var(--sh-1);
+  display:flex;flex-direction:column;gap:10px;
+}
+.paper.hero{
+  grid-column:1 / -1;
+  border-left:5px solid var(--mit);
+  box-shadow:var(--sh-2);
+  padding:clamp(18px,2.4vh,26px) clamp(20px,2vw,28px);
+}
+.paper-top{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+}
+.badge{
+  display:inline-flex;align-items:center;align-self:flex-start;
+  font-family:var(--mono);font-size:clamp(10px,.82vw,11.5px);font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;
+  padding:4px 10px;border-radius:999px;white-space:nowrap;
+}
+.badge.ok{background:var(--ok-wash);color:var(--ok);border:1px solid var(--ok-border)}
+.badge.wip{background:var(--gold-wash);color:var(--gold-ink);border:1px solid var(--gold-border)}
+.badge.pre{background:var(--paper-2);color:var(--muted);border:1px solid var(--rule)}
+
+.paper h4{
+  font-family:var(--serif);font-weight:700;
+  font-size:clamp(17px, 1.45vw, 22px);
+  line-height:1.22;color:var(--ink);
+}
+.paper.hero h4{
+  font-size:clamp(22px, 2.2vw, 32px);
+}
+.paper-sub{
+  font-size:clamp(13px, 1.02vw, 14.5px);
+  line-height:1.38;color:var(--muted);
+}
+
+.btns{
+  display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:4px;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:5px;
+  font-family:var(--mono);font-size:clamp(11px, .9vw, 12.5px);font-weight:600;
+  color:var(--link);background:var(--link-wash);
+  border:1px solid var(--link-border);
+  padding:6px 12px;border-radius:8px;
+  white-space:nowrap;
+  transition:background .15s ease, color .15s ease, border-color .15s ease;
+}
+.btn:hover{
+  background:var(--link);color:#FFFFFF;border-color:var(--link);text-decoration:none;
+}
+.btn.dojo{
+  color:var(--flag);background:var(--flag-wash);border-color:#CED9EA;
+}
+.btn.dojo:hover{
+  background:var(--flag);color:#FFFFFF;border-color:var(--flag);
+}
+
+.ask{
+  margin-top:clamp(16px,2.4vh,26px);
+  background:var(--ink);color:#FFFFFF;
+  border-left:5px solid var(--mit);
+  border-radius:var(--radius);
+  padding:clamp(16px,2.2vh,24px) clamp(20px,2.2vw,28px);
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  flex-wrap:wrap;
+  box-shadow:0 16px 32px -18px rgb(24 24 24 / .55);
+}
+.ask-copy small{
+  display:block;font-family:var(--mono);font-size:10.5px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;color:#F29CA9;margin-bottom:4px;
+}
+.ask-copy p{
+  font-family:var(--serif);font-weight:600;
+  font-size:clamp(20px, 1.85vw, 28px);
+  line-height:1.22;color:#FFFFFF;
+}
+.ask-links{
+  display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+}
+.ask-links a{
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:var(--mono);font-size:clamp(11px, .9vw, 12.5px);font-weight:600;
+  color:#D4E7F7;background:rgb(255 255 255 / .09);
+  border:1px solid rgb(255 255 255 / .18);
+  padding:7px 13px;border-radius:8px;white-space:nowrap;
+  transition:background .15s ease, border-color .15s ease, color .15s ease;
+}
+.ask-links a:hover{
+  background:rgb(255 255 255 / .18);border-color:rgb(255 255 255 / .35);
+  color:#FFFFFF;text-decoration:none;
+}
+.ask-links a.dojo-gold{
+  color:#FDE2A3;background:rgb(240 180 0 / .14);border-color:rgb(240 180 0 / .38);
+}
+.ask-links a.dojo-gold:hover{
+  background:rgb(240 180 0 / .24);border-color:rgb(240 180 0 / .6);color:#FFF7DB;
+}
+
+/* Bottom Bar (Unified footer + world-page Back/Next with dots) */
+.bottombar{
+  position:fixed;left:0;right:0;bottom:0;height:var(--bottombar-h);
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;
+  padding:0 clamp(18px,3.2vw,44px);
+  background:rgb(250 250 248 / .94);
+  backdrop-filter:blur(8px);
+  border-top:1px solid var(--rule-soft);
+  z-index:20;
+}
+.foot-meta{
+  font-family:var(--mono);font-size:clamp(10.5px,.82vw,12px);
+  letter-spacing:.03em;color:var(--faint);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.foot-meta a{color:var(--link);font-weight:500}
+
+.navbar{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--sheet);border:1px solid var(--rule);
+  border-radius:999px;padding:4px 6px;
+  box-shadow:var(--sh-1);
+}
+.navbtn{
+  appearance:none;border:0;background:transparent;
+  font-family:var(--mono);font-size:11.5px;font-weight:600;
+  color:var(--ink);padding:5px 12px;border-radius:999px;
+  cursor:pointer;transition:background .15s ease, color .15s ease;
+}
+.navbtn:hover:not(:disabled){background:var(--paper-2)}
+.navbtn.next{background:var(--ink);color:#FFFFFF}
+.navbtn.next:hover:not(:disabled){background:#333333}
+.navbtn:disabled{opacity:.32;cursor:default}
+
+.pips{display:flex;align-items:center;gap:6px;padding:0 4px}
+.pip{
+  appearance:none;border:0;width:8px;height:8px;border-radius:999px;
+  background:#D4D4CE;cursor:pointer;padding:0;
+  transition:width .2s ease, background .2s ease;
+}
+.pip.on{width:22px;background:var(--mit)}
+
+.foot-right{
+  display:flex;align-items:center;justify-content:flex-end;gap:14px;
+  font-family:var(--mono);font-size:clamp(10.5px,.82vw,12px);
+  color:var(--faint);white-space:nowrap;
+}
+.foot-right a{color:var(--link);font-weight:600}
+
+/* Responsive safety */
+@media (max-width:1020px){
+  .where,.foot-meta{display:none}
+  .bottombar{grid-template-columns:1fr auto}
+  .nums,.steps{grid-template-columns:1fr}
+  .papers{grid-template-columns:repeat(2,1fr)}
+}
+
+/* Print / PDF fallback */
+@media print{
+  @page{size:landscape;margin:0}
+  html,body{overflow:visible;height:auto;background:#fff}
+  .topbar,.bottombar{display:none}
+  .slide{position:static;display:flex !important;height:100vh;page-break-after:always;padding:36px 48px}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <svg xmlns="http://www.w3.org/2000/svg" height="30" width="46" aria-label="MIT" viewBox="-48.15 -41.5 417.3 249">
+    <g stroke="#A31F34" stroke-width="35">
+      <path d="M17.5 0v166m57-166v113m57-113v166m57-166v33m58 20v113"/>
+      <path stroke="#8A8B8C" d="M188.5 53v113"/>
+      <path stroke-width="33" d="M229 16.5h92"/>
+    </g>
+  </svg>
+  <i class="brand-div"></i>
+  <a class="brand-bm" href="https://criticaldata.github.io/benchmaxxing/world/" target="_blank" rel="noopener">
+    <svg class="bm-mark" viewBox="6 30 116 82" aria-label="benchmaxxing">
+      <line x1="12" y1="106" x2="116" y2="106" stroke="#111111" stroke-width="4" stroke-linecap="round"/>
+      <rect x="16" y="48" width="16" height="56" rx="3" fill="#8A8B8C" transform="rotate(52 24 104)"/>
+      <rect x="46" y="48" width="16" height="56" rx="3" fill="#8A8B8C" transform="rotate(26 54 104)"/>
+      <rect x="74" y="48" width="16" height="56" rx="3" fill="#A31F34" transform="rotate(7 82 104)"/>
+      <rect x="98" y="38" width="8" height="66" rx="3" fill="#111111"/>
+    </svg>
+    <span class="wm"><b>benchmaxxing</b> world<small>MIT Critical Data</small></span>
+  </a>
+  <i class="brand-div"></i>
+  <a class="dojo-pill" href="https://github.com/criticaldata/benchmaxxing" target="_blank" rel="noopener"><b>REPO</b> criticaldata/benchmaxxing ↗</a>
+  <a class="dojo-pill" href="https://criticaldata.github.io/dojo/" target="_blank" rel="noopener"><b>DOJO</b> criticaldata.github.io/dojo ↗</a>
+
+  <div class="topbar-right">
+    <span class="where">Claude Science community call · Sebastián Cajas &amp; Leo Celi</span>
+    <nav class="slide-nav" aria-label="Slide sections">
+      <button type="button" class="on" data-go="0"><span>01</span>Finding</button>
+      <button type="button" data-go="1"><span>02</span>Workflow</button>
+      <button type="button" data-go="2"><span>03</span>Links</button>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<!-- SLIDE 1: THE FINDING -->
+<section class="slide on" aria-label="Slide 1: The finding" data-meta='<a href="https://arxiv.org/abs/2608.03744" target="_blank" rel="noopener">arXiv 2608.03744 ↗</a> · <a href="https://papers.miccai.org/miccai-2026-sat/paper/MedAgent_040.pdf" target="_blank" rel="noopener">MICCAI 2026 PDF ↗</a>' data-right='<a href="https://criticaldata.github.io/benchmaxxing/world/" target="_blank" rel="noopener">Next: live demo (world page ↗)</a> · 1 / 3'>
+  <div class="stage">
+    <p class="kicker">Agents catching agents · accepted, MICCAI 2026</p>
+    <h1>A confident wrong peer can <em>flip a correct answer</em>. A <em class="hl-flag">private re-check</em> catches it.</h1>
+
+    <div class="nums">
+      <article class="card keep">
+        <div class="card-top">
+          <span class="k">Alone</span>
+          <span class="pill">Baseline</span>
+        </div>
+        <div class="stat-row">
+          <b class="stat">5–16%</b>
+        </div>
+        <div class="meter" aria-hidden="true"><span style="width:12%"></span></div>
+        <p class="desc">answers flip</p>
+      </article>
+
+      <article class="card move">
+        <div class="card-top">
+          <span class="k">Two wrong peers</span>
+          <span class="pill">Cascade</span>
+        </div>
+        <div class="stat-row">
+          <b class="stat">92 / 150</b>
+          <span class="stat-pct">61%</span>
+        </div>
+        <div class="meter" aria-hidden="true"><span style="width:61%"></span></div>
+        <p class="desc">adopted on chest X-rays</p>
+        <p class="substat">Exam questions (MedQA): <strong>15 / 40</strong> (38%)</p>
+      </article>
+
+      <article class="card flag">
+        <div class="card-top">
+          <span class="k">Private referee</span>
+          <span class="pill">Insulated</span>
+        </div>
+        <div class="stat-row">
+          <b class="stat">66–88%</b>
+        </div>
+        <div class="meter" aria-hidden="true"><span style="width:77%"></span></div>
+        <p class="desc">precision</p>
+      </article>
+    </div>
+
+    <p class="team-line"><strong>MIT Critical Data</strong> Sebastián Andrés Cajas Ordóñez, Yehudhah Kennedy Rodríguez Moran, Agastya Munnangi, Aldo Marzullo, Felipe Ocampo Osorio, Quang Bui, Mohammad Shahin, Armaan Grewal, Emmanuel Paul Kwesiga, Anqi Peter Li, Josephine Nanyonjo, Aaditya Panchal, Arshnoor Bhutani, Nikhil Jaiswal, Milit S. Patel, Maximin Lange, Renato Umeton, Leo Anthony Celi</p>
+  </div>
+</section>
+
+<!-- SLIDE 2: HOW CLAUDE SCIENCE HELPED -->
+<section class="slide" aria-label="Slide 2: How Claude Science helped" data-meta='Claude Science · AI for Science cohort · <a href="https://criticaldata.github.io/dojo/" target="_blank" rel="noopener">DOJO ↗</a>' data-right='← → · 1–3 · F full screen · 2 / 3'>
+  <div class="stage">
+    <p class="kicker">How Claude Science helped</p>
+    <h2>One workflow</h2>
+
+    <div class="steps">
+      <article class="step">
+        <div class="step-head"><span class="step-num">01</span></div>
+        <p>Real code and data in one folder</p>
+      </article>
+
+      <article class="step">
+        <div class="step-head"><span class="step-num">02</span></div>
+        <p>Plan first; catch multi-agent drift with Claude Code</p>
+      </article>
+
+      <article class="step">
+        <div class="step-head"><span class="step-num">03</span></div>
+        <p>Run step by step with checks on</p>
+      </article>
+
+      <article class="step key">
+        <div class="step-head">
+          <span class="step-num">04</span>
+          <span class="key-tag">Key habit</span>
+        </div>
+        <p>Compare outputs to a trusted baseline</p>
+      </article>
+
+      <article class="step">
+        <div class="step-head"><span class="step-num">05</span></div>
+        <p>Ask for logs and plots, not "done"</p>
+      </article>
+
+      <article class="step">
+        <div class="step-head"><span class="step-num">06</span></div>
+        <p>Review every number by hand</p>
+      </article>
+    </div>
+
+    <div class="note-bar">
+      <p>Experiments and world page checked this way in the <a href="https://github.com/criticaldata/benchmaxxing" target="_blank" rel="noopener">repository</a> (<a href="https://criticaldata.github.io/benchmaxxing/world/" target="_blank" rel="noopener">world page ↗</a>).</p>
+      <span class="rule-pill">Sensitive data stays separated in its own location</span>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 3: WHERE IT STANDS & LINKS -->
+<section class="slide" aria-label="Slide 3: Where it stands and links" data-meta="Supported in part by Anthropic's AI for Science program" data-right='← → · 1–3 · F full screen · 3 / 3'>
+  <div class="stage">
+    <p class="kicker">Where it stands · click any link</p>
+
+    <div class="papers">
+      <article class="paper hero">
+        <div class="paper-top">
+          <span class="badge ok">Accepted · MICCAI 2026 workshop</span>
+          <div class="btns">
+            <a class="btn" href="https://papers.miccai.org/miccai-2026-sat/paper/MedAgent_040.pdf" target="_blank" rel="noopener">Paper (MICCAI) ↗</a>
+            <a class="btn" href="https://arxiv.org/abs/2608.03744" target="_blank" rel="noopener">arXiv 2608.03744 ↗</a>
+            <a class="btn" href="https://criticaldata.github.io/benchmaxxing/world/" target="_blank" rel="noopener">World page ↗</a>
+            <a class="btn" href="https://github.com/criticaldata/benchmaxxing" target="_blank" rel="noopener">Code ↗</a>
+            <a class="btn dojo" href="https://criticaldata.github.io/dojo/" target="_blank" rel="noopener">DOJO ↗</a>
+          </div>
+        </div>
+        <h4>Benchmaxxing: agents catching agents</h4>
+      </article>
+
+      <article class="paper">
+        <span class="badge wip">In review</span>
+        <h4>Perspective paper</h4>
+        <p class="paper-sub">Multi-agent oversight in clinical AI.</p>
+      </article>
+
+      <article class="paper">
+        <span class="badge wip">In progress</span>
+        <h4>Extended paper</h4>
+        <p class="paper-sub">More model families and datasets.</p>
+      </article>
+
+      <article class="paper">
+        <span class="badge ok">NeurIPS 2026 workshop</span>
+        <h4>BODHI-MedCalc</h4>
+        <p class="paper-sub">Does the model remember the formula?</p>
+        <div class="btns">
+          <a class="btn" href="https://arxiv.org/abs/2609.10728" target="_blank" rel="noopener">arXiv 2609.10728 ↗</a>
+        </div>
+      </article>
+
+      <article class="paper">
+        <span class="badge pre">arXiv preprint</span>
+        <h4>ModaLens</h4>
+        <p class="paper-sub">Does the VLM still look at the image?</p>
+        <div class="btns">
+          <a class="btn" href="https://arxiv.org/abs/2609.15635" target="_blank" rel="noopener">arXiv 2609.15635 ↗</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="ask">
+      <div class="ask-copy">
+        <small>One ask</small>
+        <p>Where do agents review agents in your field?</p>
+      </div>
+      <div class="ask-links">
+        <a class="dojo-gold" href="https://criticaldata.github.io/dojo/" target="_blank" rel="noopener">DOJO · criticaldata.github.io/dojo ↗</a>
+        <a href="https://github.com/criticaldata/benchmaxxing" target="_blank" rel="noopener">github.com/criticaldata/benchmaxxing ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bottombar">
+  <div class="foot-meta" id="footMeta"></div>
+  <nav class="navbar" aria-label="Slide controls">
+    <button class="navbtn back" type="button">← Back</button>
+    <span class="pips" id="pips"></span>
+    <button class="navbtn next" type="button">Next →</button>
+  </nav>
+  <div class="foot-right" id="footRight"></div>
+</footer>
+
+<script>
+  const slides = [...document.querySelectorAll('.slide')];
+  const navBtns = [...document.querySelectorAll('.slide-nav button')];
+  const backBtn = document.querySelector('.navbtn.back');
+  const nextBtn = document.querySelector('.navbtn.next');
+  const pipsEl = document.getElementById('pips');
+  const progress = document.getElementById('progress');
+  const footMeta = document.getElementById('footMeta');
+  const footRight = document.getElementById('footRight');
+
+  slides.forEach((_, k) => {
+    const b = document.createElement('button');
+    b.className = 'pip';
+    b.type = 'button';
+    b.setAttribute('aria-label', 'Slide ' + (k + 1));
+    b.addEventListener('click', () => go(k));
+    pipsEl.appendChild(b);
+  });
+
+  function parseHash() {
+    const m = location.hash.match(/^#?(\d+)$/);
+    return m ? Math.max(0, Math.min(slides.length - 1, Number(m[1]) - 1)) : 0;
+  }
+
+  let idx = parseHash();
+
+  function go(n, updateHash = true) {
+    idx = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((s, k) => s.classList.toggle('on', k === idx));
+    navBtns.forEach((b, k) => b.classList.toggle('on', k === idx));
+    [...pipsEl.children].forEach((p, k) => p.classList.toggle('on', k === idx));
+    progress.style.width = `${((idx + 1) / slides.length) * 100}%`;
+    backBtn.disabled = idx === 0;
+    nextBtn.disabled = idx === slides.length - 1;
+    footMeta.innerHTML = slides[idx].dataset.meta || '';
+    footRight.innerHTML = slides[idx].dataset.right || '';
+    if (updateHash) history.replaceState(null, '', `#${idx + 1}`);
+  }
+
+  go(idx, false);
+
+  navBtns.forEach(b => b.addEventListener('click', () => go(Number(b.dataset.go))));
+  backBtn.addEventListener('click', () => go(idx - 1));
+  nextBtn.addEventListener('click', () => go(idx + 1));
+
+  document.addEventListener('keydown', e => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (['ArrowRight', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); go(idx + 1); }
+    else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); go(idx - 1); }
+    else if (e.key >= '1' && e.key <= String(slides.length)) { go(Number(e.key) - 1); }
+    else if (e.key === 'f' || e.key === 'F') {
+      document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+    }
+  });
+
+  window.addEventListener('hashchange', () => go(parseHash(), false));
+</script>
+</body>
+</html>
