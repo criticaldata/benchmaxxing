@@ -11,10 +11,10 @@ What this is
   Earlier versions of the page are kept in the folders round3/ to round7/ next to this file.
 
 Where the numbers come from
-  Every number on the page that carries a gold chip is printed in the published MICCAI 2026
+  Every number on the page followed by a source marker is printed in the published MICCAI 2026
   MedAgent workshop version of the paper (the camera-ready):
     https://papers.miccai.org/miccai-2026-sat/paper/MedAgent_040.pdf
-  The chip names the section or table and opens a note with the paper's own words.
+  The marker names the section or table and opens a note with the paper's own words.
   The arXiv posting (2608.03744, version 2 of 17 August 2026, CC BY 4.0) prints older
   MIMIC-CXR imaging cells; where the two differ, this page follows the published version.
     https://arxiv.org/abs/2608.03744
@@ -71,6 +71,10 @@ Layout
   Exam, proton task: https://sciences-last-exam.org/assets/proton/
   No code, text, data or image from that site is included; the markup, styles and script
   here were written for this page.
+
+Typeface included in index.html
+  IBM Plex Sans and IBM Plex Mono (latin subset, woff2). Copyright 2017 IBM Corp., with
+  Reserved Font Name "Plex". SIL Open Font License 1.1: https://openfontlicense.org
 
 Software included in index.html
   three.js r160 (three.min.js), unmodified. Copyright 2010-2023 Three.js Authors. MIT licence:
