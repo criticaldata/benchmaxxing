@@ -37,7 +37,7 @@
         },
         "local/nvidia/cosmos-reason2-8b": {
           "cases_known_alone": 76,
-          "adoption_on_cases_all_know": 0.4152482269503546,
+          "adoption_on_cases_all_know": 0.4145390070921986,
           "cells": 2820
         }
       }
@@ -62,7 +62,7 @@
         },
         "local/nvidia/cosmos-reason2-8b": {
           "cases_known_alone": 76,
-          "adoption_on_cases_all_know": 0.4331781914893617,
+          "adoption_on_cases_all_know": 0.4321808510638298,
           "cells": 3008
         }
       }
@@ -87,7 +87,7 @@
         },
         "local/nvidia/cosmos-reason2-8b": {
           "cases_known_alone": 76,
-          "adoption_on_cases_all_know": 0.4331781914893617,
+          "adoption_on_cases_all_know": 0.4321808510638298,
           "cells": 3008
         }
       }
