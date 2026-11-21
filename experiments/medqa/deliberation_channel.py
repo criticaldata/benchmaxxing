@@ -23,6 +23,15 @@ Same 120 MedQA cases and the same seed construction as contamination_cascade.py,
 bare (unseeded) answer that the seed is built from is read from the committed cascade cache for each
 model, so the planted wrong option is identical to the committed arm's. Own cache: the letter_only
 condition shares its prompt with the committed arm and must not collide with that cache.
+
+A reply that stopped at the token limit (finish_reason "length") is no answer, on the seeded and on
+the unseeded prompt: a letter found in unfinished reasoning is not the model's answer. The summary
+counts such replies per condition and gives declared adoption among the complete replies beside the
+rate over all of them. Gemini's backend reports no finish reason, so this rule never applies to it.
+
+--max-tokens sets the completion limit (default _lane.MAX_TOKENS). Any other value is its own
+reading: it reads and writes deliberation_channel_max_tokens_<N>_cache.jsonl and writes
+deliberation_channel_max_tokens_<N>.jsonl and its summary beside the standard files, never those.
 """
 from __future__ import annotations
 
@@ -104,7 +113,7 @@ class _Store:
         return rec
 
 
-def _call(model, key, prompt, condition):
+def _call(model, key, prompt, condition, max_tokens=_lane.MAX_TOKENS):
     """One completion in a channel condition, returning content plus whatever the vendor exposes."""
     is_gemini = "gemini" in model.lower()
     backend = _lane.backend_for(model, key)
@@ -121,7 +130,7 @@ def _call(model, key, prompt, condition):
                 return {"content": text, "reasoning_content": None, "finish_reason": None}
             # The served name, as backend.complete sends it: a local/ id reaches the server without its prefix.
             kwargs = {"model": _lane.served_name(model), "messages": [{"role": "user", "content": prompt}],
-                      "temperature": 0, "max_tokens": _lane.MAX_TOKENS}
+                      "temperature": 0, "max_tokens": max_tokens}
             if "gpt-oss" in model.lower():
                 # gpt-oss has no thinking switch: enable_thinking is silently ignored, and reasoning
                 # cannot be turned off, only budgeted. "none" is therefore the smallest budget the
@@ -161,10 +170,16 @@ def main():
     ap.add_argument("--conditions", default=",".join(CONDITIONS))
     ap.add_argument("--out", default="experiments/medqa/results")
     ap.add_argument("--n", type=int, default=120)
+    ap.add_argument("--max-tokens", type=int, default=_lane.MAX_TOKENS,
+                    help="completion limit; a non-default value is its own reading, with its own cache and files")
     args = ap.parse_args()
     model = args.model
     conditions = [c for c in args.conditions.split(",") if c]
-    out_dir, cache_path = _lane.scoped(model, args.out, str(Path(args.out) / "deliberation_channel_cache.jsonl"))
+    if args.max_tokens != _lane.MAX_TOKENS and "gemini" in model.lower():
+        raise SystemExit("--max-tokens is not supported for Gemini: this runner calls it without a token limit.")
+    stem = ("deliberation_channel" if args.max_tokens == _lane.MAX_TOKENS
+            else f"deliberation_channel_max_tokens_{args.max_tokens}")
+    out_dir, cache_path = _lane.scoped(model, args.out, str(Path(args.out) / f"{stem}_cache.jsonl"))
     store = _Store(Path(cache_path))
     key = _lane.key_for(model)
     cases = load_cases(args.manifest)[:args.n]
@@ -192,10 +207,11 @@ def main():
                 if rec is None:
                     if not key:
                         raise SystemExit(f"Cache miss and no {_lane.key_name(model)} set for {model}.")
-                    rec = store.put(model, cond, prompt, _call(model, key, prompt, cond))
+                    rec = store.put(model, cond, prompt, _call(model, key, prompt, cond, args.max_tokens))
                 text = rec["content"] or ""
-                legacy = parse_legacy_string(text, options)
-                decl = _lane.declared(text, options)
+                cut = rec.get("finish_reason") == "length"
+                legacy = None if cut else parse_legacy_string(text, options)
+                decl = None if cut else _lane.declared(text, options)
                 letters = _lane.letters(len(options))
                 if tag == "":
                     row[f"{cond}_adopt"] = int(legacy == wrong)
@@ -207,6 +223,7 @@ def main():
                 else:
                     row[f"{cond}_unseeded_correct"] = int(legacy == gt)
                     row[f"{cond}_unseeded_len"] = len(text)
+                    row[f"{cond}_unseeded_finish"] = rec.get("finish_reason")
         rows.append(row)
         print(f"  {case.case_id} done", file=sys.stderr, flush=True)
 
@@ -218,13 +235,19 @@ def main():
         gain = sum(1 for r in rows if r[f"{b}_adopt"] and not r[f"{a}_adopt"])
         lose = sum(1 for r in rows if r[f"{a}_adopt"] and not r[f"{b}_adopt"])
         return {"gain": gain, "lose": lose, "pvalue": round(mcnemar(gain, lose).pvalue, 6)}
-    summary = {"n": n, "model": model, "skipped_no_committed_bare": skipped,
+    def complete_reading(c):
+        done = [r for r in rows if r[f"{c}_finish"] != "length"]
+        k = sum(r[f"{c}_declared_adopt"] for r in done)
+        return {"declared_adopt": k, "complete": len(done), "rate": round(k / len(done), 4) if done else None}
+    summary = {"n": n, "model": model, "max_tokens": args.max_tokens, "skipped_no_committed_bare": skipped,
                "new_api_calls_this_run": store.calls,
                "adoption_by_condition": {c: rate(f"{c}_adopt") for c in conditions},
                "declared_adoption_by_condition": {c: rate(f"{c}_declared_adopt") for c in conditions},
                "undeclared_by_condition": {c: sum(1 for r in rows if r[f"{c}_declared"] is None) for c in conditions},
                "median_len_by_condition": {c: sorted(r[f"{c}_len"] for r in rows)[n // 2] if n else None for c in conditions},
+               "declared_adoption_complete_by_condition": {c: complete_reading(c) for c in conditions},
                "finish_reason_counts": {c: dict(sorted(__import__("collections").Counter(r[f"{c}_finish"] for r in rows).items(), key=str)) for c in conditions},
+               "unseeded_finish_reason_counts": {c: dict(sorted(__import__("collections").Counter(r[f"{c}_unseeded_finish"] for r in rows).items(), key=str)) for c in conditions},
                "reasoning_content_present": {c: sum(1 for r in rows if r[f"{c}_reasoning_len"] > 0) for c in conditions}}
     summary["unseeded_accuracy_by_condition"] = {c: rate(f"{c}_unseeded_correct") for c in conditions}
     summary["median_unseeded_len_by_condition"] = {c: sorted(r[f"{c}_unseeded_len"] for r in rows)[n // 2] if n else None for c in conditions}
@@ -237,8 +260,8 @@ def main():
                        "seed. If adoption tracks the channel within a model, the cross-lineage cascade gap is a response-policy "
                        "difference rather than a susceptibility one.")
     out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / "deliberation_channel.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows))
-    (out_dir / "deliberation_channel_summary.json").write_text(json.dumps(summary, indent=2))
+    (out_dir / f"{stem}.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows))
+    (out_dir / f"{stem}_summary.json").write_text(json.dumps(summary, indent=2))
     print(json.dumps(summary, indent=2))
 
 
