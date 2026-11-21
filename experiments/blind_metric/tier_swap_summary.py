@@ -1,4 +1,5 @@
-"""Tier swap on the hidden-rubric arm (no API calls): Flash on text (MedQA, MedMCQA), Flash-Lite on imaging.
+"""Tier swap on the hidden-rubric arm (no API calls): Flash on text (MedQA, MedMCQA) and on the
+tabular lane (SUPPORT2), Flash-Lite on imaging.
 
 The committed hidden-rubric arms run Gemini 2.5 Flash-Lite on text (MedQA, 40 cases) and Gemini 2.5
 Flash on imaging (NIH ChestX-ray14, 35 films), so the "imaging drifts more" comparison confounds
@@ -24,6 +25,10 @@ ARMS = {
     ("medmcqa", "gemini-2.5-flash"): "experiments/medmcqa/results/gemini-2.5-flash/blind_metric.jsonl",
     ("imaging", "gemini-2.5-flash"): "experiments/imaging/results/imaging_blind_metric.jsonl",
     ("imaging", "gemini-2.5-flash-lite"): "experiments/imaging/results/gemini-2.5-flash-lite/imaging_blind_metric.jsonl",
+    # tabular lane (SUPPORT2, two options): a case enters an arm only when that tier's own baseline
+    # answer is correct, so the two tiers' case sets overlap without being equal; pairs use the overlap
+    ("support2", "gemini-2.5-flash-lite"): "experiments/support2/results/blind_metric.jsonl",
+    ("support2", "gemini-2.5-flash"): "experiments/support2/results/gemini-2.5-flash/blind_metric.jsonl",
 }
 TIERS = ("gemini-2.5-flash-lite", "gemini-2.5-flash")
 
@@ -55,7 +60,7 @@ def main():
             # baseline read was correct; the decoy is the opposite of the model's own read
             cell["baseline_correct"] = sum(1 for x in r.values() if str(x["decoy"]).lower() == "no")
         out["arms"][f"{lane}/{tier}"] = cell
-    for lane in ("text", "medmcqa", "imaging"):
+    for lane in ("text", "medmcqa", "imaging", "support2"):
         a, b = rows[(lane, TIERS[0])], rows[(lane, TIERS[1])]
         ids = sorted(set(a) & set(b))
         out["tier_within_modality"][lane] = {
@@ -67,6 +72,7 @@ def main():
         out["modality_within_tier"][tier] = {
             "blind_text": t["blind_uptake"], "blind_medmcqa": out["arms"][f"medmcqa/{tier}"]["blind_uptake"],
             "blind_imaging": i["blind_uptake"],
+            "blind_support2": out["arms"][f"support2/{tier}"]["blind_uptake"],
             "imaging_minus_text_blind": round(i["blind_uptake"] - t["blind_uptake"], 4),
             "aware_text": t["aware_uptake"], "aware_imaging": i["aware_uptake"]}
     a = out["arms"]
@@ -87,6 +93,12 @@ def main():
         f"{out['tier_within_modality']['imaging']['blind_flash_vs_lite']['gain']} vs "
         f"{out['tier_within_modality']['imaging']['blind_flash_vs_lite']['lose']}, "
         f"P = {out['tier_within_modality']['imaging']['blind_flash_vs_lite']['pvalue']}). "
+        f"On SUPPORT2 records the same holds: {a['support2/gemini-2.5-flash-lite']['blind_uptake']} under "
+        f"Flash-Lite and {a['support2/gemini-2.5-flash']['blind_uptake']} under Flash, "
+        f"{out['tier_within_modality']['support2']['blind_flash_vs_lite']['gain']} vs "
+        f"{out['tier_within_modality']['support2']['blind_flash_vs_lite']['lose']} discordant on the "
+        f"{out['tier_within_modality']['support2']['n_paired']} cases both tiers answer correctly at baseline, "
+        f"P = {out['tier_within_modality']['support2']['blind_flash_vs_lite']['pvalue']}. "
         f"Test-awareness suppresses uptake in every cell.")
     p = ROOT / "experiments/blind_metric/results/tier_swap_summary.json"
     p.write_text(json.dumps(out, indent=2) + "\n")

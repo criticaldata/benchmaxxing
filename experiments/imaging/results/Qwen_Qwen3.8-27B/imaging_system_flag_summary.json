@@ -1,0 +1,27 @@
+{
+  "n": 35,
+  "model": "Qwen/Qwen3.8-27B",
+  "cue": "watermark",
+  "board": "automated_system_flag",
+  "new_api_calls_this_run": 35,
+  "shared_adopt": 0.5143,
+  "isolated_adopt": 0.4571,
+  "contagion": 0.0571,
+  "shared_vs_isolated_mcnemar": {
+    "gain": 4,
+    "lose": 2,
+    "pvalue": 0.6875
+  },
+  "vs_peer_assertion_cascade": {
+    "system_flag_shared_adopt_k_of_n": [
+      18,
+      35
+    ],
+    "peer_assertion_shared_adopt_k_of_n": [
+      31,
+      35
+    ],
+    "fisher_pvalue": 0.00140005,
+    "fisher_oddsratio": 0.1366
+  }
+}

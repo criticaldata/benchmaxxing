@@ -1,0 +1,18 @@
+{
+  "n": 35,
+  "model": "Qwen/Qwen3.8-27B",
+  "cue": "watermark",
+  "new_api_calls_this_run": 35,
+  "adoption_curve_by_seeded_peer_count": {
+    "0": 0.4571,
+    "1": 0.9429,
+    "2": 0.8857
+  },
+  "note": "0-peer = imaging_cascade's isolated_adopt (no board); 2-peer = imaging_cascade's shared_adopt (two radiologists); only the 1-peer point is new here, same cue and case set.",
+  "one_vs_two_peer_mcnemar": {
+    "gain": 0,
+    "lose": 2,
+    "pvalue": 0.5,
+    "n_common_cases": 35
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "n": 35,
+  "model": "Qwen/Qwen3.8-27B",
+  "cues": {
+    "rotation": {
+      "flip_rate": 0.11428571428571428,
+      "n": 35,
+      "flip_above_noise": -0.05714285714285715
+    },
+    "compression": {
+      "flip_rate": 0.2,
+      "n": 35,
+      "flip_above_noise": 0.02857142857142858
+    },
+    "brightness": {
+      "flip_rate": 0.14285714285714285,
+      "n": 35,
+      "flip_above_noise": -0.02857142857142858
+    },
+    "soft_tissue": {
+      "flip_rate": 0.11428571428571428,
+      "n": 35,
+      "flip_above_noise": -0.05714285714285715
+    }
+  },
+  "noise_floor": 0.17142857142857143,
+  "noise_floor_n": 35
+}

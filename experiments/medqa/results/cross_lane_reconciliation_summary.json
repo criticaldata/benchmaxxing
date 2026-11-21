@@ -84,14 +84,14 @@
       "survives_holm": true
     },
     {
-      "label": "pre-emptive referee: none vs soft warning",
+      "label": "paraphrase robustness: template t0 vs t2",
       "lane": "text",
-      "pvalue": 0.0,
+      "pvalue": 1e-06,
       "survives_bh": true,
       "survives_holm": true
     },
     {
-      "label": "paraphrase robustness: template t0 vs t2",
+      "label": "pre-emptive referee: none vs soft warning",
       "lane": "text",
       "pvalue": 1e-06,
       "survives_bh": true,
@@ -121,21 +121,14 @@
     {
       "label": "plausible vs implausible planted distractor",
       "lane": "text",
-      "pvalue": 0.005925,
+      "pvalue": 0.002494,
       "survives_bh": true,
       "survives_holm": true
     },
     {
       "label": "unanimity: unanimous vs single dissenter",
       "lane": "text",
-      "pvalue": 0.25,
-      "survives_bh": false,
-      "survives_holm": false
-    },
-    {
-      "label": "true-peer directionality (correct vs wrong)",
-      "lane": "text",
-      "pvalue": 0.38769531,
+      "pvalue": 0.125,
       "survives_bh": false,
       "survives_holm": false
     },
@@ -143,6 +136,13 @@
       "label": "imaging polarity asymmetry (yes->no vs no->yes)",
       "lane": "imaging",
       "pvalue": 0.453125,
+      "survives_bh": false,
+      "survives_holm": false
+    },
+    {
+      "label": "true-peer directionality (correct vs wrong)",
+      "lane": "text",
+      "pvalue": 0.54882812,
       "survives_bh": false,
       "survives_holm": false
     },

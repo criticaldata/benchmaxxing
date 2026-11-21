@@ -1,7 +1,7 @@
 {
   "n_cases": 40,
   "orders_per_case": 6,
-  "new_api_calls_this_run": 520,
+  "new_api_calls_this_run": 0,
   "cases_with_order_independent_dominant_agent": 40,
   "dominance_rate": 1.0,
   "of_dominant_how_many_are_flash": "7/40",

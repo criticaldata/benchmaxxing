@@ -20,7 +20,7 @@
 {"case_id": "medqa-149", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
 {"case_id": "medqa-155", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
 {"case_id": "medqa-160", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
-{"case_id": "medqa-65", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "medqa-65", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
 {"case_id": "medqa-171", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
 {"case_id": "medqa-180", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
 {"case_id": "medqa-183", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
@@ -82,4 +82,4 @@
 {"case_id": "medqa-34", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
 {"case_id": "medqa-345", "generic": false, "anchored": true, "anchored_strong": false, "anchored_solo": true}
 {"case_id": "medqa-238", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
-{"case_id": "medqa-38", "generic": true, "anchored": false, "anchored_strong": true, "anchored_solo": false}
+{"case_id": "medqa-38", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": false}

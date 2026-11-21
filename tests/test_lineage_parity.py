@@ -101,10 +101,11 @@ def _result_files():
     return out
 
 
-# results subdirectories that are cohorts or arms, not model slugs: n100 (the 100-case blind cohort)
-# and matched (the matched-conditions arm, whose lineage runs sit one level below it); and the imaging
-# lanes' arm and cohort folders, which only a vision-language lineage's check reaches
-NOT_A_LINEAGE = ("n100", "matched",
+# results subdirectories that are cohorts or arms, not model slugs: n100 (the 100-case blind cohort),
+# matched (the matched-conditions arm, whose lineage runs sit one level below it) and live_peer_n600
+# (the Gemini live-peer arm at 600 cases); and the imaging lanes' arm and cohort folders, which only a
+# vision-language lineage's check reaches
+NOT_A_LINEAGE = ("n100", "matched", "live_peer_n600",
                  "cascade_150", "referee_300", "nih_match_35", "judge_with_image",
                  "device_absent", "natural_cues", "natural_independent", "system_flag")
 
