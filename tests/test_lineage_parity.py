@@ -26,10 +26,6 @@ ALIASES = {
 # rather than hidden by an alias. Key: (lineage slug, lane, results dir, file name). An entry must say
 # what is missing and what would close it; the test below checks that the reason is a real sentence.
 DECLARED_GAPS = {
-    ("local_nvidia_cosmos-reason2-8b", "medqa", "results", "empty_content_by_condition.json"):
-        "the keyless replay experiments/medqa/empty_content_by_condition.py classifies empty completions, which the gpt-oss "
-        "lineages return when their hidden-reasoning budget runs out; none of the 32441 replies in this lineage's 62 committed "
-        "call caches is empty, so there is nothing to classify, and the entry closes if a later run produces one.",
     ("local_nvidia_cosmos-reason2-8b", "medqa", "results", "empty_content_tally.json"):
         "the per-arm tally of empty completions exists because gpt-oss-20b exhausts its hidden-reasoning budget on some "
         "calls; none of the 32441 replies in this lineage's 62 committed call caches is empty, so the tally would be zero "
@@ -38,10 +34,6 @@ DECLARED_GAPS = {
         "experiments/medqa/reasoning_effort_sensitivity.py sweeps the reasoning_effort field of the chat API, a gpt-oss "
         "setting; this lineage is served without a reasoning parser and in its default non-reasoning mode, so the field "
         "has no effect, and the entry closes if the lineage is ever run in a mode that exposes such a knob.",
-    ("local_nvidia_cosmos-reason2-8b", "medmcqa", "results", "push_c_summary.json"):
-        "experiments/medqa/push_c.py on the MedMCQA hard cases was run by the two Nemotron lineages only; Gemini, Qwen and the "
-        "gpt-oss lineages have no MedMCQA push_c either, so this arm has no other lineage to be read beside yet. It needs new "
-        "model calls, not a replay: one served run of push_c.py on the MedMCQA manifest for this lineage closes the entry.",
     # hidden-note arms run self-hosted under the fp8-local lineage
     ("nvidia_nemotron-3-super-120b-a12b", "blind_metric", "results", "matched_baseline_reason_repeats_summary.json"):
         "The hosted endpoint for this model id has been withdrawn, so this hidden-note arm cannot be run under the hosted id. It is run on the same FP8 weights served locally and committed under the separate lineage nemotron-3-super-120b-a12b-fp8-local, so hosted and self-hosted answers keep separate ids and caches; this entry closes if the hosted id is served again.",
@@ -88,13 +80,17 @@ DECLARED_GAPS = {
         "and belongs to that lineage's pass.",
 }
 PAT = re.compile(r"experiments/([a-z_0-9]+)/(results[^/]*)/([^/]+)/([^/]+\.json)$")
+# A runner's --max-tokens reading at a non-default limit (deliberation_channel_max_tokens_<N>_summary.json)
+# is an extra reading one lineage took of its own cut replies, beside the standard-limit arm every lineage
+# has; it is not an arm the other lineages lack.
+EXTRA_READING = re.compile(r"_max_tokens_\d+(_summary)?\.json$")
 
 
 def _result_files():
     out = {}
     for p in ROOT.glob("experiments/*/results*/*/*.json"):
         m = PAT.match(p.relative_to(ROOT).as_posix())
-        if not m or "cache" in m.group(4):
+        if not m or "cache" in m.group(4) or EXTRA_READING.search(m.group(4)):
             continue
         lane, res, slug, name = m.groups()
         out.setdefault(slug, set()).add((lane, res, name))
