@@ -8,6 +8,7 @@
   "committee_size_sweep",
   "contamination_cascade",
   "deliberation_channel",
+  "deliberation_channel_max_tokens_16384",
   "deliberation_framing",
   "dose_response",
   "hierarchy_dominance",
