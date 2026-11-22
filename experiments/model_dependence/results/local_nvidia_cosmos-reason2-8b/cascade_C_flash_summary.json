@@ -25,9 +25,9 @@
     "rate_diff": 0.1
   },
   "flash_lite_reference": {
-    "generic": 0.7294117647058823,
-    "anchored": 0.8470588235294118,
-    "mcnemar_p": 0.04138946533203125,
+    "generic": 0.7411764705882353,
+    "anchored": 0.8588235294117647,
+    "mcnemar_p": 0.0308837890625,
     "n": 85,
     "source": "experiments/medqa/results/scale_c_summary.json"
   }
