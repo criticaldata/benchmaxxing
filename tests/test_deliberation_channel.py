@@ -90,6 +90,32 @@ def test_a_non_default_limit_never_reads_or_writes_the_standard_files(tmp_path, 
     assert not (results / SLUG / "deliberation_channel_summary.json").exists()
 
 
+def test_a_non_default_limit_has_its_own_cache_keys(tmp_path, monkeypatch):
+    # The same prompt at another limit is another request: a row keyed like a standard-limit request
+    # must not answer it, or any reader that matches cache keys across files (cross_lineage_report's
+    # repeated-prompt count) takes the two readings for repeats of one request.
+    results, standard_cache = _tree(tmp_path, monkeypatch, [("Reasoned.\nB", "stop")])
+    (results / f"{SLUG}_deliberation_channel_max_tokens_16384_cache.jsonl").write_bytes(standard_cache.read_bytes())
+    with pytest.raises(SystemExit, match="Cache miss"):
+        _run(monkeypatch, "--max-tokens", "16384")
+
+
+def test_a_non_default_reading_replays_from_its_own_keys(tmp_path, monkeypatch):
+    results, standard_cache = _tree(tmp_path, monkeypatch, [("Reasoned.\nB", "stop")])
+    payload = {"question": "Question number 0 about a patient?", "options": list(OPTIONS)}
+    case = Case("c0", "p0", Modality.TEXT, question=payload["question"], options=OPTIONS, answer_index=0)
+    instruction = dc._instruction(MODEL, "open")
+    rows = [json.loads(line) for line in standard_cache.read_text().splitlines()]
+    for r, board in zip(rows, (dc._seed(case, "Beta"), "")):
+        r["k"] = _key(MODEL, "open", dc._mcq_prompt(payload, board, instruction), "max_tokens=16384")
+    (results / f"{SLUG}_deliberation_channel_max_tokens_16384_cache.jsonl").write_text(
+        "".join(json.dumps(r) + "\n" for r in rows))
+    _run(monkeypatch, "--max-tokens", "16384")
+    summary = json.loads((results / SLUG / "deliberation_channel_max_tokens_16384_summary.json").read_text())
+    assert summary["new_api_calls_this_run"] == 0
+    assert summary["max_tokens"] == 16384
+
+
 def test_a_non_default_limit_is_refused_for_gemini(tmp_path, monkeypatch):
     _tree(tmp_path, monkeypatch, [("Reasoned.\nB", "stop")])
     monkeypatch.setattr(sys, "argv", ["deliberation_channel", "--manifest", "manifest.csv",

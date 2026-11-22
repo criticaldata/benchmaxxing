@@ -30,7 +30,8 @@ counts such replies per condition and gives declared adoption among the complete
 rate over all of them. Gemini's backend reports no finish reason, so this rule never applies to it.
 
 --max-tokens sets the completion limit (default _lane.MAX_TOKENS). Any other value is its own
-reading: it reads and writes deliberation_channel_max_tokens_<N>_cache.jsonl and writes
+reading: it reads and writes deliberation_channel_max_tokens_<N>_cache.jsonl, whose keys carry the
+limit (a request at another limit is another request), and writes
 deliberation_channel_max_tokens_<N>.jsonl and its summary beside the standard files, never those.
 """
 from __future__ import annotations
@@ -89,21 +90,29 @@ def _bare_from_committed_cache(model, prompt):
 
 
 class _Store:
-    """(model, condition, prompt) -> {content, reasoning_content, finish_reason}."""
+    """(model, condition, prompt) -> {content, reasoning_content, finish_reason}.
 
-    def __init__(self, path):
+    A non-default completion limit is part of the request, so its key carries the limit; the standard
+    limit keeps the key the committed caches were written with.
+    """
+
+    def __init__(self, path, max_tokens=_lane.MAX_TOKENS):
         self.path, self.rows, self.calls = Path(path), {}, 0
+        self.suffix = "" if max_tokens == _lane.MAX_TOKENS else f"\x00max_tokens={max_tokens}"
         if self.path.exists():
             for line in self.path.read_text().splitlines():
                 if line.strip():
                     r = json.loads(line)
                     self.rows[r["k"]] = r
 
+    def key(self, model, condition, prompt):
+        return hashlib.sha256(f"{model}\x00{condition}\x00{prompt}{self.suffix}".encode()).hexdigest()
+
     def get(self, model, condition, prompt):
-        return self.rows.get(hashlib.sha256(f"{model}\x00{condition}\x00{prompt}".encode()).hexdigest())
+        return self.rows.get(self.key(model, condition, prompt))
 
     def put(self, model, condition, prompt, rec):
-        k = hashlib.sha256(f"{model}\x00{condition}\x00{prompt}".encode()).hexdigest()
+        k = self.key(model, condition, prompt)
         rec = {"k": k, "model": model, "condition": condition, **rec}
         with _lock:
             self.rows[k] = rec
@@ -180,7 +189,7 @@ def main():
     stem = ("deliberation_channel" if args.max_tokens == _lane.MAX_TOKENS
             else f"deliberation_channel_max_tokens_{args.max_tokens}")
     out_dir, cache_path = _lane.scoped(model, args.out, str(Path(args.out) / f"{stem}_cache.jsonl"))
-    store = _Store(Path(cache_path))
+    store = _Store(Path(cache_path), args.max_tokens)
     key = _lane.key_for(model)
     cases = load_cases(args.manifest)[:args.n]
 
