@@ -15,8 +15,8 @@ The audited result and cache artifacts are imported under `ollama_llama-3.2-11b-
 - The Ollama Q4 artifacts now have the distinct lineage id `ollama_llama-3.2-11b-vision-instruct-q4_k_m`; hosted NIM remains `meta_llama-3.2-11b-vision-instruct`.
 - All 30 Q4 sibling artifact-path gaps are closed. The declared-gap ledger is empty; the closure manifest preserves all 30 original reasons, exact lineage ids, output paths, SHA-256 hashes, and the zero-new-model-call basis.
 - Imaging results report the matched clean baseline beside each arm. For the shared NIH ChestX-ray14 cohort it is **1 of 35 correct (2.9%)**. MIMIC-CXR remains out of this import.
-- CheXpert `natural_cues` source-byte hashes are still absent for 94 listed case IDs in the imported audit. No image hashes were invented; this provenance limitation is separate from the 30 closed sibling artifact paths.
-- Verification: `tests/test_lineage_parity.py` and `tests/test_degeneracy_guard.py`: **48 passed**. Eleven exact hosted-NIM CheXpert findings already present on the fetched base branch are recorded as preexisting debt, not endorsed as valid measurements; the guard ceiling documents that inherited baseline change.
+- CheXpert byte provenance covers all 244 unique images across the `natural_cues` and `natural_independent` cohorts. SHA-256 was computed from exact image bytes in the local `data/chexpert/CheXpert-v1.0-small.zip`; all 150 previously recorded hashes matched. The large dataset archive is local and is not committed.
+- Verification: `tests/test_lineage_parity.py`, `tests/test_degeneracy_guard.py`, and `tests/test_gpt_oss_ablations_replay.py`: **71 passed, 4 skipped**. On the H100 runtime (Linux, Python 3.12.3, Pillow 10.2.0, FreeType 2.13.2), all three text-cue hashes match the golden checksums. The local Mac runtime (Python 3.11.9, Pillow 12.2.0, FreeType 2.14.3) differs on corner-tag and watermark rendering; the golden values were preserved. Eleven exact hosted-NIM CheXpert findings already present on the fetched base branch are recorded as preexisting debt, not endorsed as valid measurements; the guard ceiling documents that inherited baseline change.
 
 ## Completed scope
 

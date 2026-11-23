@@ -383,6 +383,20 @@ def test_q4_closure_manifest_accounts_for_all_30_gaps():
         assert hashlib.sha256(artifact.read_bytes()).hexdigest() == entry["artifact_sha256"]
 
 
+def test_q4_chexpert_image_provenance_is_complete():
+    path = ROOT / "experiments/imaging_chexpert/results" / OLLAMA_Q4_LINEAGE / "manifest_provenance.json"
+    provenance = json.loads(path.read_text(encoding="utf-8"))
+    coverage = provenance["provenance_coverage"]
+    assert provenance["lineage_id"] == OLLAMA_Q4_LINEAGE
+    assert provenance["source_archive"] == "data/chexpert/CheXpert-v1.0-small.zip"
+    assert coverage["unique_cohort_images"] == coverage["hashed_images"] == 244
+    assert coverage["missing_hash_count"] == 0
+    assert coverage["complete"] is True
+    assert coverage["missing_case_ids"] == []
+    assert len(provenance["images"]) == 244
+    assert all(len(row["sha256"]) == 64 for row in provenance["images"].values())
+
+
 def test_q4_imaging_results_report_baseline_accuracy():
     baseline = json.loads((ROOT / "experiments/model_metadata/q4_image_baseline_accuracy.json").read_text())
     assert baseline["lineage_id"] == OLLAMA_Q4_LINEAGE

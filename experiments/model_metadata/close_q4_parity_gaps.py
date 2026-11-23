@@ -10,6 +10,7 @@ import os
 import shutil
 import sys
 import tempfile
+import zipfile
 from collections import defaultdict
 from pathlib import Path
 
@@ -606,14 +607,42 @@ def chexpert_reports():
     covered_ids = cohort_ids & set(source)
     missing_ids = sorted(cohort_ids - set(source))
     images = {key: source[key] for key in sorted(covered_ids)}
+    archive = ROOT / "data/chexpert/CheXpert-v1.0-small.zip"
+    archive_verified = False
+    if archive.is_file():
+        recovered = {}
+        with zipfile.ZipFile(archive) as zf:
+            names = set(zf.namelist())
+            for image_ref in sorted(cohort_ids):
+                if image_ref not in names:
+                    raise FileNotFoundError(f"CheXpert archive has no member {image_ref}")
+                digest = hashlib.sha256()
+                with zf.open(image_ref) as stream:
+                    for block in iter(lambda: stream.read(1024 * 1024), b""):
+                        digest.update(block)
+                value = digest.hexdigest()
+                committed = source.get(image_ref, {}).get("sha256")
+                if committed and committed != value:
+                    raise ValueError(f"CheXpert archive hash disagrees with committed provenance for {image_ref}")
+                recovered[image_ref] = {"image_ref": image_ref, "sha256": value}
+        images = recovered
+        missing_ids = []
+        archive_verified = True
     write_json(ICX / "manifest_provenance.json", {
         "lineage_id": SLUG, "model": MODEL,
-        "source": "committed CheXpert image-byte provenance; only IDs with an existing image hash are included",
+        "source": (
+            "SHA-256 computed from each uncompressed member in data/chexpert/CheXpert-v1.0-small.zip; "
+            "all previously committed hashes were checked against that archive."
+            if archive_verified else
+            "Committed CheXpert image-byte provenance; only IDs with an existing image hash are included. "
+            "No ignored local dataset archive was available to hash remaining IDs."
+        ),
+        "source_archive": "data/chexpert/CheXpert-v1.0-small.zip" if archive_verified else None,
         "provenance_coverage": {
-            "unique_cohort_images": len(cohort_ids), "hashed_images": len(covered_ids),
+            "unique_cohort_images": len(cohort_ids), "hashed_images": len(images),
             "missing_hash_count": len(missing_ids), "complete": not missing_ids,
             "missing_case_ids": missing_ids,
-            "note": "No byte-level image hash is inferred from prompt-cache keys or case IDs.",
+            "note": "Every digest is computed from image bytes; no hash is inferred from a case ID or prompt cache.",
         },
         "images": images,
         "cohorts": {
@@ -865,6 +894,13 @@ def main():
             unresolved.append(str(path.relative_to(ROOT)))
     if unresolved:
         raise FileNotFoundError("Unresolved Q4 gaps:\n  " + "\n  ".join(unresolved))
+    provenance = read_json(ICX / "manifest_provenance.json")
+    coverage = provenance["provenance_coverage"]
+    provenance_basis = (
+        "Image SHA-256 values were computed from the exact CheXpert ZIP members; all previously committed image hashes were verified against those bytes."
+        if coverage["missing_hash_count"] == 0 and provenance.get("source_archive") else
+        "Previously committed image hashes were retained; unverified case IDs remain enumerated without inferred hashes."
+    )
     closure_entries = []
     for item in declared:
         path = ROOT / "experiments" / item["lane"] / item["results_dir"] / SLUG / item["file"]
@@ -873,11 +909,12 @@ def main():
             "artifact_path": str(path.relative_to(ROOT)),
             "artifact_sha256": file_sha(path),
             "closure_basis": (
-                "Existing hashed bytes were reused and absent cohort hashes are enumerated in the artifact."
+                provenance_basis
                 if item["lane"] == "imaging_chexpert" and item["file"] == "manifest_provenance.json"
                 else "Deterministic reanalysis or manifest from committed Q4 rows, summaries, audited cohorts, and read-only caches; zero model calls."
             ),
         })
+    missing_hashes = coverage["missing_hash_count"]
     write_json(META / "q4_gap_closure_manifest.json", {
         "lineage_id": SLUG, "hosted_lineage_id": "meta_llama-3.2-11b-vision-instruct",
         "total_gaps": len(declared), "closed_artifact_paths": len(closure_entries),
@@ -885,8 +922,12 @@ def main():
         "entries": closure_entries,
         "remaining_provenance_limitation": {
             "artifact_path": "experiments/imaging_chexpert/results/" + SLUG + "/manifest_provenance.json",
-            "missing_chexpert_image_hashes": 94,
-            "detail": "94 natural_cues case IDs had no committed byte-level hash source; no hashes were inferred."
+            "missing_chexpert_image_hashes": missing_hashes,
+            "detail": (
+                "All CheXpert images in the audited cohorts have byte-level SHA-256 values."
+                if missing_hashes == 0 else
+                f"{missing_hashes} CheXpert cohort image IDs lack byte-level hashes because the local dataset archive was unavailable."
+            )
         },
     })
     write_json(ledger_path, [])

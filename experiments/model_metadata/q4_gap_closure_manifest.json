@@ -271,8 +271,8 @@
       ],
       "status": "closed_artifact_path",
       "artifact_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/manifest_provenance.json",
-      "artifact_sha256": "c77939713cdad74142a4921ee60697aea9bcbc39422402870a6ef4b7b4f699fe",
-      "closure_basis": "Existing hashed bytes were reused and absent cohort hashes are enumerated in the artifact."
+      "artifact_sha256": "7cd3cdf31d8ea10a8ec6f3160b3ea719593241c7b56b85627e660d790022aed3",
+      "closure_basis": "Image SHA-256 values were computed from the exact CheXpert ZIP members; all previously committed image hashes were verified against those bytes."
     },
     {
       "lineage_id": "ollama_llama-3.2-11b-vision-instruct-q4_k_m",
@@ -434,7 +434,7 @@
   ],
   "remaining_provenance_limitation": {
     "artifact_path": "experiments/imaging_chexpert/results/ollama_llama-3.2-11b-vision-instruct-q4_k_m/manifest_provenance.json",
-    "missing_chexpert_image_hashes": 94,
-    "detail": "94 natural_cues case IDs had no committed byte-level hash source; no hashes were inferred."
+    "missing_chexpert_image_hashes": 0,
+    "detail": "All CheXpert images in the audited cohorts have byte-level SHA-256 values."
   }
 }
