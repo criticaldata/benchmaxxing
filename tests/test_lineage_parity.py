@@ -28,7 +28,7 @@ ALIASES = {
 DECLARED_GAPS = {
     ("local_nvidia_cosmos-reason2-8b", "medqa", "results", "empty_content_tally.json"):
         "the per-arm tally of empty completions exists because gpt-oss-20b exhausts its hidden-reasoning budget on some "
-        "calls; none of the 32441 replies in this lineage's 62 committed call caches is empty, so the tally would be zero "
+        "calls; none of the 41448 replies in this lineage's 72 committed call caches is empty, so the tally would be zero "
         "in every arm, and the entry closes if a later run produces an empty reply.",
     ("local_nvidia_cosmos-reason2-8b", "medqa", "results", "reasoning_effort_sensitivity_summary.json"):
         "experiments/medqa/reasoning_effort_sensitivity.py sweeps the reasoning_effort field of the chat API, a gpt-oss "
