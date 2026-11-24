@@ -1,0 +1,96 @@
+{
+  "repeats": 5,
+  "n": 31,
+  "reads_per_case": 6,
+  "cases_with_any_disagreement": {
+    "n": 4,
+    "rate": 0.129,
+    "wilson95": [
+      0.0513,
+      0.2885
+    ]
+  },
+  "mean_pairwise_disagreement": 0.0731,
+  "flip_vs_baseline_per_read": [
+    0.0,
+    0.0645,
+    0.0645,
+    0.0323,
+    0.0968,
+    0.129
+  ],
+  "flip_vs_baseline_band": [
+    0.0,
+    0.129
+  ],
+  "decoy_per_read": [
+    0.0,
+    0.0645,
+    0.0645,
+    0.0323,
+    0.0968,
+    0.129
+  ],
+  "decoy_band": [
+    0.0,
+    0.129
+  ],
+  "note": "read 0 is the committed control prompt replayed from the lane cache; reads 1.. are the same prompt with the question reworded by the generator, one paraphrase per read",
+  "fidelity_clean_subset": {
+    "n": 31,
+    "cases_with_any_disagreement": {
+      "n": 4,
+      "rate": 0.129,
+      "wilson95": [
+        0.0513,
+        0.2885
+      ]
+    },
+    "mean_pairwise_disagreement": 0.0731,
+    "flip_vs_baseline_band": [
+      0.0,
+      0.129
+    ],
+    "decoy_band": [
+      0.0,
+      0.129
+    ],
+    "note": "cases whose paraphrases all pass the fidelity check (every number of the original kept verbatim; the finding still named)"
+  },
+  "model": "gemini-2.5-flash-lite",
+  "generator": "gemini-2.5-flash",
+  "paraphrases_per_case": 5,
+  "cases_run": 31,
+  "cases_with_all_paraphrases": 31,
+  "paraphrases_failing_fidelity_check": 0,
+  "paraphrases_total": 155,
+  "new_api_calls_this_run": {
+    "holdout": 0,
+    "generator": 0
+  },
+  "calls_in_cache": {
+    "holdout": 155,
+    "generator": 31
+  },
+  "committed_same_session_band": {
+    "n": 31,
+    "repeats": 5,
+    "cases_with_any_disagreement": {
+      "n": 0,
+      "rate": 0.0,
+      "wilson95": [
+        -0.0,
+        0.1103
+      ]
+    },
+    "mean_pairwise_disagreement": 0.0,
+    "flip_vs_baseline_band": [
+      0.0,
+      0.0
+    ],
+    "decoy_band": [
+      0.0,
+      0.0
+    ]
+  }
+}
