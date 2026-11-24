@@ -67,6 +67,14 @@ DECLARED_GAPS = {
         "experiments/medqa/reasoning_effort_sensitivity.py sweeps the reasoning_effort field of the chat API, which "
         "this lineage's serving stack does not expose; closing it needs a served nemotron with an equivalent knob "
         "and belongs to that lineage's pass.",
+    ("nvidia_nemotron-3-super-120b-a12b", "blind_metric", "results", "check_warn_2x2_summary.json"):
+        "The hosted endpoint for this model id has been withdrawn, so the check-announced by note-warned 2x2 cannot be run under the hosted id. It ran on the same FP8 weights served locally and is committed under the separate lineage nemotron-3-super-120b-a12b-fp8-local, so hosted and self-hosted answers keep separate ids and caches; this entry closes if the hosted id is served again.",
+    ("nvidia_nemotron-3-super-120b-a12b", "medmcqa", "results", "check_warn_2x2_summary.json"):
+        "The hosted endpoint for this model id has been withdrawn, so the check-announced by note-warned 2x2 cannot be run under the hosted id. It ran on the same FP8 weights served locally and is committed under the separate lineage nemotron-3-super-120b-a12b-fp8-local, so hosted and self-hosted answers keep separate ids and caches; this entry closes if the hosted id is served again.",
+    ("nvidia_nemotron-3-super-120b-a12b", "support2", "results", "check_warn_2x2_summary.json"):
+        "The hosted endpoint for this model id has been withdrawn, so the check-announced by note-warned 2x2 cannot be run under the hosted id. It ran on the same FP8 weights served locally and is committed under the separate lineage nemotron-3-super-120b-a12b-fp8-local, so hosted and self-hosted answers keep separate ids and caches; this entry closes if the hosted id is served again.",
+    ("nvidia_nemotron-3-super-120b-a12b", "blind_metric", "results", "check_warn_2x2_pooled.json"):
+        "The hosted endpoint for this model id has been withdrawn, so the check-announced by note-warned 2x2 cannot be run under the hosted id. It ran on the same FP8 weights served locally and is committed under the separate lineage nemotron-3-super-120b-a12b-fp8-local, so hosted and self-hosted answers keep separate ids and caches; this entry closes if the hosted id is served again.",
 }
 PAT = re.compile(r"experiments/([a-z_0-9]+)/(results[^/]*)/([^/]+)/([^/]+\.json)$")
 

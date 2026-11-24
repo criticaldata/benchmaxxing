@@ -67,11 +67,17 @@ def cell_prompt(question: str, body: str, decoy_letter: str, cell: str) -> str:
             f"{JUSTIFY}")
 
 
+def _p6(p):
+    """Six decimals, as committed; a p below 5e-7 keeps three significant figures instead of rounding to 0."""
+    r = round(p, 6)
+    return r if r else float(f"{p:.3g}")
+
+
 def _pair(rows, a, b, col):
     """Exact McNemar on cell a vs cell b for a boolean column; gain = b true where a false."""
     gain = sum(1 for r in rows if r[f"{b}_{col}"] and not r[f"{a}_{col}"])
     lose = sum(1 for r in rows if r[f"{a}_{col}"] and not r[f"{b}_{col}"])
-    return {"gain": gain, "lose": lose, "pvalue": round(mcnemar(gain, lose).pvalue, 6)}
+    return {"gain": gain, "lose": lose, "pvalue": _p6(mcnemar(gain, lose).pvalue)}
 
 
 def _main_effect(rows, factor, col):

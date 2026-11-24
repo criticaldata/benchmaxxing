@@ -1,0 +1,82 @@
+{
+  "n": 110,
+  "per_cohort_n": {
+    "MedQA": 40,
+    "MedMCQA": 40,
+    "SUPPORT2": 30
+  },
+  "model": "openai/gpt-oss-120b",
+  "new_api_calls_this_run": 0,
+  "cells": {
+    "none": {
+      "decoy_uptake": 0.3727,
+      "n_decoy": 41,
+      "n_declared_drifted": 42,
+      "n_named_when_declared_drifted": 0,
+      "n_named_any": 0
+    },
+    "check": {
+      "decoy_uptake": 0.1727,
+      "n_decoy": 19,
+      "n_declared_drifted": 19,
+      "n_named_when_declared_drifted": 0,
+      "n_named_any": 1
+    },
+    "warn": {
+      "decoy_uptake": 0.1273,
+      "n_decoy": 14,
+      "n_declared_drifted": 14,
+      "n_named_when_declared_drifted": 0,
+      "n_named_any": 0
+    },
+    "both": {
+      "decoy_uptake": 0.0909,
+      "n_decoy": 10,
+      "n_declared_drifted": 10,
+      "n_named_when_declared_drifted": 0,
+      "n_named_any": 1
+    }
+  },
+  "committed_test_aware": {
+    "decoy_uptake": 0.0727,
+    "n_decoy": 8
+  },
+  "vs_none": {
+    "check": {
+      "gain": 4,
+      "lose": 26,
+      "pvalue": 5.9e-05
+    },
+    "warn": {
+      "gain": 1,
+      "lose": 28,
+      "pvalue": 1.12e-07
+    },
+    "both": {
+      "gain": 1,
+      "lose": 32,
+      "pvalue": 7.92e-09
+    }
+  },
+  "check_given_warn": {
+    "gain": 3,
+    "lose": 7,
+    "pvalue": 0.34375
+  },
+  "warn_given_check": {
+    "gain": 6,
+    "lose": 15,
+    "pvalue": 0.078354
+  },
+  "warn_vs_test_aware": {
+    "gain": 2,
+    "lose": 8,
+    "pvalue": 0.109375
+  },
+  "both_vs_test_aware": {
+    "gain": 3,
+    "lose": 5,
+    "pvalue": 0.726562
+  },
+  "read": "Pooled over 110 cases, decoy uptake is 0.3727 under the plain note, 0.1727 with the check announced, 0.1273 with the warning and 0.0909 with both; the committed test_aware prompt gives 0.0727 on the same cases. Against the plain note: check 4 vs 26 (P = 5.9e-05), warning 1 vs 28 (P = 1.12e-07), both 1 vs 32 (P = 7.92e-09). The rubric is named in 2 of 440 justifications across the four cells."
+}

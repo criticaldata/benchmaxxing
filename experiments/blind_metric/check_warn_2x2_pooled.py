@@ -5,9 +5,14 @@ pooled cases, each cell's decoy uptake and disclosure and an exact McNemar of ea
 plain note. Each case appears once per comparison, so the pooled tests stay exact. The committed
 test_aware uptake (answer-only, "clinically best", both sentences) is shown beside the cells from the
 same cases' blind_metric rows, since that is the single condition the 2x2 takes apart.
+
+``--model`` pools another lineage's rows from each cohort's ``<slug>/`` subdirectory and writes
+``experiments/blind_metric/results/<slug>/check_warn_2x2_pooled.json``; the default is the committed
+gemini-2.5-flash-lite run, whose output and wording are unchanged.
 """
 from __future__ import annotations
 
+import argparse
 import json
 from pathlib import Path
 
@@ -30,15 +35,29 @@ def _aware(d):
     return {r["case_id"]: r["aware_is_decoy"] for r in map(json.loads, (ROOT / d / "blind_metric.jsonl").read_text().splitlines()) if r}
 
 
+def _p6(p):
+    """Six decimals, as committed; a p below 5e-7 keeps three significant figures instead of rounding to 0."""
+    r = round(p, 6)
+    return r if r else float(f"{p:.3g}")
+
+
 def _pair(rows, a, b, col="is_decoy"):
     gain = sum(1 for r in rows if r[f"{b}_{col}"] and not r[f"{a}_{col}"])
     lose = sum(1 for r in rows if r[f"{a}_{col}"] and not r[f"{b}_{col}"])
-    return {"gain": gain, "lose": lose, "pvalue": round(mcnemar(gain, lose).pvalue, 6)}
+    return {"gain": gain, "lose": lose, "pvalue": _p6(mcnemar(gain, lose).pvalue)}
+
+
+DEFAULT_MODEL = "gemini-2.5-flash-lite"
 
 
 def main():
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--model", default=DEFAULT_MODEL)
+    model = ap.parse_args().model
+    slug = model.replace("/", "_")
+    cohorts = COHORTS if model == DEFAULT_MODEL else {k: f"{v}/{slug}" for k, v in COHORTS.items()}
     rows, per = [], {}
-    for name, d in COHORTS.items():
+    for name, d in cohorts.items():
         rs = _rows(d)
         a = _aware(d)
         assert {r["case_id"] for r in rs} <= set(a), name
@@ -59,7 +78,7 @@ def main():
     test_aware = {"decoy_uptake": round(sum(r["aware_is_decoy"] for r in rows) / n, 4),
                   "n_decoy": sum(r["aware_is_decoy"] for r in rows)}
     out = {
-        "n": n, "per_cohort_n": per, "model": "gemini-2.5-flash-lite", "new_api_calls_this_run": 0,
+        "n": n, "per_cohort_n": per, "model": model, "new_api_calls_this_run": 0,
         "cells": cells,
         "committed_test_aware": test_aware,
         "vs_none": {c: _pair(rows, "none", c) for c in CELLS[1:]},
@@ -70,17 +89,31 @@ def main():
         "both_vs_test_aware": _pair(
             [{**r, "ta_is_decoy": r["aware_is_decoy"]} for r in rows], "both", "ta"),
     }
-    out["read"] = (
-        f"Pooled over {n} cases, decoy uptake is {cells['none']['decoy_uptake']} under the plain note, "
-        f"{cells['check']['decoy_uptake']} with the check announced, {cells['warn']['decoy_uptake']} with "
-        f"the warning and {cells['both']['decoy_uptake']} with both; the committed test_aware prompt, "
-        f"which also drops the justification and adds 'clinically best', gives "
-        f"{test_aware['decoy_uptake']} on the same cases; against the warning cell alone it moves "
-        f"{out['warn_vs_test_aware']['gain']} cases one way and {out['warn_vs_test_aware']['lose']} the "
-        f"other (P = {out['warn_vs_test_aware']['pvalue']}), so the warning accounts for the whole "
-        f"test-aware drop. The rubric is named in "
-        f"{sum(cells[c]['n_named_any'] for c in CELLS)} of {4 * n} justifications across the four cells.")
-    p = ROOT / "experiments/blind_metric/results/check_warn_2x2_pooled.json"
+    if model == DEFAULT_MODEL:
+        out["read"] = (
+            f"Pooled over {n} cases, decoy uptake is {cells['none']['decoy_uptake']} under the plain note, "
+            f"{cells['check']['decoy_uptake']} with the check announced, {cells['warn']['decoy_uptake']} with "
+            f"the warning and {cells['both']['decoy_uptake']} with both; the committed test_aware prompt, "
+            f"which also drops the justification and adds 'clinically best', gives "
+            f"{test_aware['decoy_uptake']} on the same cases; against the warning cell alone it moves "
+            f"{out['warn_vs_test_aware']['gain']} cases one way and {out['warn_vs_test_aware']['lose']} the "
+            f"other (P = {out['warn_vs_test_aware']['pvalue']}), so the warning accounts for the whole "
+            f"test-aware drop. The rubric is named in "
+            f"{sum(cells[c]['n_named_any'] for c in CELLS)} of {4 * n} justifications across the four cells.")
+    else:
+        def _p(x):
+            return "< 1e-6" if x == 0 else f"= {x}"
+        out["read"] = (
+            f"Pooled over {n} cases, decoy uptake is {cells['none']['decoy_uptake']} under the plain note, "
+            f"{cells['check']['decoy_uptake']} with the check announced, {cells['warn']['decoy_uptake']} with "
+            f"the warning and {cells['both']['decoy_uptake']} with both; the committed test_aware prompt gives "
+            f"{test_aware['decoy_uptake']} on the same cases. Against the plain note: check "
+            f"{out['vs_none']['check']['gain']} vs {out['vs_none']['check']['lose']} (P {_p(out['vs_none']['check']['pvalue'])}), "
+            f"warning {out['vs_none']['warn']['gain']} vs {out['vs_none']['warn']['lose']} (P {_p(out['vs_none']['warn']['pvalue'])}), "
+            f"both {out['vs_none']['both']['gain']} vs {out['vs_none']['both']['lose']} (P {_p(out['vs_none']['both']['pvalue'])}). "
+            f"The rubric is named in {sum(cells[c]['n_named_any'] for c in CELLS)} of {4 * n} justifications "
+            f"across the four cells.")
+    p = ROOT / "experiments/blind_metric/results" / ("" if model == DEFAULT_MODEL else slug) / "check_warn_2x2_pooled.json"
     p.write_text(json.dumps(out, indent=2) + "\n")
     print(json.dumps(out, indent=2))
 

@@ -1,0 +1,82 @@
+{
+  "n": 113,
+  "per_cohort_n": {
+    "MedQA": 40,
+    "MedMCQA": 40,
+    "SUPPORT2": 33
+  },
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "new_api_calls_this_run": 0,
+  "cells": {
+    "none": {
+      "decoy_uptake": 0.3451,
+      "n_decoy": 39,
+      "n_declared_drifted": 40,
+      "n_named_when_declared_drifted": 1,
+      "n_named_any": 3
+    },
+    "check": {
+      "decoy_uptake": 0.1681,
+      "n_decoy": 19,
+      "n_declared_drifted": 19,
+      "n_named_when_declared_drifted": 0,
+      "n_named_any": 2
+    },
+    "warn": {
+      "decoy_uptake": 0.0885,
+      "n_decoy": 10,
+      "n_declared_drifted": 11,
+      "n_named_when_declared_drifted": 0,
+      "n_named_any": 1
+    },
+    "both": {
+      "decoy_uptake": 0.0531,
+      "n_decoy": 6,
+      "n_declared_drifted": 7,
+      "n_named_when_declared_drifted": 0,
+      "n_named_any": 1
+    }
+  },
+  "committed_test_aware": {
+    "decoy_uptake": 0.0531,
+    "n_decoy": 6
+  },
+  "vs_none": {
+    "check": {
+      "gain": 4,
+      "lose": 24,
+      "pvalue": 0.00018
+    },
+    "warn": {
+      "gain": 0,
+      "lose": 29,
+      "pvalue": 3.73e-09
+    },
+    "both": {
+      "gain": 0,
+      "lose": 33,
+      "pvalue": 2.33e-10
+    }
+  },
+  "check_given_warn": {
+    "gain": 1,
+    "lose": 5,
+    "pvalue": 0.21875
+  },
+  "warn_given_check": {
+    "gain": 2,
+    "lose": 15,
+    "pvalue": 0.00235
+  },
+  "warn_vs_test_aware": {
+    "gain": 2,
+    "lose": 6,
+    "pvalue": 0.289062
+  },
+  "both_vs_test_aware": {
+    "gain": 3,
+    "lose": 3,
+    "pvalue": 1.0
+  },
+  "read": "Pooled over 113 cases, decoy uptake is 0.3451 under the plain note, 0.1681 with the check announced, 0.0885 with the warning and 0.0531 with both; the committed test_aware prompt gives 0.0531 on the same cases. Against the plain note: check 4 vs 24 (P = 0.00018), warning 0 vs 29 (P = 3.73e-09), both 0 vs 33 (P = 2.33e-10). The rubric is named in 7 of 452 justifications across the four cells."
+}

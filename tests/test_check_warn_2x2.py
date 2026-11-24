@@ -4,6 +4,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "experiments"))
 sys.path.insert(0, str(ROOT / "experiments" / "blind_metric"))
@@ -52,3 +54,32 @@ def test_pooled_summary_reproduces(tmp_path):
     out = subprocess.run([sys.executable, str(ROOT / "experiments/blind_metric/check_warn_2x2_pooled.py")],
                          cwd=ROOT, capture_output=True, text=True, check=True).stdout
     assert json.loads(out) == committed
+
+
+LINEAGES = ("openai_gpt-oss-120b", "nemotron-3-super-120b-a12b-fp8-local", "Qwen_Qwen2.5-VL-72B-Instruct")
+
+
+@pytest.mark.parametrize("slug", LINEAGES)
+def test_lineage_none_cell_pairs_with_its_hidden_note_rows(slug):
+    """Each local lineage's plain-note cell replays its own committed hidden-note rows, case for case."""
+    for d in COHORTS:
+        cells = _rows(f"{d}/{slug}/check_warn_2x2.jsonl")
+        blind = _rows(f"{d}/{slug}/blind_metric.jsonl")
+        assert cells and set(cells) <= set(blind), (d, slug)
+        for case_id, r in cells.items():
+            b = blind[case_id]
+            assert r["decoy_letter"] == b["decoy_letter"], (d, slug, case_id)
+            assert r["none_is_decoy"] == b["blind_is_decoy"], (d, slug, case_id)
+
+
+@pytest.mark.parametrize("slug,model", [(s, m) for s, m in zip(LINEAGES, (
+    "openai/gpt-oss-120b", "nemotron-3-super-120b-a12b-fp8-local", "Qwen/Qwen2.5-VL-72B-Instruct"))])
+def test_lineage_pooled_summary_reproduces(slug, model):
+    p = ROOT / "experiments/blind_metric/results" / slug / "check_warn_2x2_pooled.json"
+    committed = p.read_text()
+    try:
+        subprocess.run([sys.executable, str(ROOT / "experiments/blind_metric/check_warn_2x2_pooled.py"), "--model", model],
+                       cwd=ROOT, capture_output=True, text=True, check=True)
+        assert json.loads(p.read_text()) == json.loads(committed)
+    finally:
+        p.write_text(committed)
