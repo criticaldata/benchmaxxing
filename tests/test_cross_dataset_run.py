@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
 from pathlib import Path
 
 import pytest
@@ -204,6 +205,49 @@ def test_format_table_reads_the_result():
     assert "option_order" in table
     assert "0.400" in table and "0.500" in table
     assert "mean_spread" in table
+
+
+# --- keyless replay of the committed 500-case run -------------------------------------------------
+_MEDQA = Path(os.environ.get("BENCHMAXXING_MEDQA_MANIFEST",
+                            str(Path.home() / "Documents/DATASET/medqa/manifest_test.csv")))
+_MEDMCQA = Path(os.environ.get("BENCHMAXXING_MEDMCQA_MANIFEST",
+                              str(Path.home() / "Documents/DATASET/medmcqa_dev_500.csv")))
+_RES = Path(__file__).resolve().parents[1] / "experiments/cross_dataset/results"
+
+
+def test_replay_without_a_cache_is_a_skip(monkeypatch, capsys, tmp_path):
+    monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+    monkeypatch.delenv("GOOGLE_API_KEY", raising=False)
+    rc = run_cross.main(["--medqa-manifest", "a.csv", "--medmcqa-manifest", "b.csv", "--replay",
+                         "--cache", str(tmp_path / "none.jsonl")])
+    assert rc == 0
+    assert "[skip]" in capsys.readouterr().out
+
+
+def test_keyless_live_handle_refuses_a_cache_miss():
+    live = run_cross._PacedLive("gemini-2.5-flash", None)
+    with pytest.raises(SystemExit):
+        live.complete("an uncached prompt")
+    assert live.calls == 0
+
+
+@pytest.mark.skipif(not (_MEDQA.exists() and _MEDMCQA.exists()), reason="the MedQA/MedMCQA manifests are not on this machine")
+@pytest.mark.parametrize("limit,cache,out,extra", [
+    (150, "cache_medqa_vs_medmcqa_n150.jsonl", "medqa_vs_medmcqa_n150.json", []),
+    # one MedMCQA case is excluded: its longest_option twin never got a reply (504 DEADLINE_EXCEEDED)
+    (500, "cache_medqa_vs_medmcqa_n500.jsonl", "medqa_vs_medmcqa_n500.json",
+     ["--exclude-case", "26a82f11-4261-4975-bee9-ae8d4e74cdb7"]),
+])
+def test_committed_runs_replay_keyless_with_zero_calls(monkeypatch, tmp_path, limit, cache, out, extra):
+    monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+    monkeypatch.delenv("GOOGLE_API_KEY", raising=False)
+    got_path = tmp_path / "replay.json"
+    rc = run_cross.main(["--medqa-manifest", str(_MEDQA), "--medmcqa-manifest", str(_MEDMCQA),
+                         "--limit", str(limit), "--cache", str(_RES / cache), "--out", str(got_path), "--replay", *extra])
+    assert rc == 0
+    got = json.loads(got_path.read_text())
+    assert got.pop("replay")["new_api_calls_this_run"] == 0
+    assert got == json.loads((_RES / out).read_text())
 
 
 if __name__ == "__main__":

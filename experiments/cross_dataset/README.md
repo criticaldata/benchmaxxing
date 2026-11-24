@@ -72,6 +72,34 @@ across the two datasets (all Fisher p >= 0.36, spreads <= 0.08): the solo flip r
 consistent across MedQA and MedMCQA, i.e. the cue is not a one-dataset artifact. Bootstrap 95% CIs
 per dataset are in the `--out` JSON. This is a 50-case pilot; a larger `--limit` tightens the CIs.
 
+## Results at 500 cases per dataset
+
+`gemini-2.5-flash`, temperature 0, the first 500 cases of each manifest (MedQA `manifest_test.csv`,
+sha256 prefix 6a2ac665; MedMCQA `medmcqa_dev_500.csv`, sha256 prefix 5b2ce971, built by
+`benchmaxxing.datasets.medmcqa`). Result: `results/medqa_vs_medmcqa_n500.json`; cache:
+`results/cache_medqa_vs_medmcqa_n500.jsonl`, which starts from the 1,200 replies of the 150-case run
+(same prompts) and adds 2,799 new ones. One MedMCQA case (`26a82f11-4261-4975-bee9-ae8d4e74cdb7`) is
+excluded with `--exclude-case`: its `longest_option` twin returned 504 DEADLINE_EXCEEDED on every
+attempt, so MedMCQA has 499 cases per cue.
+
+| cue | MedQA flip | MedMCQA flip | spread | Fisher p |
+|-----|-----------:|-------------:|-------:|---------:|
+| `option_order`   | 0.062 (31/500) | 0.128 (64/499) | 0.066 | 0.00035 |
+| `longest_option` | 0.082 (41/500) | 0.146 (73/499) | 0.064 | 0.0014 |
+| `lexical_overlap`| 0.076 (38/500) | 0.168 (84/499) | 0.092 | 7.7e-06 |
+
+`agreement.mean_spread = 0.074`. MedMCQA is the more cue-sensitive dataset on every cue, as at 150
+cases. Replay with no key and zero calls:
+
+```bash
+python experiments/cross_dataset/run_cross_dataset.py --medqa-manifest <medqa> --medmcqa-manifest <medmcqa> \
+    --limit 500 --cache experiments/cross_dataset/results/cache_medqa_vs_medmcqa_n500.jsonl \
+    --exclude-case 26a82f11-4261-4975-bee9-ae8d4e74cdb7 --replay --out /tmp/replay.json
+```
+
+`--workers N` asks a run's prompts N at a time into the cache before the scoring pass; the prompts
+do not depend on any answer, so the numbers are those of a sequential run over the same replies.
+
 ## Cue set
 
 The default cues are the zero-parameter text cues that `build_twins` can construct for every case:
