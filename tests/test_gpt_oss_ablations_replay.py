@@ -44,6 +44,30 @@ DERIVED = [  # script, output path relative to the model's results dir, extra ar
 ]
 VOLATILE = {"read", "new_api_calls_this_run", "lineage_note"}
 
+# Derived outputs a lineage does not carry, each with the reason it cannot be recomputed from what is
+# committed. Any other missing output fails instead of skipping silently. An entry whose file is later
+# committed is simply tested.
+_FP8 = "nemotron-3-super-120b-a12b-fp8-local"
+_HOSTED = "nvidia/nemotron-3-super-120b-a12b"
+NOT_COMMITTED = {
+    (_FP8, "cascade/results/{slug}/positional_regression.json"):
+        "the self-hosted copy never ran the multi-round cascade (no cascade/results/<slug>/multi_round.jsonl)",
+    (_FP8, "contamination/results/{slug}/misaligned_proxy.json"):
+        "the self-hosted copy has no MedQA solo_records.jsonl, which the proxy reads",
+    (_FP8, "medqa/results/{slug}/deference_reanalysis.json"):
+        "no MedQA cascade transcripts for the self-hosted copy; the script runs but every arm is empty",
+    (_FP8, "medqa/results/{slug}/onset_distribution.json"):
+        "the self-hosted copy has no MedQA cascade_results.json or transcripts",
+    (_FP8, "referee/results/{slug}/panel_vote.json"):
+        "the self-hosted copy never ran the MedQA referee judge (no referee/results/<slug>/referee_judge.jsonl)",
+    (_FP8, "referee/results/{slug}/referee_agreement.json"):
+        "the self-hosted copy never ran the MedQA referee judge (no referee/results/<slug>/referee_judge.jsonl)",
+    (_HOSTED, "medqa/results/{slug}/onset_distribution.json"):
+        "the hosted run's MedQA cascade transcripts are not in the repository and its endpoint is withdrawn",
+    (_HOSTED, "medmcqa/results/{slug}/onset_distribution.json"):
+        "the hosted run's MedMCQA cascade transcripts are not in the repository and its endpoint is withdrawn",
+}
+
 
 def _scrubbed_env():
     env = {"HOME": os.environ.get("HOME", ""), "PATH": os.environ.get("PATH", ""), "PYTHONPATH": str(ROOT)}
@@ -69,7 +93,9 @@ def test_derived_output_recomputes_from_committed_rows(model, script, rel, extra
     slug = model.replace("/", "_")
     out = ROOT / "experiments" / rel.format(slug=slug)
     if not out.exists():
-        pytest.skip(f"{out.relative_to(ROOT)} is not committed for {model}")
+        reason = NOT_COMMITTED.get((model, rel))
+        assert reason, f"{out.relative_to(ROOT)} is missing for {model} and NOT_COMMITTED gives no reason"
+        pytest.skip(f"{out.relative_to(ROOT)} is not committed for {model}: {reason}")
     before = _strip(json.loads(out.read_text()))
     saved = out.read_bytes()
     try:

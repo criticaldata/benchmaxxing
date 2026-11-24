@@ -1,5 +1,6 @@
 """check_warn_2x2.py: the plain-note cell is blind_metric.py's prompt, and the committed results replay."""
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -9,6 +10,13 @@ sys.path.insert(0, str(ROOT / "experiments"))
 sys.path.insert(0, str(ROOT / "experiments" / "blind_metric"))
 
 import check_warn_2x2 as cw
+
+def _env():
+    """Put the repository root on PYTHONPATH so the script imports `benchmaxxing` without an editable install."""
+    env = dict(os.environ)
+    env["PYTHONPATH"] = os.pathsep.join(p for p in (str(ROOT), env.get("PYTHONPATH", "")) if p)
+    return env
+
 
 COHORTS = ("experiments/blind_metric/results", "experiments/medmcqa/results", "experiments/support2/results")
 
@@ -50,5 +58,5 @@ def test_cells_differ_only_in_the_two_sentences():
 def test_pooled_summary_reproduces(tmp_path):
     committed = json.loads((ROOT / "experiments/blind_metric/results/check_warn_2x2_pooled.json").read_text())
     out = subprocess.run([sys.executable, str(ROOT / "experiments/blind_metric/check_warn_2x2_pooled.py")],
-                         cwd=ROOT, capture_output=True, text=True, check=True).stdout
+                         cwd=ROOT, env=_env(), capture_output=True, text=True, check=True).stdout
     assert json.loads(out) == committed

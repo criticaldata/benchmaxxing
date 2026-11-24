@@ -222,13 +222,18 @@ except Exception:
 
 @pytest.mark.skipif(_GatewayMock is None, reason="benchmaxxing.gateway not available yet")
 def test_solo_evaluate_with_gateway_mock():
+    """The real gateway.MockBackend drives solo_evaluate through its complete() method.
+
+    With no rule it echoes the prompt, which carries no ANSWER line, so it is given the same rule
+    as the local mock; any interface break now fails here instead of being skipped.
+    """
     twins = _make_twin_pairs()
-    try:
-        backend = _GatewayMock()
-        records = solo_evaluate(twins, backend, _answer_fn)
-    except Exception as exc:  # gateway.MockBackend interface differs: nothing to assert here.
-        pytest.skip(f"gateway.MockBackend interface not compatible: {exc}")
+    local = MockBackend(flip_cue="cable", flip_to="B")
+    backend = _GatewayMock(rule=lambda prompt, image, decoding: local.run(prompt))
+    records = solo_evaluate(twins, backend, _answer_fn)
     assert len(records) == len(twins)
+    assert backend.n_calls == 2 * len(twins)
+    assert {r.case_id for r in records if r.flipped} == {"cable-0", "cable-1", "cable-2"}
 
 
 # --- hard-case selection (issue 116) -------------------------------------------------------

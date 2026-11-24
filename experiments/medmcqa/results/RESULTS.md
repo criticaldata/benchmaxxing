@@ -1,5 +1,15 @@
 # benchmaxxing MedMCQA (Lane B) results
 
+> **Refreshed 24 Nov 2026 (zero model calls).** The summaries and rows of 15 Gemini arms were rewritten
+> from their committed caches with the current code, because the committed files no longer matched what
+> those caches replay to: `attributed_tier`, `authority_ladder`, `committee_size_sweep`,
+> `deliberation_framing`, `dose_response`, `leader_as_auditor`, `plausible_distractor`,
+> `rationale_validity`, `seed_confidence`, `super_additivity`, `temperature_sensitivity`, `test_awareness`,
+> `text_cue_types`, `unanimity_break` and `referee_deployable` (the last one gains a field only). Rates
+> quoted in the prose below are the earlier values; the committed JSON files are authoritative, and
+> every changed number is listed in `docs/REPLAY_AUDIT.md`. The Holm and BH survivors of
+> `stats_reconciliation_summary.json` are unchanged.
+
 Standard-battery replication on MedMCQA, mirroring the MedQA/NIH template so results are
 apples-to-apples across datasets. Dataset: MedMCQA validation split (the labeled split; the test
 split has no public answers). Models: gemini-2.5-flash, gemini-2.5-flash-lite (same-lineage
