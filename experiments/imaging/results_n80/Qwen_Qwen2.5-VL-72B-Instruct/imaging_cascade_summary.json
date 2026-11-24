@@ -1,0 +1,20 @@
+{
+  "n": 80,
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "cue": "watermark",
+  "new_api_calls_this_run": 320,
+  "shared_adopt": 0.9875,
+  "isolated_adopt": 0.5125,
+  "contagion": 0.475,
+  "n_correct_baseline": 33,
+  "contagion_on_correct": 0.9091,
+  "contagion_ci_95": [
+    0.7303,
+    0.9585
+  ],
+  "pure_sycophancy": 0.9091,
+  "pure_sycophancy_ci_95": [
+    0.7303,
+    0.9585
+  ]
+}

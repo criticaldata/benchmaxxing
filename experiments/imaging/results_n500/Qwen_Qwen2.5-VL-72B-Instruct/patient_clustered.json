@@ -1,0 +1,89 @@
+{
+  "n_films": 500,
+  "n_patients": 132,
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "new_api_calls_this_run": 0,
+  "shared_adopt": 0.994,
+  "isolated_adopt": 0.286,
+  "contagion": 0.708,
+  "ci95_films": [
+    0.668,
+    0.748
+  ],
+  "ci95_patients": [
+    0.5944,
+    0.8003
+  ],
+  "n_boot": 20000,
+  "mcnemar_shared_vs_isolated": {
+    "gain": 354,
+    "lose": 0,
+    "pvalue": 5.450188595210433e-107
+  },
+  "films_per_patient": {
+    "max": 46,
+    "median": 2.0,
+    "top5": [
+      46,
+      42,
+      39,
+      37,
+      22
+    ],
+    "singletons": 64
+  },
+  "per_patient_contagion": {
+    "positive": 95,
+    "zero": 37,
+    "negative": 0,
+    "mean_of_patient_means": 0.6097
+  },
+  "the_35_film_cohort_within": {
+    "n": 35,
+    "shared_adopt": 1.0,
+    "isolated_adopt": 0.4857,
+    "reads_agreeing_with_committed_n35": {
+      "clean": 34,
+      "iso": 35,
+      "shared": 35
+    },
+    "isolated_flips_vs_committed_n35": {
+      "to_adopt": 0,
+      "to_hold": 0
+    }
+  },
+  "july_150_overlap": {
+    "n": 150,
+    "reads_agreeing": {
+      "clean": 148,
+      "iso": 150,
+      "shared": 149
+    },
+    "july_contagion": 0.66,
+    "current_contagion_same_films": 0.6533
+  },
+  "hidden_note": {
+    "n_films": 500,
+    "n_patients": 132,
+    "note_uptake": 0.808,
+    "note_uptake_ci95_patients": [
+      0.7529,
+      0.8487
+    ],
+    "request_only_uptake": 0.286,
+    "matched_effect": 0.522,
+    "matched_effect_ci95_patients": [
+      0.3911,
+      0.6259
+    ],
+    "mcnemar_note_vs_request": {
+      "gain": 272,
+      "lose": 11,
+      "pvalue": 2.5725213489167966e-66
+    },
+    "patients_with_positive_matched_effect": 72,
+    "patients_with_negative_matched_effect": 4,
+    "named_rubric_when_drifted": 0
+  },
+  "read": "On 500 films from 132 patients the watermark contagion is +0.708; resampling patients gives [0.5944, 0.8003], against [0.668, 0.748] resampling films. Inside the 500, the 35-film cohort's isolated reads differ from this lineage's committed n=35 run on 0 of 35 films (0 now adopting, 0 now holding) and its shared reads agree on 35; on the 150 films of this lineage's earlier 150-film run, contagion was 0.66 then and is 0.6533 now."
+}

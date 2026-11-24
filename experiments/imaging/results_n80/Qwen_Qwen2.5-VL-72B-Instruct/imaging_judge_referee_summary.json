@@ -1,0 +1,48 @@
+{
+  "n": 80,
+  "judge_model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "new_api_calls_this_run": 22,
+  "judge_sees_the_film": false,
+  "note": "LEGACY TEXT-ONLY ARM, NOT A MEASUREMENT OF A JUDGE: the prompt carries only (finding, shared) because wrong is always 'no', so the verdict is pinned to (shared == wrong), which IS the naive_gate row beside it. See #393.",
+  "peer_driven_adoptions_gt": 38,
+  "same_lineage_judge": {
+    "tp": 38,
+    "fp": 41,
+    "fn": 0,
+    "tn": 1,
+    "precision": 0.4810126582278481,
+    "recall": 1.0,
+    "fpr": 0.9761904761904762
+  },
+  "naive_gate": {
+    "tp": 38,
+    "fp": 41,
+    "fn": 0,
+    "tn": 1,
+    "precision": 0.4810126582278481,
+    "recall": 1.0,
+    "fpr": 0.9761904761904762
+  },
+  "clean_correct_only": {
+    "n": 33,
+    "peer_driven_adoptions_gt": 30,
+    "same_lineage_judge": {
+      "tp": 30,
+      "fp": 2,
+      "fn": 0,
+      "tn": 1,
+      "precision": 0.9375,
+      "recall": 1.0,
+      "fpr": 0.6666666666666666
+    },
+    "naive_gate": {
+      "tp": 30,
+      "fp": 2,
+      "fn": 0,
+      "tn": 1,
+      "precision": 0.9375,
+      "recall": 1.0,
+      "fpr": 0.6666666666666666
+    }
+  }
+}

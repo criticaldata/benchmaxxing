@@ -7,9 +7,14 @@ on the paired reads, and a 95% interval that resamples patients rather than film
 contagion and how many patients carry a positive, zero or negative value; the 35-film cohort's
 films inside the 500 as a subgroup; and, for the 150 films the July run also read, how often the
 current reads agree with that run, whose watermark was drawn before the cue font was vendored.
+
+``--model`` reads another lineage's rows from results_n500/<slug>/ and writes its summary there; its
+35-film and 150-film comparisons are that lineage's own committed n=35 and 150-film runs under
+results/<slug>/. The default is the committed gemini-2.5-flash run, unchanged.
 """
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 from collections import defaultdict
@@ -29,7 +34,18 @@ def _jsonl(p):
     return [json.loads(line) for line in Path(p).read_text().splitlines() if line.strip()]
 
 
+DEFAULT_MODEL = "gemini-2.5-flash"
+
+
 def main():
+    global OUT
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--model", default=DEFAULT_MODEL)
+    model = ap.parse_args().model
+    own = R  # where this lineage's n=35 cascade and 150-film scale rows live
+    if model != DEFAULT_MODEL:
+        slug = model.replace("/", "_")
+        OUT, own = OUT / slug, R / slug
     rows = [r for r in _jsonl(OUT / "imaging_cascade_scale.jsonl") if "err" not in r]
     pid = {r["case_id"]: r["patient_id"] for r in csv.DictReader(open(R / "nih_manifest_scaled.csv"))}
     small = {r["case_id"] for r in csv.DictReader(open(R / "nih_manifest.csv"))}
@@ -48,12 +64,12 @@ def main():
     sizes = sorted((len(v) for v in by_p.values()), reverse=True)
 
     sub = [r for r in rows if r["case_id"] in small]
-    n35 = {r["case_id"]: r for r in _jsonl(R / "imaging_cascade.jsonl")}
+    n35 = {r["case_id"]: r for r in _jsonl(own / "imaging_cascade.jsonl")}
     sub35 = [r for r in sub if r["case_id"] in n35]
     agree35 = {k: sum(r[k] == n35[r["case_id"]][k] for r in sub35) for k in ("clean", "iso", "shared")}
     iso_flips = {"to_adopt": sum(1 for r in sub35 if r["iso_adopt"] and not n35[r["case_id"]]["iso_adopt"]),
                  "to_hold": sum(1 for r in sub35 if n35[r["case_id"]]["iso_adopt"] and not r["iso_adopt"])}
-    july = {r["case_id"]: r for r in _jsonl(R / "imaging_cascade_scale.jsonl")}
+    july = {r["case_id"]: r for r in _jsonl(own / "imaging_cascade_scale.jsonl")}
     both = [r for r in rows if r["case_id"] in july]
     agree = {k: sum(r[k] == july[r["case_id"]][k] for r in both) for k in ("clean", "iso", "shared")}
 
@@ -106,13 +122,23 @@ def main():
         "patients_with_negative_matched_effect": int(sum(np.mean(v) < 0 for v in by_pm.values())),
         "named_rubric_when_drifted": sum(bool(r.get("named_rubric_when_drifted")) for r in _jsonl(OUT / "imaging_blind_metric.jsonl")),
     }
-    out["read"] = (
-        f"On {n} films from {len(by_p)} patients the watermark contagion is {out['contagion']:+.3f}; resampling "
-        f"patients gives {out['ci95_patients']}, against {out['ci95_films']} resampling films. The 35-film "
-        f"cohort inside the 500 reproduces its committed rates, but film by film the isolated reads differ "
-        f"from the committed n=35 run on {len(sub35) - agree35['iso']} films ({iso_flips['to_adopt']} now "
-        f"adopting, {iso_flips['to_hold']} now holding) while the shared reads agree on {agree35['shared']} "
-        f"of {len(sub35)}: the rates match by cancellation, not film-stable isolated adoption.")
+    if model == DEFAULT_MODEL:
+        out["read"] = (
+            f"On {n} films from {len(by_p)} patients the watermark contagion is {out['contagion']:+.3f}; resampling "
+            f"patients gives {out['ci95_patients']}, against {out['ci95_films']} resampling films. The 35-film "
+            f"cohort inside the 500 reproduces its committed rates, but film by film the isolated reads differ "
+            f"from the committed n=35 run on {len(sub35) - agree35['iso']} films ({iso_flips['to_adopt']} now "
+            f"adopting, {iso_flips['to_hold']} now holding) while the shared reads agree on {agree35['shared']} "
+            f"of {len(sub35)}: the rates match by cancellation, not film-stable isolated adoption.")
+    else:
+        out["read"] = (
+            f"On {n} films from {len(by_p)} patients the watermark contagion is {out['contagion']:+.3f}; resampling "
+            f"patients gives {out['ci95_patients']}, against {out['ci95_films']} resampling films. Inside the 500, "
+            f"the 35-film cohort's isolated reads differ from this lineage's committed n=35 run on "
+            f"{len(sub35) - agree35['iso']} of {len(sub35)} films ({iso_flips['to_adopt']} now adopting, "
+            f"{iso_flips['to_hold']} now holding) and its shared reads agree on {agree35['shared']}; on the "
+            f"{len(both)} films of this lineage's earlier 150-film run, contagion was {out['july_150_overlap']['july_contagion']} "
+            f"then and is {out['july_150_overlap']['current_contagion_same_films']} now.")
     (OUT / "patient_clustered.json").write_text(json.dumps(out, indent=2) + "\n")
     print(json.dumps(out, indent=2))
 
