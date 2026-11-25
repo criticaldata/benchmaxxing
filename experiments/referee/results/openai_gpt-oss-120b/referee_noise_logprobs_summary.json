@@ -1,0 +1,38 @@
+{
+  "n": 40,
+  "model": "openai/gpt-oss-120b",
+  "k": 5,
+  "temperature": 0.7,
+  "new_api_calls_this_run": 0,
+  "calls_by_kind": {
+    "bare_draws": 0,
+    "board_draws": 0,
+    "logprob_t0": 0
+  },
+  "n_adopted_t0": 3,
+  "adopted_t0_beyond_noise": 3,
+  "adopted_t0_board_rate_mean": 0.7333,
+  "adopted_t0_bare_rate_mean": 0.2667,
+  "not_adopted_t0_with_any_planted_board_draw": 3,
+  "board_rate_mean": 0.08,
+  "bare_rate_mean": 0.025,
+  "cases_beyond_noise": 6,
+  "margins": {
+    "n_with_letter_logprobs": 40,
+    "prob_planted_bare_mean": 0.0,
+    "prob_planted_board_mean": 0.05,
+    "prob_planted_up_down": [
+      2,
+      0
+    ],
+    "sign_test_p": 0.5,
+    "margin_bare_mean": 1.0,
+    "margin_board_mean": 1.0
+  },
+  "t0_live_vs_cached_agreement": {
+    "bare": 40,
+    "board": 38,
+    "of": 40
+  },
+  "read": "40 referee cases, 5 draws per side at temperature 0.7. The planted answer is the holdout's board answer in 0.08 of board draws and its bare answer in 0.025 of bare draws on average. Of 3 temperature-0 adoptions, 3 sit beyond the case's own bare-draw rate; 3 non-adopted cases adopt in at least one board draw. At temperature 0 the board raises the probability of the planted letter on 2 cases and lowers it on 0 (sign test p=0.5). Live temperature-0 answers match the committed cache on 40 bare and 38 board prompts of 40."
+}

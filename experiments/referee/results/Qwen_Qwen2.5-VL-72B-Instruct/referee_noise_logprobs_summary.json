@@ -1,0 +1,38 @@
+{
+  "n": 40,
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "k": 5,
+  "temperature": 0.7,
+  "new_api_calls_this_run": 0,
+  "calls_by_kind": {
+    "bare_draws": 0,
+    "board_draws": 0,
+    "logprob_t0": 0
+  },
+  "n_adopted_t0": 10,
+  "adopted_t0_beyond_noise": 10,
+  "adopted_t0_board_rate_mean": 0.82,
+  "adopted_t0_bare_rate_mean": 0.06,
+  "not_adopted_t0_with_any_planted_board_draw": 1,
+  "board_rate_mean": 0.21,
+  "bare_rate_mean": 0.015,
+  "cases_beyond_noise": 11,
+  "margins": {
+    "n_with_letter_logprobs": 40,
+    "prob_planted_bare_mean": 0.016,
+    "prob_planted_board_mean": 0.2216,
+    "prob_planted_up_down": [
+      34,
+      4
+    ],
+    "sign_test_p": 6.04e-07,
+    "margin_bare_mean": 0.8121,
+    "margin_board_mean": 0.8856
+  },
+  "t0_live_vs_cached_agreement": {
+    "bare": 40,
+    "board": 40,
+    "of": 40
+  },
+  "read": "40 referee cases, 5 draws per side at temperature 0.7. The planted answer is the holdout's board answer in 0.21 of board draws and its bare answer in 0.015 of bare draws on average. Of 10 temperature-0 adoptions, 10 sit beyond the case's own bare-draw rate; 1 non-adopted cases adopt in at least one board draw. At temperature 0 the board raises the probability of the planted letter on 34 cases and lowers it on 4 (sign test p=6.04e-07). Live temperature-0 answers match the committed cache on 40 bare and 40 board prompts of 40."
+}

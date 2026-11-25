@@ -67,6 +67,8 @@ DECLARED_GAPS = {
         "experiments/medqa/reasoning_effort_sensitivity.py sweeps the reasoning_effort field of the chat API, which "
         "this lineage's serving stack does not expose; closing it needs a served nemotron with an equivalent knob "
         "and belongs to that lineage's pass.",
+    ("nvidia_nemotron-3-super-120b-a12b", "referee", "results", "referee_noise_logprobs_summary.json"):
+        "The hosted endpoint for this model id has been withdrawn and never exposed token logprobs, so the referee noise and logprob-margin arm cannot be run under the hosted id. It ran on the same FP8 weights served locally under the separate lineage nemotron-3-super-120b-a12b-fp8-local; this entry closes if a hosted endpoint with logprobs is served again.",
 }
 PAT = re.compile(r"experiments/([a-z_0-9]+)/(results[^/]*)/([^/]+)/([^/]+\.json)$")
 
