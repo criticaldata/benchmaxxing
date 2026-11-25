@@ -1,0 +1,27 @@
+{
+  "n": 35,
+  "model": "zai-org/GLM-5.3-Flash",
+  "cue": "watermark",
+  "new_api_calls_this_run": 104,
+  "strength_x_cascade": {
+    "opacity_0.15": {
+      "solo_flip": 0.1714,
+      "iso_adopt": 0.3143,
+      "shared_adopt": 0.8571,
+      "contagion": 0.5428
+    },
+    "opacity_0.3": {
+      "solo_flip": 0.2,
+      "iso_adopt": 0.2857,
+      "shared_adopt": 0.8571,
+      "contagion": 0.5714
+    },
+    "opacity_0.45": {
+      "solo_flip": 0.2,
+      "iso_adopt": 0.3429,
+      "shared_adopt": 0.8,
+      "contagion": 0.4571
+    }
+  },
+  "read": "Watermark cue swept across opacity 0.15 / 0.30 / 0.45, each crossed with solo vs committee: {'opacity_0.15': {'solo_flip': 0.1714, 'iso_adopt': 0.3143, 'shared_adopt': 0.8571, 'contagion': 0.5428}, 'opacity_0.3': {'solo_flip': 0.2, 'iso_adopt': 0.2857, 'shared_adopt': 0.8571, 'contagion': 0.5714}, 'opacity_0.45': {'solo_flip': 0.2, 'iso_adopt': 0.3429, 'shared_adopt': 0.8, 'contagion': 0.4571}}. If solo_flip rises with opacity the stimulus strength knob works; if contagion (shared minus isolated) ALSO rises with opacity a stronger solo cue cascades more, whereas a flat, large contagion across opacities means the confident wrong peer dominates and stimulus strength barely matters once a peer is on the board."
+}

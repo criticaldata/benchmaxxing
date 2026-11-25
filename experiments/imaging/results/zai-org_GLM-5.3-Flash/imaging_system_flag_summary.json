@@ -1,0 +1,27 @@
+{
+  "n": 35,
+  "model": "zai-org/GLM-5.3-Flash",
+  "cue": "watermark",
+  "board": "automated_system_flag",
+  "new_api_calls_this_run": 35,
+  "shared_adopt": 0.7714,
+  "isolated_adopt": 0.2286,
+  "contagion": 0.5429,
+  "shared_vs_isolated_mcnemar": {
+    "gain": 19,
+    "lose": 0,
+    "pvalue": 0.0
+  },
+  "vs_peer_assertion_cascade": {
+    "system_flag_shared_adopt_k_of_n": [
+      27,
+      35
+    ],
+    "peer_assertion_shared_adopt_k_of_n": [
+      35,
+      35
+    ],
+    "fisher_pvalue": 0.00498622,
+    "fisher_oddsratio": 0.0
+  }
+}
