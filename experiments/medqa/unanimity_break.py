@@ -160,6 +160,14 @@ def main():
     gain = sum(1 for r in rows if r["unanimous_wrong_adopt"] and not r["with_dissenter_adopt"])
     lose = sum(1 for r in rows if r["with_dissenter_adopt"] and not r["unanimous_wrong_adopt"])
     mc = mcnemar(gain, lose)
+    # the verdict follows the test, so the summary cannot call p < 0.05 "not significant" (#374)
+    significant = mc.pvalue < 0.05
+    verdict = "and it is significant" if significant else "but it is NOT significant"
+    caveat = (f"{gain + lose} discordant cases), although n is capped at the {n} solo-wrong cases in "
+              "the scanned set." if significant else
+              f"only {gain + lose} discordant cases): n is capped at the {n} solo-wrong cases in the "
+              "scanned set. Reported honestly as a suggestive-but-underpowered dissenter effect; a "
+              "larger solo-wrong pool (or a lower-baseline-accuracy set) would be needed to confirm it.")
     summary = {
         "n_solo_wrong_cases": n, "new_api_calls_this_run": cache.calls,
         "adoption_unanimous_two_wrong_peers": unanim,
@@ -172,11 +180,8 @@ def main():
             f"asserts the CORRECT answer (a single dissenter), a directional reduction of "
             f"{round(unanim - dissent, 4) if n else 'n/a'}. This is CONSISTENT with the classic "
             "Asch finding that a single ally breaks conformity (the deference depends on a "
-            f"unanimous board), but it is NOT significant at this sample size (paired McNemar "
-            f"gain={gain} lose={lose}, p={round(mc.pvalue, 6)}; only {gain + lose} discordant "
-            f"cases): n is capped at the {n} solo-wrong cases in the scanned set. Reported "
-            "honestly as a suggestive-but-underpowered dissenter effect; a larger solo-wrong pool "
-            "(or a lower-baseline-accuracy set) would be needed to confirm it."
+            "unanimous board), " + verdict + " at this sample size (paired McNemar "
+            f"gain={gain} lose={lose}, p={round(mc.pvalue, 6)}; " + caveat
         ),
     }
     (out / "unanimity_break_summary.json").write_text(json.dumps(summary, indent=2))

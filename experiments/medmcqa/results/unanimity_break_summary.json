@@ -9,5 +9,5 @@
     "lose": 0,
     "pvalue": 0.000122
   },
-  "read": "On 38 solo-wrong cases, the flash-lite holdout adopts the wrong answer 0.3947 under two unanimous wrong peers but only 0.0263 when one of the two instead asserts the CORRECT answer (a single dissenter), a directional reduction of 0.3684. This is CONSISTENT with the classic Asch finding that a single ally breaks conformity (the deference depends on a unanimous board), but it is NOT significant at this sample size (paired McNemar gain=14 lose=0, p=0.000122; only 14 discordant cases): n is capped at the 38 solo-wrong cases in the scanned set. Reported honestly as a suggestive-but-underpowered dissenter effect; a larger solo-wrong pool (or a lower-baseline-accuracy set) would be needed to confirm it."
+  "read": "On 38 solo-wrong cases, the flash-lite holdout adopts the wrong answer 0.3947 under two unanimous wrong peers but only 0.0263 when one of the two instead asserts the CORRECT answer (a single dissenter), a directional reduction of 0.3684. This is CONSISTENT with the classic Asch finding that a single ally breaks conformity (the deference depends on a unanimous board), and it is significant at this sample size (paired McNemar gain=14 lose=0, p=0.000122; 14 discordant cases), although n is capped at the 38 solo-wrong cases in the scanned set."
 }
