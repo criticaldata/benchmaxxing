@@ -38,6 +38,8 @@ DECLARED_GAPS = {
         "The hosted endpoint for this model id has been withdrawn, so this hidden-note arm cannot be run under the hosted id. It is run on the same FP8 weights served locally and committed under the separate lineage nemotron-3-super-120b-a12b-fp8-local, so hosted and self-hosted answers keep separate ids and caches; this entry closes if the hosted id is served again.",
     ("nvidia_nemotron-3-super-120b-a12b", "medmcqa", "results", "matched_baseline_reason_summary.json"):
         "The hosted endpoint for this model id has been withdrawn, so this hidden-note arm cannot be run under the hosted id. It is run on the same FP8 weights served locally and committed under the separate lineage nemotron-3-super-120b-a12b-fp8-local, so hosted and self-hosted answers keep separate ids and caches; this entry closes if the hosted id is served again.",
+    ("nvidia_nemotron-3-super-120b-a12b", "referee", "results", "referee_noise_logprobs_summary.json"):
+        "The hosted endpoint for this model id has been withdrawn and never exposed token logprobs, so the referee noise and logprob-margin arm cannot be run under the hosted id. It ran on the same FP8 weights served locally under the separate lineage nemotron-3-super-120b-a12b-fp8-local; this entry closes if a hosted endpoint with logprobs is served again.",
     ("nvidia_nemotron-3-super-120b-a12b", "referee", "results", "referee_deployable_declared_audit.json"):
         "the nemotron referee call cache was never committed (the arm ran on a machine whose caches are "
         "lost), so the declared-only rescore of the deployable referee cannot be replayed from the "
@@ -67,8 +69,6 @@ DECLARED_GAPS = {
         "experiments/medqa/reasoning_effort_sensitivity.py sweeps the reasoning_effort field of the chat API, which "
         "this lineage's serving stack does not expose; closing it needs a served nemotron with an equivalent knob "
         "and belongs to that lineage's pass.",
-    ("nvidia_nemotron-3-super-120b-a12b", "referee", "results", "referee_noise_logprobs_summary.json"):
-        "The hosted endpoint for this model id has been withdrawn and never exposed token logprobs, so the referee noise and logprob-margin arm cannot be run under the hosted id. It ran on the same FP8 weights served locally under the separate lineage nemotron-3-super-120b-a12b-fp8-local; this entry closes if a hosted endpoint with logprobs is served again.",
 }
 PAT = re.compile(r"experiments/([a-z_0-9]+)/(results[^/]*)/([^/]+)/([^/]+\.json)$")
 
