@@ -93,3 +93,29 @@ def _replay(model, arm, n, manifest, tmp_path):
 @pytest.mark.parametrize("model,arm,n", CASES, ids=[f"{m.split('/')[-1]}:{a}" for m, a, _ in CASES])
 def test_medmcqa_arm_replays_keyless_at_its_committed_size(model, arm, n, tmp_path):
     _replay(model, arm, n, MANIFEST, tmp_path)
+
+
+@pytest.mark.skipif(MANIFEST is None, reason="the 500-row MedMCQA manifest (sha256 5b2ce971...) is not on this machine")
+def test_gemini_cascade_and_onset_replay_keyless(tmp_path):
+    """The Gemini cascade (reproduce.py --stage cascade, the defaults --solo-n 100 --cascade-n 20 --seed 0)
+    replays from the committed call cache to the committed cascade_results.json and transcripts, and the
+    onset analysis over those transcripts to the committed onset_distribution.json."""
+    env = {"HOME": os.environ.get("HOME", ""), "PATH": os.environ.get("PATH", ""), "PYTHONPATH": str(ROOT)}
+    r = subprocess.run([sys.executable, "experiments/medqa/reproduce.py", "--manifest", str(MANIFEST), "--stage", "cascade",
+                        "--cache", str(R / "call_cache.jsonl"), "--out", str(tmp_path)],
+                       cwd=ROOT, env=env, capture_output=True, text=True, timeout=900)
+    assert r.returncode == 0, (r.stdout + r.stderr)[-600:]
+    after, committed = (json.loads((d / "cascade_results.json").read_text()) for d in (tmp_path, R))
+    # per-case rows are written in completion order; the committed file keeps its original order
+    key = lambda c: c["case_id"]  # noqa: E731
+    assert sorted(after.pop("per_case"), key=key) == sorted(committed.pop("per_case"), key=key)
+    assert after == committed and committed["mean_contagion"] == 0.05
+    names = sorted(p.name for p in (R / "transcripts").glob("*_repro_*.jsonl"))
+    assert len(names) == 40 and sorted(p.name for p in (tmp_path / "transcripts").iterdir()) == names
+    for name in names:
+        assert (tmp_path / "transcripts" / name).read_bytes() == (R / "transcripts" / name).read_bytes(), name
+    (tmp_path / "cascade_results.json").write_text((R / "cascade_results.json").read_text())
+    r = subprocess.run([sys.executable, "experiments/medqa/onset_distribution.py", "--results-dir", str(tmp_path),
+                        "--label", "MedMCQA"], cwd=ROOT, env=env, capture_output=True, text=True, timeout=300)
+    assert r.returncode == 0, (r.stdout + r.stderr)[-600:]
+    assert json.loads((tmp_path / "onset_distribution.json").read_text()) == json.loads((R / "onset_distribution.json").read_text())

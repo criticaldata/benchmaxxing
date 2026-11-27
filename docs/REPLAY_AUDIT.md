@@ -43,18 +43,22 @@ that arm is not in the repository.
 
 ## Findings
 
-1. **Fifteen Gemini MedMCQA arms did not match their committed files.** Each replays the same way on
-   three runs in a row (identical summaries and rows), so they were not changing between runs; they
-   disagreed with what was committed. The summaries were committed on 30 Jul (`1f28ce4`, `3f27fbc`) and
-   the caches on 1 Aug (`f872470`); the same disagreement remains with four earlier versions of
-   `benchmaxxing/extract.py`, so the committed rows were not computed from these cached replies. On
-   this branch the fifteen summaries and rows are rewritten from the committed caches (0 calls), and
-   `stats_reconciliation_summary.json` and the hosted nemotron `cross_lineage_summary.json` are
-   regenerated from them. The Holm and BH survivors do not change. Against `main` this changes 221
-   leaf fields in 20 JSON files, 174 of them numbers: 98 in the 15 summaries, 29 in the
-   reconciliation and 47 in the `gemini` column of the hosted nemotron comparison file (see "Files and
-   fields that change against `main`"). `referee_deployable` only gains the
-   `extra_requery_calls_needed` field and its current `note` wording.
+1. **Fifteen Gemini MedMCQA arms did not match their committed files:** fourteen committee arms and
+   the cascade (`reproduce.py --stage cascade`). Each of the fourteen replays the same way on three runs
+   in a row (identical summaries and rows), and the cascade on two (identical up to the order of its
+   per-case rows), so they were not changing between runs; they disagreed with what was committed. The
+   fourteen summaries were committed on 30 Jul (`1f28ce4`, `3f27fbc`) and the caches on 1 Aug
+   (`f872470`); the same disagreement remains with four earlier versions of `benchmaxxing/extract.py`,
+   so the committed rows were not computed from these cached replies. On this branch all fifteen are
+   rewritten from the committed caches (0 calls): the fourteen summaries and rows, and
+   `cascade_results.json` (per-case rows kept in the committed order) with its 40 transcripts.
+   `stats_reconciliation_summary.json`, the hosted nemotron `cross_lineage_summary.json` and
+   `onset_distribution.json` are regenerated from them. The Holm and BH survivors do not change.
+   Against `main` this changes 241 leaf fields in 22 JSON files, 190 of them numbers: 104 in the 16
+   Gemini arm files (the 15 summaries, `referee_deployable` included, and `cascade_results.json`), 29
+   in the reconciliation, 47 in the `gemini` column of the hosted nemotron comparison file and 10 in
+   `onset_distribution.json` (see "Files and fields that change against `main`"). `referee_deployable`
+   only gains the `extra_requery_calls_needed` field and its current `note` wording.
 2. **Gemini MedMCQA `orchestrator_failure` cannot be refreshed without calls.** It replays up to
    `--n 41` and then needs a `gemini-2.5-flash` prompt that is not cached, for a case the committed rows
    do not hold. It stays as committed and is not pinned.
@@ -64,8 +68,8 @@ that arm is not in the repository.
 4. **Gemini MedMCQA solo and `clean_a` need `gemini-2.5-flash` prompts, and `scale_c` needs
    `gemini-2.5-flash-lite` prompts, that are not in the committed `call_cache.jsonl`** (`break_it`
    replays exactly with the new `--cache` flag); the Gemini MedMCQA cascade replays but differs on two of 20 boards
-   (mean contagion 0.025 committed, 0.05 replayed). Not refreshed here: its transcripts feed
-   `onset_distribution.json`.
+   (mean contagion 0.025 committed, 0.05 replayed). It is rewritten on this branch with its
+   transcripts, and `onset_distribution.json` is regenerated from them (finding 1).
 5. **MIMIC-CXR text:** the gpt-oss-120b and gpt-oss-20b arms replay exactly (14 arms). The Gemini cache
    on ORCD (`results/call_cache.jsonl`) does not cover the committed Gemini prompts, the per-arm Gemini
    caches (`break_it_d`, `deliberation_framing`, `referee_call_cache`) are not on ORCD, and nemotron and
@@ -293,7 +297,7 @@ could not be matched one by one; this table and the pinned tests replace it.
 | medmcqa | nemotron-3-super-120b-a12b-fp8-local | blind_metric | --n 40 | `blind_metric_summary.json` declared_only.baseline.decoy_uptake = 0.0 | same | replays exactly | laptop |
 | medmcqa | nemotron-3-super-120b-a12b-fp8-local | matched_baseline_reason | --n 40 | `matched_baseline_reason_summary.json` decoy_uptake.baseline = 0.0 | same | replays exactly | laptop |
 | medmcqa | gemini-2.5-flash-lite | reproduce_solo | --stage solo | `solo_results.json` noise_floor_by_model.gemini-2.5-flash = 0.06666666666666667 | not replayed | cache miss | laptop (branch tree, needs the new --cache flag) |
-| medmcqa | gemini-2.5-flash-lite | reproduce_cascade | --stage cascade | `cascade_results.json` mean_contagion = 0.025 | 0.05 | drift | laptop (branch tree, needs the new --cache flag) |
+| medmcqa | gemini-2.5-flash-lite | reproduce_cascade | --stage cascade | `cascade_results.json` mean_contagion = 0.025 | 0.05 | drift; refreshed on this branch | laptop (branch tree, needs the new --cache flag) |
 | medmcqa | gemini-2.5-flash-lite | clean_a | --solo-records | `clean_a_summary.json` gemini-2.5-flash.flag_rate = 0.26666666666666666 | not replayed | cache miss | laptop (branch tree, needs the new --cache flag) |
 | medmcqa | gemini-2.5-flash-lite | break_it | --solo-records | `break_it_summary.json` A_contaminated_context.flag_adopt = 22 | same | replays exactly | laptop (branch tree, needs the new --cache flag) |
 | medmcqa | gemini-2.5-flash-lite | scale_c |  | `scale_c_summary.json` generic.conform = 79 | not replayed | cache miss | laptop (branch tree, needs the new --cache flag) |
@@ -491,9 +495,10 @@ Counted leaf by leaf (every JSON value, list elements separately) between `main`
 branch. An earlier version of this section said 123; that count covered only the 98 numeric fields of
 the 15 Gemini summaries plus `stats_reconciliation_summary.json` with each confidence interval counted
 as one field (25), and it left out the 47 mirrored cells of the hosted nemotron comparison file. The
-complete count is 221 changed leaf fields in 20 JSON files, of which 174 are numbers
-(98 rates or estimates, 49 counts, 17 p-values, 9 CI bounds, 1 added
-field). No change is formatting only: every changed number differs in value, and every changed text
+complete count is 241 changed leaf fields in 22 JSON files, of which 190 are numbers
+(103 rates or estimates, 60 counts, 17 p-values, 9 CI bounds, 1 added
+field). Onset turn indices are counted as counts, and the one per-case true/false flag of
+`onset_distribution.json` as text. No change is formatting only: every changed number differs in value, and every changed text
 differs in its numbers, its verdict, or (the `note` of `referee_deployable_summary.json`) the current
 script's wording.
 
@@ -514,17 +519,19 @@ script's wording.
 | `text_cue_types_summary.json` | 12 | 2 | 5 | 3 | 0 | 0 | 0 | 1 | 1 |
 | `unanimity_break_summary.json` | 6 | 2 | 1 | 1 | 0 | 0 | 0 | 1 | 1 |
 | `referee_deployable_summary.json` | 3 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | 1 |
-| **(a) the 15 Gemini MedMCQA summaries** | **128** | **40** | **43** | **14** | **0** | **1** | **0** | **15** | **15** |
+| `cascade_results.json` | 6 | 4 | 2 | 0 | 0 | 0 | 0 | 0 | 0 |
+| **(a) the 16 Gemini MedMCQA arm files** | **134** | **44** | **45** | **14** | **0** | **1** | **0** | **15** | **15** |
 | `stats_reconciliation_summary.json` | 29 | 11 | 6 | 3 | 9 | 0 | 0 | 0 | 0 |
 | `nvidia_nemotron-3-super-120b-a12b/cross_lineage_summary.json` | 47 | 47 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| **(b) derived and mirror files** | **76** | **58** | **6** | **3** | **9** | **0** | **0** | **0** | **0** |
+| `onset_distribution.json` | 14 | 1 | 9 | 0 | 0 | 0 | 2 | 0 | 2 |
+| **(b) derived and mirror files** | **90** | **59** | **15** | **3** | **9** | **0** | **2** | **0** | **2** |
 | `tests/degeneracy_exemptions.json` | 15 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 14 |
 | `Qwen_Qwen2.5-VL-72B-Instruct/unanimity_break_summary.json` | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 |
 | `openai_gpt-oss-20b/unanimity_break_summary.json` | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 |
 | **(c) text-only files** | **17** | **0** | **0** | **0** | **0** | **0** | **1** | **0** | **16** |
-| **all changed JSON** | **221** | **98** | **49** | **17** | **9** | **1** | **1** | **15** | **31** |
+| **all changed JSON** | **241** | **103** | **60** | **17** | **9** | **1** | **3** | **15** | **33** |
 
-Why each file outside the 15 Gemini summaries changes:
+Why each file outside the 16 Gemini arm files changes:
 
 - `stats_reconciliation_summary.json` is regenerated by `experiments/medqa/stats_reconciliation.py
   --results-dir experiments/medmcqa/results`, which reads eight arm rows files; five of them were
@@ -533,6 +540,12 @@ Why each file outside the 15 Gemini summaries changes:
   `experiments/cross_lane_table.py --lane medmcqa --model nvidia/nemotron-3-super-120b-a12b`; it places
   each Gemini value beside the hosted nemotron value, so 47 cells of its `gemini` column change and its
   `model` column (the nemotron numbers) does not.
+- `onset_distribution.json` is regenerated by `experiments/medqa/onset_distribution.py --results-dir
+  experiments/medmcqa/results --label MedMCQA` from the rewritten cascade. Apart from
+  `contagion_shared_minus_isolated` (0.025 to 0.05) and that number inside `read`, every change also
+  appears when the same command reads `main`'s transcripts: the committed file predates the current
+  onset code. Onset is now detected on 19 of 20 cases at turns [2, 8]; the censored case is the one
+  adopting board, where the seed equals the group's final answer.
 - `tests/degeneracy_exemptions.json`: 14 exemption reasons quote McNemar counts and p-values from the
   refreshed summaries and are updated to the new counts; one exemption
   (`hardcoded_verdict|experiments/medqa/unanimity_break.py|main:NOT significant`) is removed because the
@@ -544,8 +557,13 @@ Why each file outside the 15 Gemini summaries changes:
   (p = 0.000122) were the only committed summaries whose text was wrong. Every other committed
   `unanimity_break_summary.json` replays to the same text. 0 calls.
 
-The 15 rows files are rewritten by the same zero-call runs: 84 row fields change in 14 of them, and
-`referee_deployable.jsonl` only changes row order.
+The 15 rows files and the 40 cascade transcripts are rewritten by the same zero-call runs: 84 row
+fields change in 14 of the rows files, `referee_deployable.jsonl` only changes row order, and 44 fields
+change in the transcripts. In the transcripts, 40 are the seeded turn's `content`, which the current
+committee code leaves empty where the committed files hold "[seeded] planted answer: ..."; the other 4
+are one turn's `answer` and the matching `committed` value on each of the two boards that move
+(case `7111d7b2`, isolated, where the committed answer was the raw reply text, and case `d321d320`,
+shared, where a second agent now takes the seed).
 
 | Rows file | Rows (main / branch) | Changed row fields |
 |---|---|---|
@@ -564,7 +582,27 @@ The 15 rows files are rewritten by the same zero-call runs: 84 row fields change
 | `text_cue_types.jsonl` | 120 / 120 | 3 |
 | `unanimity_break.jsonl` | 38 / 38 | 1 |
 | `referee_deployable.jsonl` | 80 / 80 | 0 |
-| **total** | | **84** |
+| `transcripts/*_repro_{shared,isolated}.jsonl` (40 files) | 400 / 400 | 44 |
+| **total** | | **128** |
+
+### Cascade and onset (20 fields)
+
+| File | Field | main `1cb76ad` | this branch |
+|---|---|---|---|
+| `cascade_results.json` | mean_contagion | 0.025 | 0.05 |
+| `cascade_results.json` | mean_shared_adopt | 0.025 | 0.05 |
+| `cascade_results.json` | per_case[11].onset (`87311a9e`) | 1 | 8 |
+| `cascade_results.json` | per_case[19].shared_adopt (`d321d320`) | 0.5 | 1.0 |
+| `cascade_results.json` | per_case[19].contagion (`d321d320`) | 0.5 | 1.0 |
+| `cascade_results.json` | per_case[19].onset (`d321d320`) | 7 | 1 |
+| `onset_distribution.json` | contagion_shared_minus_isolated | 0.025 | 0.05 |
+| `onset_distribution.json` | n_censored | 0 | 1 |
+| `onset_distribution.json` | n_seed_equals_evidence | 0 | 1 |
+| `onset_distribution.json` | distinct_onset_turns | [1, 2, 7] | [2, 8] (3 fields: 2 changed, 1 removed) |
+| `onset_distribution.json` | onset_turn_distribution[11], [17], [19] | 1, 2, 7 | 8, 8, removed |
+| `onset_distribution.json` | per_case[11], [17], [19].onset_turn | 1, 2, 7 | 8, 8, null |
+| `onset_distribution.json` | per_case[19].seed_matches_evidence | false | true |
+| `onset_distribution.json` | read | 20 of 20 detected, turns [1, 2, 7], contagion 0.025 | 19 of 20, turns [2, 8], contagion 0.05 |
 
 ### Every changed number in the 15 Gemini summaries and the reconciliation (127 fields)
 
@@ -757,5 +795,6 @@ The 15 rows files are rewritten by the same zero-call runs: 84 row fields change
   cache miss above.
 - The MIMIC-CXR image arms (films not found on ORCD) and the MIMIC-CXR text matched-baseline arm
   (needs the de-identified index flags) were not replayed.
-- `experiments/medmcqa/results/RESULTS.md` prose still quotes the earlier rates; a note at its top
-  points here.
+- `experiments/medmcqa/results/RESULTS.md`: the rates in its sections 2 and 6 to 10 are refreshed from
+  the committed files; sections 1, 3, 4, 5 and 11 read files that were not rewritten and keep their
+  values.
