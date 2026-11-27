@@ -1,8 +1,9 @@
 {
   "n": 120,
   "model": "gemini-2.5-flash-lite",
+  "max_tokens": 8192,
   "skipped_no_committed_bare": 0,
-  "new_api_calls_this_run": 274,
+  "new_api_calls_this_run": 0,
   "adoption_by_condition": {
     "none": 0.5167,
     "hidden": 0.7167,
@@ -23,7 +24,35 @@
     "hidden": 1,
     "open": 5015
   },
+  "declared_adoption_complete_by_condition": {
+    "none": {
+      "declared_adopt": 62,
+      "complete": 120,
+      "rate": 0.5167
+    },
+    "hidden": {
+      "declared_adopt": 86,
+      "complete": 120,
+      "rate": 0.7167
+    },
+    "open": {
+      "declared_adopt": 76,
+      "complete": 120,
+      "rate": 0.6333
+    }
+  },
   "finish_reason_counts": {
+    "none": {
+      "null": 120
+    },
+    "hidden": {
+      "null": 120
+    },
+    "open": {
+      "null": 120
+    }
+  },
+  "unseeded_finish_reason_counts": {
     "none": {
       "null": 120
     },

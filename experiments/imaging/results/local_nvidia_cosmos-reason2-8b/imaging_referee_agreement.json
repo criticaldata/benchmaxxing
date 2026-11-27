@@ -1,0 +1,64 @@
+{
+  "n_shared_cases": 35,
+  "n_peer_driven_adoptions_gt": 12,
+  "pairwise_agreement": {
+    "deployable_vs_naive": {
+      "phi": 0.201,
+      "kappa": 0.0777
+    },
+    "deployable_vs_judge": {
+      "phi": -0.201,
+      "kappa": -0.1111
+    },
+    "naive_vs_judge": {
+      "phi": -1.0,
+      "kappa": -0.1208
+    }
+  },
+  "deployable_vs_naive_divergent_cases": {
+    "n_cases": 19,
+    "case_ids": [
+      "00000003_000.png",
+      "00000003_001.png",
+      "00000003_002.png",
+      "00000003_003.png",
+      "00000003_004.png",
+      "00000003_005.png",
+      "00000003_006.png",
+      "00000003_007.png",
+      "00000004_000.png",
+      "00000005_007.png",
+      "00000008_002.png",
+      "00000009_000.png",
+      "00000011_000.png",
+      "00000011_007.png",
+      "00000012_000.png",
+      "00000013_022.png",
+      "00000013_024.png",
+      "00000013_031.png",
+      "00000013_033.png"
+    ]
+  },
+  "deployable_vs_judge_divergent_cases": {
+    "n_cases": 16,
+    "case_ids": [
+      "00000001_000.png",
+      "00000001_001.png",
+      "00000001_002.png",
+      "00000005_006.png",
+      "00000008_000.png",
+      "00000010_000.png",
+      "00000011_005.png",
+      "00000011_006.png",
+      "00000013_023.png",
+      "00000013_025.png",
+      "00000013_026.png",
+      "00000013_027.png",
+      "00000013_028.png",
+      "00000013_029.png",
+      "00000013_030.png",
+      "00000013_032.png"
+    ]
+  },
+  "read": "Unlike the text lane (where deployable and the judge nearly coincide, 1 divergent case of 40), imaging shows a much larger split: the deployable referee (transcript + private re-read) and the naive gate diverge on every case where naive over-flags (consistent with naive FPR 0.92 vs deployable FPR 0.23 already reported), and the judge (transcript-only, no re-read) tracks the naive gate far more closely than it tracks the deployable referee, numerically confirming the earlier finding that the imaging judge, lacking a fresh independent signal, degenerates to the naive rule."
+}

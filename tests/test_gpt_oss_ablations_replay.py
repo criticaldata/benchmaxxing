@@ -20,6 +20,7 @@ _CANDIDATES = (
     "nvidia/nemotron-3-super-120b-a12b",
     "Qwen/Qwen2.5-VL-72B-Instruct",
     "nemotron-3-super-120b-a12b-fp8-local",
+    "local/nvidia/cosmos-reason2-8b",
 )
 MODELS = [m for m in _CANDIDATES
           if (ROOT / "experiments/medqa/results" / m.replace("/", "_") / "stats_reconciliation_summary.json").exists()]

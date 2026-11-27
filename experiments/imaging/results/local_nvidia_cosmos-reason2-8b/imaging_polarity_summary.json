@@ -1,0 +1,38 @@
+{
+  "n_cases": 35,
+  "model": "local/nvidia/cosmos-reason2-8b",
+  "positive_polarity_yes_to_no": {
+    "flips": 2,
+    "eligible": 44,
+    "rate": 0.0455
+  },
+  "negative_polarity_no_to_yes": {
+    "flips": 7,
+    "eligible": 72,
+    "rate": 0.0972
+  },
+  "per_cue": {
+    "cable": {
+      "pos_flip_rate": 0.0,
+      "neg_flip_rate": 0.0
+    },
+    "corner_tag": {
+      "pos_flip_rate": 0.0909,
+      "neg_flip_rate": 0.0
+    },
+    "watermark": {
+      "pos_flip_rate": 0.0909,
+      "neg_flip_rate": 0.3889
+    },
+    "laterality": {
+      "pos_flip_rate": 0.0,
+      "neg_flip_rate": 0.0
+    }
+  },
+  "asymmetry_mcnemar": {
+    "pos_only": 0,
+    "neg_only": 1,
+    "pvalue": 1.0
+  },
+  "read": "Cue-induced flips by polarity, pooled over the four cues: a TRUE finding is suppressed (yes -> no) at rate 0.0455 (2/44), while an ABSENT finding is hallucinated (no -> yes) at rate 0.0972 (7/72) (paired McNemar pos-only=0 neg-only=1, p=1.0). A dominant yes->no rate means the cues work mainly by erasing real signal (missed findings); a dominant no->yes rate means they inject spurious signal (false alarms). Symmetry means the cue destabilises the read in both directions equally."
+}

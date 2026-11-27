@@ -1,21 +1,22 @@
 {
   "n": 120,
   "model": "nvidia/nemotron-3-super-120b-a12b",
+  "max_tokens": 8192,
   "skipped_no_committed_bare": 0,
-  "new_api_calls_this_run": 646,
+  "new_api_calls_this_run": 0,
   "adoption_by_condition": {
     "none": 0.4083,
-    "hidden": 0.1167,
+    "hidden": 0.1083,
     "open": 0.15
   },
   "declared_adoption_by_condition": {
     "none": 0.4083,
-    "hidden": 0.1167,
+    "hidden": 0.1083,
     "open": 0.15
   },
   "undeclared_by_condition": {
     "none": 0,
-    "hidden": 0,
+    "hidden": 2,
     "open": 2
   },
   "median_len_by_condition": {
@@ -23,7 +24,36 @@
     "hidden": 1,
     "open": 3550
   },
+  "declared_adoption_complete_by_condition": {
+    "none": {
+      "declared_adopt": 49,
+      "complete": 120,
+      "rate": 0.4083
+    },
+    "hidden": {
+      "declared_adopt": 13,
+      "complete": 118,
+      "rate": 0.1102
+    },
+    "open": {
+      "declared_adopt": 18,
+      "complete": 120,
+      "rate": 0.15
+    }
+  },
   "finish_reason_counts": {
+    "none": {
+      "stop": 120
+    },
+    "hidden": {
+      "length": 2,
+      "stop": 118
+    },
+    "open": {
+      "stop": 120
+    }
+  },
+  "unseeded_finish_reason_counts": {
     "none": {
       "stop": 120
     },
@@ -52,13 +82,13 @@
   },
   "none_vs_hidden": {
     "gain": 1,
-    "lose": 36,
+    "lose": 37,
     "pvalue": 0.0
   },
   "hidden_vs_open": {
     "gain": 10,
-    "lose": 6,
-    "pvalue": 0.454498
+    "lose": 5,
+    "pvalue": 0.301758
   },
   "none_vs_open": {
     "gain": 4,

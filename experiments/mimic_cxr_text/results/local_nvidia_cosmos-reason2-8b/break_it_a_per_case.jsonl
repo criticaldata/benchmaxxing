@@ -1,0 +1,20 @@
+{"case_index": 0, "model": "local/nvidia/cosmos-reason2-8b", "wrong": "Edema", "baseline": "Lung Opacity", "control": 0, "flag": 0}
+{"case_index": 2, "model": "local/nvidia/cosmos-reason2-8b", "wrong": "Pleural Effusion", "baseline": "Edema", "control": 0, "flag": 1}
+{"case_index": 4, "model": "local/nvidia/cosmos-reason2-8b", "wrong": "Cardiomegaly", "baseline": "Pneumonia", "control": 0, "flag": 1}
+{"case_index": 5, "model": "local/nvidia/cosmos-reason2-8b", "wrong": "Edema", "baseline": "Pneumonia", "control": 0, "flag": 1}
+{"case_index": 6, "model": "local/nvidia/cosmos-reason2-8b", "wrong": "Edema", "baseline": "Pneumonia", "control": 0, "flag": 1}
+{"case_index": 17, "model": "local/nvidia/cosmos-reason2-8b", "wrong": "Cardiomegaly", "baseline": "Pneumothorax", "control": 0, "flag": 1}
+{"case_index": 28, "model": "local/nvidia/cosmos-reason2-8b", "wrong": "Cardiomegaly", "baseline": "Lung Lesion", "control": 0, "flag": 1}
+{"case_index": 29, "model": "local/nvidia/cosmos-reason2-8b", "wrong": "Cardiomegaly", "baseline": "Atelectasis", "control": 0, "flag": 0}
+{"case_index": 32, "model": "local/nvidia/cosmos-reason2-8b", "wrong": "Edema", "baseline": "Pneumonia", "control": 0, "flag": 1}
+{"case_index": 46, "model": "local/nvidia/cosmos-reason2-8b", "wrong": "Edema", "baseline": "Consolidation", "control": 0, "flag": 1}
+{"case_index": 50, "model": "local/nvidia/cosmos-reason2-8b", "wrong": "Edema", "baseline": "Lung Opacity", "control": 0, "flag": 0}
+{"case_index": 60, "model": "local/nvidia/cosmos-reason2-8b", "wrong": "Edema", "baseline": "Cardiomegaly", "control": 0, "flag": 0}
+{"case_index": 62, "model": "local/nvidia/cosmos-reason2-8b", "wrong": "Pleural Effusion", "baseline": "Edema", "control": 0, "flag": 0}
+{"case_index": 69, "model": "local/nvidia/cosmos-reason2-8b", "wrong": "Consolidation", "baseline": "Cardiomegaly", "control": 0, "flag": 1}
+{"case_index": 71, "model": "local/nvidia/cosmos-reason2-8b", "wrong": "Edema", "baseline": "Pneumonia", "control": 0, "flag": 1}
+{"case_index": 73, "model": "local/nvidia/cosmos-reason2-8b", "wrong": "Edema", "baseline": "Pneumonia", "control": 0, "flag": 0}
+{"case_index": 78, "model": "local/nvidia/cosmos-reason2-8b", "wrong": "Edema", "baseline": "Cardiomegaly", "control": 0, "flag": 1}
+{"case_index": 86, "model": "local/nvidia/cosmos-reason2-8b", "wrong": "Pleural Effusion", "baseline": "Edema", "control": 0, "flag": 0}
+{"case_index": 87, "model": "local/nvidia/cosmos-reason2-8b", "wrong": "Edema", "baseline": "Lung Opacity", "control": 0, "flag": 1}
+{"case_index": 112, "model": "local/nvidia/cosmos-reason2-8b", "wrong": "Pleural Effusion", "baseline": "Consolidation", "control": 0, "flag": 1}

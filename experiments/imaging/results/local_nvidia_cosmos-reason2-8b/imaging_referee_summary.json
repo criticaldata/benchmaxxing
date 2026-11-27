@@ -1,0 +1,25 @@
+{
+  "n": 35,
+  "model": "local/nvidia/cosmos-reason2-8b",
+  "cue": "watermark",
+  "new_api_calls_this_run": 35,
+  "peer_driven_adoptions_gt": 12,
+  "referee": {
+    "tp": 12,
+    "fp": 2,
+    "fn": 0,
+    "tn": 21,
+    "precision": 0.8571428571428571,
+    "recall": 1.0,
+    "fpr": 0.08695652173913043
+  },
+  "naive_gate": {
+    "tp": 12,
+    "fp": 21,
+    "fn": 0,
+    "tn": 2,
+    "precision": 0.36363636363636365,
+    "recall": 1.0,
+    "fpr": 0.9130434782608695
+  }
+}
