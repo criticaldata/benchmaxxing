@@ -529,19 +529,19 @@
     {
      "arm": "deliberation_channel",
      "contrast": "none_vs_hidden",
-     "p_raw": 5.529727786779404e-10,
+     "p_raw": 2.837623469531536e-10,
      "gain": 1,
-     "lose": 36,
-     "q_bh": 7.925943161050478e-09,
+     "lose": 37,
+     "q_bh": 4.067260306328535e-09,
      "survives": true
     },
     {
      "arm": "deliberation_channel",
      "contrast": "hidden_vs_open",
-     "p_raw": 0.454498291015625,
+     "p_raw": 0.3017578125,
      "gain": 10,
-     "lose": 6,
-     "q_bh": 0.6107320785522461,
+     "lose": 5,
+     "q_bh": 0.4185672883064516,
      "survives": false
     },
     {
@@ -586,7 +586,7 @@
      "p_raw": 0.375,
      "gain": 1,
      "lose": 4,
-     "q_bh": 0.5201612903225806,
+     "q_bh": 0.50390625,
      "survives": false
     },
     {

@@ -1,0 +1,48 @@
+{
+  "n": 417,
+  "judge_model": "local/nvidia/cosmos-reason2-8b",
+  "new_api_calls_this_run": 417,
+  "judge_sees_the_film": true,
+  "note": "The judge sees the film alongside the board, so its verdict is not pinned to the naive_gate row beside it. Run --text-only on the same cascade for the contrast.",
+  "peer_driven_adoptions_gt": 89,
+  "same_lineage_judge": {
+    "tp": 4,
+    "fp": 8,
+    "fn": 85,
+    "tn": 320,
+    "precision": 0.3333333333333333,
+    "recall": 0.0449438202247191,
+    "fpr": 0.024390243902439025
+  },
+  "naive_gate": {
+    "tp": 89,
+    "fp": 328,
+    "fn": 0,
+    "tn": 0,
+    "precision": 0.21342925659472423,
+    "recall": 1.0,
+    "fpr": 1.0
+  },
+  "clean_correct_only": {
+    "n": 51,
+    "peer_driven_adoptions_gt": 38,
+    "same_lineage_judge": {
+      "tp": 2,
+      "fp": 4,
+      "fn": 36,
+      "tn": 9,
+      "precision": 0.3333333333333333,
+      "recall": 0.05263157894736842,
+      "fpr": 0.3076923076923077
+    },
+    "naive_gate": {
+      "tp": 38,
+      "fp": 13,
+      "fn": 0,
+      "tn": 0,
+      "precision": 0.7450980392156863,
+      "recall": 1.0,
+      "fpr": 1.0
+    }
+  }
+}
