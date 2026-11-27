@@ -129,3 +129,24 @@ def test_derivation_rule_holds_where_it_can_be_checked(ed):
     except FileNotFoundError:
         pytest.skip("raw per-case JSONL not present (gitignored under PhysioNet terms)")
     assert checked >= 600
+
+
+def test_second_lineage_export_skips_an_arm_the_lineage_did_not_run(ed, tmp_path, monkeypatch, capsys):
+    # A second lineage that ran every arm except the hidden-note control behind
+    # matched_baseline_reason.csv: the export writes every other file and names the skipped one,
+    # instead of stopping at the missing source.
+    absent = "matched_baseline_reason.csv"
+    specs = ed.SPECS + ed.SPECS_SECOND_LINEAGE
+    assert absent in [s[0] for s in specs]
+    monkeypatch.setattr(ed, "RES", str(tmp_path))
+    monkeypatch.setattr(ed, "SLUG", "org_model")
+    for spec in specs:
+        if spec[0] != absent:
+            path = ed._src(spec[1])
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            open(path, "w").close()
+    written = []
+    monkeypatch.setattr(ed, "write_one", lambda name, src, cols, emit=True: written.append(name) or 0)
+    assert ed.export_second_lineage() == [absent]
+    assert written == [s[0] for s in specs if s[0] != absent]
+    assert absent in capsys.readouterr().out

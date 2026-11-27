@@ -1,0 +1,27 @@
+{
+  "n": 35,
+  "model": "local/nvidia/cosmos-reason2-8b",
+  "cue": "watermark",
+  "board": "automated_system_flag",
+  "new_api_calls_this_run": 35,
+  "shared_adopt": 0.6857,
+  "isolated_adopt": 0.6,
+  "contagion": 0.0857,
+  "shared_vs_isolated_mcnemar": {
+    "gain": 3,
+    "lose": 0,
+    "pvalue": 0.25
+  },
+  "vs_peer_assertion_cascade": {
+    "system_flag_shared_adopt_k_of_n": [
+      24,
+      35
+    ],
+    "peer_assertion_shared_adopt_k_of_n": [
+      33,
+      35
+    ],
+    "fisher_pvalue": 0.01175294,
+    "fisher_oddsratio": 0.1322
+  }
+}
