@@ -11,7 +11,7 @@ import cross_lineage_report as clr  # noqa: E402
 
 def test_no_second_lineage_cache_is_counted_as_gemini():
     model_slugs = {os.path.basename(d) for d in glob.glob(str(ROOT / "experiments/*/results/*")) if os.path.isdir(d)
-                   and any(t in os.path.basename(d) for t in ("gpt-oss", "nemotron", "Qwen", "llama", "deepseek"))}
+                   and any(t in os.path.basename(d) for t in ("gpt-oss", "nemotron", "Qwen", "llama", "deepseek", "local_"))}
     for f in glob.glob(str(ROOT / clr.GEMINI_DIR / "*cache*.jsonl")):
         name = os.path.basename(f)
         if any(name.startswith(s + "_") for s in model_slugs):

@@ -1,0 +1,27 @@
+{
+  "n": 120,
+  "model": "local/nvidia/cosmos-reason2-8b",
+  "new_api_calls_this_run": 600,
+  "adoption_by_cue": {
+    "baseline": 0.5667,
+    "primacy": 0.7167,
+    "negation": 0.9083,
+    "qualifier": 0.6917
+  },
+  "baseline_vs_primacy": {
+    "gain": 25,
+    "lose": 7,
+    "pvalue": 0.002102
+  },
+  "baseline_vs_negation": {
+    "gain": 41,
+    "lose": 0,
+    "pvalue": 0.0
+  },
+  "baseline_vs_qualifier": {
+    "gain": 15,
+    "lose": 0,
+    "pvalue": 6.1e-05
+  },
+  "read": "Adoption of the same fixed wrong answer under different text cue types: baseline 0.5667, moved to the front (primacy) 0.7167, framed as ruling out the holdout's own pick (negation) 0.9083, padded with an exclusion qualifier 0.6917. Deviations from baseline isolate pure position/order sensitivity (primacy), the extra push from explicitly cancelling the holdout's prior (negation), and whether pseudo-justification padding adds anything (qualifier). Paired McNemars test each cue against the baseline assertion."
+}

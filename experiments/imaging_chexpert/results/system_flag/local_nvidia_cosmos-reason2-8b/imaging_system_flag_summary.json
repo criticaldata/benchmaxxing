@@ -1,0 +1,15 @@
+{
+  "n": 150,
+  "model": "local/nvidia/cosmos-reason2-8b",
+  "cue": "none",
+  "board": "automated_system_flag",
+  "new_api_calls_this_run": 150,
+  "shared_adopt": 0.2067,
+  "isolated_adopt": 0.2267,
+  "contagion": -0.02,
+  "shared_vs_isolated_mcnemar": {
+    "gain": 1,
+    "lose": 4,
+    "pvalue": 0.375
+  }
+}
