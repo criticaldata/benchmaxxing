@@ -135,6 +135,9 @@ class _PacedLive:
 
     def complete(self, prompt, decoding=None, **_):
         if not self.api_key:
+            # A local/ id has no key by design: what its miss lacks is the server, and _lane exits
+            # naming BENCHMAXXING_LOCAL_BASE_URL. Any other id stops on the keyless message below.
+            _lane.require_server(self.model)
             raise SystemExit(f"Cache miss and no key for {self.model}: a keyless run only replays a complete cache.")
         self.calls += 1
         return _lane.paced_complete(self.model, self.api_key, prompt, decoding=decoding)
