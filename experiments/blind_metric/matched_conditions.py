@@ -172,6 +172,7 @@ class SessionCache:
     def __init__(self, path: Path, key, model: str, session: str):
         self.path, self.key, self.model, self.session = Path(path), key, model, session
         self.store, self.calls = {}, 0
+        self._pending = {}  # key -> lock held by the one thread calling for it
         if self.path.exists():
             for line in self.path.read_text().splitlines():
                 if line.strip():
@@ -190,6 +191,16 @@ class SessionCache:
         with _lock:
             if k in self.store:
                 return self.store[k]
+            pending = self._pending.setdefault(k, threading.Lock())
+        # one call per key: a thread that misses while another is calling for the same key waits for
+        # that call's row instead of making a second call
+        with pending:
+            with _lock:
+                if k in self.store:
+                    return self.store[k]
+            return self._call(k, prompt, rep, pil)
+
+    def _call(self, k: str, prompt: str, rep: int, pil) -> dict:
         if not self.key:
             raise SystemExit(f"Cache miss and no {_lane.key_name(self.model)} set for {self.model}")
         t0 = time.time()
@@ -200,8 +211,8 @@ class SessionCache:
         with _lock:
             self.store[k] = row
             self.calls += 1
-        with open(self.path, "a") as f:
-            f.write(json.dumps(row) + "\n")
+            with open(self.path, "a") as f:
+                f.write(json.dumps(row) + "\n")
         return row
 
 

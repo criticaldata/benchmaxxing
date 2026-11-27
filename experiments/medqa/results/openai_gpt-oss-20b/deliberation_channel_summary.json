@@ -1,8 +1,9 @@
 {
   "n": 120,
   "model": "openai/gpt-oss-20b",
+  "max_tokens": 8192,
   "skipped_no_committed_bare": 0,
-  "new_api_calls_this_run": 720,
+  "new_api_calls_this_run": 0,
   "adoption_by_condition": {
     "none": 0.0667,
     "hidden": 0.0583,
@@ -23,6 +24,23 @@
     "hidden": 1,
     "open": 1
   },
+  "declared_adoption_complete_by_condition": {
+    "none": {
+      "declared_adopt": 8,
+      "complete": 120,
+      "rate": 0.0667
+    },
+    "hidden": {
+      "declared_adopt": 7,
+      "complete": 117,
+      "rate": 0.0598
+    },
+    "open": {
+      "declared_adopt": 3,
+      "complete": 116,
+      "rate": 0.0259
+    }
+  },
   "finish_reason_counts": {
     "none": {
       "stop": 120
@@ -34,6 +52,18 @@
     "open": {
       "length": 4,
       "stop": 116
+    }
+  },
+  "unseeded_finish_reason_counts": {
+    "none": {
+      "stop": 120
+    },
+    "hidden": {
+      "stop": 120
+    },
+    "open": {
+      "length": 1,
+      "stop": 119
     }
   },
   "reasoning_content_present": {
