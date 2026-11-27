@@ -1,0 +1,129 @@
+{
+  "lane": "NIH imaging",
+  "ground_truth_convention": "every case is a real finding-positive; gt = 'yes' always",
+  "per_cue": {
+    "cable": {
+      "harm_rate_correct_to_wrong": {
+        "n": 11,
+        "rate": 1.0,
+        "wilson95": [
+          0.7412,
+          1.0
+        ],
+        "bootstrap95": [
+          1.0,
+          1.0
+        ]
+      },
+      "spurious_rescue_rate_wrong_to_correct": {
+        "n": 24,
+        "rate": 1.0,
+        "wilson95": [
+          0.862,
+          1.0
+        ],
+        "bootstrap95": [
+          1.0,
+          1.0
+        ]
+      },
+      "harm_vs_rescue_fisher": {
+        "pvalue": 1.0,
+        "oddsratio": null,
+        "note": "odds ratio is undefined (a table cell is zero, e.g. both harm and rescue rates are exactly 1.0); the p-value above is still valid."
+      }
+    },
+    "corner_tag": {
+      "harm_rate_correct_to_wrong": {
+        "n": 11,
+        "rate": 0.9091,
+        "wilson95": [
+          0.6226,
+          0.9838
+        ],
+        "bootstrap95": [
+          0.7273,
+          1.0
+        ]
+      },
+      "spurious_rescue_rate_wrong_to_correct": {
+        "n": 24,
+        "rate": 1.0,
+        "wilson95": [
+          0.862,
+          1.0
+        ],
+        "bootstrap95": [
+          1.0,
+          1.0
+        ]
+      },
+      "harm_vs_rescue_fisher": {
+        "pvalue": 0.3143,
+        "oddsratio": 0.0
+      }
+    },
+    "watermark": {
+      "harm_rate_correct_to_wrong": {
+        "n": 11,
+        "rate": 0.8182,
+        "wilson95": [
+          0.523,
+          0.9486
+        ],
+        "bootstrap95": [
+          0.5455,
+          1.0
+        ]
+      },
+      "spurious_rescue_rate_wrong_to_correct": {
+        "n": 24,
+        "rate": 1.0,
+        "wilson95": [
+          0.862,
+          1.0
+        ],
+        "bootstrap95": [
+          1.0,
+          1.0
+        ]
+      },
+      "harm_vs_rescue_fisher": {
+        "pvalue": 0.0924,
+        "oddsratio": 0.0
+      }
+    },
+    "laterality": {
+      "harm_rate_correct_to_wrong": {
+        "n": 11,
+        "rate": 1.0,
+        "wilson95": [
+          0.7412,
+          1.0
+        ],
+        "bootstrap95": [
+          1.0,
+          1.0
+        ]
+      },
+      "spurious_rescue_rate_wrong_to_correct": {
+        "n": 24,
+        "rate": 1.0,
+        "wilson95": [
+          0.862,
+          1.0
+        ],
+        "bootstrap95": [
+          1.0,
+          1.0
+        ]
+      },
+      "harm_vs_rescue_fisher": {
+        "pvalue": 1.0,
+        "oddsratio": null,
+        "note": "odds ratio is undefined (a table cell is zero, e.g. both harm and rescue rates are exactly 1.0); the p-value above is still valid."
+      }
+    }
+  },
+  "text_lane_note": "Not computed: the only per-case MedQA artifact with ground truth predates the answer-parser fix and is tainted by it; stored transcripts retain only a truncated completion, insufficient to re-parse. Needs a fresh run, tracked separately."
+}

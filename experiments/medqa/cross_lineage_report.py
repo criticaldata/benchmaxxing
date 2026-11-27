@@ -30,8 +30,9 @@ from statsmodels.stats.multitest import multipletests
 
 GEMINI_DIR = "experiments/medqa/results"
 # every non-Gemini cache slug in experiments/medqa/results; the self-hosted FP8 nemotron id has no vendor
-# prefix, so it is listed by name or its caches would be counted as Gemini repeats
-OTHER_LINEAGE_PREFIXES = ("nvidia_", "openai_", "Qwen_", "meta_", "deepseek", "nemotron-")
+# prefix, so it is listed by name or its caches would be counted as Gemini repeats;
+# "local_" is a locally served vendor id (local/<id>)
+OTHER_LINEAGE_PREFIXES = ("nvidia_", "openai_", "Qwen_", "meta_", "deepseek", "nemotron-", "local_")
 _LETTER = re.compile(r"^\s*\**\(?([A-E])\)?\**[.:]?\s*$")
 
 

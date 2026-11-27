@@ -240,7 +240,7 @@ here is derived per-case outcomes and model responses.
 | MedQA-USMLE | public | per-case rows, summaries, call caches |
 | NIH ChestX-ray14 | public | per-case rows, summaries, image-keyed caches; no images |
 | MedMCQA | public | per-case rows, summaries, call cache; no sampling manifest |
-| CheXpert | Stanford research agreement | per-case rows, summaries; no images |
+| CheXpert | Stanford research agreement | per-case rows, summaries, image-keyed caches; no images |
 | SUPPORT2 | public (UCI) | per-case rows, summaries, manifest, provenance, call cache |
 | MIMIC-CXR, MIMIC-CXR-JPG | **PhysioNet credentialed** | de-identified per-case rows only. No report text, no images, no caches, no MIMIC identifiers |
 

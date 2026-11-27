@@ -1,0 +1,136 @@
+{
+  "family_size": 8,
+  "correction": "BH and Holm at alpha=0.05 over the committee-structure headline family",
+  "contrasts": [
+    {
+      "n": 60,
+      "rate_a": 0.3833,
+      "rate_b": 0.85,
+      "delta": 0.4667,
+      "delta_ci95": [
+        0.3333,
+        0.6
+      ],
+      "mcnemar_gain": 28,
+      "mcnemar_lose": 0,
+      "pvalue": 1e-08,
+      "label": "authority_ladder: guideline vs colleague",
+      "survives_bh": true,
+      "survives_holm": true
+    },
+    {
+      "n": 100,
+      "rate_a": 0.34,
+      "rate_b": 0.6,
+      "delta": 0.26,
+      "delta_ci95": [
+        0.18,
+        0.35
+      ],
+      "mcnemar_gain": 26,
+      "mcnemar_lose": 0,
+      "pvalue": 3e-08,
+      "label": "seed_confidence: confident vs hedged",
+      "survives_bh": true,
+      "survives_holm": true
+    },
+    {
+      "n": 120,
+      "rate_a": 0.7167,
+      "rate_b": 0.65,
+      "delta": -0.0667,
+      "delta_ci95": [
+        -0.125,
+        -0.0083
+      ],
+      "mcnemar_gain": 3,
+      "mcnemar_lose": 11,
+      "pvalue": 0.05737305,
+      "label": "rationale_validity: any-reasoning vs bare",
+      "survives_bh": false,
+      "survives_holm": false
+    },
+    {
+      "n": 120,
+      "rate_a": 0.7,
+      "rate_b": 0.7667,
+      "delta": 0.0667,
+      "delta_ci95": [
+        0.0083,
+        0.1333
+      ],
+      "mcnemar_gain": 12,
+      "mcnemar_lose": 4,
+      "pvalue": 0.07681274,
+      "label": "super_additivity: both vs peer-alone",
+      "survives_bh": false,
+      "survives_holm": false
+    },
+    {
+      "n": 28,
+      "rate_a": 0.4286,
+      "rate_b": 0.6071,
+      "delta": 0.1786,
+      "delta_ci95": [
+        -0.0714,
+        0.4286
+      ],
+      "mcnemar_gain": 9,
+      "mcnemar_lose": 4,
+      "pvalue": 0.2668457,
+      "label": "true_peer: correct vs wrong peer",
+      "survives_bh": false,
+      "survives_holm": false
+    },
+    {
+      "n": 66,
+      "rate_a": 0.1667,
+      "rate_b": 0.4697,
+      "delta": 0.303,
+      "delta_ci95": [
+        0.197,
+        0.4242
+      ],
+      "mcnemar_gain": 21,
+      "mcnemar_lose": 1,
+      "pvalue": 1.097e-05,
+      "label": "unanimity: unanimous vs with-dissenter",
+      "survives_bh": true,
+      "survives_holm": true
+    },
+    {
+      "n": 25,
+      "rate_a": 0.24,
+      "rate_b": 0.4,
+      "delta": 0.16,
+      "delta_ci95": [
+        0.04,
+        0.32
+      ],
+      "mcnemar_gain": 4,
+      "mcnemar_lose": 0,
+      "pvalue": 0.125,
+      "label": "majority_pressure: 2-peer vs 1-peer",
+      "survives_bh": false,
+      "survives_holm": false
+    },
+    {
+      "n": 47,
+      "rate_a": 0.2766,
+      "rate_b": 0.234,
+      "delta": -0.0426,
+      "delta_ci95": [
+        -0.1277,
+        0.0426
+      ],
+      "mcnemar_gain": 1,
+      "mcnemar_lose": 3,
+      "pvalue": 0.625,
+      "label": "orchestrator: wrong-peer vs honest-orch over 2 wrong peers",
+      "survives_bh": false,
+      "survives_holm": false
+    }
+  ],
+  "read": "One consistent multiple-comparison scope over the committee-structure battery, each headline contrast reported as an adoption-rate delta with a paired bootstrap 95% CI and a paired McNemar p, then BH- and Holm-corrected together. Findings that survive Holm (the strictest) are the robust ones to foreground; those surviving only BH or neither are real but correction-sensitive and should be stated as such.",
+  "lineage_note": "Recomputed from the committed local/nvidia/cosmos-reason2-8b rows in the model-scoped results directory. The prose fields (read, notes, caveats) were written for the Gemini run and are reproduced verbatim; their qualitative characterisations and any literal figures they quote describe that run, not this one. The numeric fields are this lineage's own."
+}

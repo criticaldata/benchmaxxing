@@ -1,0 +1,360 @@
+{"k": "9b12ea2d867dff4da8899935dd7f4a04580e3aaafbee6f18e2275f8dbd798406", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "624deb5b54c02a9e31f4ebc3941f52d7babad725e7f815e3426545c9fa343194", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "df1919e3e764f272f6deb82e4fc70909c4e597bdd3223a6efa89bd4bc890a4de", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "325a32f04e423c0213124680eca13af35f1a6232076fe77a10a82ceb01a8d336", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "dcd94f150431aeb90ca54b8454800cc75ae70b20ecb5327c55f46e2ad1dcf196", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "369dbca5d8ce24c34bacc026db8681c56e4ae59edec185e4ca9e8daef38703c3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "d0ade8ced39f2a60c04f2699331ce7a712c648eef6b180078f64a8983d0434fd", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "93963826d94a0ce6cfd211dd94d74938a7be03aea94df82501821fb9a9666dab", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "8d6dabe8216d629d8cf520a8bccba3787972204ae5a1abcb4d4c2f54a36537c7", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "cbfa6aef398b1c40da42b731208b7613b7003b98b6fd578ae48ed0819291ac67", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "e267d3e6dc86cfbf27d32e4bb8da6e7f91a9221c406e036bc61aa5a5f003d9a1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "1e99c03394c3660c1f1a421f6d725e4bda63843cae3079e3d5614cc09f9b454a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "e733a7766c2a4bf0e29649fdfe393e15b0d2503e7266590f04f9db800e6c32fa", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "cbc93bf073933503a45158ab73809c5bebaf0c2131fb344b29b059bdb51b0c5d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "56b422eda4a71b76bc17b12c13271cb1ddea44647672ef62a870273c44aa32da", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "5b96493bd6909c9ae76a1cabceea6b2775bb559637ec6f2747d72868bb936c9f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "c2a79f9d9daa7b0ddbc5bf247ff483b7d6ab6b1afa6eef654086d02fdeb21d83", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "61f040fb4a6ef776d6a51c6b1bbb9d9ccc3db6c10c45c2449886199b1267b731", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "4338933d3e492b45b9359eb9b4d421131eee5820192efbe61c2816c0eeef475b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "509c8eddb944811a58be1f5bd1691dc8c566a890d28d6c7d532552549d9aaaea", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "e6e3c65058e9f7c4e44f6b1c9181d107f98554837033629f0748546457707f19", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "dbb5add506bb2036616c309004785740fb036346f8daba5738c1c2cccc064269", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "55d63b533705b04c7423a750dd77fa854aa9cdd59ec090bf687462b4c1bd56d9", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "8f9c0e97da3520739fad34a708c203a0de5f4dfd5f01bf8a2a326daa7931c3ea", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "51906979aa98ac06c72c59c7180805b0f42b013aae31ca5385c491f95f6566cb", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "8de95fea108835124e7d266bae0eac9dd1eab3148df07342b427207de04d8371", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "595fcbef1e70c2c9bbf2eb0870621b22578e6ff31d0026c1e23122792f452bac", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "026f6dbf27271ad9a8905a7178820921b198c0c120e58c5f8f3a96d14df6b346", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "2c14f951cf94789e324ffb82f0d164435b135deb14e8f75642b0180388c953e3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "e609c6789afec129756df3fe516efe69cfcd6e211baec3504b7befa199c618f0", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "5a5108c891b10a0bdd65a4eb50d7aad61ea3a0c396d1b95acae91e7474686431", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "cc61c0e8160e935fc3283818edcd0e71289670466c5d46773baa2dc978ae6f13", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "ef4588cd4fd0b15e9c95a0d0529b1a1a9f838401a27c5c956c5376feaa9d3fc4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "553dc0f731585eeac5a973ea6bf625c4ba132e81313a4c5c1893c4bb44efdad3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "68990fbf613b8c52f58885701513db3c3231eb261b05ab55eba37c244350bdd5", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "dcd22e1bb26be34f457d3d8c23e3cc52bb53e472f56bcf177c0713d918631b6d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "1caa3e717b4de320eed4c95aeb58dfb57fe1ab6b365c29b59008d45e60048d18", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "efd46307ec549387e6ad147a11cea275459252c6fa019d94af9ed63c6f64878b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "0168551d5541aa904488933d3e12c8d60dbc4b5ded263d47d2cb176d80a9bba8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "f8c257262575f7699e739ff1ddf436ebd73e3fd6b7c4a8f529cf4b1abe3a4aca", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "204f3a51baa2dd1bc7a3460813d6cf2f28615e3fd7224a2bdc1f118a012f8d1e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "4870da73ba3a26b99898c8db6b9fd00775ba91d221c133a131acc9a2345188b8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "46c29a0ab4c4887797f3052ba7453c285319108e2db46ef9055b5a3d1522a6c2", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "4aeabbabb5bb2da2220214cd5a5d8e885aa541e49472c9ef08ef4420350b10e5", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "65c34348bcbe7003a48bed84e4cb7d10a082972382ba60c90577c94433f7bbc2", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "0edb8731ac9bd88268e362193b6df960c50b1ec8e7ed41756d420bbd375e6f52", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "ecb8a18cae22202a1dead17142a9a85e139cc6c089a7947c32fd556330e0aadb", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "5c6cdbd153748ca7e28fd44f2699b207147a8f8a8179d93a855451f8ca2eaf82", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "5cab33dc9668d9e9d382c8f36be61cfe36aaa72d5df14bae0a98dbad9cc37479", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "b6a414f830f16d67414572a6f0c5fb0200a9f7a27390e1e7bdc32116f92b387c", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "819b299ccf7cd2aba10cce23a022276093e558a9f76b766d6d761ac04bc8741e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "71df95ae8384c17b1d944c4278ed2de9954d120889ae3624afe94496384914fe", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "11f299877271ef78ca9a3bc9160fa25a021360dec1f822115ceb9abf5c7a334a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "bba591f58db769032503f0c18d7361319ce4746ce53b4eed4ca8ae51ccb9e3a2", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "221635fc7ac5db2489d1403b269b0cbe3f0c33329c9c333815a43b8e9022906a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "afd05c515fabf3cf48090d038be9e224f75c324c4605364140f8f5ef1bd7d344", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "c5d6bc343deb98ac8f61554cb1f37f64d40435be1b7a64cf32f27d8ad5f0bf53", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "c5bf6d484943046cdf07b19a3ab5693897238d5b76605234adcc73de171bbbb7", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "13af5a854f373dceaf43e40f378515bb7900a2a08ac194cfb9318dde09f1cfd3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "ed607a5930c0dd067fced4870fd29e206dca351b0f4367803cc2e8391f040caf", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "0bbdb58955ce99a83673ccbb3642c94549c77da11a12490aedb82677bcd6cecd", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "bd3661710f2366d1d71bcbe7886727f5da51fec3a4d9252991782860ed0e5405", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "2b11a7622b84911463bd3ea418c7f3ddeec0f0c6b4eb85daced21f885c3a4388", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "4fe7b99c951a9068b7f21a8ac86ae397a3409fcc1f779249d4f695bc6d94a953", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "e7f23577c734d4ebdc347fd6f39f93757be5fe492fbb5aba3b7e5d853c25dbd9", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "414bfcce1657a02fbaae5cedc77494e201a430c18728447c1c513e59626e6656", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "27dd0ce1961ab4db9eea67caf159e6f7142fa1f40551f9f08abae973db6fd7f2", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "11f23b597eacb9affe506fd9d4f0d1c27f66c8ae7e643d2122d7d98613001635", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "07ba45ad8b9b932a2d4a413785232b03969e43dc41b68052d1bb8f05c6309df4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "eb24d629cb515fbf9dfaab747e9b64f541b77ae4d3c88ef53263d6c34825d517", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "f69614daf521ef72ac7836e176327983b3d8fc25b72344c9ed0f9c9203110eb9", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "e605222d024a46c04e5e8b9baf5293b696469b31b7a3542ec8ddd2887590ddea", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "53c2d6f07ab389fdd00b2041a685decac5d53d0a8c568b013d338ebe146be70f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "274e034713907d4b3093e0387179c064b698c2149e05556abfea23277a5b2143", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "75fda048f5de34c643febdb0d790f33ea6bcce0ace3b91938180e5f862e7986d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "9f80472685c9e2aa25b8187f10866d98f2c9e52cef615612f859f6dcaa996d3f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "4f9f09ebc3af36f9662de9e836dc2176d684e57b5e6d2d934fffc62c35278eb7", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "9e7ff2f0bd293a1731eca4c1c1e2a7ff6ce1185855bf168426a520166ba2abe2", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "e975a0367babd0823f56c303d30776b5e421543d7b339f55203196a21d3cdff3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "be7e1fb6b449c258bdac86f391e59d0aa1c122f26031f569a35106ad9d8f3dc8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "9b3f51bcb8ccd3ad4c6cc23f3cbe55c016d51ba7b9cc491205fbea5d2e5b7724", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "d399571aad6479265fbca1f92d487db497f9e010a408648ee9bcc7dd43e7bb7f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "6dc0b1e7c8109d92b242aceba94432352ed895bbc924b5865e8f9dfc3637b85b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "85967196ebd06fc5521d9a25fe666e537fe757e4ae050df605484c587c9679a0", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "121ce3466485b21a7349e892e81af0c3b17bafa5c17b4523b91692f6ff74fd35", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "f76a624babb8d05eef5a0824a4aed0eb3eb23744696e69729a5186e2332a18b7", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "19b85f4c9a9ac7cfc7d9f5f634ca6e4c50e36fcf0d9f550ed6323daf6f8ed8dc", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "1eae4fd5504df417b12a50bb5917da2dd7b2c07eab4a02b5d985482519e7cdd7", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "619dca0bd4808a632fa1019db02c7368c6fcb48e3607f5f2badc8138e5d81922", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "9460dbf772bd7c102501d4e32ae18f55952070d14997f5cc691dffca501cc4b5", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "e94b378a2490d28df0be4f77d2df132e6773404bac4615b57b3370a3c177d4c4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "5ef0d16168be7eb86220a9a940d9cf2e39a7a6a9447bcd04d76ebe2143f06bd6", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "806f6cddf445d0bd4f6b6f8bec016b5e943ce3fde7ad0c85c06bc22510cb0ad6", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "4271288fded323df823289679a8316a101ce2782931e214b1a516b4b03517299", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "a6df3c39ea200ee4c1a34e73c052a0590912a62c1f15039c88e0256917afd265", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "5d90778cc1258e700c7a647d295e13c750ebbcaa479a8374b4a93d45aef69fde", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "067ed7ab2ef907dfc42017a25c6eac9ba30102d91c7374866c7d3de156643390", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "6dd1ca1fcb9f5111c6b25638a9e2b95a9128b91ab5221cd196df1243ad6ec456", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "f657d9ec781ea786283f1ef8e95acfcd78aa99a0ec05cfc39d91de77fa3d25f3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "8c72d0a7778c9af5279bf2ef88f1d71885d31ad00280474494f3738d3c179892", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "4947dec4d031825ae99692d5311c4904bcc4b27dcc2043fde5832c5689bd00ab", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "d5b3f8a0380606e397d025a8a4961df355720770da07d196eb14bd7f4b89d588", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "d4dcc08fac14efbbc06e55a60efe889143ca7fac1f9e66eef94121d09819d399", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "6c3fbaa94bee459802c378a0ff82222e21ed9a72a86aceb9c570fabd81a6140b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "360bbbc04d2bcb98698b2ccb0919f978c2fe6d8bb6774d86312af14ce65d32f3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "b280be1cd2c5ad1ed218cac2fee13618a952c0bae420986cd207c087bf8abfd3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "7bc1098390b1063a9ce91b15daffb8b35d7aef1bc60f39f40ce0f7dd3290c89d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "0e3a995853c1c0c7193cab451746bf1bb00d259a780ac645048e0438e687d364", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "a8d208c427d217b07e3773f7d9da8ca774cceb309eecdf66ce9d9f585cd7e9c4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "a3af450e09e6b458cfaadafb478dc1ab306b4cbb563db46ce0a5d1dcf3c5511b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "c62ae6a0989246e3ade67d09059deea12dbd7d55d2e4d8ec44e5a644aea1f35f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "be2a723df70668c82e82f855e14f62b7c21d53b43d96fe28020ea9f3316c53ae", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "2e1584f5a7c2159685ac4329eaffbbf688cb4fa9678fb5f80817d57518f96639", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "71bc5925a64c1f5ff7804922b0f42103ac7df95a5984371a1ac2d5eec93ffb83", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "95a553799423b7460803a18433b461a60c183ec020a409b81ec7eabba629a72c", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "d89600699cc1bec2fd8d25369f68907045d1ef902121b3639bcabcfa536c32f4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "1c6b32d57d653f55ddb93379914230adeb732080b9dc716622d5a1a039bc14e4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "18f58bf0d93c8dd3b4462b6600dd2a8c583072dc7be82795270633dfacbdb510", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "d13ba8801a8969ccdd109e0d253153d1cf43fdc9e13accd81d8b7cd82172eb98", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "b92f1e00b69365a297027d5f1745cd9e28df2b7134712c22cba89b1537970afe", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "7e3b5c1bd5c3894e6d98964a7825267cb37758c0409b23712640ac4c6832808e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "c1cc37040ea04105af7cb509effcddd619ebbf7e8591902a3dcef43908ca5a0b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "5fe9dc6a2f682fd0857d1509358b19f8474ed33831315a4134a6245b533304be", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "5bd7df0944dfbb29b8f362adce93dd183450a7f70bef83960e9370ae38061c09", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "180d2ae929df110fd3a01f697cf6dbd1ca1634a4931ec42c18048eacd6386f16", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "acd7472d1b15d12771089ee358d60e9f5c0434aae02aafb9746b8904b0bb4325", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "73c29e6c5e233a09e916ce11b8b0a49936096312ad1ce609452e4154b0ebc6ca", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "8b1f2049a105fa51b5e0a3b39a9566ad08a2d2f211d7bcd21353ac3e46309dcb", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "9a4b23d8c64945a3459e701b8c068bf9d55307547feb3435d22fa3789a380213", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "edabd57c71c6812915f1a42d7ba61bf6d27318a9561cc9ef58423c443d2a265b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "c8c1efccad7774c7ecfce51096c4f00907e1cc7465112082a3f579557b8068a8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "73cbca3271c99796b5ddb32d46421b4a802be2d46d5ef82c363b198db6002b1e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "a4f660f5b29d93a98d0ee43a868a725e6716ad1fa787bef9a902604bce31b574", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "8a9c655cf9941f853e5f344732f30ee802042f58682dffd732903fb945e4d3c1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "d3756c8b61b8fbe7cc546e627bc96b76355e62483a9a98a37083a6c03321d872", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "db50230a2f201330e015d203bca9b152a6d4f0ddd6dfad00fb363e7c56282bf3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "a238b85261e87ae46a8e1df0d9e851105d2babf88e7963ab87c2961409809823", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "f8bb88a5f58fc18a1296a8bf5bb3ee44f0118f021f603ac9219e9debc0965d3f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "fd40321a2ebbc2d855356324c05b2e0ed355d580b7b46668ec368b6a66de3a4a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "f7e24af2fe446b9b371bf5fd0e31ff27ddc9a98d9578defe17fa8c890d42287d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "ba7ebb91cfa94933e0d45820afb2b56f41e1aa865f387f67d2d425c9a5091c1d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "cab741490f2f20af08ada3f2e7e423b4ba433ed9ebab62ef365c48d91622d1cb", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "7244442586a49fb45d1e98ae9c4de838faa7126906a14c9d5d56a890927c407e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "9d6154b77653f191c223e4dbf380d40b4f840886cd09db5c33eb12cdb606fbc8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "68bbca32c3049d6da0c0e5cb0253910f33468afe7fc9032b5a360b6465730264", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "817d1129d926d295d316a9c2acfc7abdd8d64a5dd39afdbcf7555db1c51ec4ed", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "d7ef92a098f1ea7322eca314c3d673581a5fcdd43a872c6e31f7aad961bcafd4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "8bf43d427e99f6a83915a949b8a539f750efcebc1a5651f1cae9d092a78e00c8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "7ab09a8d09e04a568e10227d95f26b3427376a0841cb4e155e04a6a099f81cc3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "8c1f738841bf8ed28753c9ff974a2b6b57f5adab6d3abc7388190d15b862ec9d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "b391e8f16232821eb19c313fedd9aa626f911fd3d965fc8783c30fe4c167f66f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "13ae7c59f84fa0c0894a464d76d1311541f9eaacee9c7a98c9803c4cd879cd24", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "6c7c42269e552d3a26dcb2c9a14dccf35b58e0e9a85ce4c0528091efa5c6b3a9", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "680df17694657eda8323e1c09062d2118ae7b633a53cb130b24ef602d3344b10", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "6749145e0c384d24425484da0858d45d7eb4dc628e28921f5ec017699f60e746", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "0d002b466cb4d89da3ef4304f989dbeef5450eae9b32ad56460cd0460b1933df", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "4f02e5046e6c95681ec7e31dbf8552b3c2f40c48953b3088b4f6e0af2ac3ac8d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "ca2b7be205be0871d8d169a32d03d7ad14f72cbe068f25b75769358f822cf47a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "78689e33da5ef62fcef2742423ce66cbe24ad3e6e915796fcca7666a005f864d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "4bf9ddbf8931dad3cd5550c6617e74a867b461da7aad92ec71288064ad25e135", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "a14c8c97ece52f9c181f49816e664ca3306facd35869662ab088e244b83775a1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "110e998f67bdad25cd563af5fd22a00146490aadb01b545830df863f6596fb77", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "cc794b8314756d5827db65cb8a17ade0133796ef4ef412db78022cf3d6b7d50f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "c7addfc6a2fb16583207102f84e9bba695ac55155040611c7476d5bdcf3a8911", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "1510c6f4e3a895825d32947c10e20816e2c5e7eb06862935f199591fc3022f0b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "fe6614b3c2ac8f009df77fb697937e1588fc24f83119edbe79e2c67be99049fd", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "f879fa7f655700f6faaa93a58d82053791d66ec84c44cf8e3d92345cc1fd1047", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "5f7bf88eb2e5df9846a82c5551cf3d27970603932f1301885bb35129bbf42bfd", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "a80847684b9829bfb3965fae321e1d02a92072d7f5e1aa8c079a7b28713d0be3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "C"}
+{"k": "9456fe557ed6bfafa245b75c49ad6f68fd426cd644476cf663701bf60bd15d0f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "6ad10dfc622353f8f25e46d40fa42806bf01923261cb2861573133d686487b72", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "c23d4601692727dc66d58c15e0c8c24c1cffbd61bdf415b288b691cf31af9059", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "e4fdd42e4498334954ef51d833f0bd0f719df8b45616c9f136d2e23fa7d41b4e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "753c05dbfc5423019808228e06e6c8cfd178bb04dbd3b38ff76ddd5068aa9225", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "6077d09c880576fa426df7f159b1c1d6e6b59d9293afc701d825f064951151d7", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "edb835bbecbb414da5c592e77d3d74d9f2a18d0c14bc7e397f216d4028228ca4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "7355e20f218e5f0c60562eb9426007ebcbc15ec354efad9d96e9829c6e3f330a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "fd4a19a6649a7cac2a7e67ebb89f461728794f52d30726da18bd53244927ea13", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "020967f29ad89c366890a6fb1144dd01cd03d470b0602ef22c46eb76b7e779af", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "59ba70d6e12d6901d45b1bc26c1a59d13958a1e9a2644f02904292bfc24280d5", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "3e3de8fc4c5d49fb7e5fea534fd7b447f934d85e4355667ad37b9eae5e10191a", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "5b017c3cee1a7dfc3ea09c5cab66155cd52745abb6d92a36ba005b5853d49837", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "73d1d7da9d59d39d77b0b717f3e517232c4e88b49dee7de834cf44f187be318c", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "9381fa5a7800c239078dbbb3f097a1067cf8cb1659c399dff97cfa0ca186a8cf", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "17735bf2b9092ed0bce6b7c2c0c9d92c2c118252912d57397df5223789186f2f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "7fe055074d2870cc89345ca5353e9c71aff328e606617710c35645a14a903a29", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "62ed0390b681927340e4937b5e128260bd22a68a37e0c296427c5188ba06298b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "1277c7d4682a2c969174d6254614d8343ee1484cf79b4ce2e764c5318ecfb46e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "e7cac068737dc3804e43b90c3312410a80609da2daeb56097b942afd909becde", "model": "local/nvidia/cosmos-reason2-8b", "resp": "D"}
+{"k": "77b0c07ee92e7d210df4a6658784f1ec5933b091c24a125e0e5efc90eaf0e25e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "48ae5f4d3f2e092d8d116c627349fdb6dda7bdcff3c685823c9a40bdaf2724fb", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "299a030af2b46a6d947eae001860961867e2508cb2c67b3617eeff6bb03cb27e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "B"}
+{"k": "8efba54d0f27347d4ac3668051254564e325d8b77bd944bd5d75c9f5326b84c1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "5dea0c92c7efb65b47eb2430c5c6d4d07ef2a99dc0e2a6dce2b1929a528e3b32", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "0add5ae948a5e3a3f2823001d34126689ed0af74b32bcc6f670cfec51c89d5f9", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "df167d2290d142a686844c971c8a1d31212fd834cfa77b52cc126abc33507911", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "ab512b3874c3798000eebe2d20b7817bc60cfe1bfbd9606859e3e93e9d35d7db", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "83785b26bf847133b49c4c069a4452035bf26b3a374519a3388d9334e8c0ab8d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "6c37107a67c2af84e15dfa280225aca4e2bce97a5a91c9515c7e6fdf1a04b99d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "E"}
+{"k": "03bd4b242facc825b8af95f183292a84a26ffd588755af7434e040df3b2d27c8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "A"}
+{"k": "bf4d75316340584967173672e9325423e46913781afc61972b43a53cb20daa9e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "01f545f21320219c20197369725685f81dce1d62168fc5beb866076d1ec52ba5", "model": "local/nvidia/cosmos-reason2-8b", "resp": "OK"}
+{"k": "41528f4bcd63f31c4cdad63fb1c759ae626cd3363d7c4e81c121362a3f615cf3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "5f1626437a35a5c42743f51fce83d5691a5a785d02a4361877eb5f69cde8c904", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "56abf5d96534219be6cf75e18567b550f3d72460c1dda8f7bafd5d81a508946d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "58b8169f4a8f5760d52b3512a7bd4696071e048808c603918e6e709a04475149", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "4bab2cffe5f5053c0bed746c8967173ca35f989360e7eea5bfb86bf54c7285b0", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "a3989e601ec1a8c8636bcd51c305a3a963134d677209e87c2ecbf937a1a0938d", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "5b4a2423c933788f7e46e444c104377804100f1482bbb444f7d1b47e6c8aff47", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "718b233d90d18d4e03b2a2d15ce217b0b1137119fb631c77301bd4fffb71aaf7", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "0e8ce311b258284ba1025b4481890e3459392130f1303defb70e5f6a45b78947", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "c5148901672f7d87ddcd2a63685e7c2a3dcf8c65da1e8925aa9480a2ad48bfc9", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "50b0727e94c88688b7d5e0eb5cc3f7eb955a8cb405172c3dfa16909e5cf6a306", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "801f737a982fddc5e07467bae0b114081b6808544e30937afb7695cc12de1eed", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "60fa1bb05beb0fe109127c1d882b38077252daba30a05a76b70b225822720503", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "fde0f696de3ce56de1de04d241ce6268008c0e5e4c54ed6c659e974cd97ad3b8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "1bb747a5d2db8f134795ed29fa9c3281f5e160180db5d440d66ed45eef2bdbce", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "bdcac3b07f4d101e5a586af3e94bafd4f9fd5274aa22c05e48bbddb34e9bd9b4", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "77b5b1cbfa75b6c32a7bb14b5dd0c5819416b3b7a1ebd624ce879afd3c9984f2", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "1916f50023bbc25f4bff716ab85b1f43a210351918b9dc27df0bd06be29cba6e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "aa7415fdeb633f074bd70898566f2a46f4b7199203f3ede0c92bc105a47c4553", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "20f2c1ff87e854dbf20cfe74f2776d02c0be27598f1181c87d2f84c6013a1251", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "a5932752931bcbf4c2f0515605248b5f6620884a2607510442ef5fa6dcfc399e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "059c4b45c5b808a7aa33cdf1a211bbc8d995aa85bbfca76f5f1271f54329d976", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "5d5bb7ca8d807fbd0cfa9a6104bf0016c38eaeb493862d5898e5bdc7735b8fc8", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "00c2f4c010982fa886e21d6811f82c638ddeda26a61751ba8dd40f798056917f", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "ab6b473b250ff9439f2ae7c1dd6e7b5e14a87c9edeb772e88da51241d7a151cb", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "d6a387d9c32cdcab008b8d15579d9141bcfd4345516de33bca569eb0bf2fe8d1", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "533d6dda672b0859a2ca2aa43cbc39e3bfed73f8a9e7c1251c1b60efc8fe92dc", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "6334968e08697ed0d5f22c5be7807bf4d7f8134d6951470b1211e1725bf7993b", "model": "local/nvidia/cosmos-reason2-8b", "resp": "OK"}
+{"k": "8d8076d1e829410586bf83ad2b2970c9405a15b324f390bbee12a47165960717", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "35d1b18ac490dd83c220a67ae9dce048f56286a7198d7033e725eb68c20a890e", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "cbde8dfda8a4d2e995179671a1a46607b5113bedcce2012780ab06f5e20bcf54", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "b1ed95926f19ad98e6f0ab174140fd0331c1a49192db004b5ca3ede1586ab3bf", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "78d74a3364e18ea898e86e7535f9bf5cefa2ec97bf4f6ee89297159ff8335494", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "22bb7dad2b84bf7a12139c855609e3253fd9bdfd287c29be018a5a60e46a4ff3", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "83a29241f7abae0684fb01ce06fa5e8c2998222065925ccf98d858f29b158c42", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "e03c136e580e4260bee7155d7163e6965b878810473da5fbe35ce6ac8f7fd270", "model": "local/nvidia/cosmos-reason2-8b", "resp": "OK"}
+{"k": "2458f169315f35867b007b6afa636173ff04447a1d077c9adb37a63c44e06627", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "3e4cd694ae9acd88c7e61030aa3be479c09319403e4cc5965ae54b4a2939945c", "model": "local/nvidia/cosmos-reason2-8b", "resp": "FLAG"}
+{"k": "20d54d06762ea93b5d0a2e6e2beb397ea5a84bb32fa4b8cf40cdf00c3f320bda", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "61dea57a1fead87102c448a62c3afb4f59e7f573d5800ef3242ac259c18ab887", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "D"}
+{"k": "83e7428a329144b318097c6b37d1b1da3ec00cbabb999641d89699fce6bfe81b", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "525f407ffc09458112d24298f2bbb442200b8e8c31a0f61cf6bf95137f50e9fa", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "C"}
+{"k": "5c83affb019870c1476cf59d08679521f50bb903219c80e1855eb8ec4befb827", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "76d34cbde2cea94c4e443f644f8873f0abbfc6a1fa48541e0ca815c3f52fdc7a", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "7b93ec31e102059b5e99913d37439913e5c4398ba825a85ba10620c3076787e2", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "ff004cb9ea1f68af9172ee90c0d5958ca421d84fd93ff6673f4ce06df3a94bfb", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "9171f124840875955890e27160dd3f4f40d2d8d4ed9bec2b302efe7e8cb4c46e", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "62e1b1d5f84742d39d9898124d2766be3b98a6d624d280b6a698acef6eb8ca04", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "53c09c403b5ad313680d98bab125269b10f6ac9d46974779ac3385c18aaad1f0", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "602acb616bafccecf626308f060fa50401030ddbc7c924328912a6a804e34061", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "baa0956e361cbc65a66f9c68475414565459349a5fdc517e6c4c30a83592edfb", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "42c68e22a72da717094b996b2427d34cf8f74946cb3e9bb482b4ffdf776c8ea3", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "C"}
+{"k": "301c052968e2126a7eb766bfbe573abca785e528051c361b33d2751ea9f6be5c", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "325f5c3a608b8fe205226df23af4074121ebfc0ce3ad2238569b51e064bc94bb", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "C"}
+{"k": "ff69fac5666a1863decc7a406cead302d7df50095dd65467e18b6aff30978b93", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "8cd1a48879f06909195f937a5d88b427c4c95160879843388d6baba89327278e", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "C"}
+{"k": "f7ebf3222a52172d718e73843cb7f50826c7ef7bc4ae07e3fbfc3c37f0d70272", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "30da8b9319cd4c2aa4fa92d0ba0e41d96660d7088eefc6c5c062cbc096e943d3", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "C"}
+{"k": "d704be82a7b1c7f231fcfd3d9077edd2662c8c6ce97bcb4f4fa85984d45be544", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "7ee5e5c2317d43d232545dd53795420b2158dfcb026be85cc9b2f9912f99e64a", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "C"}
+{"k": "f8344142b3f27010a677b9e4649c9886a55eba090e8b5024fd03814d90704df1", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "91fa514539cbc289a9e7eeddf3bf99d681fb1ac42dc085fd94d237fea24b94bc", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "C"}
+{"k": "34a02e4ac79f67307eb34efdef25e1440452443d4960e0ed8a681190de9c3ab6", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "C"}
+{"k": "d54184b6b30de19157501c8848c3035dc9012eb5ae39687e4e3b330f9462bb13", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "5381eeef83ae4fe51a1d8c723d222ac981ba25fedc4229498a3284e11a590dfa", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "E"}
+{"k": "50fef840dcf1deee4ea80409cb82582d8176544dd141f064b0483e3a99158eb8", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "D"}
+{"k": "78ed424faaff1fc8f196dd66dfa19f5830614a5a5b75bfc4bcba3a043f501fce", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "fb32edc1dae4ed4aa6afa1468d7b3794c3c1bdb5d719ccabf1f197c18e55561a", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "C"}
+{"k": "e73fded936521b86cb7fd0501c7253196a5f2af588a38f5a350c41d3ace17776", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "E"}
+{"k": "1b8ca77d5b8400982c3af20b3498801225c3f8c860b74ea69e1bea1121393885", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "D"}
+{"k": "526f02cdc5c3740aa6c3fd969de309bf690ffa20c1f27300c4bdf5def0b78ed2", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "80e7dccd906a36eb0332eeb86c5094e591b08dbcaa1b58501aacbef27d445fac", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "C"}
+{"k": "aa4eea02501e8ed34830b70b81fceeacd6cdcc58c904319fd7c2a4038735c341", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "E"}
+{"k": "0db2fe5e101f2503d21b39a6d75d16f7c557ad1cedb1cae51de212c18d3d4feb", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "D"}
+{"k": "23ff0ecc1729108f126799956e04ed38dc16c783c2920cc9d9b9524440534cba", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "4d4ca8b1a997a903072f2f8d563bb29831de491a6298d46bde3f094ac3151b12", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "E"}
+{"k": "07dc4062e0fbaf6030940f6057fb93aee7d5e85bf1659c9c4ef6b84a99b92367", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "E"}
+{"k": "a6c54b3564d8df00e231056dd6a30813278baba4abc47024c9372df0959320bb", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "cd5b7e49d3160757a9e64687b07a87bccd042f0055f098fe7705a0dfd97ae4cc", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "0c3a0ab7dc027a7f45ec802c42ac588bb439ac6df79ca74d26d5bfa344013b5f", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "bf24e1785da59b181160f1d903cf8e51cc79114e37f1b92955f720b3196a4be4", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "c62d794bf760c281414269720737e7a488ec1afa36457bd2fbdcc0d78c45a796", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "fac25edf690abf266f7f1b336b6a41fc13b63e8df488042b6e98645322fb26cd", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "410bc4d5f91824419b3d985792a23f2e680b7754a37e972d2c475cb82eda649e", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "91149269fc2096976cd0709966585e7f399bdf879f1d9f2fc8c237d0d6d218d0", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "4c4bf575b722b5b8663e116de3a6467496bf2975e75f1313c62c05922579c9f8", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "ff0b26258da35211d456352dd689c4a2483bcc35ad427ff6fee59b7ca57b3ad0", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "E"}
+{"k": "a8e8c2168636db8b802cbba2669467374f16ab851692fcbffc709977bcddf4d9", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "E"}
+{"k": "4f98e1871546d0de148b069a7f8a8f0737d27524ef4727c7fc5bacade1c4c93f", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "fc3cb68858eb46113cf84b0ddcf0f57ef689d36fb9faecf8430a7454c86469d2", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "C"}
+{"k": "2d579797976327319388485f894fb70aa7ff20c124e21e934586e78c3716a78a", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "D"}
+{"k": "4c57bccb20af1ba050a0f1801f6a8f1733c40ab7e744f21c108ff37878e50615", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "E"}
+{"k": "7e6269d5da940876c3979f5fd37c1eed6fb85c44bafc3b4987425e86ce543e68", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "f30d3e816dae7e6cf3fd614518d52cef5df410a0722bc774a956317c6bae8e09", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "ca2f3857089b288cbf0173e9d204377ef142e523a0d3470d4c8306f1a06951f5", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "D"}
+{"k": "552739caec4b07840b32ce25524890092ca9c252a8c8447f3e40f70ad195d382", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "E"}
+{"k": "8364bdd732e7b4fcc240214d90db44969898b99ef874f91575519e895ed961d6", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "50552153e3b49beacb0b53b3bd2b50162ef6cf73c5ef07760dcb39a6ac8f448e", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "55ed047f3f13e9e422aa7a301ada85c4dc703f2e50cd9d4b61d7eb21f3dd77ec", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "6e2b9f7736a7d45403ea0ea02046f506731d86a8cca8cb6e54d6f0f054f580c3", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "831ae61ea122ff63de313214a4f50e0f229f43bfdab3f0b811222b7ece3b596d", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "D"}
+{"k": "4bd55f9ff6af7e90016fd2caf5b318509ab4323cd5ec7206a4e2bd5057675a64", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "fd9ceafbb20df8be48ce0220fe4bf53db462f35e511c0a33dc1b119c2bba04e4", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "19ac2635e26d104fe53dff5c12e195ab8371d4b6b3e2f495ad8b2b360567b729", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "11d00d7f71954e82bf3ba34dd4bd5422c37a05f2acfccb949ccb9cb2944539e7", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "d843fa1c7f9ae545d99ea23785a9018b3c790f586b8909919ab64985f14c620d", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "b22d71416eb6074c294f8220fa9dd480c5468eeaf8b80c12c04d692e6a654b20", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "3b22d614517e6e6f90dd7e4b0d61212348183c35b849881e59893059e58ae0ec", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "450b8a2267829dda72b2f7bf2ff294fe1cfb2919760f1271a79ff1269dd55d38", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "00e3e0ae1e1a5d87549f21c1d4724b4f02701766f2519e5e941dffa6245f9124", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "65366736d35ca43c8930cadadf5ec1cee7a42d903707be7c5d5f3a3532617c81", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "b6cf114baf4ab01b6c77ea30b38a7477e539c006d5f5b905fd89d82287fecf31", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "E"}
+{"k": "f0adfb4dd61a2583b9ac012efa756950106b478632020490193399da35601a76", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "D"}
+{"k": "28212ab98cfa410f4ad2df8735adb7e85ed6585a195341f941dcf62b52cc32c5", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "ff13188e06b129bee4c2382d05c09f3ee04ce2a8b593c168978fd3e22f726f30", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "ac0452adf30ec286a78f4356b6b660c2d7a11952263ec661d5fbd7401178eb1f", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "E"}
+{"k": "10222c9c0aaa277555bd9cf235b576b3674803be6c922d4e19e7a66de4daf7d1", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "3a130e5bfbf1f89b9f6b58da1faba11c5d05158b378b91331141e6d7f802255b", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "714859e4d1c4990faa4f704908efec126c01195f2cf862e72e2f3c1e2856f856", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "4403f3a2483f7caac247efabdda1943cb21de80c6e5a7a6d20818826a80d60ca", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "E"}
+{"k": "0516a6148ae67e7e84cd7cd9364487403b7b3d758ff536f2e9560fb09bbb625a", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "d4901e25c50b0dede1fcecfab4081d839eb1d6046dd57932c53f97985ad52f48", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "70d46b23a386aa1a733d555c0f508fb7162fcee9e286b1498f49ef958ac2f0fb", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "D"}
+{"k": "c375d8b9a52b527d0dfdfdf5389fc2bb2debbd5afbb80405b6cd5c66f30aec21", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "D"}
+{"k": "402d2cf01921a0fcf42b971b75664147bed7a72037d46360c7c8b09f0c363d3e", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "E"}
+{"k": "ef578df69e6c12f125f008f3823234d402576f18100c50637393f853563839c4", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "C"}
+{"k": "3c1d78f3fdba70d77ddec5e937ecb83f52bf2c7c747d7c1c18f6dee3026bb727", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "45369aa9d4ed36429a685d19c4ecd1c6ba7e0dae103ee6dda23c434bf3ea0cb7", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "c2fd4f470354eee8c39cc68b375515e12f487cf03b9bcf9c93e580be28bd50e0", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "a6d427057884e6912a94bdaf753698a5972e2e13a5060ed7c6e51bf67dd7a5cb", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "ef40e51d3b99019e6927b7650f50d07562ea7aad83edf812fc37e36839685d99", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "e2576ac7553166306d8441070a94c44860611144dc75ee4fc614fa07295fc720", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "7748c6baa24e2525cfe33f52ce78e6d5875ac7e4fe1f28137ff56606b92faca5", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "672bf3c7839f7c1c76e3696a8d52daebcf6d634ddce1aa5472db1de0d6c06444", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "00d5f46cc22c7be9a22c0272f925d9e81c1728e3d9d5e26c6f25ef423f2a34c3", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "C"}
+{"k": "9afabac11b609c4dc8a7e9dc33c4658fac4ed55ed19e17b4a16328bfc560c5be", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "E"}
+{"k": "46e8fe10a5ec09ff354e54aa7e04884880d4c37bd6e1601cb702ba2d1385453a", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "0e17e7baad1969eee6e77cfbdb2416267147f85f957a2853567c821c282b8397", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "ec55b25f2a93b21529e923b59732a968be9134860b03d4a95717daf2314575a7", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "C"}
+{"k": "fa5abeddfdbc3dc916b70ecf81cfbcad1d099845f0dbe11acd8c322a909447b9", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "e49c49b51d89879a629aa017a2f7ee13bb71e7b40bf7deb15214645a99d03f63", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "E"}
+{"k": "9aacbedf897e86fd95d899ab2dfa9484f73c3ac0d49e2cdf724302bbc61a11d2", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "6692b85d2ed54f5c610ab49620e4a40b0d97c651e9d99086caecf588a62e2d6e", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "C"}
+{"k": "b45fc776407f2f53b6c1c65918dffe8048b2023007740aef1e3b482f7520ba51", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "5829163579a06885827e4384f29f42be6e0bbcda842e9b4f35c0c084641fce2f", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "E"}
+{"k": "1cbe01bfb8e35422af32e119fb9b1709c56f1d65d2420b9bcdc1205bc19e21e8", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "16fb193e2e12f0e8ad3649ba7d7a07057acea46870bff366ae4af6dc2b86b406", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "D"}
+{"k": "37719dedbfacc32c9c69f28e21b8a8ed705d5382d92630e6fdbbe81aad9e6c85", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "a371c56c6f1515904230c0a440c73b6a9272988eba44cd22fa1574f132069708", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "D"}
+{"k": "85ced4f7981d4d04c7c97e705d221d28af66daf80f472782cc6da4b3ed013360", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "A"}
+{"k": "de6afc9c94c81970e189ba6d6e1b2a2e120ef36986d3387cf83ab66ebeaea4a5", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "D"}
+{"k": "be14875ece25039faa80858c4200029918e64af8db224507d3adc728039aefec", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "cae8f2c743dc16672b041e1783fa38d84b346fbb0f967ea29abc5b8ac02ee7f2", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "E"}
+{"k": "af790f33811417089c87f5c07b274752c35dec74a9b6a32cd60fe8e7403a8c5a", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "4db6c3b81950feb6d6541f16423bce7ffe0bac97f456699aebd001116ba7a117", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "D"}
+{"k": "88d1703fd453ebba2851a4833e12c045d124fbbf982f6c986dfd7256d7b117f2", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
+{"k": "82b565d2f22ee8fe23ca055639d1b2094cc26976320f2eaeca6fded5890f8f4b", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "E"}
+{"k": "77ef66da2af0bf276f7ce6b07126e89eadecb2ba12bbaf4b592071fe49af9567", "model": "local/nvidia/cosmos-reason2-8b", "temperature": 0.0, "resp": "B"}
