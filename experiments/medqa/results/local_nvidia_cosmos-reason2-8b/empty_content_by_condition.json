@@ -1,0 +1,296 @@
+{
+  "model": "local/nvidia/cosmos-reason2-8b",
+  "new_api_calls_this_run": 0,
+  "definition": "A completion is bare when its prompt is exactly the plain MCQ rendering of a manifest case (stem, options, answer instruction), with no preamble and no board; everything else is seeded. Empty means the stored completion is the empty string. Counts are completions requested by the runners, so a repeated prompt is counted each time.",
+  "overall": {
+    "bare": {
+      "calls": 2563,
+      "empty": 0,
+      "rate": 0.0
+    },
+    "seeded": {
+      "calls": 6658,
+      "empty": 0,
+      "rate": 0.0
+    }
+  },
+  "fisher_bare_vs_seeded": 1.0,
+  "per_runner": {
+    "text_cue_types": {
+      "bare": {
+        "calls": 120,
+        "empty": 0,
+        "rate": 0.0
+      },
+      "seeded": {
+        "calls": 480,
+        "empty": 0,
+        "rate": 0.0
+      }
+    },
+    "dose_response": {
+      "bare": {
+        "calls": 120,
+        "empty": 0,
+        "rate": 0.0
+      },
+      "seeded": {
+        "calls": 480,
+        "empty": 0,
+        "rate": 0.0
+      }
+    },
+    "authority_ladder": {
+      "bare": {
+        "calls": 60,
+        "empty": 0,
+        "rate": 0.0
+      },
+      "seeded": {
+        "calls": 240,
+        "empty": 0,
+        "rate": 0.0
+      }
+    },
+    "test_awareness": {
+      "bare": {
+        "calls": 120,
+        "empty": 0,
+        "rate": 0.0
+      },
+      "seeded": {
+        "calls": 360,
+        "empty": 0,
+        "rate": 0.0
+      }
+    },
+    "committee_size_sweep": {
+      "bare": {
+        "calls": 120,
+        "empty": 0,
+        "rate": 0.0
+      },
+      "seeded": {
+        "calls": 480,
+        "empty": 0,
+        "rate": 0.0
+      }
+    },
+    "plausible_distractor": {
+      "bare": {
+        "calls": 120,
+        "empty": 0,
+        "rate": 0.0
+      },
+      "seeded": {
+        "calls": 342,
+        "empty": 0,
+        "rate": 0.0
+      }
+    },
+    "attributed_tier": {
+      "bare": {
+        "calls": 120,
+        "empty": 0,
+        "rate": 0.0
+      },
+      "seeded": {
+        "calls": 480,
+        "empty": 0,
+        "rate": 0.0
+      }
+    },
+    "deliberation_framing": {
+      "bare": {
+        "calls": 120,
+        "empty": 0,
+        "rate": 0.0
+      },
+      "seeded": {
+        "calls": 480,
+        "empty": 0,
+        "rate": 0.0
+      }
+    },
+    "rationale_validity": {
+      "bare": {
+        "calls": 120,
+        "empty": 0,
+        "rate": 0.0
+      },
+      "seeded": {
+        "calls": 360,
+        "empty": 0,
+        "rate": 0.0
+      }
+    },
+    "seed_confidence": {
+      "bare": {
+        "calls": 100,
+        "empty": 0,
+        "rate": 0.0
+      },
+      "seeded": {
+        "calls": 200,
+        "empty": 0,
+        "rate": 0.0
+      }
+    },
+    "paraphrase_robustness": {
+      "bare": {
+        "calls": 120,
+        "empty": 0,
+        "rate": 0.0
+      },
+      "seeded": {
+        "calls": 360,
+        "empty": 0,
+        "rate": 0.0
+      }
+    },
+    "contamination_cascade": {
+      "bare": {
+        "calls": 120,
+        "empty": 0,
+        "rate": 0.0
+      },
+      "seeded": {
+        "calls": 240,
+        "empty": 0,
+        "rate": 0.0
+      }
+    },
+    "leader_as_auditor": {
+      "bare": {
+        "calls": 120,
+        "empty": 0,
+        "rate": 0.0
+      },
+      "seeded": {
+        "calls": 360,
+        "empty": 0,
+        "rate": 0.0
+      }
+    },
+    "hierarchy_dominance": {
+      "bare": {
+        "calls": 240,
+        "empty": 0,
+        "rate": 0.0
+      },
+      "seeded": {
+        "calls": 480,
+        "empty": 0,
+        "rate": 0.0
+      }
+    },
+    "hierarchy_temp": {
+      "bare": {
+        "calls": 240,
+        "empty": 0,
+        "rate": 0.0
+      },
+      "seeded": {
+        "calls": 480,
+        "empty": 0,
+        "rate": 0.0
+      }
+    },
+    "majority_pressure": {
+      "bare": {
+        "calls": 25,
+        "empty": 0,
+        "rate": 0.0
+      },
+      "seeded": {
+        "calls": 50,
+        "empty": 0,
+        "rate": 0.0
+      }
+    },
+    "orchestrator_failure": {
+      "bare": {
+        "calls": 128,
+        "empty": 0,
+        "rate": 0.0
+      },
+      "seeded": {
+        "calls": 400,
+        "empty": 0,
+        "rate": 0.0
+      }
+    },
+    "seed_timing": {
+      "bare": {
+        "calls": 240,
+        "empty": 0,
+        "rate": 0.0
+      },
+      "seeded": {
+        "calls": 240,
+        "empty": 0,
+        "rate": 0.0
+      }
+    },
+    "true_peer_control": {
+      "bare": {
+        "calls": 60,
+        "empty": 0,
+        "rate": 0.0
+      },
+      "seeded": {
+        "calls": 44,
+        "empty": 0,
+        "rate": 0.0
+      }
+    },
+    "unanimity_break": {
+      "bare": {
+        "calls": 150,
+        "empty": 0,
+        "rate": 0.0
+      },
+      "seeded": {
+        "calls": 102,
+        "empty": 0,
+        "rate": 0.0
+      }
+    }
+  },
+  "runner_status": {
+    "text_cue_types": "replayed",
+    "dose_response": "replayed",
+    "authority_ladder": "replayed",
+    "test_awareness": "replayed",
+    "committee_size_sweep": "replayed",
+    "plausible_distractor": "replayed",
+    "attributed_tier": "replayed",
+    "deliberation_framing": "replayed",
+    "rationale_validity": "replayed",
+    "seed_confidence": "replayed",
+    "paraphrase_robustness": "replayed",
+    "contamination_cascade": "replayed",
+    "leader_as_auditor": "replayed",
+    "hierarchy_dominance": "replayed",
+    "hierarchy_temp": "replayed",
+    "majority_pressure": "replayed",
+    "orchestrator_failure": "replayed",
+    "seed_timing": "replayed",
+    "true_peer_control": "replayed",
+    "unanimity_break": "replayed"
+  },
+  "not_replayed": {
+    "clean_a": "needs --solo-records (the hard-case arguments); not replayed with the wrong flags",
+    "push_c": "needs --solo-records (the hard-case arguments); not replayed with the wrong flags",
+    "break_it": "needs --solo-records (the hard-case arguments); not replayed with the wrong flags",
+    "scale_c": "runs at its own n; not in the default list, can be added with --runners",
+    "live_peer_organic": "not in the default list, can be added with --runners",
+    "pre_emptive_referee": "not in the default list, can be added with --runners",
+    "super_additivity": "not in the default list, can be added with --runners",
+    "temperature_sensitivity": "sampled completions keyed on temperature and draw, through its own cache",
+    "reasoning_effort_sensitivity": "completions keyed on reasoning effort, through its own cache",
+    "deliberation_channel": "its own store, keyed on condition; not instrumented",
+    "reproduce": "the base cascade, through its own backend cache; not instrumented"
+  },
+  "read": "Empty answers on bare prompts 0/2563 (0.0) against seeded prompts 0/6658 (0.0), Fisher p=1.0. A seeded rate above the bare one means the committed adoption rates are biased downward in the seeded conditions by the no-answer rows."
+}

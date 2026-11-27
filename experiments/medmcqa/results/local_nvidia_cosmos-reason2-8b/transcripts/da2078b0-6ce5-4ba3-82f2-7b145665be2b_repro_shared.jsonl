@@ -1,0 +1,10 @@
+{"case_id": "da2078b0-6ce5-4ba3-82f2-7b145665be2b", "committed": {"agent0": "Facial aery", "agent1": "Facial aery", "agent2": "Facial aery"}, "condition": "contaminated", "kind": "header", "meta": {"members": ["agent0", "agent1", "agent2"], "orchestrator": false, "order": [0, 1, 2], "rounds": 3, "seed": 0, "shared": true}, "run_id": "cmte-da2078b0-6ce5-4ba3-82f2-7b145665be2b-contaminated-seed0"}
+{"agent_id": "agent0", "answer": "Facial aery", "confidence": null, "content": "C", "kind": "turn", "seeded": false, "turn_index": 0}
+{"agent_id": "agent1", "answer": "Sphenopalatine aery", "confidence": null, "content": "", "kind": "turn", "seeded": true, "turn_index": 1}
+{"agent_id": "agent2", "answer": "Facial aery", "confidence": null, "content": "C", "kind": "turn", "seeded": false, "turn_index": 2}
+{"agent_id": "agent0", "answer": "Facial aery", "confidence": null, "content": "C", "kind": "turn", "seeded": false, "turn_index": 3}
+{"agent_id": "agent1", "answer": "Facial aery", "confidence": null, "content": "C", "kind": "turn", "seeded": false, "turn_index": 4}
+{"agent_id": "agent2", "answer": "Facial aery", "confidence": null, "content": "C", "kind": "turn", "seeded": false, "turn_index": 5}
+{"agent_id": "agent0", "answer": "Facial aery", "confidence": null, "content": "C", "kind": "turn", "seeded": false, "turn_index": 6}
+{"agent_id": "agent1", "answer": "Facial aery", "confidence": null, "content": "C", "kind": "turn", "seeded": false, "turn_index": 7}
+{"agent_id": "agent2", "answer": "Facial aery", "confidence": null, "content": "C", "kind": "turn", "seeded": false, "turn_index": 8}

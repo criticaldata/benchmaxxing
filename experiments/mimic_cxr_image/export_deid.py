@@ -352,6 +352,25 @@ def verify():
     return ok
 
 
+
+def export_second_lineage():
+    """Write deid/<slug>/ for every spec whose source this lineage has; return the names skipped.
+
+    A lineage need not have run every arm the default lineage ran (only the default lineage ran
+    the hidden-note control behind matched_baseline_reason.csv on MIMIC), so a spec whose source is
+    absent is skipped and named instead of stopping the export before the files after it.
+    """
+    skipped = []
+    for spec in SPECS + SPECS_SECOND_LINEAGE:
+        name, src, cols = spec[0], spec[1], spec[2]
+        emit = spec[3] if len(spec) > 3 else True
+        if not os.path.exists(_src(src)):
+            print(f"skipped deid/{SLUG}/{name}: this lineage has no {src}")
+            skipped.append(name)
+            continue
+        print(f"wrote deid/{SLUG}/{name} ({write_one(name, src, cols, emit)} rows)")
+    return skipped
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true", help="verify only, do not rewrite")
@@ -373,10 +392,7 @@ if __name__ == "__main__":
         # them, so the claim check is not meaningful here and is skipped rather than reported failed.
         n = assert_derivation_holds()
         print(f"clean_correct derivation reproduces the stored column on {n} rows")
-        for spec in SPECS + SPECS_SECOND_LINEAGE:
-            name, src, cols = spec[0], spec[1], spec[2]
-            emit = spec[3] if len(spec) > 3 else True
-            print(f"wrote deid/{SLUG}/{name} ({write_one(name, src, cols, emit)} rows)")
+        export_second_lineage()
         print("skipped verify(): its expected values are the published Gemini claims")
         sys.exit(0)
     if not args.check:
