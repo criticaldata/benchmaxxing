@@ -129,5 +129,90 @@
     "honest_source_case_argument": 0,
     "honest_case_argument_only": 0
   },
+  "declared_adoption_by_condition": {
+    "source_argument": {
+      "k": 76,
+      "n": 120,
+      "rate": 0.6333,
+      "n_declared": 119,
+      "rate_among_declared": 0.6387
+    },
+    "argument_only": {
+      "k": 29,
+      "n": 120,
+      "rate": 0.2417,
+      "n_declared": 118,
+      "rate_among_declared": 0.2458
+    },
+    "source_only": {
+      "k": 86,
+      "n": 120,
+      "rate": 0.7167,
+      "n_declared": 119,
+      "rate_among_declared": 0.7227
+    },
+    "source_case_argument": {
+      "k": 84,
+      "n": 120,
+      "rate": 0.7,
+      "n_declared": 120,
+      "rate_among_declared": 0.7
+    },
+    "case_argument_only": {
+      "k": 49,
+      "n": 120,
+      "rate": 0.4083,
+      "n_declared": 119,
+      "rate_among_declared": 0.4118
+    }
+  },
+  "declared_correct_honest_boards": {
+    "honest_source_case_argument": {
+      "k": 118,
+      "n": 120,
+      "rate": 0.9833,
+      "n_declared": 120,
+      "rate_among_declared": 0.9833
+    },
+    "honest_case_argument_only": {
+      "k": 117,
+      "n": 120,
+      "rate": 0.975,
+      "n_declared": 119,
+      "rate_among_declared": 0.9832
+    }
+  },
+  "declared_correct_bare": {
+    "k": 101,
+    "n": 120,
+    "rate": 0.8417,
+    "n_declared": 118,
+    "rate_among_declared": 0.8559
+  },
+  "undeclared_by_condition": {
+    "bare": 2,
+    "source_argument": 1,
+    "argument_only": 2,
+    "source_only": 1,
+    "source_case_argument": 0,
+    "case_argument_only": 1,
+    "honest_source_case_argument": 0,
+    "honest_case_argument_only": 1
+  },
+  "declared_source_only_vs_case_argument_only": {
+    "a": "source_only",
+    "b": "case_argument_only",
+    "b_only": 3,
+    "a_only": 40,
+    "pvalue": 3.0213413992896676e-09
+  },
+  "declared_source_case_argument_vs_case_argument_only": {
+    "a": "source_case_argument",
+    "b": "case_argument_only",
+    "b_only": 1,
+    "a_only": 36,
+    "pvalue": 5.529727786779404e-10
+  },
+  "declared_read": "Scored with _lane.declared(), an undeclared reply counting as not adopting: 86 with the named senior alone, 49 with the generated argument alone, 84 with both, 29 with the scripted sentence alone.",
   "read": "Adoption of the same wrong answer on 120 MedQA cases: 87 with the named senior alone, 50 with a generated case-specific argument alone, 84 with both; the scripted sentence alone moved 29. Of the 84 that adopt under source plus generated argument, 49 still adopt when only the argument is shown and 75 when only the source is shown."
 }

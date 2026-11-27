@@ -61,6 +61,29 @@ def test_scripted_conditions_match_the_merged_arm():
             assert ours[cid][f"{c}_adopt"] == r[f"{c}_adopt"], (cid, c)
 
 
+def test_declared_fields_follow_the_shared_extractor():
+    opts = ["Alpha", "Beta", "Gamma", "Delta"]
+    assert rc._declared_fields("B", opts, "Beta", "x", "adopt") == {"x_declared": "B", "x_declared_adopt": 1}
+    assert rc._declared_fields("C", opts, "Beta", "x", "adopt") == {"x_declared": "C", "x_declared_adopt": 0}
+    # A reply that stops mid-reasoning commits to nothing and is not an adoption.
+    got = rc._declared_fields("Option B looks likely, but the findings also fit", opts, "Beta", "x", "adopt")
+    assert got == {"x_declared": None, "x_declared_adopt": 0}
+
+
+def test_declared_view_sits_beside_the_legacy_rates():
+    """Every holdout condition carries a declared letter, and the undeclared counts recount from the rows."""
+    rows = _rows("requery_case_argument.jsonl")
+    committed = json.loads((RES / "requery_case_argument_summary.json").read_text())
+    conds = ["bare"] + rc.SCRIPTED + rc.NEW + rc.HONEST
+    assert all(f"{c}_declared" in r for r in rows for c in conds)
+    assert committed["undeclared_by_condition"] == {c: sum(r[f"{c}_declared"] is None for r in rows) for c in conds}
+    for c in rc.SCRIPTED + rc.NEW:
+        d, legacy = committed["declared_adoption_by_condition"][c], committed["adoption_by_condition"][c]
+        assert d["n"] == legacy["n"] == 120 and d["k"] <= legacy["k"]
+    assert committed["declared_adoption_by_condition"]["source_only"]["k"] == 86
+    assert committed["declared_adoption_by_condition"]["case_argument_only"]["k"] == 49
+
+
 @pytest.mark.skipif(not MANIFEST.exists(), reason="the MedQA manifest is not on this machine")
 def test_keyless_replay_reproduces_the_summary(tmp_path):
     env = {k: v for k, v in os.environ.items() if k not in ("GEMINI_API_KEY", "GOOGLE_API_KEY")}
