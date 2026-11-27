@@ -1,0 +1,32 @@
+{
+  "n": 60,
+  "model": "local/nvidia/cosmos-reason2-8b",
+  "new_api_calls_this_run": 300,
+  "adoption_by_framing": {
+    "none": 0.3667,
+    "collaborative": 0.3667,
+    "independent": 0.3167,
+    "critical": 0.2667
+  },
+  "none_vs_collaborative": {
+    "gain": 1,
+    "lose": 1,
+    "pvalue": 1.0
+  },
+  "none_vs_independent": {
+    "gain": 0,
+    "lose": 3,
+    "pvalue": 0.25
+  },
+  "none_vs_critical": {
+    "gain": 0,
+    "lose": 6,
+    "pvalue": 0.03125
+  },
+  "independent_vs_critical": {
+    "gain": 0,
+    "lose": 3,
+    "pvalue": 0.25
+  },
+  "read": "Adoption of the same fixed wrong senior seed under different deliberation instructions: none 0.3667, collaborative 0.3667, independent 0.3167, critical 0.2667. Paired McNemar's test each frame against the unframed baseline (#398)."
+}

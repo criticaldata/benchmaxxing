@@ -1,0 +1,42 @@
+{"case_id": "ddb3f2a6-295a-4d4b-8478-5c15049b62a8", "wrong": "Central bureau of health inves", "baseline": "Srivastava committee", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "ce49098b-cc48-4168-859e-936e3e0c7459", "wrong": "Sphenopalatine aery", "baseline": "Greater palatine aery", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "7111d7b2-7e80-4e23-b5d0-9f42595c6a80", "wrong": "4, decreases", "baseline": "4, increases", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "641f160f-eef0-4b8c-9cb8-3241d2d63173", "wrong": "Increasing transaminases", "baseline": "Increasing prothrombin time", "generic": false, "anchored": true, "anchored_strong": false, "anchored_solo": true}
+{"case_id": "849b1909-c988-4d0b-8eaf-a716707cbe97", "wrong": "Root", "baseline": "Cord", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "07d58883-b752-4898-ab70-a1df892ef7bd", "wrong": "Cell cycle will stop at G2 pha", "baseline": "The cell cycle will progress a", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "cfa28a58-dd1f-4852-b34f-d150a9fd9011", "wrong": "Cobra venom is neurotoxic", "baseline": "Anti-venom is not effective in", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "cc0d09f8-564d-4fe5-8b22-4b7d3e4ed586", "wrong": "Trans-scaphoid perilunate frac", "baseline": "Scaphoid fracture", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "aadafd4c-cb37-460b-8e6f-28f42d01dd60", "wrong": "Diabetic III nerve palsy", "baseline": "Adie's tonic pupil", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "da27e783-4c0b-4621-bc3d-938a109d8425", "wrong": "Facial defects", "baseline": "Neural tube defects", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "2dd59aba-38c0-4aff-a000-1bcb640254ff", "wrong": "Rare, but serious life threate", "baseline": "Research papers and other aicl", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "8ba2ca7c-9ae4-4771-9e9c-0e44250ca6b5", "wrong": "Dorsal part of 2nd pouch.", "baseline": "Ventral part of 3rd pouch.", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "2639d0ba-ef15-4ba4-92fe-ee27b5758fbf", "wrong": "MR", "baseline": "ASD", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "82f0f5d7-996b-49cc-8c8c-b9ff7cb35ecc", "wrong": "Generalised aminoaciduria", "baseline": "Deposition of cystine crystals", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "006fea5f-8d1c-489b-9ea6-1028a64484ab", "wrong": "Ring finger", "baseline": "Thumb", "generic": true, "anchored": true, "anchored_strong": false, "anchored_solo": true}
+{"case_id": "da2078b0-6ce5-4ba3-82f2-7b145665be2b", "wrong": "Sphenopalatine aery", "baseline": "Facial aery", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "e4610f09-b587-47c8-99ff-c8967f481322", "wrong": "Chronic suppurative periodonti", "baseline": "Juvenile periodontitis", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "8d0b854f-93fb-43ae-a1b9-d489ea68103b", "wrong": "Primary hyperaldosteronism", "baseline": "Distal renal tubular acidosis", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "b21a38b8-c966-425a-a140-9ff775745931", "wrong": "Admixed amalgam alloy, high co", "baseline": "Admixed amalgam alloy, low cop", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "2cc9a274-380c-4a8e-b2b6-6c8ae412c55b", "wrong": "Broach", "baseline": "Reamer", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "79c95aee-a0ff-4f7a-8a3f-2228f0ca66ce", "wrong": "Poly tetrafluoroethylene", "baseline": "Millipore", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "9a292f87-6a2d-4bba-bcee-f11ca9a94c73", "wrong": "Alcohol fixed specimen", "baseline": "Glutaraldehyde fixed specimen", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "a4260f2f-ca39-4778-90a9-87064c39a11c", "wrong": "2.2", "baseline": "2.1", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "5682860b-5ef4-4c1d-88b4-eb81546548ba", "wrong": "25%", "baseline": "50%", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "aff4bd90-ab90-45b7-8ef7-2b02c25da7ad", "wrong": "USA", "baseline": "Sweden", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "3146c248-2dd4-4888-99c9-bafda2fa1ec7", "wrong": "Tooth material excess", "baseline": "Maxillo-mandibular relationshi", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "fd315adc-df4b-4a81-895b-6f093eeb71b2", "wrong": "ab", "baseline": "ac", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "6d426ea7-e119-4b5f-be99-1e36084c332c", "wrong": "HemCon bandage", "baseline": "Bone wax & patty", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "e21be124-85de-4313-bc26-ff82218fce73", "wrong": "Distobuccal pulp horn of 1st m", "baseline": "Mesiobuccal pulp horn of 2nd m", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "1b18ac4d-8101-48f1-bcc9-b53391c550ab", "wrong": "Decrease in Km", "baseline": "No change in Vmax", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "ee343e97-60cc-402d-8c90-c92e8f168813", "wrong": "Posterior urethral valve", "baseline": "Bladder exostrophy", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "13088525-20c1-4b21-8fba-f48097969211", "wrong": "Mylohyoid, anterior and poster", "baseline": "Mylohyoid, posterior belly of ", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "a6cc1419-094c-4675-b250-ba45e4569bd2", "wrong": "Two tablets of high dose OCP, ", "baseline": "Levonorgestrel 0.75 mg", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "e3840b78-8e45-4c14-83da-2a1ed7178d7e", "wrong": "4% HF", "baseline": "1.23% HF", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "04adb80a-e020-4328-a871-e403f6d5861f", "wrong": "Coffin spring", "baseline": "Jack screw", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "d321d320-c06f-4d18-9aa2-dae718851dfd", "wrong": "20 mins", "baseline": "45 mins", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "d8ae56a0-ea28-4047-9387-b0d1cf376fc4", "wrong": "Aortic stenosis.", "baseline": "Mitral stenosis.", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "26a82f11-4261-4975-bee9-ae8d4e74cdb7", "wrong": "Sudden Death", "baseline": "Unstable angina", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "c953149a-a76d-47a2-8d08-35614f87217a", "wrong": "2 culture 12 hrly", "baseline": "2 culture 24 hrly", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "76dc78f2-39b2-47c0-97d1-3206032a777f", "wrong": "Positive DAT", "baseline": "Haemoglobinuria", "generic": false, "anchored": false, "anchored_strong": false, "anchored_solo": false}
+{"case_id": "986ca051-80d8-4e46-9351-574892825c07", "wrong": "Fracture of surgical neck of h", "baseline": "Intramuscular injection", "generic": false, "anchored": true, "anchored_strong": true, "anchored_solo": true}
+{"case_id": "9a4a67be-7443-404f-b8fe-48173b84046b", "wrong": "Yes", "baseline": "Yes but we should avoid it", "generic": true, "anchored": true, "anchored_strong": true, "anchored_solo": true}

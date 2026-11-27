@@ -1,0 +1,14 @@
+{
+  "n": 100,
+  "model": "local/nvidia/cosmos-reason2-8b",
+  "new_api_calls_this_run": 300,
+  "confident_adoption": 0.35,
+  "hedged_adoption": 0.15,
+  "confidence_elasticity": 0.2,
+  "confident_vs_hedged_mcnemar": {
+    "gain": 20,
+    "lose": 0,
+    "pvalue": 2e-06
+  },
+  "read": "Holding the source and the wrong answer fixed and varying only stance, a CONFIDENT wrong peer is adopted 0.35 of the time versus 0.15 for a HEDGED one (elasticity 0.2; paired McNemar gain=20 lose=0, p=2e-06). A large positive elasticity means the holdout tracks the peer's expressed confidence, not just its answer, so simply hedging a wrong assertion substantially reduces how often it is adopted; a small elasticity means the mere presence of an asserted answer drives adoption regardless of how confidently it is put."
+}
