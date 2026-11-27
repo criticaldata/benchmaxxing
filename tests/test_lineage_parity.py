@@ -30,6 +30,14 @@ DECLARED_GAPS = {
         "the per-arm tally of empty completions exists because gpt-oss-20b exhausts its hidden-reasoning budget on some "
         "calls; none of the 41448 replies in this lineage's 72 committed call caches is empty, so the tally would be zero "
         "in every arm, and the entry closes if a later run produces an empty reply.",
+    ("local_nvidia_cosmos-reason2-8b", "blind_metric", "results", "check_warn_2x2_summary.json"):
+        "The check-announced by note-warned 2x2 was run only on Gemini, openai/gpt-oss-120b, the locally served FP8 nemotron and Qwen2.5-VL-72B; this lineage was not served for that arm and no calls were made for it, so the entry closes if the arm is run on this lineage.",
+    ("local_nvidia_cosmos-reason2-8b", "blind_metric", "results", "check_warn_2x2_pooled.json"):
+        "The check-announced by note-warned 2x2 was run only on Gemini, openai/gpt-oss-120b, the locally served FP8 nemotron and Qwen2.5-VL-72B; this lineage was not served for that arm and no calls were made for it, so the entry closes if the arm is run on this lineage.",
+    ("local_nvidia_cosmos-reason2-8b", "medmcqa", "results", "check_warn_2x2_summary.json"):
+        "The check-announced by note-warned 2x2 was run only on Gemini, openai/gpt-oss-120b, the locally served FP8 nemotron and Qwen2.5-VL-72B; this lineage was not served for that arm and no calls were made for it, so the entry closes if the arm is run on this lineage.",
+    ("local_nvidia_cosmos-reason2-8b", "support2", "results", "check_warn_2x2_summary.json"):
+        "The check-announced by note-warned 2x2 was run only on Gemini, openai/gpt-oss-120b, the locally served FP8 nemotron and Qwen2.5-VL-72B; this lineage was not served for that arm and no calls were made for it, so the entry closes if the arm is run on this lineage.",
     ("local_nvidia_cosmos-reason2-8b", "medqa", "results", "reasoning_effort_sensitivity_summary.json"):
         "experiments/medqa/reasoning_effort_sensitivity.py sweeps the reasoning_effort field of the chat API, a gpt-oss "
         "setting; this lineage is served without a reasoning parser and in its default non-reasoning mode, so the field "
