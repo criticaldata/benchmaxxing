@@ -1,0 +1,19 @@
+{
+  "new_api_calls_this_run": 200,
+  "by_model": {
+    "local/nvidia/cosmos-reason2-8b": {
+      "n": 100,
+      "full_accuracy": 0.55,
+      "q_only_accuracy": 0.1,
+      "options_only_accuracy": 0.27,
+      "options_only_chance": 0.2,
+      "options_only_above_chance": 0.07,
+      "per_record_flip_rate": 0.2467,
+      "ever_flipped_rate": 0.39,
+      "flip_rate_when_baseline_correct": 0.1091,
+      "flip_rate_when_baseline_wrong": 0.7333,
+      "flip_correct_vs_wrong_fisher_p": 1.1270414636541962e-10,
+      "flip_correct_vs_wrong_or": 0.04452690166975881
+    }
+  }
+}
