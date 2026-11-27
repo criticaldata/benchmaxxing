@@ -26,6 +26,24 @@ ALIASES = {
 # rather than hidden by an alias. Key: (lineage slug, lane, results dir, file name). An entry must say
 # what is missing and what would close it; the test below checks that the reason is a real sentence.
 DECLARED_GAPS = {
+    ("local_nvidia_cosmos-reason2-8b", "imaging", "results_n80", "imaging_cascade_summary.json"):
+        "The NIH 80-film watermark cohort (results_n80) was run only on Gemini and Qwen2.5-VL-72B; this lineage was not served for that cohort and no calls were made for it, so the entry closes if the cohort is run on this lineage.",
+    ("local_nvidia_cosmos-reason2-8b", "imaging", "results_n80", "imaging_referee_summary.json"):
+        "The NIH 80-film watermark cohort (results_n80) was run only on Gemini and Qwen2.5-VL-72B; this lineage was not served for that cohort and no calls were made for it, so the entry closes if the cohort is run on this lineage.",
+    ("local_nvidia_cosmos-reason2-8b", "imaging", "results_n80", "imaging_judge_referee_summary.json"):
+        "The NIH 80-film watermark cohort (results_n80) was run only on Gemini and Qwen2.5-VL-72B; this lineage was not served for that cohort and no calls were made for it, so the entry closes if the cohort is run on this lineage.",
+    ("local_nvidia_cosmos-reason2-8b", "imaging", "results_n80", "imaging_judge_referee_summary_film.json"):
+        "The film-shown judge reading of the NIH 80-film watermark cohort (results_n80) was run only on Qwen2.5-VL-72B; this lineage was not served for that cohort and no calls were made for it, so the entry closes if the cohort is run on this lineage.",
+    ("local_nvidia_cosmos-reason2-8b", "imaging", "results_n500", "imaging_cascade_scale_summary.json"):
+        "The NIH 500-film cohort (results_n500) was run only on Gemini and Qwen2.5-VL-72B; this lineage was not served for that cohort and no calls were made for it, so the entry closes if the cohort is run on this lineage.",
+    ("local_nvidia_cosmos-reason2-8b", "imaging", "results_n500", "imaging_blind_metric_summary.json"):
+        "The NIH 500-film cohort (results_n500) was run only on Gemini and Qwen2.5-VL-72B; this lineage was not served for that cohort and no calls were made for it, so the entry closes if the cohort is run on this lineage.",
+    ("local_nvidia_cosmos-reason2-8b", "imaging", "results_n500", "matched_baseline_reason_summary.json"):
+        "The NIH 500-film cohort (results_n500) was run only on Gemini and Qwen2.5-VL-72B; this lineage was not served for that cohort and no calls were made for it, so the entry closes if the cohort is run on this lineage.",
+    ("local_nvidia_cosmos-reason2-8b", "imaging", "results_n500", "matched_baseline_reason_repeats_summary.json"):
+        "The NIH 500-film cohort (results_n500) was run only on Gemini and Qwen2.5-VL-72B; this lineage was not served for that cohort and no calls were made for it, so the entry closes if the cohort is run on this lineage.",
+    ("local_nvidia_cosmos-reason2-8b", "imaging", "results_n500", "patient_clustered.json"):
+        "The NIH 500-film cohort (results_n500) was run only on Gemini and Qwen2.5-VL-72B; this lineage was not served for that cohort and no calls were made for it, so the entry closes if the cohort is run on this lineage.",
     ("local_nvidia_cosmos-reason2-8b", "medqa", "results", "empty_content_tally.json"):
         "the per-arm tally of empty completions exists because gpt-oss-20b exhausts its hidden-reasoning budget on some "
         "calls; none of the 41448 replies in this lineage's 72 committed call caches is empty, so the tally would be zero "
