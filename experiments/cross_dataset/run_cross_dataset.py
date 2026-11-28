@@ -11,6 +11,9 @@ to the option text against that payload's options, so ``option_order`` is measur
 identity (not position) even after the options are permuted. That mirrors the proven solo
 normalizer in ``experiments/medqa/reproduce.py``.
 
+The result records the model id (``model``) and the sha256 of each manifest file it read
+(``manifest_sha256``), so the file identifies its own inputs.
+
 With no API key or a missing manifest the script prints a skip line and exits 0: it is a real run,
 so it never fabricates numbers. A locally served ``local/`` id needs no key: it replays from its
 call cache with no server, and the first cache miss without ``BENCHMAXXING_LOCAL_BASE_URL`` exits
@@ -37,6 +40,7 @@ from benchmaxxing import gateway
 from benchmaxxing.cross_dataset import run_cross_dataset_cue
 from benchmaxxing.data import load_cases
 from benchmaxxing.extract import parse_mcq_choice
+from benchmaxxing.validate import manifest_checksum
 
 CUES = ["option_order", "longest_option", "lexical_overlap"]
 _ABSTAIN = "<abstain>"
@@ -124,12 +128,22 @@ def _mcq_prompt(payload) -> str:
 
 class _PacedLive:
     """Backend-shaped handle whose every call goes through the shared paced path, so a 429 or a
-    dropped connection waits instead of ending the pilot; the cache is only written at the end."""
+    dropped connection waits instead of ending the pilot; the cache is only written at the end.
+
+    ``calls`` counts the replies actually requested from the model, so a replay can state that it
+    made none. With no key a cache miss stops the run instead of calling out: a keyless run is a
+    replay of the committed cache or nothing."""
 
     def __init__(self, model, api_key):
-        self.model, self.api_key = model, api_key
+        self.model, self.api_key, self.calls = model, api_key, 0
 
     def complete(self, prompt, decoding=None, **_):
+        if not self.api_key:
+            # A local/ id has no key by design: what its miss lacks is the server, and _lane exits
+            # naming BENCHMAXXING_LOCAL_BASE_URL. Any other id stops on the keyless message below.
+            _lane.require_server(self.model)
+            raise SystemExit(f"Cache miss and no key for {self.model}: a keyless run only replays a complete cache.")
+        self.calls += 1
         return _lane.paced_complete(self.model, self.api_key, prompt, decoding=decoding)
 
 
@@ -142,6 +156,7 @@ def make_backend(model, api_key, *, raw=None, cache=None, cache_path=None, save_
     entries, so a run that stops part way (a timeout, a lost connection) resumes from the
     replies it already paid for instead of starting over; the final save in main() is unchanged.
     """
+    live = None
     if raw is None:
         live = _PacedLive(model, api_key)
         raw = gateway.CachedBackend(live, cache=cache if cache is not None else {})
@@ -160,7 +175,70 @@ def make_backend(model, api_key, *, raw=None, cache=None, cache_path=None, save_
         idx = _letter_index(reply, len(options))
         return options[idx] if idx is not None else _ABSTAIN
 
+    call.live = live
     return call
+
+
+def prefill(datasets, model, api_key, cache, cache_path, *, limit=None, workers=8, save_every=25):
+    """Ask every prompt a run will need, ``workers`` at a time, into the shared cache.
+
+    The scoring loop asks one prompt at a time, which at a few calls a minute makes a 500-case run
+    take most of a day. The set of prompts does not depend on any answer (the twins are built from
+    the cases alone), so they can be asked in parallel first; the scoring pass that follows then
+    reads every reply from the cache and its numbers are the ones a sequential run would give for
+    the same replies. Returns the number of new calls.
+    """
+    import threading
+    from concurrent.futures import ThreadPoolExecutor
+
+    from benchmaxxing.experiments import build_twins
+    from benchmaxxing.schema import Condition
+
+    prompts = []
+    for cases in datasets.values():
+        for tp in build_twins(cases, CUES, limit=limit):
+            for cond in (Condition.CLEAN, Condition.CONTAMINATED):
+                prompts.append(_mcq_prompt(tp.payload(cond)))
+    decoding = {"temperature": 0}
+    todo = []
+    for prompt in dict.fromkeys(prompts):
+        key = (prompt, gateway._image_key(None), gateway._decoding_key(decoding))
+        if key not in cache:
+            todo.append((key, prompt))
+    if not todo:
+        return 0
+    live = _PacedLive(model, api_key)
+    lock = threading.Lock()
+    done = {"n": 0}
+
+    def ask(item):
+        key, prompt = item
+        reply = live.complete(prompt, decoding=decoding)
+        with lock:
+            cache[key] = reply
+            done["n"] += 1
+            if cache_path and done["n"] % save_every == 0:
+                save_cache(cache_path, dict(cache))
+                print(f"[prefill] {done['n']}/{len(todo)}", flush=True)
+
+    failed = []
+    try:
+        with ThreadPoolExecutor(max_workers=workers) as ex:
+            futs = {ex.submit(ask, item): item for item in todo}
+            for fut in futs:
+                try:
+                    fut.result()
+                except Exception as exc:  # noqa: BLE001  a prompt that keeps timing out is left to the scoring pass
+                    failed.append(futs[fut])
+                    print(f"[prefill] left for the scoring pass after {type(exc).__name__}", flush=True)
+    finally:
+        # Never lose replies already paid for: save whatever is in the cache, also on an error.
+        if cache_path:
+            with lock:
+                save_cache(cache_path, dict(cache))
+    if failed:
+        print(f"[prefill] {len(failed)} prompt(s) not cached; the sequential pass asks them again", flush=True)
+    return live.calls
 
 
 def run(
@@ -182,18 +260,33 @@ def run(
     return run_cross_dataset_cue(datasets, backend, lambda raw: raw, CUES, limit=limit)
 
 
-def format_table(result: dict) -> str:
-    """Render the comparison as a plain text table (no fabricated values: reads the result)."""
-    names = result["datasets"]
-    lines = ["cue" + "".join(f"\t{n}" for n in names) + "\tspread\tfisher_p"]
-    for cue in result["cue_types"]:
-        row = result["per_cue"][cue]
+def _table_rows(block: dict, names, cues) -> list[str]:
+    lines = []
+    for cue in cues:
+        row = block["per_cue"][cue]
         cells = [f"{row['rate'][n]:.3f}" for n in names]
         fisher = row["fisher"]
         p = f"{fisher['pvalue']:.3g}" if fisher else "-"
         lines.append(f"{cue}\t" + "\t".join(cells) + f"\t{row['spread']:.3f}\t{p}")
-    ag = result["agreement"]
+    ag = block["agreement"]
     lines.append(f"mean_spread over {ag['n_cues_compared']} cues: {ag['mean_spread']:.3f}")
+    return lines
+
+
+def format_table(result: dict) -> str:
+    """Render the comparison as a plain text table (no fabricated values: reads the result).
+
+    When the result carries the ``clean_correct`` block, the same table follows a second time for
+    the twins the model answers correctly on the clean side, so the two readings sit together.
+    """
+    names = result["datasets"]
+    lines = ["cue" + "".join(f"\t{n}" for n in names) + "\tspread\tfisher_p"]
+    lines += _table_rows(result, names, result["cue_types"])
+    restricted = result.get("clean_correct")
+    if restricted:
+        acc = ", ".join(f"{n} {restricted['clean_accuracy'][n]:.3f}" for n in names)
+        lines.append(f"correct on the clean twin only (clean accuracy: {acc})")
+        lines += _table_rows(restricted, names, result["cue_types"])
     return "\n".join(lines)
 
 
@@ -208,6 +301,14 @@ def main(argv=None) -> int:
     ap.add_argument("--medmcqa-manifest", required=True, help="path to the MedMCQA manifest")
     ap.add_argument("--model", default="gemini-2.5-flash")
     ap.add_argument("--limit", type=int, default=None, help="cap cases per dataset")
+    ap.add_argument("--workers", type=int, default=1,
+                    help="ask the run's prompts this many at a time into the cache before scoring (1 = sequential, as before)")
+    ap.add_argument("--exclude-case", action="append", default=[],
+                    help="drop this case id from both datasets before --limit (repeatable); recorded in the "
+                         "result as excluded_cases, for a case the model never answered")
+    ap.add_argument("--replay", action="store_true",
+                    help="run with no key from a complete --cache; a cache miss stops the run, and the "
+                         "result records zero new calls")
     ap.add_argument("--out", default=None, help="write the result JSON here; defaults to the model-scoped file")
     ap.add_argument("--cache", default=None,
                     help="JSONL call cache to record/reuse for reproducibility; defaults to the model-scoped file. "
@@ -221,7 +322,9 @@ def main(argv=None) -> int:
 
     if args.model == "gemini-2.5-flash" or args.model.startswith("gemini"):
         key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
-        if not key:
+        if args.replay:
+            key = None
+        elif not key:
             return _skip("no GEMINI_API_KEY/GOOGLE_API_KEY: this is a real-model run, nothing fabricated.")
     else:
         try:
@@ -236,16 +339,54 @@ def main(argv=None) -> int:
         if not Path(path).exists():
             return _skip(f"{label} manifest not found: {path}. Build it with the dataset adapter first.")
 
+    if args.replay and not (args.cache and Path(args.cache).exists()):
+        return _skip(f"--replay needs an existing --cache: {args.cache}")
     cache = load_cache(args.cache)
-    result = run(
-        args.medqa_manifest,
-        args.medmcqa_manifest,
-        model=args.model,
-        api_key=key,
-        limit=args.limit,
-        backend_factory=lambda model, api_key: make_backend(model, api_key, cache=cache, cache_path=args.cache),
-    )
-    save_cache(args.cache, cache)
+    calls = 0
+    excluded = set(args.exclude_case)
+
+    def loader(path):
+        return [c for c in load_cases(path) if str(c.case_id) not in excluded]
+
+    if args.workers > 1 and key:
+        datasets = {"medqa": loader(args.medqa_manifest), "medmcqa": loader(args.medmcqa_manifest)}
+        calls += prefill(datasets, args.model, key, cache, args.cache, limit=args.limit, workers=args.workers)
+    backends = []
+
+    def factory(model, api_key):
+        b = make_backend(model, api_key, cache=cache, cache_path=None if args.replay else args.cache)
+        backends.append(b)
+        return b
+
+    try:
+        result = run(
+            args.medqa_manifest,
+            args.medmcqa_manifest,
+            model=args.model,
+            api_key=key,
+            limit=args.limit,
+            loader=loader,
+            backend_factory=factory,
+        )
+    except BaseException:
+        # a stopped run keeps every reply it paid for, so the next run resumes from them
+        if not args.replay:
+            save_cache(args.cache, cache)
+        raise
+    calls += sum(b.live.calls for b in backends if getattr(b, "live", None) is not None)
+    if not args.replay:
+        save_cache(args.cache, cache)
+    print(f"new model calls this run: {calls}")
+    # The result names its own inputs: the model that answered and the bytes of the two manifests.
+    result["model"] = args.model
+    result["manifest_sha256"] = {
+        "medqa": manifest_checksum(args.medqa_manifest),
+        "medmcqa": manifest_checksum(args.medmcqa_manifest),
+    }
+    if excluded:
+        result["excluded_cases"] = sorted(excluded)
+    if args.replay:
+        result["replay"] = {"keyless": True, "new_api_calls_this_run": calls, "cache": Path(args.cache).name}
     print(format_table(result))
     if args.out:
         out = Path(args.out)
