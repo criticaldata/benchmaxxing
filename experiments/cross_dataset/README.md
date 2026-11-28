@@ -21,6 +21,13 @@ clean (unperturbed) side, with `n_twins` (how many those are) and `clean_accurac
 dataset that is harder for the model flips more for that reason alone, and this block is the
 comparison with that removed.
 
+**What counts as a flip.** A flip is a different option on the cued twin than on the clean twin
+(`benchmaxxing.analysis.chose_same_option`). Each cue row also carries `text_changed`, the count a
+plain comparison of the two answer strings gives, which is what a flip was before. The two differ
+for `longest_option` and `lexical_overlap` only: both rewrite the text of one wrong option, so a
+model that picks that option on both twins returns two strings for one choice. `text_changed` is
+kept so that the earlier numbers stay on record; no interval or test is computed on it.
+
 ## Run
 
 ```bash
@@ -50,7 +57,10 @@ a conservative letter parse for replies whose signal is the declared letter (`"B
 and the `$\boxed{\text{D. ...}}$` / "final answer is D" box that Gemini 2.5 reasoning replies end
 with). So when `option_order` permutes the options, a model that keeps picking the same clinical
 answer registers as **no flip** (robust), and only a genuinely position-driven change counts. This
-mirrors the solo normalizer in `experiments/medqa/reproduce.py`.
+mirrors the solo normalizer in `experiments/medqa/reproduce.py`. The option text is then mapped to
+the option it names before the two twins are compared, because `longest_option` and
+`lexical_overlap` change the text of the option they target: the same option, rewritten, is not a
+flip.
 
 Handling the LaTeX box matters in practice: Gemini 2.5 Flash answers with chain-of-thought that
 quotes every option and ends in `\boxed{...}`. Without the box-aware fallback, `parse_mcq_choice`
@@ -80,6 +90,11 @@ across the two datasets (all Fisher p >= 0.36, spreads <= 0.08): the solo flip r
 consistent across MedQA and MedMCQA, i.e. the cue is not a one-dataset artifact. Bootstrap 95% CIs
 per dataset are in the `--out` JSON. This is a 50-case pilot; a larger `--limit` tightens the CIs.
 
+This pilot file predates the option-based flip and is not regenerated: its counts are answer-string
+comparisons (`text_changed` in the newer files). It cannot be replayed, because its MedQA cases are
+not the first 50 of the test manifest and 11 of its MedMCQA `lexical_overlap` prompts changed with
+the cue builder. See `docs/FLIP_SCORING_AUDIT.md`.
+
 ## Results at 500 cases per dataset
 
 `gemini-2.5-flash`, temperature 0, the first 500 cases of each manifest: the MedQA manifest that
@@ -98,12 +113,18 @@ attempt, so MedMCQA has 499 cases per cue.
 | cue | MedQA flip | MedMCQA flip | spread | Fisher p |
 |-----|-----------:|-------------:|-------:|---------:|
 | `option_order`   | 0.062 (31/500) | 0.128 (64/499) | 0.066 | 0.00035 |
-| `longest_option` | 0.082 (41/500) | 0.146 (73/499) | 0.064 | 0.0014 |
-| `lexical_overlap`| 0.076 (38/500) | 0.168 (84/499) | 0.092 | 7.7e-06 |
+| `longest_option` | 0.058 (29/500) | 0.110 (55/499) | 0.052 | 0.0030 |
+| `lexical_overlap`| 0.058 (29/500) | 0.124 (62/499) | 0.066 | 0.00027 |
 
-`agreement.mean_spread = 0.074`. Over all cases MedMCQA flips about twice as often as MedQA on
-every cue (ratios 2.1, 1.8 and 2.2), the direction seen at 150 cases. That comparison is not
+`agreement.mean_spread = 0.062`. Over all cases MedMCQA flips about twice as often as MedQA on
+every cue (ratios 2.1, 1.9 and 2.1), the direction seen at 150 cases. That comparison is not
 adjusted for difficulty; the next table is.
+
+Under the earlier answer-string comparison these rows read 41/500 against 73/499 for
+`longest_option` and 38/500 against 84/499 for `lexical_overlap` (`text_changed` in the result
+file; `option_order` is the same under both). The difference, 12 and 18 cases for `longest_option`
+and 9 and 22 for `lexical_overlap`, is the model picking on both twins the wrong option the cue
+rewrote.
 
 ### Adjusted for difficulty: cases answered correctly on the clean twin
 
@@ -117,8 +138,8 @@ comparison on the cases answered correctly on the clean twin, here beside the un
 | cue | all cases: MedQA | all cases: MedMCQA | Fisher p | correct on clean: MedQA | correct on clean: MedMCQA | Fisher p |
 |-----|-----------------:|-------------------:|---------:|------------------------:|--------------------------:|---------:|
 | `option_order`   | 0.062 (31/500) | 0.128 (64/499) | 0.00035 | 0.031 (14/451) | 0.065 (26/401) | 0.023 |
-| `longest_option` | 0.082 (41/500) | 0.146 (73/499) | 0.0014  | 0.038 (17/451) | 0.047 (19/401) | 0.50 |
-| `lexical_overlap`| 0.076 (38/500) | 0.168 (84/499) | 7.7e-06 | 0.029 (13/451) | 0.070 (28/401) | 0.0061 |
+| `longest_option` | 0.058 (29/500) | 0.110 (55/499) | 0.0030  | 0.038 (17/451) | 0.047 (19/401) | 0.50 |
+| `lexical_overlap`| 0.058 (29/500) | 0.124 (62/499) | 0.00027 | 0.029 (13/451) | 0.070 (28/401) | 0.0061 |
 
 `clean_correct.agreement.mean_spread = 0.028`. What the restricted numbers support:
 
@@ -128,19 +149,18 @@ comparison on the cases answered correctly on the clean twin, here beside the un
   and 0.0061, or 0.046 and 0.018 after a Holm correction over the three cues. The `option_order`
   difference is borderline; the `lexical_overlap` one is the firmer of the two.
 - On `longest_option` the two datasets are not distinguishable once restricted (0.038 against
-  0.047, Fisher p 0.50). Its gap over all cases comes from MedMCQA having twice as many cases the
-  model gets wrong on the clean twin (98 against 49); those flip at a similar rate in both datasets
-  (24 of 49 and 54 of 98).
+  0.047, Fisher p 0.50). Its gap over all cases comes from the cases the model gets wrong on the
+  clean twin: MedMCQA has twice as many (98 against 49), and they change option far more often than
+  the right ones (12 of 49 and 36 of 98).
 
-For `longest_option` and `lexical_overlap` the restriction removes a second thing. Both cues rewrite
-the text of one wrong option, and a flip is scored on the text of the chosen option, so a model that
-picks that same wrong option on both twins is scored as a flip in the unrestricted count. Every such
-case is wrong on the clean twin, so the restricted rates contain none of them; `option_order` only
-reorders the options and is not affected.
+The restricted counts are the same under the option comparison and under the earlier answer-string
+comparison: a model that is right on the clean twin picked the correct option, whose text no cue
+rewrites, so every case the two comparisons disagree on is wrong on the clean twin.
 
 At 150 cases (`results/medqa_vs_medmcqa_n150.json`) the restricted rates point the same way on all
 three cues and none of the differences is significant: 4/140 against 9/123, 4/140 against 8/123 and
-3/140 against 9/123 (Fisher p 0.15, 0.24, 0.072).
+3/140 against 9/123 (Fisher p 0.15, 0.24, 0.072). Over all cases at 150 the counts are 8/150
+against 18/150, 7/150 against 15/150 and 5/150 against 15/150 (Fisher p 0.063, 0.12, 0.035).
 
 Replay with no key and zero calls:
 
