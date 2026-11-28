@@ -7,6 +7,12 @@ of that rate, and (for exactly two datasets) a Fisher exact test of whether the 
 are distinguishable. A high Fisher p-value and a small spread mean the cue behaves consistently
 across datasets.
 
+A dataset that is harder for the model also flips more: a case the model already gets wrong on the
+clean twin changes its answer under a cue far more often than one it gets right. So the same
+comparison is reported a second time under ``clean_correct``, restricted to the twins whose clean
+answer equals the ground truth, which separates a difference between datasets from a difference in
+how hard they are for this model.
+
 Like the other solo runners it delegates normalization to an injected ``answer_fn`` and never
 talks to a provider directly: offline the backend is a callable returning an option string, and
 on real data it is a ``payload -> option-text`` backend from the gateway, unchanged.
@@ -65,15 +71,28 @@ def run_cross_dataset_cue(
           "cue_types": [cue, ...],
           "per_cue": {cue: {"rate": {ds: float}, "ci": {ds: [point, lo, hi]},
                             "counts": {ds: [flips, n]}, "spread": float,
-                            "fisher": {"oddsratio": float | None, "pvalue": float} | None}},
+                            "fisher": {"oddsratio": float | None, "pvalue": float} | None,
+                            "text_changed": {"rate": {ds: float}, "counts": {ds: [k, n]}}}},
           "agreement": {"mean_spread": float, "n_cues_compared": int},
           "n_twins": {ds: int},
+          "clean_correct": {"per_cue": {...}, "agreement": {...}, "n_twins": {ds: int},
+                            "clean_accuracy": {ds: float}},
         }
 
     ``spread`` is ``max - min`` of the per-dataset rate (nan when fewer than two datasets have a
     rate for that cue); ``agreement.mean_spread`` averages it over the compared cues, a single
     number where lower is more consistent. ``fisher`` is populated only for the two-dataset case
     and only when both datasets have records for the cue.
+
+    A flip is a different OPTION on the cued twin (``analysis.chose_same_option``).
+    ``text_changed`` beside it is the earlier count, twins whose two answer strings differ, which
+    also counts a model that picks on both twins the one option whose text the cue rewrote.
+
+    ``clean_correct`` repeats ``per_cue`` and ``agreement``, same fields and same tests, over the
+    twins whose clean answer equals the ground truth. Its ``n_twins`` counts those twins and
+    ``clean_accuracy`` is their share of the twins that carry a ground truth, so each restricted
+    count can be read beside the unrestricted one; the flips on twins the model gets wrong on the
+    clean side are the difference between the two.
     """
     names = list(datasets)
     if len(names) < 2:
@@ -88,18 +107,82 @@ def run_cross_dataset_cue(
     if n_boot <= 0:
         raise ValueError("n_boot must be a positive integer")
 
-    # One record set per dataset, grouped by cue, over the shared cue set.
+    # One record set per dataset, grouped by cue, over the shared cue set; and the same records
+    # again, kept only where the clean answer is correct.
     flips_by_ds_cue: dict[str, dict[str, list[int]]] = {}
+    correct_by_ds_cue: dict[str, dict[str, list[int]]] = {}
+    text_by_ds_cue: dict[str, dict[str, list[int]]] = {}
+    text_correct_by_ds_cue: dict[str, dict[str, list[int]]] = {}
     n_twins: dict[str, int] = {}
+    n_correct: dict[str, int] = {}
+    clean_accuracy: dict[str, float] = {}
     for name in names:
         twins = build_twins(datasets[name], cues, limit=limit)
         n_twins[name] = len(twins)
         records = solo_evaluate(twins, backend, answer_fn, model=name)
         by_cue: dict[str, list[int]] = {}
+        by_cue_correct: dict[str, list[int]] = {}
+        text_by_cue: dict[str, list[int]] = {}
+        text_by_cue_correct: dict[str, list[int]] = {}
+        n_scored = 0
         for r in records:
-            by_cue.setdefault(r.cue_type, []).append(int(bool(r.flipped)))
+            flip = int(bool(r.flipped))
+            text = int(bool(r.text_changed))
+            by_cue.setdefault(r.cue_type, []).append(flip)
+            text_by_cue.setdefault(r.cue_type, []).append(text)
+            if r.clean_correct is not None:
+                n_scored += 1
+            if r.clean_correct:
+                by_cue_correct.setdefault(r.cue_type, []).append(flip)
+                text_by_cue_correct.setdefault(r.cue_type, []).append(text)
         flips_by_ds_cue[name] = by_cue
+        correct_by_ds_cue[name] = by_cue_correct
+        text_by_ds_cue[name] = text_by_cue
+        text_correct_by_ds_cue[name] = text_by_cue_correct
+        n_correct[name] = sum(len(v) for v in by_cue_correct.values())
+        clean_accuracy[name] = n_correct[name] / n_scored if n_scored else _NAN
 
+    per_cue, agreement = _compare(names, cues, flips_by_ds_cue, ci=ci, n_boot=n_boot, seed=seed)
+    per_cue_correct, agreement_correct = _compare(
+        names, cues, correct_by_ds_cue, ci=ci, n_boot=n_boot, seed=seed
+    )
+    for rows, text in ((per_cue, text_by_ds_cue), (per_cue_correct, text_correct_by_ds_cue)):
+        for cue in cues:
+            rows[cue]["text_changed"] = _text_changed(names, cue, text)
+    return {
+        "datasets": names,
+        "cue_types": cues,
+        "per_cue": per_cue,
+        "agreement": agreement,
+        "n_twins": n_twins,
+        "clean_correct": {
+            "per_cue": per_cue_correct,
+            "agreement": agreement_correct,
+            "n_twins": n_correct,
+            "clean_accuracy": clean_accuracy,
+        },
+    }
+
+
+def _text_changed(names, cue, text_by_ds_cue) -> dict:
+    """Rate and (count, n) of twins whose two answer strings differ, per dataset, for one cue.
+
+    This is what a flip was before it was defined on the option chosen: it also counts a model
+    that picks, on both twins, the one option whose text the cue rewrote. Kept beside each flip
+    count so the earlier number stays on record; no interval or test is computed on it.
+    """
+    counts = {name: [int(sum(text_by_ds_cue[name].get(cue, []))), len(text_by_ds_cue[name].get(cue, []))]
+              for name in names}
+    return {"rate": {name: (k / n if n else _NAN) for name, (k, n) in counts.items()}, "counts": counts}
+
+
+def _compare(names, cues, flips_by_ds_cue, *, ci: float, n_boot: int, seed: int):
+    """Per-cue rates, CIs, counts, spread and Fisher test for one set of 0/1 flips.
+
+    ``flips_by_ds_cue`` maps dataset -> cue -> the flips to compare. Returns ``(per_cue,
+    agreement)`` in the shape ``run_cross_dataset_cue`` documents, so the unrestricted comparison
+    and a restricted one are computed by the same code.
+    """
     per_cue: dict[str, dict] = {}
     spreads: list[float] = []
     for cue in cues:
@@ -139,10 +222,4 @@ def run_cross_dataset_cue(
         }
 
     mean_spread = float(np.mean(spreads)) if spreads else _NAN
-    return {
-        "datasets": names,
-        "cue_types": cues,
-        "per_cue": per_cue,
-        "agreement": {"mean_spread": mean_spread, "n_cues_compared": len(spreads)},
-        "n_twins": n_twins,
-    }
+    return per_cue, {"mean_spread": mean_spread, "n_cues_compared": len(spreads)}

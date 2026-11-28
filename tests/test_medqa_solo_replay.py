@@ -48,13 +48,37 @@ def test_committed_per_cue_rates_are_what_the_paper_reports(model, cue, expected
 
 def test_the_rerun_reproduces_the_two_builder_stable_cues():
     """The rerun exists because lexical_overlap was not replayable. The other two cues must be
-    untouched by it, otherwise the rerun changed more than the one cue it was meant to close."""
+    untouched by it, otherwise the rerun changed more than the one cue it was meant to close.
+
+    The committed solo_results.json is the first run and still counts a flip as a changed answer
+    string; the rerun file now counts a changed option and keeps the string comparison as
+    text_changed_rate_by_model. So like is compared with like: the rerun's text comparison against
+    the first run's rates."""
     r = json.loads((RES / "solo_results_rerun_2026-07-29.json").read_text())
     c = json.loads((RES / "solo_results.json").read_text())
+    assert "text_changed_rate_by_model" not in c
     for model, cue in (("gemini-2.5-flash", "longest_option"), ("gemini-2.5-flash", "option_order"),
                        ("gemini-2.5-flash-lite", "longest_option"), ("gemini-2.5-flash-lite", "option_order")):
-        assert r["flip_rate_by_model"][model]["per_cue"][cue] == pytest.approx(
+        assert r["text_changed_rate_by_model"][model]["per_cue"][cue] == pytest.approx(
             c["flip_rate_by_model"][model]["per_cue"][cue]), (model, cue)
+
+
+@pytest.mark.parametrize("model,cue,text_changed,flipped", [
+    ("gemini-2.5-flash", "longest_option", 0.05, 0.03),
+    ("gemini-2.5-flash", "lexical_overlap", 0.06, 0.03),
+    ("gemini-2.5-flash", "option_order", 0.05, 0.05),
+    ("gemini-2.5-flash-lite", "longest_option", 0.12, 0.09),
+    ("gemini-2.5-flash-lite", "lexical_overlap", 0.16, 0.11),
+    ("gemini-2.5-flash-lite", "option_order", 0.09, 0.09),
+])
+def test_the_rerun_counts_a_changed_option_and_keeps_the_text_comparison(model, cue, text_changed, flipped):
+    """On the rerun, a flip is a different option on the cued twin. option_order rewrites no text, so
+    its two rates agree; the two cues that extend the text of one wrong option lose the cases where
+    the model picked that same option on both twins."""
+    r = json.loads((RES / "solo_results_rerun_2026-07-29.json").read_text())
+    assert r["text_changed_rate_by_model"][model]["per_cue"][cue] == pytest.approx(text_changed)
+    assert r["flip_rate_by_model"][model]["per_cue"][cue] == pytest.approx(flipped)
+    assert "chose a different OPTION" in r["flip_scoring"]
 
 
 def test_the_noise_floor_caveat_is_recorded():

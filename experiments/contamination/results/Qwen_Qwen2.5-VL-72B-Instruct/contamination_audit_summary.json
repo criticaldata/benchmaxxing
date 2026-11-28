@@ -1,5 +1,5 @@
 {
-  "new_api_calls_this_run": 200,
+  "new_api_calls_this_run": 0,
   "by_model": {
     "Qwen/Qwen2.5-VL-72B-Instruct": {
       "n": 100,
@@ -8,12 +8,12 @@
       "options_only_accuracy": 0.24,
       "options_only_chance": 0.2,
       "options_only_above_chance": 0.04,
-      "per_record_flip_rate": 0.1067,
-      "ever_flipped_rate": 0.21,
+      "per_record_flip_rate": 0.08,
+      "ever_flipped_rate": 0.19,
       "flip_rate_when_baseline_correct": 0.1233,
-      "flip_rate_when_baseline_wrong": 0.4444,
-      "flip_correct_vs_wrong_fisher_p": 0.0015074015748483154,
-      "flip_correct_vs_wrong_or": 0.17578125
+      "flip_rate_when_baseline_wrong": 0.3704,
+      "flip_correct_vs_wrong_fisher_p": 0.008957994013661888,
+      "flip_correct_vs_wrong_or": 0.2390625
     }
   }
 }

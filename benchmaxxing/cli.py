@@ -647,12 +647,16 @@ def _run_smoke() -> dict:
     from benchmaxxing.roster import build_committee, default_roster
     from benchmaxxing.schema import Case, Condition, Modality
 
-    # 1. cue injection + solo baseline: the longest-option cue flips a length-follower.
+    # 1. cue injection + solo baseline: the longest-option cue flips a length-follower. The correct
+    #    option is the longest one on the clean twin and the cue pads a shorter wrong one past it,
+    #    so the follower moves to another option. (Were the padded option already the longest, the
+    #    follower would keep it on both twins: its text would change, its choice would not, and
+    #    that is not a flip.)
     cases = [
         Case(case_id=f"t{i}", patient_id=f"p{i}", modality=Modality.TEXT,
              question="Most likely diagnosis?",
-             options=("Pneumothorax", "A benign incidental finding described at great length",
-                      "Rib fracture"),
+             options=("Pneumothorax, small and apical, on the left side", "Rib fracture",
+                      "A benign incidental finding"),
              answer_index=0)
         for i in range(4)
     ]

@@ -5,6 +5,17 @@
   },
   "flip_rate_by_model": {
     "local/nvidia/cosmos-reason2-8b": {
+      "overall": 0.19666666666666666,
+      "per_cue": {
+        "lexical_overlap": 0.25,
+        "longest_option": 0.1,
+        "option_order": 0.24
+      },
+      "n": 300
+    }
+  },
+  "text_changed_rate_by_model": {
+    "local/nvidia/cosmos-reason2-8b": {
       "overall": 0.24666666666666667,
       "per_cue": {
         "lexical_overlap": 0.28,
@@ -25,8 +36,8 @@
     ],
     "matrix": [
       [
-        0.28,
-        0.22,
+        0.25,
+        0.1,
         0.24
       ]
     ]

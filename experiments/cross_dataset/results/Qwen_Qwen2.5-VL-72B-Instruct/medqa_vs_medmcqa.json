@@ -40,18 +40,83 @@
       "fisher": {
         "oddsratio": 0.6376811594202898,
         "pvalue": 0.7406664537744647
+      },
+      "text_changed": {
+        "rate": {
+          "medqa": 0.08,
+          "medmcqa": 0.12
+        },
+        "counts": {
+          "medqa": [
+            4,
+            50
+          ],
+          "medmcqa": [
+            6,
+            50
+          ]
+        }
       }
     },
     "longest_option": {
       "rate": {
-        "medqa": 0.06,
+        "medqa": 0.04,
+        "medmcqa": 0.14
+      },
+      "ci": {
+        "medqa": [
+          0.04,
+          0.0,
+          0.1
+        ],
+        "medmcqa": [
+          0.14,
+          0.06,
+          0.24
+        ]
+      },
+      "counts": {
+        "medqa": [
+          2,
+          50
+        ],
+        "medmcqa": [
+          7,
+          50
+        ]
+      },
+      "spread": 0.1,
+      "fisher": {
+        "oddsratio": 0.25595238095238093,
+        "pvalue": 0.15950501461502106
+      },
+      "text_changed": {
+        "rate": {
+          "medqa": 0.06,
+          "medmcqa": 0.24
+        },
+        "counts": {
+          "medqa": [
+            3,
+            50
+          ],
+          "medmcqa": [
+            12,
+            50
+          ]
+        }
+      }
+    },
+    "lexical_overlap": {
+      "rate": {
+        "medqa": 0.02,
         "medmcqa": 0.24
       },
       "ci": {
         "medqa": [
-          0.06,
+          0.02,
           0.0,
-          0.14
+          0.06
         ],
         "medmcqa": [
           0.24,
@@ -61,7 +126,7 @@
       },
       "counts": {
         "medqa": [
-          3,
+          1,
           50
         ],
         "medmcqa": [
@@ -69,52 +134,203 @@
           50
         ]
       },
-      "spread": 0.18,
+      "spread": 0.22,
       "fisher": {
-        "oddsratio": 0.20212765957446807,
-        "pvalue": 0.02260438688192351
-      }
-    },
-    "lexical_overlap": {
-      "rate": {
-        "medqa": 0.04,
-        "medmcqa": 0.3
+        "oddsratio": 0.06462585034013606,
+        "pvalue": 0.0018071316144391055
       },
-      "ci": {
-        "medqa": [
-          0.04,
-          0.0,
-          0.1
-        ],
-        "medmcqa": [
-          0.3,
-          0.18,
-          0.42
-        ]
-      },
-      "counts": {
-        "medqa": [
-          2,
-          50
-        ],
-        "medmcqa": [
-          15,
-          50
-        ]
-      },
-      "spread": 0.26,
-      "fisher": {
-        "oddsratio": 0.09722222222222222,
-        "pvalue": 0.0009062366858015316
+      "text_changed": {
+        "rate": {
+          "medqa": 0.04,
+          "medmcqa": 0.3
+        },
+        "counts": {
+          "medqa": [
+            2,
+            50
+          ],
+          "medmcqa": [
+            15,
+            50
+          ]
+        }
       }
     }
   },
   "agreement": {
-    "mean_spread": 0.16,
+    "mean_spread": 0.12,
     "n_cues_compared": 3
   },
   "n_twins": {
     "medqa": 150,
     "medmcqa": 150
+  },
+  "clean_correct": {
+    "per_cue": {
+      "option_order": {
+        "rate": {
+          "medqa": 0.07894736842105263,
+          "medmcqa": 0.08333333333333333
+        },
+        "ci": {
+          "medqa": [
+            0.07894736842105263,
+            0.0,
+            0.18421052631578946
+          ],
+          "medmcqa": [
+            0.08333333333333333,
+            0.0,
+            0.20833333333333334
+          ]
+        },
+        "counts": {
+          "medqa": [
+            3,
+            38
+          ],
+          "medmcqa": [
+            2,
+            24
+          ]
+        },
+        "spread": 0.0043859649122807015,
+        "fisher": {
+          "oddsratio": 0.9428571428571428,
+          "pvalue": 1.0
+        },
+        "text_changed": {
+          "rate": {
+            "medqa": 0.07894736842105263,
+            "medmcqa": 0.08333333333333333
+          },
+          "counts": {
+            "medqa": [
+              3,
+              38
+            ],
+            "medmcqa": [
+              2,
+              24
+            ]
+          }
+        }
+      },
+      "longest_option": {
+        "rate": {
+          "medqa": 0.02631578947368421,
+          "medmcqa": 0.041666666666666664
+        },
+        "ci": {
+          "medqa": [
+            0.02631578947368421,
+            0.0,
+            0.07894736842105263
+          ],
+          "medmcqa": [
+            0.041666666666666664,
+            0.0,
+            0.125
+          ]
+        },
+        "counts": {
+          "medqa": [
+            1,
+            38
+          ],
+          "medmcqa": [
+            1,
+            24
+          ]
+        },
+        "spread": 0.015350877192982455,
+        "fisher": {
+          "oddsratio": 0.6216216216216216,
+          "pvalue": 1.0
+        },
+        "text_changed": {
+          "rate": {
+            "medqa": 0.02631578947368421,
+            "medmcqa": 0.041666666666666664
+          },
+          "counts": {
+            "medqa": [
+              1,
+              38
+            ],
+            "medmcqa": [
+              1,
+              24
+            ]
+          }
+        }
+      },
+      "lexical_overlap": {
+        "rate": {
+          "medqa": 0.0,
+          "medmcqa": 0.08333333333333333
+        },
+        "ci": {
+          "medqa": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "medmcqa": [
+            0.08333333333333333,
+            0.0,
+            0.20833333333333334
+          ]
+        },
+        "counts": {
+          "medqa": [
+            0,
+            38
+          ],
+          "medmcqa": [
+            2,
+            24
+          ]
+        },
+        "spread": 0.08333333333333333,
+        "fisher": {
+          "oddsratio": 0.0,
+          "pvalue": 0.14595452141723952
+        },
+        "text_changed": {
+          "rate": {
+            "medqa": 0.0,
+            "medmcqa": 0.08333333333333333
+          },
+          "counts": {
+            "medqa": [
+              0,
+              38
+            ],
+            "medmcqa": [
+              2,
+              24
+            ]
+          }
+        }
+      }
+    },
+    "agreement": {
+      "mean_spread": 0.03435672514619883,
+      "n_cues_compared": 3
+    },
+    "n_twins": {
+      "medqa": 114,
+      "medmcqa": 72
+    },
+    "clean_accuracy": {
+      "medqa": 0.76,
+      "medmcqa": 0.48
+    }
+  },
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "manifest_sha256": {
+    "medqa": "0f2076a45455080924f954d31136b815b986fb108d9380beadd4da9b87eaacef",
+    "medmcqa": "5b2ce9718e7cf421d88dd516d9c52b8b282cd886d13cbbc61ef5d7463a90a30d"
   }
 }
