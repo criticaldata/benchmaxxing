@@ -1,0 +1,103 @@
+{
+  "repeats": 5,
+  "n": 40,
+  "reads_per_case": 6,
+  "cases_with_any_disagreement": {
+    "n": 12,
+    "rate": 0.3,
+    "wilson95": [
+      0.1807,
+      0.4543
+    ]
+  },
+  "mean_pairwise_disagreement": 0.1533,
+  "flip_vs_baseline_per_read": [
+    0.225,
+    0.275,
+    0.25,
+    0.3,
+    0.25,
+    0.225
+  ],
+  "flip_vs_baseline_band": [
+    0.225,
+    0.3
+  ],
+  "decoy_per_read": [
+    0.0,
+    0.025,
+    0.05,
+    0.05,
+    0.05,
+    0.025
+  ],
+  "decoy_band": [
+    0.0,
+    0.05
+  ],
+  "note": "read 0 is the committed control prompt replayed from the lane cache; reads 1.. are the same prompt with the question reworded by the generator, one paraphrase per read",
+  "fidelity_clean_subset": {
+    "n": 39,
+    "cases_with_any_disagreement": {
+      "n": 12,
+      "rate": 0.3077,
+      "wilson95": [
+        0.1857,
+        0.4642
+      ]
+    },
+    "mean_pairwise_disagreement": 0.1573,
+    "flip_vs_baseline_band": [
+      0.2308,
+      0.3077
+    ],
+    "decoy_band": [
+      0.0,
+      0.0513
+    ],
+    "note": "cases whose paraphrases all pass the fidelity check (every number of the original kept verbatim; the finding still named)"
+  },
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "generator": "gemini-2.5-flash",
+  "paraphrases_per_case": 5,
+  "cases_run": 40,
+  "cases_with_all_paraphrases": 40,
+  "paraphrases_failing_fidelity_check": 1,
+  "paraphrases_total": 200,
+  "new_api_calls_this_run": {
+    "holdout": 200,
+    "generator": 0
+  },
+  "calls_in_cache": {
+    "holdout": 200,
+    "generator": 0
+  },
+  "generator_cache": "experiments/medmcqa/results/paraphrase_band_generator_cache.jsonl",
+  "cases_without_committed_paraphrases": [],
+  "empty_replies": {
+    "read0": 0,
+    "paraphrase_reads": 0,
+    "note": "an empty reply parses to no answer, which counts as a changed answer (a disagreement and a flip against the baseline), as in the committed band"
+  },
+  "committed_same_session_band": {
+    "n": 40,
+    "repeats": 5,
+    "cases_with_any_disagreement": {
+      "n": 0,
+      "rate": 0.0,
+      "wilson95": [
+        -0.0,
+        0.0876
+      ]
+    },
+    "mean_pairwise_disagreement": 0.0,
+    "flip_vs_baseline_band": [
+      0.225,
+      0.225
+    ],
+    "decoy_band": [
+      0.0,
+      0.0
+    ]
+  }
+}
