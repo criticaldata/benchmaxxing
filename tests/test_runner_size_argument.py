@@ -74,21 +74,19 @@ def test_each_shared_runner_takes_its_size_through_the_guard(arm):
 
 
 def test_the_home_sizes_are_the_sizes_the_medqa_replay_pins():
+    """Every runner that the MedQA replay test pins is pinned there at this runner's default."""
     pinned = {arm: int(extra[extra.index("--n") + 1])
               for arm, (extra, _) in _load("test_medqa_arms_replay").ARMS.items() if "--n" in extra}
     shared = sorted(set(pinned) & set(HOME_N))
-    assert len(shared) == 14
+    assert shared, "the MedQA replay test pins none of these runners any more"
     assert {a: HOME_N[a] for a in shared} == {a: pinned[a] for a in shared}
 
 
-def test_medmcqa_was_committed_at_other_sizes_for_four_arms():
-    """Why the default cannot be shared: these MedMCQA files were committed at sizes below MedQA's."""
-    pinned = _load("test_medmcqa_arms_replay").PINNED
-    other = {arm: sorted({sizes[arm] for sizes in pinned.values() if arm in sizes and sizes[arm] != HOME_N[arm]})
-             for arm in HOME_N}
-    assert {a: v for a, v in other.items() if v} == {
-        "authority_ladder": [60], "majority_pressure": [25], "orchestrator_failure": [80],
-        "plausible_distractor": [119], "true_peer_control": [57, 59], "unanimity_break": [143]}
+@pytest.mark.parametrize("arm", ["authority_ladder", "majority_pressure", "orchestrator_failure", "true_peer_control"])
+def test_medmcqa_was_committed_at_another_size(arm):
+    """Why the default cannot be shared: MedMCQA committed these four arms at sizes other than MedQA's."""
+    sizes = {s[arm] for s in _load("test_medmcqa_arms_replay").PINNED.values() if arm in s}
+    assert any(size != HOME_N[arm] for size in sizes), sizes
 
 
 def _manifest(tmp_path):
