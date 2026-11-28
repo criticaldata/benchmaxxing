@@ -3639,7 +3639,12 @@
   "files": null,
   "diff": [],
   "cache": "script default",
-  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n"
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the cached films carry the text cues drawn with the font used before the commit; the run replays to its committed rows with the code before it",
+   "introduced_by": "d7ece46",
+   "checked": "28 Nov"
+  }
  },
  {
   "lane": "nih",
@@ -3651,7 +3656,12 @@
   "files": null,
   "diff": [],
   "cache": "script default",
-  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash-lite (a fully cached run needs no key).\n"
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash-lite (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the cached films carry the text cues drawn with the font used before the commit; the run replays to its committed rows with the code before it",
+   "introduced_by": "d7ece46",
+   "checked": "28 Nov"
+  }
  },
  {
   "lane": "nih",
@@ -3663,7 +3673,12 @@
   "files": null,
   "diff": [],
   "cache": "script default",
-  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n"
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the commit added a placebo board to the cascade runner, one more question per film that the committed cache does not hold; the run replays to its committed rows with the code before it",
+   "introduced_by": "72803a3",
+   "checked": "28 Nov"
+  }
  },
  {
   "lane": "nih",
@@ -3675,7 +3690,12 @@
   "files": null,
   "diff": [],
   "cache": "script default",
-  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n"
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the commit added a placebo board to the cascade runner, one more question per film that the committed cache does not hold; the run replays to its committed rows with the code before it",
+   "introduced_by": "72803a3",
+   "checked": "28 Nov"
+  }
  },
  {
   "lane": "nih",
@@ -3687,7 +3707,12 @@
   "files": null,
   "diff": [],
   "cache": "script default",
-  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n"
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the commit added a placebo board to the cascade runner, one more question per film that the committed cache does not hold; the run replays to its committed rows with the code before it",
+   "introduced_by": "72803a3",
+   "checked": "28 Nov"
+  }
  },
  {
   "lane": "nih",
@@ -3699,7 +3724,12 @@
   "files": null,
   "diff": [],
   "cache": "script default",
-  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n"
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the commit added a placebo board to the cascade runner, one more question per film that the committed cache does not hold; the run replays to its committed rows with the code before it",
+   "introduced_by": "72803a3",
+   "checked": "28 Nov"
+  }
  },
  {
   "lane": "nih",
@@ -3711,7 +3741,12 @@
   "files": null,
   "diff": [],
   "cache": "script default",
-  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n"
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the cached films carry the text cues drawn with the font used before the commit; the run replays to its committed rows with the code before it",
+   "introduced_by": "d7ece46",
+   "checked": "28 Nov"
+  }
  },
  {
   "lane": "nih",
@@ -3723,7 +3758,12 @@
   "files": null,
   "diff": [],
   "cache": "script default",
-  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n"
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the cached films carry the text cues drawn with the font used before the commit; the run replays to its committed rows with the code before it",
+   "introduced_by": "d7ece46",
+   "checked": "28 Nov"
+  }
  },
  {
   "lane": "nih",
@@ -3756,7 +3796,12 @@
   "files": null,
   "diff": [],
   "cache": "script default",
-  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n"
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the cached films carry the text cues drawn with the font used before the commit; the run replays to its committed rows with the code before it",
+   "introduced_by": "d7ece46",
+   "checked": "28 Nov"
+  }
  },
  {
   "lane": "nih",
@@ -3782,7 +3827,12 @@
   "files": null,
   "diff": [],
   "cache": "script default",
-  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n"
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the cached films carry the text cues drawn with the font used before the commit; the run replays to its committed rows with the code before it",
+   "introduced_by": "d7ece46",
+   "checked": "28 Nov"
+  }
  },
  {
   "lane": "nih",
@@ -3794,7 +3844,12 @@
   "files": null,
   "diff": [],
   "cache": "script default",
-  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n"
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the cached films carry the text cues drawn with the font used before the commit; the run replays to its committed rows with the code before it",
+   "introduced_by": "d7ece46",
+   "checked": "28 Nov"
+  }
  },
  {
   "lane": "nih",
@@ -3806,7 +3861,12 @@
   "files": null,
   "diff": [],
   "cache": "script default",
-  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n"
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the cached films carry the text cues drawn with the font used before the commit; the run replays to its committed rows with the code before it",
+   "introduced_by": "d7ece46",
+   "checked": "28 Nov"
+  }
  },
  {
   "lane": "nih",
@@ -3818,7 +3878,12 @@
   "files": null,
   "diff": [],
   "cache": "script default",
-  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n"
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the cached films carry the text cues drawn with the font used before the commit; the run replays to its committed rows with the code before it",
+   "introduced_by": "d7ece46",
+   "checked": "28 Nov"
+  }
  },
  {
   "lane": "nih",
@@ -3830,7 +3895,12 @@
   "files": null,
   "diff": [],
   "cache": "script default",
-  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n"
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the cached films carry the text cues drawn with the font used before the commit; the run replays to its committed rows with the code before it",
+   "introduced_by": "d7ece46",
+   "checked": "28 Nov"
+  }
  },
  {
   "lane": "nih",
@@ -3856,7 +3926,12 @@
   "files": null,
   "diff": [],
   "cache": "script default",
-  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n"
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the cached films carry the text cues drawn with the font used before the commit; the run replays to its committed rows with the code before it",
+   "introduced_by": "d7ece46",
+   "checked": "28 Nov"
+  }
  },
  {
   "lane": "nih",
@@ -3901,7 +3976,12 @@
   "files": null,
   "diff": [],
   "cache": "script default",
-  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash-lite (a fully cached run needs no key).\n"
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash-lite (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "none of the 105 lookups (clean films only) hit on a Linux x86_64 machine under Pillow 10.4.0, 12.3.0 or 13.0.0; the key depends on the machine that wrote the cache",
+   "introduced_by": null,
+   "checked": "28 Nov"
+  }
  },
  {
   "lane": "nih",
@@ -4592,7 +4672,12 @@
   "files": null,
   "diff": [],
   "cache": "script default",
-  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n"
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the commit added a placebo board to the cascade runner, one more question per film that the committed cache does not hold; the run replays to its committed rows with the code before it",
+   "introduced_by": "72803a3",
+   "checked": "28 Nov"
+  }
  },
  {
   "lane": "nih_n80",
@@ -4604,19 +4689,32 @@
   "files": null,
   "diff": [],
   "cache": "script default",
-  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n"
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the cached films carry the text cues drawn with the font used before the commit; the run replays to its committed rows with the code before it",
+   "introduced_by": "d7ece46",
+   "checked": "28 Nov"
+  }
  },
  {
   "lane": "nih_n80",
   "model": "gemini-2.5-flash",
   "arm": "judge_80",
-  "size": "",
-  "status": "CACHE_MISS",
-  "machine": "ORCD",
-  "files": null,
-  "diff": [],
-  "cache": "script default",
-  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n"
+  "size": "--text-only",
+  "status": "EQUAL_ON_COMMITTED_FIELDS",
+  "machine": "Linux x86_64 with the NIH films (28 Nov)",
+  "files": [
+   "imaging_judge_referee_summary.json"
+  ],
+  "diff": [
+   "clean_correct_only:extra",
+   "judge_sees_the_film:extra",
+   "naive_gate:extra",
+   "note:extra"
+  ],
+  "cache": "experiments/imaging/results_n80/judge_cache.jsonl",
+  "log": null,
+  "note": "first recorded as a cache miss on 24 Nov: since a0b1877 the judge reads the film unless --text-only is given, and the committed run was text-only"
  },
  {
   "lane": "chexpert35_blind",

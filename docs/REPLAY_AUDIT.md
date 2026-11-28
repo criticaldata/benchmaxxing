@@ -14,11 +14,12 @@ Where each lane ran:
 - MIMIC-CXR text and image: on ORCD only (patient data stays there), with the gitignored manifests and
   caches of the ORCD clone linked into an exported tree. Only statuses and field names left ORCD.
 - NIH and CheXpert imaging: on ORCD (Python 3.12, Pillow 12.3.0) with the films in the shared
-  `benchmaxxing-films` folder. The image caches key on the PNG bytes the runner re-encodes, so a cache
-  only replays on a machine whose image stack produces the same bytes. The same NIH Qwen arms that all
-  missed on the laptop (Pillow 13.0.0) replay exactly on ORCD (Pillow 12.3.0, the version of the node
-  that made them); the Gemini imaging caches miss on both machines. Those misses are recorded as
-  cache key mismatches, not as drift.
+  `benchmaxxing-films` folder. The image caches key on the PNG bytes the runner re-encodes from the film
+  it shows. The same NIH Qwen arms that all missed on the laptop (Pillow 13.0.0) replay exactly on ORCD
+  (Pillow 12.3.0, the version of the node that made them). Most Gemini imaging runs miss on both
+  machines, and this audit first recorded those misses as cache key mismatches. A check with the NIH
+  films on 28 Nov shows that 17 of the 18 Gemini NIH misses come from two code changes and not from the
+  image encoder: see "Imaging and MIMIC-CXR: what does not replay, and why".
 
 ## Summary
 
@@ -27,10 +28,10 @@ Where each lane ran:
 | medmcqa | 103 | 1 | 3 | 3 | 0 | 15 | 8 | 28 | 0 | 0 | 0 | 161 |
 | support2 | 35 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 38 |
 | mimic_text | 14 | 0 | 0 | 0 | 0 | 0 | 37 | 0 | 1 | 0 | 0 | 52 |
-| nih | 40 | 1 | 0 | 7 | 2 | 0 | 19 | 0 | 0 | 0 | 0 | 69 |
+| nih | 40 | 2 | 0 | 7 | 2 | 0 | 18 | 0 | 0 | 0 | 0 | 69 |
 | chexpert | 10 | 3 | 0 | 2 | 0 | 0 | 11 | 0 | 0 | 1 | 0 | 27 |
 | mimic_image | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 11 | 12 |
-| all | 203 | 8 | 3 | 12 | 2 | 15 | 75 | 28 | 1 | 1 | 11 | 359 |
+| all | 203 | 9 | 3 | 12 | 2 | 15 | 74 | 28 | 1 | 1 | 11 | 359 |
 
 Status meanings: *exact* means every committed field and every row came back identical; *equal on
 committed fields* means the code now also writes a field or call counter the committed file lacks;
@@ -38,8 +39,10 @@ committed fields* means the code now also writes a field or call counter the com
 means everything matched except a noise floor that is an uncached temperature-1 control by design, so
 a keyless run leaves it empty; *equal except bootstrap CI* means the point estimates match and one
 bootstrap bound differs in the third decimal; *cache miss* means a prompt the run needs is not in the
-cache it reads (for imaging, a cache key mismatch); *no committed cache* means the lineage's cache for
-that arm is not in the repository.
+cache it reads (for imaging the film as shown is part of the key, so this includes a film or a cue that
+no longer renders as it did when the cache was written); *no committed cache* means the lineage's cache
+for that arm is not in the repository. The NIH row was corrected on 28 Nov: the judge of the 80-film
+cohort, first counted as a cache miss, replays on every committed field with `--text-only`.
 
 ## Findings
 
@@ -74,17 +77,21 @@ that arm is not in the repository.
    replays exactly with the new `--cache` flag); the Gemini MedMCQA cascade replays but differs on two of 20 boards
    (mean contagion 0.025 committed, 0.05 replayed). It is rewritten on this branch with its
    transcripts, and `onset_distribution.json` is regenerated from them (finding 1).
-5. **MIMIC-CXR text:** the gpt-oss-120b and gpt-oss-20b arms replay exactly (14 arms). The Gemini cache
+5. **MIMIC-CXR text:** the gpt-oss-120b and gpt-oss-20b arms replay exactly (14 arms). The other 38 of
+   the 52 runs do not replay: 37 stop on a cache miss and 1 has no cache. The Gemini cache
    on ORCD (`results/call_cache.jsonl`) does not cover the committed Gemini prompts, the per-arm Gemini
    caches (`break_it_d`, `deliberation_framing`, `referee_call_cache`) are not on ORCD, and nemotron and
    Qwen have no MIMIC-CXR text cache there. No `results_n600` cache exists on ORCD, so no n=600 file
    replays, and the abstention-aware n=600 file for Qwen cannot be produced without model calls.
 6. **MIMIC-CXR image:** the manifests' JPGs were not found under the ORCD roots probed
-   (`lceli_shared/data/mimic-cxr-images` and four others), so the image arms are not assessed at this
-   depth; the runs that started covered fewer cases than committed and are not counted as findings.
+   (`lceli_shared/data/mimic-cxr-images` and four others), so 11 of the 12 image arms are not assessed
+   at this depth; the runs that started covered fewer cases than committed and are not counted as findings.
    The text-only judge arm replays exactly.
 7. **Imaging:** on ORCD 40 NIH and 10 CheXpert arm runs replay exactly, nearly all of them Qwen2.5-VL
-   and Qwen3.8; the Gemini image caches miss (cache key mismatch). `imaging_judge_referee.py` and
+   and Qwen3.8; 18 Gemini NIH runs and 6 Gemini CheXpert runs stop on a cache miss. They were first put
+   down to the image cache key. For NIH that is wrong in 17 of the 18: those runs replay to their
+   committed rows with the code from before `72803a3` (5 cascade runs) or before `d7ece46` (12 runs);
+   see "Imaging and MIMIC-CXR: what does not replay, and why". `imaging_judge_referee.py` and
    `matched_baseline_reason.py` now write extra fields, and the 150-film scale bootstrap CI bound moves
    in the third decimal on this Python stack.
 
@@ -287,6 +294,131 @@ three readings:
 `plausible_vs_implausible` is the only test that crosses 0.05, and it does so only in the files on this
 branch. The baseline adoption rate shared by seven arms is 0.7417 on `main`, 0.725 here and 0.7333 with
 the declared answer read first (case `fe85c6e7` is cause A, case `ae860b65` cause B).
+
+## Imaging and MIMIC-CXR: what does not replay, and why (added 28 Nov 2026)
+
+### The limits, with counts
+
+| Lane | Runs | Replay | Cache miss | Other |
+|---|---|---|---|---|
+| NIH ChestX-ray14 | 69 | 51 | 18 | 0 |
+| CheXpert | 27 | 15 | 11 | 1 needs a package the node lacks |
+| MIMIC-CXR text | 52 | 14 | 37 | 1 has no cache |
+| MIMIC-CXR image | 12 | 1 | 0 | 11 not assessed: films not found on ORCD |
+| all four | 160 | 81 | 66 | 13 |
+
+- **NIH.** All 18 misses are Gemini runs: 15 `gemini-2.5-flash` arms and 1 `gemini-2.5-flash-lite` arm
+  on the 35-film cohort, 2 runs on the 80-film cohort. The 42 Qwen runs and 9 other Gemini runs replay.
+  So 18 of the 27 Gemini NIH runs do not replay with the code on this branch. The audit of 24 Nov
+  counted 19: the judge of the 80-film cohort was run without `--text-only` (see below).
+- **CheXpert.** 6 Gemini, 4 Qwen2.5-VL and 1 Qwen3.8 runs miss, and 1 Gemini run could not start. Of
+  the 9 Gemini runs 2 replay.
+- **MIMIC-CXR text.** 38 of the 52 runs do not replay. Only gpt-oss does (7 of 10 runs for each of
+  gpt-oss-120b and gpt-oss-20b). No Gemini run (0 of 12), no nemotron run (0 of 11) and no Qwen run
+  (0 of 9) replays: the Gemini cache on ORCD does not hold the prompts the current code asks for, and
+  nemotron and Qwen have no cache there. None of these caches can be committed under PhysioNet terms,
+  so outside ORCD none of the 52 can be replayed at all.
+- **MIMIC-CXR image.** 11 of the 12 arms were not assessed. The one that replays is the text-only
+  judge, which reads no film.
+
+### What the image cache key hashes
+
+Every imaging runner builds its key the same way:
+
+    def _img_bytes(pil):
+        buf = io.BytesIO()
+        pil.convert("L").save(buf, format="PNG")
+        return buf.getvalue()
+
+    k = f"{MODEL}:" + hashlib.sha256(_img_bytes(pil) + b"\x00" + prompt.encode()).hexdigest()
+
+What is hashed is the PNG file Pillow writes for the 8-bit grayscale film as it is shown to the model,
+after any cue has been drawn on it, then a NUL byte and the prompt; the model id is a prefix outside
+the hash. So the key depends on the pixels of the film as shown (the decoded source film, the cue
+renderer and its font) and on how Pillow's PNG encoder and its zlib build compress them. It does not
+use the bytes of the source file.
+
+### What was checked with the NIH films (28 Nov)
+
+The 35, 80 and 500 films of the committed NIH manifests are public and were on a Linux x86_64 machine
+(Python 3.13); the sha256 of every film matches the committed provenance files. No model call and no
+key were used.
+
+1. **The key did not move with the image stack.** With the code of this branch, all 175 lookups of
+   the Qwen2.5-VL solo arm (35 clean films and 35 twins for each of the four cues) hit the cache made on
+   ORCD, under Pillow 10.4.0 (zlib 1.2.13, FreeType 2.13.2), 12.3.0 and 13.0.0 (both zlib-ng, FreeType
+   2.14.3). The clean and cable lookups of the Gemini cache hit under 10.4.0, 11.3.0, 12.3.0 and 13.0.0
+   alike. On this platform neither the Pillow version, the zlib build nor the FreeType version changes
+   a key.
+2. **Seventeen of the 18 Gemini NIH misses are code changes.** Each run was replayed at three points of
+   the history and compared with its committed rows file:
+
+   | Gemini NIH run | `4448874` | `1034951` | this branch | Stops replaying at |
+   |---|---|---|---|---|
+   | `solo`, `solo_lite`, `scale`, `cue_combo`, `majority_pressure`, `multi_round`, `peer_size_curve`, `polarity`, `strength_cascade`, `system_flag`, `referee`, and `referee` of the 80-film cohort (12 runs) | rows identical | rows identical | cache miss | `d7ece46` |
+   | `cascade` with the watermark, cable, corner tag and laterality cue, and `cascade` of the 80-film cohort (5 runs) | rows identical | cache miss | cache miss | `72803a3` |
+   | `blind_metric` on `gemini-2.5-flash-lite` (1 run) | the runner takes no `--model` there | same | 0 of 105 lookups hit | see below |
+
+   - `d7ece46` (5 Aug), "vendor the cue font so text cues are byte-reproducible" (#393). The cached
+     answers of these twelve runs are for films that carry a text cue (the corner tag, the watermark
+     or the laterality marker) drawn with Pillow's default font. The current code draws it with the
+     vendored DejaVu Sans, so the film, and with it the key, is another one. Checked at the level of single lookups too: with
+     the cue code of `1034951` all 35 clean films and all 35 twins of each of the four cues hit the
+     Gemini cache; with the current cue code the clean films and the cable twins hit (35 of 35 each) and
+     the three text cues miss (0 of 35 each), under all four Pillow versions. At `1034951` the solo arm
+     reproduces the committed `imaging_solo.jsonl` exactly, including the four flip rates.
+   - `72803a3` (29 Jul), the commit that moved the MedMCQA arms, also changed `imaging_cascade.py`.
+     Besides replacing the inline yes/no reading, it added a placebo board (two radiologists who read
+     the film as "yes"), which is one more question per film. The committed cascade rows come from the
+     runner before that and have no placebo column, and the committed cache does not hold that question
+     for most films (22 of 35 with the cable cue, which carries no text). The cascade replays at the
+     parent `4448874` and stops at `72803a3` with every cue.
+   - The control arms `cue_families` and `blind_metric` (`gemini-2.5-flash`) replay at all four commits.
+   - The judge of the 80-film cohort was listed as a miss on 24 Nov and is not one. Since `a0b1877`
+     (31 Jul) the judge reads the film unless `--text-only` is given, and the committed run was
+     text-only. With that flag it replays on this branch with 0 calls and all 80 rows equal on every
+     committed field (the code now writes two more row fields). Its row in the tables is corrected.
+3. **One of the 18 does depend on the machine.** The `gemini-2.5-flash-lite` blind metric uses clean
+   films only, its runner has not changed since its cache was written on 8 Nov, and none of its 105
+   lookups hit on this machine under Pillow 10.4.0, 12.3.0 or 13.0.0. Either the machine that wrote it
+   encodes the same pixels to other PNG bytes, or its copy of the films decodes to other pixels. Which
+   of the two was not determined.
+
+So the review's diagnosis, that the keys hash re-encoded PNG bytes and move with the encoder, is right
+about what the key contains and may be right for the one run above and for the Qwen arms that missed on
+the laptop. It is not what makes the Gemini imaging caches miss: 17 of the 18 Gemini NIH misses come
+from two code changes, and those runs replay to their committed rows with the code of their time. This
+audit had recorded all of them as cache key mismatches.
+
+Not checked: CheXpert (its films were not on that machine; the vendored font changes the text cues of
+every lane, so some of its 11 misses may have the same cause, but this was not run); the laptop on
+which the Qwen NIH arms missed (Pillow 13.0.0 on Linux x86_64 gives the ORCD keys, so the Pillow version
+alone does not explain it; running the 175 lookups there would settle it); and every MIMIC-CXR run.
+Whether the Gemini MIMIC-CXR text misses are the parser change that moved MedMCQA was not checked
+either; a replay on ORCD at `4448874` would settle it.
+
+### A safe change for future runs (not made on this branch)
+
+The cache key is not changed here. A change that keeps every committed cache valid:
+
+- Keep the present key exactly as it is and keep looking it up first.
+- Write a second key beside it in every new entry, computed from the decoded pixels instead of the PNG
+  file: the model id, then sha256 of the film's shape and its raw 8-bit pixel bytes, a NUL byte and the
+  prompt. `benchmaxxing.cues.image.cue_checksum` already computes that pixel hash. Look it up when the
+  present key misses. The pixel key cannot move with a compressor.
+- Fill the second key into the committed caches without a model call, on a machine where the present
+  key still reproduces. For the Qwen NIH caches that is any Linux x86_64 machine, as checked above.
+- Store the sha256 of the source film and the cue name and parameters in each new entry as plain fields,
+  so that a miss can say whether the film, the cue or the encoder moved.
+
+A key on the source file's bytes alone would not do. The cue is drawn in memory, so a twin has no
+source file; and a key made of the source hash plus the cue's name would keep hitting after the cue's
+rendering changed, returning an answer for a film the model never saw. That is the failure #393 was
+about, and the pixel key keeps it loud.
+
+No key change brings back the 17 Gemini runs above. Their cached answers are for the films and the
+questions of their time. They replay with the code of their time, or they have to be run again with
+the current code.
 
 ## Default flags (MedQA home lane)
 
@@ -584,27 +716,27 @@ could not be matched one by one; this table and the pinned tests replace it.
 | mimic_text_n600 | openai/gpt-oss-20b | refusal_aware_600 |  | (see lane folder) | not replayed | cache miss | ORCD |
 | mimic_text_n600 | nvidia/nemotron-3-super-120b-a12b | solo_600 |  | (see lane folder) | not replayed | cache miss | ORCD |
 | mimic_text_n600 | nvidia/nemotron-3-super-120b-a12b | refusal_aware_600 |  | (see lane folder) | not replayed | no cache found | ORCD |
-| nih | gemini-2.5-flash | solo |  | `imaging_solo_summary.json` cues.cable.flip_rate = 0.2 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
-| nih | gemini-2.5-flash | solo_lite |  | `imaging_solo_lite_summary.json` cues.cable.flip_rate = 0.08571428571428572 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
-| nih | gemini-2.5-flash | cascade_watermark |  | `imaging_cascade_cable_summary.json` shared_adopt = 1.0 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
-| nih | gemini-2.5-flash | cascade_cable |  | `imaging_cascade_cable_summary.json` shared_adopt = 1.0 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
-| nih | gemini-2.5-flash | cascade_corner_tag |  | `imaging_cascade_corner_tag_summary.json` shared_adopt = 0.9714 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
-| nih | gemini-2.5-flash | cascade_laterality |  | `imaging_cascade_laterality_summary.json` shared_adopt = 0.9714 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
-| nih | gemini-2.5-flash | scale |  | `imaging_cascade_scale_summary.json` shared_adopt = 0.9733 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
-| nih | gemini-2.5-flash | cue_combo |  | `imaging_cue_combo_summary.json` flip_rates.watermark = 0.3182 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
+| nih | gemini-2.5-flash | solo |  | `imaging_solo_summary.json` cues.cable.flip_rate = 0.2 | not replayed | cache miss since `d7ece46` (the text cues are drawn in another font); replays to the committed rows with the code before it (checked 28 Nov) | ORCD |
+| nih | gemini-2.5-flash | solo_lite |  | `imaging_solo_lite_summary.json` cues.cable.flip_rate = 0.08571428571428572 | not replayed | cache miss since `d7ece46` (the text cues are drawn in another font); replays to the committed rows with the code before it (checked 28 Nov) | ORCD |
+| nih | gemini-2.5-flash | cascade_watermark |  | `imaging_cascade_cable_summary.json` shared_adopt = 1.0 | not replayed | cache miss since `72803a3` (the cascade asks one more question per film, a placebo board, that was never cached); replays to the committed rows with the code before it (checked 28 Nov) | ORCD |
+| nih | gemini-2.5-flash | cascade_cable |  | `imaging_cascade_cable_summary.json` shared_adopt = 1.0 | not replayed | cache miss since `72803a3` (the cascade asks one more question per film, a placebo board, that was never cached); replays to the committed rows with the code before it (checked 28 Nov) | ORCD |
+| nih | gemini-2.5-flash | cascade_corner_tag |  | `imaging_cascade_corner_tag_summary.json` shared_adopt = 0.9714 | not replayed | cache miss since `72803a3` (the cascade asks one more question per film, a placebo board, that was never cached); replays to the committed rows with the code before it (checked 28 Nov) | ORCD |
+| nih | gemini-2.5-flash | cascade_laterality |  | `imaging_cascade_laterality_summary.json` shared_adopt = 0.9714 | not replayed | cache miss since `72803a3` (the cascade asks one more question per film, a placebo board, that was never cached); replays to the committed rows with the code before it (checked 28 Nov) | ORCD |
+| nih | gemini-2.5-flash | scale |  | `imaging_cascade_scale_summary.json` shared_adopt = 0.9733 | not replayed | cache miss since `d7ece46` (the text cues are drawn in another font); replays to the committed rows with the code before it (checked 28 Nov) | ORCD |
+| nih | gemini-2.5-flash | cue_combo |  | `imaging_cue_combo_summary.json` flip_rates.watermark = 0.3182 | not replayed | cache miss since `d7ece46` (the text cues are drawn in another font); replays to the committed rows with the code before it (checked 28 Nov) | ORCD |
 | nih | gemini-2.5-flash | cue_families |  | `imaging_cue_families_summary.json` cues.rotation.flip_rate = 0.3142857142857143 | same | equal except the noise floor, an uncached live control by design | ORCD |
-| nih | gemini-2.5-flash | majority_pressure |  | `imaging_majority_pressure_summary.json` adoption_curve_by_seeded_peer_count.0 = 0.4286 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
+| nih | gemini-2.5-flash | majority_pressure |  | `imaging_majority_pressure_summary.json` adoption_curve_by_seeded_peer_count.0 = 0.4286 | not replayed | cache miss since `d7ece46` (the text cues are drawn in another font); replays to the committed rows with the code before it (checked 28 Nov) | ORCD |
 | nih | gemini-2.5-flash | matched_temp |  | `imaging_matched_temp_summary.json` two_by_two.temp0_floor = 0.0 | same | replays exactly | ORCD |
-| nih | gemini-2.5-flash | multi_round |  | `imaging_multi_round_summary.json` K = 3 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
-| nih | gemini-2.5-flash | peer_size_curve |  | `imaging_peer_size_curve_summary.json` adoption_by_peer_count.1 = 0.9714 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
-| nih | gemini-2.5-flash | polarity |  | `imaging_polarity_summary.json` positive_polarity_yes_to_no.flips = 22 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
-| nih | gemini-2.5-flash | strength_cascade |  | `imaging_strength_cascade_summary.json` strength_x_cascade.opacity_0.15.solo_flip = 0.3143 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
-| nih | gemini-2.5-flash | system_flag |  | `imaging_system_flag_summary.json` shared_adopt = 0.6 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
+| nih | gemini-2.5-flash | multi_round |  | `imaging_multi_round_summary.json` K = 3 | not replayed | cache miss since `d7ece46` (the text cues are drawn in another font); replays to the committed rows with the code before it (checked 28 Nov) | ORCD |
+| nih | gemini-2.5-flash | peer_size_curve |  | `imaging_peer_size_curve_summary.json` adoption_by_peer_count.1 = 0.9714 | not replayed | cache miss since `d7ece46` (the text cues are drawn in another font); replays to the committed rows with the code before it (checked 28 Nov) | ORCD |
+| nih | gemini-2.5-flash | polarity |  | `imaging_polarity_summary.json` positive_polarity_yes_to_no.flips = 22 | not replayed | cache miss since `d7ece46` (the text cues are drawn in another font); replays to the committed rows with the code before it (checked 28 Nov) | ORCD |
+| nih | gemini-2.5-flash | strength_cascade |  | `imaging_strength_cascade_summary.json` strength_x_cascade.opacity_0.15.solo_flip = 0.3143 | not replayed | cache miss since `d7ece46` (the text cues are drawn in another font); replays to the committed rows with the code before it (checked 28 Nov) | ORCD |
+| nih | gemini-2.5-flash | system_flag |  | `imaging_system_flag_summary.json` shared_adopt = 0.6 | not replayed | cache miss since `d7ece46` (the text cues are drawn in another font); replays to the committed rows with the code before it (checked 28 Nov) | ORCD |
 | nih | gemini-2.5-flash | blind_metric |  | `imaging_blind_metric_summary.json` decoy_uptake.baseline = 0.0 | same | replays exactly | ORCD |
-| nih | gemini-2.5-flash | referee |  | `imaging_referee_summary.json` peer_driven_adoptions_gt = 19 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
+| nih | gemini-2.5-flash | referee |  | `imaging_referee_summary.json` peer_driven_adoptions_gt = 19 | not replayed | cache miss since `d7ece46` (the text cues are drawn in another font); replays to the committed rows with the code before it (checked 28 Nov) | ORCD |
 | nih | gemini-2.5-flash | judge_text_only |  | `imaging_judge_referee_summary.json` peer_driven_adoptions_gt = 19 | same | equal on every committed field (the code now writes extra fields or call counters) | ORCD |
 | nih | gemini-2.5-flash | matched_baseline_reason |  | `matched_baseline_reason_repeats_summary.json` reads_per_case = 6 | same | replays exactly | ORCD |
-| nih | gemini-2.5-flash-lite | blind_metric |  | `imaging_blind_metric_summary.json` decoy_uptake.baseline = 0.0 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
+| nih | gemini-2.5-flash-lite | blind_metric |  | `imaging_blind_metric_summary.json` decoy_uptake.baseline = 0.0 | not replayed | cache miss: none of its 105 lookups hit on a Linux x86_64 machine either; the key depends on the machine that wrote the cache (checked 28 Nov) | ORCD |
 | nih | Qwen/Qwen2.5-VL-72B-Instruct | solo |  | `imaging_solo_summary.json` cues.cable.flip_rate = 0.05714285714285714 | same | equal except the noise floor, an uncached live control by design | ORCD |
 | nih | Qwen/Qwen2.5-VL-72B-Instruct | solo_lite |  | `imaging_solo_lite_summary.json` cues.cable.flip_rate = 0.05714285714285714 | same | equal except the noise floor, an uncached live control by design | ORCD |
 | nih | Qwen/Qwen2.5-VL-72B-Instruct | cascade_watermark |  | `imaging_cascade_summary.json` shared_adopt = 1.0 | same | replays exactly | ORCD |
@@ -650,17 +782,17 @@ could not be matched one by one; this table and the pinned tests replace it.
 | nih_n500 | gemini-2.5-flash | scale_500 |  | `imaging_cascade_scale_summary.json` shared_adopt = 0.892 | not replayed | point estimates equal; a bootstrap CI bound differs in the third decimal | ORCD |
 | nih_n500 | gemini-2.5-flash | blind_metric_500 |  | `imaging_blind_metric_summary.json` decoy_uptake.baseline = 0.0 | same | replays exactly | ORCD |
 | nih_n500 | gemini-2.5-flash | matched_baseline_reason_500 |  | `matched_baseline_reason_repeats_summary.json` reads_per_case = 6 | same | replays exactly | ORCD |
-| nih_n80 | gemini-2.5-flash | cascade_80 |  | `imaging_cascade_summary.json` shared_adopt = 0.975 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
-| nih_n80 | gemini-2.5-flash | referee_80 |  | `imaging_judge_referee_summary.json` peer_driven_adoptions_gt = 47 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
-| nih_n80 | gemini-2.5-flash | judge_80 |  | `imaging_judge_referee_summary.json` peer_driven_adoptions_gt = 47 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
+| nih_n80 | gemini-2.5-flash | cascade_80 |  | `imaging_cascade_summary.json` shared_adopt = 0.975 | not replayed | cache miss since `72803a3` (the cascade asks one more question per film, a placebo board, that was never cached); replays to the committed rows with the code before it (checked 28 Nov) | ORCD |
+| nih_n80 | gemini-2.5-flash | referee_80 |  | `imaging_judge_referee_summary.json` peer_driven_adoptions_gt = 47 | not replayed | cache miss since `d7ece46` (the text cues are drawn in another font); replays to the committed rows with the code before it (checked 28 Nov) | ORCD |
+| nih_n80 | gemini-2.5-flash | judge_80 | --text-only | `imaging_judge_referee_summary.json` peer_driven_adoptions_gt = 47 | same | equal on every committed field (the code now writes extra fields or call counters); needs `--text-only`, which the 24 Nov run did not pass | Linux x86_64 with the NIH films (28 Nov) |
 | chexpert35_blind | gemini-2.5-flash | blind_metric |  | `imaging_blind_metric_summary.json` decoy_uptake.baseline = 0.0 | not replayed | not run: google-genai is not installed in the ORCD Python | ORCD |
 | chexpert35_blind | gemini-2.5-flash | matched_baseline_reason |  | `matched_baseline_reason_repeats_summary.json` reads_per_case = 6 | same | replays exactly | ORCD |
 | chexpert35_blind | Qwen/Qwen2.5-VL-72B-Instruct | blind_metric |  | `imaging_blind_metric_summary.json` decoy_uptake.baseline = 0.0 | same | replays exactly | ORCD |
 | chexpert35_blind | Qwen/Qwen2.5-VL-72B-Instruct | matched_baseline_reason |  | `matched_baseline_reason_repeats_summary.json` reads_per_case = 6 | same | equal on every committed field (the code now writes extra fields or call counters) | ORCD |
 | chexpert35_blind | Qwen/Qwen3.8-27B | blind_metric |  | `imaging_blind_metric_summary.json` decoy_uptake.baseline = 0.0 | same | equal on every committed field (the code now writes extra fields or call counters) | ORCD |
 | chexpert35_blind | Qwen/Qwen3.8-27B | matched_baseline_reason |  | `matched_baseline_reason_repeats_summary.json` reads_per_case = 6 | same | equal on every committed field (the code now writes extra fields or call counters) | ORCD |
-| chexpert35_cascade | gemini-2.5-flash | cascade |  | `imaging_cascade_summary.json` shared_adopt = 0.8571 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
-| chexpert35_cascade | gemini-2.5-flash | solo |  | `imaging_solo_summary.json` cues.cable.flip_rate = 0.08571428571428572 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
+| chexpert35_cascade | gemini-2.5-flash | cascade |  | `imaging_cascade_summary.json` shared_adopt = 0.8571 | not replayed | cache miss; cause not established (first put down to the image cache key; the CheXpert films were not available for the 28 Nov check) | ORCD |
+| chexpert35_cascade | gemini-2.5-flash | solo |  | `imaging_solo_summary.json` cues.cable.flip_rate = 0.08571428571428572 | not replayed | cache miss; cause not established (first put down to the image cache key; the CheXpert films were not available for the 28 Nov check) | ORCD |
 | chexpert35_cascade | gemini-2.5-flash | matched_temp |  | `imaging_matched_temp_summary.json` two_by_two.temp0_floor = 0.0 | same | replays exactly | ORCD |
 | chexpert35_cascade | Qwen/Qwen2.5-VL-72B-Instruct | cascade |  | `imaging_cascade_summary.json` shared_adopt = 0.9714 | same | replays exactly | ORCD |
 | chexpert35_cascade | Qwen/Qwen2.5-VL-72B-Instruct | solo |  | `imaging_solo_summary.json` cues.cable.flip_rate = 0.11428571428571428 | same | equal except the noise floor, an uncached live control by design | ORCD |
@@ -668,17 +800,17 @@ could not be matched one by one; this table and the pinned tests replace it.
 | chexpert35_cascade | Qwen/Qwen3.8-27B | cascade |  | `imaging_cascade_summary.json` shared_adopt = 0.9429 | same | replays exactly | ORCD |
 | chexpert35_cascade | Qwen/Qwen3.8-27B | solo |  | `imaging_solo_summary.json` cues.cable.flip_rate = 0.05714285714285714 | same | equal except the noise floor, an uncached live control by design | ORCD |
 | chexpert35_cascade | Qwen/Qwen3.8-27B | matched_temp |  | `imaging_matched_temp_summary.json` two_by_two.temp0_floor = 0.0 | same | replays exactly | ORCD |
-| chexpert35_system_flag | gemini-2.5-flash | system_flag_none |  | `imaging_system_flag_summary.json` shared_adopt = 0.0067 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
-| chexpert35_system_flag | Qwen/Qwen2.5-VL-72B-Instruct | system_flag_none |  | `imaging_system_flag_summary.json` shared_adopt = 0.12 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
-| chexpert35_system_flag | Qwen/Qwen3.8-27B | system_flag_none |  | `imaging_system_flag_summary.json` shared_adopt = 0.4267 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
-| chexpert150_device_absent | gemini-2.5-flash | cascade_none_150 |  | `imaging_cascade_none_summary.json` shared_adopt = 0.94 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
-| chexpert150_device_absent | Qwen/Qwen2.5-VL-72B-Instruct | cascade_none_150 |  | `imaging_cascade_none_summary.json` shared_adopt = 0.9867 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
+| chexpert35_system_flag | gemini-2.5-flash | system_flag_none |  | `imaging_system_flag_summary.json` shared_adopt = 0.0067 | not replayed | cache miss; cause not established (first put down to the image cache key; the CheXpert films were not available for the 28 Nov check) | ORCD |
+| chexpert35_system_flag | Qwen/Qwen2.5-VL-72B-Instruct | system_flag_none |  | `imaging_system_flag_summary.json` shared_adopt = 0.12 | not replayed | cache miss; cause not established (first put down to the image cache key; the CheXpert films were not available for the 28 Nov check) | ORCD |
+| chexpert35_system_flag | Qwen/Qwen3.8-27B | system_flag_none |  | `imaging_system_flag_summary.json` shared_adopt = 0.4267 | not replayed | cache miss; cause not established (first put down to the image cache key; the CheXpert films were not available for the 28 Nov check) | ORCD |
+| chexpert150_device_absent | gemini-2.5-flash | cascade_none_150 |  | `imaging_cascade_none_summary.json` shared_adopt = 0.94 | not replayed | cache miss; cause not established (first put down to the image cache key; the CheXpert films were not available for the 28 Nov check) | ORCD |
+| chexpert150_device_absent | Qwen/Qwen2.5-VL-72B-Instruct | cascade_none_150 |  | `imaging_cascade_none_summary.json` shared_adopt = 0.9867 | not replayed | cache miss; cause not established (first put down to the image cache key; the CheXpert films were not available for the 28 Nov check) | ORCD |
 | chexpert150_device_absent | Qwen/Qwen3.8-27B | cascade_none_150 |  | `imaging_cascade_none_summary.json` shared_adopt = 0.9467 | same | replays exactly | ORCD |
-| chexpert150_natural_cues | gemini-2.5-flash | cascade_none_150 |  | `imaging_cascade_none_summary.json` shared_adopt = 0.6067 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
-| chexpert150_natural_cues | Qwen/Qwen2.5-VL-72B-Instruct | cascade_none_150 |  | `imaging_cascade_none_summary.json` shared_adopt = 0.46 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
+| chexpert150_natural_cues | gemini-2.5-flash | cascade_none_150 |  | `imaging_cascade_none_summary.json` shared_adopt = 0.6067 | not replayed | cache miss; cause not established (first put down to the image cache key; the CheXpert films were not available for the 28 Nov check) | ORCD |
+| chexpert150_natural_cues | Qwen/Qwen2.5-VL-72B-Instruct | cascade_none_150 |  | `imaging_cascade_none_summary.json` shared_adopt = 0.46 | not replayed | cache miss; cause not established (first put down to the image cache key; the CheXpert films were not available for the 28 Nov check) | ORCD |
 | chexpert150_natural_cues | Qwen/Qwen3.8-27B | cascade_none_150 |  | `imaging_cascade_none_summary.json` shared_adopt = 0.8 | same | replays exactly | ORCD |
-| chexpert150_natural_independent | gemini-2.5-flash | cascade_none_150 |  | `imaging_cascade_none_summary.json` shared_adopt = 0.6133 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
-| chexpert150_natural_independent | Qwen/Qwen2.5-VL-72B-Instruct | cascade_none_150 |  | `imaging_cascade_none_summary.json` shared_adopt = 0.4333 | not replayed | cache key mismatch (image bytes on this machine differ from the ones that made the cache) | ORCD |
+| chexpert150_natural_independent | gemini-2.5-flash | cascade_none_150 |  | `imaging_cascade_none_summary.json` shared_adopt = 0.6133 | not replayed | cache miss; cause not established (first put down to the image cache key; the CheXpert films were not available for the 28 Nov check) | ORCD |
+| chexpert150_natural_independent | Qwen/Qwen2.5-VL-72B-Instruct | cascade_none_150 |  | `imaging_cascade_none_summary.json` shared_adopt = 0.4333 | not replayed | cache miss; cause not established (first put down to the image cache key; the CheXpert films were not available for the 28 Nov check) | ORCD |
 | chexpert150_natural_independent | Qwen/Qwen3.8-27B | cascade_none_150 |  | `imaging_cascade_none_summary.json` shared_adopt = 0.7933 | same | replays exactly | ORCD |
 | mimic_image | gemini-2.5-flash | solo |  | `imaging_solo_summary.json` cues.cable.flip_rate = 0.2014388489208633 | not replayed | not assessed: the MIMIC-CXR JPGs of the manifests were not found under the ORCD roots probed | ORCD |
 | mimic_image | gemini-2.5-flash | nih_match_solo |  | (see lane folder) | not replayed | not assessed: the MIMIC-CXR JPGs of the manifests were not found under the ORCD roots probed | ORCD |
@@ -1006,6 +1138,11 @@ shared, where a second agent now takes the seed).
   replies over three lanes (MedQA 57, MedMCQA 49, SUPPORT2 7), so the fix has to regenerate all three
   lanes in one change. Until then the adoption rates of the refreshed MedMCQA files are a little low
   and `plausible_distractor` carries a p-value that should not be cited.
+- The 17 Gemini NIH runs that stopped replaying at `72803a3` and `d7ece46` are not refreshed. The
+  current code asks for prompts that were never cached, so a refresh takes model calls. Their committed
+  rows replay with the code of their time.
+- The image cache key is not changed; a second key on the decoded pixels is described above.
+- CheXpert and MIMIC-CXR were not examined again on 28 Nov.
 - `cascade_onset` returns a different onset with and without the optional `ruptures` package when two
   splits tie. It is not changed; the replay test compares the tied board only where `ruptures` is
   installed.
