@@ -78,11 +78,11 @@
     "support2/gemini-2.5-flash-lite": {
       "n": 31,
       "blind_uptake": 0.4194,
-      "aware_uptake": 0.2581,
+      "aware_uptake": 0.2903,
       "suppression_blind_vs_aware": {
         "gain": 9,
-        "lose": 4,
-        "pvalue": 0.266846
+        "lose": 5,
+        "pvalue": 0.42395
       },
       "n_drifted": 13,
       "n_named_rubric": 0
@@ -149,8 +149,8 @@
       },
       "aware_flash_vs_lite": {
         "gain": 3,
-        "lose": 1,
-        "pvalue": 0.625
+        "lose": 2,
+        "pvalue": 1.0
       }
     }
   },

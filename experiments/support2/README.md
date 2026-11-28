@@ -284,7 +284,8 @@ points of precision, so "a transcript-only monitor works here" is not a claim th
 **The solo null is underpowered, not flat.** Cues are compared against `whitespace_null`, a re-render
 that changes one space per line and nothing else, at temperature 0 on both sides. Two cues clear it
 nominally and none survives BH across the six-cue family. But three of the six were tested at power
-0.07 to 0.25 and could not have detected anything, so they are not evidence of absence. n=120 is the
+0.17 or less (one of them has no defined power, its paired effect being 0) and could not have detected
+anything, so they are not evidence of absence. n=120 is the
 binding constraint. An earlier version of this lane reported a flat null by using a temperature-1.0
 resample as the control, which measures decoding sensitivity rather than surface-form sensitivity and
 swamped every real effect.
