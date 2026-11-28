@@ -23,8 +23,11 @@ from benchmaxxing.schema import Condition
 
 __all__ = [
     "FlipRecord",
+    "chosen_option",
+    "chose_same_option",
     "solo_evaluate",
     "flip_rate",
+    "text_changed_rate",
     "shortcut_reliance_index",
     "susceptibility_matrix",
     "failure_vector",
@@ -39,9 +42,13 @@ __all__ = [
 class FlipRecord:
     """One clean/contaminated observation for a single model on one twin pair.
 
-    ``flipped`` is the headline signal: the normalized answer changed when the spurious cue
-    was injected. ``clean_correct`` / ``contaminated_correct`` are ``None`` when the twin pair
-    carries no ground truth, so accuracy-based measures can skip those records cleanly.
+    ``flipped`` is the headline signal: the model chose a different option when the spurious cue
+    was injected (see :func:`chose_same_option`). ``text_changed`` is the earlier, coarser
+    comparison, kept so nothing it counted disappears: the two normalized answers differ as
+    strings. The two part ways when a cue rewrites the text of an option and the model picks that
+    same option on both twins: the text changed, the choice did not. ``text_changed`` is ``None``
+    on a record built without it. ``clean_correct`` / ``contaminated_correct`` are ``None`` when the
+    twin pair carries no ground truth, so accuracy-based measures can skip those records cleanly.
     """
 
     case_id: str
@@ -53,6 +60,82 @@ class FlipRecord:
     flipped: bool
     clean_correct: bool | None
     contaminated_correct: bool | None
+    text_changed: bool | None = None
+
+
+def _options(payload):
+    """The option list of a text-lane payload, or ``None`` for anything else (an image, a string)."""
+    if isinstance(payload, dict) and payload.get("options"):
+        return list(payload["options"])
+    return None
+
+
+def _clean_positions(clean_options, cued_options) -> list:
+    """For each position of the cued option list, where that same option sits in the clean list.
+
+    A cue leaves an option where it was, moves it (``option_order``, ``position_bias``) or rewrites
+    its text in place (``longest_option``, ``lexical_overlap``, a distractor-targeted
+    ``negation_qualifier``). An option that kept its clean text is found by that text, wherever it
+    now stands; one whose text is no longer among the clean options was rewritten where it stood.
+    A position that neither rule settles is ``None``, and an answer naming it is compared as text.
+    """
+    n = len(clean_options)
+    positions: list = [None] * len(cued_options)
+    taken: set = set()
+    for j, text in enumerate(cued_options):  # left where it was
+        if j < n and clean_options[j] == text:
+            positions[j] = j
+            taken.add(j)
+    for j, text in enumerate(cued_options):  # moved, text intact
+        if positions[j] is None:
+            for i, clean_text in enumerate(clean_options):
+                if i not in taken and clean_text == text:
+                    positions[j] = i
+                    taken.add(i)
+                    break
+    for j in range(len(cued_options)):  # rewritten in place
+        if positions[j] is None and j < n and j not in taken:
+            positions[j] = j
+            taken.add(j)
+    return positions
+
+
+def chosen_option(twin, condition: Condition, answer):
+    """Which option of ``twin`` an answer names, as a key that is the same on both twins.
+
+    In the text lanes ``answer`` is the text of one option of the payload it was given for. That
+    text is not a stable name for the option: ``option_order`` moves it and ``longest_option`` /
+    ``lexical_overlap`` rewrite it. The key returned here is ``("option", i)`` with ``i`` the
+    option's position in the CLEAN option list, whichever twin the answer came from. Two options
+    that carry the same clean text are one option here (an answer text cannot tell them apart), so
+    ``i`` is the first position with that text. An answer that names none of the twin's options (an
+    abstention, a yes/no read, an image label, free text) comes back as ``("answer", answer)``, so
+    it is compared exactly as it was before.
+    """
+    clean_options = _options(twin.clean)
+    own_options = _options(twin.payload(condition))
+    if clean_options is None or own_options is None:
+        return ("answer", answer)
+    if condition == Condition.CLEAN:
+        positions = list(range(len(clean_options)))
+    else:
+        positions = _clean_positions(clean_options, own_options)
+    for j, text in enumerate(own_options):
+        if text == answer and positions[j] is not None:
+            return ("option", clean_options.index(clean_options[positions[j]]))
+    if answer in clean_options:  # a cued-side answer that quotes the clean text
+        return ("option", clean_options.index(answer))
+    return ("answer", answer)
+
+
+def chose_same_option(twin, clean_answer, contaminated_answer) -> bool:
+    """True when the two answers of a twin name the same option, whatever the cue did to its text.
+
+    This is the comparison a flip is defined on: ``flipped = not chose_same_option(...)``.
+    """
+    return chosen_option(twin, Condition.CLEAN, clean_answer) == chosen_option(
+        twin, Condition.CONTAMINATED, contaminated_answer
+    )
 
 
 def _payload_to_prompt(payload) -> str:
@@ -147,9 +230,10 @@ def solo_evaluate(
                 clean_answer=clean_answer,
                 contaminated_answer=contaminated_answer,
                 ground_truth=gt,
-                flipped=bool(clean_answer != contaminated_answer),
+                flipped=not chose_same_option(tp, clean_answer, contaminated_answer),
                 clean_correct=clean_correct,
                 contaminated_correct=contaminated_correct,
+                text_changed=bool(clean_answer != contaminated_answer),
             )
         )
         if progress is not None:
@@ -174,6 +258,19 @@ def flip_rate(records) -> dict:
     for cue in sorted({r.cue_type for r in records}):
         per_cue[cue] = _mean([r.flipped for r in records if r.cue_type == cue])
     return {"overall": overall, "per_cue": per_cue, "n": len(records)}
+
+
+def text_changed_rate(records) -> dict:
+    """The breakdown of :func:`flip_rate` for the earlier comparison, ``text_changed``.
+
+    Reported beside the flip rate so the count a text comparison gave stays on record. Records
+    built without the field are left out; ``n`` is the number that carry it.
+    """
+    records = [r for r in records if getattr(r, "text_changed", None) is not None]
+    per_cue = {}
+    for cue in sorted({r.cue_type for r in records}):
+        per_cue[cue] = _mean([r.text_changed for r in records if r.cue_type == cue])
+    return {"overall": _mean([r.text_changed for r in records]), "per_cue": per_cue, "n": len(records)}
 
 
 def shortcut_reliance_index(records) -> dict:

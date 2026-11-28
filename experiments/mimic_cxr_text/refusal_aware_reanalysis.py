@@ -30,6 +30,7 @@ import json
 import random
 from pathlib import Path
 
+from benchmaxxing.analysis import chose_same_option
 from benchmaxxing.cues.text import build_text_twin
 from benchmaxxing.data import load_cases
 from benchmaxxing.extract import Abstention, parse_mcq_choice
@@ -70,8 +71,9 @@ def main():
     all_cases = load_cases(args.manifest)
     cases = random.Random(args.seed).sample(all_cases, min(args.solo_n, len(all_cases)))
 
-    stats = {m: {"flips": 0, "pairs": 0, "abstentions": 0, "total_calls": 0,
-                 "per_cue": {c: {"flips": 0, "pairs": 0, "abstentions": 0} for c in TEXT_CUES}}
+    stats = {m: {"flips": 0, "text_changed": 0, "pairs": 0, "abstentions": 0, "total_calls": 0,
+                 "per_cue": {c: {"flips": 0, "text_changed": 0, "pairs": 0, "abstentions": 0}
+                             for c in TEXT_CUES}}
               for m in TIERS}
 
     def lookup(model, payload):
@@ -90,7 +92,9 @@ def main():
         choice = parse_mcq_choice(text or "", letters)
         # Return the chosen option's TEXT, not its positional index: option_order permutes
         # positions between clean/contaminated, so the same index means different content and
-        # comparing raw indices would spuriously "flip" on every permutation.
+        # comparing raw indices would spuriously "flip" on every permutation. The text is not
+        # compared as a string either: longest_option and lexical_overlap rewrite the text of one
+        # option, so the flip below asks analysis.chose_same_option which option each text names.
         if isinstance(choice, Abstention):
             return choice
         return options[choice]
@@ -115,9 +119,12 @@ def main():
                     continue
                 s["pairs"] += 1
                 cs["pairs"] += 1
-                if clean_choice != cont_choice:
+                if not chose_same_option(tp, clean_choice, cont_choice):
                     s["flips"] += 1
                     cs["flips"] += 1
+                if clean_choice != cont_choice:  # the earlier comparison, kept beside the flip
+                    s["text_changed"] += 1
+                    cs["text_changed"] += 1
 
     result = {}
     for model in TIERS:
@@ -126,10 +133,13 @@ def main():
             "total_calls": s["total_calls"],
             "abstention_rate": round(s["abstentions"] / s["total_calls"], 4) if s["total_calls"] else None,
             "flip_rate_excl_abstentions": round(s["flips"] / s["pairs"], 4) if s["pairs"] else None,
+            "text_changed_rate_excl_abstentions": round(s["text_changed"] / s["pairs"], 4) if s["pairs"] else None,
             "n_valid_pairs": s["pairs"],
             "per_cue": {
                 cue: {
                     "flip_rate_excl_abstentions": round(cs["flips"] / cs["pairs"], 4) if cs["pairs"] else None,
+                    "text_changed_rate_excl_abstentions": round(cs["text_changed"] / cs["pairs"], 4)
+                    if cs["pairs"] else None,
                     "abstention_rate": round(cs["abstentions"] / (cs["pairs"] + cs["abstentions"]), 4)
                     if (cs["pairs"] + cs["abstentions"]) else None,
                     "n_valid_pairs": cs["pairs"],

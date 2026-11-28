@@ -326,6 +326,8 @@ def main(argv=None) -> int:
             key = None
         elif not key:
             return _skip("no GEMINI_API_KEY/GOOGLE_API_KEY: this is a real-model run, nothing fabricated.")
+    elif args.replay:
+        key = None  # a replay reads a complete cache and needs no key, whatever the model id
     else:
         try:
             key = _lane.key_for(args.model)

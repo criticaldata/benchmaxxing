@@ -286,6 +286,45 @@ def test_committed_runs_replay_keyless_with_zero_calls(monkeypatch, tmp_path, li
     assert got == want
 
 
+# The five lineage files at 50 cases. Each replays from its own committed cache, which the runner
+# finds from the model id.
+_LINEAGE_RUNS = {
+    "Qwen_Qwen2.5-VL-72B-Instruct": "Qwen/Qwen2.5-VL-72B-Instruct",
+    "local_nvidia_cosmos-reason2-8b": "local/nvidia/cosmos-reason2-8b",
+    "nvidia_nemotron-3-super-120b-a12b": "nvidia/nemotron-3-super-120b-a12b",
+    "openai_gpt-oss-120b": "openai/gpt-oss-120b",
+    "openai_gpt-oss-20b": "openai/gpt-oss-20b",
+}
+
+
+@pytest.mark.skipif(not (_MEDQA.exists() and _MEDMCQA.exists()), reason="the MedQA/MedMCQA manifests are not on this machine")
+@pytest.mark.parametrize("slug", sorted(_LINEAGE_RUNS))
+def test_committed_lineage_runs_replay_keyless_with_zero_calls(monkeypatch, tmp_path, slug):
+    """Each lineage file is what the runner writes from that lineage's cache with no key and no
+    server: the flip counts, the text_changed counts beside them, and the tests on both."""
+    for name in [n for n in os.environ if n.endswith("_API_KEY")]:
+        monkeypatch.delenv(name)
+    got_path = tmp_path / "replay.json"
+    rc = run_cross.main(["--medqa-manifest", str(_MEDQA), "--medmcqa-manifest", str(_MEDMCQA),
+                         "--model", _LINEAGE_RUNS[slug], "--limit", "50", "--out", str(got_path), "--replay"])
+    assert rc == 0
+    got = json.loads(got_path.read_text())
+    want = json.loads((_RES / slug / "medqa_vs_medmcqa.json").read_text())
+    assert got.pop("replay") == {"keyless": True, "new_api_calls_this_run": 0,
+                                 "cache": f"{slug}_cache_medqa_vs_medmcqa.jsonl"}
+    read = {"medqa": manifest_checksum(_MEDQA), "medmcqa": manifest_checksum(_MEDMCQA)}
+    assert got["model"] == _LINEAGE_RUNS[slug] and got["manifest_sha256"] == read
+    if read != want["manifest_sha256"]:  # the other build of the MedQA manifest: same cases, another hash
+        got.pop("manifest_sha256")
+        want.pop("manifest_sha256")
+    assert got == want
+    for block in (got, got["clean_correct"]):  # the earlier count sits beside every flip count
+        for row in block["per_cue"].values():
+            for name, (flips, n) in row["counts"].items():
+                earlier, earlier_n = row["text_changed"]["counts"][name]
+                assert flips <= earlier and n == earlier_n
+
+
 _COMMITTED = ["medqa_vs_medmcqa_n150.json", "medqa_vs_medmcqa_n500.json"]
 # sha256 of the manifest that benchmaxxing.datasets.medqa builds from the public MedQA-USMLE test.jsonl
 _MEDQA_SHA256 = "0f2076a45455080924f954d31136b815b986fb108d9380beadd4da9b87eaacef"
@@ -440,3 +479,47 @@ def test_the_result_names_its_model_and_the_sha256_of_each_manifest(monkeypatch,
     assert run_cross.main(args) == 0
     again = json.loads((tmp_path / "out.json").read_text())["manifest_sha256"]
     assert again["medqa"] != want["medqa"] and again["medmcqa"] == want["medmcqa"]
+
+
+_HOSTED_ID = "openai/gpt-oss-120b"
+
+
+def test_a_replay_needs_no_key_for_a_hosted_model_id(monkeypatch, tmp_path, capsys):
+    """--replay reads a complete cache, so it must run keyless for any model id, not only for the
+    Gemini and local ones: that is how a second lineage's committed file is regenerated at 0 calls."""
+    from benchmaxxing.data import write_manifest
+
+    lane = run_cross._lane
+    medqa = write_manifest([_case("a0"), _case("a1")], tmp_path / "medqa.csv")
+    medmcqa = write_manifest([_case("b0"), _case("b1")], tmp_path / "medmcqa.csv")
+    args = ["--medqa-manifest", str(medqa), "--medmcqa-manifest", str(medmcqa), "--model", _HOSTED_ID,
+            "--out", str(tmp_path / "out.json"), "--cache", str(tmp_path / "cache.jsonl")]
+
+    # the keyed run that records the cache
+    monkeypatch.setenv("NVIDIA_API_KEY", "test-key")
+    monkeypatch.setattr(lane, "paced_complete", lambda model, key, prompt, decoding=None, **_: "A. option")
+    assert run_cross.main(args) == 0
+    recorded = json.loads((tmp_path / "out.json").read_text())
+
+    # the keyless replay: no key in the environment, and any live call is an error
+    monkeypatch.delenv("NVIDIA_API_KEY")
+
+    def no_call(*a, **k):
+        raise AssertionError("a replay must not call the model")
+
+    monkeypatch.setattr(lane, "paced_complete", no_call)
+    capsys.readouterr()
+    assert run_cross.main([*args, "--replay"]) == 0
+    assert "[skip]" not in capsys.readouterr().out
+    replayed = json.loads((tmp_path / "out.json").read_text())
+    assert replayed.pop("replay") == {"keyless": True, "new_api_calls_this_run": 0, "cache": "cache.jsonl"}
+    assert replayed == recorded and replayed["model"] == _HOSTED_ID
+
+    # without --replay the same keyless run is still a skip, and an incomplete cache stops a replay
+    assert run_cross.main(args) == 0
+    assert "[skip]" in capsys.readouterr().out
+    lines = (tmp_path / "cache.jsonl").read_text().splitlines()
+    (tmp_path / "cache.jsonl").write_text("\n".join(lines[:-1]) + "\n")
+    with pytest.raises(SystemExit) as exc:
+        run_cross.main([*args, "--replay"])
+    assert "Cache miss and no key" in str(exc.value)

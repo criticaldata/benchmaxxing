@@ -37,7 +37,8 @@ import _lane  # noqa: E402
 
 from benchmaxxing import gateway
 from benchmaxxing.analysis import (
-    FlipRecord, failure_vector, flip_rate, lineage_overlap_test, susceptibility_matrix,
+    FlipRecord, chose_same_option, failure_vector, flip_rate, lineage_overlap_test,
+    susceptibility_matrix, text_changed_rate,
 )
 from benchmaxxing.blackboard import AgentResponse, render_board, run_committee
 from benchmaxxing.cues.text import build_text_twin
@@ -122,7 +123,12 @@ class CachedBackend(gateway.Backend):
 
 
 def run_solo(cases, out, api_key, cache):
-    """Solo susceptibility (flip rate per model x cue) + an uncached noise-floor control."""
+    """Solo susceptibility (flip rate per model x cue) + an uncached noise-floor control.
+
+    A flip is a different OPTION on the cued twin (``analysis.chose_same_option``), not a different
+    answer string: ``longest_option`` and ``lexical_overlap`` rewrite the text of one wrong option,
+    so a model that picks that option on both twins returns two strings for one choice. The string
+    comparison is kept as ``text_changed`` (per record, and as ``text_changed_rate_by_model``)."""
     def call_for(model):
         b = CachedBackend(model, api_key, cache)
         return lambda payload: parse_legacy_string(b.complete(_mcq_prompt(payload),
@@ -146,9 +152,10 @@ def run_solo(cases, out, api_key, cache):
             out_recs.append(FlipRecord(
                 case_id=str(case.case_id), cue_type=cue, model=model,
                 clean_answer=clean, contaminated_answer=cont, ground_truth=gt,
-                flipped=bool(clean != cont),
+                flipped=not chose_same_option(tp, clean, cont),
                 clean_correct=None if gt is None else bool(clean == gt),
-                contaminated_correct=None if gt is None else bool(cont == gt)))
+                contaminated_correct=None if gt is None else bool(cont == gt),
+                text_changed=bool(clean != cont)))
         return out_recs
 
     with ThreadPoolExecutor(max_workers=6) as ex:
@@ -188,6 +195,7 @@ def run_solo(cases, out, api_key, cache):
         overlap = {"error": str(e)}
     result = {"n_records": len(records), "noise_floor_by_model": noise,
               "flip_rate_by_model": {m: flip_rate(rs) for m, rs in by_model.items()},
+              "text_changed_rate_by_model": {m: text_changed_rate(rs) for m, rs in by_model.items()},
               "susceptibility_matrix": {"models": sm["models"], "cues": sm["cues"],
                                         "matrix": sm["matrix"].tolist()},
               "overlap": overlap}
@@ -199,6 +207,7 @@ def run_solo(cases, out, api_key, cache):
         (Path(out) / "solo_records.jsonl").write_text("".join(json.dumps({
             "case_id": r.case_id, "cue": r.cue_type, "model": r.model, "clean": r.clean_answer,
             "contaminated": r.contaminated_answer, "flipped": r.flipped,
+            "text_changed": r.text_changed,
             "clean_correct": r.clean_correct, "contaminated_correct": r.contaminated_correct,
         }) + "\n" for r in records))
     return result
