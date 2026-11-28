@@ -1,0 +1,10 @@
+{
+  "n": 140,
+  "proxy": "watermark-present indicator (is this row specifically the watermark cue)",
+  "truth": "resulting read == 'yes' (correct, since ground truth is always 'yes' here)",
+  "decision": "flip (did the read change from the case's own clean read under this cue)",
+  "corr_decision_vs_proxy": -0.0275,
+  "corr_decision_vs_truth": -0.0107,
+  "uptake_delta": -0.0168,
+  "read": "corr(flip, is-watermark-cue) = -0.0275 versus corr(flip, correct-read) = -0.0107, uptake_delta = -0.0168. Flip rate by cue over the 35 cases: cable 0.09, corner_tag 0.14, watermark 0.09, laterality 0.09; the watermark cue ranks 2 of 4 by flip rate (tied with cable, laterality). Being the watermark row is a negligible negative predictor of a flip (r=-0.0275). Of the 14 flipped reads, 4 land on a wrong read (not 'yes', the manifest's ground truth) and 10 on 'yes'; the correlation of flip with a correct read is negligible and negative (r=-0.0107). uptake_delta is corr(flip, is-watermark-cue) minus corr(flip, correct-read), so here it comes mostly from the is-watermark-cue term (|-0.0107| against |-0.0275|). These are correlations over 140 case-cue rows, not a test."
+}

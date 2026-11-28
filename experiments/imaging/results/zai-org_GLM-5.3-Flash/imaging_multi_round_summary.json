@@ -1,0 +1,23 @@
+{
+  "n": 35,
+  "K": 3,
+  "model": "zai-org/GLM-5.3-Flash",
+  "cue": "watermark",
+  "new_api_calls_this_run": 210,
+  "shared_adoption_by_round": [
+    0.9143,
+    0.9714,
+    0.9714
+  ],
+  "isolated_adoption_by_round": [
+    0.2286,
+    0.3429,
+    0.3714
+  ],
+  "round1_vs_roundK_shared": {
+    "gained": 2,
+    "lost": 0,
+    "mcnemar_p": 0.5
+  },
+  "monotone_nondecreasing_shared": true
+}

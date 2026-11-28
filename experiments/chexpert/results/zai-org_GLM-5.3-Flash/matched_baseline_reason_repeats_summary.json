@@ -1,0 +1,41 @@
+{
+  "repeats": 5,
+  "n": 35,
+  "reads_per_case": 6,
+  "cases_with_any_disagreement": {
+    "n": 13,
+    "rate": 0.3714,
+    "wilson95": [
+      0.2317,
+      0.5366
+    ]
+  },
+  "mean_pairwise_disagreement": 0.179,
+  "flip_vs_baseline_per_read": [
+    0.2857,
+    0.3714,
+    0.3429,
+    0.2571,
+    0.3143,
+    0.3143
+  ],
+  "flip_vs_baseline_band": [
+    0.2571,
+    0.3714
+  ],
+  "decoy_per_read": [
+    0.2857,
+    0.3714,
+    0.3429,
+    0.2571,
+    0.3143,
+    0.3143
+  ],
+  "decoy_band": [
+    0.2571,
+    0.3714
+  ],
+  "note": "read 0 is the main control run; reads 1.. are the same prompt re-asked at the same settings with a salted cache key, so every read is a real call and replays keyless",
+  "model": "zai-org/GLM-5.3-Flash",
+  "new_api_calls_this_run": 210
+}

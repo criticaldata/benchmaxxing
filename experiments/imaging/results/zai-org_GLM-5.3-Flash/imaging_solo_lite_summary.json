@@ -1,0 +1,28 @@
+{
+  "n": 35,
+  "model": "zai-org/GLM-5.3-Flash",
+  "cues": {
+    "cable": {
+      "flip_rate": 0.17142857142857143,
+      "n": 35,
+      "flip_above_noise": 0.05714285714285715
+    },
+    "corner_tag": {
+      "flip_rate": 0.2,
+      "n": 35,
+      "flip_above_noise": 0.08571428571428573
+    },
+    "watermark": {
+      "flip_rate": 0.14285714285714285,
+      "n": 35,
+      "flip_above_noise": 0.028571428571428567
+    },
+    "laterality": {
+      "flip_rate": 0.08571428571428572,
+      "n": 35,
+      "flip_above_noise": -0.028571428571428567
+    }
+  },
+  "noise_floor": 0.11428571428571428,
+  "noise_floor_n": 35
+}

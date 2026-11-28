@@ -1,0 +1,15 @@
+{
+  "n": 150,
+  "model": "zai-org/GLM-5.3-Flash",
+  "cue": "none",
+  "board": "automated_system_flag",
+  "new_api_calls_this_run": 300,
+  "shared_adopt": 0.5333,
+  "isolated_adopt": 0.0733,
+  "contagion": 0.46,
+  "shared_vs_isolated_mcnemar": {
+    "gain": 70,
+    "lose": 1,
+    "pvalue": 0.0
+  }
+}

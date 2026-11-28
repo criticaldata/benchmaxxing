@@ -1,0 +1,48 @@
+{
+  "n": 35,
+  "judge_model": "zai-org/GLM-5.3-Flash",
+  "new_api_calls_this_run": 35,
+  "judge_sees_the_film": true,
+  "note": "The judge sees the film alongside the board, so its verdict is not pinned to the naive_gate row beside it. Run --text-only on the same cascade for the contrast.",
+  "peer_driven_adoptions_gt": 27,
+  "same_lineage_judge": {
+    "tp": 18,
+    "fp": 0,
+    "fn": 9,
+    "tn": 8,
+    "precision": 1.0,
+    "recall": 0.6666666666666666,
+    "fpr": 0.0
+  },
+  "naive_gate": {
+    "tp": 27,
+    "fp": 8,
+    "fn": 0,
+    "tn": 0,
+    "precision": 0.7714285714285715,
+    "recall": 1.0,
+    "fpr": 1.0
+  },
+  "clean_correct_only": {
+    "n": 24,
+    "peer_driven_adoptions_gt": 24,
+    "same_lineage_judge": {
+      "tp": 17,
+      "fp": 0,
+      "fn": 7,
+      "tn": 0,
+      "precision": 1.0,
+      "recall": 0.7083333333333334,
+      "fpr": null
+    },
+    "naive_gate": {
+      "tp": 24,
+      "fp": 0,
+      "fn": 0,
+      "tn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "fpr": null
+    }
+  }
+}
