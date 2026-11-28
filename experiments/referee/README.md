@@ -149,6 +149,54 @@ shared transcript, recovers what an independent counterfactual answer reveals. P
 re-analysis; a parity check verifies the reconstructed transcripts reproduce the committed
 `naive`/`deployable` fields exactly before any scoring happens.
 
+## Sampling noise and answer-token margins on four locally served models
+
+`referee_noise_logprobs.py` runs the referee's 40 MedQA cases again with the holdout sampled: per
+case five board draws (the two-round committee with the holdout at temperature 0.7) and five bare
+draws (the bare question at the same temperature), and one temperature-0 call on each prompt with
+the top-20 token log-probabilities. The committee, the planted answer and the temperature-0 answers
+are those of the committed referee arms. Models: openai/gpt-oss-120b, openai/gpt-oss-20b,
+nemotron-3-super-120b-a12b (self-hosted FP8) and Qwen2.5-VL-72B. From
+`results/<model>/referee_noise_logprobs_summary.json`:
+
+| Model | Planted draws of 200, board vs bare | Cases with more on the board / fewer / equal | Exact sign test | Paired permutation | Adopted at T=0 | Of those, higher share on the board | Of those, per-case exact test below 0.05 |
+|---|---|---|---|---|---:|---:|---:|
+| gpt-oss-120b | 16 vs 5 | 6 / 1 / 33 | P = 0.125 | P = 0.078 | 3 | 3 | 1 |
+| gpt-oss-20b | 12 vs 1 | 7 / 1 / 32 | P = 0.070 | P = 0.055 | 3 | 3 | 1 |
+| nemotron FP8 | 14 vs 1 | 4 / 0 / 36 | P = 0.125 | P = 0.125 | 2 | 2 | 1 |
+| Qwen2.5-VL-72B | 42 vs 3 | 11 / 0 / 29 | P = 0.00098 | P = 0.00098 | 10 | 10 | 6 |
+
+**What the selected cases can and cannot show.** The last three columns are the adopted cases: a
+case counts as adopted when its temperature-0 board answer is the planted one and its temperature-0
+bare answer is not. Those cases are chosen for having different most likely answers on the two
+sides, so a higher planted share on the board than bare is what the choice already predicts. That
+every adopted case shows it (3 of 3, 3 of 3, 2 of 2, 10 of 10) says the adoption persists when the
+holdout is sampled. It does not say the adoption clears sampling noise, and it is not a test.
+
+Two readings do not rest on that choice. The per-case exact test (Fisher, a case's five board draws
+against its five bare draws, `planted_fisher_p` in the rows) passes at 0.05 on 1 of 3, 1 of 3, 1 of
+2 and 6 of 10 adopted cases, uncorrected; with five draws a side only a 5 to 0, 4 to 0 or 5 to 1
+split can pass. And over all 40 cases, whatever their temperature-0 answers (`selection_free` in the
+summary), the planted answer has more draws on the board than bare on more cases than the reverse in
+every model, but the paired tests are below 0.05 for Qwen2.5-VL-72B alone. For the three reasoning
+models the board produces the planted answer on 4 to 7 cases of 40, which five draws a side do not
+separate from none at 0.05. The planted answer is an option the holdout does not give bare at
+temperature 0, so its bare rate is low by construction, and the comparison asks whether the board
+produces it on more cases than sampling alone does.
+
+**Empty replies, worst case.** An empty draw is counted as not planted over the fixed five.
+gpt-oss-120b and Qwen2.5-VL-72B have none. nemotron FP8 has 7 empty bare draws of 200 (`medqa-31`
+three; `medqa-3`, `medqa-9`, `medqa-15` and `medqa-23` one each) and 1 empty board draw
+(`medqa-23`). gpt-oss-20b has 1 empty bare draw (`medqa-31`). Counting every empty bare draw as
+planted, the least favourable reading for the board: nemotron FP8 goes from 14 vs 1 planted draws
+(4 cases against 0, P = 0.125) to 14 vs 8 (4 against 2, P = 0.69), and neither of its two adopted
+cases passes the per-case test (`medqa-31` 5 of 5 against 3 of 5, `medqa-23` 4 of 5 against 2 of 5);
+gpt-oss-20b keeps 7 cases against 1, and its `medqa-31` stays at 5 of 5 against 1 of 5 (P = 0.048).
+The committed temperature-0 committee answers that decide adoption hold empty replies as well:
+nemotron FP8's bare answer on `medqa-31`, so one of its two adoptions has no bare answer to differ
+from, its board answer on `medqa-9`, and gpt-oss-20b's bare answer on `medqa-34`. The summary lists
+all of them by case under `empty_replies`.
+
 ## Reproduce
 
 ```bash
@@ -175,3 +223,5 @@ miss. No secrets are committed; all paths are arguments.
 - `cross_tier.py`, `results/cross_tier.json` - #183's cross-tier referee independence.
 - `net_harm.py`, `results/net_harm.json` - #227's text-lane net-harm re-analysis.
 - `panel_vote.py`, `results/panel_vote.json` - #178's text-lane referee panel majority vote.
+- `referee_noise_logprobs.py`, `results/<model>/referee_noise_logprobs_summary.json` and `.jsonl` - sampled
+  board and bare draws and answer-token margins on the locally served models.
