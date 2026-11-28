@@ -76,8 +76,7 @@ def test_paraphrase_log_and_caches_match_the_summary(lane, n):
 # Second lineages, served locally: the same runner over the Gemini lane's committed paraphrases
 # (--generator-cache, --committed-paraphrases-only), holdout = the lineage, read 0 replayed from the lineage's
 # committed control cache. A lineage band case whose question has no committed paraphrase is left out and listed.
-# nemotron FP8 joins this tuple when its run is committed.
-LINEAGE_SLUGS = ("openai_gpt-oss-120b", "Qwen_Qwen2.5-VL-72B-Instruct")
+LINEAGE_SLUGS = ("openai_gpt-oss-120b", "nemotron-3-super-120b-a12b-fp8-local", "Qwen_Qwen2.5-VL-72B-Instruct")
 LINEAGE_LANES = [(lane, slug) for lane, _ in LANES for slug in LINEAGE_SLUGS]
 
 
