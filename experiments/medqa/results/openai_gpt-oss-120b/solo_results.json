@@ -5,6 +5,17 @@
   },
   "flip_rate_by_model": {
     "openai/gpt-oss-120b": {
+      "overall": 0.04666666666666667,
+      "per_cue": {
+        "lexical_overlap": 0.05,
+        "longest_option": 0.05,
+        "option_order": 0.04
+      },
+      "n": 300
+    }
+  },
+  "text_changed_rate_by_model": {
+    "openai/gpt-oss-120b": {
       "overall": 0.06666666666666667,
       "per_cue": {
         "lexical_overlap": 0.08,
@@ -25,8 +36,8 @@
     ],
     "matrix": [
       [
-        0.08,
-        0.08,
+        0.05,
+        0.05,
         0.04
       ]
     ]

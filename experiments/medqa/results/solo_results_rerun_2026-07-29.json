@@ -6,6 +6,26 @@
   },
   "flip_rate_by_model": {
     "gemini-2.5-flash": {
+      "overall": 0.03666666666666667,
+      "per_cue": {
+        "lexical_overlap": 0.03,
+        "longest_option": 0.03,
+        "option_order": 0.05
+      },
+      "n": 300
+    },
+    "gemini-2.5-flash-lite": {
+      "overall": 0.09666666666666666,
+      "per_cue": {
+        "lexical_overlap": 0.11,
+        "longest_option": 0.09,
+        "option_order": 0.09
+      },
+      "n": 300
+    }
+  },
+  "text_changed_rate_by_model": {
+    "gemini-2.5-flash": {
       "overall": 0.05333333333333334,
       "per_cue": {
         "lexical_overlap": 0.06,
@@ -36,20 +56,20 @@
     ],
     "matrix": [
       [
-        0.06,
-        0.05,
+        0.03,
+        0.03,
         0.05
       ],
       [
-        0.16,
-        0.12,
+        0.11,
+        0.09,
         0.09
       ]
     ]
   },
   "overlap": {
     "metric": "phi",
-    "within_mean": 0.27189456631886794,
+    "within_mean": 0.11623775783147877,
     "cross_mean": NaN,
     "observed_diff": NaN,
     "p_value": NaN,
@@ -68,5 +88,6 @@
       "cause": "cue builder change only; the parser is now verified to agree with the pre-centralization one on every replayable response"
     },
     "noise_floor_caveat": "The floor is an uncached temperature>0 control over cases[:15], so it is a 15-item estimate. flash came out 1/15 = 0.0667 on the committed run and 0/15 = 0.0 here. A single resampled case moves it, so a flip rate of 0.05 to 0.06 is NOT separable from flash's own floor either way. flash-lite at 0.09 to 0.16 against 0.0 is separable."
-  }
+  },
+  "flip_scoring": "flip_rate_by_model, susceptibility_matrix and overlap count a flip when the model chose a different OPTION on the cued twin (benchmaxxing.analysis.chose_same_option), recomputed by a keyless replay of the same cached replies. text_changed_rate_by_model is the earlier string comparison: the rates this file carried before, and the ones rerun_provenance compares with the committed solo_results.json."
 }
