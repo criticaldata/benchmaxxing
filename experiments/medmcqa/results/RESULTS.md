@@ -14,8 +14,9 @@
 > **Why they differed (28 Nov 2026).** The earlier files were scored by a parser each runner carried
 > inline; the refreshed ones by the shared parser every lane now uses. The shared parser is not right
 > everywhere: in 41 case outcomes over the 14 committee arms it scores a reply that ends in a boxed
-> answer as no answer, because the reply also says "as an AI". That lowers the adoption rates below by up
-> to 0.04 and produces the p = 0.039 of `plausible_distractor` (section 7). The cases, the commits and
+> answer as no answer, because the reply also holds a refusal phrase ("as an AI" in 42 of the 44 replies,
+> "I cannot determine" in 2). That lowers the adoption rates below by up to 0.04 and produces the
+> p = 0.039 of `plausible_distractor` (section 7). The cases, the commits and
 > the values with those answers read are in `docs/REPLAY_AUDIT.md`, "Why the fifteen Gemini MedMCQA
 > arms moved".
 
