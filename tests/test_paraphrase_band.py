@@ -71,3 +71,71 @@ def test_paraphrase_log_and_caches_match_the_summary(lane, n):
     hold = len(_rows(f"{lane}/paraphrase_band_cache.jsonl"))
     gen = len(_rows(f"{lane}/paraphrase_band_generator_cache.jsonl"))
     assert s["calls_in_cache"] == {"holdout": hold, "generator": gen}
+
+
+# Second lineages, served locally: the same runner over the Gemini lane's committed paraphrases
+# (--generator-cache, --committed-paraphrases-only), holdout = the lineage, read 0 replayed from the lineage's
+# committed control cache. A lineage band case whose question has no committed paraphrase is left out and listed.
+# gpt-oss-120b is committed; nemotron FP8 and Qwen2.5-VL-72B join this tuple when their runs are committed.
+LINEAGE_SLUGS = ("openai_gpt-oss-120b",)
+LINEAGE_LANES = [(lane, slug) for lane, _ in LANES for slug in LINEAGE_SLUGS]
+
+
+@pytest.mark.parametrize("lane,slug", LINEAGE_LANES)
+def test_lineage_band_replays_from_its_records(lane, slug):
+    d = f"{lane}/{slug}"
+    s = json.loads((ROOT / d / "paraphrase_band_summary.json").read_text())
+    recs = _rows(f"{d}/paraphrase_band.jsonl")
+    full = [r for r in recs if r["n_paraphrases"] == s["paraphrases_per_case"]]
+    got = mb.summarise_repeats(full, s["paraphrases_per_case"])
+    for k in ("n", "cases_with_any_disagreement", "mean_pairwise_disagreement", "flip_vs_baseline_per_read",
+              "flip_vs_baseline_band", "decoy_per_read", "decoy_band"):
+        assert got[k] == s[k], k
+    assert s["calls_in_cache"]["generator"] == 0 and s["new_api_calls_this_run"]["generator"] == 0
+
+
+@pytest.mark.parametrize("lane,slug", LINEAGE_LANES)
+def test_lineage_read_zero_is_its_committed_control_and_every_case_is_accounted_for(lane, slug):
+    d = f"{lane}/{slug}"
+    s = json.loads((ROOT / d / "paraphrase_band_summary.json").read_text())
+    ours = {r["case_id"]: r for r in _rows(f"{d}/paraphrase_band.jsonl")}
+    theirs = {r["case_id"]: r for r in _rows(f"{d}/matched_baseline_reason_repeats.jsonl")}
+    left_out = set(s["cases_without_committed_paraphrases"])
+    assert set(ours) | left_out == set(theirs) and not set(ours) & left_out
+    assert all(ours[c]["answers"][0] == theirs[c]["answers"][0] for c in ours)
+
+
+@pytest.mark.parametrize("lane,slug", LINEAGE_LANES)
+def test_lineage_paraphrases_are_the_committed_gemini_ones(lane, slug):
+    gemini = {(p["case_id"], p["i"]): p["paraphrase"] for p in _rows(f"{lane}/paraphrases.jsonl")}
+    mine = _rows(f"{lane}/{slug}/paraphrases.jsonl")
+    assert mine and all(gemini[(p["case_id"], p["i"])] == p["paraphrase"] for p in mine)
+    s = json.loads((ROOT / lane / slug / "paraphrase_band_summary.json").read_text())
+    hold = len(_rows(f"{lane}/{slug}/paraphrase_band_cache.jsonl"))
+    assert s["calls_in_cache"]["holdout"] == hold == s["paraphrases_total"]
+
+
+@pytest.mark.parametrize("slug", LINEAGE_SLUGS)
+def test_support2_lineage_band_replays_keyless(slug, tmp_path):
+    """SUPPORT2's manifest is committed, so this lane's lineage bands rerun here with no server and no key."""
+    import os
+    import shutil
+    import subprocess
+    lane = ROOT / "experiments/support2/results"
+    for f in ("paraphrase_band_cache.jsonl", "matched_baseline_reason_repeats_summary.json"):
+        shutil.copy(lane / slug / f, tmp_path / f)
+    model = json.loads((lane / slug / "paraphrase_band_summary.json").read_text())["model"]
+    env = {"HOME": os.environ.get("HOME", ""), "PATH": os.environ.get("PATH", ""), "PYTHONPATH": str(ROOT)}
+    r = subprocess.run([sys.executable, "experiments/matched_baseline/paraphrase_band.py", "--lane", "text",
+                        "--manifest", "experiments/support2/results/support2_manifest.csv", "--model", model,
+                        "--cache", f"experiments/support2/results/{slug}_blind_metric_call_cache.jsonl",
+                        "--out", str(tmp_path), "--generator-cache",
+                        "experiments/support2/results/paraphrase_band_generator_cache.jsonl",
+                        "--committed-paraphrases-only"], cwd=ROOT, env=env, capture_output=True, text=True, timeout=600)
+    assert r.returncode == 0, (r.stdout + r.stderr)[-600:]
+    got = json.loads((tmp_path / "paraphrase_band_summary.json").read_text())
+    want = json.loads((lane / slug / "paraphrase_band_summary.json").read_text())
+    assert got["new_api_calls_this_run"] == {"holdout": 0, "generator": 0}
+    assert {k: v for k, v in got.items() if k != "new_api_calls_this_run"} == \
+        {k: v for k, v in want.items() if k != "new_api_calls_this_run"}
+    assert (tmp_path / "paraphrase_band.jsonl").read_bytes() == (lane / slug / "paraphrase_band.jsonl").read_bytes()

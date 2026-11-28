@@ -26,6 +26,7 @@ folder; a fully cached run needs no key.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
@@ -115,6 +116,12 @@ def main():
     ap.add_argument("--n", type=int, default=None, help="defaults to 40 (text) or 35 (imaging), as the committed band")
     ap.add_argument("--k", type=int, default=5, help="paraphrases per case")
     ap.add_argument("--workers", type=int, default=4)
+    ap.add_argument("--generator-cache", default=None,
+                    help="read the paraphrases from this generator cache (for a second lineage: the Gemini lane's "
+                         "committed paraphrase_band_generator_cache.jsonl) instead of <out>/paraphrase_band_generator_cache.jsonl")
+    ap.add_argument("--committed-paraphrases-only", action="store_true",
+                    help="never call the generator: a case whose paraphrases are not in the generator cache is left out "
+                         "of the band and listed in the summary")
     args = ap.parse_args()
 
     model = args.model or (mb.TEXT_MODEL if args.lane == "text" else mb.IMAGING_MODEL)
@@ -123,7 +130,16 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     committed = mb._Cache(args.cache, None, model)
     cache = mb._Cache(out / "paraphrase_band_cache.jsonl", _lane.key_for(model), model)
-    gen = _lane.Cache(out / "paraphrase_band_generator_cache.jsonl", _lane.key_for(GENERATOR), GENERATOR)
+    gen_path = Path(args.generator_cache) if args.generator_cache else out / "paraphrase_band_generator_cache.jsonl"
+    gen = _lane.Cache(gen_path, None if args.committed_paraphrases_only else _lane.key_for(GENERATOR), GENERATOR)
+    no_paraphrase, empty = [], {"read0": 0, "paraphrase_reads": 0}
+
+    def paraphrases_for(text):
+        prompt = generator_prompt(text, args.k)
+        if args.committed_paraphrases_only and \
+                hashlib.sha256(f"{GENERATOR}\x00{prompt}".encode()).hexdigest() not in gen.store:
+            return None
+        return parse_paraphrases(gen.complete(prompt), args.k)
 
     if args.lane == "text":
         cases = load_cases(args.manifest)[:n]
@@ -150,10 +166,16 @@ def main():
                 raise SystemExit(f"{case.case_id}: committed control missing from {args.cache}")
             letter = lambda a: letters[opts.index(a)] if a in opts else None  # noqa: E731
             original = case.question
-            paras = parse_paraphrases(gen.complete(generator_prompt(original, args.k)), args.k)
+            paras = paraphrases_for(original)
+            if paras is None:
+                no_paraphrase.append(case.case_id)
+                return None
             reads = [letter(parse_legacy_string(reason_txt, opts))]
-            for p in paras:
-                reads.append(letter(parse_legacy_string(cache.ask(text_reason_prompt(case, p)), opts)))
+            replies = [cache.ask(text_reason_prompt(case, p)) for p in paras]
+            reads += [letter(parse_legacy_string(t, opts)) for t in replies]
+            with mb._lock:
+                empty["read0"] += not reason_txt.strip()
+                empty["paraphrase_reads"] += sum(not t.strip() for t in replies)
             kept = [numbers_kept(original, p) for p in paras]
             rec = mb._repeat_record(case.case_id, reads[0], letter(base_ans), letters[opts.index(decoy)], reads[1:])
         else:
@@ -168,10 +190,16 @@ def main():
             base_ans = parse_yesno(base_txt)
             decoy = "no" if base_ans == "yes" else "yes"
             original = imaging_question(finding)
-            paras = parse_paraphrases(gen.complete(generator_prompt(original, args.k)), args.k)
+            paras = paraphrases_for(original)
+            if paras is None:
+                no_paraphrase.append(case.case_id)
+                return None
             reads = [parse_yesno(reason_txt)]
-            for p in paras:
-                reads.append(parse_yesno(cache.ask(imaging_reason_prompt(p), img)))
+            replies = [cache.ask(imaging_reason_prompt(p), img) for p in paras]
+            reads += [parse_yesno(t) for t in replies]
+            with mb._lock:
+                empty["read0"] += not reason_txt.strip()
+                empty["paraphrase_reads"] += sum(not t.strip() for t in replies)
             kept = [finding.lower() in p.lower() for p in paras]
             rec = mb._repeat_record(case.case_id, reads[0], base_ans, decoy, reads[1:])
         rec["n_paraphrases"] = len(paras)
@@ -209,6 +237,14 @@ def main():
         # what the run that filled the caches paid, stable across keyless replays
         "calls_in_cache": {"holdout": len(cache.store), "generator": len(gen.store)},
     })
+    if args.generator_cache:
+        # a second lineage reads the paraphrases another lane generated and committed: it pays no generator call
+        band["generator_cache"] = args.generator_cache
+        band["calls_in_cache"]["generator"] = 0
+    if args.committed_paraphrases_only:
+        band["cases_without_committed_paraphrases"] = sorted(no_paraphrase, key=str)
+    band["empty_replies"] = dict(empty, note="an empty reply parses to no answer, which counts as a changed answer "
+                                             "(a disagreement and a flip against the baseline), as in the committed band")
     same = out / "matched_baseline_reason_repeats_summary.json"
     if same.exists():
         s = json.loads(same.read_text())

@@ -1,0 +1,108 @@
+{
+  "repeats": 5,
+  "n": 26,
+  "reads_per_case": 6,
+  "cases_with_any_disagreement": {
+    "n": 1,
+    "rate": 0.0385,
+    "wilson95": [
+      0.0068,
+      0.1889
+    ]
+  },
+  "mean_pairwise_disagreement": 0.0205,
+  "flip_vs_baseline_per_read": [
+    0.0385,
+    0.0385,
+    0.0385,
+    0.0769,
+    0.0385,
+    0.0769
+  ],
+  "flip_vs_baseline_band": [
+    0.0385,
+    0.0769
+  ],
+  "decoy_per_read": [
+    0.0385,
+    0.0385,
+    0.0385,
+    0.0769,
+    0.0385,
+    0.0769
+  ],
+  "decoy_band": [
+    0.0385,
+    0.0769
+  ],
+  "note": "read 0 is the committed control prompt replayed from the lane cache; reads 1.. are the same prompt with the question reworded by the generator, one paraphrase per read",
+  "fidelity_clean_subset": {
+    "n": 26,
+    "cases_with_any_disagreement": {
+      "n": 1,
+      "rate": 0.0385,
+      "wilson95": [
+        0.0068,
+        0.1889
+      ]
+    },
+    "mean_pairwise_disagreement": 0.0205,
+    "flip_vs_baseline_band": [
+      0.0385,
+      0.0769
+    ],
+    "decoy_band": [
+      0.0385,
+      0.0769
+    ],
+    "note": "cases whose paraphrases all pass the fidelity check (every number of the original kept verbatim; the finding still named)"
+  },
+  "model": "openai/gpt-oss-120b",
+  "generator": "gemini-2.5-flash",
+  "paraphrases_per_case": 5,
+  "cases_run": 26,
+  "cases_with_all_paraphrases": 26,
+  "paraphrases_failing_fidelity_check": 0,
+  "paraphrases_total": 130,
+  "new_api_calls_this_run": {
+    "holdout": 130,
+    "generator": 0
+  },
+  "calls_in_cache": {
+    "holdout": 130,
+    "generator": 0
+  },
+  "generator_cache": "experiments/support2/results/paraphrase_band_generator_cache.jsonl",
+  "cases_without_committed_paraphrases": [
+    "support2-122",
+    "support2-14",
+    "support2-17",
+    "support2-175"
+  ],
+  "empty_replies": {
+    "read0": 0,
+    "paraphrase_reads": 0,
+    "note": "an empty reply parses to no answer, which counts as a changed answer (a disagreement and a flip against the baseline), as in the committed band"
+  },
+  "committed_same_session_band": {
+    "n": 30,
+    "repeats": 5,
+    "cases_with_any_disagreement": {
+      "n": 2,
+      "rate": 0.0667,
+      "wilson95": [
+        0.0185,
+        0.2132
+      ]
+    },
+    "mean_pairwise_disagreement": 0.0222,
+    "flip_vs_baseline_band": [
+      0.0333,
+      0.1
+    ],
+    "decoy_band": [
+      0.0333,
+      0.1
+    ]
+  }
+}
