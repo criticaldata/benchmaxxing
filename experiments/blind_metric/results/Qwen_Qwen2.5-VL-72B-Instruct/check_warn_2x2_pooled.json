@@ -87,6 +87,37 @@
       }
     }
   },
+  "empty_replies": {
+    "baseline": [],
+    "none": [],
+    "check": [],
+    "warn": [],
+    "both": []
+  },
+  "empty_replies_worst_case": {
+    "vs_none": {
+      "check": {
+        "gain": 1,
+        "lose": 20,
+        "pvalue": 2.1e-05
+      },
+      "warn": {
+        "gain": 1,
+        "lose": 28,
+        "pvalue": 1.12e-07
+      },
+      "both": {
+        "gain": 0,
+        "lose": 32,
+        "pvalue": 4.66e-10
+      }
+    },
+    "check_vs_warn": {
+      "gain": 3,
+      "lose": 11,
+      "pvalue": 0.057373
+    }
+  },
   "warn_vs_test_aware": {
     "gain": 0,
     "lose": 18,
@@ -97,5 +128,5 @@
     "lose": 14,
     "pvalue": 0.000977
   },
-  "read": "Pooled over 115 cases, decoy uptake is 0.4261 under the plain note, 0.2609 with the check announced, 0.1913 with the warning and 0.1478 with both; the committed test_aware prompt gives 0.0348 on the same cases. Against the plain note: check 1 vs 20 (P = 2.1e-05), warning 1 vs 28 (P = 1.12e-07), both 0 vs 32 (P = 4.66e-10). Warning against check, the direct test of the two sentences: 3 cases follow the note under the warning only and 11 under the check only (P = 0.057373, exact McNemar, uncorrected). The rubric is named in 26 of 460 justifications across the four cells."
+  "read": "Pooled over 115 cases, decoy uptake is 0.4261 under the plain note, 0.2609 with the check announced, 0.1913 with the warning and 0.1478 with both; the committed test_aware prompt gives 0.0348 on the same cases. Against the plain note: check 1 vs 20 (P = 2.1e-05), warning 1 vs 28 (P = 1.12e-07), both 0 vs 32 (P = 4.66e-10). Warning against check, the direct test of the two sentences: 3 cases follow the note under the warning only and 11 under the check only (P = 0.057373, exact McNemar, uncorrected). No reply in the four cells is empty. The rubric is named in 26 of 460 justifications across the four cells."
 }

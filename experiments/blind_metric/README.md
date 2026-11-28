@@ -106,6 +106,19 @@ as a group and in no single model after correction. `check_warn_2x2_lineages.py`
 `results/check_warn_2x2_lineages.json`. On the committed Gemini run the same test gives 9 vs 15
 (P = 0.31).
 
+**Empty replies, worst case.** A reply with no text is scored as not following the note. gpt-oss-120b
+and Qwen2.5-VL-72B returned none in any cell. nemotron FP8 returned six: one in the plain-note cell
+(MedQA `medqa-21`) and five in the three other cells (MedQA warning `medqa-9` and `medqa-31`, MedQA
+both `medqa-9`, MedMCQA check and warning on one case), and those five all push its reported effects
+up. With every empty reply scored against the difference a test reports (as following the note in
+the cell reported lower, as not following it in the other), nemotron FP8 gives check 4 vs 23
+(P = 0.00031), warning 1 vs 27 (P = 2.2e-07), both 1 vs 33 (P = 4.1e-09) and warning against check
+5 vs 11 (P = 0.21). The three effects against the plain note survive. The one warning-against-check
+difference that was below 0.05 does not: in the worst case no model of the three is below 0.05, and
+the case-level test over the three models gives 24 cases lower and 10 higher (P = 0.024). Each cohort
+summary lists its empty replies under `empty_replies`, and the pooled files carry the rescored tests
+under `empty_replies_worst_case`.
+
 ## Reproduce
 
 ```bash

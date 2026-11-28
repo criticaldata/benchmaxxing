@@ -108,5 +108,19 @@
     }
   },
   "baseline_decoy_uptake": 0.0,
+  "empty_replies": {
+    "baseline": [],
+    "none": [
+      "medqa-21"
+    ],
+    "check": [],
+    "warn": [
+      "medqa-31",
+      "medqa-9"
+    ],
+    "both": [
+      "medqa-9"
+    ]
+  },
   "read": "Decoy uptake by cell (n = 40): none 0.125, check 0.075, warn 0.05, both 0.0. A justification is asked in every cell, so the request is held constant and only the two sentences vary."
 }

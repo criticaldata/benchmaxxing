@@ -108,5 +108,12 @@
     }
   },
   "baseline_decoy_uptake": 0.0,
+  "empty_replies": {
+    "baseline": [],
+    "none": [],
+    "check": [],
+    "warn": [],
+    "both": []
+  },
   "read": "Decoy uptake by cell (n = 30): none 0.3333, check 0.3333, warn 0.1667, both 0.1. A justification is asked in every cell, so the request is held constant and only the two sentences vary."
 }

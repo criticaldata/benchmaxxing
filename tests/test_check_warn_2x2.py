@@ -1,5 +1,6 @@
 """check_warn_2x2.py: the plain-note cell is blind_metric.py's prompt, and the committed results replay."""
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -133,3 +134,110 @@ def test_lineage_comparison_reproduces_and_counts_the_models_below_alpha():
     assert c["model_case_pairs"] == {"gain": 10, "lose": 32}
     om = c["over_models"]
     assert om["cases_lower_under_warning"] + om["cases_higher_under_warning"] + om["cases_equal"] == om["n_cases"]
+
+
+# ---------------------------------------------------------------- empty replies and their worst case
+MODEL_OF = dict(zip(LINEAGES, ("openai/gpt-oss-120b", "nemotron-3-super-120b-a12b-fp8-local", "Qwen/Qwen2.5-VL-72B-Instruct")))
+MODEL_OF[""] = "gemini-2.5-flash-lite"
+# The empty replies of the committed runs, by cohort directory: every one is on the FP8 nemotron.
+NEMOTRON_EMPTY = {
+    "experiments/blind_metric/results": {"baseline": [], "none": ["medqa-21"], "check": [],
+                                         "warn": ["medqa-31", "medqa-9"], "both": ["medqa-9"]},
+    "experiments/medmcqa/results": {"baseline": ["17360c6c-2c98-4fe2-aa85-487dcf4678df", "b944ada9-d776-4c2a-9180-3ae5f393f72d"],
+                                    "none": [], "check": ["b944ada9-d776-4c2a-9180-3ae5f393f72d"],
+                                    "warn": ["b944ada9-d776-4c2a-9180-3ae5f393f72d"], "both": []},
+    "experiments/support2/results": {"baseline": [], "none": [], "check": [], "warn": [], "both": []},
+}
+MANIFESTS = {
+    "experiments/blind_metric/results": Path(os.environ.get(
+        "BENCHMAXXING_MEDQA_MANIFEST", str(Path.home() / "Documents/DATASET/medqa/manifest_test.csv"))),
+    "experiments/medmcqa/results": Path(os.environ.get("BENCHMAXXING_MEDMCQA_MANIFEST", str(ROOT / "data/medmcqa_dev.csv"))),
+    "experiments/support2/results": ROOT / "experiments/support2/results/support2_manifest.csv",
+}
+
+
+def test_worst_case_scores_an_empty_reply_against_the_reported_difference():
+    import check_warn_2x2_pooled as pooled
+    lowered = {"none_is_decoy": True, "check_is_decoy": False, "empty": set()}
+    rows = [dict(lowered) for _ in range(4)] + [{**lowered, "empty": {"check"}}]
+    assert (pooled._pair(rows, "none", "check")["gain"], pooled._pair(rows, "none", "check")["lose"]) == (0, 5)
+    # the empty reply sits in the lower cell, so it is counted as following the note there
+    assert (pooled.worst_case(rows, "none", "check")["gain"], pooled.worst_case(rows, "none", "check")["lose"]) == (0, 4)
+    # an empty reply in the upper cell stays not following, and can add a case that moves toward the decoy
+    rows.append({"none_is_decoy": False, "check_is_decoy": False, "empty": {"none", "check"}})
+    w = pooled.worst_case(rows, "none", "check")
+    assert (w["gain"], w["lose"]) == (1, 4)
+    # the lower cell is read from the scoring, whichever argument it is
+    flipped = pooled.worst_case(rows, "check", "none")
+    assert (flipped["gain"], flipped["lose"]) == (4, 1)
+
+
+@pytest.mark.parametrize("slug", ("",) + LINEAGES)
+def test_empty_replies_are_listed_and_consistent_with_the_rows(slug):
+    """Every cohort summary lists its empty replies; a listed reply has no declared letter, is not
+    scored as the decoy and names nothing, since there is no text to read."""
+    for d in COHORTS:
+        base = f"{d}/{slug}" if slug else d
+        listed = json.loads((ROOT / base / "check_warn_2x2_summary.json").read_text())["empty_replies"]
+        assert set(listed) == {"baseline", *cw.CELLS}
+        rows = _rows(f"{base}/check_warn_2x2.jsonl")
+        expected = NEMOTRON_EMPTY[d] if slug == "nemotron-3-super-120b-a12b-fp8-local" else {k: [] for k in listed}
+        assert listed == expected, (d, slug)
+        for cell in cw.CELLS:
+            for case_id in listed[cell]:
+                r = rows[case_id]
+                assert r[f"{cell}_declared"] is None and not r[f"{cell}_is_decoy"] and not r[f"{cell}_named"]
+
+
+def test_nemotron_worst_case_keeps_the_effects_against_the_plain_note_and_not_warning_against_check():
+    p = json.loads((ROOT / "experiments/blind_metric/results/nemotron-3-super-120b-a12b-fp8-local/check_warn_2x2_pooled.json").read_text())
+    assert {k: len(v) for k, v in p["empty_replies"].items()} == {"baseline": 2, "none": 1, "check": 1, "warn": 3, "both": 1}
+    w = p["empty_replies_worst_case"]
+    assert {c: (v["gain"], v["lose"], v["pvalue"]) for c, v in w["vs_none"].items()} == {
+        "check": (4, 23, 0.000311), "warn": (1, 27, 2.16e-07), "both": (1, 33, 4.07e-09)}
+    assert (w["check_vs_warn"]["gain"], w["check_vs_warn"]["lose"], w["check_vs_warn"]["pvalue"]) == (5, 11, 0.210114)
+    assert p["check_vs_warn"]["pvalue"] < 0.05 < w["check_vs_warn"]["pvalue"]
+
+
+@pytest.mark.parametrize("slug", ("openai_gpt-oss-120b", "Qwen_Qwen2.5-VL-72B-Instruct"))
+def test_a_model_with_no_empty_reply_has_a_worst_case_equal_to_its_tests(slug):
+    p = json.loads((ROOT / "experiments/blind_metric/results" / slug / "check_warn_2x2_pooled.json").read_text())
+    assert not any(p["empty_replies"].values())
+    assert p["empty_replies_worst_case"]["vs_none"] == p["vs_none"]
+    assert p["empty_replies_worst_case"]["check_vs_warn"] == {k: p["check_vs_warn"][k] for k in ("gain", "lose", "pvalue")}
+
+
+def test_lineage_comparison_worst_case_leaves_no_model_below_alpha():
+    c = json.loads((ROOT / "experiments/blind_metric/results/check_warn_2x2_lineages.json").read_text())
+    assert c["empty_replies_in_check_or_warn"] == {"openai/gpt-oss-120b": 0, "nemotron-3-super-120b-a12b-fp8-local": 4,
+                                                   "Qwen/Qwen2.5-VL-72B-Instruct": 0}
+    w = c["check_vs_warn_empty_replies_worst_case"]
+    assert (w["n_models_below_alpha"], w["n_models_below_alpha_holm"]) == (0, 0)
+    assert w["model_case_pairs"] == {"gain": 12, "lose": 31}
+
+
+@pytest.mark.parametrize("d", COHORTS)
+@pytest.mark.parametrize("slug", ("",) + LINEAGES)
+def test_cohort_run_replays_from_its_cache_with_the_same_empty_replies(slug, d):
+    """A keyless replay of a cohort run gives back the committed rows and summary, empty replies included."""
+    manifest = MANIFESTS[d]
+    if not manifest.exists():
+        pytest.skip(f"{manifest} is not on this machine")
+    out = ROOT / d / slug
+    prefix = f"{slug}_" if slug else ""
+    cache = {"experiments/blind_metric/results": f"{d}/{prefix}call_cache.jsonl"}.get(d, f"{d}/{prefix}blind_metric_call_cache.jsonl")
+    files = {p: p.read_bytes() for p in (out / "check_warn_2x2_summary.json", out / "check_warn_2x2.jsonl", ROOT / cache)}
+    env = {"HOME": os.environ.get("HOME", ""), "PATH": os.environ.get("PATH", ""), "PYTHONPATH": str(ROOT)}
+    try:
+        r = subprocess.run([sys.executable, "experiments/blind_metric/check_warn_2x2.py", "--manifest", str(manifest),
+                            "--model", MODEL_OF[slug], "--out", d, "--cache", cache],
+                           cwd=ROOT, env=env, capture_output=True, text=True, timeout=900)
+        assert r.returncode == 0, (r.stdout + r.stderr)[-600:]
+        after = json.loads((out / "check_warn_2x2_summary.json").read_text())
+        assert after["new_api_calls_this_run"] == 0
+        assert after == json.loads(files[out / "check_warn_2x2_summary.json"])
+        assert (out / "check_warn_2x2.jsonl").read_bytes() == files[out / "check_warn_2x2.jsonl"]
+        assert (ROOT / cache).read_bytes() == files[ROOT / cache]
+    finally:
+        for p, b in files.items():
+            p.write_bytes(b)
