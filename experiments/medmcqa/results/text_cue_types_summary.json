@@ -1,27 +1,27 @@
 {
   "n": 120,
   "model": "gemini-2.5-flash-lite",
-  "new_api_calls_this_run": 592,
+  "new_api_calls_this_run": 0,
   "adoption_by_cue": {
-    "baseline": 0.7417,
+    "baseline": 0.7333,
     "primacy": 0.5667,
     "negation": 0.925,
     "qualifier": 0.75
   },
   "baseline_vs_primacy": {
-    "gain": 6,
+    "gain": 7,
     "lose": 27,
-    "pvalue": 0.000324
+    "pvalue": 0.000821
   },
   "baseline_vs_negation": {
-    "gain": 23,
+    "gain": 24,
     "lose": 1,
-    "pvalue": 3e-06
+    "pvalue": 2e-06
   },
   "baseline_vs_qualifier": {
-    "gain": 9,
+    "gain": 10,
     "lose": 8,
-    "pvalue": 1.0
+    "pvalue": 0.814529
   },
-  "read": "Adoption of the same fixed wrong answer under different text cue types: baseline 0.7417, moved to the front (primacy) 0.5667, framed as ruling out the holdout's own pick (negation) 0.925, padded with an exclusion qualifier 0.75. Deviations from baseline isolate pure position/order sensitivity (primacy), the extra push from explicitly cancelling the holdout's prior (negation), and whether pseudo-justification padding adds anything (qualifier). Paired McNemars test each cue against the baseline assertion."
+  "read": "Adoption of the same fixed wrong answer under different text cue types: baseline 0.7333, moved to the front (primacy) 0.5667, framed as ruling out the holdout's own pick (negation) 0.925, padded with an exclusion qualifier 0.75. Deviations from baseline isolate pure position/order sensitivity (primacy), the extra push from explicitly cancelling the holdout's prior (negation), and whether pseudo-justification padding adds anything (qualifier). Paired McNemars test each cue against the baseline assertion."
 }

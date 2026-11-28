@@ -63,6 +63,10 @@ NOT_REPLAYED = {
     "reproduce": "the base cascade, through its own backend cache; not instrumented",
 }
 _TAIL = "Answer with only the single letter of the best option."
+# The committed outputs were computed with each runner at its default --n. Four runner defaults were
+# later aligned with the MedQA lane's committed sizes; their earlier defaults are pinned here so this
+# replay keeps measuring the same completions.
+RUNNER_N = {"authority_ladder": 60, "majority_pressure": 25, "orchestrator_failure": 80, "true_peer_control": 60}
 
 
 def bare_prompt(question: str, options) -> str:
@@ -131,6 +135,8 @@ def main():
         spec = importlib.util.spec_from_file_location(f"runner_{name}", path)
         mod = importlib.util.module_from_spec(spec)
         sys.argv = [str(path), "--manifest", args.manifest, "--model", model, "--out", str(scratch / name)]
+        if name in RUNNER_N:
+            sys.argv += ["--n", str(RUNNER_N[name])]
         (scratch / name).mkdir(parents=True, exist_ok=True)
         try:
             spec.loader.exec_module(mod)

@@ -38,8 +38,8 @@
     }
   },
   "committed_test_aware": {
-    "decoy_uptake": 0.2252,
-    "n_decoy": 25
+    "decoy_uptake": 0.2342,
+    "n_decoy": 26
   },
   "vs_none": {
     "check": {
@@ -69,14 +69,14 @@
     "pvalue": 1.0
   },
   "warn_vs_test_aware": {
-    "gain": 15,
+    "gain": 16,
     "lose": 15,
     "pvalue": 1.0
   },
   "both_vs_test_aware": {
-    "gain": 15,
+    "gain": 16,
     "lose": 21,
-    "pvalue": 0.405032
+    "pvalue": 0.511376
   },
-  "read": "Pooled over 111 cases, decoy uptake is 0.3694 under the plain note, 0.2793 with the check announced, 0.2252 with the warning and 0.2793 with both; the committed test_aware prompt, which also drops the justification and adds 'clinically best', gives 0.2252 on the same cases; against the warning cell alone it moves 15 cases one way and 15 the other (P = 1.0), so the warning accounts for the whole test-aware drop. The rubric is named in 14 of 444 justifications across the four cells."
+  "read": "Pooled over 111 cases, decoy uptake is 0.3694 under the plain note, 0.2793 with the check announced, 0.2252 with the warning and 0.2793 with both; the committed test_aware prompt, which also drops the justification and adds 'clinically best', gives 0.2342 on the same cases; against the warning cell alone it moves 16 cases one way and 15 the other (P = 1.0), so the warning accounts for the whole test-aware drop. The rubric is named in 14 of 444 justifications across the four cells."
 }

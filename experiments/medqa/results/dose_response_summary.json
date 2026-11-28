@@ -6,10 +6,10 @@
     "l1_faint": 0.15,
     "l2_lean": 0.375,
     "l3_assert": 0.8083,
-    "l4_emphatic": 0.6
+    "l4_emphatic": 0.625
   },
   "faint_vs_emphatic": {
-    "gain": 54,
+    "gain": 57,
     "lose": 0,
     "pvalue": 0.0
   },
@@ -19,9 +19,9 @@
     "pvalue": 0.0
   },
   "lean_vs_emphatic": {
-    "gain": 29,
-    "lose": 2,
+    "gain": 31,
+    "lose": 1,
     "pvalue": 0.0
   },
-  "read": "Adoption of the same fixed wrong answer as the senior's assertion strengthens: faint suggestion 0.15, lean 0.375, plain assertion 0.8083, emphatic certainty 0.6. A monotone rise is a graded dose-response (adoption scales with how forcefully the wrong answer is pushed); a plateau marks where extra intensity stops buying adoption. Paired McNemars bracket the curve (faint vs emphatic, faint vs plain, lean vs emphatic)."
+  "read": "Adoption of the same fixed wrong answer as the senior's assertion strengthens: faint suggestion 0.15, lean 0.375, plain assertion 0.8083, emphatic certainty 0.625. A monotone rise is a graded dose-response (adoption scales with how forcefully the wrong answer is pushed); a plateau marks where extra intensity stops buying adoption. Paired McNemars bracket the curve (faint vs emphatic, faint vs plain, lean vs emphatic)."
 }

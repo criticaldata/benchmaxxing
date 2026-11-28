@@ -120,11 +120,12 @@ def main():
     ap.add_argument("--cache", default=None, help="cache path; defaults to the model-scoped file")
     ap.add_argument("--out", default="experiments/medqa/results")
     _lane.add_model_arg(ap)
-    ap.add_argument("--n", type=int, default=25)
+    _lane.add_n_arg(ap, 40)
     ap.add_argument("--show-rationale", action="store_true",
                     help="render each peer's reasoning under its vote (#373); off is the "
                          "committed answer-only board, which the cache replays at zero calls")
     args = ap.parse_args()
+    args.n = _lane.resolve_n(args)
 
     model = args.model
     if model != _lane.DEFAULT_MODEL:

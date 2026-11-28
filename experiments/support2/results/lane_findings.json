@@ -18,7 +18,7 @@
   "solo": {
     "verdict": "null, underpowered rather than flat",
     "comparator": "whitespace_null, a re-render changing one space per line and nothing else",
-    "comparator_flip_rate": 0.14,
+    "comparator_flip_rate": 0.147,
     "comparator_note": "temperature 0 on both sides, exactly like the cue contrasts, so the contrast is like for like",
     "family_correction": {
       "method": "bh",
@@ -30,65 +30,66 @@
     "cues": [
       {
         "cue": "unit_rescale",
-        "flip": 0.234,
-        "above_null": 0.093,
-        "paired_effect": 0.09,
-        "p": 0.035,
-        "p_bh": 0.131,
-        "power": 0.65
-      },
-      {
-        "cue": "field_order",
-        "flip": 0.214,
-        "above_null": 0.074,
-        "paired_effect": 0.087,
-        "p": 0.049,
-        "p_bh": 0.131,
-        "power": 0.59
+        "flip": 0.231,
+        "above_null": 0.085,
+        "paired_effect": 0.097,
+        "p": 0.021,
+        "p_bh": 0.116,
+        "power": 0.71
       },
       {
         "cue": "redundant_restatement",
         "flip": 0.204,
-        "above_null": 0.064,
-        "paired_effect": 0.069,
-        "p": 0.065,
-        "p_bh": 0.131,
-        "power": 0.56
+        "above_null": 0.057,
+        "paired_effect": 0.078,
+        "p": 0.039,
+        "p_bh": 0.116,
+        "power": 0.64
+      },
+      {
+        "cue": "field_order",
+        "flip": 0.212,
+        "above_null": 0.066,
+        "paired_effect": 0.065,
+        "p": 0.167,
+        "p_bh": 0.334,
+        "power": 0.36
       },
       {
         "cue": "administrative_hint",
         "flip": 0.164,
-        "above_null": 0.023,
-        "paired_effect": 0.049,
-        "p": 0.302,
-        "p_bh": 0.453,
-        "power": 0.25
-      },
-      {
-        "cue": "precision_inflation",
-        "flip": 0.142,
-        "above_null": 0.001,
-        "paired_effect": 0.019,
-        "p": 0.791,
-        "p_bh": 0.804,
-        "power": 0.08
+        "above_null": 0.017,
+        "paired_effect": 0.038,
+        "p": 0.454,
+        "p_bh": 0.682,
+        "power": 0.17
       },
       {
         "cue": "missingness_recode",
-        "flip": 0.15,
-        "above_null": 0.01,
-        "paired_effect": 0.019,
-        "p": 0.804,
-        "p_bh": 0.804,
-        "power": 0.07
+        "flip": 0.158,
+        "above_null": 0.011,
+        "paired_effect": 0.028,
+        "p": 0.648,
+        "p_bh": 0.777,
+        "power": 0.1
+      },
+      {
+        "cue": "precision_inflation",
+        "flip": 0.14,
+        "above_null": -0.006,
+        "paired_effect": 0.0,
+        "p": 1.0,
+        "p_bh": 1.0,
+        "power": null
       }
     ],
-    "read": "Two cues clear the null control nominally, none survives BH across the six-cue family. The power column is what makes this null useful rather than empty: precision_inflation and missingness_recode were tested at power 0.07 to 0.08 and administrative_hint at 0.25, so none of the three could have detected an effect and none is evidence of absence. The three cues that do separate sit at 0.56 to 0.65, short of 0.80. n=120 is too small for effects this size, which is a statement about the design and not about the model. A susceptibility claim here needs a larger cohort, not a re-analysis.",
+    "read": "Two cues clear the null control nominally (unit_rescale and redundant_restatement), none survives BH across the six-cue family. The power column is what makes this null useful rather than empty: missingness_recode was tested at power 0.10 and administrative_hint at 0.17, and precision_inflation moved exactly as many cases as the null control (paired effect 0, so no power is defined), so none of the three could have detected an effect and none is evidence of absence. The two cues that do separate sit at 0.64 and 0.71, and field_order at 0.36, all short of 0.80. n=120 is too small for effects this size, which is a statement about the design and not about the model. A susceptibility claim here needs a larger cohort, not a re-analysis.",
+    "rescored": "28 Nov 2026, zero model calls: six replies that box an answer after a refusal phrase are read as that answer (two under the whitespace null, one each under four cues), since the shared parser now reads a declared answer before it checks for a refusal phrase. Before: unit_rescale p 0.035, field_order 0.049, redundant_restatement 0.065, with powers 0.65, 0.59 and 0.56; the null control flipped 0.140. Every field is in docs/PARSER_FIX_AUDIT.md.",
     "supersedes": "An earlier version of this lane reported a flat null by comparing each cue against a temperature-1.0 resample of the clean read. That measures decoding sensitivity, not surface-form sensitivity, and at 0.242 it was inflated twice over: once by the temperature mismatch and once by scoring refusals as flips. Every real effect vanished under it.",
     "temperature_diagnostic": {
       "rate": 0.153,
       "temperature": 1.0,
-      "read": "Reported as a separate question and never subtracted from a cue. It lands close to the 0.140 whitespace control, which is what you would hope if both measure incidental instability."
+      "read": "Reported as a separate question and never subtracted from a cue. It lands close to the 0.147 whitespace control, which is what you would hope if both measure incidental instability."
     }
   },
   "cascade": {

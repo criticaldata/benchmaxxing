@@ -1,16 +1,23 @@
 """experiments/blind_metric/tier_swap_summary.py rebuilds its committed summary from the committed rows."""
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
+def _env():
+    """Put the repository root on PYTHONPATH so the script imports `benchmaxxing` without an editable install."""
+    env = dict(os.environ)
+    env["PYTHONPATH"] = os.pathsep.join(p for p in (str(ROOT), env.get("PYTHONPATH", "")) if p)
+    return env
+
 
 def test_tier_swap_summary_reproduces():
     committed = json.loads((ROOT / "experiments/blind_metric/results/tier_swap_summary.json").read_text())
     out = subprocess.run([sys.executable, str(ROOT / "experiments/blind_metric/tier_swap_summary.py")],
-                         cwd=ROOT, check=True, capture_output=True, text=True).stdout
+                         cwd=ROOT, env=_env(), check=True, capture_output=True, text=True).stdout
     assert json.loads(out) == committed
 
 

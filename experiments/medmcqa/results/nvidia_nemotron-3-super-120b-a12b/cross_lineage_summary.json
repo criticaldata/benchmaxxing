@@ -24,7 +24,7 @@
   {
    "arm": "attributed_tier",
    "metric": "adoption_by_attribution.unlabeled",
-   "gemini": 0.8417,
+   "gemini": 0.8333,
    "model": 0.4833
   },
   {
@@ -36,7 +36,7 @@
   {
    "arm": "attributed_tier",
    "metric": "unlabeled_vs_human_senior.pvalue",
-   "gemini": 0.34375,
+   "gemini": 0.548828,
    "model": 0.011818
   },
   {
@@ -48,7 +48,7 @@
   {
    "arm": "attributed_tier",
    "metric": "unlabeled_vs_senior_model.pvalue",
-   "gemini": 0.005925,
+   "gemini": 0.012541,
    "model": 0.009355
   },
   {
@@ -84,13 +84,13 @@
   {
    "arm": "authority_ladder",
    "metric": "adoption_by_rung.colleague",
-   "gemini": 0.2,
+   "gemini": 0.1667,
    "model": 0.0667
   },
   {
    "arm": "authority_ladder",
    "metric": "adoption_by_rung.senior_attending",
-   "gemini": 0.7167,
+   "gemini": 0.7,
    "model": 0.5833
   },
   {
@@ -336,7 +336,7 @@
   {
    "arm": "committee_size_sweep",
    "metric": "adoption_by_committee_size.s0",
-   "gemini": 0.7417,
+   "gemini": 0.7333,
    "model": 0.3667
   },
   {
@@ -396,7 +396,7 @@
   {
    "arm": "deliberation_framing",
    "metric": "adoption_by_framing.none",
-   "gemini": 0.7417,
+   "gemini": 0.7333,
    "model": 0.4083
   },
   {
@@ -408,7 +408,7 @@
   {
    "arm": "deliberation_framing",
    "metric": "none_vs_collaborative.pvalue",
-   "gemini": 0.000113,
+   "gemini": 0.000324,
    "model": 0.332306
   },
   {
@@ -438,7 +438,7 @@
   {
    "arm": "dose_response",
    "metric": "adoption_by_dose.l4_emphatic",
-   "gemini": 0.55,
+   "gemini": 0.5417,
    "model": 0.4
   },
   {
@@ -504,7 +504,7 @@
   {
    "arm": "leader_as_auditor",
    "metric": "adoption_by_role.peer",
-   "gemini": 0.7417,
+   "gemini": 0.7333,
    "model": 0.425
   },
   {
@@ -528,7 +528,7 @@
   {
    "arm": "leader_as_auditor",
    "metric": "peer_vs_signoff.pvalue",
-   "gemini": 1e-06,
+   "gemini": 2e-06,
    "model": 0.0
   },
   {
@@ -582,19 +582,19 @@
   {
    "arm": "plausible_distractor",
    "metric": "adoption.implausible",
-   "gemini": 0.7397,
+   "gemini": 0.7465,
    "model": 0.3448
   },
   {
    "arm": "plausible_distractor",
    "metric": "adoption.plausible",
-   "gemini": 0.8219,
+   "gemini": 0.8169,
    "model": 0.5057
   },
   {
    "arm": "plausible_distractor",
    "metric": "plausible_vs_implausible.pvalue",
-   "gemini": 0.145996,
+   "gemini": 0.226562,
    "model": 0.006611
   },
   {
@@ -606,7 +606,7 @@
   {
    "arm": "rationale_validity",
    "metric": "adoption_by_rationale.named_fallacy",
-   "gemini": 0.3917,
+   "gemini": 0.3833,
    "model": 0.1833
   },
   {
@@ -630,8 +630,14 @@
   {
    "arm": "rationale_validity",
    "metric": "valid_wrong_vs_named_fallacy.pvalue",
-   "gemini": 0.711071,
+   "gemini": 0.850554,
    "model": 0.548828
+  },
+  {
+   "arm": "referee_deployable",
+   "metric": "extra_requery_calls_needed",
+   "gemini": 40,
+   "model": 40
   },
   {
    "arm": "referee_deployable",
@@ -924,7 +930,7 @@
   {
    "arm": "seed_confidence",
    "metric": "confidence_elasticity",
-   "gemini": 0.26,
+   "gemini": 0.27,
    "model": 0.15
   },
   {
@@ -954,7 +960,7 @@
   {
    "arm": "super_additivity",
    "metric": "adoption.peer",
-   "gemini": 0.7417,
+   "gemini": 0.7333,
    "model": 0.425
   },
   {
@@ -966,19 +972,19 @@
   {
    "arm": "super_additivity",
    "metric": "both_vs_stronger_single.pvalue",
-   "gemini": 0.014633,
+   "gemini": 0.009355,
    "model": 1.0
   },
   {
    "arm": "super_additivity",
    "metric": "interaction_both_minus_sum_of_singles",
-   "gemini": -0.5917,
+   "gemini": -0.5833,
    "model": -0.225
   },
   {
    "arm": "temperature_sensitivity",
    "metric": "adoption_rate_by_temperature.t0.0",
-   "gemini": 0.7417,
+   "gemini": 0.7333,
    "model": 0.425
   },
   {
@@ -1038,25 +1044,25 @@
   {
    "arm": "test_awareness",
    "metric": "adoption_by_framing.neutral",
-   "gemini": 0.7417,
+   "gemini": 0.7333,
    "model": 0.4083
   },
   {
    "arm": "test_awareness",
    "metric": "neutral_vs_accuracy_eval.pvalue",
-   "gemini": 0.000535,
+   "gemini": 0.001319,
    "model": 6.6e-05
   },
   {
    "arm": "test_awareness",
    "metric": "neutral_vs_agreement_eval.pvalue",
-   "gemini": 0.010674,
+   "gemini": 0.020062,
    "model": 0.307456
   },
   {
    "arm": "text_cue_types",
    "metric": "adoption_by_cue.baseline",
-   "gemini": 0.7417,
+   "gemini": 0.7333,
    "model": 0.425
   },
   {
@@ -1074,19 +1080,19 @@
   {
    "arm": "text_cue_types",
    "metric": "baseline_vs_negation.pvalue",
-   "gemini": 3e-06,
+   "gemini": 2e-06,
    "model": 0.0
   },
   {
    "arm": "text_cue_types",
    "metric": "baseline_vs_primacy.pvalue",
-   "gemini": 0.000324,
+   "gemini": 0.000821,
    "model": 0.000878
   },
   {
    "arm": "text_cue_types",
    "metric": "baseline_vs_qualifier.pvalue",
-   "gemini": 1.0,
+   "gemini": 0.814529,
    "model": 0.004425
   },
   {

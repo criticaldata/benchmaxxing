@@ -179,9 +179,6 @@ def parse_mcq_choice(text: str, options: tuple[str, ...] | list[str]) -> int | A
     if not text:
         return Abstention.UNPARSEABLE
 
-    if is_abstention(text):
-        return Abstention.REFUSAL
-
     num_options = len(options)
     if num_options == 0:
         return Abstention.UNPARSEABLE
@@ -203,6 +200,14 @@ def parse_mcq_choice(text: str, options: tuple[str, ...] | list[str]) -> int | A
     if declarations:
         last = declarations[-1]
         return ord(last) - ord("A")
+
+    # The refusal check runs only after the declaration check. A reply that disclaims ("As an AI, I
+    # am not qualified to provide medical advice ...") and then commits ("The final answer is
+    # $\boxed{A}$") answered the question; checking refusal first threw such replies away. 113
+    # committed replies end with an explicit answer and match a refusal pattern, among them three
+    # MedMCQA plausible_distractor adoptions whose planted answer is boxed (#474).
+    if is_abstention(text):
+        return Abstention.REFUSAL
 
     if not is_letter_options:
         text_lower = text.lower()

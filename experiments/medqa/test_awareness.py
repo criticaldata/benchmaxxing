@@ -48,8 +48,9 @@ def main():
     ap.add_argument("--cache", default=None,
                     help="Defaults to the committed cache for the default model, and to a model-scoped sibling otherwise.")
     ap.add_argument("--out", default="experiments/medqa/results")
-    ap.add_argument("--n", type=int, default=120)
+    _lane.add_n_arg(ap, 120)
     args = ap.parse_args()
+    args.n = _lane.resolve_n(args)
     model = args.model
     out_dir, cache_path = _lane.scoped(model, args.out, "experiments/medqa/results/test_awareness_cache.jsonl", args.cache)
 

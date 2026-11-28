@@ -1,0 +1,5277 @@
+[
+ {
+  "lane": "support2",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "support2_solo",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "support2_solo_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "support2_cascade",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "support2_cascade_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "support2_cascade_strength",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "support2_cascade_strength_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "support2_referee",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "support2_referee_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "support2_referee_judge",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "support2_referee_judge_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "blind_metric",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "blind_metric_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "check_warn_2x2",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "check_warn_2x2_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "matched_baseline_reason",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "matched_baseline_reason_summary.json",
+   "matched_baseline_reason_repeats_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "gemini-2.5-flash",
+  "arm": "blind_metric",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "blind_metric_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/gemini-2.5-flash_blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "openai/gpt-oss-120b",
+  "arm": "support2_solo",
+  "size": "--n 120",
+  "status": "EQUAL_ON_COMMITTED_FIELDS",
+  "machine": "laptop",
+  "files": [
+   "support2_solo_summary.json"
+  ],
+  "diff": [
+   "new_noise_calls_this_run: 120 -> 0",
+   "noise_floor_temperature_change.replayed_from_log: false -> true"
+  ],
+  "cache": "experiments/support2/results/openai_gpt-oss-120b_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "openai/gpt-oss-120b",
+  "arm": "support2_cascade",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "support2_cascade_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/openai_gpt-oss-120b_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "openai/gpt-oss-120b",
+  "arm": "support2_cascade_strength",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "support2_cascade_strength_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/openai_gpt-oss-120b_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "openai/gpt-oss-120b",
+  "arm": "support2_referee",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "support2_referee_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/openai_gpt-oss-120b_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "openai/gpt-oss-120b",
+  "arm": "support2_referee_judge",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "support2_referee_judge_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/openai_gpt-oss-120b_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "openai/gpt-oss-120b",
+  "arm": "blind_metric",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "blind_metric_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/openai_gpt-oss-120b_blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "openai/gpt-oss-120b",
+  "arm": "matched_baseline_reason",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "matched_baseline_reason_summary.json",
+   "matched_baseline_reason_repeats_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/openai_gpt-oss-120b_blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "openai/gpt-oss-20b",
+  "arm": "support2_solo",
+  "size": "--n 120",
+  "status": "EQUAL_ON_COMMITTED_FIELDS",
+  "machine": "laptop",
+  "files": [
+   "support2_solo_summary.json"
+  ],
+  "diff": [
+   "new_noise_calls_this_run: 120 -> 0",
+   "noise_floor_temperature_change.replayed_from_log: false -> true"
+  ],
+  "cache": "experiments/support2/results/openai_gpt-oss-20b_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "openai/gpt-oss-20b",
+  "arm": "support2_cascade",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "support2_cascade_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/openai_gpt-oss-20b_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "openai/gpt-oss-20b",
+  "arm": "support2_cascade_strength",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "support2_cascade_strength_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/openai_gpt-oss-20b_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "openai/gpt-oss-20b",
+  "arm": "support2_referee",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "support2_referee_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/openai_gpt-oss-20b_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "openai/gpt-oss-20b",
+  "arm": "support2_referee_judge",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "support2_referee_judge_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/openai_gpt-oss-20b_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "openai/gpt-oss-20b",
+  "arm": "blind_metric",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "blind_metric_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/openai_gpt-oss-20b_blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "openai/gpt-oss-20b",
+  "arm": "matched_baseline_reason",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "matched_baseline_reason_summary.json",
+   "matched_baseline_reason_repeats_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/openai_gpt-oss-20b_blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "support2_solo",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "support2_solo_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/nvidia_nemotron-3-super-120b-a12b_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "support2_cascade",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "support2_cascade_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/nvidia_nemotron-3-super-120b-a12b_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "support2_cascade_strength",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "support2_cascade_strength_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/nvidia_nemotron-3-super-120b-a12b_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "support2_referee",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "support2_referee_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/nvidia_nemotron-3-super-120b-a12b_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "support2_referee_judge",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "support2_referee_judge_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/nvidia_nemotron-3-super-120b-a12b_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "blind_metric",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "blind_metric_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/nvidia_nemotron-3-super-120b-a12b_blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "support2_solo",
+  "size": "--n 120",
+  "status": "EQUAL_ON_COMMITTED_FIELDS",
+  "machine": "laptop",
+  "files": [
+   "support2_solo_summary.json"
+  ],
+  "diff": [
+   "new_noise_calls_this_run: 120 -> 0",
+   "noise_floor_temperature_change.replayed_from_log: false -> true"
+  ],
+  "cache": "experiments/support2/results/Qwen_Qwen2.5-VL-72B-Instruct_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "support2_cascade",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "support2_cascade_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/Qwen_Qwen2.5-VL-72B-Instruct_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "support2_cascade_strength",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "support2_cascade_strength_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/Qwen_Qwen2.5-VL-72B-Instruct_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "support2_referee",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "support2_referee_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/Qwen_Qwen2.5-VL-72B-Instruct_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "support2_referee_judge",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "support2_referee_judge_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/Qwen_Qwen2.5-VL-72B-Instruct_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "blind_metric",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "blind_metric_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/Qwen_Qwen2.5-VL-72B-Instruct_blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "matched_baseline_reason",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "matched_baseline_reason_summary.json",
+   "matched_baseline_reason_repeats_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/Qwen_Qwen2.5-VL-72B-Instruct_blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "blind_metric",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "blind_metric_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/nemotron-3-super-120b-a12b-fp8-local_blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "support2",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "matched_baseline_reason",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "matched_baseline_reason_summary.json",
+   "matched_baseline_reason_repeats_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/support2/results/nemotron-3-super-120b-a12b-fp8-local_blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "attributed_tier",
+  "size": "--n 120",
+  "status": "DRIFT",
+  "machine": "laptop",
+  "files": [
+   "attributed_tier_summary.json"
+  ],
+  "diff": [
+   "adoption_by_attribution.human_senior: 0.8083 -> 0.8",
+   "adoption_by_attribution.unlabeled: 0.8417 -> 0.825",
+   "unlabeled_vs_human_senior.gain: 3 -> 4",
+   "unlabeled_vs_human_senior.pvalue: 0.34375 -> 0.548828",
+   "unlabeled_vs_junior_model.gain: 1 -> 2",
+   "unlabeled_vs_junior_model.lose: 52 -> 51"
+  ],
+  "cache": "experiments/medmcqa/results/attributed_tier_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 3
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "0190a0f3",
+     "62fa6f78"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "4f95b3a2"
+    ]
+   }
+  }
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "authority_ladder",
+  "size": "--n 60",
+  "status": "DRIFT",
+  "machine": "laptop",
+  "files": [
+   "authority_ladder_summary.json"
+  ],
+  "diff": [
+   "adjacent_rung_mcnemar.automated_system_vs_clinical_guideline.gain: 16 -> 17",
+   "adjacent_rung_mcnemar.automated_system_vs_clinical_guideline.pvalue: 0.004425 -> 0.002577",
+   "adjacent_rung_mcnemar.colleague_vs_senior_attending.gain: 31 -> 33",
+   "adjacent_rung_mcnemar.senior_attending_vs_automated_system.gain: 4 -> 5",
+   "adjacent_rung_mcnemar.senior_attending_vs_automated_system.lose: 5 -> 6",
+   "adoption_by_rung.automated_system: 0.7 -> 0.6833"
+  ],
+  "cache": "experiments/medmcqa/results/authority_ladder_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 4,
+    "d914dcd": 1
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "17360c6c",
+     "7111d7b2"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "7751b7ed",
+     "ae860b65",
+     "ce49098b"
+    ]
+   }
+  }
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "committee_size_sweep",
+  "size": "--n 120",
+  "status": "DRIFT",
+  "machine": "laptop",
+  "files": [
+   "committee_size_sweep_summary.json"
+  ],
+  "diff": [
+   "adoption_by_committee_size.s0: 0.7417 -> 0.725",
+   "adoption_by_committee_size.s1: 0.2667 -> 0.2583",
+   "s0_vs_s1.lose: 60 -> 59",
+   "s0_vs_s2.lose: 67 -> 65",
+   "s0_vs_s4.lose: 68 -> 66"
+  ],
+  "cache": "experiments/medmcqa/results/committee_size_sweep_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 3
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "7f0270fd",
+     "fe85c6e7"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "ae860b65"
+    ]
+   }
+  }
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "deliberation_framing",
+  "size": "--n 120",
+  "status": "DRIFT",
+  "machine": "laptop",
+  "files": [
+   "deliberation_framing_summary.json"
+  ],
+  "diff": [
+   "adoption_by_framing.collaborative: 0.5583 -> 0.55",
+   "adoption_by_framing.none: 0.7417 -> 0.725",
+   "none_vs_collaborative.gain: 5 -> 6",
+   "none_vs_collaborative.pvalue: 0.000113 -> 0.000324",
+   "none_vs_critical.gain: 2 -> 3",
+   "none_vs_critical.lose: 57 -> 56"
+  ],
+  "cache": "experiments/medmcqa/results/deliberation_framing_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 3
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "0c897b21",
+     "fe85c6e7"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "ae860b65"
+    ]
+   }
+  }
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "dose_response",
+  "size": "--n 120",
+  "status": "DRIFT",
+  "machine": "laptop",
+  "files": [
+   "dose_response_summary.json"
+  ],
+  "diff": [
+   "adoption_by_dose.l2_lean: 0.4583 -> 0.4417",
+   "adoption_by_dose.l3_assert: 0.7667 -> 0.7583",
+   "adoption_by_dose.l4_emphatic: 0.55 -> 0.5333",
+   "faint_vs_assert.gain: 70 -> 69",
+   "faint_vs_emphatic.gain: 44 -> 42",
+   "lean_vs_emphatic.gain: 20 -> 19"
+  ],
+  "cache": "experiments/medmcqa/results/dose_response_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 4,
+    "d914dcd": 1
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "0190a0f3",
+     "4a3f261b",
+     "7111d7b2"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "0e7917ea",
+     "ce49098b"
+    ]
+   }
+  }
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "leader_as_auditor",
+  "size": "--n 120",
+  "status": "DRIFT",
+  "machine": "laptop",
+  "files": [
+   "leader_as_auditor_summary.json"
+  ],
+  "diff": [
+   "adoption_by_role.peer: 0.7417 -> 0.725",
+   "adoption_by_role.signoff: 0.4917 -> 0.4667",
+   "auditor_vs_signoff.gain: 40 -> 38",
+   "auditor_vs_signoff.lose: 4 -> 5",
+   "peer_vs_auditor.gain: 1 -> 2",
+   "peer_vs_auditor.lose: 67 -> 66"
+  ],
+  "cache": "experiments/medmcqa/results/leader_as_auditor_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 5
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "0e7917ea",
+     "62fa6f78",
+     "820b79a8",
+     "fe85c6e7"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "ae860b65"
+    ]
+   }
+  }
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "plausible_distractor",
+  "size": "--n 120",
+  "status": "DRIFT",
+  "machine": "laptop",
+  "files": [
+   "plausible_distractor_summary.json"
+  ],
+  "diff": [
+   "adoption.implausible: 0.7397 -> 0.7042",
+   "adoption.plausible: 0.8219 -> 0.8169",
+   "n: 73 -> 71",
+   "plausible_vs_implausible.gain: 9 -> 10",
+   "plausible_vs_implausible.lose: 3 -> 2",
+   "plausible_vs_implausible.pvalue: 0.145996 -> 0.038574"
+  ],
+  "cache": "experiments/medmcqa/results/plausible_distractor_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 3,
+    "d914dcd": 2
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "57eb90ac",
+     "8254c1c7",
+     "fe85c6e7"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "0e7917ea",
+     "a3da135a"
+    ]
+   }
+  }
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "rationale_validity",
+  "size": "--n 120",
+  "status": "DRIFT",
+  "machine": "laptop",
+  "files": [
+   "rationale_validity_summary.json"
+  ],
+  "diff": [
+   "adoption_by_rationale.bare: 0.7083 -> 0.7",
+   "adoption_by_rationale.named_fallacy: 0.3917 -> 0.375",
+   "bare_vs_named_fallacy.lose: 41 -> 42",
+   "bare_vs_valid_wrong.lose: 45 -> 44",
+   "valid_wrong_vs_named_fallacy.gain: 16 -> 14",
+   "valid_wrong_vs_named_fallacy.pvalue: 0.711071 -> 1.0"
+  ],
+  "cache": "experiments/medmcqa/results/rationale_validity_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 3
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "4a3f261b",
+     "7f0270fd"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "57d48689"
+    ]
+   }
+  }
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "seed_confidence",
+  "size": "--n 100",
+  "status": "DRIFT",
+  "machine": "laptop",
+  "files": [
+   "seed_confidence_summary.json"
+  ],
+  "diff": [
+   "confidence_elasticity: 0.26 -> 0.24",
+   "confident_adoption: 0.44 -> 0.41",
+   "confident_vs_hedged_mcnemar.gain: 26 -> 24",
+   "hedged_adoption: 0.18 -> 0.17"
+  ],
+  "cache": "experiments/medmcqa/results/seed_confidence_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 3,
+    "d914dcd": 1
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "7111d7b2",
+     "732401b0",
+     "7f0270fd"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "62fa6f78"
+    ]
+   }
+  }
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "super_additivity",
+  "size": "--n 120",
+  "status": "DRIFT",
+  "machine": "laptop",
+  "files": [
+   "super_additivity_summary.json"
+  ],
+  "diff": [
+   "adoption.both: 0.85 -> 0.8333",
+   "adoption.peer: 0.7417 -> 0.725",
+   "adoption.system: 0.7 -> 0.6917",
+   "both_vs_stronger_single.gain: 19 -> 20",
+   "both_vs_stronger_single.lose: 6 -> 7",
+   "both_vs_stronger_single.pvalue: 0.014633 -> 0.019157"
+  ],
+  "cache": "experiments/medmcqa/results/super_additivity_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 5
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "0e46082c",
+     "7111d7b2",
+     "72c1c5e0",
+     "fe85c6e7"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "ae860b65"
+    ]
+   }
+  }
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "temperature_sensitivity",
+  "size": "--n 120",
+  "status": "DRIFT",
+  "machine": "laptop",
+  "files": [
+   "temperature_sensitivity_summary.json"
+  ],
+  "diff": [
+   "adoption_rate_by_temperature.t0.0: 0.7417 -> 0.725",
+   "adoption_rate_by_temperature.t0.7: 0.7528 -> 0.7417",
+   "adoption_rate_by_temperature.t1.0: 0.7139 -> 0.6972",
+   "temp_gt0_within_case_flip_fraction.t0.7: 0.275 -> 0.2833",
+   "temp_gt0_within_case_flip_fraction.t1.0: 0.2667 -> 0.275"
+  ],
+  "cache": "experiments/medmcqa/results/temperature_sensitivity_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 12
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "07d58883",
+     "0e46082c",
+     "62fa6f78",
+     "90481eeb",
+     "b1cc4ab0",
+     "ddb3f2a6",
+     "e726a65e",
+     "fe85c6e7"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "ae860b65"
+    ]
+   }
+  }
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "test_awareness",
+  "size": "--n 120",
+  "status": "DRIFT",
+  "machine": "laptop",
+  "files": [
+   "test_awareness_summary.json"
+  ],
+  "diff": [
+   "adoption_by_framing.accuracy_eval: 0.575 -> 0.5667",
+   "adoption_by_framing.agreement_eval: 0.6167 -> 0.6083",
+   "adoption_by_framing.neutral: 0.7417 -> 0.725",
+   "neutral_vs_accuracy_eval.gain: 6 -> 7",
+   "neutral_vs_accuracy_eval.pvalue: 0.000535 -> 0.001319",
+   "neutral_vs_agreement_eval.gain: 8 -> 9"
+  ],
+  "cache": "experiments/medmcqa/results/test_awareness_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 4
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "07d58883",
+     "aa32b0f3",
+     "fe85c6e7"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "ae860b65"
+    ]
+   }
+  }
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "text_cue_types",
+  "size": "--n 120",
+  "status": "DRIFT",
+  "machine": "laptop",
+  "files": [
+   "text_cue_types_summary.json"
+  ],
+  "diff": [
+   "adoption_by_cue.baseline: 0.7417 -> 0.725",
+   "adoption_by_cue.qualifier: 0.75 -> 0.7417",
+   "baseline_vs_negation.gain: 23 -> 25",
+   "baseline_vs_negation.pvalue: 3e-06 -> 1e-06",
+   "baseline_vs_primacy.gain: 6 -> 7",
+   "baseline_vs_primacy.lose: 27 -> 26"
+  ],
+  "cache": "experiments/medmcqa/results/text_cue_types_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 3
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "57d48689",
+     "fe85c6e7"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "ae860b65"
+    ]
+   }
+  }
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "hierarchy_dominance",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "hierarchy_dominance_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/hierarchy_dominance_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "majority_pressure",
+  "size": "--n 25",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "majority_pressure_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/majority_pressure_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "orchestrator_failure",
+  "size": "--n 80",
+  "status": "CACHE_MISS",
+  "machine": "laptop",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/orchestrator_failure_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "true_peer_control",
+  "size": "--n 59",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "true_peer_control_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/true_peer_control_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "unanimity_break",
+  "size": "--n 150",
+  "status": "DRIFT",
+  "machine": "laptop",
+  "files": [
+   "unanimity_break_summary.json"
+  ],
+  "diff": [
+   "adoption_unanimous_two_wrong_peers: 0.4211 -> 0.3947",
+   "dissenter_reduction: 0.3948 -> 0.3684",
+   "unanimous_vs_dissenter_mcnemar.gain: 15 -> 14",
+   "unanimous_vs_dissenter_mcnemar.pvalue: 6.1e-05 -> 0.000122"
+  ],
+  "cache": "experiments/medmcqa/results/unanimity_break_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 1
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "cc0d09f8"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": []
+   }
+  }
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "referee_deployable",
+  "size": "--n 40",
+  "status": "EQUAL_ON_COMMITTED_FIELDS",
+  "machine": "laptop",
+  "files": [
+   "referee_deployable_summary.json"
+  ],
+  "diff": [
+   "extra_requery_calls_needed:extra"
+  ],
+  "cache": "experiments/medmcqa/results/referee_deployable_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "referee_judge",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "referee_judge_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/referee_judge_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "blind_metric",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "blind_metric_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "check_warn_2x2",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "check_warn_2x2_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "matched_baseline_reason",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "matched_baseline_reason_summary.json",
+   "matched_baseline_reason_repeats_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash",
+  "arm": "blind_metric",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "blind_metric_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/gemini-2.5-flash_blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "attributed_tier",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "attributed_tier_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_attributed_tier_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "authority_ladder",
+  "size": "--n 60",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "authority_ladder_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_authority_ladder_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "committee_size_sweep",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "committee_size_sweep_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_committee_size_sweep_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "deliberation_framing",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "deliberation_framing_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_deliberation_framing_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "dose_response",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "dose_response_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_dose_response_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "leader_as_auditor",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "leader_as_auditor_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_leader_as_auditor_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "plausible_distractor",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "plausible_distractor_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_plausible_distractor_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "rationale_validity",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "rationale_validity_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_rationale_validity_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "seed_confidence",
+  "size": "--n 100",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "seed_confidence_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_seed_confidence_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "super_additivity",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "super_additivity_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_super_additivity_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "temperature_sensitivity",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "temperature_sensitivity_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_temperature_sensitivity_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "test_awareness",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "test_awareness_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_test_awareness_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "text_cue_types",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "text_cue_types_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_text_cue_types_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "hierarchy_dominance",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "hierarchy_dominance_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_hierarchy_dominance_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "majority_pressure",
+  "size": "--n 25",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "majority_pressure_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_majority_pressure_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "orchestrator_failure",
+  "size": "--n 80",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "orchestrator_failure_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_orchestrator_failure_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "true_peer_control",
+  "size": "--n 57",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "true_peer_control_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_true_peer_control_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "unanimity_break",
+  "size": "--n 143",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "unanimity_break_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_unanimity_break_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "referee_deployable",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "referee_deployable_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_referee_deployable_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "referee_judge",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "referee_judge_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_referee_judge_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "blind_metric",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "blind_metric_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "matched_baseline_reason",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "matched_baseline_reason_summary.json",
+   "matched_baseline_reason_repeats_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "attributed_tier",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "attributed_tier_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_attributed_tier_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "authority_ladder",
+  "size": "--n 60",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "authority_ladder_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_authority_ladder_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "committee_size_sweep",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "committee_size_sweep_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_committee_size_sweep_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "deliberation_framing",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "deliberation_framing_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_deliberation_framing_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "dose_response",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "dose_response_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_dose_response_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "leader_as_auditor",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "leader_as_auditor_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_leader_as_auditor_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "plausible_distractor",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "plausible_distractor_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_plausible_distractor_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "rationale_validity",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "rationale_validity_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_rationale_validity_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "seed_confidence",
+  "size": "--n 100",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "seed_confidence_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_seed_confidence_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "super_additivity",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "super_additivity_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_super_additivity_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "temperature_sensitivity",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "temperature_sensitivity_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_temperature_sensitivity_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "test_awareness",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "test_awareness_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_test_awareness_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "text_cue_types",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "text_cue_types_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_text_cue_types_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "hierarchy_dominance",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "hierarchy_dominance_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_hierarchy_dominance_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "majority_pressure",
+  "size": "--n 25",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "majority_pressure_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_majority_pressure_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "orchestrator_failure",
+  "size": "--n 80",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "orchestrator_failure_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_orchestrator_failure_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "true_peer_control",
+  "size": "--n 57",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "true_peer_control_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_true_peer_control_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "unanimity_break",
+  "size": "--n 150",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "unanimity_break_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_unanimity_break_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "referee_deployable",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "referee_deployable_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_referee_deployable_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "referee_judge",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "referee_judge_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_referee_judge_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "blind_metric",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "blind_metric_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "matched_baseline_reason",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "matched_baseline_reason_summary.json",
+   "matched_baseline_reason_repeats_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "attributed_tier",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "attributed_tier_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_attributed_tier_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "authority_ladder",
+  "size": "--n 60",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "authority_ladder_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_authority_ladder_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "committee_size_sweep",
+  "size": "--n 120",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_committee_size_sweep_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "deliberation_framing",
+  "size": "--n 120",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_deliberation_framing_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "dose_response",
+  "size": "--n 120",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_dose_response_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "leader_as_auditor",
+  "size": "--n 120",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_leader_as_auditor_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "plausible_distractor",
+  "size": "--n 119",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_plausible_distractor_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "rationale_validity",
+  "size": "--n 120",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_rationale_validity_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "seed_confidence",
+  "size": "--n 100",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "seed_confidence_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_seed_confidence_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "super_additivity",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "super_additivity_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_super_additivity_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "temperature_sensitivity",
+  "size": "--n 120",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_temperature_sensitivity_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "test_awareness",
+  "size": "--n 120",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_test_awareness_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "text_cue_types",
+  "size": "--n 120",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_text_cue_types_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "hierarchy_dominance",
+  "size": "--n 40",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_hierarchy_dominance_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "majority_pressure",
+  "size": "--n 25",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_majority_pressure_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "orchestrator_failure",
+  "size": "--n 80",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_orchestrator_failure_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "true_peer_control",
+  "size": "--n 59",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_true_peer_control_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "unanimity_break",
+  "size": "--n 143",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_unanimity_break_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "referee_deployable",
+  "size": "--n 40",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_referee_deployable_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "referee_judge",
+  "size": "--n 40",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_referee_judge_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "blind_metric",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "blind_metric_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "attributed_tier",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "attributed_tier_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_attributed_tier_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "authority_ladder",
+  "size": "--n 60",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "authority_ladder_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_authority_ladder_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "committee_size_sweep",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "committee_size_sweep_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_committee_size_sweep_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "deliberation_framing",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "deliberation_framing_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_deliberation_framing_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "dose_response",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "dose_response_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_dose_response_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "leader_as_auditor",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "leader_as_auditor_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_leader_as_auditor_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "plausible_distractor",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "plausible_distractor_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_plausible_distractor_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "rationale_validity",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "rationale_validity_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_rationale_validity_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "seed_confidence",
+  "size": "--n 100",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "seed_confidence_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_seed_confidence_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "super_additivity",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "super_additivity_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_super_additivity_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "temperature_sensitivity",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "temperature_sensitivity_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_temperature_sensitivity_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "test_awareness",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "test_awareness_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_test_awareness_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "text_cue_types",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "text_cue_types_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_text_cue_types_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "hierarchy_dominance",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "hierarchy_dominance_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_hierarchy_dominance_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "majority_pressure",
+  "size": "--n 25",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "majority_pressure_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_majority_pressure_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "orchestrator_failure",
+  "size": "--n 80",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "orchestrator_failure_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_orchestrator_failure_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "true_peer_control",
+  "size": "--n 59",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "true_peer_control_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_true_peer_control_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "unanimity_break",
+  "size": "--n 150",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "unanimity_break_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_unanimity_break_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "referee_deployable",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "referee_deployable_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_referee_deployable_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "referee_judge",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "referee_judge_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_referee_judge_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "blind_metric",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "blind_metric_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "matched_baseline_reason",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "matched_baseline_reason_summary.json",
+   "matched_baseline_reason_repeats_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "committee_size_sweep",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "committee_size_sweep_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local_committee_size_sweep_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "deliberation_framing",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "deliberation_framing_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local_deliberation_framing_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "dose_response",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "dose_response_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local_dose_response_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "leader_as_auditor",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "leader_as_auditor_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local_leader_as_auditor_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "plausible_distractor",
+  "size": "--n 119",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "plausible_distractor_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local_plausible_distractor_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "rationale_validity",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "rationale_validity_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local_rationale_validity_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "temperature_sensitivity",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "temperature_sensitivity_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local_temperature_sensitivity_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "test_awareness",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "test_awareness_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local_test_awareness_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "text_cue_types",
+  "size": "--n 120",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "text_cue_types_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local_text_cue_types_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "hierarchy_dominance",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "hierarchy_dominance_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local_hierarchy_dominance_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "majority_pressure",
+  "size": "--n 25",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "majority_pressure_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local_majority_pressure_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "orchestrator_failure",
+  "size": "--n 80",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "orchestrator_failure_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local_orchestrator_failure_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "true_peer_control",
+  "size": "--n 59",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "true_peer_control_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local_true_peer_control_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "unanimity_break",
+  "size": "--n 150",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "unanimity_break_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local_unanimity_break_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "referee_deployable",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "referee_deployable_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local_referee_deployable_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "referee_judge",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "referee_judge_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local_referee_judge_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "blind_metric",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "blind_metric_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local_blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "matched_baseline_reason",
+  "size": "--n 40",
+  "status": "EXACT",
+  "machine": "laptop",
+  "files": [
+   "matched_baseline_reason_summary.json",
+   "matched_baseline_reason_repeats_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local_blind_metric_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "reproduce_solo",
+  "size": "--stage solo",
+  "status": "CACHE_MISS",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "reproduce_cascade",
+  "size": "--stage cascade",
+  "status": "DRIFT",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": [
+   "cascade_results.json"
+  ],
+  "diff": [
+   "mean_contagion: 0.025 -> 0.05",
+   "mean_shared_adopt: 0.025 -> 0.05",
+   "per_case: [{\"case_id\": \"ee904a2e-7494-46ef-b976-22be596ed44f\", \"shared_adopt\": 0.0, \"isola -> [{\"case_id\": \"4e8f5ba7-452a-464f-a328-d8b96eafade6\", \"shared_adopt\": 0.0, \"isola"
+  ],
+  "cache": "experiments/medmcqa/results/call_cache.jsonl",
+  "cause": {
+   "parser": {
+    "what": "the inline _parse_choice of reproduce.py was replaced by the shared parser",
+    "introduced_by": "72803a3",
+    "cases": [
+     "d321d320",
+     "7111d7b2"
+    ],
+    "right": "this branch"
+   },
+   "seeded_turn_content": {
+    "what": "the seeded turn's content is left empty",
+    "introduced_by": "acbfccc",
+    "transcript_fields": 40
+   },
+   "onset_tie": {
+    "what": "two splits tie; cascade_onset breaks the tie one way with ruptures and the other way with its numpy fallback",
+    "case": "87311a9e",
+    "introduced_by": null
+   }
+  }
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "clean_a",
+  "size": "--solo-records",
+  "status": "CACHE_MISS",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "break_it",
+  "size": "--solo-records",
+  "status": "EXACT",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": [
+   "break_it_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "scale_c",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "reproduce_solo",
+  "size": "--stage solo",
+  "status": "EQUAL_EXCEPT_LIVE_NOISE_FLOOR",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": [
+   "solo_results.json"
+  ],
+  "diff": [
+   "noise_floor_by_model.openai/gpt-oss-120b: 0.06666666666666667 -> null"
+  ],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "reproduce_cascade",
+  "size": "--stage cascade",
+  "status": "EQUAL_UP_TO_ROW_ORDER",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": [
+   "cascade_results.json"
+  ],
+  "diff": [
+   "per_case: [{\"case_id\": \"ee904a2e-7494-46ef-b976-22be596ed44f\", \"shared_adopt\": 0.0, \"isola -> [{\"case_id\": \"4e8f5ba7-452a-464f-a328-d8b96eafade6\", \"shared_adopt\": 0.0, \"isola"
+  ],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "clean_a",
+  "size": "--solo-records",
+  "status": "CACHE_MISS",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "break_it",
+  "size": "--solo-records",
+  "status": "CACHE_MISS",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-120b",
+  "arm": "scale_c",
+  "size": "",
+  "status": "EXACT",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": [
+   "scale_c_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-120b_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "reproduce_solo",
+  "size": "--stage solo",
+  "status": "EQUAL_EXCEPT_LIVE_NOISE_FLOOR",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": [
+   "solo_results.json"
+  ],
+  "diff": [
+   "noise_floor_by_model.openai/gpt-oss-20b: 0.13333333333333333 -> null"
+  ],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "reproduce_cascade",
+  "size": "--stage cascade",
+  "status": "EQUAL_UP_TO_ROW_ORDER",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": [
+   "cascade_results.json"
+  ],
+  "diff": [
+   "per_case: [{\"case_id\": \"e4610f09-b587-47c8-99ff-c8967f481322\", \"shared_adopt\": 0.0, \"isola -> [{\"case_id\": \"4e8f5ba7-452a-464f-a328-d8b96eafade6\", \"shared_adopt\": 0.0, \"isola"
+  ],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "clean_a",
+  "size": "--solo-records",
+  "status": "CACHE_MISS",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "break_it",
+  "size": "--solo-records",
+  "status": "CACHE_MISS",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "openai/gpt-oss-20b",
+  "arm": "scale_c",
+  "size": "",
+  "status": "EXACT",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": [
+   "scale_c_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/openai_gpt-oss-20b_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "reproduce_solo",
+  "size": "--stage solo",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "reproduce_cascade",
+  "size": "--stage cascade",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "clean_a",
+  "size": "--solo-records",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "break_it",
+  "size": "--solo-records",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "push_c",
+  "size": "--solo-records",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "scale_c",
+  "size": "",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nvidia_nemotron-3-super-120b-a12b_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "reproduce_solo",
+  "size": "--stage solo",
+  "status": "EQUAL_EXCEPT_LIVE_NOISE_FLOOR",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": [
+   "solo_results.json"
+  ],
+  "diff": [
+   "noise_floor_by_model.Qwen/Qwen2.5-VL-72B-Instruct: 0.0 -> null"
+  ],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "reproduce_cascade",
+  "size": "--stage cascade",
+  "status": "EQUAL_UP_TO_ROW_ORDER",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": [
+   "cascade_results.json"
+  ],
+  "diff": [
+   "per_case: [{\"case_id\": \"83935f21-0298-409f-aabc-ac42dc4c0e00\", \"shared_adopt\": 0.0, \"isola -> [{\"case_id\": \"4e8f5ba7-452a-464f-a328-d8b96eafade6\", \"shared_adopt\": 0.0, \"isola"
+  ],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "clean_a",
+  "size": "--solo-records",
+  "status": "EXACT",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": [
+   "clean_a_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "break_it",
+  "size": "--solo-records",
+  "status": "EXACT",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": [
+   "break_it_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "scale_c",
+  "size": "",
+  "status": "EXACT",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": [
+   "scale_c_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "reproduce_solo",
+  "size": "--stage solo",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "reproduce_cascade",
+  "size": "--stage cascade",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "clean_a",
+  "size": "--solo-records",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "break_it",
+  "size": "--solo-records",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "push_c",
+  "size": "--solo-records",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local_call_cache.jsonl"
+ },
+ {
+  "lane": "medmcqa",
+  "model": "nemotron-3-super-120b-a12b-fp8-local",
+  "arm": "scale_c",
+  "size": "",
+  "status": "NO_COMMITTED_CACHE",
+  "machine": "laptop (branch tree, needs the new --cache flag)",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local_call_cache.jsonl"
+ },
+ {
+  "lane": "mimic_text",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "solo_35",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss with no GEMINI_API_KEY set for gemini-2.5-flash: a live model call is needed to fill it, but no key is available. A fully cached run reproduces the committed numbers with no key; set the ke"
+ },
+ {
+  "lane": "mimic_text",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "cascade_20",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss with no GEMINI_API_KEY set for gemini-2.5-flash: a live model call is needed to fill it, but no key is available. A fully cached run reproduces the committed numbers with no key; set the ke"
+ },
+ {
+  "lane": "mimic_text",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "refusal_aware_35",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/mimic_cxr_text/results/call_cache.jsonl",
+  "log": "Cache miss for model='gemini-2.5-flash-lite'; this script must not make new API calls. Re-run experiments.medqa.reproduce first to populate the cache."
+ },
+ {
+  "lane": "mimic_text",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "blind_metric",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash-lite (a fully cached run needs no key)."
+ },
+ {
+  "lane": "mimic_text",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "break_it_a",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key)."
+ },
+ {
+  "lane": "mimic_text",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "break_it_d",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key)."
+ },
+ {
+  "lane": "mimic_text",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "deliberation_framing",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash-lite (a fully cached run needs no key)."
+ },
+ {
+  "lane": "mimic_text",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "push_c",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set (cached runs need no key)."
+ },
+ {
+  "lane": "mimic_text",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "referee_deployable",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key)."
+ },
+ {
+  "lane": "mimic_text",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "referee_judge",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key)."
+ },
+ {
+  "lane": "mimic_text",
+  "model": "openai/gpt-oss-120b",
+  "arm": "cascade_20",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss with no NVIDIA_API_KEY set for openai/gpt-oss-120b: a live model call is needed to fill it, but no key is available. A fully cached run reproduces the committed numbers with no key; set the"
+ },
+ {
+  "lane": "mimic_text",
+  "model": "openai/gpt-oss-120b",
+  "arm": "blind_metric",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "blind_metric_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/mimic_cxr_text/results/openai_gpt-oss-120b/blind_metric_call_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "mimic_text",
+  "model": "openai/gpt-oss-120b",
+  "arm": "break_it_a",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "break_it_a_summary.json"
+  ],
+  "diff": [],
+  "cache": "script default",
+  "log": null
+ },
+ {
+  "lane": "mimic_text",
+  "model": "openai/gpt-oss-120b",
+  "arm": "break_it_d",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "break_it_d_summary.json"
+  ],
+  "diff": [],
+  "cache": "script default",
+  "log": null
+ },
+ {
+  "lane": "mimic_text",
+  "model": "openai/gpt-oss-120b",
+  "arm": "deliberation_framing",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "deliberation_framing_summary.json"
+  ],
+  "diff": [],
+  "cache": "script default",
+  "log": null
+ },
+ {
+  "lane": "mimic_text",
+  "model": "openai/gpt-oss-120b",
+  "arm": "push_c",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "push_c_summary.json"
+  ],
+  "diff": [],
+  "cache": "script default",
+  "log": null
+ },
+ {
+  "lane": "mimic_text",
+  "model": "openai/gpt-oss-120b",
+  "arm": "referee_deployable",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "referee_deployable_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/mimic_cxr_text/results/openai_gpt-oss-120b/referee_deployable_call_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "mimic_text",
+  "model": "openai/gpt-oss-120b",
+  "arm": "referee_judge",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "referee_judge_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/mimic_cxr_text/results/openai_gpt-oss-120b/referee_judge_call_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "mimic_text",
+  "model": "openai/gpt-oss-20b",
+  "arm": "cascade_20",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss with no NVIDIA_API_KEY set for openai/gpt-oss-20b: a live model call is needed to fill it, but no key is available. A fully cached run reproduces the committed numbers with no key; set the "
+ },
+ {
+  "lane": "mimic_text",
+  "model": "openai/gpt-oss-20b",
+  "arm": "blind_metric",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "blind_metric_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/mimic_cxr_text/results/openai_gpt-oss-20b/blind_metric_call_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "mimic_text",
+  "model": "openai/gpt-oss-20b",
+  "arm": "break_it_a",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "break_it_a_summary.json"
+  ],
+  "diff": [],
+  "cache": "script default",
+  "log": null
+ },
+ {
+  "lane": "mimic_text",
+  "model": "openai/gpt-oss-20b",
+  "arm": "break_it_d",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "break_it_d_summary.json"
+  ],
+  "diff": [],
+  "cache": "script default",
+  "log": null
+ },
+ {
+  "lane": "mimic_text",
+  "model": "openai/gpt-oss-20b",
+  "arm": "deliberation_framing",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "deliberation_framing_summary.json"
+  ],
+  "diff": [],
+  "cache": "script default",
+  "log": null
+ },
+ {
+  "lane": "mimic_text",
+  "model": "openai/gpt-oss-20b",
+  "arm": "push_c",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "push_c_summary.json"
+  ],
+  "diff": [],
+  "cache": "script default",
+  "log": null
+ },
+ {
+  "lane": "mimic_text",
+  "model": "openai/gpt-oss-20b",
+  "arm": "referee_deployable",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "referee_deployable_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/mimic_cxr_text/results/openai_gpt-oss-20b/referee_deployable_call_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "mimic_text",
+  "model": "openai/gpt-oss-20b",
+  "arm": "referee_judge",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "referee_judge_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/mimic_cxr_text/results/openai_gpt-oss-20b/referee_judge_call_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "mimic_text",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "solo_35",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss with no NVIDIA_API_KEY set for nvidia/nemotron-3-super-120b-a12b: a live model call is needed to fill it, but no key is available. A fully cached run reproduces the committed numbers with n"
+ },
+ {
+  "lane": "mimic_text",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "cascade_20",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss with no NVIDIA_API_KEY set for nvidia/nemotron-3-super-120b-a12b: a live model call is needed to fill it, but no key is available. A fully cached run reproduces the committed numbers with n"
+ },
+ {
+  "lane": "mimic_text",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "blind_metric",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no NVIDIA_API_KEY set for nvidia/nemotron-3-super-120b-a12b (a fully cached run needs no key)."
+ },
+ {
+  "lane": "mimic_text",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "break_it_a",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key)."
+ },
+ {
+  "lane": "mimic_text",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "break_it_d",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key)."
+ },
+ {
+  "lane": "mimic_text",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "deliberation_framing",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no NVIDIA_API_KEY set for nvidia/nemotron-3-super-120b-a12b (a fully cached run needs no key)."
+ },
+ {
+  "lane": "mimic_text",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "push_c",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set (cached runs need no key)."
+ },
+ {
+  "lane": "mimic_text",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "referee_deployable",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key)."
+ },
+ {
+  "lane": "mimic_text",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "referee_judge",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key)."
+ },
+ {
+  "lane": "mimic_text",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "solo_35",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss with no NVIDIA_API_KEY set for Qwen/Qwen2.5-VL-72B-Instruct: a live model call is needed to fill it, but no key is available. A fully cached run reproduces the committed numbers with no key"
+ },
+ {
+  "lane": "mimic_text",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "cascade_20",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss with no NVIDIA_API_KEY set for Qwen/Qwen2.5-VL-72B-Instruct: a live model call is needed to fill it, but no key is available. A fully cached run reproduces the committed numbers with no key"
+ },
+ {
+  "lane": "mimic_text",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "blind_metric",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no NVIDIA_API_KEY set for Qwen/Qwen2.5-VL-72B-Instruct (a fully cached run needs no key)."
+ },
+ {
+  "lane": "mimic_text",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "break_it_a",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key)."
+ },
+ {
+  "lane": "mimic_text",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "break_it_d",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key)."
+ },
+ {
+  "lane": "mimic_text",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "deliberation_framing",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no NVIDIA_API_KEY set for Qwen/Qwen2.5-VL-72B-Instruct (a fully cached run needs no key)."
+ },
+ {
+  "lane": "mimic_text",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "push_c",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set (cached runs need no key)."
+ },
+ {
+  "lane": "mimic_text",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "referee_deployable",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key)."
+ },
+ {
+  "lane": "mimic_text",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "referee_judge",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set (a fully cached run needs no key)."
+ },
+ {
+  "lane": "mimic_text_n600",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "solo_600",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss with no GEMINI_API_KEY set for gemini-2.5-flash: a live model call is needed to fill it, but no key is available. A fully cached run reproduces the committed numbers with no key; set the ke"
+ },
+ {
+  "lane": "mimic_text_n600",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "refusal_aware_600",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/mimic_cxr_text/results/call_cache.jsonl",
+  "log": "Cache miss for model='gemini-2.5-flash-lite'; this script must not make new API calls. Re-run experiments.medqa.reproduce first to populate the cache."
+ },
+ {
+  "lane": "mimic_text_n600",
+  "model": "openai/gpt-oss-120b",
+  "arm": "solo_600",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss with no NVIDIA_API_KEY set for openai/gpt-oss-120b: a live model call is needed to fill it, but no key is available. A fully cached run reproduces the committed numbers with no key; set the"
+ },
+ {
+  "lane": "mimic_text_n600",
+  "model": "openai/gpt-oss-120b",
+  "arm": "refusal_aware_600",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/mimic_cxr_text/results/openai_gpt-oss-120b_call_cache.jsonl",
+  "log": "Cache miss for model='openai/gpt-oss-120b'; this script must not make new API calls. Re-run experiments.medqa.reproduce first to populate the cache."
+ },
+ {
+  "lane": "mimic_text_n600",
+  "model": "openai/gpt-oss-20b",
+  "arm": "solo_600",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss with no NVIDIA_API_KEY set for openai/gpt-oss-20b: a live model call is needed to fill it, but no key is available. A fully cached run reproduces the committed numbers with no key; set the "
+ },
+ {
+  "lane": "mimic_text_n600",
+  "model": "openai/gpt-oss-20b",
+  "arm": "refusal_aware_600",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "experiments/mimic_cxr_text/results/openai_gpt-oss-20b_call_cache.jsonl",
+  "log": "Cache miss for model='openai/gpt-oss-20b'; this script must not make new API calls. Re-run experiments.medqa.reproduce first to populate the cache."
+ },
+ {
+  "lane": "mimic_text_n600",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "solo_600",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss with no NVIDIA_API_KEY set for nvidia/nemotron-3-super-120b-a12b: a live model call is needed to fill it, but no key is available. A fully cached run reproduces the committed numbers with n"
+ },
+ {
+  "lane": "mimic_text_n600",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "arm": "refusal_aware_600",
+  "size": "",
+  "status": "NO_CACHE_FOUND",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": null,
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "gemini-2.5-flash",
+  "arm": "solo",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the cached films carry the text cues drawn with the font used before the commit; the run replays to its committed rows with the code before it",
+   "introduced_by": "d7ece46",
+   "checked": "28 Nov"
+  }
+ },
+ {
+  "lane": "nih",
+  "model": "gemini-2.5-flash",
+  "arm": "solo_lite",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash-lite (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the cached films carry the text cues drawn with the font used before the commit; the run replays to its committed rows with the code before it",
+   "introduced_by": "d7ece46",
+   "checked": "28 Nov"
+  }
+ },
+ {
+  "lane": "nih",
+  "model": "gemini-2.5-flash",
+  "arm": "cascade_watermark",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the commit added a placebo board to the cascade runner, one more question per film that the committed cache does not hold; the run replays to its committed rows with the code before it",
+   "introduced_by": "72803a3",
+   "checked": "28 Nov"
+  }
+ },
+ {
+  "lane": "nih",
+  "model": "gemini-2.5-flash",
+  "arm": "cascade_cable",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the commit added a placebo board to the cascade runner, one more question per film that the committed cache does not hold; the run replays to its committed rows with the code before it",
+   "introduced_by": "72803a3",
+   "checked": "28 Nov"
+  }
+ },
+ {
+  "lane": "nih",
+  "model": "gemini-2.5-flash",
+  "arm": "cascade_corner_tag",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the commit added a placebo board to the cascade runner, one more question per film that the committed cache does not hold; the run replays to its committed rows with the code before it",
+   "introduced_by": "72803a3",
+   "checked": "28 Nov"
+  }
+ },
+ {
+  "lane": "nih",
+  "model": "gemini-2.5-flash",
+  "arm": "cascade_laterality",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the commit added a placebo board to the cascade runner, one more question per film that the committed cache does not hold; the run replays to its committed rows with the code before it",
+   "introduced_by": "72803a3",
+   "checked": "28 Nov"
+  }
+ },
+ {
+  "lane": "nih",
+  "model": "gemini-2.5-flash",
+  "arm": "scale",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the cached films carry the text cues drawn with the font used before the commit; the run replays to its committed rows with the code before it",
+   "introduced_by": "d7ece46",
+   "checked": "28 Nov"
+  }
+ },
+ {
+  "lane": "nih",
+  "model": "gemini-2.5-flash",
+  "arm": "cue_combo",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the cached films carry the text cues drawn with the font used before the commit; the run replays to its committed rows with the code before it",
+   "introduced_by": "d7ece46",
+   "checked": "28 Nov"
+  }
+ },
+ {
+  "lane": "nih",
+  "model": "gemini-2.5-flash",
+  "arm": "cue_families",
+  "size": "",
+  "status": "EQUAL_EXCEPT_LIVE_NOISE_FLOOR",
+  "machine": "ORCD",
+  "files": [
+   "imaging_cue_families_summary.json"
+  ],
+  "diff": [
+   "cues.brightness.flip_above_noise:missing",
+   "cues.compression.flip_above_noise:missing",
+   "cues.rotation.flip_above_noise:missing",
+   "cues.soft_tissue.flip_above_noise:missing",
+   "noise_floor: 0.2857142857142857 -> null",
+   "noise_floor_n:missing"
+  ],
+  "cache": "experiments/imaging/results/img_cuefam_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "gemini-2.5-flash",
+  "arm": "majority_pressure",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the cached films carry the text cues drawn with the font used before the commit; the run replays to its committed rows with the code before it",
+   "introduced_by": "d7ece46",
+   "checked": "28 Nov"
+  }
+ },
+ {
+  "lane": "nih",
+  "model": "gemini-2.5-flash",
+  "arm": "matched_temp",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_matched_temp_summary.json"
+  ],
+  "diff": [],
+  "cache": "script default",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "gemini-2.5-flash",
+  "arm": "multi_round",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the cached films carry the text cues drawn with the font used before the commit; the run replays to its committed rows with the code before it",
+   "introduced_by": "d7ece46",
+   "checked": "28 Nov"
+  }
+ },
+ {
+  "lane": "nih",
+  "model": "gemini-2.5-flash",
+  "arm": "peer_size_curve",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the cached films carry the text cues drawn with the font used before the commit; the run replays to its committed rows with the code before it",
+   "introduced_by": "d7ece46",
+   "checked": "28 Nov"
+  }
+ },
+ {
+  "lane": "nih",
+  "model": "gemini-2.5-flash",
+  "arm": "polarity",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the cached films carry the text cues drawn with the font used before the commit; the run replays to its committed rows with the code before it",
+   "introduced_by": "d7ece46",
+   "checked": "28 Nov"
+  }
+ },
+ {
+  "lane": "nih",
+  "model": "gemini-2.5-flash",
+  "arm": "strength_cascade",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the cached films carry the text cues drawn with the font used before the commit; the run replays to its committed rows with the code before it",
+   "introduced_by": "d7ece46",
+   "checked": "28 Nov"
+  }
+ },
+ {
+  "lane": "nih",
+  "model": "gemini-2.5-flash",
+  "arm": "system_flag",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the cached films carry the text cues drawn with the font used before the commit; the run replays to its committed rows with the code before it",
+   "introduced_by": "d7ece46",
+   "checked": "28 Nov"
+  }
+ },
+ {
+  "lane": "nih",
+  "model": "gemini-2.5-flash",
+  "arm": "blind_metric",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_blind_metric_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "gemini-2.5-flash",
+  "arm": "referee",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the cached films carry the text cues drawn with the font used before the commit; the run replays to its committed rows with the code before it",
+   "introduced_by": "d7ece46",
+   "checked": "28 Nov"
+  }
+ },
+ {
+  "lane": "nih",
+  "model": "gemini-2.5-flash",
+  "arm": "judge_text_only",
+  "size": "",
+  "status": "EQUAL_ON_COMMITTED_FIELDS",
+  "machine": "ORCD",
+  "files": [
+   "imaging_judge_referee_summary.json"
+  ],
+  "diff": [
+   "clean_correct_only:extra",
+   "judge_sees_the_film:extra",
+   "naive_gate:extra"
+  ],
+  "cache": "experiments/imaging/results/judge_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "gemini-2.5-flash",
+  "arm": "matched_baseline_reason",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "matched_baseline_reason_repeats_summary.json",
+   "matched_baseline_reason_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "gemini-2.5-flash-lite",
+  "arm": "blind_metric",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash-lite (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "none of the 105 lookups (clean films only) hit on a Linux x86_64 machine under Pillow 10.4.0, 12.3.0 or 13.0.0; the key depends on the machine that wrote the cache",
+   "introduced_by": null,
+   "checked": "28 Nov"
+  }
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "solo",
+  "size": "",
+  "status": "EQUAL_EXCEPT_LIVE_NOISE_FLOOR",
+  "machine": "ORCD",
+  "files": [
+   "imaging_solo_summary.json"
+  ],
+  "diff": [
+   "cues.cable.flip_above_noise:missing",
+   "cues.corner_tag.flip_above_noise:missing",
+   "cues.laterality.flip_above_noise:missing",
+   "cues.watermark.flip_above_noise:missing",
+   "noise_floor: 0.17142857142857143 -> null",
+   "noise_floor_n:missing"
+  ],
+  "cache": "experiments/imaging/results/Qwen_Qwen2.5-VL-72B-Instruct/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "solo_lite",
+  "size": "",
+  "status": "EQUAL_EXCEPT_LIVE_NOISE_FLOOR",
+  "machine": "ORCD",
+  "files": [
+   "imaging_solo_lite_summary.json"
+  ],
+  "diff": [
+   "cues.cable.flip_above_noise:missing",
+   "cues.corner_tag.flip_above_noise:missing",
+   "cues.laterality.flip_above_noise:missing",
+   "cues.watermark.flip_above_noise:missing",
+   "noise_floor: 0.2 -> null",
+   "noise_floor_n:missing"
+  ],
+  "cache": "experiments/imaging/results/Qwen_Qwen2.5-VL-72B-Instruct/img_lite_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "cascade_watermark",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_cascade_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen2.5-VL-72B-Instruct/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "cascade_cable",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_cascade_cable_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen2.5-VL-72B-Instruct/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "cascade_corner_tag",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_cascade_corner_tag_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen2.5-VL-72B-Instruct/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "cascade_laterality",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_cascade_laterality_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen2.5-VL-72B-Instruct/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "scale",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_cascade_scale_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen2.5-VL-72B-Instruct/img_scale_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "cue_combo",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_cue_combo_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen2.5-VL-72B-Instruct/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "cue_families",
+  "size": "",
+  "status": "EQUAL_EXCEPT_LIVE_NOISE_FLOOR",
+  "machine": "ORCD",
+  "files": [
+   "imaging_cue_families_summary.json"
+  ],
+  "diff": [
+   "cues.brightness.flip_above_noise:missing",
+   "cues.compression.flip_above_noise:missing",
+   "cues.rotation.flip_above_noise:missing",
+   "cues.soft_tissue.flip_above_noise:missing",
+   "noise_floor: 0.11428571428571428 -> null",
+   "noise_floor_n:missing"
+  ],
+  "cache": "experiments/imaging/results/Qwen_Qwen2.5-VL-72B-Instruct/img_cuefam_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "majority_pressure",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_majority_pressure_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen2.5-VL-72B-Instruct/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "matched_temp",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_matched_temp_summary.json"
+  ],
+  "diff": [],
+  "cache": "script default",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "multi_round",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_multi_round_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen2.5-VL-72B-Instruct/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "peer_size_curve",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_peer_size_curve_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen2.5-VL-72B-Instruct/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "polarity",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_polarity_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen2.5-VL-72B-Instruct/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "strength_cascade",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_strength_cascade_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen2.5-VL-72B-Instruct/img_strength_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "system_flag",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_system_flag_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen2.5-VL-72B-Instruct/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "blind_metric",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_blind_metric_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen2.5-VL-72B-Instruct/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "referee",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_referee_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen2.5-VL-72B-Instruct/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "judge_text_only",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_judge_referee_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen2.5-VL-72B-Instruct/judge_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "judge_film",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_judge_referee_summary_film.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen2.5-VL-72B-Instruct/judge_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "matched_baseline_reason",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "matched_baseline_reason_repeats_summary.json",
+   "matched_baseline_reason_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen2.5-VL-72B-Instruct_img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "solo",
+  "size": "",
+  "status": "EQUAL_EXCEPT_LIVE_NOISE_FLOOR",
+  "machine": "ORCD",
+  "files": [
+   "imaging_solo_summary.json"
+  ],
+  "diff": [
+   "cues.cable.flip_above_noise:missing",
+   "cues.corner_tag.flip_above_noise:missing",
+   "cues.laterality.flip_above_noise:missing",
+   "cues.watermark.flip_above_noise:missing",
+   "noise_floor: 0.2 -> null",
+   "noise_floor_n:missing"
+  ],
+  "cache": "experiments/imaging/results/Qwen_Qwen3.8-27B/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "solo_lite",
+  "size": "",
+  "status": "EQUAL_EXCEPT_LIVE_NOISE_FLOOR",
+  "machine": "ORCD",
+  "files": [
+   "imaging_solo_lite_summary.json"
+  ],
+  "diff": [
+   "cues.cable.flip_above_noise:missing",
+   "cues.corner_tag.flip_above_noise:missing",
+   "cues.laterality.flip_above_noise:missing",
+   "cues.watermark.flip_above_noise:missing",
+   "noise_floor: 0.05714285714285714 -> null",
+   "noise_floor_n:missing"
+  ],
+  "cache": "experiments/imaging/results/Qwen_Qwen3.8-27B/img_lite_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "cascade_watermark",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_cascade_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen3.8-27B/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "cascade_cable",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_cascade_cable_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen3.8-27B/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "cascade_corner_tag",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_cascade_corner_tag_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen3.8-27B/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "cascade_laterality",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_cascade_laterality_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen3.8-27B/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "scale",
+  "size": "",
+  "status": "EQUAL_EXCEPT_BOOTSTRAP_CI",
+  "machine": "ORCD",
+  "files": [
+   "imaging_cascade_scale_summary.json"
+  ],
+  "diff": [
+   "contagion_ci95: [0.54, 0.7] -> [0.54, 0.7067]"
+  ],
+  "cache": "experiments/imaging/results/Qwen_Qwen3.8-27B/img_scale_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "cue_combo",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_cue_combo_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen3.8-27B/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "cue_families",
+  "size": "",
+  "status": "EQUAL_EXCEPT_LIVE_NOISE_FLOOR",
+  "machine": "ORCD",
+  "files": [
+   "imaging_cue_families_summary.json"
+  ],
+  "diff": [
+   "cues.brightness.flip_above_noise:missing",
+   "cues.compression.flip_above_noise:missing",
+   "cues.rotation.flip_above_noise:missing",
+   "cues.soft_tissue.flip_above_noise:missing",
+   "noise_floor: 0.17142857142857143 -> null",
+   "noise_floor_n:missing"
+  ],
+  "cache": "experiments/imaging/results/Qwen_Qwen3.8-27B/img_cuefam_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "majority_pressure",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_majority_pressure_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen3.8-27B/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "matched_temp",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_matched_temp_summary.json"
+  ],
+  "diff": [],
+  "cache": "script default",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "multi_round",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_multi_round_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen3.8-27B/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "peer_size_curve",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_peer_size_curve_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen3.8-27B/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "polarity",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_polarity_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen3.8-27B/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "strength_cascade",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_strength_cascade_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen3.8-27B/img_strength_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "system_flag",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_system_flag_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen3.8-27B/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "blind_metric",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_blind_metric_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen3.8-27B/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "referee",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_referee_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen3.8-27B/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "judge_text_only",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_judge_referee_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen3.8-27B/judge_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "judge_film",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_judge_referee_summary_film.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen3.8-27B/judge_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "matched_baseline_reason",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "matched_baseline_reason_repeats_summary.json",
+   "matched_baseline_reason_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results/Qwen_Qwen3.8-27B/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih_n500",
+  "model": "gemini-2.5-flash",
+  "arm": "scale_500",
+  "size": "",
+  "status": "EQUAL_EXCEPT_BOOTSTRAP_CI",
+  "machine": "ORCD",
+  "files": [
+   "imaging_cascade_scale_summary.json"
+  ],
+  "diff": [
+   "contagion_ci95: [0.62, 0.702] -> [0.62, 0.704]"
+  ],
+  "cache": "experiments/imaging/results_n500/img_scale_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih_n500",
+  "model": "gemini-2.5-flash",
+  "arm": "blind_metric_500",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_blind_metric_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results_n500/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih_n500",
+  "model": "gemini-2.5-flash",
+  "arm": "matched_baseline_reason_500",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "matched_baseline_reason_repeats_summary.json",
+   "matched_baseline_reason_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging/results_n500/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "nih_n80",
+  "model": "gemini-2.5-flash",
+  "arm": "cascade_80",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the commit added a placebo board to the cascade runner, one more question per film that the committed cache does not hold; the run replays to its committed rows with the code before it",
+   "introduced_by": "72803a3",
+   "checked": "28 Nov"
+  }
+ },
+ {
+  "lane": "nih_n80",
+  "model": "gemini-2.5-flash",
+  "arm": "referee_80",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n",
+  "cause": {
+   "what": "the cached films carry the text cues drawn with the font used before the commit; the run replays to its committed rows with the code before it",
+   "introduced_by": "d7ece46",
+   "checked": "28 Nov"
+  }
+ },
+ {
+  "lane": "nih_n80",
+  "model": "gemini-2.5-flash",
+  "arm": "judge_80",
+  "size": "--text-only",
+  "status": "EQUAL_ON_COMMITTED_FIELDS",
+  "machine": "Linux x86_64 with the NIH films (28 Nov)",
+  "files": [
+   "imaging_judge_referee_summary.json"
+  ],
+  "diff": [
+   "clean_correct_only:extra",
+   "judge_sees_the_film:extra",
+   "naive_gate:extra",
+   "note:extra"
+  ],
+  "cache": "experiments/imaging/results_n80/judge_cache.jsonl",
+  "log": null,
+  "note": "first recorded as a cache miss on 24 Nov: since a0b1877 the judge reads the film unless --text-only is given, and the committed run was text-only"
+ },
+ {
+  "lane": "chexpert35_blind",
+  "model": "gemini-2.5-flash",
+  "arm": "blind_metric",
+  "size": "",
+  "status": "ENV_MISSING_PACKAGE",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"benchmaxxing/gateway.py\", line 157, in __init__\n    raise ImportError(\nImportError: GeminiBackend requires the 'google-genai' package, which is not installed. Install the models extra: pip install 'benchmaxxing[models]' (or: pip install google-genai).\n"
+ },
+ {
+  "lane": "chexpert35_blind",
+  "model": "gemini-2.5-flash",
+  "arm": "matched_baseline_reason",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "matched_baseline_reason_repeats_summary.json",
+   "matched_baseline_reason_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/chexpert/results/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "chexpert35_blind",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "blind_metric",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_blind_metric_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/chexpert/results/Qwen_Qwen2.5-VL-72B-Instruct_img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "chexpert35_blind",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "matched_baseline_reason",
+  "size": "",
+  "status": "EQUAL_ON_COMMITTED_FIELDS",
+  "machine": "ORCD",
+  "files": [
+   "matched_baseline_reason_repeats_summary.json",
+   "matched_baseline_reason_summary.json"
+  ],
+  "diff": [
+   "committed_arm_agreement:extra"
+  ],
+  "cache": "experiments/chexpert/results/Qwen_Qwen2.5-VL-72B-Instruct_img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "chexpert35_blind",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "blind_metric",
+  "size": "",
+  "status": "EQUAL_ON_COMMITTED_FIELDS",
+  "machine": "ORCD",
+  "files": [
+   "imaging_blind_metric_summary.json"
+  ],
+  "diff": [
+   "n_unparseable:extra"
+  ],
+  "cache": "experiments/chexpert/results/Qwen_Qwen3.8-27B/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "chexpert35_blind",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "matched_baseline_reason",
+  "size": "",
+  "status": "EQUAL_ON_COMMITTED_FIELDS",
+  "machine": "ORCD",
+  "files": [
+   "matched_baseline_reason_repeats_summary.json",
+   "matched_baseline_reason_summary.json"
+  ],
+  "diff": [
+   "committed_arm_agreement:extra"
+  ],
+  "cache": "experiments/chexpert/results/Qwen_Qwen3.8-27B/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "chexpert35_cascade",
+  "model": "gemini-2.5-flash",
+  "arm": "cascade",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n"
+ },
+ {
+  "lane": "chexpert35_cascade",
+  "model": "gemini-2.5-flash",
+  "arm": "solo",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n"
+ },
+ {
+  "lane": "chexpert35_cascade",
+  "model": "gemini-2.5-flash",
+  "arm": "matched_temp",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_matched_temp_summary.json"
+  ],
+  "diff": [],
+  "cache": "script default",
+  "log": null
+ },
+ {
+  "lane": "chexpert35_cascade",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "cascade",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_cascade_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging_chexpert/results/Qwen_Qwen2.5-VL-72B-Instruct/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "chexpert35_cascade",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "solo",
+  "size": "",
+  "status": "EQUAL_EXCEPT_LIVE_NOISE_FLOOR",
+  "machine": "ORCD",
+  "files": [
+   "imaging_solo_summary.json"
+  ],
+  "diff": [
+   "cues.cable.flip_above_noise:missing",
+   "cues.corner_tag.flip_above_noise:missing",
+   "cues.laterality.flip_above_noise:missing",
+   "cues.watermark.flip_above_noise:missing",
+   "noise_floor: 0.2571428571428571 -> null",
+   "noise_floor_n:missing"
+  ],
+  "cache": "experiments/imaging_chexpert/results/Qwen_Qwen2.5-VL-72B-Instruct/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "chexpert35_cascade",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "matched_temp",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_matched_temp_summary.json"
+  ],
+  "diff": [],
+  "cache": "script default",
+  "log": null
+ },
+ {
+  "lane": "chexpert35_cascade",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "cascade",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_cascade_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging_chexpert/results/Qwen_Qwen3.8-27B/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "chexpert35_cascade",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "solo",
+  "size": "",
+  "status": "EQUAL_EXCEPT_LIVE_NOISE_FLOOR",
+  "machine": "ORCD",
+  "files": [
+   "imaging_solo_summary.json"
+  ],
+  "diff": [
+   "cues.cable.flip_above_noise:missing",
+   "cues.corner_tag.flip_above_noise:missing",
+   "cues.laterality.flip_above_noise:missing",
+   "cues.watermark.flip_above_noise:missing",
+   "noise_floor: 0.05714285714285714 -> null",
+   "noise_floor_n:missing"
+  ],
+  "cache": "experiments/imaging_chexpert/results/Qwen_Qwen3.8-27B/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "chexpert35_cascade",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "matched_temp",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_matched_temp_summary.json"
+  ],
+  "diff": [],
+  "cache": "script default",
+  "log": null
+ },
+ {
+  "lane": "chexpert35_system_flag",
+  "model": "gemini-2.5-flash",
+  "arm": "system_flag_none",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n"
+ },
+ {
+  "lane": "chexpert35_system_flag",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "system_flag_none",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no NVIDIA_API_KEY set for Qwen/Qwen2.5-VL-72B-Instruct (a fully cached run needs no key).\n"
+ },
+ {
+  "lane": "chexpert35_system_flag",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "system_flag_none",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no NVIDIA_API_KEY set for Qwen/Qwen3.8-27B (a fully cached run needs no key).\n"
+ },
+ {
+  "lane": "chexpert150_device_absent",
+  "model": "gemini-2.5-flash",
+  "arm": "cascade_none_150",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n"
+ },
+ {
+  "lane": "chexpert150_device_absent",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "cascade_none_150",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no NVIDIA_API_KEY set for Qwen/Qwen2.5-VL-72B-Instruct (a fully cached run needs no key).\n"
+ },
+ {
+  "lane": "chexpert150_device_absent",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "cascade_none_150",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_cascade_none_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging_chexpert/results/device_absent/Qwen_Qwen3.8-27B/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "chexpert150_natural_cues",
+  "model": "gemini-2.5-flash",
+  "arm": "cascade_none_150",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n"
+ },
+ {
+  "lane": "chexpert150_natural_cues",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "cascade_none_150",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no NVIDIA_API_KEY set for Qwen/Qwen2.5-VL-72B-Instruct (a fully cached run needs no key).\n"
+ },
+ {
+  "lane": "chexpert150_natural_cues",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "cascade_none_150",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_cascade_none_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging_chexpert/results/natural_cues/Qwen_Qwen3.8-27B/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "chexpert150_natural_independent",
+  "model": "gemini-2.5-flash",
+  "arm": "cascade_none_150",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no GEMINI_API_KEY set for gemini-2.5-flash (a fully cached run needs no key).\n"
+ },
+ {
+  "lane": "chexpert150_natural_independent",
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "arm": "cascade_none_150",
+  "size": "",
+  "status": "CACHE_MISS",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "cache": "script default",
+  "log": "Cache miss and no NVIDIA_API_KEY set for Qwen/Qwen2.5-VL-72B-Instruct (a fully cached run needs no key).\n"
+ },
+ {
+  "lane": "chexpert150_natural_independent",
+  "model": "Qwen/Qwen3.8-27B",
+  "arm": "cascade_none_150",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": [
+   "imaging_cascade_none_summary.json"
+  ],
+  "diff": [],
+  "cache": "experiments/imaging_chexpert/results/natural_independent/Qwen_Qwen3.8-27B/img_cache.jsonl",
+  "log": null
+ },
+ {
+  "lane": "mimic_image",
+  "model": "gemini-2.5-flash",
+  "arm": "solo",
+  "size": "",
+  "status": "NOT_ASSESSED_FILMS_NOT_FOUND",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [
+   "cues.cable.flip_above_noise",
+   "cues.cable.flip_rate",
+   "cues.cable.n",
+   "cues.corner_tag.flip_above_noise",
+   "cues.corner_tag.flip_rate",
+   "cues.corner_tag.n"
+  ],
+  "log": null
+ },
+ {
+  "lane": "mimic_image",
+  "model": "gemini-2.5-flash",
+  "arm": "nih_match_solo",
+  "size": "",
+  "status": "NOT_ASSESSED_FILMS_NOT_FOUND",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [
+   "cues.cable.flip_above_noise",
+   "cues.cable.flip_rate",
+   "cues.cable.n",
+   "cues.corner_tag.flip_above_noise",
+   "cues.corner_tag.flip_rate",
+   "cues.corner_tag.n"
+  ],
+  "log": null
+ },
+ {
+  "lane": "mimic_image",
+  "model": "gemini-2.5-flash",
+  "arm": "cascade",
+  "size": "",
+  "status": "NOT_ASSESSED_FILMS_NOT_FOUND",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "log": [
+   "    raise CalledProcessError(retcode, process.args,",
+   "subprocess.CalledProcessError: Command '['/home/sebasmos/.conda/envs/medcalc-vllm/bin/python', '-m', 'experiments.imaging.imaging_cascade', '--manifest', '/orcd"
+  ]
+ },
+ {
+  "lane": "mimic_image",
+  "model": "gemini-2.5-flash",
+  "arm": "system_flag",
+  "size": "",
+  "status": "NOT_ASSESSED_FILMS_NOT_FOUND",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "log": [
+   "    raise CalledProcessError(retcode, process.args,",
+   "subprocess.CalledProcessError: Command '['/home/sebasmos/.conda/envs/medcalc-vllm/bin/python', '-m', 'experiments.imaging.imaging_system_flag', '--manifest', '/"
+  ]
+ },
+ {
+  "lane": "mimic_image",
+  "model": "gemini-2.5-flash",
+  "arm": "strength_cascade",
+  "size": "",
+  "status": "NOT_ASSESSED_FILMS_NOT_FOUND",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [
+   "n",
+   "strength_x_cascade.opacity_0.15.contagion",
+   "strength_x_cascade.opacity_0.15.iso_adopt",
+   "strength_x_cascade.opacity_0.15.shared_adopt",
+   "strength_x_cascade.opacity_0.15.solo_flip",
+   "strength_x_cascade.opacity_0.3.contagion"
+  ],
+  "log": null
+ },
+ {
+  "lane": "mimic_image",
+  "model": "gemini-2.5-flash",
+  "arm": "blind_metric",
+  "size": "",
+  "status": "NOT_ASSESSED_FILMS_NOT_FOUND",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "log": [
+   "    raise CalledProcessError(retcode, process.args,",
+   "subprocess.CalledProcessError: Command '['/home/sebasmos/.conda/envs/medcalc-vllm/bin/python', '-m', 'experiments.imaging.imaging_blind_metric', '--manifest', '"
+  ]
+ },
+ {
+  "lane": "mimic_image",
+  "model": "gemini-2.5-flash",
+  "arm": "matched_baseline_reason",
+  "size": "",
+  "status": "NOT_ASSESSED_FILMS_NOT_FOUND",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "log": [
+   "    raise CalledProcessError(retcode, process.args,",
+   "subprocess.CalledProcessError: Command '['/home/sebasmos/.conda/envs/medcalc-vllm/bin/python', '-m', 'experiments.matched_baseline.matched_baseline_reason', '--"
+  ]
+ },
+ {
+  "lane": "mimic_image",
+  "model": "gemini-2.5-flash",
+  "arm": "matched",
+  "size": "",
+  "status": "NOT_ASSESSED_FILMS_NOT_FOUND",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [
+   "conditions",
+   "effect_by_condition",
+   "effect_net_of_reason",
+   "image_ablated",
+   "n",
+   "naming"
+  ],
+  "log": null
+ },
+ {
+  "lane": "mimic_image",
+  "model": "gemini-2.5-flash",
+  "arm": "referee_cascade",
+  "size": "",
+  "status": "NOT_ASSESSED_FILMS_NOT_FOUND",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "log": [
+   "    raise CalledProcessError(retcode, process.args,",
+   "subprocess.CalledProcessError: Command '['/home/sebasmos/.conda/envs/medcalc-vllm/bin/python', '-m', 'experiments.imaging.imaging_cascade', '--manifest', '/orcd"
+  ]
+ },
+ {
+  "lane": "mimic_image",
+  "model": "gemini-2.5-flash",
+  "arm": "referee",
+  "size": "",
+  "status": "NOT_ASSESSED_FILMS_NOT_FOUND",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "log": [
+   "    raise CalledProcessError(retcode, process.args,",
+   "subprocess.CalledProcessError: Command '['/home/sebasmos/.conda/envs/medcalc-vllm/bin/python', '-m', 'experiments.imaging.imaging_referee', '--manifest', '/orcd"
+  ]
+ },
+ {
+  "lane": "mimic_image",
+  "model": "gemini-2.5-flash",
+  "arm": "judge",
+  "size": "",
+  "status": "EXACT",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "log": null
+ },
+ {
+  "lane": "mimic_image",
+  "model": "gemini-2.5-flash",
+  "arm": "judge_with_image",
+  "size": "",
+  "status": "NOT_ASSESSED_FILMS_NOT_FOUND",
+  "machine": "ORCD",
+  "files": null,
+  "diff": [],
+  "log": [
+   "    raise CalledProcessError(retcode, process.args,",
+   "subprocess.CalledProcessError: Command '['/home/sebasmos/.conda/envs/medcalc-vllm/bin/python', '-m', 'experiments.imaging.imaging_judge_referee', '--manifest', "
+  ]
+ }
+]
