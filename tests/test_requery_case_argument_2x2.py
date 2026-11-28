@@ -461,6 +461,26 @@ def test_the_committed_cells_are_the_reviewed_arms_rows():
     assert "requery_case_argument_2x2_summary.json" in reviewed_summary["wording_caveat"]
 
 
+def test_the_scripted_sentence_arm_carries_the_wording_caveat_and_keeps_its_numbers():
+    """The merged arm (76, 29, 87) was not run again: its summary gained one field and nothing else."""
+    s = json.loads((RES / "requery_argument_only_summary.json").read_text())
+    assert s["wording_caveat"] == ra.WORDING_CAVEAT
+    assert "requery_case_argument_2x2_summary.json" in s["wording_caveat"]
+    assert list(s) == ["n", "model", "new_api_calls_this_run", "adoption_by_condition",
+                       "source_argument_vs_argument_only", "source_argument_vs_source_only",
+                       "argument_only_vs_source_only", "adopters_under_source_argument", "referee_flags",
+                       "honest_board_control", "unparsed_by_condition", "wording_caveat", "read"]
+    assert (s["n"], s["new_api_calls_this_run"]) == (120, 240)
+    assert {c: v["k"] for c, v in s["adoption_by_condition"].items()} == {
+        "source_argument": 76, "argument_only": 29, "source_only": 87}
+    assert (s["source_argument_vs_argument_only"]["a_only"], s["source_argument_vs_argument_only"]["b_only"]) == (48, 1)
+    assert s["referee_flags"]["argument_only_requery"] == 48
+    # the three boards differ in wording as the caveat says
+    b = ra.boards("X", "the case")
+    assert "concluded the answer is" in b["source_argument"] and "concluded the answer is" in b["source_only"]
+    assert b["argument_only"].startswith("One line of reasoning") and "concluded" not in b["argument_only"]
+
+
 def test_the_re_read_of_the_committed_boards_gives_the_committed_answer_on_every_case():
     s, rows = _committed()
     for b in sq.COMMITTED:
