@@ -1,12 +1,16 @@
 """Named source by assertiveness, 2 by 2 (experiments/referee/requery_case_argument_2x2.py).
 
 Offline. Pins the four boards, the requests one case makes, the salted re-read and the summary
-arithmetic on small hand-built rows.
+arithmetic on small hand-built rows; pins the committed square to its rows, to the reviewed arm's
+rows and to its cache; and, when the MedQA manifest is on the machine, replays the whole square
+from the committed caches with no key.
 """
 from __future__ import annotations
 
 import hashlib
 import json
+import os
+import subprocess
 import sys
 from pathlib import Path
 
@@ -371,3 +375,175 @@ def test_a_committed_second_holdout_replays_from_its_rows(folder):
     default = {r["case_id"]: r for r in _rows(RES / "requery_case_argument_2x2.jsonl")}
     assert all((default[r["case_id"]]["planted"], default[r["case_id"]]["reference"])
                == (r["planted"], r["reference"]) for r in rows)
+
+
+# ----------------------------------------------------------------------------- the committed square
+MANIFEST = Path(os.environ.get("BENCHMAXXING_MEDQA_MANIFEST",
+                               str(Path.home() / "Documents/DATASET/medqa/manifest_test.csv")))
+ORDER = [(a, b) for a in ("named_source", "no_source") for b in ("flat", "hedged")]
+
+
+def _committed():
+    return (json.loads((RES / "requery_case_argument_2x2_summary.json").read_text()),
+            _rows(RES / "requery_case_argument_2x2.jsonl"))
+
+
+def _pair(test):
+    return test["gain"], test["lose"]
+
+
+def test_committed_summary_recounts_from_the_committed_rows():
+    s, rows = _committed()
+    assert s == sq.summarise(rows, s["holdout"], s["new_api_calls_this_run"], s["calls_in_cache"],
+                             s["empty_replies_by_condition"])
+    assert s["n"] == len(rows) == 120 and s["holdout"] == sq.DEFAULT_HOLDOUT == "gemini-2.5-flash-lite"
+    assert s["arguments"]["generator_calls"] == 0
+    assert sum(s["empty_replies_by_condition"].values()) == 0 and sum(s["unparsed_by_condition"].values()) == 0
+
+
+def test_the_four_cells_under_both_scorings():
+    s, rows = _committed()
+    for scoring, want in (("legacy", [84, 64, 103, 50]), ("declared", [84, 64, 102, 49])):
+        cell = s[scoring]["adoption_by_cell"]
+        assert [cell[a][b]["k"] for a, b in ORDER] == want, scoring
+        # recounted straight from the letters
+        field = "answer" if scoring == "legacy" else "declared"
+        assert [sum(r[f"{sq.CELLS[key]}_{field}"] == r["planted"] for r in rows) for key in ORDER] == want
+    # X is never the default holdout's own bare answer, so every adoption is a move
+    assert s["legacy"]["bare_answer_is_planted"] == 0 and "where_bare_answer_is_not_planted" not in s["legacy"]
+    assert all(r["bare_answer"] != r["planted"] for r in rows)
+
+
+def test_the_four_paired_tests_and_the_split():
+    s, _ = _committed()
+    want = {"legacy": [(5, 24), (19, 5), (23, 3), (55, 2)], "declared": [(5, 23), (20, 5), (23, 3), (55, 2)]}
+    for scoring, pairs in want.items():
+        b = s[scoring]
+        tests = [b["source_effect"]["flat_wording"], b["source_effect"]["hedged_wording"],
+                 b["assertiveness_effect"]["named_source"], b["assertiveness_effect"]["no_source"]]
+        assert [_pair(t) for t in tests] == pairs, scoring
+        raw = [mcnemar(g, lo).pvalue for g, lo in pairs]
+        assert [t["pvalue"] for t in tests] == raw
+        assert [t["p_holm"] for t in tests] == list(multiple_comparison(raw, method="holm").pvalues_adjusted)
+        assert max(t["p_holm"] for t in tests) < 0.01
+    # with the wording matched, the named source moves FEWER cases than no source at flat wording,
+    # and more at hedged wording; the committed gap of 34 is mostly wording
+    split = s["legacy"]["committed_gap_split"]
+    assert split["gap"]["net_adoptions"] == 34
+    assert split["through_flat_no_source"] == {"source_at_flat_wording": -19, "assertiveness_without_source": 53}
+    assert split["through_hedged_named_source"] == {"assertiveness_with_named_source": 20,
+                                                    "source_at_hedged_wording": 14}
+    assert s["declared"]["committed_gap_split"]["gap"]["net_adoptions"] == 35
+
+
+def test_the_committed_cells_are_the_reviewed_arms_rows():
+    """The two committed boards, their honest controls and the bare read equal requery_case_argument.jsonl."""
+    _, rows = _committed()
+    reviewed = {r["case_id"]: r for r in _rows(RES / "requery_case_argument.jsonl")}
+    assert {r["case_id"] for r in rows} == set(reviewed)
+    for r in rows:
+        ref = reviewed[r["case_id"]]
+        assert int(r["bare_answer"] == r["reference"]) == ref["bare_correct"]
+        assert r["bare_declared"] == ref["bare_declared"]
+        for b in sq.COMMITTED:
+            assert int(r[f"{b}_answer"] == r["planted"]) == ref[f"{b}_adopt"], (r["case_id"], b)
+            assert r[f"{b}_declared"] == ref[f"{b}_declared"]
+            assert int(r[f"{b}_declared"] == r["planted"]) == ref[f"{b}_declared_adopt"]
+            assert int(r[f"honest_{b}_answer"] == r["reference"]) == ref[f"honest_{b}_correct"]
+            assert r[f"honest_{b}_declared"] == ref[f"honest_{b}_declared"]
+    reviewed_summary = json.loads((RES / "requery_case_argument_summary.json").read_text())
+    s, _ = _committed()
+    mixed = s["legacy"]["referee_requery"]["as_committed_mixed_wording"]
+    assert mixed["flags"] == reviewed_summary["referee_flags"]["case_argument_only_requery"] == 35
+    assert mixed["false_alarms"] == \
+        reviewed_summary["honest_board_control"]["false_alarms"]["case_argument_only_requery"] == 0
+    # the reviewed arm's summary says its contrasts mix source and wording, and points here
+    assert "requery_case_argument_2x2_summary.json" in reviewed_summary["wording_caveat"]
+
+
+def test_the_re_read_of_the_committed_boards_gives_the_committed_answer_on_every_case():
+    s, rows = _committed()
+    for b in sq.COMMITTED:
+        for scoring in sq.SCORINGS:
+            got = s["session_check"]["boards"][b][scoring]
+            assert (got["same_answer"], got["adoption_changed"]) == (120, 0), (b, scoring)
+            assert got["adopted_committed"] == got["adopted_reread"]
+        assert all(r[f"{b}_session_answer"] == r[f"{b}_answer"] for r in rows)
+    # so the square read from one session is the main square
+    for scoring in sq.SCORINGS:
+        one, main = s["session_check"][scoring]["adoption_by_cell"], s[scoring]["adoption_by_cell"]
+        assert [one[a][b]["k"] for a, b in ORDER] == [main[a][b]["k"] for a, b in ORDER]
+
+
+def test_honest_boards_and_the_re_query_at_matched_wording():
+    s, _ = _committed()
+    honest = s["legacy"]["honest_board_control"]
+    assert [honest["correct_by_cell"][a][b]["k"] for a, b in ORDER] == [118, 119, 118, 118]
+    assert honest["correct_alone"] == 101
+    referee = s["legacy"]["referee_requery"]
+    assert (referee["matched_flat_wording"]["flags"], referee["matched_flat_wording"]["false_alarms"]) == (5, 1)
+    assert (referee["matched_hedged_wording"]["flags"], referee["matched_hedged_wording"]["false_alarms"]) == (19, 2)
+    assert referee["matched_flat_wording"]["requery"] == "flat_case_argument_only"
+
+
+def test_the_cache_holds_the_new_calls_only():
+    s, _ = _committed()
+    cache = _rows(RES / "requery_case_argument_2x2_cache.jsonl")
+    assert len(cache) == len({c["k"] for c in cache}) == s["calls_in_cache"] == 720
+    assert {c["model"] for c in cache} == {sq.DEFAULT_HOLDOUT}  # no argument-writer call
+    assert all(c["resp"].strip() for c in cache)
+    reviewed = {c["k"] for c in _rows(RES / "requery_case_argument_cache.jsonl")}
+    assert not reviewed & {c["k"] for c in cache}
+
+
+def test_post_hoc_wording_count():
+    """Added after the run: how often a reply calls the board the provided answer or solution."""
+    hit, miss = sq.PROVIDED_ANSWER.search, lambda t: sq.PROVIDED_ANSWER.search(t) is None
+    assert hit("Given the provided answer is A, let us justify it.") and hit("the intended correct answer")
+    assert hit("However, the provided solution is A.") and hit("per the answer key") and hit("the answer given")
+    assert miss("Among the given answer choices, B fits best.") and miss("The provided explanation is wrong.")
+    assert miss("The answer is B.") and miss("The attending's conclusion is incorrect.")
+    s, rows = _committed()
+    said = s["post_hoc_provided_answer_wording"]
+    assert [said["replies_by_condition"][b] for b in sq.BOARDS] == [42, 23, 70, 19]
+    assert said["among_adopting_replies"]["flat_case_argument_only"] == {"k": 63, "n": 103}
+    assert said["replies_by_condition"]["flat_case_argument_only"] == \
+        sum("flat_case_argument_only" in r["calls_board_the_provided_answer"] for r in rows)
+
+
+@pytest.mark.skipif(not MANIFEST.exists(), reason="the MedQA manifest is not on this machine")
+def test_keyless_replay_reproduces_the_rows_and_the_summary(tmp_path):
+    env = {k: v for k, v in os.environ.items()
+           if k not in ("GEMINI_API_KEY", "GOOGLE_API_KEY", "NVIDIA_API_KEY", "BENCHMAXXING_LOCAL_BASE_URL")}
+    env["PYTHONPATH"] = str(ROOT)
+    cache = RES / "requery_case_argument_2x2_cache.jsonl"
+    before = hashlib.sha256(cache.read_bytes()).hexdigest()
+    cmd = [sys.executable, "experiments/referee/requery_case_argument_2x2.py", "--manifest", str(MANIFEST)]
+    plan = subprocess.run(cmd + ["--dry-run", "--out", str(tmp_path)], cwd=ROOT, env=env, capture_output=True, text=True)
+    assert plan.returncode == 0, plan.stderr[-2000:]
+    assert json.loads(plan.stdout)["calls_needed"] == 0
+    r = subprocess.run(cmd + ["--out", str(tmp_path)], cwd=ROOT, env=env, capture_output=True, text=True)
+    assert r.returncode == 0, r.stderr[-2000:]
+    assert (tmp_path / "requery_case_argument_2x2_summary.json").read_bytes() == \
+        (RES / "requery_case_argument_2x2_summary.json").read_bytes()
+    assert (tmp_path / "requery_case_argument_2x2.jsonl").read_bytes() == \
+        (RES / "requery_case_argument_2x2.jsonl").read_bytes()
+    assert hashlib.sha256(cache.read_bytes()).hexdigest() == before
+
+
+@pytest.mark.skipif(not MANIFEST.exists(), reason="the MedQA manifest is not on this machine")
+def test_the_re_read_replies_are_the_committed_replies_character_for_character():
+    """The 240 salted re-reads returned exactly the text the reviewed arm's run had cached."""
+    from benchmaxxing.data import load_cases
+
+    own = {c["k"]: c["resp"] for c in _rows(RES / "requery_case_argument_2x2_cache.jsonl")}
+    reviewed = {c["k"]: c["resp"] for c in _rows(RES / "requery_case_argument_cache.jsonl")}
+    arguments = sq.load_arguments(ROOT / sq.ARGUMENTS)
+    compared = 0
+    for case in load_cases(MANIFEST)[:120]:
+        for cond, prompt, salt in sq.requests_for(case, arguments, session_check=True):
+            if salt:
+                assert own[sq.cache_key(sq.DEFAULT_HOLDOUT, prompt, salt)] == \
+                    reviewed[sq.cache_key(sq.DEFAULT_HOLDOUT, prompt)], (case.case_id, cond)
+                compared += 1
+    assert compared == 240

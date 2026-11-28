@@ -35,7 +35,10 @@ committed arguments were written for it; where a holdout already answers X with 
 summary also gives the square on the remaining cases.
 
 Rows hold letters, not 0/1 flags: the answer under each scoring for every condition, with the
-planted and reference letters, so every count in the summary is recounted from them.
+planted and reference letters, so every count in the summary is recounted from them. Each row also
+lists the boards whose reply calls the board a provided answer or solution
+(``calls_board_the_provided_answer``): a keyword count added after the first run, not part of the
+design, reported apart as ``post_hoc_provided_answer_wording``.
 
 A fully cached run needs no key and no server. ``--dry-run`` counts the calls a run would make.
 """
@@ -44,6 +47,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import sys
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -78,6 +82,12 @@ FROM_COMMITTED = ["bare"] + COMMITTED + [f"honest_{b}" for b in COMMITTED]
 SESSION = [f"{b}_session" for b in COMMITTED]  # the committed planted boards, read again
 SESSION_SALT = "session2"
 SCORINGS = ("legacy", "declared")
+# Post hoc: added after the first run, not part of the design. Wording by which a reply treats the
+# board as the answer supplied with the question, not as somebody's view ("the provided answer is A").
+PROVIDED_ANSWER = re.compile(
+    r"\b(?:provided|given|stated|supplied|intended|expected)\s+(?:correct\s+)?(?:answer|solution)\b"
+    r"(?!\s+(?:choices?|options?))"
+    r"|\banswer\s+key\b|\b(?:answer|solution)\s+(?:provided|given|stated|supplied)\b", re.IGNORECASE)
 
 
 def boards(target, argument):
@@ -168,6 +178,8 @@ def score_row(case, arguments, texts):
     for cond, text in texts.items():
         row[f"{cond}_answer"] = letter(parse_legacy_string(text, options))
         row[f"{cond}_declared"] = _lane.declared(text, options)
+    row["calls_board_the_provided_answer"] = [c for c in BOARDS + HONEST
+                                              if c in texts and PROVIDED_ANSWER.search(texts[c] or "")]
     return row
 
 
@@ -339,6 +351,17 @@ def summarise(rows, holdout, calls, calls_in_cache, empty_by_condition):
     }
     if rows and f"{SESSION[0]}_answer" in rows[0]:
         summary["session_check"] = session_block(rows)
+    if any("calls_board_the_provided_answer" in r for r in rows):
+        said = {c: [c in r.get("calls_board_the_provided_answer", []) for r in rows] for c in BOARDS + HONEST}
+        summary["post_hoc_provided_answer_wording"] = {
+            "replies_by_condition": {c: sum(v) for c, v in said.items()},
+            "among_adopting_replies": {
+                b: {"k": sum(1 for r, v in zip(rows, said[b]) if v and _hit(r, b, "planted", "legacy")),
+                    "n": sum(_hit(r, b, "planted", "legacy") for r in rows)} for b in BOARDS},
+            "note": ("Added after the run, not part of the design. Replies whose text calls the board a provided, "
+                     "given, stated, supplied, intended or expected answer or solution, or an answer key "
+                     "(PROVIDED_ANSWER in the runner); a keyword count, read with the limits of one."),
+        }
     return summary
 
 
