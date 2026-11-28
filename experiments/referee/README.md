@@ -292,13 +292,13 @@ add its three caches with `git add -f` (`*_cache.jsonl` is ignored), and run
 `python -m benchmaxxing.degeneracy` for the constant columns of the new rows. The session files sit
 two levels below `results/`, so the lineage parity test asks nothing new.
 
-**Results for gpt-oss-120b and gpt-oss-20b.** 680 calls per model (400 board-draw calls, 200 bare
-draws, 80 logprob calls), every reply from the locally served model. The two models were served one
-after the other on one H100 with vLLM 0.28.0: gpt-oss-120b from 17:27 to 17:32 UTC, gpt-oss-20b from
-17:35 to 17:42 UTC (`session` in each summary gives the first and last call of each kind and the
-serving note). Qwen2.5-VL-72B's session is not run at this commit. Numbers are from
-`results/rerun1/<model>/referee_noise_logprobs_summary.json`; each carries the committed run's
-all-case comparison beside its own (`committed`).
+**Results.** 680 calls per model (400 board-draw calls, 200 bare draws, 80 logprob calls), every
+reply from the locally served model, vLLM 0.28.0 throughout. The two gpt-oss models were served one
+after the other on one H100: gpt-oss-120b from 17:27 to 17:32 UTC, gpt-oss-20b from 17:35 to 17:42
+UTC. Qwen2.5-VL-72B was served on two H200 at tensor parallel 2 and drawn within one minute, at
+18:33 UTC (`session` in each summary gives the first and last call of each kind and the serving
+note). Numbers are from `results/rerun1/<model>/referee_noise_logprobs_summary.json`; each carries
+the committed run's all-case comparison beside its own (`committed`).
 
 | Model | Run | Planted draws of 200, board vs bare | Cases with more on the board / fewer / equal | Exact sign test | Paired permutation | Adopted at T=0 | Of those, higher share on the board | Of those, per-case exact test below 0.05 |
 |---|---|---|---|---|---|---:|---:|---:|
@@ -306,40 +306,50 @@ all-case comparison beside its own (`committed`).
 | gpt-oss-120b | `rerun1`, one session | 14 vs 3 | 6 / 0 / 34 | P = 0.031 | P = 0.031 | 3 | 3 | 1 |
 | gpt-oss-20b | committed, bare draws replayed | 12 vs 1 | 7 / 1 / 32 | P = 0.070 | P = 0.055 | 3 | 3 | 1 |
 | gpt-oss-20b | `rerun1`, one session | 13 vs 1 | 6 / 0 / 34 | P = 0.031 | P = 0.031 | 3 | 3 | 1 |
+| Qwen2.5-VL-72B | committed, bare draws replayed | 42 vs 3 | 11 / 0 / 29 | P = 0.00098 | P = 0.00098 | 10 | 10 | 6 |
+| Qwen2.5-VL-72B | `rerun1`, one session | 45 vs 1 | 12 / 0 / 28 | P = 0.00049 | P = 0.00049 | 10 | 10 | 8 |
 
 With both sides drawn in one session the planted answer still has more draws on the board than
-bare: in each model six cases have more planted draws on the board and none has fewer. The bare rate
-drawn in the session is as low as the replayed one (gpt-oss-120b 3 of 200 against 5 replayed,
-gpt-oss-20b 1 of 200 against 1), so the gap does not depend on the older bare draws. Between the two
-runs the planted count moves on a few cases (gpt-oss-120b: bare draws on 3 cases, board draws on 3;
-gpt-oss-20b: bare on 2, board on 5), which is what five draws a side allow.
+bare: six cases have more planted draws on the board and none has fewer in each gpt-oss model,
+twelve and none in Qwen2.5-VL-72B. The bare rate drawn in the session is as low as the replayed one
+(gpt-oss-120b 3 of 200 against 5 replayed, gpt-oss-20b 1 against 1, Qwen2.5-VL-72B 1 against 3), so
+the gap does not depend on the older bare draws. Between the two runs the planted count moves on a
+few cases (gpt-oss-120b: bare draws on 3 cases, board draws on 3; gpt-oss-20b: bare on 2, board on
+5; Qwen2.5-VL-72B: bare on 1, board on 3), which is what five draws a side allow.
 
-The exact sign test and the permutation test both give P = 0.031 in each model, where the committed
+For Qwen2.5-VL-72B both tests stay far below 0.05 in both sets of draws. For the gpt-oss models the
+exact sign test and the permutation test both give P = 0.031 in the session, where the committed
 draws gave 0.125 and 0.078 (gpt-oss-120b) and 0.070 and 0.055 (gpt-oss-20b). That is the smallest
 value six cases against none can give, and one case with fewer board draws would return it to 0.125.
 Each model has one such test per set of draws, with no correction across models or across the two
-sets. The two sets agree on the direction and on its size (the planted answer on 12 to 16 of 200
-board draws and on 1 to 5 of 200 bare draws). A value just under 0.05 in the second set is weak
-evidence by itself; what the rerun adds is that the gap is still there when both sides share a
-session.
+sets. The two sets agree on the direction and on its size (for the gpt-oss models the planted answer
+on 12 to 16 of 200 board draws and on 1 to 5 of 200 bare draws). A value just under 0.05 in the
+second set is weak evidence by itself; what the rerun adds is that the gap is still there when both
+sides share a session.
 
 The adopted cases are the committed ones, because the temperature-0 committee answers come from the
-committed cache. Each again has a higher planted share on the board (3 of 3 in both models), and one
-per model passes the per-case exact test: `medqa-31` in gpt-oss-20b in both runs (5 of 5 against 0
-of 5, P = 0.008), and in gpt-oss-120b `medqa-31` in the session (5 of 5 against 1 of 5, P = 0.048)
-where the committed draws passed on `medqa-23` (5 of 5 against 1 of 5 then, 5 of 5 against 2 of 5 in
-the session).
+committed cache. Each again has a higher planted share on the board (3 of 3 in both gpt-oss models,
+10 of 10 in Qwen2.5-VL-72B). One per gpt-oss model passes the per-case exact test: `medqa-31` in
+gpt-oss-20b in both runs (5 of 5 against 0 of 5, P = 0.008), and in gpt-oss-120b `medqa-31` in the
+session (5 of 5 against 1 of 5, P = 0.048) where the committed draws passed on `medqa-23` (5 of 5
+against 1 of 5 then, 5 of 5 against 2 of 5 in the session). In Qwen2.5-VL-72B 8 of 10 pass in the
+session against 6 in the committed draws: the same six, with `medqa-23` (5 of 5 against 0 of 5,
+where the replayed bare draws had 2) and `medqa-13` (4 of 5 against 0 of 5, where the committed
+board draws had 3).
 
 Temperature-0 answers inside the session, against the committed cache: equal on 38 bare and 39
-board prompts of 40 for gpt-oss-120b, and on 37 and 33 for gpt-oss-20b. gpt-oss-120b's session has
-no empty reply. gpt-oss-20b's has no empty draw; one of its temperature-0 logprob replies is empty
-(`medqa-3` on the board prompt), so 39 of its 40 cases carry a margin. The margins repeat the
-committed picture: the probability on option letters before renormalising is 1.000000 on every
-gpt-oss-120b prompt and at least 0.999994 on gpt-oss-20b's, where one option letter alone is in the
-top 20 on 11 bare and 5 board prompts.
+board prompts of 40 for gpt-oss-120b, on 37 and 33 for gpt-oss-20b, and on all 40 and 40 for
+Qwen2.5-VL-72B. Neither gpt-oss-120b's session nor Qwen2.5-VL-72B's has an empty reply. gpt-oss-20b's
+has no empty draw; one of its temperature-0 logprob replies is empty (`medqa-3` on the board
+prompt), so 39 of its 40 cases carry a margin. The margins repeat the committed picture: the
+probability on option letters before renormalising is 1.000000 on every gpt-oss-120b prompt and at
+least 0.999994 on gpt-oss-20b's, where one option letter alone is in the top 20 on 11 bare and 5
+board prompts. In Qwen2.5-VL-72B's session the probability of the planted letter rises from the bare
+to the board prompt on 34 cases and falls on 4, as in the committed calls, and the mean top-two
+margin is 0.81 bare and 0.88 on the board.
 
 A committed session replays with no server: the same command reads the session's own caches and
-makes no call (checked for both models: the same rows, and the same summary apart from the call
+makes no call (checked for the three models: the same rows, and the same summary apart from the call
 counters). The committed summaries keep the counters of the run that made the calls.
 
 ## Reproduce
