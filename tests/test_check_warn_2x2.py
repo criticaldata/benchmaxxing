@@ -1,7 +1,5 @@
 """check_warn_2x2.py: the plain-note cell is blind_metric.py's prompt, and the committed results replay."""
 import json
-import os
-import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -81,7 +79,7 @@ def test_lineage_pooled_summary_reproduces(slug, model):
     committed = p.read_text()
     try:
         subprocess.run([sys.executable, str(ROOT / "experiments/blind_metric/check_warn_2x2_pooled.py"), "--model", model],
-                       cwd=ROOT, capture_output=True, text=True, check=True)
+                       cwd=ROOT, env=_keyless_env(), capture_output=True, text=True, check=True)
         assert json.loads(p.read_text()) == json.loads(committed)
     finally:
         p.write_text(committed)
@@ -122,7 +120,7 @@ def test_lineage_comparison_reproduces_and_counts_the_models_below_alpha():
     committed = p.read_text()
     try:
         subprocess.run([sys.executable, str(ROOT / "experiments/blind_metric/check_warn_2x2_lineages.py")],
-                       cwd=ROOT, capture_output=True, text=True, check=True)
+                       cwd=ROOT, env=_keyless_env(), capture_output=True, text=True, check=True)
         assert json.loads(p.read_text()) == json.loads(committed)
     finally:
         p.write_text(committed)
@@ -149,12 +147,24 @@ NEMOTRON_EMPTY = {
                                     "warn": ["b944ada9-d776-4c2a-9180-3ae5f393f72d"], "both": []},
     "experiments/support2/results": {"baseline": [], "none": [], "check": [], "warn": [], "both": []},
 }
-MANIFESTS = {
-    "experiments/blind_metric/results": Path(os.environ.get(
-        "BENCHMAXXING_MEDQA_MANIFEST", str(Path.home() / "Documents/DATASET/medqa/manifest_test.csv"))),
-    "experiments/medmcqa/results": Path(os.environ.get("BENCHMAXXING_MEDMCQA_MANIFEST", str(ROOT / "data/medmcqa_dev.csv"))),
-    "experiments/support2/results": ROOT / "experiments/support2/results/support2_manifest.csv",
-}
+
+
+def _manifest(d):
+    """The manifest a cohort's runs read: MedQA and MedMCQA from the environment or their usual place,
+    SUPPORT2 from the repository."""
+    import os
+    return {
+        "experiments/blind_metric/results": Path(os.environ.get(
+            "BENCHMAXXING_MEDQA_MANIFEST", str(Path.home() / "Documents/DATASET/medqa/manifest_test.csv"))),
+        "experiments/medmcqa/results": Path(os.environ.get("BENCHMAXXING_MEDMCQA_MANIFEST", str(ROOT / "data/medmcqa_dev.csv"))),
+        "experiments/support2/results": ROOT / "experiments/support2/results/support2_manifest.csv",
+    }[d]
+
+
+def _keyless_env():
+    """An environment with no key and no served model, and the repository root on PYTHONPATH."""
+    import os
+    return {"HOME": os.environ.get("HOME", ""), "PATH": os.environ.get("PATH", ""), "PYTHONPATH": str(ROOT)}
 
 
 def test_worst_case_scores_an_empty_reply_against_the_reported_difference():
@@ -221,18 +231,17 @@ def test_lineage_comparison_worst_case_leaves_no_model_below_alpha():
 @pytest.mark.parametrize("slug", ("",) + LINEAGES)
 def test_cohort_run_replays_from_its_cache_with_the_same_empty_replies(slug, d):
     """A keyless replay of a cohort run gives back the committed rows and summary, empty replies included."""
-    manifest = MANIFESTS[d]
+    manifest = _manifest(d)
     if not manifest.exists():
         pytest.skip(f"{manifest} is not on this machine")
     out = ROOT / d / slug
     prefix = f"{slug}_" if slug else ""
     cache = {"experiments/blind_metric/results": f"{d}/{prefix}call_cache.jsonl"}.get(d, f"{d}/{prefix}blind_metric_call_cache.jsonl")
     files = {p: p.read_bytes() for p in (out / "check_warn_2x2_summary.json", out / "check_warn_2x2.jsonl", ROOT / cache)}
-    env = {"HOME": os.environ.get("HOME", ""), "PATH": os.environ.get("PATH", ""), "PYTHONPATH": str(ROOT)}
     try:
         r = subprocess.run([sys.executable, "experiments/blind_metric/check_warn_2x2.py", "--manifest", str(manifest),
                             "--model", MODEL_OF[slug], "--out", d, "--cache", cache],
-                           cwd=ROOT, env=env, capture_output=True, text=True, timeout=900)
+                           cwd=ROOT, env=_keyless_env(), capture_output=True, text=True, timeout=900)
         assert r.returncode == 0, (r.stdout + r.stderr)[-600:]
         after = json.loads((out / "check_warn_2x2_summary.json").read_text())
         assert after["new_api_calls_this_run"] == 0
@@ -345,10 +354,9 @@ def _run_session(monkeypatch, out, *extra):
 
 def test_session_run_with_no_server_exits_instead_of_replaying_the_committed_plain_note(tmp_path):
     """The committed cache holds every case's plain-note reply; a session run must not read it."""
-    env = {"HOME": os.environ.get("HOME", ""), "PATH": os.environ.get("PATH", ""), "PYTHONPATH": str(ROOT)}
     r = subprocess.run([sys.executable, "experiments/blind_metric/check_warn_2x2.py",
                         *_session_args(tmp_path, "--session", "s1", "--redraw", "none")],
-                       cwd=ROOT, env=env, capture_output=True, text=True, timeout=900)
+                       cwd=ROOT, env=_keyless_env(), capture_output=True, text=True, timeout=900)
     assert r.returncode != 0 and "Session s1" in r.stderr and "never reads a reply another session cached" in r.stderr
     assert "BENCHMAXXING_LOCAL_BASE_URL" in r.stderr
     assert not (tmp_path / "s1" / S2_SLUG / "check_warn_2x2.jsonl").exists()
@@ -409,6 +417,8 @@ def test_session_arguments_are_checked(tmp_path, monkeypatch, extra):
 
 
 def test_pooled_and_lineage_files_set_a_session_run_beside_the_committed_cells(tmp_path, monkeypatch, capsys):
+    import shutil
+
     import check_warn_2x2_lineages as lineages
     import check_warn_2x2_pooled as pooled
     # a one-cohort copy of the committed files, so the session rows land beside them and not in the repository
