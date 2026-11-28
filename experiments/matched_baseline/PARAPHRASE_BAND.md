@@ -166,5 +166,83 @@ with no key.
 
 ### Results
 
-Not committed yet. The 555 judge calls have been made; the control has not been run. The results
-are committed together once the control is in.
+Run on 28 Nov 2026: 555 judge calls and 38 control calls, no error, no reply without a verdict.
+Numbers are from each lane's `paraphrase_band_semantic_summary.json`; the committed summaries are
+what a keyless replay writes (`new_api_calls_this_run` 0, `calls_in_cache` the calls made), and
+`tests/test_paraphrase_semantic_check.py` pins them to the rows and replays each lane.
+
+**How many fail.** 10 of the 555 paraphrases fail a check, on 6 of the 111 cases: 9 fail the rule
+check, 1 fails the judge, none fails both.
+
+| Cohort | Paraphrases | Fail the rule | Fail the judge | Fail either | Cases touched |
+|---|---:|---|---:|---:|---:|
+| MedQA | 200 | 1 (a marker added) | 0 | 1 | 1 |
+| MedMCQA | 200 | 8 (6 dropped, 2 added) | 1 | 9 | 5 |
+| SUPPORT2 | 155 | 0 | 0 | 0 | 0 |
+
+**What the ten are.** Each lane's `paraphrase_semantic_failures.jsonl` lists them with their text.
+Read one by one, none changes what is asked:
+
+| Cohort | Case, paraphrase | Failed | What happened |
+|---|---|---|---|
+| MedQA | `medqa-7`, 2 | rule, added | "In addition to aspirin" is reworded "Aside from aspirin"; "aside from" is on the exception list |
+| MedMCQA | `67add9f9`, 3 | rule, dropped | "not involved" is reworded "absent from involvement" |
+| MedMCQA | `b64a9cd7`, 1 to 4 | rule, dropped | the stem has no question mark, so its last sentence, which holds the fact "She does not want another down syndrome kid", is read as the question; the paraphrases say "avoid" or "prevent", or move the fact out of the question |
+| MedMCQA | `b944ada9`, 5 | rule, dropped | "not true" is reworded "a misstatement" |
+| MedMCQA | `f0f91922`, 3 and 5 | rule, added | the fact "received food supplements or not" moves into the question sentence |
+| MedMCQA | `e845e625`, 5 | judge | the stem's "cailage" is spelled "cartilage" in the paraphrase |
+
+So the nine rule failures are the two limits stated before the run (a negation carried by a word
+outside the list, and a negated fact inside or outside the question part), and the judge's one
+refusal is a corrected spelling. No paraphrase was found that drops a negation or an exception.
+
+**The bands with the ten left out.** They are left out all the same, whatever the reading above.
+
+| Cohort | Lineage | Paraphrase reads left out | Any disagreement, reads 0 to 5: all / failed left out | Any disagreement, reads 1 to 5: all / failed left out | Flip band, reads 0 to 5: all | Flip band, reads 0 to 5: failed left out | Decoy band, reads 0 to 5: all | Decoy band, reads 0 to 5: failed left out |
+|---|---|---:|---|---|---|---|---|---|
+| MedQA | Gemini Flash-Lite | 1 of 200 | 12 of 40 / 12 of 40 | 12 of 40 / 12 of 40 | 0.175 to 0.275 | 0.175 to 0.275 | 0.075 to 0.125 | 0.075 to 0.125 |
+| MedQA | gpt-oss-120b | 1 of 200 | 8 of 40 / 8 of 40 | 7 of 40 / 7 of 40 | 0 to 0.075 | 0 to 0.075 | 0 to 0.025 | 0 to 0.025 |
+| MedQA | Qwen2.5-VL-72B | 1 of 200 | 10 of 40 / 10 of 40 | 9 of 40 / 9 of 40 | 0.125 to 0.2 | 0.125 to 0.2 | 0 to 0.025 | 0 to 0.0256 |
+| MedQA | nemotron FP8 | 1 of 200 | 7 of 40 / 7 of 40 | 7 of 40 / 7 of 40 | 0.05 to 0.1 | 0.05 to 0.1026 | 0 to 0.025 | 0 to 0.025 |
+| MedMCQA | Gemini Flash-Lite | 9 of 200 | 18 of 40 / 18 of 40 | 17 of 40 / 17 of 39 | 0.125 to 0.25 | 0.1282 to 0.2564 | 0.05 to 0.125 | 0.0541 to 0.1282 |
+| MedMCQA | gpt-oss-120b | 9 of 200 | 11 of 40 / 11 of 40 | 8 of 40 / 7 of 39 | 0.075 to 0.15 | 0.075 to 0.1538 | 0 to 0.05 | 0 to 0.0541 |
+| MedMCQA | Qwen2.5-VL-72B | 9 of 200 | 12 of 40 / 12 of 40 | 12 of 40 / 12 of 39 | 0.225 to 0.3 | 0.225 to 0.3243 | 0 to 0.05 | 0 to 0.0541 |
+| MedMCQA | nemotron FP8 | 9 of 200 | 12 of 40 / 12 of 40 | 11 of 40 / 11 of 39 | 0.1 to 0.225 | 0.1026 to 0.2308 | 0 to 0.05 | 0 to 0.0541 |
+| SUPPORT2 | Gemini Flash-Lite | 0 of 155 | 4 of 31 / 4 of 31 | 4 of 31 / 4 of 31 | 0 to 0.129 | 0 to 0.129 | 0 to 0.129 | 0 to 0.129 |
+| SUPPORT2 | gpt-oss-120b | 0 of 130 | 1 of 26 / 1 of 26 | 1 of 26 / 1 of 26 | 0.0385 to 0.0769 | 0.0385 to 0.0769 | 0.0385 to 0.0769 | 0.0385 to 0.0769 |
+| SUPPORT2 | Qwen2.5-VL-72B | 0 of 155 | 6 of 31 / 6 of 31 | 6 of 31 / 6 of 31 | 0.0323 to 0.0968 | 0.0323 to 0.0968 | 0.0323 to 0.0968 | 0.0323 to 0.0968 |
+| SUPPORT2 | nemotron FP8 | 0 of 130 | 2 of 26 / 2 of 26 | 2 of 26 / 2 of 26 | 0 to 0.0769 | 0 to 0.0769 | 0 to 0.0769 | 0 to 0.0769 |
+
+Over reads 0 to 5 the number of cases with any disagreement is the same on every lane and lineage.
+Over reads 1 to 5 it changes once: on MedMCQA the case `b64a9cd7` keeps a single paraphrase read
+and leaves the count, which takes gpt-oss-120b from 8 of 40 to 7 of 39. No edge of a flip or decoy
+band moves by more than 0.0243 (Qwen2.5-VL-72B on MedMCQA, 0.3 to 0.3243, a smaller denominator on
+one read), and the mean pairwise disagreement by no more than 0.0085. The summary also holds the
+bands with only the rule failures or only the judge failures left out, and on the cases whose five
+paraphrases all pass (39 MedQA cases, 35 MedMCQA cases, every SUPPORT2 case).
+
+**Judge control.** 38 paraphrases whose question kept a marker could be turned around by rule
+(11 more carried a marker the table does not reverse).
+
+| Cohort | Kept a marker | Reversed | Judge refused | Judge accepted | Rule also refused | Refused by judge or rule |
+|---|---:|---:|---:|---:|---:|---:|
+| MedQA | 10 | 5 | 5 | 0 | 5 | 5 |
+| MedMCQA | 39 | 33 | 32 | 1 | 30 | 32 |
+| SUPPORT2 | 0 | 0 | 0 | 0 | 0 | 0 |
+
+The judge refused 37 of the 38 reversed questions, with reasons such as "The original asks for the
+false statement, while the reworded asks for the true statement." The one it accepted is "all
+statements are accurate with no exception" for "all are true except", which it read as still
+asking for the exception. That reversal keeps a marker, so the rule check does not see it either:
+the three "with no exception" reversals are the ones the rule passes, and the judge refused the
+other two.
+
+**What this supports.** The paraphrase bands were not widened by paraphrases that ask something
+else: the checks find none, and leaving out every flagged paraphrase leaves the bands where they
+were. The judge can refuse a reversed question (37 of 38), and the rule check catches a removed
+negation without it (35 of 38).
+
+Limits after the run. The judge is the model that wrote the paraphrases. The control uses crude,
+rule-built reversals of 38 of the 49 paraphrases whose question carries a marker; it does not show
+what the judge does with a subtler drift, or with a changed fact that is not a number (numbers are
+covered by the committed fidelity check). One reversal in 38 escaped both checks.

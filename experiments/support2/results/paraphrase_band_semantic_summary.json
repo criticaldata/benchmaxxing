@@ -1,0 +1,2163 @@
+{
+  "judge": "gemini-2.5-flash",
+  "paraphrases": 155,
+  "failed": {
+    "rule": 0,
+    "rule_by_reason": {},
+    "judge": 0,
+    "judge_said_no": 0,
+    "judge_gave_no_verdict": 0,
+    "either": 0,
+    "both": 0
+  },
+  "cases_with_a_failed_paraphrase": 0,
+  "failures_file": "paraphrase_semantic_failures.jsonl",
+  "new_api_calls_this_run": {
+    "judge": 0,
+    "judge_control": 0
+  },
+  "calls_in_cache": {
+    "judge": 155,
+    "judge_control": 0
+  },
+  "bands": {
+    "gemini-2.5-flash-lite": {
+      "folder": ".",
+      "cases": 31,
+      "paraphrase_reads": 155,
+      "reads_left_out": {
+        "rule": 0,
+        "judge": 0,
+        "either": 0
+      },
+      "all_paraphrases": {
+        "reads_0_to_k": {
+          "reads": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 31,
+          "cases_with_any_disagreement": {
+            "n": 4,
+            "rate": 0.129,
+            "wilson95": [
+              0.0513,
+              0.2885
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0731,
+          "cases_per_read": [
+            31,
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0,
+            0.0645,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.129
+          ],
+          "flip_vs_baseline_band": [
+            0.0,
+            0.129
+          ],
+          "decoy_per_read": [
+            0.0,
+            0.0645,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.129
+          ],
+          "decoy_band": [
+            0.0,
+            0.129
+          ],
+          "cases_with_fewer_than_two_reads": []
+        },
+        "reads_1_to_k": {
+          "reads": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 31,
+          "cases_with_any_disagreement": {
+            "n": 4,
+            "rate": 0.129,
+            "wilson95": [
+              0.0513,
+              0.2885
+            ]
+          },
+          "mean_pairwise_disagreement": 0.071,
+          "cases_per_read": [
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0645,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.129
+          ],
+          "flip_vs_baseline_band": [
+            0.0323,
+            0.129
+          ],
+          "decoy_per_read": [
+            0.0645,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.129
+          ],
+          "decoy_band": [
+            0.0323,
+            0.129
+          ],
+          "cases_with_fewer_than_two_reads": []
+        }
+      },
+      "failed_left_out": {
+        "reads_0_to_k": {
+          "reads": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 31,
+          "cases_with_any_disagreement": {
+            "n": 4,
+            "rate": 0.129,
+            "wilson95": [
+              0.0513,
+              0.2885
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0731,
+          "cases_per_read": [
+            31,
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0,
+            0.0645,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.129
+          ],
+          "flip_vs_baseline_band": [
+            0.0,
+            0.129
+          ],
+          "decoy_per_read": [
+            0.0,
+            0.0645,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.129
+          ],
+          "decoy_band": [
+            0.0,
+            0.129
+          ],
+          "cases_with_fewer_than_two_reads": []
+        },
+        "reads_1_to_k": {
+          "reads": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 31,
+          "cases_with_any_disagreement": {
+            "n": 4,
+            "rate": 0.129,
+            "wilson95": [
+              0.0513,
+              0.2885
+            ]
+          },
+          "mean_pairwise_disagreement": 0.071,
+          "cases_per_read": [
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0645,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.129
+          ],
+          "flip_vs_baseline_band": [
+            0.0323,
+            0.129
+          ],
+          "decoy_per_read": [
+            0.0645,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.129
+          ],
+          "decoy_band": [
+            0.0323,
+            0.129
+          ],
+          "cases_with_fewer_than_two_reads": []
+        }
+      },
+      "rule_failed_left_out": {
+        "reads_0_to_k": {
+          "reads": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 31,
+          "cases_with_any_disagreement": {
+            "n": 4,
+            "rate": 0.129,
+            "wilson95": [
+              0.0513,
+              0.2885
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0731,
+          "cases_per_read": [
+            31,
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0,
+            0.0645,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.129
+          ],
+          "flip_vs_baseline_band": [
+            0.0,
+            0.129
+          ],
+          "decoy_per_read": [
+            0.0,
+            0.0645,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.129
+          ],
+          "decoy_band": [
+            0.0,
+            0.129
+          ],
+          "cases_with_fewer_than_two_reads": []
+        },
+        "reads_1_to_k": {
+          "reads": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 31,
+          "cases_with_any_disagreement": {
+            "n": 4,
+            "rate": 0.129,
+            "wilson95": [
+              0.0513,
+              0.2885
+            ]
+          },
+          "mean_pairwise_disagreement": 0.071,
+          "cases_per_read": [
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0645,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.129
+          ],
+          "flip_vs_baseline_band": [
+            0.0323,
+            0.129
+          ],
+          "decoy_per_read": [
+            0.0645,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.129
+          ],
+          "decoy_band": [
+            0.0323,
+            0.129
+          ],
+          "cases_with_fewer_than_two_reads": []
+        }
+      },
+      "judge_failed_left_out": {
+        "reads_0_to_k": {
+          "reads": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 31,
+          "cases_with_any_disagreement": {
+            "n": 4,
+            "rate": 0.129,
+            "wilson95": [
+              0.0513,
+              0.2885
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0731,
+          "cases_per_read": [
+            31,
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0,
+            0.0645,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.129
+          ],
+          "flip_vs_baseline_band": [
+            0.0,
+            0.129
+          ],
+          "decoy_per_read": [
+            0.0,
+            0.0645,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.129
+          ],
+          "decoy_band": [
+            0.0,
+            0.129
+          ],
+          "cases_with_fewer_than_two_reads": []
+        },
+        "reads_1_to_k": {
+          "reads": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 31,
+          "cases_with_any_disagreement": {
+            "n": 4,
+            "rate": 0.129,
+            "wilson95": [
+              0.0513,
+              0.2885
+            ]
+          },
+          "mean_pairwise_disagreement": 0.071,
+          "cases_per_read": [
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0645,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.129
+          ],
+          "flip_vs_baseline_band": [
+            0.0323,
+            0.129
+          ],
+          "decoy_per_read": [
+            0.0645,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.129
+          ],
+          "decoy_band": [
+            0.0323,
+            0.129
+          ],
+          "cases_with_fewer_than_two_reads": []
+        }
+      },
+      "cases_with_every_paraphrase_passing": {
+        "n": 31,
+        "reads_0_to_k": {
+          "reads": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 31,
+          "cases_with_any_disagreement": {
+            "n": 4,
+            "rate": 0.129,
+            "wilson95": [
+              0.0513,
+              0.2885
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0731,
+          "cases_per_read": [
+            31,
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0,
+            0.0645,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.129
+          ],
+          "flip_vs_baseline_band": [
+            0.0,
+            0.129
+          ],
+          "decoy_per_read": [
+            0.0,
+            0.0645,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.129
+          ],
+          "decoy_band": [
+            0.0,
+            0.129
+          ],
+          "cases_with_fewer_than_two_reads": []
+        },
+        "reads_1_to_k": {
+          "reads": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 31,
+          "cases_with_any_disagreement": {
+            "n": 4,
+            "rate": 0.129,
+            "wilson95": [
+              0.0513,
+              0.2885
+            ]
+          },
+          "mean_pairwise_disagreement": 0.071,
+          "cases_per_read": [
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0645,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.129
+          ],
+          "flip_vs_baseline_band": [
+            0.0323,
+            0.129
+          ],
+          "decoy_per_read": [
+            0.0645,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.129
+          ],
+          "decoy_band": [
+            0.0323,
+            0.129
+          ],
+          "cases_with_fewer_than_two_reads": []
+        }
+      }
+    },
+    "Qwen/Qwen2.5-VL-72B-Instruct": {
+      "folder": "Qwen_Qwen2.5-VL-72B-Instruct",
+      "cases": 31,
+      "paraphrase_reads": 155,
+      "reads_left_out": {
+        "rule": 0,
+        "judge": 0,
+        "either": 0
+      },
+      "all_paraphrases": {
+        "reads_0_to_k": {
+          "reads": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 31,
+          "cases_with_any_disagreement": {
+            "n": 6,
+            "rate": 0.1935,
+            "wilson95": [
+              0.0919,
+              0.3628
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0968,
+          "cases_per_read": [
+            31,
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0968,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.0645,
+            0.0645
+          ],
+          "flip_vs_baseline_band": [
+            0.0323,
+            0.0968
+          ],
+          "decoy_per_read": [
+            0.0968,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.0645,
+            0.0645
+          ],
+          "decoy_band": [
+            0.0323,
+            0.0968
+          ],
+          "cases_with_fewer_than_two_reads": []
+        },
+        "reads_1_to_k": {
+          "reads": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 31,
+          "cases_with_any_disagreement": {
+            "n": 6,
+            "rate": 0.1935,
+            "wilson95": [
+              0.0919,
+              0.3628
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0968,
+          "cases_per_read": [
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0645,
+            0.0323,
+            0.0968,
+            0.0645,
+            0.0645
+          ],
+          "flip_vs_baseline_band": [
+            0.0323,
+            0.0968
+          ],
+          "decoy_per_read": [
+            0.0645,
+            0.0323,
+            0.0968,
+            0.0645,
+            0.0645
+          ],
+          "decoy_band": [
+            0.0323,
+            0.0968
+          ],
+          "cases_with_fewer_than_two_reads": []
+        }
+      },
+      "failed_left_out": {
+        "reads_0_to_k": {
+          "reads": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 31,
+          "cases_with_any_disagreement": {
+            "n": 6,
+            "rate": 0.1935,
+            "wilson95": [
+              0.0919,
+              0.3628
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0968,
+          "cases_per_read": [
+            31,
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0968,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.0645,
+            0.0645
+          ],
+          "flip_vs_baseline_band": [
+            0.0323,
+            0.0968
+          ],
+          "decoy_per_read": [
+            0.0968,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.0645,
+            0.0645
+          ],
+          "decoy_band": [
+            0.0323,
+            0.0968
+          ],
+          "cases_with_fewer_than_two_reads": []
+        },
+        "reads_1_to_k": {
+          "reads": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 31,
+          "cases_with_any_disagreement": {
+            "n": 6,
+            "rate": 0.1935,
+            "wilson95": [
+              0.0919,
+              0.3628
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0968,
+          "cases_per_read": [
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0645,
+            0.0323,
+            0.0968,
+            0.0645,
+            0.0645
+          ],
+          "flip_vs_baseline_band": [
+            0.0323,
+            0.0968
+          ],
+          "decoy_per_read": [
+            0.0645,
+            0.0323,
+            0.0968,
+            0.0645,
+            0.0645
+          ],
+          "decoy_band": [
+            0.0323,
+            0.0968
+          ],
+          "cases_with_fewer_than_two_reads": []
+        }
+      },
+      "rule_failed_left_out": {
+        "reads_0_to_k": {
+          "reads": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 31,
+          "cases_with_any_disagreement": {
+            "n": 6,
+            "rate": 0.1935,
+            "wilson95": [
+              0.0919,
+              0.3628
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0968,
+          "cases_per_read": [
+            31,
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0968,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.0645,
+            0.0645
+          ],
+          "flip_vs_baseline_band": [
+            0.0323,
+            0.0968
+          ],
+          "decoy_per_read": [
+            0.0968,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.0645,
+            0.0645
+          ],
+          "decoy_band": [
+            0.0323,
+            0.0968
+          ],
+          "cases_with_fewer_than_two_reads": []
+        },
+        "reads_1_to_k": {
+          "reads": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 31,
+          "cases_with_any_disagreement": {
+            "n": 6,
+            "rate": 0.1935,
+            "wilson95": [
+              0.0919,
+              0.3628
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0968,
+          "cases_per_read": [
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0645,
+            0.0323,
+            0.0968,
+            0.0645,
+            0.0645
+          ],
+          "flip_vs_baseline_band": [
+            0.0323,
+            0.0968
+          ],
+          "decoy_per_read": [
+            0.0645,
+            0.0323,
+            0.0968,
+            0.0645,
+            0.0645
+          ],
+          "decoy_band": [
+            0.0323,
+            0.0968
+          ],
+          "cases_with_fewer_than_two_reads": []
+        }
+      },
+      "judge_failed_left_out": {
+        "reads_0_to_k": {
+          "reads": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 31,
+          "cases_with_any_disagreement": {
+            "n": 6,
+            "rate": 0.1935,
+            "wilson95": [
+              0.0919,
+              0.3628
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0968,
+          "cases_per_read": [
+            31,
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0968,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.0645,
+            0.0645
+          ],
+          "flip_vs_baseline_band": [
+            0.0323,
+            0.0968
+          ],
+          "decoy_per_read": [
+            0.0968,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.0645,
+            0.0645
+          ],
+          "decoy_band": [
+            0.0323,
+            0.0968
+          ],
+          "cases_with_fewer_than_two_reads": []
+        },
+        "reads_1_to_k": {
+          "reads": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 31,
+          "cases_with_any_disagreement": {
+            "n": 6,
+            "rate": 0.1935,
+            "wilson95": [
+              0.0919,
+              0.3628
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0968,
+          "cases_per_read": [
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0645,
+            0.0323,
+            0.0968,
+            0.0645,
+            0.0645
+          ],
+          "flip_vs_baseline_band": [
+            0.0323,
+            0.0968
+          ],
+          "decoy_per_read": [
+            0.0645,
+            0.0323,
+            0.0968,
+            0.0645,
+            0.0645
+          ],
+          "decoy_band": [
+            0.0323,
+            0.0968
+          ],
+          "cases_with_fewer_than_two_reads": []
+        }
+      },
+      "cases_with_every_paraphrase_passing": {
+        "n": 31,
+        "reads_0_to_k": {
+          "reads": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 31,
+          "cases_with_any_disagreement": {
+            "n": 6,
+            "rate": 0.1935,
+            "wilson95": [
+              0.0919,
+              0.3628
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0968,
+          "cases_per_read": [
+            31,
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0968,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.0645,
+            0.0645
+          ],
+          "flip_vs_baseline_band": [
+            0.0323,
+            0.0968
+          ],
+          "decoy_per_read": [
+            0.0968,
+            0.0645,
+            0.0323,
+            0.0968,
+            0.0645,
+            0.0645
+          ],
+          "decoy_band": [
+            0.0323,
+            0.0968
+          ],
+          "cases_with_fewer_than_two_reads": []
+        },
+        "reads_1_to_k": {
+          "reads": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 31,
+          "cases_with_any_disagreement": {
+            "n": 6,
+            "rate": 0.1935,
+            "wilson95": [
+              0.0919,
+              0.3628
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0968,
+          "cases_per_read": [
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0645,
+            0.0323,
+            0.0968,
+            0.0645,
+            0.0645
+          ],
+          "flip_vs_baseline_band": [
+            0.0323,
+            0.0968
+          ],
+          "decoy_per_read": [
+            0.0645,
+            0.0323,
+            0.0968,
+            0.0645,
+            0.0645
+          ],
+          "decoy_band": [
+            0.0323,
+            0.0968
+          ],
+          "cases_with_fewer_than_two_reads": []
+        }
+      }
+    },
+    "nemotron-3-super-120b-a12b-fp8-local": {
+      "folder": "nemotron-3-super-120b-a12b-fp8-local",
+      "cases": 26,
+      "paraphrase_reads": 130,
+      "reads_left_out": {
+        "rule": 0,
+        "judge": 0,
+        "either": 0
+      },
+      "all_paraphrases": {
+        "reads_0_to_k": {
+          "reads": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 26,
+          "cases_with_any_disagreement": {
+            "n": 2,
+            "rate": 0.0769,
+            "wilson95": [
+              0.0214,
+              0.2414
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0333,
+          "cases_per_read": [
+            26,
+            26,
+            26,
+            26,
+            26,
+            26
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0,
+            0.0385,
+            0.0,
+            0.0,
+            0.0,
+            0.0769
+          ],
+          "flip_vs_baseline_band": [
+            0.0,
+            0.0769
+          ],
+          "decoy_per_read": [
+            0.0,
+            0.0385,
+            0.0,
+            0.0,
+            0.0,
+            0.0769
+          ],
+          "decoy_band": [
+            0.0,
+            0.0769
+          ],
+          "cases_with_fewer_than_two_reads": []
+        },
+        "reads_1_to_k": {
+          "reads": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 26,
+          "cases_with_any_disagreement": {
+            "n": 2,
+            "rate": 0.0769,
+            "wilson95": [
+              0.0214,
+              0.2414
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0385,
+          "cases_per_read": [
+            26,
+            26,
+            26,
+            26,
+            26
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0385,
+            0.0,
+            0.0,
+            0.0,
+            0.0769
+          ],
+          "flip_vs_baseline_band": [
+            0.0,
+            0.0769
+          ],
+          "decoy_per_read": [
+            0.0385,
+            0.0,
+            0.0,
+            0.0,
+            0.0769
+          ],
+          "decoy_band": [
+            0.0,
+            0.0769
+          ],
+          "cases_with_fewer_than_two_reads": []
+        }
+      },
+      "failed_left_out": {
+        "reads_0_to_k": {
+          "reads": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 26,
+          "cases_with_any_disagreement": {
+            "n": 2,
+            "rate": 0.0769,
+            "wilson95": [
+              0.0214,
+              0.2414
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0333,
+          "cases_per_read": [
+            26,
+            26,
+            26,
+            26,
+            26,
+            26
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0,
+            0.0385,
+            0.0,
+            0.0,
+            0.0,
+            0.0769
+          ],
+          "flip_vs_baseline_band": [
+            0.0,
+            0.0769
+          ],
+          "decoy_per_read": [
+            0.0,
+            0.0385,
+            0.0,
+            0.0,
+            0.0,
+            0.0769
+          ],
+          "decoy_band": [
+            0.0,
+            0.0769
+          ],
+          "cases_with_fewer_than_two_reads": []
+        },
+        "reads_1_to_k": {
+          "reads": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 26,
+          "cases_with_any_disagreement": {
+            "n": 2,
+            "rate": 0.0769,
+            "wilson95": [
+              0.0214,
+              0.2414
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0385,
+          "cases_per_read": [
+            26,
+            26,
+            26,
+            26,
+            26
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0385,
+            0.0,
+            0.0,
+            0.0,
+            0.0769
+          ],
+          "flip_vs_baseline_band": [
+            0.0,
+            0.0769
+          ],
+          "decoy_per_read": [
+            0.0385,
+            0.0,
+            0.0,
+            0.0,
+            0.0769
+          ],
+          "decoy_band": [
+            0.0,
+            0.0769
+          ],
+          "cases_with_fewer_than_two_reads": []
+        }
+      },
+      "rule_failed_left_out": {
+        "reads_0_to_k": {
+          "reads": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 26,
+          "cases_with_any_disagreement": {
+            "n": 2,
+            "rate": 0.0769,
+            "wilson95": [
+              0.0214,
+              0.2414
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0333,
+          "cases_per_read": [
+            26,
+            26,
+            26,
+            26,
+            26,
+            26
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0,
+            0.0385,
+            0.0,
+            0.0,
+            0.0,
+            0.0769
+          ],
+          "flip_vs_baseline_band": [
+            0.0,
+            0.0769
+          ],
+          "decoy_per_read": [
+            0.0,
+            0.0385,
+            0.0,
+            0.0,
+            0.0,
+            0.0769
+          ],
+          "decoy_band": [
+            0.0,
+            0.0769
+          ],
+          "cases_with_fewer_than_two_reads": []
+        },
+        "reads_1_to_k": {
+          "reads": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 26,
+          "cases_with_any_disagreement": {
+            "n": 2,
+            "rate": 0.0769,
+            "wilson95": [
+              0.0214,
+              0.2414
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0385,
+          "cases_per_read": [
+            26,
+            26,
+            26,
+            26,
+            26
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0385,
+            0.0,
+            0.0,
+            0.0,
+            0.0769
+          ],
+          "flip_vs_baseline_band": [
+            0.0,
+            0.0769
+          ],
+          "decoy_per_read": [
+            0.0385,
+            0.0,
+            0.0,
+            0.0,
+            0.0769
+          ],
+          "decoy_band": [
+            0.0,
+            0.0769
+          ],
+          "cases_with_fewer_than_two_reads": []
+        }
+      },
+      "judge_failed_left_out": {
+        "reads_0_to_k": {
+          "reads": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 26,
+          "cases_with_any_disagreement": {
+            "n": 2,
+            "rate": 0.0769,
+            "wilson95": [
+              0.0214,
+              0.2414
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0333,
+          "cases_per_read": [
+            26,
+            26,
+            26,
+            26,
+            26,
+            26
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0,
+            0.0385,
+            0.0,
+            0.0,
+            0.0,
+            0.0769
+          ],
+          "flip_vs_baseline_band": [
+            0.0,
+            0.0769
+          ],
+          "decoy_per_read": [
+            0.0,
+            0.0385,
+            0.0,
+            0.0,
+            0.0,
+            0.0769
+          ],
+          "decoy_band": [
+            0.0,
+            0.0769
+          ],
+          "cases_with_fewer_than_two_reads": []
+        },
+        "reads_1_to_k": {
+          "reads": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 26,
+          "cases_with_any_disagreement": {
+            "n": 2,
+            "rate": 0.0769,
+            "wilson95": [
+              0.0214,
+              0.2414
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0385,
+          "cases_per_read": [
+            26,
+            26,
+            26,
+            26,
+            26
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0385,
+            0.0,
+            0.0,
+            0.0,
+            0.0769
+          ],
+          "flip_vs_baseline_band": [
+            0.0,
+            0.0769
+          ],
+          "decoy_per_read": [
+            0.0385,
+            0.0,
+            0.0,
+            0.0,
+            0.0769
+          ],
+          "decoy_band": [
+            0.0,
+            0.0769
+          ],
+          "cases_with_fewer_than_two_reads": []
+        }
+      },
+      "cases_with_every_paraphrase_passing": {
+        "n": 26,
+        "reads_0_to_k": {
+          "reads": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 26,
+          "cases_with_any_disagreement": {
+            "n": 2,
+            "rate": 0.0769,
+            "wilson95": [
+              0.0214,
+              0.2414
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0333,
+          "cases_per_read": [
+            26,
+            26,
+            26,
+            26,
+            26,
+            26
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0,
+            0.0385,
+            0.0,
+            0.0,
+            0.0,
+            0.0769
+          ],
+          "flip_vs_baseline_band": [
+            0.0,
+            0.0769
+          ],
+          "decoy_per_read": [
+            0.0,
+            0.0385,
+            0.0,
+            0.0,
+            0.0,
+            0.0769
+          ],
+          "decoy_band": [
+            0.0,
+            0.0769
+          ],
+          "cases_with_fewer_than_two_reads": []
+        },
+        "reads_1_to_k": {
+          "reads": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 26,
+          "cases_with_any_disagreement": {
+            "n": 2,
+            "rate": 0.0769,
+            "wilson95": [
+              0.0214,
+              0.2414
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0385,
+          "cases_per_read": [
+            26,
+            26,
+            26,
+            26,
+            26
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0385,
+            0.0,
+            0.0,
+            0.0,
+            0.0769
+          ],
+          "flip_vs_baseline_band": [
+            0.0,
+            0.0769
+          ],
+          "decoy_per_read": [
+            0.0385,
+            0.0,
+            0.0,
+            0.0,
+            0.0769
+          ],
+          "decoy_band": [
+            0.0,
+            0.0769
+          ],
+          "cases_with_fewer_than_two_reads": []
+        }
+      }
+    },
+    "openai/gpt-oss-120b": {
+      "folder": "openai_gpt-oss-120b",
+      "cases": 26,
+      "paraphrase_reads": 130,
+      "reads_left_out": {
+        "rule": 0,
+        "judge": 0,
+        "either": 0
+      },
+      "all_paraphrases": {
+        "reads_0_to_k": {
+          "reads": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 26,
+          "cases_with_any_disagreement": {
+            "n": 1,
+            "rate": 0.0385,
+            "wilson95": [
+              0.0068,
+              0.1889
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0205,
+          "cases_per_read": [
+            26,
+            26,
+            26,
+            26,
+            26,
+            26
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0385,
+            0.0385,
+            0.0385,
+            0.0769,
+            0.0385,
+            0.0769
+          ],
+          "flip_vs_baseline_band": [
+            0.0385,
+            0.0769
+          ],
+          "decoy_per_read": [
+            0.0385,
+            0.0385,
+            0.0385,
+            0.0769,
+            0.0385,
+            0.0769
+          ],
+          "decoy_band": [
+            0.0385,
+            0.0769
+          ],
+          "cases_with_fewer_than_two_reads": []
+        },
+        "reads_1_to_k": {
+          "reads": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 26,
+          "cases_with_any_disagreement": {
+            "n": 1,
+            "rate": 0.0385,
+            "wilson95": [
+              0.0068,
+              0.1889
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0231,
+          "cases_per_read": [
+            26,
+            26,
+            26,
+            26,
+            26
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0385,
+            0.0385,
+            0.0769,
+            0.0385,
+            0.0769
+          ],
+          "flip_vs_baseline_band": [
+            0.0385,
+            0.0769
+          ],
+          "decoy_per_read": [
+            0.0385,
+            0.0385,
+            0.0769,
+            0.0385,
+            0.0769
+          ],
+          "decoy_band": [
+            0.0385,
+            0.0769
+          ],
+          "cases_with_fewer_than_two_reads": []
+        }
+      },
+      "failed_left_out": {
+        "reads_0_to_k": {
+          "reads": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 26,
+          "cases_with_any_disagreement": {
+            "n": 1,
+            "rate": 0.0385,
+            "wilson95": [
+              0.0068,
+              0.1889
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0205,
+          "cases_per_read": [
+            26,
+            26,
+            26,
+            26,
+            26,
+            26
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0385,
+            0.0385,
+            0.0385,
+            0.0769,
+            0.0385,
+            0.0769
+          ],
+          "flip_vs_baseline_band": [
+            0.0385,
+            0.0769
+          ],
+          "decoy_per_read": [
+            0.0385,
+            0.0385,
+            0.0385,
+            0.0769,
+            0.0385,
+            0.0769
+          ],
+          "decoy_band": [
+            0.0385,
+            0.0769
+          ],
+          "cases_with_fewer_than_two_reads": []
+        },
+        "reads_1_to_k": {
+          "reads": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 26,
+          "cases_with_any_disagreement": {
+            "n": 1,
+            "rate": 0.0385,
+            "wilson95": [
+              0.0068,
+              0.1889
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0231,
+          "cases_per_read": [
+            26,
+            26,
+            26,
+            26,
+            26
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0385,
+            0.0385,
+            0.0769,
+            0.0385,
+            0.0769
+          ],
+          "flip_vs_baseline_band": [
+            0.0385,
+            0.0769
+          ],
+          "decoy_per_read": [
+            0.0385,
+            0.0385,
+            0.0769,
+            0.0385,
+            0.0769
+          ],
+          "decoy_band": [
+            0.0385,
+            0.0769
+          ],
+          "cases_with_fewer_than_two_reads": []
+        }
+      },
+      "rule_failed_left_out": {
+        "reads_0_to_k": {
+          "reads": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 26,
+          "cases_with_any_disagreement": {
+            "n": 1,
+            "rate": 0.0385,
+            "wilson95": [
+              0.0068,
+              0.1889
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0205,
+          "cases_per_read": [
+            26,
+            26,
+            26,
+            26,
+            26,
+            26
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0385,
+            0.0385,
+            0.0385,
+            0.0769,
+            0.0385,
+            0.0769
+          ],
+          "flip_vs_baseline_band": [
+            0.0385,
+            0.0769
+          ],
+          "decoy_per_read": [
+            0.0385,
+            0.0385,
+            0.0385,
+            0.0769,
+            0.0385,
+            0.0769
+          ],
+          "decoy_band": [
+            0.0385,
+            0.0769
+          ],
+          "cases_with_fewer_than_two_reads": []
+        },
+        "reads_1_to_k": {
+          "reads": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 26,
+          "cases_with_any_disagreement": {
+            "n": 1,
+            "rate": 0.0385,
+            "wilson95": [
+              0.0068,
+              0.1889
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0231,
+          "cases_per_read": [
+            26,
+            26,
+            26,
+            26,
+            26
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0385,
+            0.0385,
+            0.0769,
+            0.0385,
+            0.0769
+          ],
+          "flip_vs_baseline_band": [
+            0.0385,
+            0.0769
+          ],
+          "decoy_per_read": [
+            0.0385,
+            0.0385,
+            0.0769,
+            0.0385,
+            0.0769
+          ],
+          "decoy_band": [
+            0.0385,
+            0.0769
+          ],
+          "cases_with_fewer_than_two_reads": []
+        }
+      },
+      "judge_failed_left_out": {
+        "reads_0_to_k": {
+          "reads": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 26,
+          "cases_with_any_disagreement": {
+            "n": 1,
+            "rate": 0.0385,
+            "wilson95": [
+              0.0068,
+              0.1889
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0205,
+          "cases_per_read": [
+            26,
+            26,
+            26,
+            26,
+            26,
+            26
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0385,
+            0.0385,
+            0.0385,
+            0.0769,
+            0.0385,
+            0.0769
+          ],
+          "flip_vs_baseline_band": [
+            0.0385,
+            0.0769
+          ],
+          "decoy_per_read": [
+            0.0385,
+            0.0385,
+            0.0385,
+            0.0769,
+            0.0385,
+            0.0769
+          ],
+          "decoy_band": [
+            0.0385,
+            0.0769
+          ],
+          "cases_with_fewer_than_two_reads": []
+        },
+        "reads_1_to_k": {
+          "reads": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 26,
+          "cases_with_any_disagreement": {
+            "n": 1,
+            "rate": 0.0385,
+            "wilson95": [
+              0.0068,
+              0.1889
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0231,
+          "cases_per_read": [
+            26,
+            26,
+            26,
+            26,
+            26
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0385,
+            0.0385,
+            0.0769,
+            0.0385,
+            0.0769
+          ],
+          "flip_vs_baseline_band": [
+            0.0385,
+            0.0769
+          ],
+          "decoy_per_read": [
+            0.0385,
+            0.0385,
+            0.0769,
+            0.0385,
+            0.0769
+          ],
+          "decoy_band": [
+            0.0385,
+            0.0769
+          ],
+          "cases_with_fewer_than_two_reads": []
+        }
+      },
+      "cases_with_every_paraphrase_passing": {
+        "n": 26,
+        "reads_0_to_k": {
+          "reads": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 26,
+          "cases_with_any_disagreement": {
+            "n": 1,
+            "rate": 0.0385,
+            "wilson95": [
+              0.0068,
+              0.1889
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0205,
+          "cases_per_read": [
+            26,
+            26,
+            26,
+            26,
+            26,
+            26
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0385,
+            0.0385,
+            0.0385,
+            0.0769,
+            0.0385,
+            0.0769
+          ],
+          "flip_vs_baseline_band": [
+            0.0385,
+            0.0769
+          ],
+          "decoy_per_read": [
+            0.0385,
+            0.0385,
+            0.0385,
+            0.0769,
+            0.0385,
+            0.0769
+          ],
+          "decoy_band": [
+            0.0385,
+            0.0769
+          ],
+          "cases_with_fewer_than_two_reads": []
+        },
+        "reads_1_to_k": {
+          "reads": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "n": 26,
+          "cases_with_any_disagreement": {
+            "n": 1,
+            "rate": 0.0385,
+            "wilson95": [
+              0.0068,
+              0.1889
+            ]
+          },
+          "mean_pairwise_disagreement": 0.0231,
+          "cases_per_read": [
+            26,
+            26,
+            26,
+            26,
+            26
+          ],
+          "flip_vs_baseline_per_read": [
+            0.0385,
+            0.0385,
+            0.0769,
+            0.0385,
+            0.0769
+          ],
+          "flip_vs_baseline_band": [
+            0.0385,
+            0.0769
+          ],
+          "decoy_per_read": [
+            0.0385,
+            0.0385,
+            0.0769,
+            0.0385,
+            0.0769
+          ],
+          "decoy_band": [
+            0.0385,
+            0.0769
+          ],
+          "cases_with_fewer_than_two_reads": []
+        }
+      }
+    }
+  },
+  "note": "A paraphrase fails when the rule check or the judge fails it. failed_left_out removes those reads from each case (read 0, the committed control prompt, is always kept in reads_0_to_k); cases_with_every_paraphrase_passing keeps whole cases instead. all_paraphrases is the committed band, recomputed from the same rows.",
+  "judge_control": {
+    "paraphrases_with_a_marker_kept": 0,
+    "reversed": 0,
+    "not_reversible_by_the_table": 0,
+    "judge_said_no": 0,
+    "judge_said_yes": 0,
+    "judge_gave_no_verdict": 0,
+    "rule_refused": 0,
+    "refused_by_judge_or_rule": 0,
+    "reversed_by_marker": {},
+    "file": "paraphrase_semantic_judge_control.jsonl",
+    "note": "Control added after the first results. Each paraphrase whose question part kept a marker was turned around by rule (reverse_question) and shown to the judge against the original; a correct judge says no to all of them. rule_refused counts those the keyless rule check also fails."
+  }
+}

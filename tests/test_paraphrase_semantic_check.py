@@ -172,3 +172,202 @@ def test_control_summary_counts_refusals():
     assert got["rule_refused"] == 2 and got["refused_by_judge_or_rule"] == 3
     assert got["reversed_by_marker"] == {"not": 2, "exception": 1}
 
+
+# ----------------------------------------------------------------------------- the committed check
+import json  # noqa: E402
+import os  # noqa: E402
+import shutil  # noqa: E402
+import subprocess  # noqa: E402
+
+import pytest  # noqa: E402
+
+LANES = {"experiments/blind_metric/results": 200, "experiments/medmcqa/results": 200,
+         "experiments/support2/results": 155}
+MANIFESTS = {
+    "experiments/blind_metric/results": Path(os.environ.get(
+        "BENCHMAXXING_MEDQA_MANIFEST", str(Path.home() / "Documents/DATASET/medqa/manifest_test.csv"))),
+    "experiments/medmcqa/results": Path(os.environ.get(
+        "BENCHMAXXING_MEDMCQA_MANIFEST", str(Path.home() / "Documents/DATASET/medmcqa_dev_500.csv"))),
+    "experiments/support2/results": ROOT / "experiments/support2/results/support2_manifest.csv",
+}
+BAND_FIELDS = ("n", "cases_with_any_disagreement", "mean_pairwise_disagreement", "flip_vs_baseline_per_read",
+               "flip_vs_baseline_band", "decoy_per_read", "decoy_band")
+
+
+def _rows(path):
+    return [json.loads(line) for line in (ROOT / path).read_text().splitlines() if line.strip()]
+
+
+def _summary(lane):
+    return json.loads((ROOT / lane / sc.SUMMARY_FILE).read_text())
+
+
+@pytest.mark.parametrize("lane,n", LANES.items())
+def test_every_committed_paraphrase_is_checked_once(lane, n):
+    checks = _rows(f"{lane}/{sc.CHECK_FILE}")
+    paras = _rows(f"{lane}/paraphrases.jsonl")
+    assert len(checks) == len(paras) == n
+    assert [(c["case_id"], c["i"]) for c in checks] == [(p["case_id"], p["i"]) for p in paras]
+    # one judge call per paraphrase, all by the judge model, none empty
+    cache = _rows(f"{lane}/{sc.JUDGE_CACHE}")
+    assert len(cache) == len({c["k"] for c in cache}) == n and {c["model"] for c in cache} == {sc.JUDGE}
+    assert all(c["resp"].strip() for c in cache)
+    s = _summary(lane)
+    assert s["paraphrases"] == n and s["calls_in_cache"]["judge"] == n and s["judge"] == "gemini-2.5-flash"
+    # the committed summary is what a keyless replay writes
+    assert s["new_api_calls_this_run"] == {"judge": 0, "judge_control": 0}
+
+
+@pytest.mark.parametrize("lane", LANES)
+def test_the_rule_columns_recount_from_the_committed_paraphrase_text(lane):
+    """The paraphrase text is committed, so its side of the rule is recomputed here with no manifest."""
+    text = {(p["case_id"], p["i"]): p["paraphrase"] for p in _rows(f"{lane}/paraphrases.jsonl")}
+    for c in _rows(f"{lane}/{sc.CHECK_FILE}"):
+        assert c["markers_paraphrase"] == sc.markers(text[(c["case_id"], c["i"])]), (c["case_id"], c["i"])
+        same = bool(c["markers_original"]) == bool(c["markers_paraphrase"])
+        assert c["rule_check"] == same
+        assert c["rule_reason"] == (("kept" if c["markers_original"] else "none") if same
+                                    else ("dropped" if c["markers_original"] else "added"))
+        assert c["judge_verdict"] in ("yes", "no", None) and c["judge"] == sc.JUDGE
+
+
+@pytest.mark.parametrize("lane", LANES)
+def test_the_failures_file_lists_exactly_the_failing_paraphrases(lane):
+    checks = _rows(f"{lane}/{sc.CHECK_FILE}")
+    failures = _rows(f"{lane}/{sc.FAILURES_FILE}")
+    want = [(c["case_id"], c["i"]) for c in checks if not (c["rule_check"] and c["judge_verdict"] == "yes")]
+    assert [(f["case_id"], f["i"]) for f in failures] == want
+    text = {(p["case_id"], p["i"]): p["paraphrase"] for p in _rows(f"{lane}/paraphrases.jsonl")}
+    for f in failures:
+        assert f["paraphrase"] == text[(f["case_id"], f["i"])]
+        rule_failed, judge_failed = not f["rule_check"], f["judge_verdict"] != "yes"
+        assert f["failed"] == " and ".join(n for n, bad in (("rule", rule_failed), ("judge", judge_failed)) if bad)
+    s = _summary(lane)["failed"]
+    assert s["either"] == len(failures)
+    assert s["rule"] == sum(not c["rule_check"] for c in checks)
+    assert s["judge"] == sum(c["judge_verdict"] != "yes" for c in checks)
+    assert s["judge"] == s["judge_said_no"] + s["judge_gave_no_verdict"]
+    assert s["either"] == s["rule"] + s["judge"] - s["both"]
+
+
+@pytest.mark.parametrize("lane", LANES)
+def test_the_summary_recounts_from_the_check_rows_and_the_band_rows(lane):
+    s = _summary(lane)
+    folders = sc.band_folders(ROOT / lane)
+    assert len(folders) == 4  # the Gemini lane folder and the three locally served lineages
+    assert s == sc.summarise(_rows(f"{lane}/{sc.CHECK_FILE}"), folders, s["new_api_calls_this_run"],
+                             s["calls_in_cache"], _rows(f"{lane}/{sc.CONTROL_FILE}"))
+
+
+@pytest.mark.parametrize("lane", LANES)
+def test_the_band_with_all_paraphrases_is_the_committed_band(lane):
+    s = _summary(lane)
+    for folder in sc.band_folders(ROOT / lane):
+        committed = json.loads((folder / "paraphrase_band_summary.json").read_text())
+        mine = s["bands"][committed["model"]]
+        whole = mine["all_paraphrases"]["reads_0_to_k"]
+        assert {k: whole[k] for k in BAND_FIELDS} == {k: committed[k] for k in BAND_FIELDS}, folder
+        assert mine["all_paraphrases"]["reads_1_to_k"] == committed["without_read_0"]["paraphrase_reads"]
+        assert mine["cases"] == committed["n"] and mine["paraphrase_reads"] == committed["paraphrases_total"]
+        # leaving reads out can only remove disagreement, never add it
+        for name in ("failed_left_out", "rule_failed_left_out", "judge_failed_left_out"):
+            for reads in ("reads_0_to_k", "reads_1_to_k"):
+                assert mine[name][reads]["cases_with_any_disagreement"]["n"] <= \
+                    mine["all_paraphrases"][reads]["cases_with_any_disagreement"]["n"]
+        # an independent recount of the left-out band over reads 0 to 5
+        failed = {(c["case_id"], c["i"]) for c in _rows(f"{lane}/{sc.CHECK_FILE}")
+                  if not (c["rule_check"] and c["judge_verdict"] == "yes")}
+        recs = [json.loads(line) for line in (folder / "paraphrase_band.jsonl").read_text().splitlines() if line.strip()]
+        kept = [[r["answers"][0]] + [a for i, a in enumerate(r["answers"][1:], 1) if (r["case_id"], i) not in failed]
+                for r in recs]
+        assert mine["failed_left_out"]["reads_0_to_k"]["cases_with_any_disagreement"]["n"] == \
+            sum(len(set(k)) > 1 for k in kept if len(k) >= 2)
+        assert mine["reads_left_out"]["either"] == sum(len(r["answers"]) - len(k) for r, k in zip(recs, kept))
+
+
+@pytest.mark.parametrize("lane", LANES)
+def test_keyless_replay_reproduces_the_check(lane, tmp_path):
+    """The whole check reruns from the committed judge cache with no key (needs the lane's manifest)."""
+    manifest = MANIFESTS[lane]
+    if not manifest.exists():
+        pytest.skip(f"the manifest of {lane} is not on this machine")
+    src = ROOT / lane
+    for f in ("paraphrases.jsonl", sc.JUDGE_CACHE, sc.CONTROL_CACHE):
+        if (src / f).exists():  # a lane with no reversible question has no control cache
+            shutil.copy(src / f, tmp_path / f)
+    for folder in sc.band_folders(src):
+        dst = tmp_path if folder == src else tmp_path / folder.name
+        dst.mkdir(exist_ok=True)
+        for f in ("paraphrase_band.jsonl", "paraphrase_band_summary.json"):
+            shutil.copy(folder / f, dst / f)
+    env = {k: v for k, v in os.environ.items() if k not in ("GEMINI_API_KEY", "GOOGLE_API_KEY")}
+    env["PYTHONPATH"] = str(ROOT)
+    r = subprocess.run([sys.executable, "experiments/matched_baseline/paraphrase_semantic_check.py",
+                        "--manifest", str(manifest), "--results", str(tmp_path)],
+                       cwd=ROOT, env=env, capture_output=True, text=True, timeout=600)
+    assert r.returncode == 0, (r.stdout + r.stderr)[-800:]
+    for f in (sc.CHECK_FILE, sc.FAILURES_FILE, sc.CONTROL_FILE, sc.SUMMARY_FILE):
+        assert (tmp_path / f).read_bytes() == (src / f).read_bytes(), f
+
+
+def test_what_failed_on_each_lane():
+    """9 of 555 paraphrases fail the rule, 1 the judge, none both; SUPPORT2 has no failure."""
+    want = {"experiments/blind_metric/results": (1, {"added": 1}, 0, 1),
+            "experiments/medmcqa/results": (8, {"dropped": 6, "added": 2}, 1, 5),
+            "experiments/support2/results": (0, {}, 0, 0)}
+    for lane, (rule, by_reason, judge, cases) in want.items():
+        s = _summary(lane)
+        f = s["failed"]
+        assert (f["rule"], f["rule_by_reason"], f["judge"], f["both"]) == (rule, by_reason, judge, 0), lane
+        assert f["judge_gave_no_verdict"] == 0 and f["either"] == rule + judge
+        assert s["cases_with_a_failed_paraphrase"] == cases
+
+
+def test_leaving_the_failed_paraphrases_out_barely_moves_any_band():
+    changed = {}
+    for lane in LANES:
+        for model, m in _summary(lane)["bands"].items():
+            for reads in ("reads_0_to_k", "reads_1_to_k"):
+                a, f = m["all_paraphrases"][reads], m["failed_left_out"][reads]
+                before = (a["cases_with_any_disagreement"]["n"], a["n"])
+                after = (f["cases_with_any_disagreement"]["n"], f["n"])
+                if reads == "reads_0_to_k":
+                    assert before == after, (lane, model)  # read 0 keeps every case in
+                elif before[0] != after[0]:
+                    changed[(lane, model)] = (before, after)
+                for k in ("flip_vs_baseline_band", "decoy_band"):
+                    assert max(abs(x - y) for x, y in zip(a[k], f[k])) < 0.025, (lane, model, reads, k)
+                assert abs(a["mean_pairwise_disagreement"] - f["mean_pairwise_disagreement"]) < 0.01
+    # over reads 1 to 5, one case of one lineage leaves the count: it keeps a single paraphrase read
+    assert changed == {("experiments/medmcqa/results", "openai/gpt-oss-120b"): ((8, 40), (7, 39))}
+
+
+def test_the_judge_control_is_the_reversal_of_every_reversible_kept_paraphrase():
+    """The control rows recount from the committed paraphrase text with no manifest and no key."""
+    for lane in LANES:
+        text = {(p["case_id"], p["i"]): p["paraphrase"] for p in _rows(f"{lane}/paraphrases.jsonl")}
+        kept = [(c["case_id"], c["i"]) for c in _rows(f"{lane}/{sc.CHECK_FILE}") if c["rule_reason"] == "kept"]
+        want = {key: sc.reverse_question(text[key]) for key in kept}
+        control = _rows(f"{lane}/{sc.CONTROL_FILE}")
+        assert [(r["case_id"], r["i"]) for r in control] == [key for key in kept if want[key]]
+        for r in control:
+            turned = want[(r["case_id"], r["i"])]
+            assert (r["reversed"], r["marker"], r["replacement"]) == (turned["text"], turned["marker"],
+                                                                      turned["replacement"])
+        cache = _rows(f"{lane}/{sc.CONTROL_CACHE}") if (ROOT / lane / sc.CONTROL_CACHE).exists() else []
+        assert len(cache) == len({c["k"] for c in cache}) == len(control) == _summary(lane)["calls_in_cache"]["judge_control"]
+
+
+def test_the_judge_refuses_37_of_38_reversed_questions():
+    want = {"experiments/blind_metric/results": (10, 5, 5, 0, 5, 5),
+            "experiments/medmcqa/results": (39, 33, 32, 1, 30, 32),
+            "experiments/support2/results": (0, 0, 0, 0, 0, 0)}
+    for lane, numbers in want.items():
+        c = _summary(lane)["judge_control"]
+        assert (c["paraphrases_with_a_marker_kept"], c["reversed"], c["judge_said_no"], c["judge_said_yes"],
+                c["rule_refused"], c["refused_by_judge_or_rule"]) == numbers, lane
+        assert c["judge_gave_no_verdict"] == 0
+    # the one reversal the judge accepted keeps a marker ("with no exception"), so the rule cannot see it either
+    accepted = [r for r in _rows(f"experiments/medmcqa/results/{sc.CONTROL_FILE}") if r["judge_verdict"] == "yes"]
+    assert [(r["marker"], r["replacement"], r["rule_reason"]) for r in accepted] == [
+        ("exception", "with no exception", "kept")]

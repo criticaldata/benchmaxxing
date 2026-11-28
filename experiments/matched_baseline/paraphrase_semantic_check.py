@@ -266,7 +266,10 @@ def control_summary(check_rows, control_rows):
 
 
 def summarise(check_rows, folders, calls, calls_in_cache, control_rows=None):
-    """The summary from the per-paraphrase rows and each lineage's committed band rows."""
+    """The summary from the per-paraphrase rows and each lineage's committed band rows.
+
+    ``calls`` and ``calls_in_cache`` are the recorded call counts, {"judge": n, "judge_control": m}.
+    """
     checks = {(r["case_id"], r["i"]): {"rule": r["rule_check"], "judge": r["judge_verdict"] == "yes",
                                        "either": r["rule_check"] and r["judge_verdict"] == "yes"}
               for r in check_rows}
@@ -290,7 +293,7 @@ def summarise(check_rows, folders, calls, calls_in_cache, control_rows=None):
         },
         "cases_with_a_failed_paraphrase": len({key[0] for key, c in checks.items() if not c["either"]}),
         "failures_file": FAILURES_FILE,
-        "new_api_calls_this_run": {"judge": calls}, "calls_in_cache": {"judge": calls_in_cache},
+        "new_api_calls_this_run": dict(calls), "calls_in_cache": dict(calls_in_cache),
         "bands": bands,
         "note": ("A paraphrase fails when the rule check or the judge fails it. failed_left_out removes those reads "
                  "from each case (read 0, the committed control prompt, is always kept in reads_0_to_k); "
@@ -364,9 +367,9 @@ def main(argv=None):
     def lines(name):
         return len(_rows(results / name)) if (results / name).exists() else 0
 
-    summary = summarise(check_rows, band_folders(results), cache.calls, lines(JUDGE_CACHE), control_rows)
-    summary["new_api_calls_this_run"]["judge_control"] = control_cache.calls
-    summary["calls_in_cache"]["judge_control"] = lines(CONTROL_CACHE)
+    summary = summarise(check_rows, band_folders(results),
+                        {"judge": cache.calls, "judge_control": control_cache.calls},
+                        {"judge": lines(JUDGE_CACHE), "judge_control": lines(CONTROL_CACHE)}, control_rows)
 
     (results / CHECK_FILE).write_text("".join(json.dumps(r) + "\n" for r in check_rows))
     (results / FAILURES_FILE).write_text("".join(json.dumps(r) + "\n" for r in failures))
