@@ -38,11 +38,17 @@ this lane's `results/`:
     python -m experiments.medqa.super_additivity \
         --manifest data/medmcqa_dev.csv \
         --cache experiments/medmcqa/results/super_additivity_cache.jsonl \
-        --out experiments/medmcqa/results
+        --out experiments/medmcqa/results --n 120
 
 With the committed cache in place it makes no API calls. Delete the cache (or push `--n` past the
-cases it covers) to spend real ones. The `--n` each arm was run at is recorded as the `n` field in
-its `results/<arm>_summary.json`.
+cases it covers) to spend real ones. `--n` has to be given: the shared scripts' default is the size the
+MedQA lane was committed at, and four arms were committed here at smaller sizes, so a run with `--cache`
+and no `--n` stops with an error before it reads anything. The `n` field of a summary counts the
+eligible cases, not the `--n` the arm was run at (for example `plausible_distractor` was run at
+`--n 120` and keeps 71 cases). The `--n` of every arm and lineage, and the exact command, are pinned in
+`tests/test_medmcqa_arms_replay.py`, which replays each one with no key and compares it with the
+committed summary and rows. Arms that do not replay without a key are listed with the reason in
+`docs/REPLAY_AUDIT.md`.
 
 ## Arms
 

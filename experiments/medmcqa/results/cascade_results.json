@@ -1,8 +1,8 @@
 {
   "n": 20,
   "n_valid": 20,
-  "mean_contagion": 0.025,
-  "mean_shared_adopt": 0.025,
+  "mean_contagion": 0.05,
+  "mean_shared_adopt": 0.05,
   "mean_isolated_adopt": 0.0,
   "per_case": [
     {
@@ -87,7 +87,7 @@
       "shared_adopt": 0.0,
       "isolated_adopt": 0.0,
       "contagion": 0.0,
-      "onset": 1
+      "onset": 8
     },
     {
       "case_id": "9a292f87-6a2d-4bba-bcee-f11ca9a94c73",
@@ -140,10 +140,10 @@
     },
     {
       "case_id": "d321d320-c06f-4d18-9aa2-dae718851dfd",
-      "shared_adopt": 0.5,
+      "shared_adopt": 1.0,
       "isolated_adopt": 0.0,
-      "contagion": 0.5,
-      "onset": 7
+      "contagion": 1.0,
+      "onset": 1
     }
   ]
 }

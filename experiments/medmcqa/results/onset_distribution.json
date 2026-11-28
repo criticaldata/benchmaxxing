@@ -1,8 +1,8 @@
 {
   "dataset": "MedMCQA",
   "n": 20,
-  "n_censored": 0,
-  "n_seed_equals_evidence": 0,
+  "n_censored": 1,
+  "n_seed_equals_evidence": 1,
   "onset_turn_distribution": [
     2,
     2,
@@ -15,22 +15,20 @@
     2,
     2,
     2,
-    1,
+    8,
     2,
     2,
     2,
     2,
     2,
-    2,
-    2,
-    7
+    8,
+    2
   ],
   "distinct_onset_turns": [
-    1,
     2,
-    7
+    8
   ],
-  "contagion_shared_minus_isolated": 0.025,
+  "contagion_shared_minus_isolated": 0.05,
   "per_case": [
     {
       "case_id": "ee904a2e-7494-46ef-b976-22be596ed44f",
@@ -89,7 +87,7 @@
     },
     {
       "case_id": "87311a9e-97ac-43de-8964-55eb7ced00a9",
-      "onset_turn": 1,
+      "onset_turn": 8,
       "seed_matches_evidence": false
     },
     {
@@ -119,7 +117,7 @@
     },
     {
       "case_id": "fd315adc-df4b-4a81-895b-6f093eeb71b2",
-      "onset_turn": 2,
+      "onset_turn": 8,
       "seed_matches_evidence": false
     },
     {
@@ -129,9 +127,9 @@
     },
     {
       "case_id": "d321d320-c06f-4d18-9aa2-dae718851dfd",
-      "onset_turn": 7,
-      "seed_matches_evidence": false
+      "onset_turn": null,
+      "seed_matches_evidence": true
     }
   ],
-  "read": "MedMCQA: onset is detected (not censored) on 20 of 20 cascade cases, and detected onsets spread across turns [1, 2, 7]. A single detected turn immediately after the seeded agent's one-off wrong turn is the trivial detection of a transient blip, not a sustained tipping point: the other agents do not adopt the seed at any later turn, so there is no regime change for a change-point detector to find. 0 of 20 cases have the seed answer equal to the group's own evidence answer (a trivially invalid seed for that case). Contagion for this arm is the shared-minus-isolated adoption gap already in cascade_results.json (contagion 0.025, shared 0.025, isolated 0.0)."
+  "read": "MedMCQA: onset is detected (not censored) on 19 of 20 cascade cases, and detected onsets spread across turns [2, 8]. A single detected turn immediately after the seeded agent's one-off wrong turn is the trivial detection of a transient blip, not a sustained tipping point: the other agents do not adopt the seed at any later turn, so there is no regime change for a change-point detector to find. 1 of 20 cases have the seed answer equal to the group's own evidence answer (a trivially invalid seed for that case). Contagion for this arm is the shared-minus-isolated adoption gap already in cascade_results.json (contagion 0.05, shared 0.05, isolated 0.0)."
 }

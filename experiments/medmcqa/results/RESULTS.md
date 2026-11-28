@@ -1,5 +1,25 @@
 # benchmaxxing MedMCQA (Lane B) results
 
+> **Refreshed 24 to 26 Nov 2026 (zero model calls).** The results of 15 Gemini arms were rewritten
+> from their committed caches with the current code, because the committed files no longer matched what
+> those caches replay to: `attributed_tier`, `authority_ladder`, `committee_size_sweep`,
+> `deliberation_framing`, `dose_response`, `leader_as_auditor`, `plausible_distractor`,
+> `rationale_validity`, `seed_confidence`, `super_additivity`, `temperature_sensitivity`, `test_awareness`,
+> `text_cue_types`, `unanimity_break` and the cascade (`cascade_results.json` and its transcripts, with
+> `onset_distribution.json` regenerated from them); `referee_deployable_summary.json` gains a field only.
+> The rates in sections 2 and 6 to 10 below are taken from those committed files; every changed number
+> is listed in `docs/REPLAY_AUDIT.md`. The Holm and BH survivors of `stats_reconciliation_summary.json`
+> are unchanged. Sections 1, 3, 4, 5 and 11 read files that were not rewritten.
+>
+> **Why they differed (28 Nov 2026).** The earlier files were scored by a parser each runner carried
+> inline; the refreshed ones by the shared parser every lane now uses. The shared parser is not right
+> everywhere: in 41 case outcomes over the 14 committee arms it scores a reply that ends in a boxed
+> answer as no answer, because the reply also holds a refusal phrase ("as an AI" in 42 of the 44 replies,
+> "I cannot determine" in 2). That lowers the adoption rates below by up to 0.04 and produces the
+> p = 0.039 of `plausible_distractor` (section 7). The cases, the commits and
+> the values with those answers read are in `docs/REPLAY_AUDIT.md`, "Why the fifteen Gemini MedMCQA
+> arms moved".
+
 Standard-battery replication on MedMCQA, mirroring the MedQA/NIH template so results are
 apples-to-apples across datasets. Dataset: MedMCQA validation split (the labeled split; the test
 split has no public answers). Models: gemini-2.5-flash, gemini-2.5-flash-lite (same-lineage
@@ -61,23 +81,23 @@ isolated adoption is well defined). `--cascade-n 20 --seed 0`.
 
 | metric | value |
 |---|---|
-| mean contagion (shared - isolated) | +0.025 |
-| mean shared adoption | 0.025 |
+| mean contagion (shared - isolated) | +0.050 |
+| mean shared adoption | 0.050 |
 | mean isolated adoption | 0.000 |
 | cases with any adoption | 1 / 20 |
 
 **Read: the bare cascade is null on MedMCQA**, as it is on MedQA. On average the shared board
-moved 2.5% of non-seed agents onto the planted wrong answer; 19 of 20 committees rejected the
+moved 5% of non-seed agents onto the planted wrong answer; 19 of 20 committees rejected the
 seed outright. Verified against the transcripts: the seed turn is injected in every run, and in
 the null cases the committee holds the correct answer against it (e.g. all three agents kept
 '20 mg doxycycline' against a planted '60 mg doxycycline'); the one positive case is a genuine
-adoption. This is the documented finding that a bare planted answer is too weak a stimulus, the
+adoption (both non-seed agents take the seed on that case). This is the documented finding that a bare planted answer is too weak a stimulus, the
 motivation for the break-it arms (#288 system flag, #289 anchored plausible seed) which is where
 a measurable cascade is expected.
 
 MedQA reference (committed `cascade_v2_summary.json` / `cascade_v2_per_case.jsonl`):
 mean contagion -0.05, shared 0.025, isolated 0.075 - also null. Both datasets agree the bare
-cascade does not form; shared adoption is identical (0.025) across the two.
+cascade does not form; shared adoption is low on both (0.05 here, 0.025 on MedQA).
 
 ## 3. Break-it A: contaminated shared context / system pre-screen flag (issue #288)
 
@@ -168,19 +188,19 @@ descriptively in §9.
 
 | contrast | delta | 95% CI | McNemar p | Holm |
 |---|---|---|---|---|
-| authority_ladder: guideline vs colleague | +0.717 | [0.600, 0.833] | ~0 | ✓ |
-| unanimity: unanimous vs with-dissenter | +0.395 | [0.237, 0.553] | 6.1e-05 | ✓ |
-| rationale_validity: any-reasoning vs bare | -0.342 | [-0.442, -0.250] | ~0 | ✓ |
-| seed_confidence: confident vs hedged | +0.260 | [0.180, 0.350] | 3e-08 | ✓ |
-| super_additivity: both vs peer-alone | +0.108 | [0.033, 0.192] | 0.015 | . |
+| authority_ladder: guideline vs colleague | +0.767 | [0.650, 0.867] | ~0 | ✓ |
+| unanimity: unanimous vs with-dissenter | +0.368 | [0.211, 0.526] | 1.2e-04 | ✓ |
+| rationale_validity: any-reasoning vs bare | -0.333 | [-0.433, -0.242] | ~0 | ✓ |
+| seed_confidence: confident vs hedged | +0.240 | [0.160, 0.330] | 1.2e-07 | ✓ |
+| super_additivity: both vs peer-alone | +0.108 | [0.025, 0.192] | 0.019 | . |
 | orchestrator: wrong-peer vs honest-orch over 2 wrong | +0.097 | [-0.032, 0.210] | 0.21 | . |
 | true_peer: correct vs wrong peer | +0.333 | [0.000, 0.667] | 0.125 | . |
 | majority_pressure: 2-peer vs 1-peer | +0.040 | [-0.120, 0.200] | 1.0 | . |
 
 **Read: 4 of 8 survive Holm** (the strictest correction). The robust findings are the authority-rung
-effect (a clinical-guideline citation is adopted +0.72 over a colleague, the ladder in §9), the
-dissenter break (a single ally cuts adoption by 0.40), the reasoning-collapse (any rationale drops
-adoption by 0.34, see §7), and confidence elasticity (+0.26). Super-additivity (+0.11, p=0.015)
+effect (a clinical-guideline citation is adopted +0.77 over a colleague, the ladder in §9), the
+dissenter break (a single ally cuts adoption by 0.37), the reasoning-collapse (any rationale drops
+adoption by 0.33, see §7), and confidence elasticity (+0.24). Super-additivity (+0.11, p=0.019)
 survives BH but not Holm once the family is restricted to real contrasts. The rest are null or
 underpowered: measured properly, a wrong 2-of-3 majority is no worse than one wrong peer (+0.04,
 p=1.0), and a lone wrong peer poisons the output no more than an honest orchestrator gating two
@@ -194,31 +214,32 @@ peer) fixed. Holdout gemini-2.5-flash-lite on solo-wrong cases.
 
 | arm | conditions (adoption) | finding |
 |---|---|---|
-| seed_confidence (#271) | hedged 0.18 -> confident 0.44 | confidence elasticity +0.26; a confident wrong peer is adopted ~2.4x more than a hedged one |
-| rationale_validity (#270) | bare 0.71 -> plausible-wrong 0.37 -> fallacious 0.39 | **attaching ANY reasoning collapses adoption** (both vs bare p<1e-9); the two reasoned arms are indistinguishable |
-| plausible_distractor (#269) | implausible 0.74 -> plausible 0.82 | discernment-gated but weak (+0.08, p=0.15) |
-| dose_response (#273) | faint 0.21 -> lean 0.46 -> plain 0.77 -> emphatic 0.55 | graded, but plateaus/drops at emphatic certainty |
-| text_cue_types (#274) | baseline 0.74; primacy 0.57; negation 0.93; qualifier 0.75 | negation ("rules out your own pick") is the strongest cue; primacy lowers adoption |
-| attributed_tier (#272) | small-model 0.42 -> unlabeled 0.84 -> SOTA-model 0.72 -> attending 0.81 | swayed by the STATED capability of the source, not the content |
+| seed_confidence (#271) | hedged 0.17 -> confident 0.41 | confidence elasticity +0.24; a confident wrong peer is adopted ~2.4x more than a hedged one |
+| rationale_validity (#270) | bare 0.70 -> plausible-wrong 0.37 -> fallacious 0.38 | **attaching ANY reasoning collapses adoption** (both vs bare p<1e-9); the two reasoned arms are indistinguishable |
+| plausible_distractor (#269) | implausible 0.70 -> plausible 0.82 (n=71) | +0.11, McNemar 10 vs 2, p=0.039 in the committed file, but **not a robust difference**: three replies that box the implausible answer are scored as no answer by the parser (with them read: 8 vs 3, p=0.23; the file before the refresh: 9 vs 3, p=0.15, n=73), and in about half of the cases the plausible or implausible option was read out of a runaway ranking reply. On the 36 cases where every reply states an answer: 5 vs 2, p=0.45 |
+| dose_response (#273) | faint 0.21 -> lean 0.44 -> plain 0.76 -> emphatic 0.53 | graded, but plateaus/drops at emphatic certainty |
+| text_cue_types (#274) | baseline 0.725; primacy 0.57; negation 0.93; qualifier 0.74 | negation ("rules out your own pick") is the strongest cue; primacy lowers adoption |
+| attributed_tier (#272) | small-model 0.42 -> unlabeled 0.825 -> SOTA-model 0.72 -> attending 0.80 | swayed by the STATED capability of the source, not the content |
 
 **Read.** The counterintuitive one is rationale_validity: a bare "the answer is X" from a senior is
-adopted 0.71 of the time, but *any* attached reasoning, valid-looking or openly fallacious, cuts
-that to ~0.38. On these MCQ cases the holdout scrutinizes stated reasoning (and finds it wanting)
+adopted 0.70 of the time, but *any* attached reasoning, valid-looking or openly fallacious, cuts
+that to ~0.37. On these MCQ cases the holdout scrutinizes stated reasoning (and finds it wanting)
 but defers to bare authority. Confidence and stated source-capability both move adoption in the
-expected direction; plausibility of the specific distractor barely does.
+expected direction; plausibility of the specific distractor shows no reliable difference here (p=0.45
+on the 36 cases where every reply states an answer; see the table).
 
 ## 8. Committee size & social pressure (issues #275-#279)
 
 | arm | conditions (adoption) | finding |
 |---|---|---|
-| committee_size_sweep (#276) | alone 0.74 -> +1 honest 0.27 -> +2 0.19 -> +4 0.18 | an honest majority DILUTES a single wrong seed (safety in numbers), monotone |
-| unanimity_break (#277) | unanimous-2-wrong 0.42 -> one correct dissenter 0.03 | a single ally breaks conformity (-0.39), Asch-consistent |
-| deliberation_framing (#278) | none 0.74 -> collaborative 0.56 -> independent 0.37 -> critical 0.28 | dissent-licensing framing is a cheap prompt-time lever |
+| committee_size_sweep (#276) | alone 0.725 -> +1 honest 0.26 -> +2 0.19 -> +4 0.175 | an honest majority DILUTES a single wrong seed (safety in numbers), monotone |
+| unanimity_break (#277) | unanimous-2-wrong 0.39 -> one correct dissenter 0.03 | a single ally breaks conformity (-0.37), Asch-consistent |
+| deliberation_framing (#278) | none 0.725 -> collaborative 0.55 -> independent 0.37 -> critical 0.28 | dissent-licensing framing is a cheap prompt-time lever |
 | majority_pressure (#275) | isolated 0.0 (by construction) -> 1-peer 0.16 -> 2-peer 0.20 | the real 2-vs-1-peer contrast is a **null**: +0.04, McNemar p=1.0 (isolated is 0 by construction, so "vs isolated" is not a valid test) |
-| super_additivity (#279) | flag+peer +0.11 over peer alone (p=0.015, BH but not Holm) | the 2x2 interaction is sub-additive (both minus the sum of singles = -0.59): the two overlap, they don't stack |
+| super_additivity (#279) | flag+peer +0.11 over peer alone (p=0.019, BH but not Holm) | the 2x2 interaction is sub-additive (both minus the sum of singles = -0.59): the two overlap, they don't stack |
 
-**Read.** Numbers protect: a lone wrong seed is diluted from 0.74 to 0.18 as honest peers
-accumulate, and a single dissenter is even more effective than dilution (0.42 -> 0.03).
+**Read.** Numbers protect: a lone wrong seed is diluted from 0.725 to 0.175 as honest peers
+accumulate, and a single dissenter is even more effective than dilution (0.39 -> 0.03).
 Deliberation framing that licenses dissent ("think independently", "be critical") drops adoption to
 0.28 with one instruction line, a deployment-time mitigation. Two arms come out weaker than the
 first pass suggested once measured against a real (non-constant) baseline: a wrong 2-of-3 majority
@@ -229,12 +250,12 @@ survives BH but not Holm, and is sub-additive besides.
 
 | arm | result | finding |
 |---|---|---|
-| authority_ladder (#282) | colleague 0.20 < automated 0.70 < senior 0.72 < guideline 0.92 (control 0 by construction) | adoption rises with the authority rung; the tested contrast is guideline vs colleague (+0.72, survives Holm in §6) |
-| leader_as_auditor (#283) | as peer 0.74 -> as auditor 0.19 -> as attending-of-record 0.49 | re-pointing the holdout to an oversight role is a cheap remediation |
+| authority_ladder (#282) | colleague 0.15 < automated 0.68 < senior 0.70 < guideline 0.92 (control 0 by construction) | adoption rises with the authority rung; the tested contrast is guideline vs colleague (+0.77, survives Holm in §6) |
+| leader_as_auditor (#283) | as peer 0.725 -> as auditor 0.19 -> as attending-of-record 0.47 | re-pointing the holdout to an oversight role is a cheap remediation |
 | orchestrator_failure (#281) | wrong peer poisons 0.29; honest-orch over 2 wrong peers 0.19; wrong-orch 1.0 **by construction** | the "1.0" is structural (the orchestrator's forced answer IS the output), not a finding; the real contrast (wrong-peer vs honest-orch) is +0.10, p=0.21, **n.s.** |
 | hierarchy_dominance (#280) | dominance rate 1.0 (degenerate) | **methodological null**: at temp 0 the committee converges to unanimity, so every agent "dominates" and the metric is a tie-break artifact |
 
-**Read.** Authority is the real result here: adoption climbs from a colleague (0.20) to a
+**Read.** Authority is the real result here: adoption climbs from a colleague (0.15) to a
 clinical-guideline citation (0.92), and guideline-vs-colleague is the non-degenerate contrast that
 survives Holm in §6. The orchestrator arm does NOT show a single-point-of-failure once measured
 honestly: the "wrong orchestrator poisons 1.0" is a tautology (its forced answer is defined to be
@@ -248,9 +269,9 @@ construction artifacts.
 | arm | result | finding |
 |---|---|---|
 | true_peer_control (#284) | wrong peer 0.20 vs correct peer 0.53 | negative control passes: a *correct* peer is adopted more than a wrong one, so the deference is not blind conformity |
-| test_awareness (#285) | neutral 0.74; accuracy-framed 0.58; agreement-framed 0.62 | stated evaluation framing is a modest lever (accuracy framing mildly resists) |
-| temperature_sensitivity (#286) | t0.0 0.74, t0.3 0.72, t0.7 0.75, t1.0 0.71 | flat across temperature: the cascade is not a greedy-decoding artifact, it survives sampling |
-| onset (#287) | onset detected 20/20, turns {1,2,7}; contagion 0.025 | on the near-null bare cascade, onset is a transient single-turn blip, not a sustained tipping point |
+| test_awareness (#285) | neutral 0.725; accuracy-framed 0.57; agreement-framed 0.61 | stated evaluation framing is a modest lever (accuracy framing mildly resists) |
+| temperature_sensitivity (#286) | t0.0 0.725, t0.3 0.72, t0.7 0.74, t1.0 0.70 | flat across temperature: the cascade is not a greedy-decoding artifact, it survives sampling |
+| onset (#287) | onset detected 19/20, turns {2,8}; contagion 0.05; the one censored case is the adopting one, where the seed equals the group's final answer | on the near-null bare cascade, onset is a transient single-turn blip, not a sustained tipping point |
 
 **Read.** The true-peer control is the important one: adoption tracks correctness (0.53 correct vs
 0.20 wrong), so the deference measured throughout is not indiscriminate agreement.

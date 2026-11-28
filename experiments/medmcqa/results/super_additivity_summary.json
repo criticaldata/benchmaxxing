@@ -1,19 +1,19 @@
 {
   "n": 120,
   "model": "gemini-2.5-flash-lite",
-  "new_api_calls_this_run": 7,
+  "new_api_calls_this_run": 0,
   "adoption": {
     "neither": 0.0,
-    "system": 0.7,
-    "peer": 0.7417,
-    "both": 0.85
+    "system": 0.6917,
+    "peer": 0.725,
+    "both": 0.8333
   },
-  "interaction_both_minus_sum_of_singles": -0.5917,
+  "interaction_both_minus_sum_of_singles": -0.5834,
   "both_vs_stronger_single": {
     "stronger_single": "peer",
-    "gain": 19,
-    "lose": 6,
-    "pvalue": 0.014633
+    "gain": 20,
+    "lose": 7,
+    "pvalue": 0.019157
   },
-  "read": "Adoption of the same fixed wrong answer across the 2x2: neither 0.0, system flag alone 0.7, anchored senior peer alone 0.7417, both 0.85. Interaction (both minus the sum of the two single effects) = -0.5917: a large positive value would mean the two authority signals reinforce each other super-additively, near zero means they combine additively (or one already saturates), negative means they partly substitute. Both vs the stronger single arm (peer): McNemar gain=19 lose=6, p=0.014633 - whether stacking a second authority signal buys any significant extra adoption over the strongest one alone."
+  "read": "Adoption of the same fixed wrong answer across the 2x2: neither 0.0, system flag alone 0.6917, anchored senior peer alone 0.725, both 0.8333. Interaction (both minus the sum of the two single effects) = -0.5834: a large positive value would mean the two authority signals reinforce each other super-additively, near zero means they combine additively (or one already saturates), negative means they partly substitute. Both vs the stronger single arm (peer): McNemar gain=20 lose=7, p=0.019157 - whether stacking a second authority signal buys any significant extra adoption over the strongest one alone."
 }
