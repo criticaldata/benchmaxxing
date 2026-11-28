@@ -197,7 +197,7 @@ before any call is made.
 
 ```bash
 export BENCHMAXXING_LOCAL_BASE_URL=http://<host>:<port>/v1      # the served model; no key is read
-M=openai/gpt-oss-120b; S=${M//\//_}; TAG=one_session; NOTE="vLLM 0.28, 1 x H100"
+M=openai/gpt-oss-120b; S=${M//\//_}; TAG=rerun1; NOTE="vLLM 0.28, 1 x H100"
 python experiments/blind_metric/check_warn_2x2.py --manifest <MedQA manifest> --model $M \
     --session $TAG --serving-note "$NOTE"
 python experiments/blind_metric/check_warn_2x2.py --manifest data/medmcqa_dev.csv --model $M \
@@ -210,11 +210,12 @@ python experiments/blind_metric/check_warn_2x2_pooled.py --model $M --session $T
 python experiments/blind_metric/check_warn_2x2_lineages.py --session $TAG      # once the three models are in
 ```
 
-The other two ids are `nemotron-3-super-120b-a12b-fp8-local` and `Qwen/Qwen2.5-VL-72B-Instruct`. To
-commit a session: add its cache with `git add -f` (`*_cache.jsonl` is ignored), and run
-`python -m benchmaxxing.degeneracy` for the constant columns of the new rows (`base_is_decoy` is
-constant by construction). The session files sit two levels below `results/`, so the lineage parity
-test asks nothing new.
+The other two ids are `nemotron-3-super-120b-a12b-fp8-local` and `Qwen/Qwen2.5-VL-72B-Instruct`. The
+tag is any plain name; `one_session` is already the name of the `matched_conditions.py` block in the
+lineage file, so use another. To commit a session: add its cache with `git add -f` (`*_cache.jsonl`
+is ignored), and run `python -m benchmaxxing.degeneracy` for the constant columns of the new rows
+(`base_is_decoy` is constant by construction). The session files sit two levels below `results/`, so
+the lineage parity test asks nothing new.
 
 ## Reproduce
 
