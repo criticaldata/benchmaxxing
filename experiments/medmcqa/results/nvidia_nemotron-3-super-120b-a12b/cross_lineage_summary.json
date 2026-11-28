@@ -635,6 +635,12 @@
   },
   {
    "arm": "referee_deployable",
+   "metric": "extra_requery_calls_needed",
+   "gemini": 40,
+   "model": 40
+  },
+  {
+   "arm": "referee_deployable",
    "metric": "n_cases",
    "gemini": 40,
    "model": 40
