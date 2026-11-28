@@ -258,7 +258,10 @@ written down here before any call is made.
   temperature-0 logprob calls of every case, all in one session, at the committed settings
   (`--n 40 --k 5 --temperature 0.7`). The board draws are drawn again too, because the session that
   made the committed ones is over and a bare draw made today would be a third session. nemotron FP8
-  needs no rerun for this point; its two sides already share a run.
+  needs no rerun for this point; its two sides already share a run. The margins need no rerun at
+  all: the committed logprob caches hold the raw top-20 list of every answer token, which is where
+  the letter probability before renormalising above comes from. A session keeps the same raw lists
+  in its own logprob cache, and its rows carry `letter_mass_*` and `n_letters_top20_*` as well.
 - **On which cases.** The same 40 MedQA cases with the same planted answer. The temperature-0
   committee answers, which fix the planted answer and which cases count as adopted, still come from
   the committed referee cache, opened read-only.
