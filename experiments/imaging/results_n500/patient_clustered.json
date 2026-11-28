@@ -1,6 +1,19 @@
 {
   "n_films": 500,
   "n_patients": 132,
+  "n_errored": {
+    "nih_500": {
+      "imaging_cascade_scale": 0,
+      "matched_baseline_reason": 0,
+      "imaging_blind_metric": 0
+    },
+    "nih_35": {
+      "imaging_cascade": 0
+    },
+    "nih_150": {
+      "imaging_cascade_scale": 0
+    }
+  },
   "model": "gemini-2.5-flash",
   "new_api_calls_this_run": 0,
   "shared_adopt": 0.892,

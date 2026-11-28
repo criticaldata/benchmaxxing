@@ -10,7 +10,11 @@ current reads agree with that run, whose watermark was drawn before the cue font
 
 ``--model`` reads another lineage's rows from results_n500/<slug>/ and writes its summary there; its
 35-film and 150-film comparisons are that lineage's own committed n=35 and 150-film runs under
-results/<slug>/. The default is the committed gemini-2.5-flash run, unchanged.
+results/<slug>/. The default is the committed gemini-2.5-flash run.
+
+A row a runner marked with ``err`` carries no read. Such rows are set aside before any rate or
+interval is computed, in every rows file read here, and counted: ``n_errored`` gives the count per
+cohort and per rows file, so the number of films behind each interval is checkable against the file.
 """
 from __future__ import annotations
 
@@ -34,19 +38,34 @@ def _jsonl(p):
     return [json.loads(line) for line in Path(p).read_text().splitlines() if line.strip()]
 
 
+def _usable(p):
+    """The rows of a per-film file that carry a read, and how many the runner marked ``err``."""
+    rows = _jsonl(p)
+    ok = [r for r in rows if "err" not in r]
+    return ok, len(rows) - len(ok)
+
+
 DEFAULT_MODEL = "gemini-2.5-flash"
 
 
-def main():
-    global OUT
+def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--model", default=DEFAULT_MODEL)
-    model = ap.parse_args().model
-    own = R  # where this lineage's n=35 cascade and 150-film scale rows live
+    model = ap.parse_args(argv).model
+    out_dir, own = OUT, R  # own: where this lineage's n=35 cascade and 150-film scale rows live
     if model != DEFAULT_MODEL:
         slug = model.replace("/", "_")
-        OUT, own = OUT / slug, R / slug
-    rows = [r for r in _jsonl(OUT / "imaging_cascade_scale.jsonl") if "err" not in r]
+        out_dir, own = OUT / slug, R / slug
+    errored = {}  # cohort -> rows file -> rows set aside because the runner marked them err
+
+    def usable(cohort, path):
+        ok, n_err = _usable(path)
+        errored.setdefault(cohort, {})[Path(path).stem] = n_err
+        return ok
+
+    rows = usable("nih_500", out_dir / "imaging_cascade_scale.jsonl")
+    m = usable("nih_500", out_dir / "matched_baseline_reason.jsonl")
+    blind = usable("nih_500", out_dir / "imaging_blind_metric.jsonl")
     pid = {r["case_id"]: r["patient_id"] for r in csv.DictReader(open(R / "nih_manifest_scaled.csv"))}
     small = {r["case_id"] for r in csv.DictReader(open(R / "nih_manifest.csv"))}
     n = len(rows)
@@ -64,18 +83,18 @@ def main():
     sizes = sorted((len(v) for v in by_p.values()), reverse=True)
 
     sub = [r for r in rows if r["case_id"] in small]
-    n35 = {r["case_id"]: r for r in _jsonl(own / "imaging_cascade.jsonl")}
+    n35 = {r["case_id"]: r for r in usable("nih_35", own / "imaging_cascade.jsonl")}
     sub35 = [r for r in sub if r["case_id"] in n35]
     agree35 = {k: sum(r[k] == n35[r["case_id"]][k] for r in sub35) for k in ("clean", "iso", "shared")}
     iso_flips = {"to_adopt": sum(1 for r in sub35 if r["iso_adopt"] and not n35[r["case_id"]]["iso_adopt"]),
                  "to_hold": sum(1 for r in sub35 if n35[r["case_id"]]["iso_adopt"] and not r["iso_adopt"])}
-    july = {r["case_id"]: r for r in _jsonl(own / "imaging_cascade_scale.jsonl")}
+    july = {r["case_id"]: r for r in usable("nih_150", own / "imaging_cascade_scale.jsonl")}
     both = [r for r in rows if r["case_id"] in july]
     agree = {k: sum(r[k] == july[r["case_id"]][k] for r in both) for k in ("clean", "iso", "shared")}
 
     out = {
-        "n_films": n, "n_patients": len(by_p), "model": rows and json.loads(
-            (OUT / "imaging_cascade_scale_summary.json").read_text())["model"],
+        "n_films": n, "n_patients": len(by_p), "n_errored": errored, "model": rows and json.loads(
+            (out_dir / "imaging_cascade_scale_summary.json").read_text())["model"],
         "new_api_calls_this_run": 0,
         "shared_adopt": round(sum(r["shared_adopt"] for r in rows) / n, 4),
         "isolated_adopt": round(sum(r["iso_adopt"] for r in rows) / n, 4),
@@ -101,7 +120,6 @@ def main():
                              "current_contagion_same_films": round(sum(r["shared_adopt"] - r["iso_adopt"] for r in both) / len(both), 4)},
     }
     # hidden-rubric arm and its matched no-note control on the same 500 films
-    m = _jsonl(OUT / "matched_baseline_reason.jsonl")
     mc = [pid[r["case_id"]] for r in m]
     note = np.array([float(r["blind_is_decoy"]) for r in m])
     req = np.array([float(r["reason_is_decoy"]) for r in m])
@@ -120,7 +138,7 @@ def main():
         "mcnemar_note_vs_request": {"gain": g, "lose": lo_, "pvalue": mcnemar(g, lo_).pvalue},
         "patients_with_positive_matched_effect": int(sum(np.mean(v) > 0 for v in by_pm.values())),
         "patients_with_negative_matched_effect": int(sum(np.mean(v) < 0 for v in by_pm.values())),
-        "named_rubric_when_drifted": sum(bool(r.get("named_rubric_when_drifted")) for r in _jsonl(OUT / "imaging_blind_metric.jsonl")),
+        "named_rubric_when_drifted": sum(bool(r.get("named_rubric_when_drifted")) for r in blind),
     }
     if model == DEFAULT_MODEL:
         out["read"] = (
@@ -139,7 +157,7 @@ def main():
             f"{iso_flips['to_hold']} now holding) and its shared reads agree on {agree35['shared']}; on the "
             f"{len(both)} films of this lineage's earlier 150-film run, contagion was {out['july_150_overlap']['july_contagion']} "
             f"then and is {out['july_150_overlap']['current_contagion_same_films']} now.")
-    (OUT / "patient_clustered.json").write_text(json.dumps(out, indent=2) + "\n")
+    (out_dir / "patient_clustered.json").write_text(json.dumps(out, indent=2) + "\n")
     print(json.dumps(out, indent=2))
 
 
