@@ -81,6 +81,37 @@ def test_derived_output_recomputes_from_committed_rows(model, script, rel, extra
     assert after == before, f"{out.relative_to(ROOT)} does not recompute from the committed rows"
 
 
+def test_every_contamination_misaligned_proxy_read_is_built_from_its_own_rows():
+    """The test above leaves `read` out of its comparison. The contamination misaligned-proxy sentence
+    is built from each lineage's own rows, so every file committed under
+    experiments/contamination/results/ must carry exactly the sentence its own numbers produce. A file
+    left with another lineage's figures fails here. No model call: the rows are only read."""
+    import importlib.util
+
+    lane = ROOT / "experiments/contamination"
+    spec = importlib.util.spec_from_file_location("contamination_misaligned_proxy", lane / "misaligned_proxy.py")
+    script = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(script)
+    files = sorted((lane / "results").glob("**/misaligned_proxy.json"))
+    assert files, "no contamination misaligned_proxy.json is committed"
+    stale = []
+    for path in files:
+        committed = json.loads(path.read_text())
+        # the rows the script reads (_solo_records): this lane's own copy when one was written,
+        # otherwise the MedQA lane's copy in the folder of the same lineage
+        rows = path.parent / "solo_records.jsonl"
+        if not rows.exists():
+            rows = ROOT / "experiments/medqa/results" / path.parent.name / "solo_records.jsonl"
+        cases = [r for r in script._load_jsonl(rows) if r["cue"] == "longest_option"]
+        result = script.misaligned_proxy_run(cases, script._model_fn, script._proxy_fn, script._truth_fn, method="pearson")
+        numbers = (round(result.uptake.corr_hidden, 4), round(result.uptake.corr_ground, 4), round(result.uptake_delta, 4))
+        kept = (committed["corr_decision_vs_proxy"], committed["corr_decision_vs_truth"], committed["uptake_delta"])
+        assert (committed["n"], kept) == (result.n, numbers), f"{path.relative_to(ROOT)} does not recompute from its rows"
+        if committed["read"] != script._read(cases, *numbers):
+            stale.append(str(path.relative_to(ROOT)))
+    assert not stale, "read is not the sentence these files' own rows produce: " + ", ".join(stale)
+
+
 @pytest.mark.skipif(not MANIFEST.exists(), reason="MedQA manifest not on this machine")
 @pytest.mark.parametrize("model", REASONING_MODELS)
 def test_reasoning_effort_ladder_replays_from_its_cache(model):

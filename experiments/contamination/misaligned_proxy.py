@@ -62,6 +62,41 @@ def _solo_records(model, results_dir, explicit):
     return _lane.scoped(model, str(medqa), str(medqa / "call_cache.jsonl"))[0] / "solo_records.jsonl"
 
 
+def _strength(r):
+    """Plain label for the size of a correlation coefficient."""
+    a = abs(r)
+    return "negligible" if a < 0.1 else "weak" if a < 0.3 else "moderate" if a < 0.5 else "strong"
+
+
+def _sign(r):
+    return "positive" if r > 0 else "negative" if r < 0 else "zero"
+
+
+def _read(cases, corr_proxy, corr_truth, delta):
+    """The read sentence, built from this lineage's own rows and correlations (never a fixed figure)."""
+    flips = [r for r in cases if r.get("flipped")]
+    wrong = sum(1 for r in flips if not r.get("contaminated_correct"))
+    main_term = "correctness" if abs(corr_truth) > abs(corr_proxy) else "answer-length"
+    text = (
+        f"corr(flip, answer-length) = {corr_proxy} ({_strength(corr_proxy)} {_sign(corr_proxy)}) versus "
+        f"corr(flip, correctness) = {corr_truth} ({_strength(corr_truth)} {_sign(corr_truth)}), "
+        f"uptake_delta = {delta}. {len(flips)} of {len(cases)} cases flip toward the seeded longest "
+        f"option, and {wrong} of those {len(flips)} flipped answers are wrong. uptake_delta is "
+        f"corr(flip, answer-length) minus corr(flip, correctness), so here it comes mostly from the "
+        f"{main_term} term (|{corr_truth}| against |{corr_proxy}|)."
+    )
+    if flips and wrong * 2 > len(flips) and corr_truth < 0:
+        text += (" Most flips land on a wrong answer, so flip anti-correlates with correctness largely "
+                 "by the cue's design.")
+    if abs(corr_proxy) < 0.3:
+        text += (f" The length correlation is {_strength(corr_proxy)}, so this analysis does not show "
+                 "that answer length specifically decides which cases flip.")
+    else:
+        text += (f" The length correlation is {_strength(corr_proxy)}, but nothing here controls for "
+                 "other differences between options, so it does not isolate length as the cause.")
+    return text
+
+
 def main():
     ap = argparse.ArgumentParser(description="Misaligned-proxy arm over the committed solo baseline "
                                              "rows (#176); no model calls.")
@@ -79,29 +114,20 @@ def main():
 
     result = misaligned_proxy_run(cases, _model_fn, _proxy_fn, _truth_fn, method="pearson")
 
+    corr_proxy = round(result.uptake.corr_hidden, 4)
+    corr_truth = round(result.uptake.corr_ground, 4)
+    delta = round(result.uptake_delta, 4)
     out = {
         "n": result.n,
         "proxy": "longest-option indicator (length of the seeded/contaminated answer text)",
         "truth": "contaminated_correct (is the resulting answer actually right)",
         "decision": "flipped (did the model's answer move toward the seeded option at all)",
-        "corr_decision_vs_proxy": round(result.uptake.corr_hidden, 4),
-        "corr_decision_vs_truth": round(result.uptake.corr_ground, 4),
-        "uptake_delta": round(result.uptake_delta, 4),
-        "read": (
-            f"corr(flip, answer-length) = {round(result.uptake.corr_hidden, 4)} (weak positive) "
-            f"versus corr(flip, correctness) = {round(result.uptake.corr_ground, 4)} (moderate "
-            f"negative), uptake_delta = {round(result.uptake_delta, 4)}. The large positive "
-            "uptake_delta is driven mostly by the strong negative truth correlation, not a "
-            "strong positive proxy correlation: flipping toward the seeded option is, by design, "
-            "usually wrong (contaminated_correct is false more often when flipped), so it "
-            "necessarily anti-correlates with correctness. The proxy correlation itself is weak "
-            "(r=0.093) - length only weakly predicts which specific cases flip, even though the "
-            "cue succeeds overall (158 of 200 cases flip). Read honestly: the shortcut mechanism "
-            "is real (the cue reliably causes wrong-answer adoption), but this analysis does not "
-            "show that answer LENGTH specifically is what drives which cases flip; uptake_delta "
-            "being positive here is largely an artifact of truth's strong negative pull, not "
-            "evidence that length is doing the work the cue's name suggests."
-        ),
+        "corr_decision_vs_proxy": corr_proxy,
+        "corr_decision_vs_truth": corr_truth,
+        "uptake_delta": delta,
+        # Built from the computed fields and the rows, including the strength labels and the flip
+        # count; no part of it is a fixed figure from the Gemini run.
+        "read": _read(cases, corr_proxy, corr_truth, delta),
     }
     if model != _lane.DEFAULT_MODEL:
         out["lineage_note"] = _lane.derived_note(model)
