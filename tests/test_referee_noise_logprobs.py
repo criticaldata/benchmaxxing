@@ -222,8 +222,10 @@ def test_drift_between_sessions_and_the_replayed_bare_draws_stay_on_record():
     assert drift == {"openai_gpt-oss-120b": (40, 38), "openai_gpt-oss-20b": (34, 36),
                      "nemotron-3-super-120b-a12b-fp8-local": (37, 40), "Qwen_Qwen2.5-VL-72B-Instruct": (40, 40)}
     live = _summary("openai_gpt-oss-20b")
-    assert live["calls_by_kind"] == {"bare_draws": 0, "board_draws": 400, "logprob_t0": 80}
-    assert live["new_api_calls_this_run"] == 480
+    kept = ("a keyless replay writes zeros into these two fields; when regenerating this summary, put back the "
+            "counters of the run that made the caches, which the README cites as the record that no bare draw was new")
+    assert live["calls_by_kind"] == {"bare_draws": 0, "board_draws": 400, "logprob_t0": 80}, kept
+    assert live["new_api_calls_this_run"] == 480, kept
 
 
 # ---------------------------------------------------------------- replay of the committed runs
