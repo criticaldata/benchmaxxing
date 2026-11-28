@@ -72,6 +72,50 @@ validated finding. The two arms' seed-invalidity rates are NOT the same measurem
 previously reported "16/20 invalid seed" figure (that describes the older v1 first-distractor
 design, not either arm analyzed here) and are not conflated with it.
 
+## Plausible versus implausible planted distractor on self-hosted nemotron FP8 (#212)
+
+`plausible_distractor.py` asks whether the holdout adopts a senior attending's wrong answer more
+when that answer is the holdout's own second choice (plausible) than when it is its own
+least-likely option (implausible). This section is the run on
+`nemotron-3-super-120b-a12b-fp8-local` (the FP8 weights served locally): temperature 0, 120 cases
+asked, 101 scored. Both commands replay from the committed cache with no key and no server.
+
+```bash
+python -m experiments.medqa.plausible_distractor --manifest <medqa_manifest.csv> \
+    --model nemotron-3-super-120b-a12b-fp8-local --n 120
+python -m experiments.medqa.declared_only_audit_plausible_distractor \
+    --manifest <medqa_manifest.csv> --model nemotron-3-super-120b-a12b-fp8-local
+```
+
+| rows | second choice adopted | least likely adopted | discordant pairs | exact McNemar P |
+|---|---|---|---|---|
+| all 101 scored rows | 0.1782 (18) | 0.0594 (6) | 15 vs 3 | 0.007538 |
+| the 80 rows with no empty reply | 0.175 (14) | 0.0375 (3) | 12 vs 1 | 0.003418 |
+| the 21 rows with an empty reply all scored against the result | 0.1386 (14) | 0.2376 (24) | 12 vs 22 | 0.121449 |
+
+**Read, with the caveat that goes beside the number.** Adoption is 0.1782 for the second-choice
+answer against 0.0594 for the least-likely one (15 vs 3 discordant pairs, exact McNemar
+P = 0.007538), but 21 of the 101 scored rows carry an empty reply: the gap holds on the 80 rows
+with none (0.175 against 0.0375, 12 vs 1, P = 0.003418) and reverses, without reaching
+significance, when those 21 rows are all scored against it (0.1386 against 0.2376, 12 vs 22,
+P = 0.121). Wherever 0.1782 against 0.0594 is quoted, the rest of that sentence goes with it.
+
+Where the empty replies are. 50 of the arm's 562 cached replies came back with no answer text: 21
+second-choice ranking prompts, 19 least-likely ranking prompts, 6 bare questions, 3 second-choice
+boards and 1 least-likely board. An empty ranking reply makes the runner fall back to the first
+eligible wrong option, so that distractor is not the model's own ranking, and an empty board reply
+is scored as no adoption. 27 of the 50 sit in the 21 scored rows above. The other 23 sit in 14 of
+the 19 unscored cases, where the fallback left both seeds on the same option and no board was
+asked; those cases are outside every row of the table, and counting them as 14 more rows against
+the result gives 12 vs 36 (P = 0.000717).
+
+The first row is `results/nemotron-3-super-120b-a12b-fp8-local/plausible_distractor_summary.json`.
+The second is `plausible_distractor_declared_audit.json` in the same folder: its 21 undeclared rows
+are exactly the rows with an empty reply. The third adds those 21 rows to the second as "least
+likely adopted, second choice not adopted". `tests/test_nemotron_fp8_plausible_empty_replies.py`
+recomputes every figure here from the committed rows and cache, and fails if a paragraph of this
+file quotes the first row without the other two.
+
 ## Majority-pressure (Asch) variant (#117)
 
 Does a wrong 2-of-3 MAJORITY move the holdout more than a single wrong peer? The classic Asch
@@ -114,6 +158,9 @@ per case (isolated + k=1 + k=2 shared); verified keyless afterward (0 new calls)
 - `results/solo_records.jsonl`, per-twin solo records (the raw result data).
 - `results/config.json`, `results/versions.json`, run config and provenance.
 - `onset_distribution.py`, `results/onset_distribution.json` - #174's cascade-onset distribution.
+- `plausible_distractor.py`, `declared_only_audit_plausible_distractor.py`,
+  `results/nemotron-3-super-120b-a12b-fp8-local/plausible_distractor*` - #212 on self-hosted
+  nemotron FP8, with its empty-reply caveat.
 - `majority_pressure.py`, `results/majority_pressure.jsonl` / `_summary.json` - #117's Asch variant.
 
 ## Note
