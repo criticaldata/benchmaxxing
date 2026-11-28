@@ -15,7 +15,7 @@ sys.path.insert(0, str(ROOT / "experiments" / "referee"))
 import referee_noise_logprobs as rn  # noqa: E402
 
 MANIFEST = Path(os.environ.get("BENCHMAXXING_MEDQA_MANIFEST", str(Path.home() / "Documents/DATASET/medqa/manifest_test.csv")))
-LINEAGES = {"openai/gpt-oss-120b": "openai_gpt-oss-120b",
+LINEAGES = {"openai/gpt-oss-120b": "openai_gpt-oss-120b", "openai/gpt-oss-20b": "openai_gpt-oss-20b",
             "nemotron-3-super-120b-a12b-fp8-local": "nemotron-3-super-120b-a12b-fp8-local",
             "Qwen/Qwen2.5-VL-72B-Instruct": "Qwen_Qwen2.5-VL-72B-Instruct"}
 VOLATILE = {"new_api_calls_this_run", "calls_by_kind"}
