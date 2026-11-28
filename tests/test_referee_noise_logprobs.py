@@ -1,11 +1,12 @@
 """referee_noise_logprobs.py: the committed rows replay from their caches with no server, the helpers
-behave on hand-built inputs."""
+behave on hand-built inputs, and a session run draws everything again without touching what is committed."""
 import json
 import math
 import os
 import subprocess
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
@@ -244,3 +245,125 @@ def test_committed_rows_replay_with_no_server(model):
     finally:
         for p, b in files.items():
             p.write_bytes(b)
+
+
+# ---------------------------------------------------------------- a session run: every draw made again in one session
+S_MODEL, S_SLUG = "openai/gpt-oss-120b", "openai_gpt-oss-120b"
+COMMITTED_CACHES = [RESULTS / f"{S_SLUG}_{name}.jsonl" for name in (
+    "call_cache", "referee_threshold_requery_cache", "referee_noise_draw_cache", "referee_logprob_cache")]
+
+
+def _session_args(out, *extra):
+    return ["--manifest", str(MANIFEST), "--model", S_MODEL, "--out", str(out), "--board-cache", str(COMMITTED_CACHES[0]),
+            "--n", "3", "--k", "2", *extra]
+
+
+def _serve(monkeypatch, alive=True):
+    """Stand in for the served model: sampled calls and logprob calls are counted and answered with A."""
+    import _lane
+    asked = {"draws": 0, "logprobs": 0}
+
+    def complete(model, key, prompt, decoding=None, client=None, image=None):
+        assert alive, "the model was called on a run that should replay"
+        asked["draws"] += 1
+        return "A"
+
+    def create(**kwargs):
+        assert alive, "the model was called on a run that should replay"
+        asked["logprobs"] += 1
+        alt = [SimpleNamespace(token="A", logprob=math.log(0.9)), SimpleNamespace(token="B", logprob=math.log(0.1))]
+        token = SimpleNamespace(token="A", logprob=math.log(0.9), top_logprobs=alt)
+        return SimpleNamespace(choices=[SimpleNamespace(logprobs=SimpleNamespace(content=[token]),
+                                                        message=SimpleNamespace(content="A"), finish_reason="stop")])
+    monkeypatch.setattr(_lane, "LOCAL_BASE_URL", "http://served.invalid/v1")
+    monkeypatch.setattr(_lane, "paced_complete", complete)
+    monkeypatch.setattr(rn, "_logprob_client",
+                        lambda: SimpleNamespace(chat=SimpleNamespace(completions=SimpleNamespace(create=create))))
+    return asked
+
+
+def _run_session(monkeypatch, out, tag, *extra):
+    monkeypatch.setattr(rn, "HOLDOUT", "gemini-2.5-flash-lite")  # main() rebinds it to the model on every run
+    monkeypatch.setattr(sys, "argv", ["referee_noise_logprobs.py", *_session_args(out, "--session", tag, *extra)])
+    rn.main()
+    d = Path(out) / tag / S_SLUG
+    return (list(map(json.loads, (d / "referee_noise_logprobs.jsonl").read_text().splitlines())),
+            json.loads((d / "referee_noise_logprobs_summary.json").read_text()))
+
+
+@pytest.mark.skipif(not MANIFEST.exists(), reason="the MedQA manifest is not on this machine")
+def test_session_run_with_no_server_exits_instead_of_replaying_the_earlier_bare_draws(tmp_path):
+    """The committed referee_threshold cache holds these bare draws; a session run must not read them."""
+    env = {"HOME": os.environ.get("HOME", ""), "PATH": os.environ.get("PATH", ""), "PYTHONPATH": str(ROOT)}
+    r = subprocess.run([sys.executable, "experiments/referee/referee_noise_logprobs.py", *_session_args(tmp_path, "--session", "s1")],
+                       cwd=ROOT, env=env, capture_output=True, text=True, timeout=900)
+    assert r.returncode != 0 and "Cache miss on" in r.stderr and "draw_cache.jsonl" in r.stderr
+    assert not (tmp_path / "s1" / S_SLUG / "referee_noise_logprobs.jsonl").exists()
+
+
+@pytest.mark.skipif(not MANIFEST.exists(), reason="the MedQA manifest is not on this machine")
+def test_session_run_draws_both_sides_again_and_writes_only_under_the_session_name(tmp_path, monkeypatch, capsys):
+    committed = {p: p.read_bytes() for p in [*COMMITTED_CACHES, RESULTS / S_SLUG / "referee_noise_logprobs.jsonl",
+                                             RESULTS / S_SLUG / "referee_noise_logprobs_summary.json"]}
+    # the committed run of the model beside the session's output directory, as it is in the repository
+    (tmp_path / S_SLUG).mkdir()
+    for name in ("referee_noise_logprobs.jsonl", "referee_noise_logprobs_summary.json"):
+        (tmp_path / S_SLUG / name).write_bytes(committed[RESULTS / S_SLUG / name])
+    asked = _serve(monkeypatch)
+    rows, summary = _run_session(monkeypatch, tmp_path, "s1", "--serving-note", "test double")
+    # 3 cases, 2 draws a side: 6 bare draws, 6 board draws of two holdout calls each, and 2 logprob calls a case
+    assert asked == {"draws": 6 + 12, "logprobs": 6}
+    assert summary["calls_by_kind"] == {"bare_draws": 6, "board_draws": 12, "logprob_t0": 6}
+    assert summary["new_api_calls_this_run"] == 24 and len(rows) == 3
+    before = {r["case_id"]: r for r in map(json.loads, committed[RESULTS / S_SLUG / "referee_noise_logprobs.jsonl"].decode().splitlines())}
+    # the committee's temperature-0 answers and the planted answer are the committed ones
+    assert all((r["wrong"], r["bare"], r["board"], r["adopted_t0"]) == tuple(before[r["case_id"]][k] for k in ("wrong", "bare", "board", "adopted_t0"))
+               for r in rows)
+    session = summary["session"]
+    assert session["tag"] == "s1" and session["serving_note"] == "test double"
+    assert {k: session[k]["replies"] for k in ("bare_draws", "board_draws", "logprob_t0")} == {
+        "bare_draws": 6, "board_draws": 12, "logprob_t0": 6}
+    assert all(session[k]["served_locally"] is True and session[k]["first_call"] <= session[k]["last_call"]
+               for k in ("bare_draws", "board_draws", "logprob_t0"))
+    for name, n in (("bare_draw_cache", 6), ("board_draw_cache", 12), ("logprob_cache", 6)):
+        lines = list(map(json.loads, (tmp_path / "s1" / f"{S_SLUG}_{name}.jsonl").read_text().splitlines()))
+        assert len(lines) == n and {x["session"] for x in lines} == {"s1"} and all(isinstance(x["ts"], float) for x in lines)
+    # the committed run sits beside the session's own comparison; at another K the per-case counts are not compared
+    assert summary["committed"]["selection_free"] == json.loads(committed[RESULTS / S_SLUG / "referee_noise_logprobs_summary.json"])["selection_free"]
+    assert summary["committed"]["cases_in_both"] == 3 and summary["committed"]["k"] == 5
+    assert summary["committed"]["cases_bare_draws_planted_differs"] is None
+    assert "Session s1" in summary["read"]
+    # nothing committed was written to
+    assert all(p.read_bytes() == b for p, b in committed.items())
+    # the session replays from its own caches at zero calls, and another tag starts from nothing
+    _serve(monkeypatch, alive=False)
+    again, summary2 = _run_session(monkeypatch, tmp_path, "s1", "--serving-note", "test double")
+    assert again == rows and summary2["new_api_calls_this_run"] == 0
+    assert {k: v for k, v in summary2.items() if k not in VOLATILE} == {k: v for k, v in summary.items() if k not in VOLATILE}
+    with pytest.raises(AssertionError, match="should replay"):
+        _run_session(monkeypatch, tmp_path, "s2")
+
+
+def test_session_draw_key_carries_the_tag_so_an_earlier_session_cannot_answer(tmp_path, monkeypatch):
+    import hashlib
+    asked = _serve(monkeypatch)
+    path = tmp_path / "bare_draw_cache.jsonl"
+    cache = rn._Cache(path, S_MODEL, session="s1")
+    assert cache.complete(S_MODEL, "the prompt", 0.7, 3) == "A" and asked["draws"] == 1
+    line = json.loads(path.read_text())
+    assert line["k"] == hashlib.sha256(f"{S_MODEL}\x00s1\x000.7\x003\x00the prompt".encode()).hexdigest()
+    # referee_threshold's key for the same draw, which is what the committed bare draws are stored under
+    assert line["k"] != hashlib.sha256(f"{S_MODEL}\x000.7\x003\x00the prompt".encode()).hexdigest()
+    assert rn._Cache(path, S_MODEL, session="s1").complete(S_MODEL, "the prompt", 0.7, 3) == "A" and asked["draws"] == 1
+    assert rn._Cache(path, S_MODEL, session="s2").complete(S_MODEL, "the prompt", 0.7, 3) == "A" and asked["draws"] == 2
+    assert rn._Cache(path, S_MODEL).complete(S_MODEL, "the prompt", 0.7, 3) == "A" and asked["draws"] == 3
+
+
+@pytest.mark.parametrize("extra", (["--serving-note", "x"], ["--session", "a/b"],
+                                   ["--session", "s", "--draw-cache", "elsewhere.jsonl"]))
+def test_session_arguments_are_checked(tmp_path, monkeypatch, extra):
+    monkeypatch.setattr(rn, "HOLDOUT", "gemini-2.5-flash-lite")
+    monkeypatch.setattr(sys, "argv", ["referee_noise_logprobs.py", "--manifest", str(MANIFEST), "--model", S_MODEL,
+                                      "--out", str(tmp_path), *extra])
+    with pytest.raises(SystemExit):
+        rn.main()

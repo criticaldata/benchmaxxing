@@ -247,6 +247,47 @@ temperature-0 reply is empty (`medqa-9` on the board prompt, cut at the length l
 tokens belong to the reasoning, so it has no answer token and is given no margin: 39 of its 40 cases
 carry one.
 
+### Rerun with both sides drawn in one session (prepared, not run yet)
+
+`referee_noise_logprobs.py --session TAG` draws everything again in one serving session. It is
+written down here before any call is made.
+
+- **What is run.** For gpt-oss-120b, gpt-oss-20b and Qwen2.5-VL-72B, the three models whose bare
+  draws are replayed from an earlier session: the five board draws, the five bare draws and the two
+  temperature-0 logprob calls of every case, all in one session, at the committed settings
+  (`--n 40 --k 5 --temperature 0.7`). The board draws are drawn again too, because the session that
+  made the committed ones is over and a bare draw made today would be a third session. nemotron FP8
+  needs no rerun for this point; its two sides already share a run.
+- **On which cases.** The same 40 MedQA cases with the same planted answer. The temperature-0
+  committee answers, which fix the planted answer and which cases count as adopted, still come from
+  the committed referee cache, opened read-only.
+- **Calls.** 680 per model: 400 board-draw calls (two holdout calls a draw), 200 bare draws and 80
+  logprob calls. 2,040 for the three models.
+- **Where it is written.** Rows and summary under `experiments/referee/results/TAG/<model>/`, the
+  session's replies in `experiments/referee/results/TAG/<model>_bare_draw_cache.jsonl`,
+  `<model>_board_draw_cache.jsonl` and `<model>_logprob_cache.jsonl`. Every key carries the tag, so
+  neither `referee_threshold`'s draws nor any other session's can answer a call, and no committed
+  row, summary or cache is written to. Each cached reply keeps its call time, and the summary
+  records the first and last call of each kind, whether the replies came from the locally served
+  model, and the `--serving-note` line.
+- **What is compared.** The session summary carries the committed run's all-case comparison beside
+  its own (`committed.selection_free` next to `selection_free`) and counts the cases whose planted
+  bare draws and planted board draws differ from the committed run's. The questions it can answer:
+  does the planted answer still have more draws on the board than bare when both sides share a
+  session, and how far the bare rate of the replayed draws was from a bare rate drawn today. With
+  five draws a side the per-case test keeps the limits stated above.
+
+```bash
+export BENCHMAXXING_LOCAL_BASE_URL=http://<host>:<port>/v1      # the served model; no key is read
+python experiments/referee/referee_noise_logprobs.py --manifest <MedQA manifest> \
+    --model openai/gpt-oss-120b --session one_session --serving-note "vLLM 0.28, 1 x H100"
+```
+
+The other two ids are `openai/gpt-oss-20b` and `Qwen/Qwen2.5-VL-72B-Instruct`. To commit a session:
+add its three caches with `git add -f` (`*_cache.jsonl` is ignored), and run
+`python -m benchmaxxing.degeneracy` for the constant columns of the new rows. The session files sit
+two levels below `results/`, so the lineage parity test asks nothing new.
+
 ## Reproduce
 
 ```bash

@@ -49,6 +49,14 @@ Committee answers at temperature 0 come from the committed referee call cache; t
 live and are also compared with those cached answers, which measures how far the serving stack
 drifts at temperature 0.
 
+``--session TAG`` draws everything again in one serving session. Without it the bare draws replay
+from `referee_threshold`'s cache whenever a lineage ran that arm, which can be a session weeks older
+than the board draws. With it the board draws, the bare draws and the two temperature-0 logprob calls
+are keyed with the tag and kept in the session's own caches, so no other session can answer them,
+and rows, summary and caches are written under ``<out>/TAG/``; the temperature-0 committee answers
+still come from the committed cache, read-only, so the cases and the planted answer are the committed
+ones. The session summary carries the committed run's all-cases comparison beside its own.
+
 Every call is cached (draws and margin calls in their own files), so a fully cached run reproduces
 the summary with zero calls. A cache miss needs ``BENCHMAXXING_LOCAL_BASE_URL``.
 """
@@ -58,10 +66,13 @@ import argparse
 import hashlib
 import json
 import math
+import re
 import sys
 import threading
+import time
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -94,48 +105,86 @@ def _mcq(case, prefix=""):
             "Answer with only the single letter of the best option."), opts
 
 
+def _utc(ts):
+    return datetime.fromtimestamp(ts, tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def _window(rows):
+    """Of the cached replies a run read: how many, the first and last call time (UTC), and whether
+    each was answered by the locally served model. Replies cached before call times were kept have
+    none."""
+    ts = [r["ts"] for r in rows if r.get("ts") is not None]
+    return {"replies": len(rows), "first_call": _utc(min(ts)) if ts else None,
+            "last_call": _utc(max(ts)) if ts else None,
+            "served_locally": all(r.get("local") for r in rows) if ts else None}
+
+
 class _Cache:
     """Same two key schemes as `referee_threshold._Cache`: sha256(model NUL prompt) for the committed
-    temperature-0 committee answers, sha256(model NUL temperature NUL draw NUL prompt) for draws."""
+    temperature-0 committee answers, sha256(model NUL temperature NUL draw NUL prompt) for draws.
 
-    def __init__(self, path, model, draw_aware=True, live=True):
+    With ``session`` the tag goes into the draw key as well, so a draw cached by another session
+    (`referee_threshold`'s among them) can never answer a call, and each line records when the call
+    was made."""
+
+    def __init__(self, path, model, draw_aware=True, live=True, session=None):
         self.path, self.model, self.draw_aware, self.live = Path(path), model, draw_aware, live
-        self.store, self.calls = {}, 0
+        self.session, self.store, self.rows, self.calls, self.used = session, {}, {}, 0, set()
         if self.path.exists():
             for line in self.path.read_text().splitlines():
                 if line.strip():
                     r = json.loads(line)
                     self.store[r["k"]] = r["resp"]
+                    self.rows[r["k"]] = r
 
     def complete(self, model, prompt, temperature=0.0, draw=0):
-        if self.draw_aware:
+        if self.draw_aware and self.session:
+            k = hashlib.sha256(f"{model}\x00{self.session}\x00{temperature}\x00{draw}\x00{prompt}".encode()).hexdigest()
+        elif self.draw_aware:
             k = hashlib.sha256(f"{model}\x00{temperature}\x00{draw}\x00{prompt}".encode()).hexdigest()
         else:
             k = hashlib.sha256(f"{model}\x00{prompt}".encode()).hexdigest()
         with _lock:
+            self.used.add(k)
             if k in self.store:
                 return self.store[k]
         if not self.live or not _lane.is_local(model):
             raise SystemExit(f"Cache miss on {self.path.name} for {model}: this arm only calls a locally "
                              "served model (set BENCHMAXXING_LOCAL_BASE_URL).")
+        t0 = time.time()
         resp = _lane.paced_complete(model, _lane.key_for(model), prompt, decoding={"temperature": temperature})
+        row = {"k": k, "model": model, "temperature": temperature, "resp": resp}
+        if self.session:
+            row.update(session=self.session, ts=round(t0, 3), local=_lane.is_local(model))
         with _lock:
             self.store[k] = resp
+            self.rows[k] = row
             self.calls += 1
             with open(self.path, "a") as f:
-                f.write(json.dumps({"k": k, "model": model, "temperature": temperature, "resp": resp}) + "\n")
+                f.write(json.dumps(row) + "\n")
         return resp
+
+    def window(self):
+        return _window([self.rows[k] for k in self.used if k in self.rows])
+
+
+def _logprob_client():
+    """The client the temperature-0 logprob calls go through; a test replaces it."""
+    from openai import OpenAI
+    return OpenAI(base_url=_lane.LOCAL_BASE_URL, api_key="not-needed", timeout=600.0, max_retries=3)
 
 
 class _LogprobCache:
     """Temperature-0 calls with logprobs; the cached record keeps the text and the top-k list of every
     generated token that is a bare option letter, which is all the margin needs. The top-k list is
-    kept raw (token and log-probability), so the mass before renormalising is recomputable from it."""
+    kept raw (token and log-probability), so the mass before renormalising is recomputable from it.
+    With ``session`` the tag goes into the key and each record keeps its call time."""
 
     TOP = 20
 
-    def __init__(self, path, model):
-        self.path, self.model, self.store, self.calls = Path(path), model, {}, 0
+    def __init__(self, path, model, session=None):
+        self.path, self.model, self.session = Path(path), model, session
+        self.store, self.calls, self.used = {}, 0, set()
         if self.path.exists():
             for line in self.path.read_text().splitlines():
                 if line.strip():
@@ -144,15 +193,17 @@ class _LogprobCache:
         self._client = None
 
     def complete(self, prompt, letters):
-        k = hashlib.sha256(f"{self.model}\x00logprobs{self.TOP}\x00{prompt}".encode()).hexdigest()
+        tag = f"{self.session}\x00" if self.session else ""
+        k = hashlib.sha256(f"{self.model}\x00{tag}logprobs{self.TOP}\x00{prompt}".encode()).hexdigest()
         with _lock:
+            self.used.add(k)
             if k in self.store:
                 return self.store[k]
         if not _lane.is_local(self.model):
             raise SystemExit("logprob margins need a locally served model (set BENCHMAXXING_LOCAL_BASE_URL).")
         if self._client is None:
-            from openai import OpenAI
-            self._client = OpenAI(base_url=_lane.LOCAL_BASE_URL, api_key="not-needed", timeout=600.0, max_retries=3)
+            self._client = _logprob_client()
+        t0 = time.time()
         resp = self._client.chat.completions.create(
             model=self.model, messages=[{"role": "user", "content": prompt}], temperature=0,
             max_tokens=_lane.MAX_TOKENS, logprobs=True, top_logprobs=self.TOP)
@@ -164,12 +215,17 @@ class _LogprobCache:
                              "top": [[a.token, a.logprob] for a in (t.top_logprobs or [])]})
         rec = {"k": k, "model": self.model, "text": ch.message.content or "", "letter_tokens": toks,
                "finish_reason": ch.finish_reason}
+        if self.session:
+            rec.update(session=self.session, ts=round(t0, 3), local=True)
         with _lock:
             self.store[k] = rec
             self.calls += 1
             with open(self.path, "a") as f:
                 f.write(json.dumps(rec) + "\n")
         return rec
+
+    def window(self):
+        return _window([self.store[k] for k in self.used if k in self.store])
 
 
 def _answer_token(rec):
@@ -334,6 +390,13 @@ def main():
     ap.add_argument("--requery-cache", default=None, help="referee_threshold's draw cache for bare re-queries")
     ap.add_argument("--draw-cache", default=None, help="sampled board draws")
     ap.add_argument("--logprob-cache", default=None, help="temperature-0 calls with logprobs")
+    ap.add_argument("--session", default=None,
+                    help="draw the board draws, the bare draws and the logprob calls again in this serving "
+                         "session: the tag goes into every key, and rows, summary and the session's caches "
+                         "are written under <out>/TAG/")
+    ap.add_argument("--serving-note", default=None,
+                    help="with --session: one line on how the model is served (server version, cards, "
+                         "tensor parallel), written into the summary")
     args = ap.parse_args()
 
     model = args.model
@@ -342,13 +405,26 @@ def main():
     assert _lane.rebind_models(globals(), model) > 0
 
     out, board_path = _lane.scoped(model, args.out, "experiments/referee/results/call_cache.jsonl", args.board_cache)
-    _, requery_path = _lane.scoped(model, args.out, "experiments/referee/results/referee_threshold_requery_cache.jsonl", args.requery_cache)
-    _, draw_path = _lane.scoped(model, args.out, "experiments/referee/results/referee_noise_draw_cache.jsonl", args.draw_cache)
-    _, lp_path = _lane.scoped(model, args.out, "experiments/referee/results/referee_logprob_cache.jsonl", args.logprob_cache)
+    committed_out = out
+    if args.session:
+        if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]*", args.session):
+            raise SystemExit("--session is a plain tag (letters, digits, '.', '_' or '-'), not a path")
+        if args.requery_cache or args.draw_cache or args.logprob_cache:
+            raise SystemExit("--session keeps its own caches under <out>/TAG/; drop the cache arguments")
+        root = Path(args.out) / args.session
+        out, requery_path = _lane.scoped(model, str(root), str(root / "bare_draw_cache.jsonl"))
+        _, draw_path = _lane.scoped(model, str(root), str(root / "board_draw_cache.jsonl"))
+        _, lp_path = _lane.scoped(model, str(root), str(root / "logprob_cache.jsonl"))
+    else:
+        if args.serving_note:
+            raise SystemExit("--serving-note only applies with --session")
+        _, requery_path = _lane.scoped(model, args.out, "experiments/referee/results/referee_threshold_requery_cache.jsonl", args.requery_cache)
+        _, draw_path = _lane.scoped(model, args.out, "experiments/referee/results/referee_noise_draw_cache.jsonl", args.draw_cache)
+        _, lp_path = _lane.scoped(model, args.out, "experiments/referee/results/referee_logprob_cache.jsonl", args.logprob_cache)
     board_cache = _Cache(board_path, model, draw_aware=False, live=False)
-    requery_cache = _Cache(requery_path, model)
-    draw_cache = _Cache(draw_path, model)
-    lp_cache = _LogprobCache(lp_path, model)
+    requery_cache = _Cache(requery_path, model, session=args.session)
+    draw_cache = _Cache(draw_path, model, session=args.session)
+    lp_cache = _LogprobCache(lp_path, model, session=args.session)
     cases = load_cases(args.manifest)[:args.n]
     committee = build_committee([
         ModelSpec(name="peer1", lineage="gemini", tier="flash", is_open_weights=False),
@@ -484,6 +560,39 @@ def main():
         f"the margin is 1.0 by construction. Live temperature-0 answers match the "
         f"committed cache on {summary['t0_live_vs_cached_agreement']['bare']} bare and "
         f"{summary['t0_live_vs_cached_agreement']['board']} board prompts of {len(rows)}.")
+    if args.session:
+        summary["session"] = {
+            "tag": args.session,
+            "bare_draws": requery_cache.window(), "board_draws": draw_cache.window(), "logprob_t0": lp_cache.window(),
+            "committee_t0": "replayed from the committed referee call cache, so the cases and the planted answer "
+                            "are those of the committed rows",
+            "serving_note": args.serving_note,
+        }
+        # the committed run of the same model, whose bare draws may come from another session, beside this one
+        ref = committed_out / "referee_noise_logprobs_summary.json"
+        ref_rows = committed_out / "referee_noise_logprobs.jsonl"
+        if ref.exists() and ref_rows.exists():
+            ref_summary = json.loads(ref.read_text())
+            before = {r["case_id"]: r for r in map(json.loads, ref_rows.read_text().splitlines()) if r}
+            shared = [r for r in rows if r["case_id"] in before]
+            same_draws = ref_summary["k"] == K and ref_summary["temperature"] == T
+
+            def differs(col):
+                """Cases whose planted count is not the committed one; only comparable at the same K and temperature."""
+                return sum(1 for r in shared if r[col] != before[r["case_id"]][col]) if same_draws else None
+            summary["committed"] = {
+                "k": ref_summary["k"], "temperature": ref_summary["temperature"],
+                "selection_free": ref_summary["selection_free"],
+                "cases_in_both": len(shared),
+                "cases_bare_draws_planted_differs": differs("bare_draws_planted"),
+                "cases_board_draws_planted_differs": differs("board_draws_planted"),
+            }
+            c = summary["committed"]["selection_free"]["all_cases"]
+            summary["read"] += (
+                f" Session {args.session}: board draws, bare draws and logprob calls made in one serving session. "
+                f"The committed run of this model gave {c['board_planted_draws']} board and "
+                f"{c['bare_planted_draws']} bare planted draws of {c['draws_per_side']}, more on the board on "
+                f"{c['gain']} cases and fewer on {c['lose']} (exact sign test p={c['sign_test_p']}).")
     (out / "referee_noise_logprobs_summary.json").write_text(json.dumps(summary, indent=2) + "\n")
     (out / "referee_noise_logprobs.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows))
     print(json.dumps(summary, indent=2))
