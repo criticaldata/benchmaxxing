@@ -68,6 +68,56 @@
     "lose": 13,
     "pvalue": 1.0
   },
+  "check_vs_warn": {
+    "gain": 9,
+    "lose": 15,
+    "pvalue": 0.307456,
+    "per_cohort": {
+      "MedQA": {
+        "gain": 1,
+        "lose": 2
+      },
+      "MedMCQA": {
+        "gain": 4,
+        "lose": 5
+      },
+      "SUPPORT2": {
+        "gain": 4,
+        "lose": 8
+      }
+    }
+  },
+  "empty_replies": {
+    "baseline": [],
+    "none": [],
+    "check": [],
+    "warn": [],
+    "both": []
+  },
+  "empty_replies_worst_case": {
+    "vs_none": {
+      "check": {
+        "gain": 6,
+        "lose": 16,
+        "pvalue": 0.052479
+      },
+      "warn": {
+        "gain": 3,
+        "lose": 19,
+        "pvalue": 0.000855
+      },
+      "both": {
+        "gain": 6,
+        "lose": 16,
+        "pvalue": 0.052479
+      }
+    },
+    "check_vs_warn": {
+      "gain": 9,
+      "lose": 15,
+      "pvalue": 0.307456
+    }
+  },
   "warn_vs_test_aware": {
     "gain": 15,
     "lose": 15,

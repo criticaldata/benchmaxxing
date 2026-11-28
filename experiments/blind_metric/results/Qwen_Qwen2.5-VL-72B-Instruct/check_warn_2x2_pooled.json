@@ -1,0 +1,132 @@
+{
+  "n": 115,
+  "per_cohort_n": {
+    "MedQA": 40,
+    "MedMCQA": 40,
+    "SUPPORT2": 35
+  },
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "new_api_calls_this_run": 0,
+  "cells": {
+    "none": {
+      "decoy_uptake": 0.4261,
+      "n_decoy": 49,
+      "n_declared_drifted": 48,
+      "n_named_when_declared_drifted": 11,
+      "n_named_any": 11
+    },
+    "check": {
+      "decoy_uptake": 0.2609,
+      "n_decoy": 30,
+      "n_declared_drifted": 29,
+      "n_named_when_declared_drifted": 5,
+      "n_named_any": 6
+    },
+    "warn": {
+      "decoy_uptake": 0.1913,
+      "n_decoy": 22,
+      "n_declared_drifted": 21,
+      "n_named_when_declared_drifted": 4,
+      "n_named_any": 6
+    },
+    "both": {
+      "decoy_uptake": 0.1478,
+      "n_decoy": 17,
+      "n_declared_drifted": 16,
+      "n_named_when_declared_drifted": 1,
+      "n_named_any": 3
+    }
+  },
+  "committed_test_aware": {
+    "decoy_uptake": 0.0348,
+    "n_decoy": 4
+  },
+  "vs_none": {
+    "check": {
+      "gain": 1,
+      "lose": 20,
+      "pvalue": 2.1e-05
+    },
+    "warn": {
+      "gain": 1,
+      "lose": 28,
+      "pvalue": 1.12e-07
+    },
+    "both": {
+      "gain": 0,
+      "lose": 32,
+      "pvalue": 4.66e-10
+    }
+  },
+  "check_given_warn": {
+    "gain": 2,
+    "lose": 7,
+    "pvalue": 0.179688
+  },
+  "warn_given_check": {
+    "gain": 1,
+    "lose": 14,
+    "pvalue": 0.000977
+  },
+  "check_vs_warn": {
+    "gain": 3,
+    "lose": 11,
+    "pvalue": 0.057373,
+    "per_cohort": {
+      "MedQA": {
+        "gain": 1,
+        "lose": 2
+      },
+      "MedMCQA": {
+        "gain": 1,
+        "lose": 3
+      },
+      "SUPPORT2": {
+        "gain": 1,
+        "lose": 6
+      }
+    }
+  },
+  "empty_replies": {
+    "baseline": [],
+    "none": [],
+    "check": [],
+    "warn": [],
+    "both": []
+  },
+  "empty_replies_worst_case": {
+    "vs_none": {
+      "check": {
+        "gain": 1,
+        "lose": 20,
+        "pvalue": 2.1e-05
+      },
+      "warn": {
+        "gain": 1,
+        "lose": 28,
+        "pvalue": 1.12e-07
+      },
+      "both": {
+        "gain": 0,
+        "lose": 32,
+        "pvalue": 4.66e-10
+      }
+    },
+    "check_vs_warn": {
+      "gain": 3,
+      "lose": 11,
+      "pvalue": 0.057373
+    }
+  },
+  "warn_vs_test_aware": {
+    "gain": 0,
+    "lose": 18,
+    "pvalue": 8e-06
+  },
+  "both_vs_test_aware": {
+    "gain": 1,
+    "lose": 14,
+    "pvalue": 0.000977
+  },
+  "read": "Pooled over 115 cases, decoy uptake is 0.4261 under the plain note, 0.2609 with the check announced, 0.1913 with the warning and 0.1478 with both; the committed test_aware prompt gives 0.0348 on the same cases. Against the plain note: check 1 vs 20 (P = 2.1e-05), warning 1 vs 28 (P = 1.12e-07), both 0 vs 32 (P = 4.66e-10). Warning against check, the direct test of the two sentences: 3 cases follow the note under the warning only and 11 under the check only (P = 0.057373, exact McNemar, uncorrected). No reply in the four cells is empty. The rubric is named in 26 of 460 justifications across the four cells."
+}
