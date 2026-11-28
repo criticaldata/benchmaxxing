@@ -36,15 +36,15 @@
     },
     {
       "n": 120,
-      "rate_a": 0.7667,
+      "rate_a": 0.775,
       "rate_b": 0.1917,
-      "delta": -0.575,
+      "delta": -0.5833,
       "delta_ci95": [
-        -0.6583,
-        -0.4833
+        -0.6667,
+        -0.4917
       ],
       "mcnemar_gain": 0,
-      "mcnemar_lose": 69,
+      "mcnemar_lose": 70,
       "pvalue": 0.0,
       "label": "rationale_validity: any-reasoning vs bare",
       "survives_bh": true,
@@ -52,16 +52,16 @@
     },
     {
       "n": 120,
-      "rate_a": 0.6333,
-      "rate_b": 0.6333,
-      "delta": 0.0,
+      "rate_a": 0.6417,
+      "rate_b": 0.6583,
+      "delta": 0.0167,
       "delta_ci95": [
-        -0.075,
-        0.0833
+        -0.0583,
+        0.1
       ],
-      "mcnemar_gain": 11,
-      "mcnemar_lose": 11,
-      "pvalue": 1.0,
+      "mcnemar_gain": 12,
+      "mcnemar_lose": 10,
+      "pvalue": 0.8318119,
       "label": "super_additivity: both vs peer-alone",
       "survives_bh": false,
       "survives_holm": false

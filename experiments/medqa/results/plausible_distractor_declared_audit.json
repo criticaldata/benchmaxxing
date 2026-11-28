@@ -23,12 +23,12 @@
     "n": 103,
     "adoption": {
       "plausible": 0.7379,
-      "implausible": 0.5825
+      "implausible": 0.5922
     },
     "plausible_vs_implausible": {
       "gain": 21,
-      "lose": 5,
-      "pvalue": 0.002494
+      "lose": 6,
+      "pvalue": 0.005925
     }
   },
   "declared_only": {
@@ -52,15 +52,15 @@
     },
     {
       "metric": "adoption.implausible",
-      "current_value": 0.5825,
+      "current_value": 0.5922,
       "declared_only_value": 0.6452,
-      "abs_diff": 0.06269999999999998
+      "abs_diff": 0.05300000000000005
     },
     {
       "metric": "plausible_vs_implausible.pvalue",
-      "current_value": 0.002494,
+      "current_value": 0.005925,
       "declared_only_value": 0.039062,
-      "abs_diff": 0.036567999999999996
+      "abs_diff": 0.033137
     },
     {
       "metric": "plausible_vs_implausible.gain",
@@ -70,11 +70,11 @@
     },
     {
       "metric": "plausible_vs_implausible.lose",
-      "current_value": 5,
+      "current_value": 6,
       "declared_only_value": 1,
-      "abs_diff": 4
+      "abs_diff": 5
     }
   ],
   "conclusion_changes": true,
-  "interpretation": "Declared-only accounting keeps the same significance call at \u03b1=0.05 (p 0.002494 \u2192 0.039062) but widens/shifts the adoption gap by >5pp (0.1554 \u2192 0.2258); 72/103 cases excluded because at least one of the five draws lacked an explicit declaration."
+  "interpretation": "Declared-only accounting keeps the same significance call at \u03b1=0.05 (p 0.005925 \u2192 0.039062) but widens/shifts the adoption gap by >5pp (0.1457 \u2192 0.2258); 72/103 cases excluded because at least one of the five draws lacked an explicit declaration."
 }
