@@ -127,3 +127,48 @@ def test_with_nothing_failed_the_bands_are_the_committed_band():
         for k in ("n", "cases_with_any_disagreement", "mean_pairwise_disagreement", "flip_vs_baseline_band", "decoy_band"):
             assert got[k] == want[k], (name, k)
     assert bands["reads_left_out"] == {"rule": 0, "judge": 0, "either": 0}
+
+
+def test_reverse_question_turns_the_first_reversible_marker_around():
+    """The control: a paraphrase turned around by rule asks the opposite question."""
+    want = {
+        "Which statement among the following is not true concerning X?":
+            ("Which statement among the following is true concerning X?", "not"),
+        "Regarding X, all of the following statements are true, with one exception?":
+            ("Regarding X, all of the following statements are true, with no exception?", "exception"),
+        "All of the following are true regarding X except?": ("All of the following are true regarding X?", "except"),
+        "Which of the following is NOT a feature of X?": ("Which of the following is a feature of X?", "not"),
+        "Which of these is false about X?": ("Which of these is true about X?", "false"),
+        "Which is the Least likely diagnosis?": ("Which is the Most likely diagnosis?", "least"),
+        # only the question part is edited: the negated fact before it stays
+        "A man has no fever. Which finding isn't expected?": ("A man has no fever. Which finding is expected?", "n't"),
+    }
+    for text, (reversed_text, marker) in want.items():
+        got = sc.reverse_question(text)
+        assert (got["text"], got["marker"]) == (reversed_text, marker), text
+    # a marker with no entry in the table leaves the paraphrase out of the control
+    for text in ("All of these hold, save for one. Which?", "Apart from one, every statement below is true?",
+                 "Each of these, except one, is true. Which is it?", "Drug of choice for X is"):
+        assert sc.reverse_question(text) is None, text
+
+
+def test_the_rule_refuses_a_reversal_that_removes_the_marker_and_not_one_that_keeps_one():
+    """What the rule can and cannot see, on known reversals; the judge is there for the second kind."""
+    removed = sc.reverse_question("Which statement is not true concerning Class-II inlay margins?")["text"]
+    assert sc.rule_check(EXCEPT, removed)["rule_reason"] == "dropped"
+    still_marked = sc.reverse_question("All of these are true of Class-II inlay margins, with one exception?")["text"]
+    assert "with no exception" in still_marked
+    assert sc.rule_check(EXCEPT, still_marked)["rule_reason"] == "kept"
+
+
+def test_control_summary_counts_refusals():
+    checks = [{"rule_reason": "kept"}] * 4 + [{"rule_reason": "none"}] * 6
+    control = [{"marker": "not", "rule_reason": "dropped", "judge_verdict": "no"},
+               {"marker": "exception", "rule_reason": "kept", "judge_verdict": "no"},
+               {"marker": "not", "rule_reason": "dropped", "judge_verdict": "yes"}]
+    got = sc.control_summary(checks, control)
+    assert (got["paraphrases_with_a_marker_kept"], got["reversed"], got["not_reversible_by_the_table"]) == (4, 3, 1)
+    assert (got["judge_said_no"], got["judge_said_yes"], got["judge_gave_no_verdict"]) == (2, 1, 0)
+    assert got["rule_refused"] == 2 and got["refused_by_judge_or_rule"] == 3
+    assert got["reversed_by_marker"] == {"not": 2, "exception": 1}
+

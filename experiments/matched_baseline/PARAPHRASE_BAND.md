@@ -126,6 +126,28 @@ question part, it can fail a faithful rewording that carries the negation in a w
 list, and it can pass a paraphrase that keeps one marker and drops another. The marker list was
 fixed before the judge was called and before any band was recomputed.
 
+### Judge control (added after the 555 judge calls, written and pushed before its own calls)
+
+The 555 judge calls came back with one no. A judge that says yes to nearly everything shows little
+unless it can also say no, and the judge here is the model that wrote the paraphrases. So the judge
+is also shown rewordings that are known to ask something else.
+
+- **Items.** Every committed paraphrase whose question part kept a marker of negation or exception
+  (the rule check's "kept" rows), turned around by rule (`reverse_question`): "not" and "n't" are
+  removed, "false", "incorrect", "least", "unlikely" and the other words of `OPPOSITE` are swapped
+  for their opposites, "with one exception" becomes "with no exception", and an "except" that ends
+  the question is dropped. The first marker of the question part that the table can reverse
+  decides; a paraphrase with none is left out and counted. Nothing outside the question part is
+  touched.
+- **Call.** The same judge, the same prompt, the original against the reversed paraphrase: 38
+  calls (5 MedQA, 33 MedMCQA, none for SUPPORT2, whose questions carry no marker).
+- **Expected.** A judge that works says no to all of them. Reported per lane: how many it refused,
+  how many the keyless rule check also refuses, and each reversed question with the verdict
+  (`paraphrase_semantic_judge_control.jsonl`, `judge_control` in the summary).
+- **Limits.** The reversals are built by rule, so they are cruder than a paraphrase that quietly
+  loses a negation, and they cover only questions that carry a marker. The control says the judge
+  can refuse a reversed question; it does not measure every way a paraphrase could drift.
+
 ### Run and replay
 
 ```bash
@@ -138,9 +160,11 @@ python experiments/matched_baseline/paraphrase_semantic_check.py \
     --manifest experiments/support2/results/support2_manifest.csv --results experiments/support2/results
 ```
 
-The judge calls are cached in each lane's `paraphrase_semantic_judge_cache.jsonl`. With the cache
-committed the same commands replay with no key.
+The judge calls are cached in each lane's `paraphrase_semantic_judge_cache.jsonl`, the control's in
+`paraphrase_semantic_judge_control_cache.jsonl`. With the caches committed the same commands replay
+with no key.
 
 ### Results
 
-Not run at this commit. No judge call has been made and no band has been recomputed.
+Not committed yet. The 555 judge calls have been made; the control has not been run. The results
+are committed together once the control is in.

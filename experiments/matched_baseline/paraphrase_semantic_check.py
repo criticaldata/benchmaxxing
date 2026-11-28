@@ -23,11 +23,19 @@ paraphrase out removes that read from the case. Bands are computed by
 with all paraphrases (the committed band), with the failed ones left out, and on the cases whose
 paraphrases all pass, each over reads 0 to K and over reads 1 to K.
 
+Control, added after the first results and before its own calls. The judge said yes to nearly every
+paraphrase, which shows little unless it can also say no. So every paraphrase whose question part
+kept a marker is turned around by rule (``reverse_question``: "not true" to "true", "least" to
+"most", "with one exception" to "with no exception", a closing "except" dropped) and shown to the
+judge against the original. A judge that works says no to all of them; ``judge_control`` in the
+summary counts it, and counts how many the keyless rule also refuses.
+
 Writes, in the lane's results folder: ``paraphrase_semantic_check.jsonl`` (one row per paraphrase),
-``paraphrase_semantic_failures.jsonl`` (the failing ones, with their text) and
+``paraphrase_semantic_failures.jsonl`` (the failing ones, with their text),
+``paraphrase_semantic_judge_control.jsonl`` (the reversed questions and what the judge said) and
 ``paraphrase_band_semantic_summary.json``. Judge calls are cached in
-``paraphrase_semantic_judge_cache.jsonl``; a fully cached run needs no key. ``--dry-run`` counts the
-calls a run would make.
+``paraphrase_semantic_judge_cache.jsonl`` and ``paraphrase_semantic_judge_control_cache.jsonl``; a
+fully cached run needs no key. ``--dry-run`` counts the calls a run would make.
 """
 from __future__ import annotations
 
@@ -66,9 +74,26 @@ CHECK_FILE = "paraphrase_semantic_check.jsonl"
 FAILURES_FILE = "paraphrase_semantic_failures.jsonl"
 SUMMARY_FILE = "paraphrase_band_semantic_summary.json"
 JUDGE_CACHE = "paraphrase_semantic_judge_cache.jsonl"
+CONTROL_FILE = "paraphrase_semantic_judge_control.jsonl"
+CONTROL_CACHE = "paraphrase_semantic_judge_control_cache.jsonl"
 
 
 # ----------------------------------------------------------------------------- rule check
+
+def _question_spans(text):
+    """(start, end) of the sentences that make the question part of ``text``."""
+    text = text or ""
+    cuts = [0] + [m.end() for m in _SENTENCE_BREAK.finditer(text)] + [len(text)]
+    spans = [(a, b) for a, b in zip(cuts, cuts[1:]) if text[a:b].strip()]
+    asked = []
+    for j, (a, b) in enumerate(spans):
+        sentence = text[a:b].strip()
+        if sentence.rstrip("\"')] ").endswith("?"):
+            if len(sentence.split()) < 5 and j > 0 and spans[j - 1] not in asked:
+                asked.append(spans[j - 1])
+            asked.append((a, b))
+    return asked or spans[-1:]
+
 
 def question_part(text):
     """The sentences that end with a question mark; the last sentence when there is none.
@@ -76,16 +101,7 @@ def question_part(text):
     A question of fewer than five words ("Which one?") leans on the sentence before it, so that
     sentence is read too.
     """
-    sentences = [s.strip() for s in _SENTENCE_BREAK.split((text or "").strip()) if s and s.strip()]
-    asked = []
-    for j, s in enumerate(sentences):
-        if s.rstrip("\"')] ").endswith("?"):
-            if len(s.split()) < 5 and j > 0 and (not asked or asked[-1] is not sentences[j - 1]):
-                asked.append(sentences[j - 1])
-            asked.append(s)
-    if asked:
-        return " ".join(asked)
-    return sentences[-1] if sentences else ""
+    return " ".join((text or "")[a:b].strip() for a, b in _question_spans(text))
 
 
 def markers(text):
@@ -102,6 +118,67 @@ def rule_check(original, paraphrase):
         reason = "dropped" if mo else "added"
     return {"rule_check": bool(mo) == bool(mp), "rule_reason": reason,
             "markers_original": mo, "markers_paraphrase": mp}
+
+
+# ----------------------------------------------------------------------------- reversed questions (control)
+# Added after the first results of the check and before its own calls. A reversal turns the question
+# of a paraphrase around by rule, so the judge and the rule are also read on rewordings that are
+# known to ask something else. Only a marker with an entry here is reversed; the first one found in
+# the question part decides.
+OPPOSITE = {
+    "not": "", "never": "always", "without": "with", "cannot": "can",
+    "least": "most", "lowest": "highest", "fewest": "most",
+    "false": "true", "untrue": "true", "incorrect": "correct", "incorrectly": "correctly", "wrong": "right",
+    "wrongly": "rightly", "inaccurate": "accurate", "unlikely": "likely", "inappropriate": "appropriate",
+    "uncommon": "common", "contraindicated": "indicated",
+}
+_ONE_EXCEPTION = re.compile(r"\bwith (?:one|a single|only one|just one|a sole) exception\b", re.IGNORECASE)
+_TRAILING_EXCEPT = re.compile(r",?\s*\bexcept(?:\s+(?:for\s+)?one)?(?=[\s?:.\u2013-]*$)", re.IGNORECASE)
+_NT = re.compile(r"\b(is|are|was|were|does|do|did|has|have|had|should|would|could)n['\u2019]t\b", re.IGNORECASE)
+
+
+def _like(original, replacement):
+    """``replacement`` in the letter case of ``original``."""
+    if original.isupper() and len(original) > 1:
+        return replacement.upper()
+    return replacement.capitalize() if original[:1].isupper() else replacement
+
+
+def reverse_question(text):
+    """``text`` with the first reversible marker of its question part turned around, or None.
+
+    Returns {"text", "marker", "replacement"}. "not" and "n't" are removed, a word of OPPOSITE is
+    swapped for its opposite, "with one exception" becomes "with no exception", and an "except"
+    that ends the question is dropped.
+    """
+    for a, b in _question_spans(text):
+        sentence = text[a:b]
+        for m in _MARKER.finditer(sentence):
+            marker = " ".join(m.group(0).lower().split())
+            edit = None
+            if marker in ("exception", "exceptions"):
+                phrase = next((x for x in _ONE_EXCEPTION.finditer(sentence) if x.start() <= m.start() < x.end()), None)
+                if phrase:
+                    edit = (phrase.start(), phrase.end(), "with no exception")
+            elif marker == "except":
+                tail = _TRAILING_EXCEPT.search(sentence)
+                if tail and tail.start() <= m.start() < tail.end():
+                    edit = (tail.start(), tail.end(), "")
+            elif marker in ("n't", "n\u2019t"):
+                nt = next((x for x in _NT.finditer(sentence) if x.start() <= m.start() < x.end()), None)
+                if nt:
+                    edit = (nt.start(), nt.end(), nt.group(1))
+            elif marker == "not":
+                end = m.end() + (1 if sentence[m.end():m.end() + 1] == " " else 0)
+                edit = (m.start(), end, "")
+            elif marker in OPPOSITE:
+                edit = (m.start(), m.end(), _like(m.group(0), OPPOSITE[marker]))
+            if edit:
+                start, end, replacement = edit
+                reversed_text = text[:a] + sentence[:start] + replacement + sentence[end:] + text[b:]
+                return {"text": re.sub(r"[ \t]{2,}", " ", reversed_text), "marker": marker,
+                        "replacement": replacement}
+    return None
 
 
 # ----------------------------------------------------------------------------- judge
@@ -168,7 +245,27 @@ def band_folders(results):
     return [results] + sorted(p.parent for p in results.glob("*/paraphrase_band.jsonl"))
 
 
-def summarise(check_rows, folders, calls, calls_in_cache):
+def control_summary(check_rows, control_rows):
+    """How the judge and the rule read the reversed questions: both should refuse every one."""
+    kept = sum(1 for r in check_rows if r["rule_reason"] == "kept")
+    said = Counter(r["judge_verdict"] for r in control_rows)
+    rule_refused = sum(1 for r in control_rows if r["rule_reason"] in ("dropped", "added"))
+    return {
+        "paraphrases_with_a_marker_kept": kept, "reversed": len(control_rows),
+        "not_reversible_by_the_table": kept - len(control_rows),
+        "judge_said_no": said["no"], "judge_said_yes": said["yes"], "judge_gave_no_verdict": said[None],
+        "rule_refused": rule_refused,
+        "refused_by_judge_or_rule": sum(1 for r in control_rows
+                                        if r["judge_verdict"] != "yes" or r["rule_reason"] in ("dropped", "added")),
+        "reversed_by_marker": dict(Counter(r["marker"] for r in control_rows)),
+        "file": CONTROL_FILE,
+        "note": ("Control added after the first results. Each paraphrase whose question part kept a marker was "
+                 "turned around by rule (reverse_question) and shown to the judge against the original; a correct "
+                 "judge says no to all of them. rule_refused counts those the keyless rule check also fails."),
+    }
+
+
+def summarise(check_rows, folders, calls, calls_in_cache, control_rows=None):
     """The summary from the per-paraphrase rows and each lineage's committed band rows."""
     checks = {(r["case_id"], r["i"]): {"rule": r["rule_check"], "judge": r["judge_verdict"] == "yes",
                                        "either": r["rule_check"] and r["judge_verdict"] == "yes"}
@@ -180,7 +277,7 @@ def summarise(check_rows, folders, calls, calls_in_cache):
         k = s["paraphrases_per_case"]
         records = [r for r in _rows(folder / "paraphrase_band.jsonl") if r["n_paraphrases"] == k]
         bands[s["model"]] = {"folder": folder.name if folder != folders[0] else ".", **lineage_bands(records, checks, k)}
-    return {
+    summary = {
         "judge": JUDGE, "paraphrases": n,
         "failed": {
             "rule": sum(1 for c in checks.values() if not c["rule"]),
@@ -200,6 +297,9 @@ def summarise(check_rows, folders, calls, calls_in_cache):
                  "cases_with_every_paraphrase_passing keeps whole cases instead. all_paraphrases is the committed "
                  "band, recomputed from the same rows."),
     }
+    if control_rows is not None:
+        summary["judge_control"] = control_summary(check_rows, control_rows)
+    return summary
 
 
 # ----------------------------------------------------------------------------- run
@@ -219,16 +319,29 @@ def main(argv=None):
     if absent:
         raise SystemExit(f"paraphrased cases missing from the manifest: {absent[:5]}")
     cache = _lane.Cache(results / JUDGE_CACHE, _lane.key_for(JUDGE), JUDGE)
+    control_cache = _lane.Cache(results / CONTROL_CACHE, _lane.key_for(JUDGE), JUDGE)
     prompts = [judge_prompt(cases[p["case_id"]].question, p["paraphrase"], list(cases[p["case_id"]].options))
                for p in paras]
+    # the control: every paraphrase whose question part kept a marker, turned around by rule
+    reversals = []
+    for p in paras:
+        original = cases[p["case_id"]].question
+        if rule_check(original, p["paraphrase"])["rule_reason"] == "kept":
+            turned = reverse_question(p["paraphrase"])
+            if turned:
+                reversals.append((p, turned, judge_prompt(original, turned["text"], list(cases[p["case_id"]].options))))
     if args.dry_run:
-        need = sum(1 for q in prompts if hashlib.sha256(f"{JUDGE}\x00{q}".encode()).hexdigest() not in cache.store)
+        def missing(store, qs):
+            return sum(1 for q in qs if hashlib.sha256(f"{JUDGE}\x00{q}".encode()).hexdigest() not in store)
+        need, need_control = missing(cache.store, prompts), missing(control_cache.store, [q for _, _, q in reversals])
         print(json.dumps({"lane_results": str(results), "paraphrases": len(paras), "judge": JUDGE,
-                          "cached": len(paras) - need, "calls_needed": need}, indent=2))
+                          "cached": len(paras) - need, "calls_needed": need,
+                          "control_reversals": len(reversals), "control_calls_needed": need_control}, indent=2))
         return 0
 
     with ThreadPoolExecutor(max_workers=args.workers) as ex:
         replies = list(ex.map(cache.complete, prompts))
+        control_replies = list(ex.map(control_cache.complete, [q for _, _, q in reversals]))
 
     check_rows, failures = [], []
     for p, reply in zip(paras, replies):
@@ -240,11 +353,24 @@ def main(argv=None):
         failed = [name for name, ok in (("rule", row["rule_check"]), ("judge", verdict == "yes")) if not ok]
         if failed:
             failures.append({**row, "failed": " and ".join(failed), "paraphrase": p["paraphrase"]})
-    in_cache = len(_rows(results / JUDGE_CACHE)) if (results / JUDGE_CACHE).exists() else 0
-    summary = summarise(check_rows, band_folders(results), cache.calls, in_cache)
+    control_rows = []
+    for (p, turned, _), reply in zip(reversals, control_replies):
+        verdict, reason = parse_judge(reply)
+        control_rows.append({"case_id": p["case_id"], "i": p["i"], "marker": turned["marker"],
+                             "replacement": turned["replacement"], "reversed": turned["text"],
+                             "rule_reason": rule_check(cases[p["case_id"]].question, turned["text"])["rule_reason"],
+                             "judge": JUDGE, "judge_verdict": verdict, "judge_reason": reason})
+
+    def lines(name):
+        return len(_rows(results / name)) if (results / name).exists() else 0
+
+    summary = summarise(check_rows, band_folders(results), cache.calls, lines(JUDGE_CACHE), control_rows)
+    summary["new_api_calls_this_run"]["judge_control"] = control_cache.calls
+    summary["calls_in_cache"]["judge_control"] = lines(CONTROL_CACHE)
 
     (results / CHECK_FILE).write_text("".join(json.dumps(r) + "\n" for r in check_rows))
     (results / FAILURES_FILE).write_text("".join(json.dumps(r) + "\n" for r in failures))
+    (results / CONTROL_FILE).write_text("".join(json.dumps(r) + "\n" for r in control_rows))
     (results / SUMMARY_FILE).write_text(json.dumps(summary, indent=2))
     print(json.dumps({k: v for k, v in summary.items() if k != "bands"}, indent=2))
     return 0
