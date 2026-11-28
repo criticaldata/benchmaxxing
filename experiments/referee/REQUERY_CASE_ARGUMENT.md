@@ -124,8 +124,8 @@ Adoption of the planted answer X, of 120 cases. Legacy parse first, declared sco
 | **No source** | 103, rate 0.8583 (102) | 50, rate 0.4167 (49) |
 
 Paired comparisons, legacy parse: cases that adopt under only one of the two boards, the exact
-two-sided McNemar P, and its Holm adjustment over the four tests. The last two columns are the
-same under declared scoring.
+two-sided McNemar P, and its Holm adjustment over the four tests. The last two columns give the
+same comparisons under declared scoring.
 
 | Comparison | First board against second board | Only the first | Only the second | P | P, Holm | Declared: only first, only second | Declared: P, Holm |
 |---|---|---:|---:|---:|---:|---|---:|
