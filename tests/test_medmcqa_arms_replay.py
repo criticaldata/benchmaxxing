@@ -5,6 +5,7 @@ The run writes into a temporary directory, so the committed files are never touc
 PINNED do not replay without a key: see docs/REPLAY_AUDIT.md for each one and why.
 """
 import hashlib
+import importlib.util
 import json
 import os
 import subprocess
@@ -95,11 +96,18 @@ def test_medmcqa_arm_replays_keyless_at_its_committed_size(model, arm, n, tmp_pa
     _replay(model, arm, n, MANIFEST, tmp_path)
 
 
+def _without_onset(rows):
+    return sorted(({k: v for k, v in c.items() if k != "onset"} for c in rows), key=lambda c: c["case_id"])
+
+
 @pytest.mark.skipif(MANIFEST is None, reason="the 500-row MedMCQA manifest (sha256 5b2ce971...) is not on this machine")
-def test_gemini_cascade_and_onset_replay_keyless(tmp_path):
+def test_gemini_cascade_replays_keyless(tmp_path):
     """The Gemini cascade (reproduce.py --stage cascade, the defaults --solo-n 100 --cascade-n 20 --seed 0)
-    replays from the committed call cache to the committed cascade_results.json and transcripts, and the
-    onset analysis over those transcripts to the committed onset_distribution.json."""
+    replays from the committed call cache to the committed cascade_results.json and transcripts.
+
+    The onset column is compared only where the ruptures package is installed. On one board (87311a9e) two
+    splits of the adoption series tie exactly; cascade_onset returns 8 through ruptures and 1 through its
+    numpy fallback, and the committed file was written with ruptures (docs/REPLAY_AUDIT.md)."""
     env = {"HOME": os.environ.get("HOME", ""), "PATH": os.environ.get("PATH", ""), "PYTHONPATH": str(ROOT)}
     r = subprocess.run([sys.executable, "experiments/medqa/reproduce.py", "--manifest", str(MANIFEST), "--stage", "cascade",
                         "--cache", str(R / "call_cache.jsonl"), "--out", str(tmp_path)],
@@ -107,14 +115,28 @@ def test_gemini_cascade_and_onset_replay_keyless(tmp_path):
     assert r.returncode == 0, (r.stdout + r.stderr)[-600:]
     after, committed = (json.loads((d / "cascade_results.json").read_text()) for d in (tmp_path, R))
     # per-case rows are written in completion order; the committed file keeps its original order
-    key = lambda c: c["case_id"]  # noqa: E731
-    assert sorted(after.pop("per_case"), key=key) == sorted(committed.pop("per_case"), key=key)
+    after_rows, committed_rows = after.pop("per_case"), committed.pop("per_case")
+    assert _without_onset(after_rows) == _without_onset(committed_rows)
+    if importlib.util.find_spec("ruptures") is not None:
+        key = lambda c: c["case_id"]  # noqa: E731
+        assert sorted(after_rows, key=key) == sorted(committed_rows, key=key)
     assert after == committed and committed["mean_contagion"] == 0.05
     names = sorted(p.name for p in (R / "transcripts").glob("*_repro_*.jsonl"))
     assert len(names) == 40 and sorted(p.name for p in (tmp_path / "transcripts").iterdir()) == names
     for name in names:
         assert (tmp_path / "transcripts" / name).read_bytes() == (R / "transcripts" / name).read_bytes(), name
+
+
+def test_gemini_onset_distribution_replays_from_the_committed_transcripts(tmp_path):
+    """The onset analysis over the committed cascade and its shared transcripts gives the committed
+    onset_distribution.json. A re-analysis of committed files: it needs neither the manifest nor a key, only
+    ruptures, which decides the tied split of board 87311a9e the way the committed file records it."""
+    pytest.importorskip("ruptures")
+    (tmp_path / "transcripts").mkdir()
     (tmp_path / "cascade_results.json").write_text((R / "cascade_results.json").read_text())
+    for p in (R / "transcripts").glob("*_repro_shared.jsonl"):
+        (tmp_path / "transcripts" / p.name).write_bytes(p.read_bytes())
+    env = {"HOME": os.environ.get("HOME", ""), "PATH": os.environ.get("PATH", ""), "PYTHONPATH": str(ROOT)}
     r = subprocess.run([sys.executable, "experiments/medqa/onset_distribution.py", "--results-dir", str(tmp_path),
                         "--label", "MedMCQA"], cwd=ROOT, env=env, capture_output=True, text=True, timeout=300)
     assert r.returncode == 0, (r.stdout + r.stderr)[-600:]

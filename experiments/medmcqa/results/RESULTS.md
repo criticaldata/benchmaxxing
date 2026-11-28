@@ -10,6 +10,14 @@
 > The rates in sections 2 and 6 to 10 below are taken from those committed files; every changed number
 > is listed in `docs/REPLAY_AUDIT.md`. The Holm and BH survivors of `stats_reconciliation_summary.json`
 > are unchanged. Sections 1, 3, 4, 5 and 11 read files that were not rewritten.
+>
+> **Why they differed (28 Nov 2026).** The earlier files were scored by a parser each runner carried
+> inline; the refreshed ones by the shared parser every lane now uses. The shared parser is not right
+> everywhere: in 41 case outcomes over the 14 committee arms it scores a reply that ends in a boxed
+> answer as no answer, because the reply also says "as an AI". That lowers the adoption rates below by up
+> to 0.04 and produces the p = 0.039 of `plausible_distractor` (section 7). The cases, the commits and
+> the values with those answers read are in `docs/REPLAY_AUDIT.md`, "Why the fifteen Gemini MedMCQA
+> arms moved".
 
 Standard-battery replication on MedMCQA, mirroring the MedQA/NIH template so results are
 apples-to-apples across datasets. Dataset: MedMCQA validation split (the labeled split; the test
@@ -207,7 +215,7 @@ peer) fixed. Holdout gemini-2.5-flash-lite on solo-wrong cases.
 |---|---|---|
 | seed_confidence (#271) | hedged 0.17 -> confident 0.41 | confidence elasticity +0.24; a confident wrong peer is adopted ~2.4x more than a hedged one |
 | rationale_validity (#270) | bare 0.70 -> plausible-wrong 0.37 -> fallacious 0.38 | **attaching ANY reasoning collapses adoption** (both vs bare p<1e-9); the two reasoned arms are indistinguishable |
-| plausible_distractor (#269) | implausible 0.70 -> plausible 0.82 (n=71) | plausible distractors are adopted more (+0.11, McNemar 10 vs 2, p=0.039), a smaller lever than confidence or reasoning |
+| plausible_distractor (#269) | implausible 0.70 -> plausible 0.82 (n=71) | +0.11, McNemar 10 vs 2, p=0.039 in the committed file, but **not a robust difference**: three replies that box the implausible answer are scored as no answer by the parser (with them read: 8 vs 3, p=0.23; the file before the refresh: 9 vs 3, p=0.15, n=73), and in about half of the cases the plausible or implausible option was read out of a runaway ranking reply. On the 36 cases where every reply states an answer: 5 vs 2, p=0.45 |
 | dose_response (#273) | faint 0.21 -> lean 0.44 -> plain 0.76 -> emphatic 0.53 | graded, but plateaus/drops at emphatic certainty |
 | text_cue_types (#274) | baseline 0.725; primacy 0.57; negation 0.93; qualifier 0.74 | negation ("rules out your own pick") is the strongest cue; primacy lowers adoption |
 | attributed_tier (#272) | small-model 0.42 -> unlabeled 0.825 -> SOTA-model 0.72 -> attending 0.80 | swayed by the STATED capability of the source, not the content |
@@ -216,7 +224,8 @@ peer) fixed. Holdout gemini-2.5-flash-lite on solo-wrong cases.
 adopted 0.70 of the time, but *any* attached reasoning, valid-looking or openly fallacious, cuts
 that to ~0.37. On these MCQ cases the holdout scrutinizes stated reasoning (and finds it wanting)
 but defers to bare authority. Confidence and stated source-capability both move adoption in the
-expected direction; plausibility of the specific distractor moves it less (+0.11 on 71 cases, p=0.039).
+expected direction; plausibility of the specific distractor shows no reliable difference here (p=0.45
+on the 36 cases where every reply states an answer; see the table).
 
 ## 8. Committee size & social pressure (issues #275-#279)
 

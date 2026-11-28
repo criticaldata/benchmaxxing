@@ -525,7 +525,28 @@
    "unlabeled_vs_junior_model.gain: 1 -> 2",
    "unlabeled_vs_junior_model.lose: 52 -> 51"
   ],
-  "cache": "experiments/medmcqa/results/attributed_tier_cache.jsonl"
+  "cache": "experiments/medmcqa/results/attributed_tier_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 3
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "0190a0f3",
+     "62fa6f78"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "4f95b3a2"
+    ]
+   }
+  }
  },
  {
   "lane": "medmcqa",
@@ -545,7 +566,31 @@
    "adjacent_rung_mcnemar.senior_attending_vs_automated_system.lose: 5 -> 6",
    "adoption_by_rung.automated_system: 0.7 -> 0.6833"
   ],
-  "cache": "experiments/medmcqa/results/authority_ladder_cache.jsonl"
+  "cache": "experiments/medmcqa/results/authority_ladder_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 4,
+    "d914dcd": 1
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "17360c6c",
+     "7111d7b2"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "7751b7ed",
+     "ae860b65",
+     "ce49098b"
+    ]
+   }
+  }
  },
  {
   "lane": "medmcqa",
@@ -564,7 +609,28 @@
    "s0_vs_s2.lose: 67 -> 65",
    "s0_vs_s4.lose: 68 -> 66"
   ],
-  "cache": "experiments/medmcqa/results/committee_size_sweep_cache.jsonl"
+  "cache": "experiments/medmcqa/results/committee_size_sweep_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 3
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "7f0270fd",
+     "fe85c6e7"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "ae860b65"
+    ]
+   }
+  }
  },
  {
   "lane": "medmcqa",
@@ -584,7 +650,28 @@
    "none_vs_critical.gain: 2 -> 3",
    "none_vs_critical.lose: 57 -> 56"
   ],
-  "cache": "experiments/medmcqa/results/deliberation_framing_cache.jsonl"
+  "cache": "experiments/medmcqa/results/deliberation_framing_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 3
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "0c897b21",
+     "fe85c6e7"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "ae860b65"
+    ]
+   }
+  }
  },
  {
   "lane": "medmcqa",
@@ -604,7 +691,31 @@
    "faint_vs_emphatic.gain: 44 -> 42",
    "lean_vs_emphatic.gain: 20 -> 19"
   ],
-  "cache": "experiments/medmcqa/results/dose_response_cache.jsonl"
+  "cache": "experiments/medmcqa/results/dose_response_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 4,
+    "d914dcd": 1
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "0190a0f3",
+     "4a3f261b",
+     "7111d7b2"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "0e7917ea",
+     "ce49098b"
+    ]
+   }
+  }
  },
  {
   "lane": "medmcqa",
@@ -624,7 +735,30 @@
    "peer_vs_auditor.gain: 1 -> 2",
    "peer_vs_auditor.lose: 67 -> 66"
   ],
-  "cache": "experiments/medmcqa/results/leader_as_auditor_cache.jsonl"
+  "cache": "experiments/medmcqa/results/leader_as_auditor_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 5
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "0e7917ea",
+     "62fa6f78",
+     "820b79a8",
+     "fe85c6e7"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "ae860b65"
+    ]
+   }
+  }
  },
  {
   "lane": "medmcqa",
@@ -644,7 +778,31 @@
    "plausible_vs_implausible.lose: 3 -> 2",
    "plausible_vs_implausible.pvalue: 0.145996 -> 0.038574"
   ],
-  "cache": "experiments/medmcqa/results/plausible_distractor_cache.jsonl"
+  "cache": "experiments/medmcqa/results/plausible_distractor_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 3,
+    "d914dcd": 2
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "57eb90ac",
+     "8254c1c7",
+     "fe85c6e7"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "0e7917ea",
+     "a3da135a"
+    ]
+   }
+  }
  },
  {
   "lane": "medmcqa",
@@ -664,7 +822,28 @@
    "valid_wrong_vs_named_fallacy.gain: 16 -> 14",
    "valid_wrong_vs_named_fallacy.pvalue: 0.711071 -> 1.0"
   ],
-  "cache": "experiments/medmcqa/results/rationale_validity_cache.jsonl"
+  "cache": "experiments/medmcqa/results/rationale_validity_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 3
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "4a3f261b",
+     "7f0270fd"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "57d48689"
+    ]
+   }
+  }
  },
  {
   "lane": "medmcqa",
@@ -682,7 +861,30 @@
    "confident_vs_hedged_mcnemar.gain: 26 -> 24",
    "hedged_adoption: 0.18 -> 0.17"
   ],
-  "cache": "experiments/medmcqa/results/seed_confidence_cache.jsonl"
+  "cache": "experiments/medmcqa/results/seed_confidence_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 3,
+    "d914dcd": 1
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "7111d7b2",
+     "732401b0",
+     "7f0270fd"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "62fa6f78"
+    ]
+   }
+  }
  },
  {
   "lane": "medmcqa",
@@ -702,7 +904,30 @@
    "both_vs_stronger_single.lose: 6 -> 7",
    "both_vs_stronger_single.pvalue: 0.014633 -> 0.019157"
   ],
-  "cache": "experiments/medmcqa/results/super_additivity_cache.jsonl"
+  "cache": "experiments/medmcqa/results/super_additivity_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 5
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "0e46082c",
+     "7111d7b2",
+     "72c1c5e0",
+     "fe85c6e7"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "ae860b65"
+    ]
+   }
+  }
  },
  {
   "lane": "medmcqa",
@@ -721,7 +946,34 @@
    "temp_gt0_within_case_flip_fraction.t0.7: 0.275 -> 0.2833",
    "temp_gt0_within_case_flip_fraction.t1.0: 0.2667 -> 0.275"
   ],
-  "cache": "experiments/medmcqa/results/temperature_sensitivity_cache.jsonl"
+  "cache": "experiments/medmcqa/results/temperature_sensitivity_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 12
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "07d58883",
+     "0e46082c",
+     "62fa6f78",
+     "90481eeb",
+     "b1cc4ab0",
+     "ddb3f2a6",
+     "e726a65e",
+     "fe85c6e7"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "ae860b65"
+    ]
+   }
+  }
  },
  {
   "lane": "medmcqa",
@@ -741,7 +993,29 @@
    "neutral_vs_accuracy_eval.pvalue: 0.000535 -> 0.001319",
    "neutral_vs_agreement_eval.gain: 8 -> 9"
   ],
-  "cache": "experiments/medmcqa/results/test_awareness_cache.jsonl"
+  "cache": "experiments/medmcqa/results/test_awareness_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 4
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "07d58883",
+     "aa32b0f3",
+     "fe85c6e7"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "ae860b65"
+    ]
+   }
+  }
  },
  {
   "lane": "medmcqa",
@@ -761,7 +1035,28 @@
    "baseline_vs_primacy.gain: 6 -> 7",
    "baseline_vs_primacy.lose: 27 -> 26"
   ],
-  "cache": "experiments/medmcqa/results/text_cue_types_cache.jsonl"
+  "cache": "experiments/medmcqa/results/text_cue_types_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 3
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "57d48689",
+     "fe85c6e7"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": [
+     "ae860b65"
+    ]
+   }
+  }
  },
  {
   "lane": "medmcqa",
@@ -829,7 +1124,25 @@
    "unanimous_vs_dissenter_mcnemar.gain: 15 -> 14",
    "unanimous_vs_dissenter_mcnemar.pvalue: 6.1e-05 -> 0.000122"
   ],
-  "cache": "experiments/medmcqa/results/unanimity_break_cache.jsonl"
+  "cache": "experiments/medmcqa/results/unanimity_break_cache.jsonl",
+  "cause": {
+   "what": "the runner's inline _parse_choice was replaced by the shared parser",
+   "replies_by_commit_of_first_change": {
+    "72803a3": 1
+   },
+   "refusal_screen": {
+    "what": "the reply ends in a boxed answer and also holds a refusal phrase; the shared parser returns no answer",
+    "right": "main",
+    "cases": [
+     "cc0d09f8"
+    ]
+   },
+   "runaway_reply": {
+    "what": "the reply has no final answer; the two parsers pick different options out of it",
+    "right": "this branch",
+    "cases": []
+   }
+  }
  },
  {
   "lane": "medmcqa",
@@ -2275,7 +2588,28 @@
    "mean_shared_adopt: 0.025 -> 0.05",
    "per_case: [{\"case_id\": \"ee904a2e-7494-46ef-b976-22be596ed44f\", \"shared_adopt\": 0.0, \"isola -> [{\"case_id\": \"4e8f5ba7-452a-464f-a328-d8b96eafade6\", \"shared_adopt\": 0.0, \"isola"
   ],
-  "cache": "experiments/medmcqa/results/call_cache.jsonl"
+  "cache": "experiments/medmcqa/results/call_cache.jsonl",
+  "cause": {
+   "parser": {
+    "what": "the inline _parse_choice of reproduce.py was replaced by the shared parser",
+    "introduced_by": "72803a3",
+    "cases": [
+     "d321d320",
+     "7111d7b2"
+    ],
+    "right": "this branch"
+   },
+   "seeded_turn_content": {
+    "what": "the seeded turn's content is left empty",
+    "introduced_by": "acbfccc",
+    "transcript_fields": 40
+   },
+   "onset_tie": {
+    "what": "two splits tie; cascade_onset breaks the tie one way with ruptures and the other way with its numpy fallback",
+    "case": "87311a9e",
+    "introduced_by": null
+   }
+  }
  },
  {
   "lane": "medmcqa",
