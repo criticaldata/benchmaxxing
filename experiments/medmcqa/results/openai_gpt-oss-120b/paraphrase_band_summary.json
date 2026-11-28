@@ -1,0 +1,204 @@
+{
+  "repeats": 5,
+  "n": 40,
+  "reads_per_case": 6,
+  "cases_with_any_disagreement": {
+    "n": 11,
+    "rate": 0.275,
+    "wilson95": [
+      0.1611,
+      0.4284
+    ]
+  },
+  "mean_pairwise_disagreement": 0.12,
+  "flip_vs_baseline_per_read": [
+    0.075,
+    0.15,
+    0.125,
+    0.125,
+    0.125,
+    0.1
+  ],
+  "flip_vs_baseline_band": [
+    0.075,
+    0.15
+  ],
+  "decoy_per_read": [
+    0.025,
+    0.05,
+    0.0,
+    0.025,
+    0.05,
+    0.05
+  ],
+  "decoy_band": [
+    0.0,
+    0.05
+  ],
+  "note": "read 0 is the committed control prompt replayed from the lane cache; reads 1.. are the same prompt with the question reworded by the generator, one paraphrase per read",
+  "fidelity_clean_subset": {
+    "n": 39,
+    "cases_with_any_disagreement": {
+      "n": 11,
+      "rate": 0.2821,
+      "wilson95": [
+        0.1654,
+        0.4378
+      ]
+    },
+    "mean_pairwise_disagreement": 0.1231,
+    "flip_vs_baseline_band": [
+      0.0769,
+      0.1538
+    ],
+    "decoy_band": [
+      0.0,
+      0.0513
+    ],
+    "note": "cases whose paraphrases all pass the fidelity check (every number of the original kept verbatim; the finding still named)"
+  },
+  "model": "openai/gpt-oss-120b",
+  "generator": "gemini-2.5-flash",
+  "paraphrases_per_case": 5,
+  "cases_run": 40,
+  "cases_with_all_paraphrases": 40,
+  "paraphrases_failing_fidelity_check": 1,
+  "paraphrases_total": 200,
+  "new_api_calls_this_run": {
+    "holdout": 200,
+    "generator": 0
+  },
+  "calls_in_cache": {
+    "holdout": 200,
+    "generator": 0
+  },
+  "generator_cache": "experiments/medmcqa/results/paraphrase_band_generator_cache.jsonl",
+  "cases_without_committed_paraphrases": [],
+  "empty_replies": {
+    "read0": 0,
+    "paraphrase_reads": 0,
+    "note": "an empty reply parses to no answer, which counts as a changed answer (a disagreement and a flip against the baseline), as in the committed band"
+  },
+  "committed_same_session_band": {
+    "n": 40,
+    "repeats": 5,
+    "cases_with_any_disagreement": {
+      "n": 5,
+      "rate": 0.125,
+      "wilson95": [
+        0.0546,
+        0.2611
+      ]
+    },
+    "mean_pairwise_disagreement": 0.0717,
+    "flip_vs_baseline_band": [
+      0.075,
+      0.175
+    ],
+    "decoy_band": [
+      0.025,
+      0.025
+    ]
+  },
+  "without_read_0": {
+    "paraphrase_reads": {
+      "reads": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "n": 40,
+      "cases_with_any_disagreement": {
+        "n": 8,
+        "rate": 0.2,
+        "wilson95": [
+          0.105,
+          0.3476
+        ]
+      },
+      "mean_pairwise_disagreement": 0.095,
+      "cases_per_read": [
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "flip_vs_baseline_per_read": [
+        0.15,
+        0.125,
+        0.125,
+        0.125,
+        0.1
+      ],
+      "flip_vs_baseline_band": [
+        0.1,
+        0.15
+      ],
+      "decoy_per_read": [
+        0.05,
+        0.0,
+        0.025,
+        0.05,
+        0.05
+      ],
+      "decoy_band": [
+        0.0,
+        0.05
+      ],
+      "cases_with_fewer_than_two_reads": []
+    },
+    "same_session_repeats": {
+      "reads": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "n": 40,
+      "cases_with_any_disagreement": {
+        "n": 5,
+        "rate": 0.125,
+        "wilson95": [
+          0.0546,
+          0.2611
+        ]
+      },
+      "mean_pairwise_disagreement": 0.065,
+      "cases_per_read": [
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "flip_vs_baseline_per_read": [
+        0.175,
+        0.125,
+        0.1,
+        0.125,
+        0.175
+      ],
+      "flip_vs_baseline_band": [
+        0.1,
+        0.175
+      ],
+      "decoy_per_read": [
+        0.025,
+        0.025,
+        0.025,
+        0.025,
+        0.025
+      ],
+      "decoy_band": [
+        0.025,
+        0.025
+      ],
+      "cases_with_fewer_than_two_reads": []
+    },
+    "note": "bands without read 0, the committed control prompt replayed from the lane cache, which can come from an earlier serving session than the other reads: paraphrase_reads is over reads 1.. of this band, same_session_repeats over reads 1.. of the committed same-prompt band on the same cases"
+  }
+}
