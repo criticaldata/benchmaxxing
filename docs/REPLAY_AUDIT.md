@@ -6,6 +6,12 @@ committed size and compared with its committed summary (and rows, as a set, wher
 The audited tree is `main` at `1cb76ad`. No model call was made: a cache miss stops a run, it never
 calls out. The MedQA lane was audited earlier and is pinned by `tests/test_medqa_arms_replay.py`.
 
+> **Re-scored afterwards (28 Nov 2026).** The shared parser now reads a declared answer before it checks
+> for a refusal phrase, and the Gemini files of the MedQA, MedMCQA and SUPPORT2 lanes that this changes
+> were rewritten from the same caches. The MedMCQA values this document gives for "this branch" are
+> those of the first refresh and are no longer the committed ones: `docs/PARSER_FIX_AUDIT.md` lists
+> every field before and after. The replay statuses below describe the audited tree and are not affected.
+
 Where each lane ran:
 
 - MedMCQA and SUPPORT2: on a laptop (Python 3.11, Pillow 13.0.0), with the 500-row MedMCQA manifest
@@ -251,6 +257,10 @@ committed one among them. Since `f6e8575` the tie is broken by option text, whic
 2 to 8 and `d321d320` from 7 to censored (seed equals evidence).
 
 ### Which version is right
+
+Note of 28 Nov 2026: the change described at the end of this section has since been made. The committed
+MedMCQA files now hold the column "declared answer read first" of the table below, and "this branch"
+means the first refresh. See `docs/PARSER_FIX_AUDIT.md`.
 
 Neither set of files is right throughout.
 
