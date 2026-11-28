@@ -231,5 +231,10 @@
       "medqa": 0.9333333333333333,
       "medmcqa": 0.82
     }
+  },
+  "model": "gemini-2.5-flash",
+  "manifest_sha256": {
+    "medqa": "0f2076a45455080924f954d31136b815b986fb108d9380beadd4da9b87eaacef",
+    "medmcqa": "5b2ce9718e7cf421d88dd516d9c52b8b282cd886d13cbbc61ef5d7463a90a30d"
   }
 }

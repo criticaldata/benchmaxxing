@@ -11,6 +11,9 @@ to the option text against that payload's options, so ``option_order`` is measur
 identity (not position) even after the options are permuted. That mirrors the proven solo
 normalizer in ``experiments/medqa/reproduce.py``.
 
+The result records the model id (``model``) and the sha256 of each manifest file it read
+(``manifest_sha256``), so the file identifies its own inputs.
+
 With no API key or a missing manifest the script prints a skip line and exits 0: it is a real run,
 so it never fabricates numbers. A locally served ``local/`` id needs no key: it replays from its
 call cache with no server, and the first cache miss without ``BENCHMAXXING_LOCAL_BASE_URL`` exits
@@ -37,6 +40,7 @@ from benchmaxxing import gateway
 from benchmaxxing.cross_dataset import run_cross_dataset_cue
 from benchmaxxing.data import load_cases
 from benchmaxxing.extract import parse_mcq_choice
+from benchmaxxing.validate import manifest_checksum
 
 CUES = ["option_order", "longest_option", "lexical_overlap"]
 _ABSTAIN = "<abstain>"
@@ -373,6 +377,12 @@ def main(argv=None) -> int:
     if not args.replay:
         save_cache(args.cache, cache)
     print(f"new model calls this run: {calls}")
+    # The result names its own inputs: the model that answered and the bytes of the two manifests.
+    result["model"] = args.model
+    result["manifest_sha256"] = {
+        "medqa": manifest_checksum(args.medqa_manifest),
+        "medmcqa": manifest_checksum(args.medmcqa_manifest),
+    }
     if excluded:
         result["excluded_cases"] = sorted(excluded)
     if args.replay:

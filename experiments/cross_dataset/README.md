@@ -59,7 +59,9 @@ abstention. On the run below that mis-scored **~40% of replies** as abstentions 
 flip rate.
 
 The `--out` JSON writes non-finite values (an unbuildable cue's `nan` rate, an undefined Fisher
-odds ratio) as `null`, so the artifact is strict-JSON parseable downstream.
+odds ratio) as `null`, so the artifact is strict-JSON parseable downstream. It also records the
+model id (`model`) and the sha256 of each manifest file the run read (`manifest_sha256`), so a
+result file identifies its own inputs.
 
 ## Results (first keyed run)
 
@@ -80,9 +82,14 @@ per dataset are in the `--out` JSON. This is a 50-case pilot; a larger `--limit`
 
 ## Results at 500 cases per dataset
 
-`gemini-2.5-flash`, temperature 0, the first 500 cases of each manifest (MedQA `manifest_test.csv`,
-sha256 prefix 6a2ac665; MedMCQA `medmcqa_dev_500.csv`, sha256 prefix 5b2ce971, built by
-`benchmaxxing.datasets.medmcqa`). Result: `results/medqa_vs_medmcqa_n500.json`; cache:
+`gemini-2.5-flash`, temperature 0, the first 500 cases of each manifest: the MedQA manifest that
+`benchmaxxing.datasets.medqa` builds from the public `test.jsonl` (sha256 prefix 0f2076a4) and
+MedMCQA `medmcqa_dev_500.csv` (sha256 prefix 5b2ce971, built by `benchmaxxing.datasets.medmcqa`).
+The result file records the model id and both hashes in full (`model`, `manifest_sha256`), as does
+the 150-case file. An earlier build of the MedQA manifest (sha256 prefix 6a2ac665, the one this
+section named before; it joins the options with `|` and has no `meta` column) parses to the same
+1,273 cases and gives the same prompts and the same numbers; a replay on it records that hash
+instead. Result: `results/medqa_vs_medmcqa_n500.json`; cache:
 `results/cache_medqa_vs_medmcqa_n500.jsonl`, which starts from the 1,200 replies of the 150-case run
 (same prompts) and adds 2,799 new ones. One MedMCQA case (`26a82f11-4261-4975-bee9-ae8d4e74cdb7`) is
 excluded with `--exclude-case`: its `longest_option` twin returned 504 DEADLINE_EXCEEDED on every

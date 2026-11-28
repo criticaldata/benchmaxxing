@@ -17,6 +17,7 @@ import pytest
 
 from benchmaxxing import gateway
 from benchmaxxing.schema import Case, Modality
+from benchmaxxing.validate import manifest_checksum
 
 _SCRIPT = Path(__file__).resolve().parents[1] / "experiments" / "cross_dataset" / "run_cross_dataset.py"
 
@@ -268,8 +269,57 @@ def test_committed_runs_replay_keyless_with_zero_calls(monkeypatch, tmp_path, li
                          "--limit", str(limit), "--cache", str(_RES / cache), "--out", str(got_path), "--replay", *extra])
     assert rc == 0
     got = json.loads(got_path.read_text())
+    want = json.loads((_RES / out).read_text())
     assert got.pop("replay")["new_api_calls_this_run"] == 0
-    assert got == json.loads((_RES / out).read_text())
+    # the replay names the model and the two manifest files it read
+    read = {"medqa": manifest_checksum(_MEDQA), "medmcqa": manifest_checksum(_MEDMCQA)}
+    assert got["model"] == "gemini-2.5-flash"
+    assert got["manifest_sha256"] == read
+    if read != want["manifest_sha256"]:
+        # Two builds of the public MedQA test split are in use: the adapter's current one, which the
+        # committed files name, and an earlier one that joins the options with "|" and has no `meta`
+        # column. Both parse to the same cases and so the same prompts: every number below must
+        # still match. Only the file hash differs, and
+        # test_recorded_manifest_hashes_match_the_manifests_on_this_machine reports that.
+        got.pop("manifest_sha256")
+        want.pop("manifest_sha256")
+    assert got == want
+
+
+_COMMITTED = ["medqa_vs_medmcqa_n150.json", "medqa_vs_medmcqa_n500.json"]
+# sha256 of the manifest that benchmaxxing.datasets.medqa builds from the public MedQA-USMLE test.jsonl
+_MEDQA_SHA256 = "0f2076a45455080924f954d31136b815b986fb108d9380beadd4da9b87eaacef"
+
+
+@pytest.mark.parametrize("out", _COMMITTED)
+def test_committed_results_name_their_model_and_manifests(out):
+    """The result file identifies its own inputs. Needs no manifest: it reads the committed file."""
+    res = json.loads((_RES / out).read_text())
+    assert res["model"] == "gemini-2.5-flash"
+    hashes = res["manifest_sha256"]
+    assert set(hashes) == set(res["datasets"]) == {"medqa", "medmcqa"}
+    for digest in hashes.values():
+        assert len(digest) == 64 and set(digest) <= set("0123456789abcdef")
+    assert hashes["medqa"] == _MEDQA_SHA256
+    # the MedMCQA manifest is the one the repository pins for every committed MedMCQA cache
+    spec = importlib.util.spec_from_file_location(
+        "fetch_dev", Path(__file__).resolve().parents[1] / "experiments/medmcqa/fetch_dev.py")
+    fetch_dev = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(fetch_dev)
+    assert hashes["medmcqa"] == fetch_dev.EXPECTED
+
+
+@pytest.mark.skipif(not (_MEDQA.exists() and _MEDMCQA.exists()), reason="the MedQA/MedMCQA manifests are not on this machine")
+@pytest.mark.parametrize("out", _COMMITTED)
+def test_recorded_manifest_hashes_match_the_manifests_on_this_machine(out):
+    recorded = json.loads((_RES / out).read_text())["manifest_sha256"]
+    here = {"medqa": manifest_checksum(_MEDQA), "medmcqa": manifest_checksum(_MEDMCQA)}
+    other = {name: f"{here[name][:8]} here, {recorded[name][:8]} recorded"
+             for name in recorded if here[name] != recorded[name]}
+    if other:
+        pytest.skip(f"not the manifest build the committed file names ({other}); point "
+                    "BENCHMAXXING_MEDQA_MANIFEST / BENCHMAXXING_MEDMCQA_MANIFEST at that build to check")
+    assert here == recorded
 
 
 @pytest.mark.parametrize("out", ["medqa_vs_medmcqa_n150.json", "medqa_vs_medmcqa_n500.json"])
@@ -365,3 +415,28 @@ def test_a_local_cache_miss_with_no_server_exits_naming_the_variable(monkeypatch
     with pytest.raises(SystemExit) as exc:
         run_cross.main(_local_args(tmp_path))
     assert "BENCHMAXXING_LOCAL_BASE_URL" in str(exc.value)
+
+
+def test_the_result_names_its_model_and_the_sha256_of_each_manifest(monkeypatch, tmp_path):
+    """A result file must identify its own inputs: the model id and the bytes of both manifests."""
+    import hashlib
+
+    lane = run_cross._lane
+    args = _local_args(tmp_path)
+    monkeypatch.setattr(lane, "LOCAL_BASE_URL", "http://127.0.0.1:9/v1")
+    monkeypatch.setattr(lane, "paced_complete", lambda model, key, prompt, decoding=None, **_: "A. option")
+    assert run_cross.main(args) == 0
+
+    result = json.loads((tmp_path / "out.json").read_text())
+    assert result["model"] == _LOCAL_ID
+    want = {name: hashlib.sha256((tmp_path / f"{name}.csv").read_bytes()).hexdigest()
+            for name in ("medqa", "medmcqa")}
+    assert result["manifest_sha256"] == want
+    assert want["medqa"] != want["medmcqa"]
+
+    # the hash follows the file: one changed byte in a manifest changes what the next run records
+    with (tmp_path / "medqa.csv").open("a") as fh:
+        fh.write("\n")
+    assert run_cross.main(args) == 0
+    again = json.loads((tmp_path / "out.json").read_text())["manifest_sha256"]
+    assert again["medqa"] != want["medqa"] and again["medmcqa"] == want["medmcqa"]
