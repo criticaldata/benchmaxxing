@@ -111,3 +111,71 @@ python experiments/referee/requery_case_argument_2x2.py --manifest <MedQA manife
 
 Not run at this commit. No call has been made for this square yet; this section is filled in after
 the run.
+
+## Holdout from another vendor (added after review, 28 Nov 2026; design only, not run at this commit)
+
+### Why
+
+The argument writer (`gemini-2.5-flash`) and the holdout (`gemini-2.5-flash-lite`) come from one
+vendor. An argument written by a model may persuade a sibling model more than it would persuade a
+model from another family, so the square above is one family's result until a second one reads the
+same boards.
+
+### Design (written and pushed before any call)
+
+- **Holdout.** `openai/gpt-oss-120b`, open weights, served locally as in the repository's other
+  gpt-oss-120b lanes: an OpenAI-compatible server named by `BENCHMAXXING_LOCAL_BASE_URL`, no key,
+  temperature 0, the lane's output cap (`_lane.MAX_TOKENS`, 8192 tokens). No hosted endpoint.
+- **Same material.** The same 120 cases, the same X, the same committed arguments (0 writer
+  calls), the same four boards and four honest controls, the same prompt frame, the same two
+  scorings. `--model` is the only thing that changes.
+- **X is not chosen again.** The committed arguments were written for the committed X, which was
+  picked against the Gemini holdout's bare answer. The bare answer of gpt-oss-120b is asked here,
+  and where it already equals X the summary also gives the square without those cases
+  (`where_bare_answer_is_not_planted`); the main table keeps all 120.
+- **One serving session.** This model's repeated reads of one prompt are not always identical (5 of
+  40 MedQA control cases change across six reads,
+  `experiments/blind_metric/results/openai_gpt-oss-120b/matched_baseline_reason_repeats_summary.json`),
+  so nothing is replayed from another session's cache: the bare read, the four boards and the four
+  honest controls are all asked in the same run. There is no session check, because no cell comes
+  from an earlier session.
+- **Calls.** 1,080 to the local server: 120 bare, 480 planted boards, 480 honest boards.
+- **Comparisons.** The same four exact paired tests per scoring, Holm-adjusted within this
+  holdout. Across the two holdouts the comparison is descriptive: for each of the four contrasts,
+  the two discordant counts on Gemini Flash-Lite and on gpt-oss-120b side by side. No pooled test
+  over two holdouts.
+- **What it answers.** Whether the source effect at fixed wording and the wording effect at fixed
+  source, measured on a Gemini holdout reading arguments written by a Gemini model, also appear on
+  a holdout from another vendor reading the same arguments.
+- **Empty replies.** Counted per condition (`empty_replies_by_condition`). An empty reply is no
+  answer under both scorings, so it counts as not adopting and not correct.
+
+### Run
+
+```bash
+export BENCHMAXXING_LOCAL_BASE_URL=http://127.0.0.1:<port>/v1   # the server that serves openai/gpt-oss-120b
+# count first: expect "calls_needed": 1080 and "served_locally": true
+env -u NVIDIA_API_KEY -u GEMINI_API_KEY -u GOOGLE_API_KEY \
+  python experiments/referee/requery_case_argument_2x2.py --manifest <MedQA manifest> \
+    --model openai/gpt-oss-120b --dry-run
+# the run
+env -u NVIDIA_API_KEY -u GEMINI_API_KEY -u GOOGLE_API_KEY \
+  python experiments/referee/requery_case_argument_2x2.py --manifest <MedQA manifest> \
+    --model openai/gpt-oss-120b
+```
+
+It writes, and these three files are what gets committed:
+
+- rows: `results/openai_gpt-oss-120b/requery_case_argument_2x2.jsonl` (120 rows)
+- summary: `results/openai_gpt-oss-120b/requery_case_argument_2x2_summary.json`
+- cache: `results/openai_gpt-oss-120b_requery_case_argument_2x2_cache.jsonl` (1,080 lines)
+
+Unsetting the vendor keys means a missing server stops the run at the first call instead of
+sending the model id to a hosted endpoint. With the cache committed the same command replays with
+no server and no key. `tests/test_requery_case_argument_2x2.py` picks the folder up by itself and
+checks that the summary recounts from the rows, that the cache holds 1,080 lines of this model, and
+that X is the committed X on every case.
+
+### Results
+
+Not run at this commit. No call has been made on this holdout.

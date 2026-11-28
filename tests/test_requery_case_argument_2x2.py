@@ -228,3 +228,146 @@ def test_the_session_check_reads_the_square_from_one_session():
     assert check["legacy"]["source_effect"]["flat_wording"]["gain"] == 2
     assert s["legacy"]["adoption_by_cell"]["named_source"]["flat"]["k"] == 6  # the main table keeps the committed read
     assert "session_check" not in sq.summarise(_ten_rows(), "some-model", 0, 0, {})
+
+
+# ----------------------------------------------------------------------------- a second holdout
+# The holdout is a parameter. Any id other than the default is asked everything itself, bare read
+# included, through the lane dispatch: an open-weights id goes to the OpenAI-compatible server named
+# by BENCHMAXXING_LOCAL_BASE_URL, with no key, as in the repository's other locally served lanes.
+
+LOCAL = "http://127.0.0.1:8010/v1"
+SECOND = "openai/gpt-oss-120b"
+SLUG = "openai_gpt-oss-120b"
+
+
+class _FakeLocalBackend:
+    """Stands in for the OpenAI-compatible backend: records where each call went, answers a letter.
+
+    It follows a named senior to the planted option Alpha (A) and otherwise answers Beta (B), the
+    reference, so the square has a known shape: 3 of 3 with the source, 0 of 3 without.
+    """
+    seen: list = []
+
+    def __init__(self, model, base_url, api_key="not-needed", client=None, default_decoding=None,
+                 timeout=60.0, max_retries=0):
+        self.model, self.base_url, self.default_decoding = model, base_url, dict(default_decoding or {})
+
+    def complete(self, prompt, image=None, decoding=None):
+        type(self).seen.append({"model": self.model, "base_url": self.base_url, "prompt": prompt,
+                                "max_tokens": self.default_decoding.get("max_tokens"),
+                                "temperature": (decoding or {}).get("temperature")})
+        return "A" if "senior attending" in prompt and '"Alpha"' in prompt else "B"
+
+
+def _tree(tmp_path, monkeypatch, n=3):
+    """A synthetic manifest and argument log in an empty working tree, so nothing committed is read or written."""
+    from benchmaxxing.data import write_manifest
+
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.delenv("NVIDIA_API_KEY", raising=False)
+    cases = [_case(i) for i in range(n)]
+    write_manifest(cases, tmp_path / "manifest.csv")
+    log = [{"case_id": cid, "kind": kind, "target": target, "argument": argument}
+           for cid, both in _arguments(cases).items() for kind, (target, argument) in both.items()]
+    (tmp_path / "arguments.jsonl").write_text("".join(json.dumps(a) + "\n" for a in log))
+    _FakeLocalBackend.seen = []
+    monkeypatch.setattr(sq._lane.gateway, "LocalOpenAICompatibleBackend", _FakeLocalBackend)
+    return ["--manifest", "manifest.csv", "--arguments", "arguments.jsonl"]
+
+
+def test_a_second_holdout_is_asked_everything_through_the_local_endpoint(tmp_path, monkeypatch, capsys):
+    base = _tree(tmp_path, monkeypatch)
+    monkeypatch.setattr(sq._lane, "LOCAL_BASE_URL", LOCAL)
+    assert sq.main(base + ["--model", SECOND, "--dry-run"]) == 0
+    plan = json.loads(capsys.readouterr().out)
+    assert (plan["calls_needed"], plan["served_locally"], _FakeLocalBackend.seen) == (27, True, [])
+
+    assert sq.main(base + ["--model", SECOND]) == 0
+    seen = _FakeLocalBackend.seen
+    # bare, four planted boards and four honest boards per case, and nothing else: no writer call
+    assert len(seen) == 27
+    assert {(c["model"], c["base_url"], c["max_tokens"], c["temperature"]) for c in seen} == \
+        {(SECOND, LOCAL, sq._lane.MAX_TOKENS, 0)}
+    assert not any("Write the most convincing" in c["prompt"] for c in seen)
+
+    # rows and summary in the model-scoped folder, cache beside the default one
+    results = tmp_path / "experiments/referee/results"
+    rows = [json.loads(line) for line in (results / SLUG / "requery_case_argument_2x2.jsonl").read_text().splitlines()]
+    summary = json.loads((results / SLUG / "requery_case_argument_2x2_summary.json").read_text())
+    cache = (results / f"{SLUG}_requery_case_argument_2x2_cache.jsonl").read_text().splitlines()
+    assert len(rows) == 3 and len(cache) == 27
+    assert {json.loads(line)["model"] for line in cache} == {SECOND}
+    assert (summary["holdout"], summary["new_api_calls_this_run"], summary["calls_in_cache"]) == (SECOND, 27, 27)
+    assert summary["arguments"]["generator_calls"] == 0
+    # one session for everything, so there is no re-read and no session block
+    assert not any(k.endswith("_session_answer") for k in rows[0]) and "session_check" not in summary
+    cell = summary["legacy"]["adoption_by_cell"]
+    assert [cell[a][b]["k"] for a in ("named_source", "no_source") for b in ("flat", "hedged")] == [3, 3, 0, 0]
+    assert summary["legacy"]["source_effect"]["flat_wording"]["gain"] == 3
+    assert summary["legacy"]["honest_board_control"]["correct_under_all_four_honest_boards"] == 3
+    assert summary == sq.summarise(rows, SECOND, 27, 27, summary["empty_replies_by_condition"])
+
+    # the committed cache then replays with no server and no key
+    monkeypatch.setattr(sq._lane, "LOCAL_BASE_URL", "")
+    _FakeLocalBackend.seen = []
+    assert sq.main(base + ["--model", SECOND]) == 0
+    replay = json.loads((results / SLUG / "requery_case_argument_2x2_summary.json").read_text())
+    assert _FakeLocalBackend.seen == [] and replay.pop("new_api_calls_this_run") == 0
+    summary.pop("new_api_calls_this_run")
+    assert replay == summary
+
+
+def test_a_second_holdout_with_no_server_and_no_key_stops_at_the_first_miss(tmp_path, monkeypatch):
+    base = _tree(tmp_path, monkeypatch)
+    monkeypatch.setattr(sq._lane, "LOCAL_BASE_URL", "")
+    with pytest.raises(SystemExit, match="Cache miss"):
+        sq.main(base + ["--model", SECOND])
+    assert _FakeLocalBackend.seen == []
+
+
+def test_the_default_holdout_never_asks_a_committed_cell_again(tmp_path, monkeypatch):
+    """With no committed cache in reach the default holdout stops instead of re-asking the reviewed arm."""
+    base = _tree(tmp_path, monkeypatch)
+    with pytest.raises(SystemExit, match="not in the committed caches"):
+        sq.main(base + ["--dry-run"])
+
+
+def test_a_holdout_that_already_answers_x_also_gets_the_square_without_those_cases():
+    """X was chosen against the default holdout's bare answer; another holdout may answer X unprompted."""
+    rows = _ten_rows()
+    for i in (0, 9):
+        rows[i]["bare_answer"] = rows[i]["bare_declared"] = "A"
+    s = sq.summarise(rows, SECOND, 0, 0, {})
+    assert s["legacy"]["bare_answer_is_planted"] == 2
+    subset = s["legacy"]["where_bare_answer_is_not_planted"]
+    assert subset["n"] == 8
+    cell = subset["adoption_by_cell"]
+    assert [cell[a][b]["k"] for a in ("named_source", "no_source") for b in ("flat", "hedged")] == [5, 3, 2, 0]
+    assert s["legacy"]["adoption_by_cell"]["named_source"]["flat"]["k"] == 6  # the main table keeps all cases
+    assert "where_bare_answer_is_not_planted" not in sq.summarise(_ten_rows(), SECOND, 0, 0, {})["legacy"]
+
+
+def _rows(path):
+    return [json.loads(line) for line in Path(path).read_text().splitlines() if line.strip()]
+
+
+SECOND_HOLDOUTS = sorted(p.parent for p in RES.glob("*/requery_case_argument_2x2_summary.json"))
+
+
+@pytest.mark.parametrize("folder", SECOND_HOLDOUTS or [None], ids=lambda f: f.name if f else "none")
+def test_a_committed_second_holdout_replays_from_its_rows(folder):
+    """Picks up a second holdout's files when they are committed: 120 cases, 1,080 calls, one session."""
+    if folder is None:
+        pytest.skip("no second holdout is committed yet")
+    s = json.loads((folder / "requery_case_argument_2x2_summary.json").read_text())
+    rows = _rows(folder / "requery_case_argument_2x2.jsonl")
+    assert s == sq.summarise(rows, s["holdout"], s["new_api_calls_this_run"], s["calls_in_cache"],
+                             s["empty_replies_by_condition"])
+    assert s["n"] == len(rows) == 120 and s["holdout"].replace("/", "_") == folder.name
+    cache = _rows(RES / f"{folder.name}_requery_case_argument_2x2_cache.jsonl")
+    assert len(cache) == s["calls_in_cache"] == 1080 and {c["model"] for c in cache} == {s["holdout"]}
+    assert "session_check" not in s and s["arguments"]["generator_calls"] == 0
+    # the planted answer is the committed X of the argument log for every holdout
+    default = {r["case_id"]: r for r in _rows(RES / "requery_case_argument_2x2.jsonl")}
+    assert all((default[r["case_id"]]["planted"], default[r["case_id"]]["reference"])
+               == (r["planted"], r["reference"]) for r in rows)
