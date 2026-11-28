@@ -312,6 +312,38 @@ def add_model_arg(ap, default: str = DEFAULT_MODEL):
                          "with 'local/' to serve it on BENCHMAXXING_LOCAL_BASE_URL.")
 
 
+def add_n_arg(ap, home_default: int):
+    """``--n`` for a shared runner: how many manifest rows it reads.
+
+    ``home_default`` is the size the runner's own lane (MedQA) was committed at. It is kept on the
+    parsed arguments so ``resolve_n`` can tell a stated size from an omitted one.
+    """
+    ap.add_argument("--n", type=int, default=None,
+                    help=f"manifest rows to read. Defaults to {home_default}, the size the MedQA "
+                         "lane's file was committed at. Required with --cache: a run on another "
+                         "lane's cache was committed at that lane's own size.")
+    ap.set_defaults(home_n=home_default)
+
+
+def resolve_n(args) -> int:
+    """The number of manifest rows a shared runner reads (the argument ``add_n_arg`` declares).
+
+    The default is the home lane's committed size, so it only holds for a run on the home lane's own
+    cache. With ``--cache`` the runner is replaying or filling another lane, and that lane's file
+    was committed at its own size (MedMCQA ran ``authority_ladder`` at 60 rows, MedQA at 120). There
+    a missing ``--n`` stops the run before any cache read or model call, instead of reading the
+    wrong number of cases and, with a key set, paying for them.
+    """
+    if args.n is not None:
+        return args.n
+    if args.cache is None:
+        return args.home_n
+    raise SystemExit(
+        f"--n is required with --cache. The default ({args.home_n}) is the size the MedQA lane's "
+        "file was committed at; a run on another cache belongs to another lane, committed at its "
+        "own size. The MedMCQA sizes are pinned in tests/test_medmcqa_arms_replay.py.")
+
+
 def derived_note(model: str) -> str:
     """Provenance line a derived (model-call-free) analysis attaches when it is pointed at another
     lineage's committed rows. The numbers in such a summary are recomputed from that lineage's

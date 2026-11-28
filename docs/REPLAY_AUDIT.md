@@ -429,6 +429,16 @@ sizes explicitly so its committed outputs keep replaying. MedMCQA and SUPPORT2 r
 other sizes, so their exact flags are pinned in `tests/test_medmcqa_arms_replay.py` and
 `tests/test_support2_arms_replay.py`.
 
+Aligning the defaults with MedQA left one default serving two datasets. MedMCQA was committed at
+smaller sizes for four of these arms (`authority_ladder` 60, `majority_pressure` 25,
+`orchestrator_failure` 80, `true_peer_control` 59, or 57 for gpt-oss), so a MedMCQA replay that left
+out `--n` would have run the MedQA size: a cache miss without a key, billed calls and results over the
+wrong case set with one. Since 28 Nov the eighteen runners the MedMCQA battery reuses take `--n` through
+`_lane.add_n_arg` and `_lane.resolve_n`. The default applies only when the runner reads its own MedQA
+cache; a run given `--cache` and no `--n` stops with an error before it opens the cache or makes its
+output directory. `tests/test_runner_size_argument.py` pins the error, the eighteen defaults, and their
+agreement with the sizes `tests/test_medqa_arms_replay.py` replays.
+
 | Script | Default --n on main | Status on main with only --manifest | Committed size | On this branch |
 |---|---|---|---|---|
 | `experiments/medqa/attributed_tier.py` | 120 | exact | 120 | unchanged |
