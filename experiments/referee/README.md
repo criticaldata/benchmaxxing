@@ -197,6 +197,29 @@ nemotron FP8's bare answer on `medqa-31`, so one of its two adoptions has no bar
 from, its board answer on `medqa-9`, and gpt-oss-20b's bare answer on `medqa-34`. The summary lists
 all of them by case under `empty_replies`.
 
+**Which session each side comes from.** The two sides of the comparison are not always from one
+serving session. The bare draws carry `referee_threshold`'s key, so a model that ran that arm
+replays them instead of drawing them. The caches' history gives the split:
+
+| Model | Bare draws | Board draws and logprob calls | Live temperature-0 answers equal to the committed cache, bare / board of 40 |
+|---|---|---|---|
+| gpt-oss-120b | replayed, cache committed 8 Sep 2026 | new, 25 Nov (one H100) | 40 / 38 |
+| gpt-oss-20b | replayed, cache committed 13 Oct | new, 28 Nov (one A100) | 34 / 36 |
+| nemotron FP8 | new, 25 Nov, with its board draws | new, 25 Nov (two H100) | 37 / 40 |
+| Qwen2.5-VL-72B | replayed, cache committed 7 Oct (tensor parallel 4) | new, 25 Nov (two H100, tensor parallel 2) | 40 / 40 |
+
+So for three of the four models the board draws and the bare draws come from sessions whose caches
+were committed six to eleven weeks apart, and for Qwen2.5-VL-72B from two serving shapes.
+gpt-oss-20b's summary still carries the counters of the run that made its caches: 0 new bare draws,
+400 board-draw calls, 80 logprob calls. The committed files keep no call time and no hardware; the
+hardware in the table is what was stated when each run was reported. The last column is the drift
+this arm itself measures between the sessions: the temperature-0 answers of the board-draw session
+against the committed temperature-0 cache of the earlier one differ on up to 6 of 40 bare answers
+and 4 of 40 board answers (gpt-oss-20b). Part of the gap between board and bare draws in those three
+models could therefore be a difference between sessions, and the comparison above is not adjusted
+for it. nemotron FP8, whose two sides share a run, still changes 3 of 40 bare answers against its
+committed cache.
+
 **Answer-token margins, before renormalising.** Qwen2.5-VL-72B answers directly: the probability of
 the planted letter at the answer token rises from the bare to the board prompt on 34 cases and falls
 on 4 (sign test P = 6.0e-07), and its mean top-two margin is 0.81 bare and 0.89 on the board. The

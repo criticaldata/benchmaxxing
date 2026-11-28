@@ -213,6 +213,18 @@ def test_empty_replies_are_listed_by_case_and_change_the_worst_case_only_where_t
     assert (worst["gain"], worst["lose"], worst["bare_planted_draws"], worst["sign_test_p"]) == (4, 2, 8, 0.6875)
 
 
+def test_drift_between_sessions_and_the_replayed_bare_draws_stay_on_record():
+    """Live temperature-0 answers against the committed cache, bare and board of 40, per model; and the
+    call counters of the one summary that still holds its live run, where no bare draw was new."""
+    drift = {slug: (_summary(slug)["t0_live_vs_cached_agreement"]["bare"], _summary(slug)["t0_live_vs_cached_agreement"]["board"])
+             for slug in LINEAGES.values()}
+    assert drift == {"openai_gpt-oss-120b": (40, 38), "openai_gpt-oss-20b": (34, 36),
+                     "nemotron-3-super-120b-a12b-fp8-local": (37, 40), "Qwen_Qwen2.5-VL-72B-Instruct": (40, 40)}
+    live = _summary("openai_gpt-oss-20b")
+    assert live["calls_by_kind"] == {"bare_draws": 0, "board_draws": 400, "logprob_t0": 80}
+    assert live["new_api_calls_this_run"] == 480
+
+
 # ---------------------------------------------------------------- replay of the committed runs
 @pytest.mark.skipif(not MANIFEST.exists(), reason="the MedQA manifest is not on this machine")
 @pytest.mark.parametrize("model", sorted(LINEAGES))
