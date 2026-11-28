@@ -66,3 +66,81 @@ What it shows.
   shared cases, which is why its counts differ from the committed band's: the two nemotron cases
   that disagree in the committed band (`support2-14`, `support2-17`) and one of the two
   gpt-oss-120b cases (`support2-14`) have no paraphrase.
+
+## Semantic check of the paraphrases (added after review, 28 Nov 2026)
+
+### Why
+
+`paraphrase_band.py` checks each paraphrase only for the numbers of the original. A paraphrase
+that dropped a negation ("all of the following except" reworded as "which of the following")
+would pass that check, change the right answer, and be counted as a disagreement that is not
+noise. That would widen the band and make a real cue effect look like rewording.
+
+### Design (written and pushed before any call)
+
+`paraphrase_semantic_check.py` puts two checks on every committed paraphrase: 200 for MedQA, 200
+for MedMCQA and 155 for SUPPORT2, 555 in all. The local lineages read the same paraphrases, so one
+check per lane covers every lineage.
+
+- **Rule check, keyless.** It reads the question part of each text: the sentences that end with a
+  question mark (each with the sentence before it when it has fewer than five words), or the last
+  sentence when there is no question mark. A marker of negation or exception must be present in
+  the paraphrase's question part if and only if one is present in the original's. A marker that is
+  dropped fails, and so does one that is added. The rule compares presence, not the word, because
+  a faithful rewording may turn "except" into "with one exception" or "is not true". The markers:
+  - negation: not, no, never, none, neither, nor, without, cannot, and any contraction in n't;
+  - exception: except, excepting, exception(s), excluding, exclude(s), excluded, other than,
+    apart from, aside from, save for, all but;
+  - least: least, lowest, fewest;
+  - false: false, incorrect(ly), untrue, wrong(ly), inaccurate, unlikely, inappropriate, uncommon,
+    contraindicated.
+- **Judge.** `gemini-2.5-flash` at temperature 0, one call per paraphrase. It is shown the
+  original, the paraphrase and the answer options, and asked whether the paraphrase asks the same
+  question: every fact, value and unit kept and none added or changed, the same thing asked
+  including any negation or exception, so that each option is right or wrong exactly as for the
+  original. It replies yes or no and one line of reason. A reply with no verdict counts as not
+  confirmed.
+- **Failure.** A paraphrase fails when either check fails. Each lane's failures are listed in
+  `paraphrase_semantic_failures.jsonl` with the paraphrase text, the markers found and the judge's
+  reason; `paraphrase_semantic_check.jsonl` has one row for every paraphrase.
+- **Bands.** Read i of a case is its paraphrase i, so leaving a paraphrase out removes that read
+  from the case. For every lane and lineage `paraphrase_band_semantic_summary.json` gives the
+  committed band recomputed from the same rows (`all_paraphrases`) and the band with the failed
+  paraphrases left out (`failed_left_out`): read 0 is always kept, each read's rate is over the
+  cases that keep it, and disagreement is over the cases that keep at least two reads. It also
+  gives the band with only the rule failures or only the judge failures left out, and the band on
+  the cases whose five paraphrases all pass, as the existing `fidelity_clean_subset` does for the
+  numbers check. Each is given over reads 0 to 5 and over reads 1 to 5.
+- **What is compared.** For each lane and lineage, the band with all paraphrases against the band
+  with the failed ones left out: cases with any disagreement, mean pairwise disagreement, flip
+  band and decoy band. No test, since it is the same rows with some reads removed.
+- **How it is read.** If few paraphrases fail and the bands barely move, the paraphrase band
+  stands as a band of rewording. If the failed paraphrases carry a large share of the
+  disagreement, the band was partly measuring changed questions, and the version with them left
+  out is the one to quote.
+- **Calls.** 555 to `gemini-2.5-flash`. `--dry-run` prints the count for a lane.
+
+Limits known before the run. The judge is the model that wrote the paraphrases, so it may share
+their blind spots. The rule check does not depend on it, but it is lexical: it reads only the
+question part, it can fail a faithful rewording that carries the negation in a word outside the
+list, and it can pass a paraphrase that keeps one marker and drops another. The marker list was
+fixed before the judge was called and before any band was recomputed.
+
+### Run and replay
+
+```bash
+# per lane; --dry-run first prints "calls_needed" (200, 200, 155 before the run, 0 after)
+python experiments/matched_baseline/paraphrase_semantic_check.py \
+    --manifest <MedQA manifest> --results experiments/blind_metric/results
+python experiments/matched_baseline/paraphrase_semantic_check.py \
+    --manifest <MedMCQA manifest> --results experiments/medmcqa/results
+python experiments/matched_baseline/paraphrase_semantic_check.py \
+    --manifest experiments/support2/results/support2_manifest.csv --results experiments/support2/results
+```
+
+The judge calls are cached in each lane's `paraphrase_semantic_judge_cache.jsonl`. With the cache
+committed the same commands replay with no key.
+
+### Results
+
+Not run at this commit. No judge call has been made and no band has been recomputed.
