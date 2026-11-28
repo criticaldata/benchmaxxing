@@ -515,6 +515,63 @@ before trusting the coefficient. The isolated arm's coefficient (-0.53) is small
 the already-reported flat pattern. The position-confounded caveat applies to both regardless of
 this fit-quality issue.
 
+## Two lineages on the 80-film, CheXpert 150 and 500-film watermark cascades (`scale_patient_clustered.py`)
+
+`scale_patient_clustered.py` reads the committed per-film rows of one lineage's watermark cascade on
+three cohorts: the 80 NIH films of the referee cohort (`results_n80/`), 150 CheXpert studies
+(`../imaging_chexpert/results/full_runs/`) and 500 NIH films from 132 patients (`results_n500/`). It
+makes no model call and needs no films, and writes `results_n500/patient_clustered.json` (a `--model`
+lineage reads and writes under its `<slug>/`):
+
+```bash
+python experiments/imaging/scale_patient_clustered.py                                        # gemini-2.5-flash
+python experiments/imaging/scale_patient_clustered.py --model Qwen/Qwen2.5-VL-72B-Instruct
+```
+
+**Read every cascade difference with the ceiling in mind.** The difference is adoption with two
+seniors on the board minus adoption alone, which is the same number as (1 - adopted alone) minus the
+share of films that still hold out under the board. Once adoption under the board is at the ceiling,
+that second share is close to zero and the difference is fixed by how often the model already gives
+the wrong read alone; it no longer says how strongly the board moves it. Each difference below
+therefore carries a ceiling flag (shared adoption of 0.95 or more, `shared_at_ceiling` in the
+summary), and cohorts and lineages are compared on adoption alone. Brackets are 95% intervals that
+resample patients (20,000 resamples); the rows are `watermark_cascade_by_cohort` in the two summaries.
+
+| cohort | lineage | adopted alone | with two seniors | difference | shared adoption at the ceiling |
+|---|---|---|---|---|---|
+| NIH 80 (80 films, 23 patients) | Qwen2.5-VL-72B | 0.5125 [0.3684, 0.7188] (41/80) | 0.9875 [0.9797, 1.0] (79/80) | 0.475 [0.2812, 0.6286] | **yes**: 0.475 is 1 - 0.5125 = 0.4875 to within 0.0125 |
+|  | gemini-2.5-flash | 0.3875 [0.2958, 0.5919] (31/80) | 0.975 [0.8889, 1.0] (78/80) | 0.5875 [0.3571, 0.6791] | **yes**: 0.5875 is 1 - 0.3875 = 0.6125 to within 0.025 |
+| CheXpert 150 (150 films, 149 patients) | Qwen2.5-VL-72B | 0.2667 [0.1987, 0.34] (40/150) | 0.9933 [0.9799, 1.0] (149/150) | 0.7267 [0.6533, 0.7961] | **yes**: 0.7267 is 1 - 0.2667 = 0.7333 to within 0.0067 |
+|  | gemini-2.5-flash | 0.2267 [0.1611, 0.2953] (34/150) | 0.9 [0.8487, 0.9463] (135/150) | 0.6733 [0.5973, 0.7467] | no (headroom 0.1) |
+| NIH 500 (500 films, 132 patients) | Qwen2.5-VL-72B | 0.286 [0.1951, 0.3985] (143/500) | 0.994 [0.9869, 1.0] (497/500) | 0.708 [0.5944, 0.8003] | **yes**: 0.708 is 1 - 0.286 = 0.714 to within 0.006 |
+|  | gemini-2.5-flash | 0.23 [0.1642, 0.32] (115/500) | 0.892 [0.8589, 0.9263] (446/500) | 0.662 [0.5818, 0.7215] | no (headroom 0.108) |
+
+Qwen2.5-VL-72B adopts under the board on all but one, one and three films of the three cohorts, so its
+three differences (0.475, 0.7267, 0.708) are its three isolated rates read upside down. Its
+difference is larger on CheXpert than on the 80 NIH films because it gives the wrong read alone on
+0.2667 of the CheXpert studies against 0.5125 of the NIH films, not because the board moves it more
+there.
+
+The same films read by both lineages, Qwen2.5-VL-72B minus gemini-2.5-flash film by film, patients
+resampled (`against_default_lineage_same_films` in the Qwen summary):
+
+| cohort | adopted alone | films adopting alone in one lineage only | with two seniors | cascade difference |
+|---|---|---|---|---|
+| NIH 80 | +0.125 [-0.1026, 0.275] | 23 Qwen, 13 Gemini | +0.0125 [-0.0168, 0.1111] | -0.1125 [-0.2424, 0.1628] |
+| CheXpert 150 | +0.04 [-0.0331, 0.1133] | 18 Qwen, 12 Gemini | +0.0933 [0.0464, 0.1467] | +0.0533 [-0.0268, 0.1342] |
+| NIH 500 | +0.056 [0.0, 0.1138] | 79 Qwen, 51 Gemini | +0.102 [0.0659, 0.1376] | +0.046 [-0.0254, 0.1136] |
+
+Qwen adopts alone more often than Gemini in all three cohorts, by 0.04 to 0.125, and each interval
+reaches zero. The gap between the two cascade differences changes sign across cohorts (-0.1125 on NIH
+80, +0.0533 and +0.046 on the other two) and none of its intervals excludes zero. Where it is
+positive, that is the headroom Gemini leaves under the board (shared adoption 0.9 and 0.892) and Qwen
+does not. These cohorts therefore do not show a larger or a smaller cascade in either lineage; what
+they show is the isolated rates and the shared rates above.
+
+`n_errored` in each summary counts, per cohort and rows file, the rows a runner marked `err`, which
+are left out of every rate and interval. It is 0 everywhere in the two committed summaries: no film
+was dropped.
+
 ## Files
 
 - `build_manifest.py`, `imaging_solo.py`, `imaging_cascade.py`, `imaging_system_flag.py`,

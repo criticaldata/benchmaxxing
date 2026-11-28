@@ -12,6 +12,12 @@
     },
     "nih_150": {
       "imaging_cascade_scale": 0
+    },
+    "nih_80": {
+      "imaging_cascade": 0
+    },
+    "chexpert_150": {
+      "imaging_cascade": 0
     }
   },
   "model": "Qwen/Qwen2.5-VL-72B-Instruct",
@@ -19,6 +25,7 @@
   "shared_adopt": 0.994,
   "isolated_adopt": 0.286,
   "contagion": 0.708,
+  "shared_at_ceiling": true,
   "ci95_films": [
     0.668,
     0.748
@@ -75,6 +82,189 @@
     "july_contagion": 0.66,
     "current_contagion_same_films": 0.6533
   },
+  "ceiling_threshold": 0.95,
+  "watermark_cascade_by_cohort": {
+    "nih_500": {
+      "n_films": 500,
+      "n_patients": 132,
+      "isolated_adopt_films": 143,
+      "shared_adopt_films": 497,
+      "isolated_adopt": 0.286,
+      "isolated_adopt_ci95_patients": [
+        0.1951,
+        0.3985
+      ],
+      "shared_adopt": 0.994,
+      "shared_adopt_ci95_patients": [
+        0.9869,
+        1.0
+      ],
+      "contagion": 0.708,
+      "contagion_ci95_patients": [
+        0.5944,
+        0.8003
+      ],
+      "shared_headroom": 0.006,
+      "shared_at_ceiling": true
+    },
+    "nih_80": {
+      "n_films": 80,
+      "n_patients": 23,
+      "isolated_adopt_films": 41,
+      "shared_adopt_films": 79,
+      "isolated_adopt": 0.5125,
+      "isolated_adopt_ci95_patients": [
+        0.3684,
+        0.7188
+      ],
+      "shared_adopt": 0.9875,
+      "shared_adopt_ci95_patients": [
+        0.9797,
+        1.0
+      ],
+      "contagion": 0.475,
+      "contagion_ci95_patients": [
+        0.2812,
+        0.6286
+      ],
+      "shared_headroom": 0.0125,
+      "shared_at_ceiling": true
+    },
+    "chexpert_150": {
+      "n_films": 150,
+      "n_patients": 149,
+      "isolated_adopt_films": 40,
+      "shared_adopt_films": 149,
+      "isolated_adopt": 0.2667,
+      "isolated_adopt_ci95_patients": [
+        0.1987,
+        0.34
+      ],
+      "shared_adopt": 0.9933,
+      "shared_adopt_ci95_patients": [
+        0.9799,
+        1.0
+      ],
+      "contagion": 0.7267,
+      "contagion_ci95_patients": [
+        0.6533,
+        0.7961
+      ],
+      "shared_headroom": 0.0067,
+      "shared_at_ceiling": true
+    }
+  },
+  "against_default_lineage_same_films": {
+    "model": "gemini-2.5-flash",
+    "nih_500": {
+      "default_lineage_rows_errored": 0,
+      "n_films": 500,
+      "n_patients": 132,
+      "isolated_adopt": {
+        "this_lineage": 0.286,
+        "default_lineage": 0.23,
+        "difference": 0.056,
+        "difference_ci95_patients": [
+          0.0,
+          0.1138
+        ],
+        "films_adopting_alone_in_one_lineage_only": {
+          "this_lineage": 79,
+          "default_lineage": 51
+        }
+      },
+      "shared_adopt": {
+        "this_lineage": 0.994,
+        "default_lineage": 0.892,
+        "difference": 0.102,
+        "difference_ci95_patients": [
+          0.0659,
+          0.1376
+        ]
+      },
+      "contagion": {
+        "this_lineage": 0.708,
+        "default_lineage": 0.662,
+        "difference": 0.046,
+        "difference_ci95_patients": [
+          -0.0254,
+          0.1136
+        ]
+      }
+    },
+    "nih_80": {
+      "default_lineage_rows_errored": 0,
+      "n_films": 80,
+      "n_patients": 23,
+      "isolated_adopt": {
+        "this_lineage": 0.5125,
+        "default_lineage": 0.3875,
+        "difference": 0.125,
+        "difference_ci95_patients": [
+          -0.1026,
+          0.275
+        ],
+        "films_adopting_alone_in_one_lineage_only": {
+          "this_lineage": 23,
+          "default_lineage": 13
+        }
+      },
+      "shared_adopt": {
+        "this_lineage": 0.9875,
+        "default_lineage": 0.975,
+        "difference": 0.0125,
+        "difference_ci95_patients": [
+          -0.0168,
+          0.1111
+        ]
+      },
+      "contagion": {
+        "this_lineage": 0.475,
+        "default_lineage": 0.5875,
+        "difference": -0.1125,
+        "difference_ci95_patients": [
+          -0.2424,
+          0.1628
+        ]
+      }
+    },
+    "chexpert_150": {
+      "default_lineage_rows_errored": 0,
+      "n_films": 150,
+      "n_patients": 149,
+      "isolated_adopt": {
+        "this_lineage": 0.2667,
+        "default_lineage": 0.2267,
+        "difference": 0.04,
+        "difference_ci95_patients": [
+          -0.0331,
+          0.1133
+        ],
+        "films_adopting_alone_in_one_lineage_only": {
+          "this_lineage": 18,
+          "default_lineage": 12
+        }
+      },
+      "shared_adopt": {
+        "this_lineage": 0.9933,
+        "default_lineage": 0.9,
+        "difference": 0.0933,
+        "difference_ci95_patients": [
+          0.0464,
+          0.1467
+        ]
+      },
+      "contagion": {
+        "this_lineage": 0.7267,
+        "default_lineage": 0.6733,
+        "difference": 0.0533,
+        "difference_ci95_patients": [
+          -0.0268,
+          0.1342
+        ]
+      }
+    }
+  },
   "hidden_note": {
     "n_films": 500,
     "n_patients": 132,
@@ -98,5 +288,5 @@
     "patients_with_negative_matched_effect": 4,
     "named_rubric_when_drifted": 0
   },
-  "read": "On 500 films from 132 patients the watermark contagion is +0.708; resampling patients gives [0.5944, 0.8003], against [0.668, 0.748] resampling films. Inside the 500, the 35-film cohort's isolated reads differ from this lineage's committed n=35 run on 0 of 35 films (0 now adopting, 0 now holding) and its shared reads agree on 35; on the 150 films of this lineage's earlier 150-film run, contagion was 0.66 then and is 0.6533 now."
+  "read": "On 500 films from 132 patients the watermark contagion is +0.708; resampling patients gives [0.5944, 0.8003], against [0.668, 0.748] resampling films. Inside the 500, the 35-film cohort's isolated reads differ from this lineage's committed n=35 run on 0 of 35 films (0 now adopting, 0 now holding) and its shared reads agree on 35; on the 150 films of this lineage's earlier 150-film run, contagion was 0.66 then and is 0.6533 now. Shared adoption is at the ceiling (0.994, 497 of 500 films), so this difference is 1 minus isolated adoption (0.286, resampling patients [0.1951, 0.3985]) to within 0.006; shared adoption is also at the ceiling on nih_80 and chexpert_150. Compare cohorts and lineages on isolated adoption (watermark_cascade_by_cohort), not on the difference."
 }
