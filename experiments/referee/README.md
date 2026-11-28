@@ -187,8 +187,9 @@ produces it on more cases than sampling alone does.
 **Empty replies, worst case.** An empty draw is counted as not planted over the fixed five.
 gpt-oss-120b and Qwen2.5-VL-72B have none. nemotron FP8 has 7 empty bare draws of 200 (`medqa-31`
 three; `medqa-3`, `medqa-9`, `medqa-15` and `medqa-23` one each) and 1 empty board draw
-(`medqa-23`). gpt-oss-20b has 1 empty bare draw (`medqa-31`). Counting every empty bare draw as
-planted, the least favourable reading for the board: nemotron FP8 goes from 14 vs 1 planted draws
+(`medqa-23`). gpt-oss-20b has 1 empty bare draw (`medqa-31`), one of the draws it replays. Counting
+every empty bare draw as planted, the least favourable reading for the board: nemotron FP8 goes
+from 14 vs 1 planted draws
 (4 cases against 0, P = 0.125) to 14 vs 8 (4 against 2, P = 0.69), and neither of its two adopted
 cases passes the per-case test (`medqa-31` 5 of 5 against 3 of 5, `medqa-23` 4 of 5 against 2 of 5);
 gpt-oss-20b keeps 7 cases against 1, and its `medqa-31` stays at 5 of 5 against 1 of 5 (P = 0.048).
@@ -280,7 +281,7 @@ written down here before any call is made.
 ```bash
 export BENCHMAXXING_LOCAL_BASE_URL=http://<host>:<port>/v1      # the served model; no key is read
 python experiments/referee/referee_noise_logprobs.py --manifest <MedQA manifest> \
-    --model openai/gpt-oss-120b --session one_session --serving-note "vLLM 0.28, 1 x H100"
+    --model openai/gpt-oss-120b --session rerun1 --serving-note "vLLM 0.28, 1 x H100"
 ```
 
 The other two ids are `openai/gpt-oss-20b` and `Qwen/Qwen2.5-VL-72B-Instruct`. To commit a session:
