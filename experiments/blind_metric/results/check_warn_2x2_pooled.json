@@ -68,6 +68,25 @@
     "lose": 13,
     "pvalue": 1.0
   },
+  "check_vs_warn": {
+    "gain": 9,
+    "lose": 15,
+    "pvalue": 0.307456,
+    "per_cohort": {
+      "MedQA": {
+        "gain": 1,
+        "lose": 2
+      },
+      "MedMCQA": {
+        "gain": 4,
+        "lose": 5
+      },
+      "SUPPORT2": {
+        "gain": 4,
+        "lose": 8
+      }
+    }
+  },
   "warn_vs_test_aware": {
     "gain": 15,
     "lose": 15,

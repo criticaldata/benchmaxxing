@@ -68,6 +68,25 @@
     "lose": 15,
     "pvalue": 0.078354
   },
+  "check_vs_warn": {
+    "gain": 4,
+    "lose": 9,
+    "pvalue": 0.266846,
+    "per_cohort": {
+      "MedQA": {
+        "gain": 2,
+        "lose": 1
+      },
+      "MedMCQA": {
+        "gain": 2,
+        "lose": 3
+      },
+      "SUPPORT2": {
+        "gain": 0,
+        "lose": 5
+      }
+    }
+  },
   "warn_vs_test_aware": {
     "gain": 2,
     "lose": 8,
@@ -78,5 +97,5 @@
     "lose": 5,
     "pvalue": 0.726562
   },
-  "read": "Pooled over 110 cases, decoy uptake is 0.3727 under the plain note, 0.1727 with the check announced, 0.1273 with the warning and 0.0909 with both; the committed test_aware prompt gives 0.0727 on the same cases. Against the plain note: check 4 vs 26 (P = 5.9e-05), warning 1 vs 28 (P = 1.12e-07), both 1 vs 32 (P = 7.92e-09). The rubric is named in 2 of 440 justifications across the four cells."
+  "read": "Pooled over 110 cases, decoy uptake is 0.3727 under the plain note, 0.1727 with the check announced, 0.1273 with the warning and 0.0909 with both; the committed test_aware prompt gives 0.0727 on the same cases. Against the plain note: check 4 vs 26 (P = 5.9e-05), warning 1 vs 28 (P = 1.12e-07), both 1 vs 32 (P = 7.92e-09). Warning against check, the direct test of the two sentences: 4 cases follow the note under the warning only and 9 under the check only (P = 0.266846, exact McNemar, uncorrected). The rubric is named in 2 of 440 justifications across the four cells."
 }

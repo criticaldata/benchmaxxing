@@ -6,6 +6,10 @@ plain note. Each case appears once per comparison, so the pooled tests stay exac
 test_aware uptake (answer-only, "clinically best", both sentences) is shown beside the cells from the
 same cases' blind_metric rows, since that is the single condition the 2x2 takes apart.
 
+``check_vs_warn`` is the direct test of the two sentences against each other (exact McNemar of the
+warning cell against the check cell), with the discordant counts of each cohort beside it. The tests
+against the plain note do not say which sentence lowers uptake more; this one does.
+
 ``--model`` pools another lineage's rows from each cohort's ``<slug>/`` subdirectory and writes
 ``experiments/blind_metric/results/<slug>/check_warn_2x2_pooled.json``; the default is the committed
 gemini-2.5-flash-lite run, whose output and wording are unchanged.
@@ -47,17 +51,35 @@ def _pair(rows, a, b, col="is_decoy"):
     return {"gain": gain, "lose": lose, "pvalue": _p6(mcnemar(gain, lose).pvalue)}
 
 
+def check_vs_warn(rows):
+    """Exact McNemar of the warning cell against the check cell on decoy uptake.
+
+    ``gain`` counts the cases that follow the note under the warning and not under the check,
+    ``lose`` the cases that follow it under the check and not under the warning, so a warning that
+    lowers uptake more than the check shows as lose above gain. The per-cohort counts are
+    descriptive and carry no test of their own.
+    """
+    out = _pair(rows, "check", "warn")
+    out["per_cohort"] = {}
+    for name in dict.fromkeys(r["cohort"] for r in rows):
+        p = _pair([r for r in rows if r["cohort"] == name], "check", "warn")
+        out["per_cohort"][name] = {"gain": p["gain"], "lose": p["lose"]}
+    return out
+
+
 DEFAULT_MODEL = "gemini-2.5-flash-lite"
 
 
-def main():
-    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--model", default=DEFAULT_MODEL)
-    model = ap.parse_args().model
+def cohort_dirs(model):
     slug = model.replace("/", "_")
-    cohorts = COHORTS if model == DEFAULT_MODEL else {k: f"{v}/{slug}" for k, v in COHORTS.items()}
+    return COHORTS if model == DEFAULT_MODEL else {k: f"{v}/{slug}" for k, v in COHORTS.items()}
+
+
+def load_rows(model):
+    """One model's rows over the three cohorts, each tagged with its cohort and its committed
+    test_aware outcome; returns (rows, cases per cohort)."""
     rows, per = [], {}
-    for name, d in cohorts.items():
+    for name, d in cohort_dirs(model).items():
         rs = _rows(d)
         a = _aware(d)
         assert {r["case_id"] for r in rs} <= set(a), name
@@ -66,6 +88,15 @@ def main():
             r["aware_is_decoy"] = a[r["case_id"]]
         rows += rs
         per[name] = len(rs)
+    return rows, per
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--model", default=DEFAULT_MODEL)
+    model = ap.parse_args().model
+    slug = model.replace("/", "_")
+    rows, per = load_rows(model)
     n = len(rows)
     cells = {}
     for c in CELLS:
@@ -84,6 +115,7 @@ def main():
         "vs_none": {c: _pair(rows, "none", c) for c in CELLS[1:]},
         "check_given_warn": _pair(rows, "warn", "both"),
         "warn_given_check": _pair(rows, "check", "both"),
+        "check_vs_warn": check_vs_warn(rows),
         "warn_vs_test_aware": _pair(
             [{**r, "ta_is_decoy": r["aware_is_decoy"]} for r in rows], "warn", "ta"),
         "both_vs_test_aware": _pair(
@@ -111,6 +143,9 @@ def main():
             f"{out['vs_none']['check']['gain']} vs {out['vs_none']['check']['lose']} (P {_p(out['vs_none']['check']['pvalue'])}), "
             f"warning {out['vs_none']['warn']['gain']} vs {out['vs_none']['warn']['lose']} (P {_p(out['vs_none']['warn']['pvalue'])}), "
             f"both {out['vs_none']['both']['gain']} vs {out['vs_none']['both']['lose']} (P {_p(out['vs_none']['both']['pvalue'])}). "
+            f"Warning against check, the direct test of the two sentences: {out['check_vs_warn']['gain']} cases follow "
+            f"the note under the warning only and {out['check_vs_warn']['lose']} under the check only "
+            f"(P {_p(out['check_vs_warn']['pvalue'])}, exact McNemar, uncorrected). "
             f"The rubric is named in {sum(cells[c]['n_named_any'] for c in CELLS)} of {4 * n} justifications "
             f"across the four cells.")
     p = ROOT / "experiments/blind_metric/results" / ("" if model == DEFAULT_MODEL else slug) / "check_warn_2x2_pooled.json"

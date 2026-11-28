@@ -1,0 +1,49 @@
+{
+  "models": [
+    "openai/gpt-oss-120b",
+    "nemotron-3-super-120b-a12b-fp8-local",
+    "Qwen/Qwen2.5-VL-72B-Instruct"
+  ],
+  "new_api_calls_this_run": 0,
+  "check_vs_warn": {
+    "per_model": {
+      "openai/gpt-oss-120b": {
+        "n": 110,
+        "gain": 4,
+        "lose": 9,
+        "pvalue": 0.266846,
+        "p_holm": 0.266846
+      },
+      "nemotron-3-super-120b-a12b-fp8-local": {
+        "n": 113,
+        "gain": 3,
+        "lose": 12,
+        "pvalue": 0.035156,
+        "p_holm": 0.105469
+      },
+      "Qwen/Qwen2.5-VL-72B-Instruct": {
+        "n": 115,
+        "gain": 3,
+        "lose": 11,
+        "pvalue": 0.057373,
+        "p_holm": 0.114746
+      }
+    },
+    "n_models": 3,
+    "alpha": 0.05,
+    "n_models_below_alpha": 1,
+    "n_models_below_alpha_holm": 0,
+    "model_case_pairs": {
+      "gain": 10,
+      "lose": 32
+    },
+    "over_models": {
+      "n_cases": 119,
+      "cases_lower_under_warning": 24,
+      "cases_higher_under_warning": 8,
+      "cases_equal": 87,
+      "sign_test_p": 0.007
+    }
+  },
+  "read": "Warning against check, cases that follow the note under the warning only vs under the check only, exact McNemar per model: openai/gpt-oss-120b 4 vs 9 (P = 0.266846); nemotron-3-super-120b-a12b-fp8-local 3 vs 12 (P = 0.035156); Qwen/Qwen2.5-VL-72B-Instruct 3 vs 11 (P = 0.057373). Below 0.05: 1 of 3 models uncorrected, 0 of 3 after Holm over the models. With the case as the unit, uptake summed over the models is lower under the warning on 24 cases and higher on 8 of 119 (exact sign test P = 0.007)."
+}
