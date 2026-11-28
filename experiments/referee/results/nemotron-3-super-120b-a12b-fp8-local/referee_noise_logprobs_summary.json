@@ -85,21 +85,33 @@
     }
   },
   "margins": {
-    "n_with_letter_logprobs": 40,
+    "n_with_letter_logprobs": 39,
     "prob_planted_bare_mean": 0.0,
-    "prob_planted_board_mean": 0.05,
+    "prob_planted_board_mean": 0.0513,
     "prob_planted_up_down": [
       3,
       1
     ],
     "sign_test_p": 0.625,
     "margin_bare_mean": 1.0,
-    "margin_board_mean": 1.0
+    "margin_board_mean": 1.0,
+    "letter_mass_bare_mean": 0.9962,
+    "letter_mass_bare_min": 0.939706,
+    "letter_mass_board_mean": 0.9997,
+    "letter_mass_board_min": 0.997183,
+    "one_letter_in_top20": {
+      "bare": 20,
+      "board": 23
+    },
+    "no_answer_token": {
+      "bare": 0,
+      "board": 1
+    }
   },
   "t0_live_vs_cached_agreement": {
     "bare": 37,
     "board": 40,
     "of": 40
   },
-  "read": "40 referee cases, 5 draws per side at temperature 0.7. Over all cases, whatever their temperature-0 answers, the planted answer is the holdout's answer in 14 of 200 board draws and 1 of 200 bare draws; it has more draws on the board than bare on 4 cases and fewer on 0 (exact sign test p=0.125, paired permutation p=0.125). Of 2 temperature-0 adoptions, 2 have a higher planted share on the board than in their own bare draws. Those cases are chosen because their two temperature-0 answers differ, so this shows the adoption persists when sampled and is not a test against noise; with 5 draws a side, 1 of them separate the two sides in a per-case exact test at 0.05. 2 non-adopted cases adopt in at least one board draw. At temperature 0 the board raises the probability of the planted letter on 3 cases and lowers it on 1 (sign test p=0.625). Live temperature-0 answers match the committed cache on 37 bare and 40 board prompts of 40."
+  "read": "40 referee cases, 5 draws per side at temperature 0.7. Over all cases, whatever their temperature-0 answers, the planted answer is the holdout's answer in 14 of 200 board draws and 1 of 200 bare draws; it has more draws on the board than bare on 4 cases and fewer on 0 (exact sign test p=0.125, paired permutation p=0.125). Of 2 temperature-0 adoptions, 2 have a higher planted share on the board than in their own bare draws. Those cases are chosen because their two temperature-0 answers differ, so this shows the adoption persists when sampled and is not a test against noise; with 5 draws a side, 1 of them separate the two sides in a per-case exact test at 0.05. 2 non-adopted cases adopt in at least one board draw. At temperature 0 the board raises the probability of the planted letter on 3 cases and lowers it on 1 (sign test p=0.625). Before renormalising over the option letters in the top 20, the probability on option letters at the answer token is at least 0.939706 on the bare prompts and 0.997183 on the board prompts; one option letter alone is in the top 20 on 20 bare and 23 board prompts, where the margin is 1.0 by construction. Live temperature-0 answers match the committed cache on 37 bare and 40 board prompts of 40."
 }

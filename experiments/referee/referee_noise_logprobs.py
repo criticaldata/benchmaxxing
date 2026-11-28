@@ -39,6 +39,12 @@ An empty draw is counted as not planted over the fixed K. The summary lists the 
 and repeats the all-cases comparison and the per-case tests with every empty bare draw counted as
 planted, the assignment least favourable to the board.
 
+The margin is renormalised over the option letters found among the answer token's top 20
+alternatives, so it is 1.0 by construction when only one option letter is there. The rows therefore
+also keep the raw probability on option letters before renormalising (``letter_mass_*``) and how many
+option letters are in the top 20 (``n_letters_top20_*``). A reply with no text has no answer token:
+its letter tokens, if any, belong to the reasoning, and it gets no margin.
+
 Committee answers at temperature 0 come from the committed referee call cache; the margin calls are
 live and are also compared with those cached answers, which measures how far the serving stack
 drifts at temperature 0.
@@ -123,7 +129,8 @@ class _Cache:
 
 class _LogprobCache:
     """Temperature-0 calls with logprobs; the cached record keeps the text and the top-k list of every
-    generated token that is a bare option letter, which is all the margin needs."""
+    generated token that is a bare option letter, which is all the margin needs. The top-k list is
+    kept raw (token and log-probability), so the mass before renormalising is recomputable from it."""
 
     TOP = 20
 
@@ -165,17 +172,36 @@ class _LogprobCache:
         return rec
 
 
-def _letter_dist(rec, letters):
-    """Probability over option letters at the answer token: the last generated token that is a bare
-    option letter, with its top-k alternatives summed by stripped letter and renormalised."""
-    if not rec["letter_tokens"]:
+def _answer_token(rec):
+    """The answer token of a temperature-0 reply: the last generated token that is a bare option
+    letter. A reply whose text is empty answered nothing, and its letter tokens, if any, belong to
+    the reasoning, so it has no answer token."""
+    if not rec["letter_tokens"] or ("text" in rec and not (rec["text"] or "").strip()):
         return None
-    t = rec["letter_tokens"][-1]
+    return rec["letter_tokens"][-1]
+
+
+def _letter_mass(rec, letters):
+    """Raw probability on each option letter among the answer token's top-k alternatives, summed by
+    stripped letter and not renormalised. Only the letters present are returned, so its length is
+    the number of option letters in the top k and its sum is the mass the margin is renormalised by."""
+    t = _answer_token(rec)
+    if t is None:
+        return None
     mass = Counter()
     for tok, lp in t["top"]:
         s = tok.strip()
         if s in letters:
             mass[s] += math.exp(lp)
+    return dict(mass)
+
+
+def _letter_dist(rec, letters):
+    """Probability over option letters at the answer token: the last generated token that is a bare
+    option letter, with its top-k alternatives summed by stripped letter and renormalised."""
+    mass = _letter_mass(rec, letters)
+    if not mass:
+        return None
     tot = sum(mass.values())
     if tot <= 0:
         return None
@@ -239,6 +265,10 @@ def summarise(rows, k, empty):
         xs = [x for x in xs if x is not None]
         return round(sum(xs) / len(xs), 4) if xs else None
 
+    def low(xs):
+        xs = [x for x in xs if x is not None]
+        return min(xs) if xs else None
+
     def worst_bare(r):
         """Bare planted draws with every empty bare draw counted as planted."""
         return r["bare_draws_planted"] + bare_empty.get(r["case_id"], 0)
@@ -274,6 +304,15 @@ def summarise(rows, k, empty):
             "sign_test_p": _sign_test(up, down),
             "margin_bare_mean": mean([r["margin_bare"] for r in both]),
             "margin_board_mean": mean([r["margin_board"] for r in both]),
+            # before renormalising over the option letters found in the top 20
+            "letter_mass_bare_mean": mean([r["letter_mass_bare"] for r in rows]),
+            "letter_mass_bare_min": low([r["letter_mass_bare"] for r in rows]),
+            "letter_mass_board_mean": mean([r["letter_mass_board"] for r in rows]),
+            "letter_mass_board_min": low([r["letter_mass_board"] for r in rows]),
+            "one_letter_in_top20": {"bare": sum(1 for r in rows if r["n_letters_top20_bare"] == 1),
+                                    "board": sum(1 for r in rows if r["n_letters_top20_board"] == 1)},
+            "no_answer_token": {"bare": sum(1 for r in rows if r["n_letters_top20_bare"] is None),
+                                "board": sum(1 for r in rows if r["n_letters_top20_board"] is None)},
         },
         "t0_live_vs_cached_agreement": {
             "bare": sum(1 for r in rows if r["t0_live_bare_matches_cache"]),
@@ -370,6 +409,7 @@ def main():
         lp_bare = lp_cache.complete(base_p, letters)
         lp_board = lp_cache.complete(prompts[-1], letters)
         dist_bare, dist_board = _letter_dist(lp_bare, letters), _letter_dist(lp_board, letters)
+        mass_bare, mass_board = _letter_mass(lp_bare, letters), _letter_mass(lp_board, letters)
 
         def margin(dist):
             if not dist:
@@ -390,6 +430,10 @@ def main():
             "prob_planted_bare": dist_bare.get(wl) if dist_bare else None,
             "prob_planted_board": dist_board.get(wl) if dist_board else None,
             "margin_bare": margin(dist_bare), "margin_board": margin(dist_board),
+            "letter_mass_bare": round(sum(mass_bare.values()), 6) if mass_bare else None,
+            "letter_mass_board": round(sum(mass_board.values()), 6) if mass_board else None,
+            "n_letters_top20_bare": len(mass_bare) if mass_bare else None,
+            "n_letters_top20_board": len(mass_board) if mass_board else None,
             "t0_live_bare_matches_cache": parse_legacy_string(lp_bare["text"], opts) == bare,
             "t0_live_board_matches_cache": parse_legacy_string(lp_board["text"], opts) == board,
         }
@@ -433,7 +477,11 @@ def main():
         f"exact test at {ALPHA}. {summary['not_adopted_t0_with_any_planted_board_draw']} non-adopted cases adopt in "
         f"at least one board draw. At temperature 0 the board raises the probability of the planted letter on "
         f"{m['prob_planted_up_down'][0]} cases and lowers it on {m['prob_planted_up_down'][1]} "
-        f"(sign test p={m['sign_test_p']}). Live temperature-0 answers match the "
+        f"(sign test p={m['sign_test_p']}). Before renormalising over the option letters in the top 20, the "
+        f"probability on option letters at the answer token is at least {m['letter_mass_bare_min']} on the bare "
+        f"prompts and {m['letter_mass_board_min']} on the board prompts; one option letter alone is in the top 20 "
+        f"on {m['one_letter_in_top20']['bare']} bare and {m['one_letter_in_top20']['board']} board prompts, where "
+        f"the margin is 1.0 by construction. Live temperature-0 answers match the "
         f"committed cache on {summary['t0_live_vs_cached_agreement']['bare']} bare and "
         f"{summary['t0_live_vs_cached_agreement']['board']} board prompts of {len(rows)}.")
     (out / "referee_noise_logprobs_summary.json").write_text(json.dumps(summary, indent=2) + "\n")

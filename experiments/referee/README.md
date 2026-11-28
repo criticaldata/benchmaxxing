@@ -197,6 +197,33 @@ nemotron FP8's bare answer on `medqa-31`, so one of its two adoptions has no bar
 from, its board answer on `medqa-9`, and gpt-oss-20b's bare answer on `medqa-34`. The summary lists
 all of them by case under `empty_replies`.
 
+**Answer-token margins, before renormalising.** Qwen2.5-VL-72B answers directly: the probability of
+the planted letter at the answer token rises from the bare to the board prompt on 34 cases and falls
+on 4 (sign test P = 6.0e-07), and its mean top-two margin is 0.81 bare and 0.89 on the board. The
+three reasoning models show a margin of at least 0.999994 on every prompt. That margin is
+renormalised over the option letters found among the answer token's top 20 alternatives, so it is
+1.0 by construction wherever one option letter alone is there. The rows therefore also keep the
+probability on option letters before renormalising (`letter_mass_bare`, `letter_mass_board`) and the
+number of option letters in the top 20 (`n_letters_top20_bare`, `n_letters_top20_board`). Both are
+read from the top-20 log-probabilities the committed caches already hold, with no new call:
+
+| Model | One option letter alone in the top 20, bare / board prompts | Lowest probability on option letters before renormalising, bare / board |
+|---|---|---|
+| gpt-oss-120b | 0 of 40 / 0 of 40 | 1.000000 / 1.000000 |
+| gpt-oss-20b | 10 of 40 / 5 of 40 | 0.999989 / 0.999995 |
+| nemotron FP8 | 20 of 40 / 23 of 39 | 0.939706 / 0.997183 |
+| Qwen2.5-VL-72B | 0 of 40 / 0 of 40 | 0.999753 / 0.999757 |
+
+The 1.0 follows from the renormalisation on 43 of nemotron FP8's 79 prompts and 15 of gpt-oss-20b's
+80, and on none of gpt-oss-120b's, where three to five option letters are in the top 20 every time.
+The probability before renormalising shows the certainty is there all the same: a letter that stands
+alone holds at least 0.9686 (nemotron FP8) and 0.999998 (gpt-oss-20b) by itself, and 76 of nemotron
+FP8's 79 prompts keep 0.99 or more on option letters. The reasoning models settle the answer before
+the answer token, so for them this margin carries almost no graded information. One nemotron FP8
+temperature-0 reply is empty (`medqa-9` on the board prompt, cut at the length limit). Its letter
+tokens belong to the reasoning, so it has no answer token and is given no margin: 39 of its 40 cases
+carry one.
+
 ## Reproduce
 
 ```bash

@@ -1,6 +1,7 @@
-"""referee_noise_logprobs.py: the committed rows replay from their caches with no server, and the helpers
+"""referee_noise_logprobs.py: the committed rows replay from their caches with no server, the helpers
 behave on hand-built inputs."""
 import json
+import math
 import os
 import subprocess
 import sys
@@ -45,6 +46,72 @@ def test_sign_test_is_two_sided_and_exact():
     assert rn._sign_test(5, 5) == 1.0
 
 
+# ---------------------------------------------------------------- the margin before renormalising
+def test_letter_mass_is_the_probability_before_renormalising():
+    top = [["B", math.log(0.6)], [" C", math.log(0.1)], ["The", math.log(0.3)]]
+    rec = {"text": "B", "letter_tokens": [{"token": "B", "logprob": math.log(0.6), "top": top}]}
+    mass = rn._letter_mass(rec, ["A", "B", "C"])
+    assert set(mass) == {"B", "C"} and sum(mass.values()) == pytest.approx(0.7)
+    # renormalising hides the 0.3 that sits on a token that is not an option letter
+    assert rn._letter_dist(rec, ["A", "B", "C"])["B"] == pytest.approx(0.857143, abs=1e-6)
+
+
+def test_one_letter_in_the_top_k_gives_a_margin_of_one_whatever_its_probability():
+    top = [["B", math.log(0.6)], ["Answer", math.log(0.4)]]
+    rec = {"text": "B", "letter_tokens": [{"token": "B", "logprob": math.log(0.6), "top": top}]}
+    assert rn._letter_dist(rec, ["A", "B", "C"]) == {"A": 0.0, "B": 1.0, "C": 0.0}
+    mass = rn._letter_mass(rec, ["A", "B", "C"])
+    assert len(mass) == 1 and sum(mass.values()) == pytest.approx(0.6)
+
+
+def test_a_reply_with_no_text_has_no_answer_token():
+    """Its letter tokens come from the reasoning, so reading a margin off the last of them would be wrong."""
+    rec = {"text": "", "finish_reason": "length",
+           "letter_tokens": [{"token": "C", "logprob": 0.0, "top": [["C", 0.0], ["A", -9.0]]}]}
+    assert rn._answer_token(rec) is None and rn._letter_mass(rec, ["A", "C"]) is None and rn._letter_dist(rec, ["A", "C"]) is None
+    assert rn._answer_token({**rec, "text": "C"})["token"] == "C"
+
+
+@pytest.mark.parametrize("slug", sorted(LINEAGES.values()))
+def test_every_committed_letter_mass_is_an_answer_token_of_the_logprob_cache(slug):
+    """No manifest needed: the raw mass of every cached answer token, recomputed here from the top-20
+    lists the cache keeps, is the set of values the rows carry."""
+    letters = set("ABCDE")
+    cached = []
+    for line in (RESULTS / f"{slug}_referee_logprob_cache.jsonl").read_text().splitlines():
+        rec = json.loads(line)
+        assert all(len(t["top"]) == rn._LogprobCache.TOP for t in rec["letter_tokens"])
+        mass = rn._letter_mass(rec, letters)
+        if mass:
+            cached.append((round(sum(mass.values()), 6), len(mass)))
+    rows = _rows(slug)
+    in_rows = [(r[f"letter_mass_{side}"], r[f"n_letters_top20_{side}"]) for r in rows for side in ("bare", "board")
+               if r[f"letter_mass_{side}"] is not None]
+    assert sorted(cached) == sorted(in_rows) and len(cached) + sum(_summary(slug)["margins"]["no_answer_token"].values()) == 2 * len(rows)
+
+
+def test_margin_saturation_is_by_construction_only_where_one_letter_is_in_the_top_20():
+    """Where the margin is 1.0 only because one option letter is in the top 20, and what the raw mass says there."""
+    one = {slug: _summary(slug)["margins"]["one_letter_in_top20"] for slug in LINEAGES.values()}
+    assert one == {"openai_gpt-oss-120b": {"bare": 0, "board": 0}, "openai_gpt-oss-20b": {"bare": 10, "board": 5},
+                   "nemotron-3-super-120b-a12b-fp8-local": {"bare": 20, "board": 23},
+                   "Qwen_Qwen2.5-VL-72B-Instruct": {"bare": 0, "board": 0}}
+    low = {slug: (_summary(slug)["margins"]["letter_mass_bare_min"], _summary(slug)["margins"]["letter_mass_board_min"])
+           for slug in LINEAGES.values()}
+    assert low == {"openai_gpt-oss-120b": (1.0, 1.0), "openai_gpt-oss-20b": (0.999989, 0.999995),
+                   "nemotron-3-super-120b-a12b-fp8-local": (0.939706, 0.997183),
+                   "Qwen_Qwen2.5-VL-72B-Instruct": (0.999753, 0.999757)}
+    for slug in LINEAGES.values():
+        for r in _rows(slug):
+            for side in ("bare", "board"):
+                if r[f"n_letters_top20_{side}"] == 1:
+                    assert r[f"margin_{side}"] == 1.0
+    # the one empty temperature-0 reply (nemotron, medqa-9 on the board prompt) has no margin
+    nemotron = {r["case_id"]: r for r in _rows("nemotron-3-super-120b-a12b-fp8-local")}
+    assert nemotron["medqa-9"]["margin_board"] is None and nemotron["medqa-9"]["prob_planted_board"] is None
+    assert _summary("nemotron-3-super-120b-a12b-fp8-local")["margins"]["n_with_letter_logprobs"] == 39
+
+
 # ---------------------------------------------------------------- draws: all cases, and the adopted ones
 def test_per_case_exact_test_with_five_draws_a_side():
     assert [rn.planted_fisher_p(b, a, 5) for b, a in ((5, 0), (4, 0), (5, 1), (3, 0), (5, 3), (1, 0), (0, 0))] == [
@@ -67,7 +134,8 @@ def _row(case_id, board, bare, adopted, k=5):
     return {"case_id": case_id, "adopted_t0": adopted, "board_draws_planted": board, "bare_draws_planted": bare,
             "board_rate": board / k, "bare_rate": bare / k, "board_rate_above_bare": board > bare,
             "planted_fisher_p": rn.planted_fisher_p(board, bare, k), "prob_planted_bare": 0.0, "prob_planted_board": 0.0,
-            "margin_bare": 1.0, "margin_board": 1.0,
+            "margin_bare": 1.0, "margin_board": 1.0, "letter_mass_bare": 1.0, "letter_mass_board": 1.0,
+            "n_letters_top20_bare": 2, "n_letters_top20_board": 2,
             "t0_live_bare_matches_cache": True, "t0_live_board_matches_cache": True}
 
 
