@@ -7,7 +7,7 @@ argument on the board, what each one compares, and how to replay them.
 | Runner | What it does | Results |
 |---|---|---|
 | `requery_case_argument.py` | the reviewed arm: named senior plus a generated argument, the argument alone, and the honest control | `results/requery_case_argument*` |
-| `requery_case_argument_2x2.py` | added after review: the two boards that complete the named source by assertiveness square | `results/requery_case_argument_2x2*` |
+| `requery_case_argument_2x2.py` | added after review: the two boards that complete the named source by assertiveness square, and a fifth board where a colleague speaks | `results/requery_case_argument_2x2*` |
 
 Both use the same 120 MedQA cases (the first 120 of the repository's MedQA manifest, sha256 prefix
 0f2076a4), the same planted wrong answer X per case, and the same generated arguments
@@ -96,13 +96,14 @@ planted and reference letters, and for every condition the answer under the lega
 Every count in `results/requery_case_argument_2x2_summary.json` is recounted from those letters.
 `results/requery_case_argument_2x2_cache.jsonl` holds the new calls only; the committed cells are
 read from the committed caches of the earlier arms. The committed summary is what a keyless replay
-writes, so its `new_api_calls_this_run` is 0; `calls_in_cache` (720) is the number of calls the run
-made.
+writes, so its `new_api_calls_this_run` is 0; `calls_in_cache` is the number of calls made (960:
+720 for the square, 240 for the colleague board added after it).
 
 ### Run and replay
 
 ```bash
-# count the calls first: 720 before the run, 0 once the cache is committed
+# count the calls first: 720 before the square was run, 240 before the colleague board, 0 once
+# the cache is committed
 python experiments/referee/requery_case_argument_2x2.py --manifest <MedQA manifest> --dry-run
 # the run (needs GEMINI_API_KEY only while the cache is not filled); with the committed cache it
 # replays with no key and reproduces the rows and the summary
@@ -134,7 +135,10 @@ same comparisons under declared scoring.
 | Wording effect, named source | `source_case_argument` against `source_hedged_case_argument` | 23 | 3 | 8.8e-05 | 0.00026 | 23, 3 | 0.00026 |
 | Wording effect, no source | `flat_case_argument_only` against `case_argument_only` | 55 | 2 | 2.3e-14 | 9.2e-14 | 55, 2 | 9.2e-14 |
 
-What the square shows.
+What the square shows. Read it with the fifth board below, which was added after these results:
+the flat board with no source turned out not to be a board with no authority. Points 1 to 3 stand
+as counts, but the 53 of point 1, the sign change of point 2 and the minus 19 of point 3 belong to
+a statement with no speaker, which the holdout tends to read as the supplied answer.
 
 1. **The wording moves more cases than the source.** Stating the answer flatly, where the hedged
    board offers one line of reasoning, adds 20 net adoptions with the named senior (23 cases
@@ -143,9 +147,9 @@ What the square shows.
    wording the named senior adds adoptions (19 cases against 5). Under the flat wording it removes
    them (5 against 24): the same argument is adopted on 103 cases as a flat statement with no
    source and on 84 when that statement is attributed to the senior attending.
-3. **The committed gap is mostly wording and cannot be read as a source effect.** The reviewed
-   arm's contrast between `source_case_argument` and `case_argument_only` (35 cases against 1,
-   net 34) splits as follows. Through the flat board without a source: minus 19 for the source,
+3. **The committed gap mixes the two factors and is not, as it stands, a source effect.** The
+   reviewed arm's contrast between `source_case_argument` and `case_argument_only` (35 cases
+   against 1, net 34) splits as follows. Through the flat board without a source: minus 19 for the source,
    plus 53 for the wording. Through the hedged board with the named source: plus 20 for the
    wording, plus 14 for the source. The same caution applies to that arm's 39 cases against 2
    (named senior alone against the generated argument alone), whose boards differ by the same
@@ -174,12 +178,13 @@ solution, or an answer key) finds that wording in 70 of 120 replies to the flat 
 source, 42 with the named senior and flat wording, 23 with the named senior and hedged wording,
 and 19 with the hedged board and no source. So for a flat statement "no source" is not "no
 authority": an unattributed assertion in the prompt can be read as the examiner's own answer. This
-is a description of the replies, not a tested claim.
+is a description of the replies; the fifth board below tests it.
 
 Limits after the run. One holdout, from the same vendor as the argument writer (the next section
 is the design for a second one). The square cannot tell a statement with no source from a
 statement in the prompt's own voice, which is what point 2 suggests the flat board without a
-source is. The hedged wording is the mild one of the committed board. One read per cell, on a
+source is; the fifth board below was added for that. The hedged wording is the mild one of the
+committed board. One read per cell, on a
 model that returned identical text on every re-read.
 
 ## A fifth board: flat wording from a speaker without seniority (added 28 Nov 2026, after the square)
@@ -227,7 +232,55 @@ Limits known before the run. One phrase for the speaker ("a colleague"), one hol
 
 ### Results
 
-Not run at this commit. No call has been made for this board.
+Run on 28 Nov 2026: 240 calls in one run, no error, no empty reply (`calls_in_cache` is now 960).
+Numbers are from `colleague_board` in `results/requery_case_argument_2x2_summary.json`, pinned by
+`tests/test_requery_case_argument_2x2.py`.
+
+Flat wording, three speakers. Adoption of 120 with the legacy parse (declared in brackets), and
+the number of replies that call the board the provided answer or solution:
+
+| Who is behind the statement | Board | Adopted | Calls it the provided answer |
+|---|---|---:|---:|
+| A senior attending | `source_case_argument` | 84 (84) | 42 |
+| A colleague | `colleague_case_argument` | 48 (48) | 30 |
+| Nobody | `flat_case_argument_only` | 103 (102) | 70 |
+
+Paired exact tests for the colleague board: cases that adopt under only one of the two boards,
+with Holm over the two tests.
+
+| Colleague board against | Only the colleague board | Only the other board | P | P, Holm | Declared: counts | Declared: P, Holm |
+|---|---:|---:|---:|---:|---|---:|
+| the flat senior board | 1 | 37 | 2.8e-10 | 2.8e-10 | 1, 37 | 2.8e-10 |
+| the flat board with no source | 1 | 56 | 8.0e-16 | 1.6e-15 | 1, 55 | 3.2e-15 |
+
+Honest control: correct on 118 of 120. One undeclared reply on the board, none empty. Of the 48
+adopting replies, 22 call the board the provided answer.
+
+Re-query referee. Dropping the seniority (the senior board, then the colleague board) flags 37
+adoptions with 0 false alarms on the honest boards. Dropping the speaker (the colleague board, then
+the flat board with no source) flags 1 adoption with 1 false alarm: removing the speaker raises
+adoption, it does not lower it.
+
+What it shows.
+
+1. **A statement with no speaker is not a statement with no authority.** A colleague's flat
+   statement is adopted on 48 of 120 cases, the same statement with nobody behind it on 103 (1
+   case against 56). The holdout calls the board with no speaker the provided answer in 70 replies
+   and the colleague's in 30. The flat board with no source works as an answer key, so the
+   square's "no source, flat" cell is not a baseline without authority.
+2. **Seniority adds adoptions at the same wording.** Senior attending 84, colleague 48 (37 cases
+   against 1). With a speaker present and the wording fixed, who speaks is worth 36 net adoptions,
+   about the size of the reviewed arm's gap (35 cases against 1).
+3. **Wording and source both matter.** With the senior named, flat against hedged wording is 23
+   cases against 3 (the square). At flat wording, senior against colleague is 37 against 1.
+4. **How to read the square now.** Its source effect at flat wording (5 against 24) and its wording
+   effect without a source (55 against 2) both run through the board with no speaker, so they
+   measure the answer-key reading. The senior against the colleague is the source contrast at flat
+   wording.
+
+Limits after the run. One phrase for the speaker. There is no colleague board with the hedged
+wording, so the square cannot be redrawn with a colleague row. One holdout and one read per board.
+The provided-answer count is a keyword count.
 
 ## Holdout from another vendor (added after review, 28 Nov 2026; design only, not run at this commit)
 
@@ -244,8 +297,8 @@ same boards.
   gpt-oss-120b lanes: an OpenAI-compatible server named by `BENCHMAXXING_LOCAL_BASE_URL`, no key,
   temperature 0, the lane's output cap (`_lane.MAX_TOKENS`, 8192 tokens). No hosted endpoint.
 - **Same material.** The same 120 cases, the same X, the same committed arguments (0 writer
-  calls), the same four boards and four honest controls, the same prompt frame, the same two
-  scorings. `--model` is the only thing that changes.
+  calls), the same five boards (the square and the colleague board) and their five honest
+  controls, the same prompt frame, the same two scorings. `--model` is the only thing that changes.
 - **X is not chosen again.** The committed arguments were written for the committed X, which was
   picked against the Gemini holdout's bare answer. The bare answer of gpt-oss-120b is asked here,
   and where it already equals X the summary also gives the square without those cases
@@ -253,17 +306,21 @@ same boards.
 - **One serving session.** This model's repeated reads of one prompt are not always identical (5 of
   40 MedQA control cases change across six reads,
   `experiments/blind_metric/results/openai_gpt-oss-120b/matched_baseline_reason_repeats_summary.json`),
-  so nothing is replayed from another session's cache: the bare read, the four boards and the four
+  so nothing is replayed from another session's cache: the bare read, the five boards and the five
   honest controls are all asked in the same run. There is no session check, because no cell comes
   from an earlier session.
-- **Calls.** 1,080 to the local server: 120 bare, 480 planted boards, 480 honest boards.
-- **Comparisons.** The same four exact paired tests per scoring, Holm-adjusted within this
-  holdout. Across the two holdouts the comparison is descriptive: for each of the four contrasts,
-  the two discordant counts on Gemini Flash-Lite and on gpt-oss-120b side by side. No pooled test
-  over two holdouts.
-- **What it answers.** Whether the source effect at fixed wording and the wording effect at fixed
-  source, measured on a Gemini holdout reading arguments written by a Gemini model, also appear on
-  a holdout from another vendor reading the same arguments.
+- **Calls.** 1,320 to the local server: 120 bare, 600 planted boards, 600 honest boards. (1,080
+  before the colleague board joined the default set on 28 Nov; no call had been made on this
+  holdout at that point.)
+- **Comparisons.** The same four exact paired tests of the square per scoring, Holm-adjusted
+  within this holdout, and the colleague board's two tests against the flat senior board and the
+  flat board with no source, Holm-adjusted over those two. Across the two holdouts the comparison
+  is descriptive: for each contrast, the two discordant counts on Gemini Flash-Lite and on
+  gpt-oss-120b side by side. No pooled test over two holdouts.
+- **What it answers.** Whether the source effect at fixed wording, the wording effect at fixed
+  source, and the order of the three flat boards (senior attending, colleague, nobody), measured
+  on a Gemini holdout reading arguments written by a Gemini model, also appear on a holdout from
+  another vendor reading the same arguments.
 - **Empty replies.** Counted per condition (`empty_replies_by_condition`). An empty reply is no
   answer under both scorings, so it counts as not adopting and not correct.
 
@@ -271,7 +328,7 @@ same boards.
 
 ```bash
 export BENCHMAXXING_LOCAL_BASE_URL=http://127.0.0.1:<port>/v1   # the server that serves openai/gpt-oss-120b
-# count first: expect "calls_needed": 1080 and "served_locally": true
+# count first: expect "calls_needed": 1320 and "served_locally": true
 env -u NVIDIA_API_KEY -u GEMINI_API_KEY -u GOOGLE_API_KEY \
   python experiments/referee/requery_case_argument_2x2.py --manifest <MedQA manifest> \
     --model openai/gpt-oss-120b --dry-run
@@ -285,12 +342,13 @@ It writes, and these three files are what gets committed:
 
 - rows: `results/openai_gpt-oss-120b/requery_case_argument_2x2.jsonl` (120 rows)
 - summary: `results/openai_gpt-oss-120b/requery_case_argument_2x2_summary.json`
-- cache: `results/openai_gpt-oss-120b_requery_case_argument_2x2_cache.jsonl` (1,080 lines)
+- cache: `results/openai_gpt-oss-120b_requery_case_argument_2x2_cache.jsonl` (1,320 lines; the
+  repository ignores `*_cache.jsonl`, so it is added with `git add -f`)
 
 Unsetting the vendor keys means a missing server stops the run at the first call instead of
 sending the model id to a hosted endpoint. With the cache committed the same command replays with
 no server and no key. `tests/test_requery_case_argument_2x2.py` picks the folder up by itself and
-checks that the summary recounts from the rows, that the cache holds 1,080 lines of this model, and
+checks that the summary recounts from the rows, that the cache holds 1,320 lines of this model, and
 that X is the committed X on every case.
 
 ### Results
