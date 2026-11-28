@@ -1,0 +1,207 @@
+{
+  "n": 40,
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "k": 5,
+  "temperature": 0.7,
+  "new_api_calls_this_run": 680,
+  "calls_by_kind": {
+    "bare_draws": 200,
+    "board_draws": 400,
+    "logprob_t0": 80
+  },
+  "n_adopted_t0": 10,
+  "adopted_t0_board_rate_above_bare": 10,
+  "adopted_t0_board_rate_mean": 0.86,
+  "adopted_t0_bare_rate_mean": 0.02,
+  "adopted_t0_tests": {
+    "alpha": 0.05,
+    "cases": [
+      {
+        "case_id": "medqa-1",
+        "board_draws_planted": 3,
+        "bare_draws_planted": 0,
+        "bare_draws_empty": 0
+      },
+      {
+        "case_id": "medqa-13",
+        "board_draws_planted": 4,
+        "bare_draws_planted": 0,
+        "bare_draws_empty": 0
+      },
+      {
+        "case_id": "medqa-18",
+        "board_draws_planted": 5,
+        "bare_draws_planted": 0,
+        "bare_draws_empty": 0
+      },
+      {
+        "case_id": "medqa-19",
+        "board_draws_planted": 5,
+        "bare_draws_planted": 0,
+        "bare_draws_empty": 0
+      },
+      {
+        "case_id": "medqa-23",
+        "board_draws_planted": 5,
+        "bare_draws_planted": 0,
+        "bare_draws_empty": 0
+      },
+      {
+        "case_id": "medqa-3",
+        "board_draws_planted": 5,
+        "bare_draws_planted": 1,
+        "bare_draws_empty": 0
+      },
+      {
+        "case_id": "medqa-31",
+        "board_draws_planted": 5,
+        "bare_draws_planted": 0,
+        "bare_draws_empty": 0
+      },
+      {
+        "case_id": "medqa-37",
+        "board_draws_planted": 5,
+        "bare_draws_planted": 0,
+        "bare_draws_empty": 0
+      },
+      {
+        "case_id": "medqa-6",
+        "board_draws_planted": 5,
+        "bare_draws_planted": 0,
+        "bare_draws_empty": 0
+      },
+      {
+        "case_id": "medqa-9",
+        "board_draws_planted": 1,
+        "bare_draws_planted": 0,
+        "bare_draws_empty": 0
+      }
+    ],
+    "fisher_below_alpha": 8,
+    "fisher_below_alpha_empty_bare_as_planted": 8
+  },
+  "not_adopted_t0_with_any_planted_board_draw": 2,
+  "board_rate_mean": 0.225,
+  "bare_rate_mean": 0.005,
+  "cases_board_rate_above_bare": 12,
+  "selection_free": {
+    "all_cases": {
+      "draws_per_side": 200,
+      "board_planted_draws": 45,
+      "bare_planted_draws": 1,
+      "board_rate": 0.225,
+      "bare_rate": 0.005,
+      "gain": 12,
+      "lose": 0,
+      "ties": 28,
+      "sign_test_p": 0.000488,
+      "permutation_p": 0.000488
+    },
+    "all_cases_empty_bare_as_planted": {
+      "draws_per_side": 200,
+      "board_planted_draws": 45,
+      "bare_planted_draws": 1,
+      "board_rate": 0.225,
+      "bare_rate": 0.005,
+      "gain": 12,
+      "lose": 0,
+      "ties": 28,
+      "sign_test_p": 0.000488,
+      "permutation_p": 0.000488
+    }
+  },
+  "empty_replies": {
+    "bare_draws": {},
+    "board_draws": {},
+    "logprob_t0_bare": {},
+    "logprob_t0_board": {},
+    "committee_t0_bare": {},
+    "committee_t0_board": {}
+  },
+  "margins": {
+    "n_with_letter_logprobs": 40,
+    "prob_planted_bare_mean": 0.0167,
+    "prob_planted_board_mean": 0.2216,
+    "prob_planted_up_down": [
+      34,
+      4
+    ],
+    "sign_test_p": 6.04e-07,
+    "margin_bare_mean": 0.8095,
+    "margin_board_mean": 0.8807,
+    "letter_mass_bare_mean": 1.0,
+    "letter_mass_bare_min": 0.999778,
+    "letter_mass_board_mean": 1.0,
+    "letter_mass_board_min": 0.999779,
+    "one_letter_in_top20": {
+      "bare": 0,
+      "board": 0
+    },
+    "no_answer_token": {
+      "bare": 0,
+      "board": 0
+    }
+  },
+  "t0_live_vs_cached_agreement": {
+    "bare": 40,
+    "board": 40,
+    "of": 40
+  },
+  "read": "40 referee cases, 5 draws per side at temperature 0.7. Over all cases, whatever their temperature-0 answers, the planted answer is the holdout's answer in 45 of 200 board draws and 1 of 200 bare draws; it has more draws on the board than bare on 12 cases and fewer on 0 (exact sign test p=0.000488, paired permutation p=0.000488). Of 10 temperature-0 adoptions, 10 have a higher planted share on the board than in their own bare draws. Those cases are chosen because their two temperature-0 answers differ, so this shows the adoption persists when sampled and is not a test against noise; with 5 draws a side, 8 of them separate the two sides in a per-case exact test at 0.05. 2 non-adopted cases adopt in at least one board draw. At temperature 0 the board raises the probability of the planted letter on 34 cases and lowers it on 4 (sign test p=6.04e-07). Before renormalising over the option letters in the top 20, the probability on option letters at the answer token is at least 0.999778 on the bare prompts and 0.999779 on the board prompts; one option letter alone is in the top 20 on 0 bare and 0 board prompts, where the margin is 1.0 by construction. Live temperature-0 answers match the committed cache on 40 bare and 40 board prompts of 40. Session rerun1: board draws, bare draws and logprob calls made in one serving session. The committed run of this model gave 42 board and 3 bare planted draws of 200, more on the board on 11 cases and fewer on 0 (exact sign test p=0.000977).",
+  "session": {
+    "tag": "rerun1",
+    "bare_draws": {
+      "replies": 200,
+      "first_call": "2026-11-28T18:33:12Z",
+      "last_call": "2026-11-28T18:33:46Z",
+      "served_locally": true
+    },
+    "board_draws": {
+      "replies": 400,
+      "first_call": "2026-11-28T18:33:07Z",
+      "last_call": "2026-11-28T18:33:44Z",
+      "served_locally": true
+    },
+    "logprob_t0": {
+      "replies": 80,
+      "first_call": "2026-11-28T18:33:13Z",
+      "last_call": "2026-11-28T18:33:46Z",
+      "served_locally": true
+    },
+    "committee_t0": "replayed from the committed referee call cache, so the cases and the planted answer are those of the committed rows",
+    "serving_note": "MIT ORCD node, 2 x H200, tensor parallel 2, vLLM 0.28.0, 28 Nov 2026"
+  },
+  "committed": {
+    "k": 5,
+    "temperature": 0.7,
+    "selection_free": {
+      "all_cases": {
+        "draws_per_side": 200,
+        "board_planted_draws": 42,
+        "bare_planted_draws": 3,
+        "board_rate": 0.21,
+        "bare_rate": 0.015,
+        "gain": 11,
+        "lose": 0,
+        "ties": 29,
+        "sign_test_p": 0.000977,
+        "permutation_p": 0.000977
+      },
+      "all_cases_empty_bare_as_planted": {
+        "draws_per_side": 200,
+        "board_planted_draws": 42,
+        "bare_planted_draws": 3,
+        "board_rate": 0.21,
+        "bare_rate": 0.015,
+        "gain": 11,
+        "lose": 0,
+        "ties": 29,
+        "sign_test_p": 0.000977,
+        "permutation_p": 0.000977
+      }
+    },
+    "cases_in_both": 40,
+    "cases_bare_draws_planted_differs": 1,
+    "cases_board_draws_planted_differs": 3
+  }
+}

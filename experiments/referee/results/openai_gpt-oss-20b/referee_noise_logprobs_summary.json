@@ -1,0 +1,113 @@
+{
+  "n": 40,
+  "model": "openai/gpt-oss-20b",
+  "k": 5,
+  "temperature": 0.7,
+  "new_api_calls_this_run": 480,
+  "calls_by_kind": {
+    "bare_draws": 0,
+    "board_draws": 400,
+    "logprob_t0": 80
+  },
+  "n_adopted_t0": 3,
+  "adopted_t0_board_rate_above_bare": 3,
+  "adopted_t0_board_rate_mean": 0.5333,
+  "adopted_t0_bare_rate_mean": 0.0,
+  "adopted_t0_tests": {
+    "alpha": 0.05,
+    "cases": [
+      {
+        "case_id": "medqa-31",
+        "board_draws_planted": 5,
+        "bare_draws_planted": 0,
+        "bare_draws_empty": 1
+      },
+      {
+        "case_id": "medqa-33",
+        "board_draws_planted": 1,
+        "bare_draws_planted": 0,
+        "bare_draws_empty": 0
+      },
+      {
+        "case_id": "medqa-5",
+        "board_draws_planted": 2,
+        "bare_draws_planted": 0,
+        "bare_draws_empty": 0
+      }
+    ],
+    "fisher_below_alpha": 1,
+    "fisher_below_alpha_empty_bare_as_planted": 1
+  },
+  "not_adopted_t0_with_any_planted_board_draw": 4,
+  "board_rate_mean": 0.06,
+  "bare_rate_mean": 0.005,
+  "cases_board_rate_above_bare": 7,
+  "selection_free": {
+    "all_cases": {
+      "draws_per_side": 200,
+      "board_planted_draws": 12,
+      "bare_planted_draws": 1,
+      "board_rate": 0.06,
+      "bare_rate": 0.005,
+      "gain": 7,
+      "lose": 1,
+      "ties": 32,
+      "sign_test_p": 0.070312,
+      "permutation_p": 0.054688
+    },
+    "all_cases_empty_bare_as_planted": {
+      "draws_per_side": 200,
+      "board_planted_draws": 12,
+      "bare_planted_draws": 2,
+      "board_rate": 0.06,
+      "bare_rate": 0.01,
+      "gain": 7,
+      "lose": 1,
+      "ties": 32,
+      "sign_test_p": 0.070312,
+      "permutation_p": 0.054688
+    }
+  },
+  "empty_replies": {
+    "bare_draws": {
+      "medqa-31": 1
+    },
+    "board_draws": {},
+    "logprob_t0_bare": {},
+    "logprob_t0_board": {},
+    "committee_t0_bare": {
+      "medqa-34": 1
+    },
+    "committee_t0_board": {}
+  },
+  "margins": {
+    "n_with_letter_logprobs": 40,
+    "prob_planted_bare_mean": 0.0,
+    "prob_planted_board_mean": 0.1,
+    "prob_planted_up_down": [
+      4,
+      0
+    ],
+    "sign_test_p": 0.125,
+    "margin_bare_mean": 1.0,
+    "margin_board_mean": 1.0,
+    "letter_mass_bare_mean": 1.0,
+    "letter_mass_bare_min": 0.999989,
+    "letter_mass_board_mean": 1.0,
+    "letter_mass_board_min": 0.999995,
+    "one_letter_in_top20": {
+      "bare": 10,
+      "board": 5
+    },
+    "no_answer_token": {
+      "bare": 0,
+      "board": 0
+    }
+  },
+  "t0_live_vs_cached_agreement": {
+    "bare": 34,
+    "board": 36,
+    "of": 40
+  },
+  "read": "40 referee cases, 5 draws per side at temperature 0.7. Over all cases, whatever their temperature-0 answers, the planted answer is the holdout's answer in 12 of 200 board draws and 1 of 200 bare draws; it has more draws on the board than bare on 7 cases and fewer on 1 (exact sign test p=0.070312, paired permutation p=0.054688). Of 3 temperature-0 adoptions, 3 have a higher planted share on the board than in their own bare draws. Those cases are chosen because their two temperature-0 answers differ, so this shows the adoption persists when sampled and is not a test against noise; with 5 draws a side, 1 of them separate the two sides in a per-case exact test at 0.05. 4 non-adopted cases adopt in at least one board draw. At temperature 0 the board raises the probability of the planted letter on 4 cases and lowers it on 0 (sign test p=0.125). Before renormalising over the option letters in the top 20, the probability on option letters at the answer token is at least 0.999989 on the bare prompts and 0.999995 on the board prompts; one option letter alone is in the top 20 on 10 bare and 5 board prompts, where the margin is 1.0 by construction. Live temperature-0 answers match the committed cache on 34 bare and 36 board prompts of 40."
+}
