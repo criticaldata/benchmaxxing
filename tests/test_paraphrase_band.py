@@ -121,7 +121,8 @@ def test_support2_lineage_band_replays_keyless(slug, tmp_path):
     import shutil
     import subprocess
     lane = ROOT / "experiments/support2/results"
-    for f in ("paraphrase_band_cache.jsonl", "matched_baseline_reason_repeats_summary.json"):
+    for f in ("paraphrase_band_cache.jsonl", "matched_baseline_reason_repeats_summary.json",
+              "matched_baseline_reason_repeats.jsonl"):
         shutil.copy(lane / slug / f, tmp_path / f)
     model = json.loads((lane / slug / "paraphrase_band_summary.json").read_text())["model"]
     env = {"HOME": os.environ.get("HOME", ""), "PATH": os.environ.get("PATH", ""), "PYTHONPATH": str(ROOT)}
@@ -138,3 +139,92 @@ def test_support2_lineage_band_replays_keyless(slug, tmp_path):
     assert {k: v for k, v in got.items() if k != "new_api_calls_this_run"} == \
         {k: v for k, v in want.items() if k != "new_api_calls_this_run"}
     assert (tmp_path / "paraphrase_band.jsonl").read_bytes() == (lane / slug / "paraphrase_band.jsonl").read_bytes()
+
+
+# Bands without read 0. Read 0 is replayed from the committed control cache, which for a locally served
+# lineage was filled in an earlier serving session than reads 1 to 5. ``without_read_0`` gives the band
+# over the paraphrase reads alone, and the committed same-prompt repeats alone on the same cases.
+FOLDERS = [lane for lane, _ in LANES] + [f"{lane}/{slug}" for lane, slug in LINEAGE_LANES]
+BAND_FIELDS = ("n", "cases_with_any_disagreement", "mean_pairwise_disagreement", "flip_vs_baseline_per_read",
+               "flip_vs_baseline_band", "decoy_per_read", "decoy_band")
+
+
+def test_band_of_reads_keeps_only_the_chosen_reads():
+    # baseline answer A, decoy B: c1 moves to the decoy on its last read, c3 starts on it
+    recs = [mb._repeat_record(cid, answers[0], "A", "B", answers[1:])
+            for cid, answers in (("c1", ["A", "A", "B"]), ("c2", ["A", "A", "A"]), ("c3", ["B", "A", "A"]))]
+    every = pb.band_of_reads(recs, lambda r: range(3))
+    want = mb.summarise_repeats(recs, 2)
+    assert {k: every[k] for k in BAND_FIELDS} == {k: want[k] for k in BAND_FIELDS}
+    assert every["cases_with_any_disagreement"]["n"] == 2 and every["cases_per_read"] == [3, 3, 3]
+
+    keep = {"c1": [0, 1], "c2": [0, 1, 2], "c3": [0]}
+    part = pb.band_of_reads(recs, lambda r: keep[r["case_id"]])
+    # c1 loses the read that disagreed, c3 keeps one read and cannot disagree with itself
+    assert part["n"] == 2 and part["cases_with_any_disagreement"]["n"] == 0
+    assert part["cases_with_fewer_than_two_reads"] == ["c3"]
+    assert part["reads"] == [0, 1, 2] and part["cases_per_read"] == [3, 2, 1]
+    assert part["flip_vs_baseline_per_read"] == [0.3333, 0.0, 0.0]
+    assert part["flip_vs_baseline_band"] == [0.0, 0.3333] and part["decoy_per_read"] == [0.3333, 0.0, 0.0]
+
+    tail = pb.band_of_reads(recs, lambda r: [1, 2])
+    assert tail["reads"] == [1, 2] and tail["cases_with_any_disagreement"]["n"] == 1
+    assert tail["flip_vs_baseline_per_read"] == [0.0, 0.3333]
+
+
+@pytest.mark.parametrize("folder", FOLDERS)
+def test_band_of_reads_over_every_read_is_the_committed_band(folder):
+    s = json.loads((ROOT / folder / "paraphrase_band_summary.json").read_text())
+    got = pb.band_of_reads(_rows(f"{folder}/paraphrase_band.jsonl"), lambda r: range(len(r["answers"])))
+    assert {k: got[k] for k in BAND_FIELDS} == {k: s[k] for k in BAND_FIELDS}
+
+
+@pytest.mark.parametrize("folder", FOLDERS)
+def test_bands_without_read_0_recount_from_the_committed_rows(folder):
+    s = json.loads((ROOT / folder / "paraphrase_band_summary.json").read_text())
+    recs = _rows(f"{folder}/paraphrase_band.jsonl")
+    repeats = _rows(f"{folder}/matched_baseline_reason_repeats.jsonl")
+    block = s["without_read_0"]
+    assert block == pb.without_read_0(recs, s["paraphrases_per_case"], repeats)
+
+    para = block["paraphrase_reads"]
+    assert para["reads"] == [1, 2, 3, 4, 5] and para["n"] == s["n"]
+    assert para["flip_vs_baseline_per_read"] == s["flip_vs_baseline_per_read"][1:]
+    assert para["flip_vs_baseline_band"] == [min(s["flip_vs_baseline_per_read"][1:]), max(s["flip_vs_baseline_per_read"][1:])]
+    assert para["decoy_band"] == [min(s["decoy_per_read"][1:]), max(s["decoy_per_read"][1:])]
+    assert para["cases_with_any_disagreement"]["n"] == sum(len(set(r["answers"][1:])) > 1 for r in recs)
+
+    # the same-prompt repeats are restricted to the cases of this band, so both sides have the same cases
+    mine = {r["case_id"] for r in recs}
+    same = [r for r in repeats if r["case_id"] in mine]
+    rep = block["same_session_repeats"]
+    assert rep["n"] == len(same) == s["n"] and rep["reads"] == [1, 2, 3, 4, 5]
+    assert rep["cases_with_any_disagreement"]["n"] == sum(len(set(r["answers"][1:])) > 1 for r in same)
+    if len(same) == len(repeats):
+        committed = json.loads((ROOT / folder / "matched_baseline_reason_repeats_summary.json").read_text())
+        assert rep["flip_vs_baseline_per_read"] == committed["flip_vs_baseline_per_read"][1:]
+        assert rep["decoy_per_read"] == committed["decoy_per_read"][1:]
+
+
+def test_any_disagreement_without_read_0_on_every_lane_and_lineage():
+    """Cases with any disagreement over reads 1 to 5: paraphrase reads, same-prompt repeats, cases."""
+    want = {
+        "experiments/blind_metric/results": (12, 0, 40),
+        "experiments/blind_metric/results/openai_gpt-oss-120b": (7, 3, 40),
+        "experiments/blind_metric/results/nemotron-3-super-120b-a12b-fp8-local": (7, 5, 40),
+        "experiments/blind_metric/results/Qwen_Qwen2.5-VL-72B-Instruct": (9, 0, 40),
+        "experiments/medmcqa/results": (17, 0, 40),
+        "experiments/medmcqa/results/openai_gpt-oss-120b": (8, 5, 40),
+        "experiments/medmcqa/results/nemotron-3-super-120b-a12b-fp8-local": (11, 8, 40),
+        "experiments/medmcqa/results/Qwen_Qwen2.5-VL-72B-Instruct": (12, 0, 40),
+        "experiments/support2/results": (4, 0, 31),
+        "experiments/support2/results/openai_gpt-oss-120b": (1, 1, 26),
+        "experiments/support2/results/nemotron-3-super-120b-a12b-fp8-local": (2, 0, 26),
+        "experiments/support2/results/Qwen_Qwen2.5-VL-72B-Instruct": (6, 0, 31),
+    }
+    assert set(want) == set(FOLDERS)
+    for folder, (paraphrases, repeats, n) in want.items():
+        block = json.loads((ROOT / folder / "paraphrase_band_summary.json").read_text())["without_read_0"]
+        got = (block["paraphrase_reads"]["cases_with_any_disagreement"]["n"],
+               block["same_session_repeats"]["cases_with_any_disagreement"]["n"], block["paraphrase_reads"]["n"])
+        assert got == (paraphrases, repeats, n), folder

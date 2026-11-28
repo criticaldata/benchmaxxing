@@ -107,5 +107,106 @@
       0.0606,
       0.1212
     ]
+  },
+  "without_read_0": {
+    "paraphrase_reads": {
+      "reads": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "n": 26,
+      "cases_with_any_disagreement": {
+        "n": 2,
+        "rate": 0.0769,
+        "wilson95": [
+          0.0214,
+          0.2414
+        ]
+      },
+      "mean_pairwise_disagreement": 0.0385,
+      "cases_per_read": [
+        26,
+        26,
+        26,
+        26,
+        26
+      ],
+      "flip_vs_baseline_per_read": [
+        0.0385,
+        0.0,
+        0.0,
+        0.0,
+        0.0769
+      ],
+      "flip_vs_baseline_band": [
+        0.0,
+        0.0769
+      ],
+      "decoy_per_read": [
+        0.0385,
+        0.0,
+        0.0,
+        0.0,
+        0.0769
+      ],
+      "decoy_band": [
+        0.0,
+        0.0769
+      ],
+      "cases_with_fewer_than_two_reads": []
+    },
+    "same_session_repeats": {
+      "reads": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "n": 26,
+      "cases_with_any_disagreement": {
+        "n": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.1287
+        ]
+      },
+      "mean_pairwise_disagreement": 0.0,
+      "cases_per_read": [
+        26,
+        26,
+        26,
+        26,
+        26
+      ],
+      "flip_vs_baseline_per_read": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "flip_vs_baseline_band": [
+        0.0,
+        0.0
+      ],
+      "decoy_per_read": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "decoy_band": [
+        0.0,
+        0.0
+      ],
+      "cases_with_fewer_than_two_reads": []
+    },
+    "note": "bands without read 0, the committed control prompt replayed from the lane cache, which can come from an earlier serving session than the other reads: paraphrase_reads is over reads 1.. of this band, same_session_repeats over reads 1.. of the committed same-prompt band on the same cases"
   }
 }

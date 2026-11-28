@@ -22,6 +22,13 @@ must appear in the paraphrase (text lanes), or the finding must still be named (
 The summary has the same fields as the committed repeats summary, computed by the same function,
 plus the committed same-session band next to it. Every call is cached in the lane's results
 folder; a fully cached run needs no key.
+
+Read 0 is replayed from the committed control cache, so it can come from an earlier serving session
+than reads 1..K. For Gemini Flash-Lite that makes no difference (its same-prompt repeats are all
+identical); for a locally served lineage it can. ``without_read_0`` therefore gives the band over
+the paraphrase reads alone, and next to it the committed same-prompt repeats alone (reads 1.. of
+``matched_baseline_reason_repeats.jsonl``) on the same cases: K reads of one session against K
+reads of one session.
 """
 from __future__ import annotations
 
@@ -82,6 +89,65 @@ def parse_paraphrases(reply, k):
 def numbers_kept(original, paraphrase):
     want = _NUM.findall(original)
     return all(n in paraphrase for n in want)
+
+
+def _case_key(record):
+    return record.get("case_id", record.get("case_index"))
+
+
+def band_of_reads(records, reads_of):
+    """The band of ``mb.summarise_repeats`` over a chosen subset of each case's reads.
+
+    ``reads_of(record)`` gives the read indices kept for that case: 0 is the control prompt, i is
+    paraphrase i (or repeat i in a same-session record). Per-read rates are over the cases that keep
+    that read. Disagreement is over the cases that keep at least two reads, since one read cannot
+    disagree with itself; the others are listed. With every read of every case kept, the shared
+    fields equal ``mb.summarise_repeats``.
+    """
+    kept = [(r, sorted(set(reads_of(r)))) for r in records]
+    comparable = [(r, idx) for r, idx in kept if len(idx) >= 2]
+    n = len(comparable)
+    any_dis, pairwise = 0, 0.0
+    for r, idx in comparable:
+        answers = [r["answers"][i] for i in idx]
+        pairs = [(a, b) for j, a in enumerate(answers) for b in answers[j + 1:]]
+        any_dis += len(set(answers)) > 1
+        # rounded per case before the mean, as mb._repeat_record stores it
+        pairwise += round(sum(a != b for a, b in pairs) / len(pairs), 4)
+    reads = sorted({i for _, idx in kept for i in idx})
+    per_read = [[r for r, idx in kept if i in idx] for i in reads]
+    flip = [round(sum(r["flip_vs_baseline"][i] for r in rs) / len(rs), 4) for i, rs in zip(reads, per_read)]
+    decoy = [round(sum(r["is_decoy"][i] for r in rs) / len(rs), 4) for i, rs in zip(reads, per_read)]
+    return {
+        "reads": reads, "n": n,
+        "cases_with_any_disagreement": {"n": any_dis, "rate": round(any_dis / n, 4) if n else None,
+                                        "wilson95": mb.wilson(any_dis, n)},
+        "mean_pairwise_disagreement": round(pairwise / n, 4) if n else None,
+        "cases_per_read": [len(rs) for rs in per_read],
+        "flip_vs_baseline_per_read": flip,
+        "flip_vs_baseline_band": [min(flip), max(flip)] if flip else [None, None],
+        "decoy_per_read": decoy,
+        "decoy_band": [min(decoy), max(decoy)] if decoy else [None, None],
+        "cases_with_fewer_than_two_reads": sorted((_case_key(r) for r, idx in kept if len(idx) < 2), key=str),
+    }
+
+
+def without_read_0(records, k, same_session_records=None):
+    """Bands over reads 1..K alone, and the same-prompt repeats alone on the same cases.
+
+    ``records`` are the paraphrase-band rows; ``same_session_records`` the rows of the committed
+    same-prompt band (``matched_baseline_reason_repeats.jsonl``), or None when the folder has none.
+    """
+    reads = list(range(1, k + 1))
+    block = {"paraphrase_reads": band_of_reads(records, lambda r: reads)}
+    if same_session_records is not None:
+        mine = {_case_key(r) for r in records}
+        same = [r for r in same_session_records if _case_key(r) in mine]
+        block["same_session_repeats"] = band_of_reads(same, lambda r: range(1, len(r["answers"])))
+    block["note"] = ("bands without read 0, the committed control prompt replayed from the lane cache, which can come "
+                     "from an earlier serving session than the other reads: paraphrase_reads is over reads 1.. of this "
+                     "band, same_session_repeats over reads 1.. of the committed same-prompt band on the same cases")
+    return block
 
 
 def text_reason_prompt(case, question):
@@ -251,6 +317,10 @@ def main():
         band["committed_same_session_band"] = {k: s.get(k) for k in (
             "n", "repeats", "cases_with_any_disagreement", "mean_pairwise_disagreement",
             "flip_vs_baseline_band", "decoy_band")}
+    same_rows = out / "matched_baseline_reason_repeats.jsonl"
+    band["without_read_0"] = without_read_0(
+        full, args.k, [json.loads(line) for line in same_rows.read_text().splitlines() if line.strip()]
+        if same_rows.exists() else None)
     (out / "paraphrase_band.jsonl").write_text("".join(json.dumps(r) + "\n" for r in recs))
     (out / "paraphrases.jsonl").write_text("".join(json.dumps(p) + "\n" for p in
                                                    sorted(paras_log, key=lambda p: (str(p["case_id"]), p["i"]))))
