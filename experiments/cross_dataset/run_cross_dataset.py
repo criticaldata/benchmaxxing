@@ -256,18 +256,33 @@ def run(
     return run_cross_dataset_cue(datasets, backend, lambda raw: raw, CUES, limit=limit)
 
 
-def format_table(result: dict) -> str:
-    """Render the comparison as a plain text table (no fabricated values: reads the result)."""
-    names = result["datasets"]
-    lines = ["cue" + "".join(f"\t{n}" for n in names) + "\tspread\tfisher_p"]
-    for cue in result["cue_types"]:
-        row = result["per_cue"][cue]
+def _table_rows(block: dict, names, cues) -> list[str]:
+    lines = []
+    for cue in cues:
+        row = block["per_cue"][cue]
         cells = [f"{row['rate'][n]:.3f}" for n in names]
         fisher = row["fisher"]
         p = f"{fisher['pvalue']:.3g}" if fisher else "-"
         lines.append(f"{cue}\t" + "\t".join(cells) + f"\t{row['spread']:.3f}\t{p}")
-    ag = result["agreement"]
+    ag = block["agreement"]
     lines.append(f"mean_spread over {ag['n_cues_compared']} cues: {ag['mean_spread']:.3f}")
+    return lines
+
+
+def format_table(result: dict) -> str:
+    """Render the comparison as a plain text table (no fabricated values: reads the result).
+
+    When the result carries the ``clean_correct`` block, the same table follows a second time for
+    the twins the model answers correctly on the clean side, so the two readings sit together.
+    """
+    names = result["datasets"]
+    lines = ["cue" + "".join(f"\t{n}" for n in names) + "\tspread\tfisher_p"]
+    lines += _table_rows(result, names, result["cue_types"])
+    restricted = result.get("clean_correct")
+    if restricted:
+        acc = ", ".join(f"{n} {restricted['clean_accuracy'][n]:.3f}" for n in names)
+        lines.append(f"correct on the clean twin only (clean accuracy: {acc})")
+        lines += _table_rows(restricted, names, result["cue_types"])
     return "\n".join(lines)
 
 

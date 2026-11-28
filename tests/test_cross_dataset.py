@@ -172,3 +172,79 @@ def test_requires_non_empty_cue_types():
     datasets = {"medqa": [_three("a0")], "medmcqa": [_two("b0")]}
     with pytest.raises(ValueError, match="cue_types must be non-empty"):
         run_cross_dataset_cue(datasets, _pick_first, _identity, [])
+
+
+def test_clean_correct_block_keeps_only_twins_answered_correctly_on_the_clean_side():
+    # pick-first is right on the clean twin only when the answer is option 0. A 3-option case flips
+    # under option_order whatever its answer; a 2-option case never does. So both datasets flip on
+    # 2 of 4 cases, but medmcqa's two flips are both on cases it already gets wrong on the clean
+    # twin: the unrestricted rates agree and the restricted ones do not.
+    three = ["o0", "o1", "o2"]
+    two = ["o0", "o1"]
+    datasets = {
+        "medqa": [
+            _case("a0", [f"a0-{o}" for o in three], answer_index=0),  # correct, flips
+            _case("a1", [f"a1-{o}" for o in two], answer_index=0),    # correct, stays
+            _case("a2", [f"a2-{o}" for o in three], answer_index=1),  # wrong, flips
+            _case("a3", [f"a3-{o}" for o in two], answer_index=1),    # wrong, stays
+        ],
+        "medmcqa": [
+            _case("b0", [f"b0-{o}" for o in three], answer_index=1),  # wrong, flips
+            _case("b1", [f"b1-{o}" for o in three], answer_index=2),  # wrong, flips
+            _case("b2", [f"b2-{o}" for o in two], answer_index=0),    # correct, stays
+            _case("b3", [f"b3-{o}" for o in two], answer_index=0),    # correct, stays
+        ],
+    }
+    res = run_cross_dataset_cue(datasets, _pick_first, _identity, ["option_order"], n_boot=200)
+
+    every = res["per_cue"]["option_order"]
+    assert every["counts"] == {"medqa": [2, 4], "medmcqa": [2, 4]}
+    assert every["spread"] == pytest.approx(0.0)
+
+    block = res["clean_correct"]
+    assert block["n_twins"] == {"medqa": 2, "medmcqa": 2}
+    assert block["clean_accuracy"] == {"medqa": pytest.approx(0.5), "medmcqa": pytest.approx(0.5)}
+    cue = block["per_cue"]["option_order"]
+    assert cue["counts"] == {"medqa": [1, 2], "medmcqa": [0, 2]}
+    assert cue["rate"]["medqa"] == pytest.approx(0.5)
+    assert cue["rate"]["medmcqa"] == pytest.approx(0.0)
+    assert cue["spread"] == pytest.approx(0.5)
+    # 2x2 = [[1, 1], [0, 2]]: the same Fisher exact test as the unrestricted comparison, p = 1.
+    assert cue["fisher"]["pvalue"] == pytest.approx(1.0)
+    assert block["agreement"] == {"mean_spread": pytest.approx(0.5), "n_cues_compared": 1}
+
+
+def test_clean_correct_block_equals_the_whole_comparison_when_every_clean_answer_is_right():
+    # Every case here has its answer at option 0, so pick-first is always right on the clean twin
+    # and the restriction removes nothing: same counts, same CIs, same test.
+    datasets = {
+        "medqa": [_three("a0"), _two("a1"), _three("a2")],
+        "medmcqa": [_three("b0"), _two("b1"), _two("b2")],
+    }
+    res = run_cross_dataset_cue(datasets, _pick_first, _identity, ["option_order"], n_boot=200)
+
+    block = res["clean_correct"]
+    assert block["per_cue"] == res["per_cue"]
+    assert block["agreement"] == res["agreement"]
+    assert block["n_twins"] == res["n_twins"]
+    assert block["clean_accuracy"] == {"medqa": pytest.approx(1.0), "medmcqa": pytest.approx(1.0)}
+
+
+def test_clean_correct_block_is_empty_not_an_error_when_no_clean_answer_is_right():
+    # Every answer sits at option 1, so pick-first is never right on the clean twin: the restricted
+    # comparison has no records, which reads as nan rates and no test, like an unbuildable cue.
+    datasets = {
+        "medqa": [_case("a0", ["a0-o0", "a0-o1", "a0-o2"], answer_index=1)],
+        "medmcqa": [_case("b0", ["b0-o0", "b0-o1"], answer_index=1)],
+    }
+    res = run_cross_dataset_cue(datasets, _pick_first, _identity, ["option_order"], n_boot=200)
+
+    assert res["per_cue"]["option_order"]["counts"] == {"medqa": [1, 1], "medmcqa": [0, 1]}
+    block = res["clean_correct"]
+    assert block["n_twins"] == {"medqa": 0, "medmcqa": 0}
+    assert block["clean_accuracy"] == {"medqa": pytest.approx(0.0), "medmcqa": pytest.approx(0.0)}
+    cue = block["per_cue"]["option_order"]
+    assert cue["counts"] == {"medqa": [0, 0], "medmcqa": [0, 0]}
+    assert np.isnan(cue["rate"]["medqa"]) and np.isnan(cue["spread"])
+    assert cue["fisher"] is None
+    assert block["agreement"]["n_cues_compared"] == 0

@@ -205,6 +205,28 @@ def test_format_table_reads_the_result():
     assert "option_order" in table
     assert "0.400" in table and "0.500" in table
     assert "mean_spread" in table
+    assert "correct on the clean twin" not in table  # a result without the block prints one table
+
+
+def test_format_table_puts_the_correct_on_clean_reading_beside_the_unrestricted_one():
+    row = {"rate": {"medqa": 0.4, "medmcqa": 0.5}, "spread": 0.1, "fisher": {"oddsratio": 1.0, "pvalue": 0.8}}
+    kept = {"rate": {"medqa": 0.125, "medmcqa": 0.25}, "spread": 0.125, "fisher": {"oddsratio": 0.4, "pvalue": 0.3}}
+    result = {
+        "datasets": ["medqa", "medmcqa"],
+        "cue_types": ["option_order"],
+        "per_cue": {"option_order": row},
+        "agreement": {"mean_spread": 0.1, "n_cues_compared": 1},
+        "clean_correct": {
+            "per_cue": {"option_order": kept},
+            "agreement": {"mean_spread": 0.125, "n_cues_compared": 1},
+            "n_twins": {"medqa": 8, "medmcqa": 8},
+            "clean_accuracy": {"medqa": 0.8, "medmcqa": 0.6},
+        },
+    }
+    lines = run_cross.format_table(result).splitlines()
+    assert lines[1].split("\t") == ["option_order", "0.400", "0.500", "0.100", "0.8"]
+    assert lines[3] == "correct on the clean twin only (clean accuracy: medqa 0.800, medmcqa 0.600)"
+    assert lines[4].split("\t") == ["option_order", "0.125", "0.250", "0.125", "0.3"]
 
 
 # --- keyless replay of the committed 500-case run -------------------------------------------------
@@ -248,6 +270,44 @@ def test_committed_runs_replay_keyless_with_zero_calls(monkeypatch, tmp_path, li
     got = json.loads(got_path.read_text())
     assert got.pop("replay")["new_api_calls_this_run"] == 0
     assert got == json.loads((_RES / out).read_text())
+
+
+@pytest.mark.parametrize("out", ["medqa_vs_medmcqa_n150.json", "medqa_vs_medmcqa_n500.json"])
+def test_committed_correct_on_clean_block_follows_from_its_own_counts(out):
+    """The restricted comparison sits inside the unrestricted one and recomputes from its counts.
+
+    Needs no manifest: it reads the committed file only. The clean twin is the same prompt for every
+    cue of a case, so each cue keeps the same cases, and what is left over (flips on cases the model
+    gets wrong on the clean twin) can never exceed the number of such cases."""
+    from benchmaxxing.stats import fisher_exact
+
+    res = json.loads((_RES / out).read_text())
+    block, names, cues = res["clean_correct"], res["datasets"], res["cue_types"]
+    assert set(block["per_cue"]) == set(res["per_cue"]) == set(cues)
+    for ds in names:
+        kept = {block["per_cue"][cue]["counts"][ds][1] for cue in cues}
+        assert len(kept) == 1
+        assert block["n_twins"][ds] == kept.pop() * len(cues)
+        assert 0 < block["n_twins"][ds] < res["n_twins"][ds]
+        assert block["clean_accuracy"][ds] == pytest.approx(block["n_twins"][ds] / res["n_twins"][ds])
+    for cue in cues:
+        row, every = block["per_cue"][cue], res["per_cue"][cue]
+        for ds in names:
+            flips, n = row["counts"][ds]
+            all_flips, all_n = every["counts"][ds]
+            assert 0 <= flips <= all_flips and 0 < n <= all_n
+            assert all_flips - flips <= all_n - n
+            assert row["rate"][ds] == pytest.approx(flips / n)
+            point, lo, hi = row["ci"][ds]
+            assert point == pytest.approx(flips / n) and lo <= point <= hi
+        (fa, na), (fb, nb) = (row["counts"][ds] for ds in names)
+        assert row["spread"] == pytest.approx(abs(fa / na - fb / nb))
+        test = fisher_exact([[fa, na - fa], [fb, nb - fb]])
+        assert row["fisher"]["pvalue"] == pytest.approx(test.pvalue)
+        assert row["fisher"]["oddsratio"] == pytest.approx(test.oddsratio)
+    spreads = [block["per_cue"][cue]["spread"] for cue in cues]
+    assert block["agreement"] == {"mean_spread": pytest.approx(sum(spreads) / len(spreads)),
+                                  "n_cues_compared": len(cues)}
 
 
 if __name__ == "__main__":

@@ -15,6 +15,12 @@ Per cue it returns:
 
 plus a single `agreement.mean_spread` over the compared cues (lower is more consistent).
 
+The result also carries a `clean_correct` block: the same per-cue table and `agreement`, same
+bootstrap CI and same Fisher exact test, restricted to the twins the model answers correctly on the
+clean (unperturbed) side, with `n_twins` (how many those are) and `clean_accuracy` per dataset. A
+dataset that is harder for the model flips more for that reason alone, and this block is the
+comparison with that removed.
+
 ## Run
 
 ```bash
@@ -88,8 +94,48 @@ attempt, so MedMCQA has 499 cases per cue.
 | `longest_option` | 0.082 (41/500) | 0.146 (73/499) | 0.064 | 0.0014 |
 | `lexical_overlap`| 0.076 (38/500) | 0.168 (84/499) | 0.092 | 7.7e-06 |
 
-`agreement.mean_spread = 0.074`. MedMCQA is the more cue-sensitive dataset on every cue, as at 150
-cases. Replay with no key and zero calls:
+`agreement.mean_spread = 0.074`. Over all cases MedMCQA flips about twice as often as MedQA on
+every cue (ratios 2.1, 1.8 and 2.2), the direction seen at 150 cases. That comparison is not
+adjusted for difficulty; the next table is.
+
+### Adjusted for difficulty: cases answered correctly on the clean twin
+
+MedMCQA is harder for this model. It answers the clean twin correctly on 451 of 500 MedQA cases
+(0.902) and on 401 of 499 MedMCQA cases (0.804), and a case it already gets wrong changes its
+answer under a cue far more often than one it gets right: under `option_order`, 17 of 49 and 38 of
+98 wrong cases flip (0.35 and 0.39), against 14 of 451 and 26 of 401 right ones. So part of the gap
+above is a difference in difficulty. The `clean_correct` block of the result file gives the same
+comparison on the cases answered correctly on the clean twin, here beside the unrestricted one:
+
+| cue | all cases: MedQA | all cases: MedMCQA | Fisher p | correct on clean: MedQA | correct on clean: MedMCQA | Fisher p |
+|-----|-----------------:|-------------------:|---------:|------------------------:|--------------------------:|---------:|
+| `option_order`   | 0.062 (31/500) | 0.128 (64/499) | 0.00035 | 0.031 (14/451) | 0.065 (26/401) | 0.023 |
+| `longest_option` | 0.082 (41/500) | 0.146 (73/499) | 0.0014  | 0.038 (17/451) | 0.047 (19/401) | 0.50 |
+| `lexical_overlap`| 0.076 (38/500) | 0.168 (84/499) | 7.7e-06 | 0.029 (13/451) | 0.070 (28/401) | 0.0061 |
+
+`clean_correct.agreement.mean_spread = 0.028`. What the restricted numbers support:
+
+- On `option_order` and `lexical_overlap`, MedMCQA still flips about twice as often as MedQA among
+  the cases the model answers correctly without the cue (ratios 2.1 and 2.4). The evidence is weaker
+  than over all cases because the flips are few (14 against 26, and 13 against 28): Fisher p 0.023
+  and 0.0061, or 0.046 and 0.018 after a Holm correction over the three cues. The `option_order`
+  difference is borderline; the `lexical_overlap` one is the firmer of the two.
+- On `longest_option` the two datasets are not distinguishable once restricted (0.038 against
+  0.047, Fisher p 0.50). Its gap over all cases comes from MedMCQA having twice as many cases the
+  model gets wrong on the clean twin (98 against 49); those flip at a similar rate in both datasets
+  (24 of 49 and 54 of 98).
+
+For `longest_option` and `lexical_overlap` the restriction removes a second thing. Both cues rewrite
+the text of one wrong option, and a flip is scored on the text of the chosen option, so a model that
+picks that same wrong option on both twins is scored as a flip in the unrestricted count. Every such
+case is wrong on the clean twin, so the restricted rates contain none of them; `option_order` only
+reorders the options and is not affected.
+
+At 150 cases (`results/medqa_vs_medmcqa_n150.json`) the restricted rates point the same way on all
+three cues and none of the differences is significant: 4/140 against 9/123, 4/140 against 8/123 and
+3/140 against 9/123 (Fisher p 0.15, 0.24, 0.072).
+
+Replay with no key and zero calls:
 
 ```bash
 python experiments/cross_dataset/run_cross_dataset.py --medqa-manifest <medqa> --medmcqa-manifest <medmcqa> \
