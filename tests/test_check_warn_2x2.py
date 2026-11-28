@@ -1,6 +1,7 @@
 """check_warn_2x2.py: the plain-note cell is blind_metric.py's prompt, and the committed results replay."""
 import json
 import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -306,3 +307,153 @@ def test_read_to_read_counts_are_bounded_and_pinned_for_the_plain_note():
             for m, c in rr.items()} == {"openai/gpt-oss-120b": (12, 103, 10, 19, 108),
                                         "nemotron-3-super-120b-a12b-fp8-local": (17, 102, 16, 27, 109),
                                         "Qwen/Qwen2.5-VL-72B-Instruct": (2, 111, 1, 3, 111)}
+
+
+# ---------------------------------------------------------------- a session run: cells asked again in one session
+# SUPPORT2 on gpt-oss-120b: its manifest and hidden-note cache are committed, so the run needs nothing else.
+S2 = "experiments/support2/results"
+S2_MODEL, S2_SLUG = "openai/gpt-oss-120b", "openai_gpt-oss-120b"
+
+
+def _session_args(out, *extra):
+    return ["--manifest", str(ROOT / S2 / "support2_manifest.csv"), "--model", S2_MODEL, "--out", str(out),
+            "--cache", str(ROOT / S2 / f"{S2_SLUG}_blind_metric_call_cache.jsonl"), *extra]
+
+
+def _serve(monkeypatch, reply="A reason.\nA"):
+    """Stand in for a served model: every call is recorded and answered with ``reply``."""
+    import _lane
+    asked = []
+
+    def fake(model, key, prompt, decoding=None, client=None, image=None):
+        asked.append(prompt)
+        if reply is None:
+            raise AssertionError("the model was called on a run that should replay")
+        return reply
+    monkeypatch.setattr(_lane, "LOCAL_BASE_URL", "http://served.invalid/v1")
+    monkeypatch.setattr(_lane, "paced_complete", fake)
+    return asked
+
+
+def _run_session(monkeypatch, out, *extra):
+    monkeypatch.setattr(sys, "argv", ["check_warn_2x2.py", *_session_args(out, *extra)])
+    cw.main()
+    d = Path(out) / extra[extra.index("--session") + 1] / S2_SLUG
+    return (list(map(json.loads, (d / "check_warn_2x2.jsonl").read_text().splitlines())),
+            json.loads((d / "check_warn_2x2_summary.json").read_text()))
+
+
+def test_session_run_with_no_server_exits_instead_of_replaying_the_committed_plain_note(tmp_path):
+    """The committed cache holds every case's plain-note reply; a session run must not read it."""
+    env = {"HOME": os.environ.get("HOME", ""), "PATH": os.environ.get("PATH", ""), "PYTHONPATH": str(ROOT)}
+    r = subprocess.run([sys.executable, "experiments/blind_metric/check_warn_2x2.py",
+                        *_session_args(tmp_path, "--session", "s1", "--redraw", "none")],
+                       cwd=ROOT, env=env, capture_output=True, text=True, timeout=900)
+    assert r.returncode != 0 and "Session s1" in r.stderr and "never reads a reply another session cached" in r.stderr
+    assert "BENCHMAXXING_LOCAL_BASE_URL" in r.stderr
+    assert not (tmp_path / "s1" / S2_SLUG / "check_warn_2x2.jsonl").exists()
+
+
+def test_session_run_asks_every_cell_again_and_writes_only_under_the_session_name(tmp_path, monkeypatch, capsys):
+    committed_rows = (ROOT / S2 / S2_SLUG / "check_warn_2x2.jsonl").read_bytes()
+    committed_cache = (ROOT / S2 / f"{S2_SLUG}_blind_metric_call_cache.jsonl").read_bytes()
+    before = {r["case_id"]: r for r in map(json.loads, committed_rows.decode().splitlines())}
+    asked = _serve(monkeypatch)
+    rows, summary = _run_session(monkeypatch, tmp_path, "--session", "s1", "--serving-note", "test double")
+    n = len(before)
+    # the same cases and decoys as the committed rows, because the baseline is replayed and not asked again
+    assert {r["case_id"]: (r["decoy_letter"], r["base_is_decoy"]) for r in rows} == {
+        k: (v["decoy_letter"], v["base_is_decoy"]) for k, v in before.items()}
+    # four calls a case: the plain note is asked again although the committed cache holds its reply
+    assert len(asked) == summary["new_api_calls_this_run"] == 4 * n
+    assert sum(1 for p in asked if p.split("\n")[0].endswith(("option A.", "option B."))) == n
+    assert all(r[f"{c}_is_decoy"] == (r["decoy_letter"] == "A") for r in rows for c in cw.CELLS)
+    assert summary["session"]["tag"] == "s1" and summary["session"]["serving_note"] == "test double"
+    assert summary["session"]["redrawn_cells"] == list(cw.CELLS) and summary["session"]["replayed_cells"] == []
+    assert summary["session"]["replies"] == 4 * n and summary["session"]["first_call"] <= summary["session"]["last_call"]
+    assert summary["session"]["served_locally"] is True
+    lines = list(map(json.loads, (tmp_path / "s1" / f"{S2_SLUG}_session_cache.jsonl").read_text().splitlines()))
+    assert len(lines) == 4 * n and {x["session"] for x in lines} == {"s1"} and {x["cell"] for x in lines} == set(cw.CELLS)
+    assert all(isinstance(x["ts"], float) for x in lines)
+    # nothing committed was touched
+    assert (ROOT / S2 / S2_SLUG / "check_warn_2x2.jsonl").read_bytes() == committed_rows
+    assert (ROOT / S2 / f"{S2_SLUG}_blind_metric_call_cache.jsonl").read_bytes() == committed_cache
+    # the session replays from its own cache with no call, and another tag starts from nothing
+    _serve(monkeypatch, reply=None)
+    again, summary2 = _run_session(monkeypatch, tmp_path, "--session", "s1", "--serving-note", "test double")
+    assert again == rows and summary2["new_api_calls_this_run"] == 0
+    assert {k: v for k, v in summary2.items() if k != "new_api_calls_this_run"} == {
+        k: v for k, v in summary.items() if k != "new_api_calls_this_run"}
+    with pytest.raises(AssertionError, match="should replay"):
+        _run_session(monkeypatch, tmp_path, "--session", "s2")
+
+
+def test_session_run_can_ask_the_plain_note_alone_and_replay_the_other_cells(tmp_path, monkeypatch, capsys):
+    before = {r["case_id"]: r for r in map(json.loads, (ROOT / S2 / S2_SLUG / "check_warn_2x2.jsonl").read_text().splitlines())}
+    asked = _serve(monkeypatch)
+    rows, summary = _run_session(monkeypatch, tmp_path, "--session", "s3", "--redraw", "none")
+    assert len(asked) == summary["new_api_calls_this_run"] == len(before)
+    assert summary["session"]["redrawn_cells"] == ["none"] and summary["session"]["replayed_cells"] == ["check", "warn", "both"]
+    for r in rows:
+        assert r["none_is_decoy"] == (r["decoy_letter"] == "A")
+        assert all(r[f"{c}_{k}"] == before[r["case_id"]][f"{c}_{k}"] for c in ("check", "warn", "both")
+                   for k in ("is_decoy", "declared", "named"))
+
+
+@pytest.mark.parametrize("extra", (["--redraw", "none"], ["--serving-note", "x"], ["--session", "a/b"],
+                                   ["--session", "s", "--redraw", "plain"]))
+def test_session_arguments_are_checked(tmp_path, monkeypatch, extra):
+    monkeypatch.setattr(sys, "argv", ["check_warn_2x2.py", *_session_args(tmp_path, *extra)])
+    with pytest.raises(SystemExit):
+        cw.main()
+
+
+def test_pooled_and_lineage_files_set_a_session_run_beside_the_committed_cells(tmp_path, monkeypatch, capsys):
+    import check_warn_2x2_lineages as lineages
+    import check_warn_2x2_pooled as pooled
+    # a one-cohort copy of the committed files, so the session rows land beside them and not in the repository
+    (tmp_path / S2_SLUG).mkdir()
+    for f in ("blind_metric.jsonl", "check_warn_2x2.jsonl", "check_warn_2x2_summary.json"):
+        shutil.copy(ROOT / S2 / S2_SLUG / f, tmp_path / S2_SLUG / f)
+    _serve(monkeypatch)
+    rows, _ = _run_session(monkeypatch, tmp_path, "--session", "s1")
+    monkeypatch.setattr(pooled, "COHORTS", {"SUPPORT2": str(tmp_path)})
+    committed = pooled.build(S2_MODEL)
+    out = pooled.build(S2_MODEL, "s1")
+    assert out["n"] == committed["n"] == len(rows)
+    assert out["session"]["tag"] == "s1" and out["session"]["per_cohort"]["SUPPORT2"]["redrawn_cells"] == list(cw.CELLS)
+    # the committed cells' own tests sit beside the session's
+    assert out["committed"]["vs_none"] == committed["vs_none"]
+    assert out["committed"]["check_vs_warn"] == {k: committed["check_vs_warn"][k] for k in ("gain", "lose", "pvalue")}
+    assert out["committed"]["decoy_uptake"] == {c: committed["cells"][c]["decoy_uptake"] for c in cw.CELLS}
+    before = {r["case_id"]: r for r in map(json.loads, (ROOT / S2 / S2_SLUG / "check_warn_2x2.jsonl").read_text().splitlines())}
+    for c in cw.CELLS:
+        d = out["against_committed_cells"][c]
+        assert d["cases"] == len(rows)
+        assert d["differ"] == sum(1 for r in rows if r[f"{c}_is_decoy"] != before[r["case_id"]][f"{c}_is_decoy"])
+        assert d["differ"] == d["decoy_only_committed"] + d["decoy_only_session"]
+    # the test double answers every cell alike, so in the session no cell differs from another
+    assert all(t["gain"] == t["lose"] == 0 for t in out["vs_none"].values())
+    assert "Session s1" in out["read"] and "No reply in the four cells is empty" in out["read"]
+    both = lineages.build([S2_MODEL], "s1")
+    assert both["session_rerun"]["tag"] == "s1"
+    assert both["session_rerun"]["per_model"][S2_MODEL]["n"] == len(rows)
+    assert both["check_vs_warn"]["per_model"][S2_MODEL]["n"] == len(rows)
+    assert "session_rerun" not in lineages.build([S2_MODEL])
+
+
+def test_session_cache_key_carries_the_tag_so_no_other_session_can_answer(tmp_path, monkeypatch):
+    import hashlib
+    asked = _serve(monkeypatch, reply="B")
+    path = tmp_path / "session_cache.jsonl"
+    first = cw.SessionCache(path, "not-needed", S2_MODEL, "s1")
+    assert first.complete(S2_MODEL, "the prompt", "none") == "B" and len(asked) == 1
+    line = json.loads(path.read_text())
+    assert line["k"] == hashlib.sha256(f"{S2_MODEL}\x00s1\x00the prompt".encode()).hexdigest()
+    # not the key the committed caches use for the same prompt
+    assert line["k"] != hashlib.sha256(f"{S2_MODEL}\x00the prompt".encode()).hexdigest()
+    # the same file under another tag holds nothing for this prompt, and with no server that is an exit
+    other = cw.SessionCache(path, None, S2_MODEL, "s2")
+    with pytest.raises(SystemExit, match="Session s2"):
+        other.complete(S2_MODEL, "the prompt", "none")
+    assert cw.SessionCache(path, None, S2_MODEL, "s1").complete(S2_MODEL, "the prompt", "none") == "B" and len(asked) == 1

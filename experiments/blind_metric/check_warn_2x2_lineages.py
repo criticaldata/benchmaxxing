@@ -23,6 +23,10 @@ every test with all four cells from one session: on the first repeat, which is w
 cell means there, and on the majority of the five repeats. ``read_to_read`` counts how often a cell's
 outcome on one case differs between the two sources and between the five repeats of one session.
 
+``--session TAG`` adds the rows of a ``check_warn_2x2.py --session TAG`` run (cells asked again in
+one serving session, on the committed cases and decoys) as ``session_rerun`` and writes
+``check_warn_2x2_lineages_TAG.json``, so the default file stays what the default command writes.
+
 Writes ``experiments/blind_metric/results/check_warn_2x2_lineages.json``.
 """
 from __future__ import annotations
@@ -152,10 +156,7 @@ def compare(rows_by_model, detail=False):
     }
 
 
-def main():
-    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--models", nargs="+", default=list(MODELS))
-    models = ap.parse_args().models
+def build(models, session=None):
     rows_by_model = {m: load_rows(m)[0] for m in models}
     worst_rows = {m: rescore_empty(rows, "check", "warn") for m, rows in rows_by_model.items()}
     out = {"models": models, "new_api_calls_this_run": 0, "check_vs_warn": compare(rows_by_model),
@@ -194,7 +195,28 @@ def main():
         f"against the difference: {_say(out['check_vs_warn_empty_replies_worst_case'])} With all four cells "
         f"from one session (matched_conditions.py), first repeat: {_say(one['first_repeat'])} Majority of the "
         f"five repeats: {_say(one['majority_of_repeats'])}")
-    p = ROOT / "experiments/blind_metric/results/check_warn_2x2_lineages.json"
+    if session is not None:
+        session_rows = {m: load_rows(m, session)[0] for m in models}
+        out["session_rerun"] = {
+            "tag": session,
+            **compare(session_rows, detail=True),
+            "empty_replies_in_check_or_warn": {
+                m: sum(1 for r in rows for c in ("check", "warn") if c in r["empty"]) for m, rows in session_rows.items()},
+            "empty_replies_worst_case": compare({m: rescore_empty(rows, "check", "warn") for m, rows in session_rows.items()}),
+        }
+        out["read"] += f" Session {session}, cells asked again in one serving session: {_say(out['session_rerun'])}"
+    return out
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--models", nargs="+", default=list(MODELS))
+    ap.add_argument("--session", default=None,
+                    help="add the rows of a check_warn_2x2.py --session run; writes check_warn_2x2_lineages_<TAG>.json")
+    args = ap.parse_args()
+    out = build(args.models, args.session)
+    name = "check_warn_2x2_lineages.json" if args.session is None else f"check_warn_2x2_lineages_{args.session}.json"
+    p = ROOT / "experiments/blind_metric/results" / name
     p.write_text(json.dumps(out, indent=2) + "\n")
     print(json.dumps(out, indent=2))
 

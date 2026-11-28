@@ -166,6 +166,56 @@ the case-level test over the three models gives 24 cases lower and 10 higher (P 
 summary lists its empty replies under `empty_replies`, and the pooled files carry the rescored tests
 under `empty_replies_worst_case`.
 
+### Rerun with the four cells in one session (prepared, not run yet)
+
+`check_warn_2x2.py --session TAG` asks cells again in one serving session. It is written down here
+before any call is made.
+
+- **What is run.** The four cells, one read each at temperature 0, for the three models, in the
+  serving setup of the check, warning and both cells above (vLLM 0.28 on H100 cards: gpt-oss-120b on
+  one, nemotron FP8 on two with the committed FP8 flags, Qwen2.5-VL-72B on two with tensor parallel 2).
+- **On which cases.** The committed cases with the committed decoy: MedQA 40, MedMCQA 40 and SUPPORT2
+  30 (gpt-oss-120b), 33 (nemotron FP8) and 35 (Qwen2.5-VL-72B). The baseline read is not asked again.
+  It replays from the committed hidden-note cache, opened read-only, and that is what keeps the cases
+  and the decoy fixed, so the session rows pair with the committed rows case for case.
+- **Calls.** 440, 452 and 460, which is 1,352 in all. `--redraw none` asks the plain note alone (110,
+  113 and 115 calls) and replays the three other cells; those then come from the 24 Nov session, so
+  the four cells share a serving setup and not a session.
+- **Where it is written.** Rows and summary under `<cohort results>/TAG/<model>/`, the session's
+  replies in `<cohort results>/TAG/<model>_session_cache.jsonl`. Every key of that cache carries the
+  tag, so no reply from another session can answer a call, and no committed row, summary or cache is
+  written to. The summary records the tag, the cells asked again, the first and last call time,
+  whether every reply came from the locally served model, and the `--serving-note` line.
+- **What is compared.** `check_warn_2x2_pooled.py --model M --session TAG` writes the session's tests
+  with the committed cells' tests on the same cases beside them (`committed`) and, per cell, the
+  number of cases whose outcome differs (`against_committed_cells`).
+  `check_warn_2x2_lineages.py --session TAG` adds the three models' session tests (`session_rerun`)
+  to the comparison above. The question it can answer is whether each sentence still lowers uptake
+  when the plain note comes from the same session and setup as the other cells. It is one read per
+  cell, so by the read-to-read counts above it cannot settle which single model clears 0.05 on
+  warning against check; five repeats in one session are what `matched_conditions.py` gives.
+
+```bash
+export BENCHMAXXING_LOCAL_BASE_URL=http://<host>:<port>/v1      # the served model; no key is read
+M=openai/gpt-oss-120b; S=${M//\//_}; TAG=one_session; NOTE="vLLM 0.28, 1 x H100"
+python experiments/blind_metric/check_warn_2x2.py --manifest <MedQA manifest> --model $M \
+    --session $TAG --serving-note "$NOTE"
+python experiments/blind_metric/check_warn_2x2.py --manifest data/medmcqa_dev.csv --model $M \
+    --out experiments/medmcqa/results --cache experiments/medmcqa/results/${S}_blind_metric_call_cache.jsonl \
+    --session $TAG --serving-note "$NOTE"
+python experiments/blind_metric/check_warn_2x2.py --manifest experiments/support2/results/support2_manifest.csv --model $M \
+    --out experiments/support2/results --cache experiments/support2/results/${S}_blind_metric_call_cache.jsonl \
+    --session $TAG --serving-note "$NOTE"
+python experiments/blind_metric/check_warn_2x2_pooled.py --model $M --session $TAG
+python experiments/blind_metric/check_warn_2x2_lineages.py --session $TAG      # once the three models are in
+```
+
+The other two ids are `nemotron-3-super-120b-a12b-fp8-local` and `Qwen/Qwen2.5-VL-72B-Instruct`. To
+commit a session: add its cache with `git add -f` (`*_cache.jsonl` is ignored), and run
+`python -m benchmaxxing.degeneracy` for the constant columns of the new rows (`base_is_decoy` is
+constant by construction). The session files sit two levels below `results/`, so the lineage parity
+test asks nothing new.
+
 ## Reproduce
 
 ```bash

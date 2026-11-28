@@ -17,7 +17,14 @@ the empty replies scored against the difference it reports.
 
 ``--model`` pools another lineage's rows from each cohort's ``<slug>/`` subdirectory and writes
 ``experiments/blind_metric/results/<slug>/check_warn_2x2_pooled.json``; the default is the committed
-gemini-2.5-flash-lite run, whose output and wording are unchanged.
+gemini-2.5-flash-lite run.
+
+``--session TAG`` pools the rows a ``check_warn_2x2.py --session TAG`` run wrote under each cohort's
+``TAG/`` directory, where cells were asked again in one serving session, and writes
+``experiments/blind_metric/results/TAG/<slug>/check_warn_2x2_pooled.json``. Beside the session's own
+tests it puts the committed cells' tests on the same cases (``committed``) and, per cell, on how many
+cases the two outcomes differ (``against_committed_cells``), so the one-session result is read next to
+the mixed-session one.
 """
 from __future__ import annotations
 
@@ -106,18 +113,27 @@ def worst_case(rows, a, b):
 DEFAULT_MODEL = "gemini-2.5-flash-lite"
 
 
-def cohort_dirs(model):
-    slug = model.replace("/", "_")
-    return COHORTS if model == DEFAULT_MODEL else {k: f"{v}/{slug}" for k, v in COHORTS.items()}
+def cohort_dirs(model, session=None):
+    """Cohort -> (directory of the rows and summary to pool, directory of the committed hidden-note rows).
+
+    The two are the same unless ``session`` names a session run, whose rows sit one level down under
+    the cohort's ``<session>/`` directory while the test_aware outcome stays with the committed rows.
+    """
+    slug = "" if model == DEFAULT_MODEL else model.replace("/", "_")
+    out = {}
+    for name, base in COHORTS.items():
+        committed = f"{base}/{slug}" if slug else base
+        out[name] = (committed if session is None else "/".join(x for x in (base, session, slug) if x), committed)
+    return out
 
 
-def load_rows(model):
+def load_rows(model, session=None):
     """One model's rows over the three cohorts, each tagged with its cohort, its committed
     test_aware outcome and the cells whose reply was empty; returns (rows, cases per cohort)."""
     rows, per = [], {}
-    for name, d in cohort_dirs(model).items():
+    for name, (d, committed) in cohort_dirs(model, session).items():
         rs = _rows(d)
-        a = _aware(d)
+        a = _aware(committed)
         e = _empty(d)
         assert {r["case_id"] for r in rs} <= set(a), name
         assert set(e) <= {r["case_id"] for r in rs}, name
@@ -130,12 +146,29 @@ def load_rows(model):
     return rows, per
 
 
-def main():
-    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--model", default=DEFAULT_MODEL)
-    model = ap.parse_args().model
-    slug = model.replace("/", "_")
-    rows, per = load_rows(model)
+def against_committed(model, session, rows):
+    """A session run beside the committed cells of the same cases: the committed tests, and per cell
+    the cases whose outcome is not the same in the two."""
+    own = {(r["cohort"], r["case_id"]): r for r in load_rows(model)[0]}
+    assert {(r["cohort"], r["case_id"]) for r in rows} == set(own), "a session run keeps the committed cases"
+    assert all(own[(r["cohort"], r["case_id"])]["decoy_letter"] == r["decoy_letter"] for r in rows)
+    differ = {}
+    for c in CELLS:
+        pairs = [(own[(r["cohort"], r["case_id"])][f"{c}_is_decoy"], r[f"{c}_is_decoy"]) for r in rows]
+        differ[c] = {"cases": len(pairs), "differ": sum(1 for a, b in pairs if a != b),
+                     "decoy_only_committed": sum(1 for a, b in pairs if a and not b),
+                     "decoy_only_session": sum(1 for a, b in pairs if b and not a)}
+    committed = list(own.values())
+    cv = check_vs_warn(committed)
+    return differ, {
+        "decoy_uptake": {c: round(sum(r[f"{c}_is_decoy"] for r in committed) / len(committed), 4) for c in CELLS},
+        "vs_none": {c: _pair(committed, "none", c) for c in CELLS[1:]},
+        "check_vs_warn": {k: cv[k] for k in ("gain", "lose", "pvalue")},
+    }
+
+
+def build(model, session=None):
+    rows, per = load_rows(model, session)
     n = len(rows)
     cells = {}
     for c in CELLS:
@@ -166,7 +199,13 @@ def main():
         "both_vs_test_aware": _pair(
             [{**r, "ta_is_decoy": r["aware_is_decoy"]} for r in rows], "both", "ta"),
     }
-    if model == DEFAULT_MODEL:
+    if session is not None:
+        sessions = {name: json.loads((ROOT / d / "check_warn_2x2_summary.json").read_text())["session"]
+                    for name, (d, _) in cohort_dirs(model, session).items()}
+        assert all(v["tag"] == session for v in sessions.values())
+        out["session"] = {"tag": session, "per_cohort": sessions}
+        out["against_committed_cells"], out["committed"] = against_committed(model, session, rows)
+    if model == DEFAULT_MODEL and session is None:
         out["read"] = (
             f"Pooled over {n} cases, decoy uptake is {cells['none']['decoy_uptake']} under the plain note, "
             f"{cells['check']['decoy_uptake']} with the check announced, {cells['warn']['decoy_uptake']} with "
@@ -207,7 +246,32 @@ def main():
         out["read"] += (
             f"The rubric is named in {sum(cells[c]['n_named_any'] for c in CELLS)} of {4 * n} justifications "
             f"across the four cells.")
-    p = ROOT / "experiments/blind_metric/results" / ("" if model == DEFAULT_MODEL else slug) / "check_warn_2x2_pooled.json"
+        if session is not None:
+            redrawn = sorted({c for v in out["session"]["per_cohort"].values() for c in v["redrawn_cells"]}, key=CELLS.index)
+            d, k = out["against_committed_cells"], out["committed"]
+            out["read"] += (
+                f" Session {session}: {', '.join(redrawn)} asked again in one serving session, the baseline replayed. "
+                "Cases whose outcome is not the committed cell's: "
+                + ", ".join(f"{c} {d[c]['differ']} of {d[c]['cases']}" for c in CELLS)
+                + f". The committed cells on the same cases: check {k['vs_none']['check']['gain']} vs "
+                f"{k['vs_none']['check']['lose']} (P {_p(k['vs_none']['check']['pvalue'])}), warning "
+                f"{k['vs_none']['warn']['gain']} vs {k['vs_none']['warn']['lose']} (P {_p(k['vs_none']['warn']['pvalue'])}), "
+                f"both {k['vs_none']['both']['gain']} vs {k['vs_none']['both']['lose']} (P {_p(k['vs_none']['both']['pvalue'])}), "
+                f"warning against check {k['check_vs_warn']['gain']} vs {k['check_vs_warn']['lose']} "
+                f"(P {_p(k['check_vs_warn']['pvalue'])}).")
+    return out
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--model", default=DEFAULT_MODEL)
+    ap.add_argument("--session", default=None,
+                    help="pool the rows of a check_warn_2x2.py --session run and set them beside the committed cells")
+    args = ap.parse_args()
+    out = build(args.model, args.session)
+    slug = "" if args.model == DEFAULT_MODEL else args.model.replace("/", "_")
+    p = ROOT / "experiments/blind_metric/results" / (args.session or "") / slug / "check_warn_2x2_pooled.json"
+    p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(json.dumps(out, indent=2) + "\n")
     print(json.dumps(out, indent=2))
 
