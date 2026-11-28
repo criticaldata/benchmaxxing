@@ -7,7 +7,7 @@ argument on the board, what each one compares, and how to replay them.
 | Runner | What it does | Results |
 |---|---|---|
 | `requery_case_argument.py` | the reviewed arm: named senior plus a generated argument, the argument alone, and the honest control | `results/requery_case_argument*` |
-| `requery_case_argument_2x2.py` | added after review: the two boards that complete the named source by assertiveness square, and a fifth board where a colleague speaks | `results/requery_case_argument_2x2*` |
+| `requery_case_argument_2x2.py` | added after review: the two boards that complete the named source by assertiveness square, and a fifth board where a colleague speaks; with `--model`, a holdout from another vendor reads the same five boards | `results/requery_case_argument_2x2*`, `results/openai_gpt-oss-120b/requery_case_argument_2x2*` |
 
 Both use the same 120 MedQA cases (the first 120 of the repository's MedQA manifest, sha256 prefix
 0f2076a4), the same planted wrong answer X per case, and the same generated arguments
@@ -180,8 +180,9 @@ and 19 with the hedged board and no source. So for a flat statement "no source" 
 authority": an unattributed assertion in the prompt can be read as the examiner's own answer. This
 is a description of the replies; the fifth board below tests it.
 
-Limits after the run. One holdout, from the same vendor as the argument writer (the next section
-is the design for a second one). The square cannot tell a statement with no source from a
+Limits after the run. One holdout, from the same vendor as the argument writer (a holdout from
+another vendor reads the same boards in the section after the fifth board). The square cannot tell
+a statement with no source from a
 statement in the prompt's own voice, which is what point 2 suggests the flat board without a
 source is; the fifth board below was added for that. The hedged wording is the mild one of the
 committed board. One read per cell, on a
@@ -282,7 +283,7 @@ Limits after the run. One phrase for the speaker. There is no colleague board wi
 wording, so the square cannot be redrawn with a colleague row. One holdout and one read per board.
 The provided-answer count is a keyword count.
 
-## Holdout from another vendor (added after review, 28 Nov 2026; design only, not run at this commit)
+## Holdout from another vendor (added after review, 28 Nov 2026)
 
 ### Why
 
@@ -291,7 +292,7 @@ vendor. An argument written by a model may persuade a sibling model more than it
 model from another family, so the square above is one family's result until a second one reads the
 same boards.
 
-### Design (written and pushed before any call)
+### Design (written and pushed before any call of the reported run)
 
 - **Holdout.** `openai/gpt-oss-120b`, open weights, served locally as in the repository's other
   gpt-oss-120b lanes: an OpenAI-compatible server named by `BENCHMAXXING_LOCAL_BASE_URL`, no key,
@@ -310,8 +311,11 @@ same boards.
   honest controls are all asked in the same run. There is no session check, because no cell comes
   from an earlier session.
 - **Calls.** 1,320 to the local server: 120 bare, 600 planted boards, 600 honest boards. (1,080
-  before the colleague board joined the default set on 28 Nov; no call had been made on this
-  holdout at that point.)
+  before the colleague board joined the default set on 28 Nov. A first read of the four-board
+  square, 1,080 calls, was made on gpt-oss-120b that day from the previous head, before the
+  five-board design was pushed. It is not committed and was not used to choose anything: its
+  numbers were shown to nobody before the five-board design and code were pushed. The run
+  reported below asks all five boards again in one run, in a new serving session.)
 - **Comparisons.** The same four exact paired tests of the square per scoring, Holm-adjusted
   within this holdout, and the colleague board's two tests against the flat senior board and the
   flat board with no source, Holm-adjusted over those two. Across the two holdouts the comparison
@@ -353,7 +357,78 @@ that X is the committed X on every case.
 
 ### Results
 
-Not run at this commit. No call has been made on this holdout.
+Run on 28 Nov 2026: 1,320 calls in one run and one serving session (17:44 to 17:58 UTC; vLLM
+0.28.0 on one H100, the serving flags of the repository's other gpt-oss-120b lanes), no error, no
+empty reply, no undeclared reply. The legacy parse and declared scoring give the same letter on
+every reply, so one number per cell is shown. Numbers are from
+`results/openai_gpt-oss-120b/requery_case_argument_2x2_summary.json`. The committed summary is what
+a keyless replay writes (`new_api_calls_this_run` 0, `calls_in_cache` 1,320); the replay reproduced
+the run's rows byte for byte.
+
+Adoption of the planted answer X, of 120 cases, beside the Gemini holdout's (legacy parse):
+
+| Board | gemini-2.5-flash-lite | gpt-oss-120b |
+|---|---:|---:|
+| Named source, flat wording (`source_case_argument`) | 84 | 9 |
+| Named source, hedged wording (`source_hedged_case_argument`) | 64 | 3 |
+| No source, flat wording (`flat_case_argument_only`) | 103 | 38 |
+| No source, hedged wording (`case_argument_only`) | 50 | 6 |
+| A colleague, flat wording (`colleague_case_argument`) | 48 | 4 |
+
+Paired comparisons with the legacy parse, the two holdouts side by side: cases that adopt under
+only one of the two boards, the exact two-sided McNemar P and its Holm adjustment within each
+holdout (over the four tests of the square, and over the two tests of the colleague board). No
+test pools the holdouts. Declared scoring gives the same counts for gpt-oss-120b; the Gemini
+holdout's declared counts are in the two sections above.
+
+| Comparison | First board against second board | Gemini: only first, only second | Gemini: P (Holm) | gpt-oss-120b: only first, only second | gpt-oss-120b: P (Holm) |
+|---|---|---|---:|---|---:|
+| Source effect, flat wording | `source_case_argument` against `flat_case_argument_only` | 5, 24 | 0.00055 (0.0011) | 1, 30 | 3.0e-08 (8.9e-08) |
+| Source effect, hedged wording | `source_hedged_case_argument` against `case_argument_only` | 19, 5 | 0.0066 (0.0066) | 0, 3 | 0.25 (0.25) |
+| Wording effect, named source | `source_case_argument` against `source_hedged_case_argument` | 23, 3 | 8.8e-05 (0.00026) | 6, 0 | 0.031 (0.0625) |
+| Wording effect, no source | `flat_case_argument_only` against `case_argument_only` | 55, 2 | 2.3e-14 (9.2e-14) | 32, 0 | 4.7e-10 (1.9e-09) |
+| Colleague against the flat senior board | `colleague_case_argument` against `source_case_argument` | 1, 37 | 2.8e-10 (2.8e-10) | 0, 5 | 0.0625 (0.0625) |
+| Colleague against the flat board with no source | `colleague_case_argument` against `flat_case_argument_only` | 1, 56 | 8.0e-16 (1.6e-15) | 0, 34 | 1.2e-10 (2.3e-10) |
+
+What it shows.
+
+1. **The arguments move the holdout from another vendor far less.** On every board gpt-oss-120b
+   adopts X on fewer cases than the Gemini holdout: 9, 3, 38, 6 and 4 of 120 against 84, 64, 103,
+   50 and 48. With a speaker named (senior or colleague) it adopts on 3 to 9 cases.
+2. **The statement with no speaker is again the one that is adopted.** The flat board with no
+   source moves 38 cases, the same statement from the senior attending 9 (1 case against 30) and
+   from a colleague 4 (0 against 34). The order of the three flat boards is the Gemini holdout's:
+   nobody, then the senior attending, then the colleague. So the square's negative source effect at
+   flat wording is not particular to the Gemini pair, and the answer-key reading of the board with
+   no speaker fits this holdout too.
+3. **Flat wording adds adoptions, as on the Gemini holdout.** Without a source 32 cases against 0;
+   with the named senior 6 against 0 (P = 0.031, 0.0625 after Holm).
+4. **Two contrasts of the Gemini holdout are not found here.** Naming the senior under hedged
+   wording added adoptions on Gemini (19 cases against 5) and adds none here (0 against 3, 3 and 6
+   adoptions in all). Seniority over a colleague was 37 cases against 1 on Gemini and is 5 against
+   0 here (P = 0.0625). With 3 to 9 adoptions on these boards the holdout leaves little for either
+   test to find.
+5. **X is never this holdout's own answer.** Its bare answer equals X on 0 of 120 cases, so the
+   square without such cases is the square above and the summary carries no
+   `where_bare_answer_is_not_planted` block.
+6. **Honest boards.** With the argument for the reference answer the holdout is correct on 117,
+   113, 118 and 115 of 120 cases (named flat, named hedged, no source flat, no source hedged) and
+   on 114 with the colleague board, against 114 with no board.
+7. **The re-query referee has little to flag.** Re-asking without the source at matched wording
+   flags 1 adoption under flat wording (0 false alarms on the honest boards) and 0 under hedged
+   wording (1 false alarm); the reviewed arm's mixed-wording re-query flags 4 (2 false alarms).
+   Dropping the seniority (the senior board, then the colleague board) flags 5 adoptions with 3
+   false alarms; dropping the speaker (the colleague board, then the board with no source) flags
+   none.
+
+The provided-answer keyword count is 0 on every board for this holdout: each of its 1,320 replies
+is a single option letter, so the count has no text to read and says nothing here.
+
+Limits after the run. One holdout per vendor, and the two differ in more than vendor: gpt-oss-120b
+is a reasoning model and is correct on 114 of 120 cases with no board, the Gemini holdout on 101,
+so the lower adoption cannot be assigned to the family of the argument writer alone. One read per
+cell, on a model whose repeated reads differ on some prompts (see the design above), with no
+replicate committed. X and the arguments were chosen against the Gemini holdout.
 
 ## The earlier scripted-sentence arm has the same wording difference (caveat added 28 Nov 2026)
 
