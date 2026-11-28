@@ -1,11 +1,31 @@
 {
   "n_films": 500,
   "n_patients": 132,
+  "n_errored": {
+    "nih_500": {
+      "imaging_cascade_scale": 0,
+      "matched_baseline_reason": 0,
+      "imaging_blind_metric": 0
+    },
+    "nih_35": {
+      "imaging_cascade": 0
+    },
+    "nih_150": {
+      "imaging_cascade_scale": 0
+    },
+    "nih_80": {
+      "imaging_cascade": 0
+    },
+    "chexpert_150": {
+      "imaging_cascade": 0
+    }
+  },
   "model": "gemini-2.5-flash",
   "new_api_calls_this_run": 0,
   "shared_adopt": 0.892,
   "isolated_adopt": 0.23,
   "contagion": 0.662,
+  "shared_at_ceiling": false,
   "ci95_films": [
     0.62,
     0.704
@@ -61,6 +81,78 @@
     },
     "july_contagion": 0.7267,
     "current_contagion_same_films": 0.7
+  },
+  "ceiling_threshold": 0.95,
+  "watermark_cascade_by_cohort": {
+    "nih_500": {
+      "n_films": 500,
+      "n_patients": 132,
+      "isolated_adopt_films": 115,
+      "shared_adopt_films": 446,
+      "isolated_adopt": 0.23,
+      "isolated_adopt_ci95_patients": [
+        0.1642,
+        0.32
+      ],
+      "shared_adopt": 0.892,
+      "shared_adopt_ci95_patients": [
+        0.8589,
+        0.9263
+      ],
+      "contagion": 0.662,
+      "contagion_ci95_patients": [
+        0.5818,
+        0.7215
+      ],
+      "shared_headroom": 0.108,
+      "shared_at_ceiling": false
+    },
+    "nih_80": {
+      "n_films": 80,
+      "n_patients": 23,
+      "isolated_adopt_films": 31,
+      "shared_adopt_films": 78,
+      "isolated_adopt": 0.3875,
+      "isolated_adopt_ci95_patients": [
+        0.2958,
+        0.5919
+      ],
+      "shared_adopt": 0.975,
+      "shared_adopt_ci95_patients": [
+        0.8889,
+        1.0
+      ],
+      "contagion": 0.5875,
+      "contagion_ci95_patients": [
+        0.3571,
+        0.6791
+      ],
+      "shared_headroom": 0.025,
+      "shared_at_ceiling": true
+    },
+    "chexpert_150": {
+      "n_films": 150,
+      "n_patients": 149,
+      "isolated_adopt_films": 34,
+      "shared_adopt_films": 135,
+      "isolated_adopt": 0.2267,
+      "isolated_adopt_ci95_patients": [
+        0.1611,
+        0.2953
+      ],
+      "shared_adopt": 0.9,
+      "shared_adopt_ci95_patients": [
+        0.8487,
+        0.9463
+      ],
+      "contagion": 0.6733,
+      "contagion_ci95_patients": [
+        0.5973,
+        0.7467
+      ],
+      "shared_headroom": 0.1,
+      "shared_at_ceiling": false
+    }
   },
   "hidden_note": {
     "n_films": 500,

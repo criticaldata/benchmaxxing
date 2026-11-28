@@ -1,0 +1,14 @@
+{
+  "n": 500,
+  "model": "Qwen/Qwen2.5-VL-72B-Instruct",
+  "cue": "watermark",
+  "new_api_calls_this_run": 1500,
+  "shared_adopt": 0.994,
+  "isolated_adopt": 0.286,
+  "contagion": 0.708,
+  "contagion_ci95": [
+    0.668,
+    0.746
+  ],
+  "note": "scaled watermark cascade n=500, bootstrap 95% CI on contagion (5000 resamples); tightens the n=35 imaging headline"
+}
