@@ -4,14 +4,14 @@
   "contrasts": [
     {
       "n": 60,
-      "rate_a": 0.15,
+      "rate_a": 0.1667,
       "rate_b": 0.9167,
-      "delta": 0.7667,
+      "delta": 0.75,
       "delta_ci95": [
-        0.65,
-        0.8667
+        0.6333,
+        0.85
       ],
-      "mcnemar_gain": 46,
+      "mcnemar_gain": 45,
       "mcnemar_lose": 0,
       "pvalue": 0.0,
       "label": "authority_ladder: guideline vs colleague",
@@ -21,30 +21,30 @@
     {
       "n": 100,
       "rate_a": 0.17,
-      "rate_b": 0.41,
-      "delta": 0.24,
+      "rate_b": 0.44,
+      "delta": 0.27,
       "delta_ci95": [
-        0.16,
-        0.33
+        0.19,
+        0.36
       ],
-      "mcnemar_gain": 24,
+      "mcnemar_gain": 27,
       "mcnemar_lose": 0,
-      "pvalue": 1.2e-07,
+      "pvalue": 1e-08,
       "label": "seed_confidence: confident vs hedged",
       "survives_bh": true,
       "survives_holm": true
     },
     {
       "n": 120,
-      "rate_a": 0.7,
+      "rate_a": 0.7083,
       "rate_b": 0.3667,
-      "delta": -0.3333,
+      "delta": -0.3417,
       "delta_ci95": [
-        -0.4333,
-        -0.2417
+        -0.4417,
+        -0.25
       ],
       "mcnemar_gain": 4,
-      "mcnemar_lose": 44,
+      "mcnemar_lose": 45,
       "pvalue": 0.0,
       "label": "rationale_validity: any-reasoning vs bare",
       "survives_bh": true,
@@ -52,19 +52,19 @@
     },
     {
       "n": 120,
-      "rate_a": 0.725,
-      "rate_b": 0.8333,
-      "delta": 0.1083,
+      "rate_a": 0.7333,
+      "rate_b": 0.85,
+      "delta": 0.1167,
       "delta_ci95": [
-        0.025,
-        0.1917
+        0.0333,
+        0.2
       ],
       "mcnemar_gain": 20,
-      "mcnemar_lose": 7,
-      "pvalue": 0.01915729,
+      "mcnemar_lose": 6,
+      "pvalue": 0.00935531,
       "label": "super_additivity: both vs peer-alone",
       "survives_bh": true,
-      "survives_holm": false
+      "survives_holm": true
     },
     {
       "n": 15,
@@ -85,15 +85,15 @@
     {
       "n": 38,
       "rate_a": 0.0263,
-      "rate_b": 0.3947,
-      "delta": 0.3684,
+      "rate_b": 0.4211,
+      "delta": 0.3947,
       "delta_ci95": [
-        0.2105,
-        0.5263
+        0.2368,
+        0.5526
       ],
-      "mcnemar_gain": 14,
+      "mcnemar_gain": 15,
       "mcnemar_lose": 0,
-      "pvalue": 0.00012207,
+      "pvalue": 6.104e-05,
       "label": "unanimity: unanimous vs with-dissenter",
       "survives_bh": true,
       "survives_holm": true
