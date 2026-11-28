@@ -54,6 +54,14 @@ DECLARED_GAPS = {
         "lost), so the declared-only rescore of the deployable referee cannot be replayed from the "
         "repository; closing it means re-running that arm, which replaces committed numbers and needs "
         "the owner's decision. The plausible-distractor audit for the same lineage is committed.",
+    ("nvidia_nemotron-3-super-120b-a12b", "referee", "results", "requery_case_argument_2x2_summary.json"):
+        "The hosted endpoint for this model id has been withdrawn, so the five case-argument boards cannot be read by "
+        "a holdout under the hosted id. The arm's holdout from another vendor is openai/gpt-oss-120b, served locally "
+        "(1,320 calls in one session); this entry closes if the hosted id is served again and the arm is run on it.",
+    ("local_nvidia_cosmos-reason2-8b", "referee", "results", "requery_case_argument_2x2_summary.json"):
+        "The five case-argument boards were read by one holdout from another vendor, openai/gpt-oss-120b, as the design "
+        "states; this lineage was not served for that arm and no calls were made for it, so the entry closes if "
+        "experiments/referee/requery_case_argument_2x2.py is run with this lineage as --model.",
     ("nvidia_nemotron-3-super-120b-a12b", "medqa", "results", "onset_distribution.json"):
         "experiments/medqa/onset_distribution.py --model nvidia/nemotron-3-super-120b-a12b reads the cascade "
         "transcripts at results/<slug>/transcripts/<id>_repro_shared.jsonl; this lineage never committed those "

@@ -26,6 +26,13 @@ Limit: the "argument" is the scripted template sentence used throughout this lan
 words of the question, then "this presentation points to it"), not a clinical argument written for
 the case. The contrast therefore separates the named source from that sentence, no more.
 
+Caveat on wording, added after review of the case-argument arm. The boards differ in wording as well
+as in attribution: source_argument and source_only say a senior attending "concluded the answer is"
+X, argument_only offers "one line of reasoning" that "points to" X. So every contrast between them,
+and the argument_only re-query flags, mix removing the named source with a less assertive wording.
+``requery_case_argument_2x2.py`` crosses the two factors on the same 120 cases with a case-specific
+argument; see REQUERY_CASE_ARGUMENT.md. The summary carries this as ``wording_caveat``.
+
 The source_argument prompt is byte-identical to pre_emptive_referee.py's no_intervention prompt, so
 those answers are read from its committed cache. Every other call is cached here; a fully cached
 run needs no key.
@@ -48,6 +55,12 @@ import _lane  # noqa: E402
 
 COND_ORDER = ["source_argument", "argument_only", "source_only"]
 COMMITTED_SEED_CACHE = "experiments/medqa/results/pre_emptive_referee_cache.jsonl"
+WORDING_CAVEAT = (
+    "Added after review of the case-argument arm. source_argument and source_only state the answer flatly (a "
+    "senior attending concluded the answer is X); argument_only offers one line of reasoning that points to X. "
+    "Every contrast between them, and the argument_only re-query flags, therefore mix removing the named source "
+    "with a less assertive wording. requery_case_argument_2x2_summary.json crosses the two factors on the same "
+    "120 cases with a case-specific argument.")
 
 
 def _mcq_prompt(payload, board=""):
@@ -191,6 +204,7 @@ def main():
         },
         "honest_board_control": honest,
         "unparsed_by_condition": unparsed_by_condition,
+        "wording_caveat": WORDING_CAVEAT,
         "read": (
             f"Adoption of the same wrong answer on {n} MedQA cases: {counts['source_argument']} with the named "
             f"senior and the sentence, {counts['argument_only']} with the sentence alone, {counts['source_only']} "
