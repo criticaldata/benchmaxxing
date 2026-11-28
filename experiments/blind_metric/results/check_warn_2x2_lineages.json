@@ -90,5 +90,434 @@
       "sign_test_p": 0.024307
     }
   },
-  "read": "Warning against check, cases that follow the note under the warning only vs under the check only, exact McNemar per model: openai/gpt-oss-120b 4 vs 9 (P = 0.266846); nemotron-3-super-120b-a12b-fp8-local 3 vs 12 (P = 0.035156); Qwen/Qwen2.5-VL-72B-Instruct 3 vs 11 (P = 0.057373). Below 0.05: 1 of 3 models uncorrected, 0 of 3 after Holm over the models. With the case as the unit, uptake summed over the models is lower under the warning on 24 cases and higher on 8 of 119 (exact sign test P = 0.007). With every empty reply in the two cells scored against the difference: openai/gpt-oss-120b 4 vs 9 (P = 0.266846); nemotron-3-super-120b-a12b-fp8-local 5 vs 11 (P = 0.210114); Qwen/Qwen2.5-VL-72B-Instruct 3 vs 11 (P = 0.057373). Below 0.05: 0 of 3 models uncorrected, 0 of 3 after Holm over the models. With the case as the unit, uptake summed over the models is lower under the warning on 24 cases and higher on 10 of 119 (exact sign test P = 0.024307)."
+  "one_session": {
+    "source": "matched_conditions.py rows under each cohort's matched/<model>/ directory: conditions note, note_salient, note_flagged and note_salient_flagged, five repeats each at temperature 0, interleaved in one session per cohort; the decoy is fixed from a baseline read made in that session",
+    "sessions": {
+      "openai/gpt-oss-120b": {
+        "MedQA": {
+          "n": 40,
+          "repeats": 5,
+          "calls": 800,
+          "first_call": "2026-10-16T00:04:44Z",
+          "last_call": "2026-10-16T00:14:46Z"
+        },
+        "MedMCQA": {
+          "n": 40,
+          "repeats": 5,
+          "calls": 800,
+          "first_call": "2026-10-28T14:46:21Z",
+          "last_call": "2026-10-28T14:57:54Z"
+        },
+        "SUPPORT2": {
+          "n": 28,
+          "repeats": 5,
+          "calls": 560,
+          "first_call": "2026-10-28T14:57:59Z",
+          "last_call": "2026-10-28T15:04:03Z"
+        }
+      },
+      "nemotron-3-super-120b-a12b-fp8-local": {
+        "MedQA": {
+          "n": 40,
+          "repeats": 5,
+          "calls": 800,
+          "first_call": "2026-10-28T17:22:45Z",
+          "last_call": "2026-10-28T18:05:27Z"
+        },
+        "MedMCQA": {
+          "n": 40,
+          "repeats": 5,
+          "calls": 800,
+          "first_call": "2026-10-28T18:17:55Z",
+          "last_call": "2026-10-28T18:53:12Z"
+        },
+        "SUPPORT2": {
+          "n": 29,
+          "repeats": 5,
+          "calls": 580,
+          "first_call": "2026-10-28T19:01:30Z",
+          "last_call": "2026-10-28T19:18:58Z"
+        }
+      },
+      "Qwen/Qwen2.5-VL-72B-Instruct": {
+        "MedQA": {
+          "n": 40,
+          "repeats": 5,
+          "calls": 800,
+          "first_call": "2026-10-15T23:48:18Z",
+          "last_call": "2026-10-15T23:52:59Z"
+        },
+        "MedMCQA": {
+          "n": 40,
+          "repeats": 5,
+          "calls": 800,
+          "first_call": "2026-10-29T19:15:39Z",
+          "last_call": "2026-10-29T19:18:39Z"
+        },
+        "SUPPORT2": {
+          "n": 31,
+          "repeats": 5,
+          "calls": 620,
+          "first_call": "2026-10-29T19:19:28Z",
+          "last_call": "2026-10-29T19:22:14Z"
+        }
+      }
+    },
+    "first_repeat": {
+      "per_model": {
+        "openai/gpt-oss-120b": {
+          "n": 108,
+          "gain": 0,
+          "lose": 13,
+          "pvalue": 0.000244,
+          "decoy_uptake": {
+            "none": 0.3889,
+            "check": 0.2037,
+            "warn": 0.0833,
+            "both": 0.0556
+          },
+          "vs_none": {
+            "check": {
+              "gain": 3,
+              "lose": 23,
+              "pvalue": 8.8e-05
+            },
+            "warn": {
+              "gain": 0,
+              "lose": 33,
+              "pvalue": 2.33e-10
+            },
+            "both": {
+              "gain": 0,
+              "lose": 36,
+              "pvalue": 2.91e-11
+            }
+          },
+          "p_holm": 0.000732
+        },
+        "nemotron-3-super-120b-a12b-fp8-local": {
+          "n": 109,
+          "gain": 2,
+          "lose": 9,
+          "pvalue": 0.06543,
+          "decoy_uptake": {
+            "none": 0.3119,
+            "check": 0.1193,
+            "warn": 0.055,
+            "both": 0.055
+          },
+          "vs_none": {
+            "check": {
+              "gain": 3,
+              "lose": 24,
+              "pvalue": 4.9e-05
+            },
+            "warn": {
+              "gain": 1,
+              "lose": 29,
+              "pvalue": 5.77e-08
+            },
+            "both": {
+              "gain": 1,
+              "lose": 29,
+              "pvalue": 5.77e-08
+            }
+          },
+          "p_holm": 0.06543
+        },
+        "Qwen/Qwen2.5-VL-72B-Instruct": {
+          "n": 111,
+          "gain": 2,
+          "lose": 11,
+          "pvalue": 0.022461,
+          "decoy_uptake": {
+            "none": 0.3964,
+            "check": 0.2613,
+            "warn": 0.1802,
+            "both": 0.1441
+          },
+          "vs_none": {
+            "check": {
+              "gain": 2,
+              "lose": 17,
+              "pvalue": 0.000729
+            },
+            "warn": {
+              "gain": 1,
+              "lose": 25,
+              "pvalue": 1e-06
+            },
+            "both": {
+              "gain": 0,
+              "lose": 28,
+              "pvalue": 7.45e-09
+            }
+          },
+          "p_holm": 0.044922
+        }
+      },
+      "n_models": 3,
+      "alpha": 0.05,
+      "n_models_below_alpha": 2,
+      "n_models_below_alpha_holm": 2,
+      "model_case_pairs": {
+        "gain": 4,
+        "lose": 33
+      },
+      "over_models": {
+        "n_cases": 111,
+        "cases_lower_under_warning": 28,
+        "cases_higher_under_warning": 4,
+        "cases_equal": 79,
+        "sign_test_p": 1.9e-05
+      }
+    },
+    "first_repeat_empty_replies_in_check_or_warn": {
+      "openai/gpt-oss-120b": 0,
+      "nemotron-3-super-120b-a12b-fp8-local": 2,
+      "Qwen/Qwen2.5-VL-72B-Instruct": 0
+    },
+    "first_repeat_empty_replies_worst_case": {
+      "per_model": {
+        "openai/gpt-oss-120b": {
+          "n": 108,
+          "gain": 0,
+          "lose": 13,
+          "pvalue": 0.000244,
+          "p_holm": 0.000732
+        },
+        "nemotron-3-super-120b-a12b-fp8-local": {
+          "n": 109,
+          "gain": 3,
+          "lose": 8,
+          "pvalue": 0.226562,
+          "p_holm": 0.226562
+        },
+        "Qwen/Qwen2.5-VL-72B-Instruct": {
+          "n": 111,
+          "gain": 2,
+          "lose": 11,
+          "pvalue": 0.022461,
+          "p_holm": 0.044922
+        }
+      },
+      "n_models": 3,
+      "alpha": 0.05,
+      "n_models_below_alpha": 2,
+      "n_models_below_alpha_holm": 2,
+      "model_case_pairs": {
+        "gain": 5,
+        "lose": 32
+      },
+      "over_models": {
+        "n_cases": 111,
+        "cases_lower_under_warning": 27,
+        "cases_higher_under_warning": 4,
+        "cases_equal": 80,
+        "sign_test_p": 3.4e-05
+      }
+    },
+    "majority_of_repeats": {
+      "per_model": {
+        "openai/gpt-oss-120b": {
+          "n": 108,
+          "gain": 0,
+          "lose": 9,
+          "pvalue": 0.003906,
+          "decoy_uptake": {
+            "none": 0.3889,
+            "check": 0.1944,
+            "warn": 0.1111,
+            "both": 0.0741
+          },
+          "vs_none": {
+            "check": {
+              "gain": 4,
+              "lose": 25,
+              "pvalue": 0.000104
+            },
+            "warn": {
+              "gain": 0,
+              "lose": 30,
+              "pvalue": 1.86e-09
+            },
+            "both": {
+              "gain": 1,
+              "lose": 35,
+              "pvalue": 1.08e-09
+            }
+          },
+          "p_holm": 0.011719
+        },
+        "nemotron-3-super-120b-a12b-fp8-local": {
+          "n": 109,
+          "gain": 2,
+          "lose": 8,
+          "pvalue": 0.109375,
+          "decoy_uptake": {
+            "none": 0.3211,
+            "check": 0.1009,
+            "warn": 0.0459,
+            "both": 0.0459
+          },
+          "vs_none": {
+            "check": {
+              "gain": 0,
+              "lose": 24,
+              "pvalue": 1.19e-07
+            },
+            "warn": {
+              "gain": 0,
+              "lose": 30,
+              "pvalue": 1.86e-09
+            },
+            "both": {
+              "gain": 0,
+              "lose": 30,
+              "pvalue": 1.86e-09
+            }
+          },
+          "p_holm": 0.114746
+        },
+        "Qwen/Qwen2.5-VL-72B-Instruct": {
+          "n": 111,
+          "gain": 3,
+          "lose": 11,
+          "pvalue": 0.057373,
+          "decoy_uptake": {
+            "none": 0.4054,
+            "check": 0.2613,
+            "warn": 0.1892,
+            "both": 0.1441
+          },
+          "vs_none": {
+            "check": {
+              "gain": 2,
+              "lose": 18,
+              "pvalue": 0.000402
+            },
+            "warn": {
+              "gain": 2,
+              "lose": 26,
+              "pvalue": 3e-06
+            },
+            "both": {
+              "gain": 0,
+              "lose": 29,
+              "pvalue": 3.73e-09
+            }
+          },
+          "p_holm": 0.114746
+        }
+      },
+      "n_models": 3,
+      "alpha": 0.05,
+      "n_models_below_alpha": 1,
+      "n_models_below_alpha_holm": 1,
+      "model_case_pairs": {
+        "gain": 5,
+        "lose": 28
+      },
+      "over_models": {
+        "n_cases": 111,
+        "cases_lower_under_warning": 25,
+        "cases_higher_under_warning": 5,
+        "cases_equal": 81,
+        "sign_test_p": 0.000325
+      }
+    },
+    "read_to_read": {
+      "openai/gpt-oss-120b": {
+        "none": {
+          "shared_cases": 103,
+          "differ": 12,
+          "one_session_cases": 108,
+          "first_two_repeats_differ": 10,
+          "unequal_repeats": 19
+        },
+        "check": {
+          "shared_cases": 103,
+          "differ": 10,
+          "one_session_cases": 108,
+          "first_two_repeats_differ": 7,
+          "unequal_repeats": 13
+        },
+        "warn": {
+          "shared_cases": 103,
+          "differ": 5,
+          "one_session_cases": 108,
+          "first_two_repeats_differ": 6,
+          "unequal_repeats": 12
+        },
+        "both": {
+          "shared_cases": 103,
+          "differ": 5,
+          "one_session_cases": 108,
+          "first_two_repeats_differ": 4,
+          "unequal_repeats": 9
+        }
+      },
+      "nemotron-3-super-120b-a12b-fp8-local": {
+        "none": {
+          "shared_cases": 102,
+          "differ": 17,
+          "one_session_cases": 109,
+          "first_two_repeats_differ": 16,
+          "unequal_repeats": 27
+        },
+        "check": {
+          "shared_cases": 102,
+          "differ": 12,
+          "one_session_cases": 109,
+          "first_two_repeats_differ": 7,
+          "unequal_repeats": 18
+        },
+        "warn": {
+          "shared_cases": 102,
+          "differ": 3,
+          "one_session_cases": 109,
+          "first_two_repeats_differ": 2,
+          "unequal_repeats": 9
+        },
+        "both": {
+          "shared_cases": 102,
+          "differ": 1,
+          "one_session_cases": 109,
+          "first_two_repeats_differ": 4,
+          "unequal_repeats": 10
+        }
+      },
+      "Qwen/Qwen2.5-VL-72B-Instruct": {
+        "none": {
+          "shared_cases": 111,
+          "differ": 2,
+          "one_session_cases": 111,
+          "first_two_repeats_differ": 1,
+          "unequal_repeats": 3
+        },
+        "check": {
+          "shared_cases": 111,
+          "differ": 2,
+          "one_session_cases": 111,
+          "first_two_repeats_differ": 0,
+          "unequal_repeats": 1
+        },
+        "warn": {
+          "shared_cases": 111,
+          "differ": 1,
+          "one_session_cases": 111,
+          "first_two_repeats_differ": 1,
+          "unequal_repeats": 2
+        },
+        "both": {
+          "shared_cases": 111,
+          "differ": 1,
+          "one_session_cases": 111,
+          "first_two_repeats_differ": 0,
+          "unequal_repeats": 1
+        }
+      }
+    }
+  },
+  "read": "Warning against check, cases that follow the note under the warning only vs under the check only, exact McNemar per model: openai/gpt-oss-120b 4 vs 9 (P = 0.266846); nemotron-3-super-120b-a12b-fp8-local 3 vs 12 (P = 0.035156); Qwen/Qwen2.5-VL-72B-Instruct 3 vs 11 (P = 0.057373). Below 0.05: 1 of 3 models uncorrected, 0 of 3 after Holm over the models. With the case as the unit, uptake summed over the models is lower under the warning on 24 cases and higher on 8 of 119 (exact sign test P = 0.007). With every empty reply in the two cells scored against the difference: openai/gpt-oss-120b 4 vs 9 (P = 0.266846); nemotron-3-super-120b-a12b-fp8-local 5 vs 11 (P = 0.210114); Qwen/Qwen2.5-VL-72B-Instruct 3 vs 11 (P = 0.057373). Below 0.05: 0 of 3 models uncorrected, 0 of 3 after Holm over the models. With the case as the unit, uptake summed over the models is lower under the warning on 24 cases and higher on 10 of 119 (exact sign test P = 0.024307). With all four cells from one session (matched_conditions.py), first repeat: openai/gpt-oss-120b 0 vs 13 (P = 0.000244); nemotron-3-super-120b-a12b-fp8-local 2 vs 9 (P = 0.06543); Qwen/Qwen2.5-VL-72B-Instruct 2 vs 11 (P = 0.022461). Below 0.05: 2 of 3 models uncorrected, 2 of 3 after Holm over the models. With the case as the unit, uptake summed over the models is lower under the warning on 28 cases and higher on 4 of 111 (exact sign test P = 1.9e-05). Majority of the five repeats: openai/gpt-oss-120b 0 vs 9 (P = 0.003906); nemotron-3-super-120b-a12b-fp8-local 2 vs 8 (P = 0.109375); Qwen/Qwen2.5-VL-72B-Instruct 3 vs 11 (P = 0.057373). Below 0.05: 1 of 3 models uncorrected, 1 of 3 after Holm over the models. With the case as the unit, uptake summed over the models is lower under the warning on 25 cases and higher on 5 of 111 (exact sign test P = 0.000325)."
 }

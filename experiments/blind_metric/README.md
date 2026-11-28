@@ -94,6 +94,21 @@ Exact McNemar tests on the same cases; each pair is cases that move toward the d
 | nemotron FP8 | 4 vs 24, P = 0.00018 | 0 vs 29, P = 3.7e-09 | 0 vs 33, P = 2.3e-10 | 3 vs 12, P = 0.035 |
 | Qwen2.5-VL-72B | 1 vs 20, P = 2.1e-05 | 1 vs 28, P = 1.1e-07 | 0 vs 32, P = 4.7e-10 | 3 vs 11, P = 0.057 |
 
+**Serving sessions.** The four cells of a row do not come from one serving session. The plain-note
+cell and the baseline read replay from each model's committed hidden-note cache at zero calls, so
+they were answered in an earlier session than the check, warning and both cells. The caches' history
+confirms it for every case: all 110, 113 and 115 plain-note replies (and the baseline reads) were
+already in the committed caches before this arm ran (cache lines committed for gpt-oss-120b: MedQA
+8 Sep, MedMCQA 27 Oct, SUPPORT2 29 Oct; nemotron FP8: the three cohorts 29 Oct; Qwen2.5-VL-72B: MedQA
+7 Oct, its rows 10 Sep, MedMCQA and SUPPORT2 29 Oct 2026), and all 330, 339 and 345 replies of the
+three other cells were added with this arm on 24 Nov 2026. The setups differ as well: this run
+served Qwen2.5-VL-72B on two cards (tensor parallel 2), the committed Qwen lane on four (tensor
+parallel 4); for the two other models the committed files record no hardware for the earlier
+sessions. A temperature-0 answer on these stacks is not fixed from one read to the next (counts
+under "All four cells from one session" below), so every test against the plain note above carries a
+session difference together with the sentence. The warning-against-check test does not: both of its
+cells were drawn in this run.
+
 **What the tests support.** Each sentence lowers uptake against the plain note in all three models
 (nine tests, each P below 0.001). That the warning lowers it more than the check is not shown model
 by model. The warning cell is the lower one in every model, but the direct test, warning against
@@ -105,6 +120,38 @@ cases and higher on 8 of 119 (exact sign test, P = 0.007), so the ordering holds
 as a group and in no single model after correction. `check_warn_2x2_lineages.py` writes these counts to
 `results/check_warn_2x2_lineages.json`. On the committed Gemini run the same test gives 9 vs 15
 (P = 0.31).
+
+**All four cells from one session.** The repository already holds these four prompts answered
+within one session. `matched_conditions.py` asks them as its conditions `note`, `note_salient`,
+`note_flagged` and `note_salient_flagged` (byte for byte the four cells), five times each per case,
+interleaved, and its committed runs on the three models took 3 to 43 minutes per cohort between
+15 and 29 Oct 2026. The decoy is fixed from a baseline read made in that session, so n is 108, 109
+and 111. `results/check_warn_2x2_lineages.json` (`one_session`) reads the tests off those rows:
+
+| Model | n | Plain note | + check | + warning | + both | check vs plain note | warning vs plain note | both vs plain note | warning vs check |
+|---|---:|---:|---:|---:|---:|---|---|---|---|
+| gpt-oss-120b | 108 | 0.3889 | 0.2037 | 0.0833 | 0.0556 | 3 vs 23, P = 8.8e-05 | 0 vs 33, P = 2.3e-10 | 0 vs 36, P = 2.9e-11 | 0 vs 13, P = 0.00024 |
+| nemotron FP8 | 109 | 0.3119 | 0.1193 | 0.0550 | 0.0550 | 3 vs 24, P = 4.9e-05 | 1 vs 29, P = 5.8e-08 | 1 vs 29, P = 5.8e-08 | 2 vs 9, P = 0.065 |
+| Qwen2.5-VL-72B | 111 | 0.3964 | 0.2613 | 0.1802 | 0.1441 | 2 vs 17, P = 0.00073 | 1 vs 25, P = 1e-06 | 0 vs 28, P = 7.5e-09 | 2 vs 11, P = 0.022 |
+
+This is the first repeat of each cell, the reading closest to one read per cell. With all four cells
+from one session each sentence still lowers uptake against the plain note (nine tests, each P below
+0.001), so the session difference above does not carry those effects. Warning against check is below
+0.05 in two models of three on the first repeat (also two after Holm) and in one of three on the
+majority of the five repeats (gpt-oss-120b 0 vs 9, P = 0.0039; nemotron FP8 2 vs 8, P = 0.11;
+Qwen2.5-VL-72B 3 vs 11, P = 0.057). The model that clears 0.05 is not the same one as in the
+single-read cells, where only nemotron FP8 did, so which model passes depends on the session and the
+read. What is stable is the direction: the warning cell is the lower one in all three models in both
+data sets, and with the case as the unit the three models together give 28 cases lower and 4 higher
+on the first repeat (P = 1.9e-05).
+
+How far one read of the plain note sits from the next (`read_to_read` in the same file): two reads
+in two sessions, the single-read cell against the one-session first repeat on the cases both share
+with the same decoy, differ on 12 of 103 for gpt-oss-120b, 17 of 102 for nemotron FP8 and 2 of 111
+for Qwen2.5-VL-72B. Two reads minutes apart in one session, its first and second repeat, differ on
+10 of 108, 16 of 109 and 1 of 111. For the two reasoning models a temperature-0 read is itself
+unstable: two reads in one session differ almost as often as two reads in two sessions, so a single
+read per cell cannot tell a session difference from this read-to-read variation.
 
 **Empty replies, worst case.** A reply with no text is scored as not following the note. gpt-oss-120b
 and Qwen2.5-VL-72B returned none in any cell. nemotron FP8 returned six: one in the plain-note cell

@@ -241,3 +241,68 @@ def test_cohort_run_replays_from_its_cache_with_the_same_empty_replies(slug, d):
     finally:
         for p, b in files.items():
             p.write_bytes(b)
+
+
+# ---------------------------------------------------------------- all four cells from one session
+ONE_SESSION_DIRS = ("experiments/blind_metric/results/matched", "experiments/medmcqa/results/blind_metric/matched",
+                    "experiments/support2/results/blind_metric/matched")
+# first repeat, warning against check: follows the note under the warning only, under the check only, exact p
+ONE_SESSION_FIRST = {"openai_gpt-oss-120b": (0, 13, 0.000244), "nemotron-3-super-120b-a12b-fp8-local": (2, 9, 0.06543),
+                     "Qwen_Qwen2.5-VL-72B-Instruct": (2, 11, 0.022461)}
+
+
+def test_one_session_conditions_are_the_four_cell_prompts():
+    """matched_conditions.py's four note conditions are byte for byte the four cells of this arm."""
+    from types import SimpleNamespace
+
+    import check_warn_2x2_lineages as lineages
+    import matched_conditions as mc
+    case = SimpleNamespace(question="Q?", options=["x", "y", "z"], answer_index=0, report="")
+    _, _, _, prompts = mc.text_prompts(case)
+    assert set(lineages.CONDITION) == set(cw.CELLS)
+    for cell, condition in lineages.CONDITION.items():
+        assert prompts[condition]("B") == cw.cell_prompt("Q?", "A. x\nB. y\nC. z", "B", cell), cell
+
+
+@pytest.mark.parametrize("slug", LINEAGES)
+def test_one_session_check_vs_warn_is_recounted_from_the_fresh_session_rows(slug):
+    from scipy.stats import binomtest
+    rows = [r for d in ONE_SESSION_DIRS
+            for r in map(json.loads, (ROOT / d / slug / "matched_conditions.jsonl").read_text().splitlines()) if r]
+    gain = sum(1 for r in rows if r["note_flagged_is_decoy"][0] and not r["note_salient_is_decoy"][0])
+    lose = sum(1 for r in rows if r["note_salient_is_decoy"][0] and not r["note_flagged_is_decoy"][0])
+    one = json.loads((ROOT / "experiments/blind_metric/results/check_warn_2x2_lineages.json").read_text())["one_session"]
+    v = one["first_repeat"]["per_model"][MODEL_OF[slug]]
+    assert (v["gain"], v["lose"], v["pvalue"]) == (gain, lose, ONE_SESSION_FIRST[slug][2]) == ONE_SESSION_FIRST[slug]
+    assert v["pvalue"] == pytest.approx(binomtest(min(gain, lose), gain + lose, 0.5).pvalue, abs=5e-7)
+    assert v["n"] == len(rows) == sum(c["n"] for c in one["sessions"][MODEL_OF[slug]].values())
+    # each sentence still lowers uptake against the plain note when all four cells share a session
+    assert all(t["lose"] > t["gain"] and t["pvalue"] < 0.001 for t in v["vs_none"].values())
+    # every cohort's four cells were asked five times each, all within one hour
+    from datetime import datetime
+    for c in one["sessions"][MODEL_OF[slug]].values():
+        assert c["repeats"] == 5 and c["calls"] == 4 * 5 * c["n"]
+        first, last = (datetime.strptime(c[k], "%Y-%m-%dT%H:%M:%SZ") for k in ("first_call", "last_call"))
+        assert 0 < (last - first).total_seconds() < 3600
+
+
+def test_one_session_counts_of_models_below_alpha():
+    one = json.loads((ROOT / "experiments/blind_metric/results/check_warn_2x2_lineages.json").read_text())["one_session"]
+    assert [(one[k]["n_models_below_alpha"], one[k]["n_models_below_alpha_holm"])
+            for k in ("first_repeat", "first_repeat_empty_replies_worst_case", "majority_of_repeats")] == [(2, 2), (2, 2), (1, 1)]
+    assert one["first_repeat_empty_replies_in_check_or_warn"]["nemotron-3-super-120b-a12b-fp8-local"] == 2
+
+
+def test_read_to_read_counts_are_bounded_and_pinned_for_the_plain_note():
+    rr = json.loads((ROOT / "experiments/blind_metric/results/check_warn_2x2_lineages.json").read_text())["one_session"]["read_to_read"]
+    for model, cells in rr.items():
+        assert set(cells) == set(cw.CELLS)
+        for c in cells.values():
+            assert 0 <= c["differ"] <= c["shared_cases"] <= c["one_session_cases"]
+            assert 0 <= c["first_two_repeats_differ"] <= c["unequal_repeats"] <= c["one_session_cases"]
+    # plain note: two reads in two sessions (differ of shared), two reads in one session (first two repeats of n)
+    assert {m: (c["none"]["differ"], c["none"]["shared_cases"], c["none"]["first_two_repeats_differ"],
+                c["none"]["unequal_repeats"], c["none"]["one_session_cases"])
+            for m, c in rr.items()} == {"openai/gpt-oss-120b": (12, 103, 10, 19, 108),
+                                        "nemotron-3-super-120b-a12b-fp8-local": (17, 102, 16, 27, 109),
+                                        "Qwen/Qwen2.5-VL-72B-Instruct": (2, 111, 1, 3, 111)}
