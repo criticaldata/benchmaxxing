@@ -37,5 +37,5 @@
   ],
   "note": "read 0 is the main control run; reads 1.. are the same prompt re-asked at the same settings with a salted cache key, so every read is a real call and replays keyless",
   "model": "zai-org/GLM-5.3-Flash",
-  "new_api_calls_this_run": 64
+  "new_api_calls_this_run": 210
 }

@@ -287,7 +287,7 @@
   "model": "zai-org/GLM-5.3-Flash",
   "session": "lin",
   "seed": 0,
-  "new_api_calls_this_run": 12,
+  "new_api_calls_this_run": 1146,
   "settings": {
     "temperature": 0,
     "reasoning": "backend default (thinking config unset), as in the committed arms",
