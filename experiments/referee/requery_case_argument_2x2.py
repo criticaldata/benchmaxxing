@@ -102,6 +102,18 @@ def boards(target, argument):
     }
 
 
+COLLEAGUE = "colleague_case_argument"
+
+
+def colleague_board(target, argument):
+    """A fifth board, outside the square: the flat wording from a speaker with no seniority.
+
+    Added after the square, whose flat board with no source may read as an answer key. This one has
+    a speaker and no authority. Design in REQUERY_CASE_ARGUMENT.md; not asked at this commit.
+    """
+    return f'A colleague concluded the answer is "{target}": {argument}\n\n'
+
+
 def load_arguments(path):
     """case_id -> {"planted": (X, argument), "honest": (reference answer, argument)} from the committed log."""
     out = {}

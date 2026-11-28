@@ -182,6 +182,53 @@ statement in the prompt's own voice, which is what point 2 suggests the flat boa
 source is. The hedged wording is the mild one of the committed board. One read per cell, on a
 model that returned identical text on every re-read.
 
+## A fifth board: flat wording from a speaker without seniority (added 28 Nov 2026, after the square)
+
+### Why
+
+In the square the flat statement with no source is adopted on 103 of 120 cases, more than the same
+statement from the senior attending (84). The replies suggest why: in 70 of 120 the holdout calls
+the board with no source the provided answer or solution. So "no source" may not mean "nobody
+behind it": a statement with no speaker can read as the answer key. The square cannot tell a board
+with no speaker from a board with no authority.
+
+### Design (written and pushed before any call)
+
+- **Board.** `colleague_case_argument`: A colleague concluded the answer is "X": ... It is the flat
+  senior board with "A senior attending" replaced by "A colleague": a speaker, the same flat
+  wording, no seniority. Same X, same committed argument.
+- **Honest control.** The same board with the committed argument for the reference answer.
+- **Cases, holdout, settings, scoring.** As in the square: the same 120 cases,
+  `gemini-2.5-flash-lite` at temperature 0, the same prompt frame, the legacy parse and declared
+  scoring.
+- **Calls.** 240 to `gemini-2.5-flash-lite`: 120 for the board, 120 for its honest control. None
+  to the argument writer. `--dry-run` prints the count.
+- **Comparisons.** Adoption of 120 under both scorings, beside the two other flat boards. Two
+  paired exact McNemar tests: against the flat senior board (`source_case_argument`, 84) and
+  against the flat board with no source (`flat_case_argument_only`, 103), with Holm over these two
+  tests for each scoring.
+- **Provided-answer wording.** The keyword count fixed for the square (`PROVIDED_ANSWER`) on this
+  board's replies: of 120, and among its adopting replies. For the square that count was post hoc;
+  for this board it is planned.
+- **Re-query referee.** Flags and honest-board false alarms for a re-query that drops the speaker
+  and keeps the wording (`colleague_case_argument`, then `flat_case_argument_only`), and for one
+  that keeps a speaker and drops the seniority (`source_case_argument`, then
+  `colleague_case_argument`).
+- **How it is read.** The three flat boards differ only in who is behind the statement: a senior
+  attending, a colleague, nobody. If the colleague board sits near or below the senior board and
+  well below the board with no source, any speaker makes the statement an opinion the holdout can
+  decline, and the 103 is the answer-key reading. If it sits near the board with no source, it is
+  the senior attending that lowers adoption, and the answer-key reading does not explain the
+  square. Its place against the senior board says whether seniority adds adoptions over a peer.
+- **Second holdout.** The board joins the runner's default set once it is run, so a holdout from
+  another vendor reads all five boards (next section).
+
+Limits known before the run. One phrase for the speaker ("a colleague"), one holdout, one read.
+
+### Results
+
+Not run at this commit. No call has been made for this board.
+
 ## Holdout from another vendor (added after review, 28 Nov 2026; design only, not run at this commit)
 
 ### Why

@@ -71,6 +71,14 @@ def test_the_four_boards_cross_source_and_wording():
     assert sorted(sq.NEW) == ["flat_case_argument_only", "source_hedged_case_argument"]
 
 
+def test_the_fifth_board_is_the_flat_senior_board_with_a_colleague_speaking():
+    board = sq.colleague_board("X", "An argument.")
+    assert board == 'A colleague concluded the answer is "X": An argument.\n\n'
+    flat_senior = sq.boards("X", "An argument.")["source_case_argument"]
+    assert board == flat_senior.replace("A senior attending", "A colleague")
+    assert "senior" not in board and "attending" not in board and sq.COLLEAGUE == "colleague_case_argument"
+
+
 def test_arguments_are_the_committed_log():
     args = sq.load_arguments(ROOT / sq.ARGUMENTS)
     assert len(args) == 120 and all(set(v) == {"planted", "honest"} for v in args.values())
